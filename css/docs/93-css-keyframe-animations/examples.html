@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Keyframe Animations - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    p { color: #475569; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-output { padding: 1.5rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; justify-content: center; min-height: 120px; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .box { width: 80px; height: 80px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 0.8rem; text-align: center; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-40px); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+    @keyframes colorCycle { 0% { background: #3b82f6; } 25% { background: #8b5cf6; } 50% { background: #10b981; } 75% { background: #f59e0b; } 100% { background: #3b82f6; } }
+    @keyframes flip { 0% { transform: perspective(400px) rotateY(0); } 50% { transform: perspective(400px) rotateY(180deg); } 100% { transform: perspective(400px) rotateY(360deg); } }
+    .anim-bounce { background: #3b82f6; animation: bounce 1s ease infinite; }
+    .anim-shake { background: #ef4444; animation: shake 0.6s ease infinite; }
+    .anim-pulse { background: #10b981; animation: pulse 1.5s ease infinite; }
+    .anim-spin { background: #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; }
+    .anim-fade { background: #8b5cf6; animation: fadeInUp 0.8s ease both; }
+    .anim-wiggle { background: #ec4899; animation: wiggle 0.8s ease infinite; }
+    .anim-color { animation: colorCycle 4s ease infinite; }
+    .anim-flip { background: #06b6d4; animation: flip 1.5s ease infinite; perspective: 400px; }
+    @keyframes heartbeat { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.3); } 28% { transform: scale(1); } 42% { transform: scale(1.3); } 70% { transform: scale(1); } }
+    .anim-heart { background: #ef4444; border-radius: 50%; animation: heartbeat 1.2s ease infinite; }
+  </style>
+</head>
+<body>
+  <h1>CSS Keyframe Animations</h1>
+
+  <div class="demo-section">
+    <h2>1. Bounce</h2>
+    <p>The element bounces up and down using a two-keyframe animation at 0%, 50%, and 100%.</p>
+    <div class="demo-output">
+      <div class="box anim-bounce">bounce</div>
+    </div>
+    <pre><code>@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+}
+.box { animation: bounce 1s ease infinite; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>2. Shake</h2>
+    <p>Multiple keyframes create a back-and-forth horizontal shake effect.</p>
+    <div class="demo-output">
+      <div class="box anim-shake">shake</div>
+    </div>
+    <pre><code>@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.box { animation: shake 0.6s ease infinite; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>3. Pulse</h2>
+    <p>Smooth scaling combined with opacity change for a breathing effect.</p>
+    <div class="demo-output">
+      <div class="box anim-pulse">pulse</div>
+    </div>
+    <pre><code>@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+.box { animation: pulse 1.5s ease infinite; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>4. Spin</h2>
+    <p>Continuous 360-degree rotation. Using <code>to</code> is shorthand for <code>100%</code>.</p>
+    <div class="demo-output">
+      <div class="box anim-spin">spin</div>
+    </div>
+    <pre><code>@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.box { animation: spin 1s linear infinite; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>5. Fade In Up</h2>
+    <p>A one-shot entrance animation (not infinite). Uses <code>animation-fill-mode: both</code> to retain start/end states.</p>
+    <div class="demo-output">
+      <div class="box anim-fade">fade in</div>
+    </div>
+    <pre><code>@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.box { animation: fadeInUp 0.8s ease both; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>6. Wiggle</h2>
+    <p>Alternating rotation keyframes create a playful wiggling motion.</p>
+    <div class="demo-output">
+      <div class="box anim-wiggle">wiggle</div>
+    </div>
+    <pre><code>@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-12deg); }
+  75% { transform: rotate(12deg); }
+}
+.box { animation: wiggle 0.8s ease infinite; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>7. Color Cycle</h2>
+    <p>Multiple keyframes cycle through a series of background colors over 4 seconds.</p>
+    <div class="demo-output">
+      <div class="box anim-color">color</div>
+    </div>
+    <pre><code>@keyframes colorCycle {
+  0% { background: #3b82f6; }
+  25% { background: #8b5cf6; }
+  50% { background: #10b981; }
+  75% { background: #f59e0b; }
+  100% { background: #3b82f6; }
+}
+.box { animation: colorCycle 4s ease infinite; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>8. Heartbeat</h2>
+    <p>Rapid sequential scale changes create a realistic heartbeat rhythm.</p>
+    <div class="demo-output">
+      <div class="box anim-heart">heart</div>
+    </div>
+    <pre><code>@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.3); }
+  70% { transform: scale(1); }
+}
+.box { animation: heartbeat 1.2s ease infinite; }</code></pre>
+  </div>
+</body>
+</html>

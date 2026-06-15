@@ -1,0 +1,90 @@
+{
+  "module": "CSS Combinators",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Style Nested List Items",
+      "description": "Create a nested list and use the child combinator to style only top-level list items differently from nested ones.",
+      "requirements": [
+        "A nested ul > li > ul structure",
+        "Top-level li items styled with bold text",
+        "Nested li items styled with normal weight and different color",
+        "Use child combinator (>) for top-level items",
+        "Use descendant combinator (space) for nested items"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; padding: 40px; }\n  ul > li { font-weight: bold; color: #1a1a2e; margin: 10px 0; }\n  ul li { color: #555; font-weight: normal; }\n  ul ul li { color: #4a90d9; font-weight: normal; margin: 5px 0; }\n</style>\n</head>\n<body>\n  <ul>\n    <li>Fruits\n      <ul>\n        <li>Apple</li>\n        <li>Banana</li>\n        <li>Orange</li>\n      </ul>\n    </li>\n    <li>Vegetables\n      <ul>\n        <li>Carrot</li>\n        <li>Broccoli</li>\n      </ul>\n    </li>\n  </ul>\n</body>\n</html>",
+        "explanation": "ul > li selects direct children (top-level items), styling them bold. ul ul li selects all nested items, overriding with normal weight and a different color."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Card Component with Combinators",
+      "description": "Style a card component using only combinators (no extra classes). The card has a header, content, and footer.",
+      "requirements": [
+        "Card div with inner header, content, footer divs",
+        "Header: larger font, border-bottom",
+        "Content: padding, different background",
+        "Footer: smaller font, border-top, muted color",
+        "Use only combinators (not classes on inner elements)"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; padding: 40px; }\n  .card { border: 1px solid #ddd; border-radius: 8px; max-width: 400px; margin: 0 auto; }\n  .card > div { padding: 15px; }\n  .card > div:first-child { font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #4a90d9; }\n  .card > div:last-child { font-size: 0.8em; color: #999; border-top: 1px solid #eee; }\n</style>\n</head>\n<body>\n  <div class=\"card\">\n    <div>Card Header</div>\n    <div>This is the main content area of the card.</div>\n    <div>Card Footer</div>\n  </div>\n</body>\n</html>",
+        "explanation": "Uses child combinator (>) combined with pseudo-classes (:first-child, :last-child) to target specific child divs without adding individual classes."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Article Styling with Sibling Combinators",
+      "description": "Style an article using sibling combinators. Each h2 should be followed by a styled intro paragraph, and all subsequent siblings should have different styling.",
+      "requirements": [
+        "Article with h2 headings and paragraphs",
+        "Paragraph immediately after h2: larger font, different color",
+        "All remaining paragraphs after h2: indented with left border",
+        "Use + and ~ combinators appropriately"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: 'Georgia', serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }\n  h2 { color: #1a1a2e; margin-top: 30px; }\n  h2 + p { font-size: 1.2em; color: #4a90d9; font-style: italic; }\n  h2 ~ p { margin-left: 20px; border-left: 3px solid #ddd; padding-left: 15px; }\n  h2 + p { margin-left: 0; border-left: none; padding-left: 0; }\n</style>\n</head>\n<body>\n  <article>\n    <h2>Introduction</h2>\n    <p>This intro paragraph is immediately after h2 - special styling!</p>\n    <p>This is a regular paragraph after the intro.</p>\n    <p>Another regular paragraph with left border.</p>\n\n    <h2>Main Content</h2>\n    <p>This intro paragraph for the second section gets special styling too!</p>\n    <p>Following paragraphs get the border treatment.</p>\n  </article>\n</body>\n</html>",
+        "explanation": "h2 + p selects the immediately following paragraph (special intro). h2 ~ p selects all following paragraphs (border). The + rule overrides the ~ rule for the first paragraph."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Navigation with Active State Using Combinators",
+      "description": "Create a navigation bar where hovering over an item reveals its submenu. Use combinators to style active/current page indicators.",
+      "requirements": [
+        "Horizontal nav with dropdown submenus",
+        "Submenu appears on hover using child combinator",
+        "Active page indicator using adjacent sibling",
+        "No JavaScript allowed"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: sans-serif; }\n  nav { background: #1a1a2e; }\n  nav > ul { list-style: none; display: flex; }\n  nav > ul > li { position: relative; }\n  nav > ul > li > a { display: block; padding: 15px 25px; color: white; text-decoration: none; }\n  nav > ul > li:hover > a { background: #e94560; }\n  /* Adjacent sibling: active indicator */\n  .active { background: #e94560; }\n  .active + li > a { border-left: 2px solid #fff; }\n  /* Submenu using child combinator */\n  nav > ul > li > ul { display: none; position: absolute; top: 100%; left: 0; background: #16213e; min-width: 150px; list-style: none; }\n  nav > ul > li:hover > ul { display: block; }\n  nav > ul > li > ul > li a { display: block; padding: 10px 20px; color: #ccc; text-decoration: none; }\n  nav > ul > li > ul > li a:hover { background: #0f3460; color: white; }\n</style>\n</head>\n<body>\n  <nav>\n    <ul>\n      <li><a href=\"#\" class=\"active\">Home</a></li>\n      <li>\n        <a href=\"#\">Services</a>\n        <ul>\n          <li><a href=\"#\">Web Design</a></li>\n          <li><a href=\"#\">Development</a></li>\n        </ul>\n      </li>\n      <li><a href=\"#\">About</a></li>\n      <li><a href=\"#\">Contact</a></li>\n    </ul>\n  </nav>\n</body>\n</html>",
+        "explanation": "Uses child combinator (>) throughout: nav > ul selects direct nav children, li:hover > ul selects submenu on hover, li:hover > a styles the hovered link."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Combinator-Based Card Grid with Hover Effects",
+      "description": "Build a card grid where hover effects and spacing are controlled entirely through CSS combinators. Include cards with images, titles, and descriptions.",
+      "requirements": [
+        "Grid of cards (3x2) using combinators",
+        "Card structure: card > img + .content > h3 + p",
+        "Hover: card:hover > img scales up",
+        "Spacing: card + card adds left margin (first card in row un-affected)",
+        "Content title: first-child styled differently",
+        "Last card in each row: no right margin",
+        "No extra classes on inner elements"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  body { font-family: sans-serif; padding: 40px; background: #f5f5f5; }\n  .grid { max-width: 800px; margin: 0 auto; font-size: 0; }\n  .card {\n    display: inline-block;\n    width: 30%;\n    margin: 1.66%;\n    background: white;\n    border-radius: 8px;\n    overflow: hidden;\n    font-size: 16px;\n    vertical-align: top;\n  }\n  .card > div:first-child { height: 120px; background: #4a90d9; color: white; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }\n  .card:hover > div:first-child { transform: scale(1.05); }\n  .card > div:last-child { padding: 15px; }\n  /* Title (first child of content) */\n  .card > div:last-child > h3 { color: #333; margin-bottom: 8px; }\n  .card > div:last-child > h3 + p { color: #666; font-size: 14px; }\n  /* First card in each row needs special handling */\n  .card:nth-child(3n+1) { margin-left: 1.66%; }\n  /* Or use adjacent sibling with nth-child for more precision */\n  .card:first-child ~ .card:nth-child(3n+1) { margin-left: 1.66%; }\n</style>\n</head>\n<body>\n  <div class=\"grid\">\n    <div class=\"card\">\n      <div>Image 1</div>\n      <div><h3>Card Title 1</h3><p>Description</p></div>\n    </div>\n    <div class=\"card\">\n      <div>Image 2</div>\n      <div><h3>Card Title 2</h3><p>Description</p></div>\n    </div>\n    <div class=\"card\">\n      <div>Image 3</div>\n      <div><h3>Card Title 3</h3><p>Description</p></div>\n    </div>\n    <div class=\"card\">\n      <div>Image 4</div>\n      <div><h3>Card Title 4</h3><p>Description</p></div>\n    </div>\n    <div class=\"card\">\n      <div>Image 5</div>\n      <div><h3>Card Title 5</h3><p>Description</p></div>\n    </div>\n    <div class=\"card\">\n      <div>Image 6</div>\n      <div><h3>Card Title 6</h3><p>Description</p></div>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "Uses: child combinator (>) for card structure, :first-child and :last-child pseudo-classes to target inner elements, :hover > for hover effects, :nth-child with combinators for row targeting, adjacent sibling for card spacing."
+      }
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "module": "58-grid-areas",
+  "title": "Grid Areas",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `grid-template-areas` use to define the layout?",
+      "options": ["String-based visual notation", "Number-based lines", "Pixel values", "CSS variables"],
+      "correctAnswer": 0,
+      "explanation": "`grid-template-areas` uses string-based visual notation where each string represents a row and each word represents a cell."
+    },
+    {
+      "id": 2,
+      "question": "In `grid-template-areas`, what does the dot (`.`) represent?",
+      "options": ["An empty cell", "A grid line", "A named area", "A span indicator"],
+      "correctAnswer": 0,
+      "explanation": "The dot (`.`) creates an empty grid cell that no item is assigned to."
+    },
+    {
+      "id": 3,
+      "question": "How do you assign an HTML element to a named grid area?",
+      "options": ["`grid-area: name;` on the item", "`grid-area: name;` on the container", "`grid-template-areas: name;` on the item", "`area: name;` on the item"],
+      "correctAnswer": 0,
+      "explanation": "Use `grid-area: name;` on the grid item you want to assign to the named area."
+    },
+    {
+      "id": 4,
+      "question": "What happens if two non-adjacent cells have the same area name?",
+      "options": ["The layout is invalid — areas must be rectangular and connected", "They become two separate areas", "The browser merges them", "The first one wins"],
+      "correctAnswer": 0,
+      "explanation": "Grid area names must form a single contiguous rectangle. Two non-adjacent cells with the same name is invalid."
+    },
+    {
+      "id": 5,
+      "question": "Can you create an L-shaped area with `grid-template-areas`?",
+      "options": ["No — areas must form rectangles", "Yes — use dots to fill the gap", "Only with named grid lines", "Only in Firefox"],
+      "correctAnswer": 0,
+      "explanation": "All named areas must be rectangular. L-shaped, T-shaped, or disconnected areas are not allowed."
+    },
+    {
+      "id": 6,
+      "question": "What does this area definition create? `\"header header\" \"main aside\" \"footer footer\"`",
+      "options": ["A 2-column, 3-row layout with header spanning both columns", "A 3-column, 2-row layout", "A 2-column layout with header spanning 1 column", "A 3x3 grid"],
+      "correctAnswer": 0,
+      "explanation": "Each string is a row with 2 cells. Header spans both columns in row 1. Main and aside are side-by-side in row 2. Footer spans both columns in row 3."
+    },
+    {
+      "id": 7,
+      "question": "How do you redefine areas for responsive layouts?",
+      "options": ["Change grid-template-areas inside a media query", "Use JavaScript to rewrite the CSS", "Use different class names for each breakpoint", "Areas cannot be redefined"],
+      "correctAnswer": 0,
+      "explanation": "You can redefine `grid-template-areas` inside a media query to create a completely different layout at different viewport sizes."
+    },
+    {
+      "id": 8,
+      "question": "What is a key advantage of grid-template-areas over line-based placement?",
+      "options": ["The CSS visually represents the layout — highly readable", "It's faster to render", "It works in older browsers", "It doesn't require grid-template-columns"],
+      "correctAnswer": 0,
+      "explanation": "The string notation in `grid-template-areas` makes the CSS layout visually readable — you can see the page structure in the code."
+    },
+    {
+      "id": 9,
+      "question": "What happens if rows in `grid-template-areas` have different numbers of cells?",
+      "options": ["The entire declaration is invalid", "Extra cells are ignored", "Missing cells become empty", "The grid adjusts automatically"],
+      "correctAnswer": 0,
+      "explanation": "All rows in `grid-template-areas` must have the same number of cells. If they don't match, the declaration is invalid."
+    },
+    {
+      "id": 10,
+      "question": "What does `grid-area: 2 / 1 / 4 / 3;` mean?",
+      "options": ["Starts at row 2, col 1; ends at row 4, col 3", "Spans 2 rows and 1 column", "Sets grid-area to a named area '2-1-4-3'", "Creates 1 row and 1 column"],
+      "correctAnswer": 0,
+      "explanation": "`grid-area` with 4 values is the line shorthand: row-start / column-start / row-end / column-end. Here it starts at line 2 / 1 and ends at line 4 / 3."
+    },
+    {
+      "id": 11,
+      "question": "What happens if you define an area in `grid-template-areas` but no item has `grid-area` set to it?",
+      "options": ["The cell remains empty", "An error is thrown", "The browser creates a placeholder", "The item is hidden"],
+      "correctAnswer": 0,
+      "explanation": "If a named area has no corresponding item, that grid cell remains empty. No error is thrown."
+    },
+    {
+      "id": 12,
+      "question": "What is the minimum number of column cells required in each row string?",
+      "options": ["Must match the number of columns defined in grid-template-columns", "At least 1", "At least 2", "Number of items ÷ 2"],
+      "correctAnswer": 0,
+      "explanation": "The number of cells in each row of `grid-template-areas` must match the number of columns defined in `grid-template-columns`."
+    },
+    {
+      "id": 13,
+      "question": "When using `grid-template-areas`, which other properties are typically needed?",
+      "options": ["grid-template-columns and grid-template-rows", "Only grid-template-columns", "Only grid-template-rows", "No other properties are needed"],
+      "correctAnswer": 0,
+      "explanation": "`grid-template-areas` only names the areas but doesn't set their sizes. You still need `grid-template-columns` and `grid-template-rows` for sizing."
+    },
+    {
+      "id": 14,
+      "question": "Can you use special characters (like `@`, `!`, `#`) in area names?",
+      "options": ["No — only letters, digits, and hyphens allowed", "Yes — all characters are valid", "Only letters and digits", "Only letters"],
+      "correctAnswer": 0,
+      "explanation": "Grid area names can only contain letters (a-z, A-Z), digits (0-9), and hyphens (-). They must start with a letter."
+    },
+    {
+      "id": 15,
+      "question": "What happens if two items are assigned to the same grid area?",
+      "options": ["They overlap in the same cell", "The second item is hidden", "An error is thrown", "They alternate based on source order"],
+      "correctAnswer": 0,
+      "explanation": "If two items have the same `grid-area` value, they will overlap in the same grid cell. Use `z-index` to control stacking order."
+    },
+    {
+      "id": 16,
+      "question": "What does this area definition create? `\"a a a\" \"b b c\" \"d d c\"`",
+      "options": ["A 3-column grid with a top banner, two bottom areas, and right-side element", "A 2-column grid", "An invalid layout", "A 3-row single column"],
+      "correctAnswer": 0,
+      "explanation": "Row 1: 'a' spans all 3 columns. Row 2: 'b' spans 2 cols, 'c' in 3rd col. Row 3: 'd' spans 2 cols, 'c' continues in 3rd col (spanning 2 rows vertically)."
+    },
+    {
+      "id": 17,
+      "question": "Which is NOT a valid grid area name?",
+      "options": ["2col", "header", "sidebar", "main-content"],
+      "correctAnswer": 0,
+      "explanation": "Area names must start with a letter. `2col` starts with a digit, making it invalid."
+    },
+    {
+      "id": 18,
+      "question": "True or False: `grid-template-areas` changes the HTML DOM order of elements.",
+      "options": ["False — it only changes visual positioning", "True — it reorders elements in the DOM", "Only when used with media queries", "Only for inline elements"],
+      "correctAnswer": 0,
+      "explanation": "Grid areas only affect visual layout, not DOM order. Screen readers and keyboard navigation follow the HTML order."
+    },
+    {
+      "id": 19,
+      "question": "What's the best use case for grid-template-areas?",
+      "options": ["Page-level layouts with clear sections", "Single-line navigation bars", "Simple centering tasks", "Button groups"],
+      "correctAnswer": 0,
+      "explanation": "Grid-template-areas excels at page-level layouts (header, nav, main, aside, footer) where the visual readability of named areas is most beneficial."
+    },
+    {
+      "id": 20,
+      "question": "How can you create a gap between areas while using `grid-template-areas`?",
+      "options": ["Use the `gap` property on the container", "Add empty named areas", "Use the grid-gap-area property", "Place empty rows between content rows"],
+      "correctAnswer": 0,
+      "explanation": "Use the `gap` property (row-gap/column-gap) on the grid container to create spacing between areas. The areas themselves define the layout structure."
+    }
+  ]
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reduced Motion Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #0d1117; color: #c9d1d9; }
+    h1 { color: #58a6ff; margin-bottom: 0.25rem; }
+    .subtitle { color: #8b949e; margin-bottom: 2rem; }
+    .playground-container { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    h2 { color: #58a6ff; margin-bottom: 1rem; }
+
+    .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .control-group label { display: block; margin-bottom: 0.25rem; color: #8b949e; font-size: 0.875rem; font-weight: 600; }
+    .control-group select, .control-group input[type="range"] { width: 100%; padding: 0.5rem; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; }
+    .control-group input[type="checkbox"] { margin-right: 0.5rem; }
+
+    .preview-area { min-height: 200px; display: flex; align-items: center; justify-content: center; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 2rem; margin: 1rem 0; position: relative; overflow: hidden; }
+
+    .anim-box { width: 120px; height: 120px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; cursor: default; background: linear-gradient(135deg, #58a6ff, #1f6feb); color: #fff; }
+
+    .status-bar { display: flex; gap: 1rem; padding: 1rem; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; margin: 1rem 0; align-items: center; }
+    .status-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .status-dot.active { background: #3fb950; }
+    .status-dot.inactive { background: #f85149; }
+
+    .output-area { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem; font-family: monospace; font-size: 0.875rem; white-space: pre-wrap; margin-top: 1rem; }
+
+    .preset-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+    .preset-btn { padding: 0.5rem 1rem; border: 1px solid #30363d; border-radius: 6px; background: #21262d; color: #c9d1d9; cursor: pointer; }
+    .preset-btn:hover { background: #30363d; }
+    .preset-btn.active { border-color: #58a6ff; background: #1f6feb33; }
+
+    .examples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .example-card { padding: 1.5rem; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; }
+    .example-card h3 { margin-bottom: 1rem; color: #58a6ff; }
+
+    .reduce-motion *,
+    .reduce-motion *::before,
+    .reduce-motion *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body:not(.no-system) .preview-area *,
+      body:not(.no-system) .example-card * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 Reduced Motion Playground</h1>
+  <p class="subtitle">Build and test animations with accessibility in mind</p>
+
+  <div class="playground-container">
+    <h2>🎨 Animation Builder</h2>
+    <div class="controls">
+      <div class="control-group">
+        <label for="anim-type">Animation Type</label>
+        <select id="anim-type">
+          <option value="bounce">Bounce</option>
+          <option value="spin">Spin</option>
+          <option value="pulse">Pulse</option>
+          <option value="shake">Shake</option>
+          <option value="float">Float</option>
+          <option value="slide">Slide In</option>
+          <option value="fade">Fade In</option>
+          <option value="none">Static (No Animation)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="anim-duration">Duration (seconds)</label>
+        <input type="range" id="anim-duration" min="0.1" max="5" value="1" step="0.1">
+        <span id="duration-display">1s</span>
+      </div>
+      <div class="control-group">
+        <label for="anim-iterations">Iterations</label>
+        <select id="anim-iterations">
+          <option value="1">Once</option>
+          <option value="2">2 times</option>
+          <option value="3">3 times</option>
+          <option value="infinite" selected>Infinite</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="anim-easing">Easing</label>
+        <select id="anim-easing">
+          <option value="ease">Ease</option>
+          <option value="ease-in">Ease In</option>
+          <option value="ease-out">Ease Out</option>
+          <option value="ease-in-out">Ease In Out</option>
+          <option value="linear">Linear</option>
+          <option value="cubic-bezier(0.68, -0.55, 0.27, 1.55)">Bounce (cubic)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <span class="status-dot" id="motion-status-dot">●</span>
+      <span id="motion-status-text">System reduced motion: NOT detected</span>
+      <label style="margin-left:auto;cursor:pointer;">
+        <input type="checkbox" id="manual-reduce"> Simulate reduced motion
+      </label>
+    </div>
+
+    <div class="preview-area" id="preview-area">
+      <div class="anim-box" id="anim-box">Animate Me</div>
+    </div>
+
+    <div class="preset-btns">
+      <span style="color:#8b949e;font-size:0.875rem;padding:0.5rem 0;">Animation Purpose: </span>
+      <button class="preset-btn" data-type="spin" data-purpose="loading">Loading</button>
+      <button class="preset-btn" data-type="bounce" data-purpose="decorative" style="border-color:#f85149;">Decorative</button>
+      <button class="preset-btn" data-type="slide" data-purpose="notification">Notification</button>
+      <button class="preset-btn" data-type="pulse" data-purpose="attention">Attention</button>
+      <button class="preset-btn" data-type="none" data-purpose="static">Static</button>
+    </div>
+
+    <div class="output-area" id="css-output">/* Generated CSS */
+@keyframes bounce { ... }</div>
+  </div>
+
+  <div class="playground-container">
+    <h2>📊 Animation Classifications</h2>
+    <div class="examples-grid">
+      <div class="example-card" style="border-left:3px solid #f85149;">
+        <h3>❌ Remove When Reduced</h3>
+        <ul style="list-style:none;padding:0;color:#8b949e;">
+          <li style="padding:0.25rem 0;">✦ Decorative bounce/float</li>
+          <li style="padding:0.25rem 0;">✦ Parallax scrolling</li>
+          <li style="padding:0.25rem 0;">✦ Confetti effects</li>
+          <li style="padding:0.25rem 0;">✦ Hover scale transforms</li>
+          <li style="padding:0.25rem 0;">✦ Page-load splash animations</li>
+          <li style="padding:0.25rem 0;">✦ Shimmer/Skeleton pulse</li>
+        </ul>
+      </div>
+      <div class="example-card" style="border-left:3px solid #d29922;">
+        <h3>⚠️ Reduce Intensity</h3>
+        <ul style="list-style:none;padding:0;color:#8b949e;">
+          <li style="padding:0.25rem 0;">✦ Slide → Fade transitions</li>
+          <li style="padding:0.25rem 0;">✦ Scale → Color hover effects</li>
+          <li style="padding:0.25rem 0;">✦ Page transitions (simplify)</li>
+          <li style="padding:0.25rem 0;">✦ Scroll-triggered reveals</li>
+        </ul>
+      </div>
+      <div class="example-card" style="border-left:3px solid #3fb950;">
+        <h3>✅ Keep Functional</h3>
+        <ul style="list-style:none;padding:0;color:#8b949e;">
+          <li style="padding:0.25rem 0;">✦ Loading spinners</li>
+          <li style="padding:0.25rem 0;">✦ Progress bars</li>
+          <li style="padding:0.25rem 0;">✦ Typing indicators</li>
+          <li style="padding:0.25rem 0;">✦ Focus indicators</li>
+          <li style="padding:0.25rem 0;">✦ Essential UI transitions</li>
+        </ul>
+      </div>
+      <div class="example-card" style="border-left:3px solid #1f6feb;">
+        <h3>💡 Best Practices</h3>
+        <ul style="list-style:none;padding:0;color:#8b949e;">
+          <li style="padding:0.25rem 0;">✦ Use prefers-reduced-motion</li>
+          <li style="padding:0.25rem 0;">✦ Provide manual toggle</li>
+          <li style="padding:0.25rem 0;">✦ Animate transform/opacity</li>
+          <li style="padding:0.25rem 0;">✦ Avoid infinite animations</li>
+          <li style="padding:0.25rem 0;">✦ Test with OS setting on</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const animType = document.getElementById('anim-type');
+    const animDuration = document.getElementById('anim-duration');
+    const animIterations = document.getElementById('anim-iterations');
+    const animEasing = document.getElementById('anim-easing');
+    const durationDisplay = document.getElementById('duration-display');
+    const animBox = document.getElementById('anim-box');
+    const cssOutput = document.getElementById('css-output');
+    const manualReduce = document.getElementById('manual-reduce');
+    const motionStatusText = document.getElementById('motion-status-text');
+    const motionStatusDot = document.getElementById('motion-status-dot');
+
+    // Animation keyframes
+    const keyframes = {
+      bounce: `@keyframes bounce {\n  0%, 100% { transform: translateY(0); }\n  50% { transform: translateY(-30px); }\n}`,
+      spin: `@keyframes spin {\n  to { transform: rotate(360deg); }\n}`,
+      pulse: `@keyframes pulse {\n  0%, 100% { opacity: 1; }\n  50% { opacity: 0.3; }\n}`,
+      shake: `@keyframes shake {\n  0%, 100% { transform: translateX(0); }\n  25% { transform: translateX(-10px); }\n  75% { transform: translateX(10px); }\n}`,
+      float: `@keyframes float {\n  0%, 100% { transform: translateY(0) rotate(0deg); }\n  50% { transform: translateY(-15px) rotate(3deg); }\n}`,
+      slide: `@keyframes slideIn {\n  from { transform: translateX(100px); opacity: 0; }\n  to { transform: translateX(0); opacity: 1; }\n}`,
+      fade: `@keyframes fadeIn {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}`,
+      none: `/* No animation */`
+    };
+
+    function applyAnimation() {
+      const type = animType.value;
+      const dur = animDuration.value;
+      const iterations = animIterations.value;
+      const easing = animEasing.value;
+
+      durationDisplay.textContent = dur + 's';
+
+      if (type === 'none') {
+        animBox.style.animation = 'none';
+        animBox.style.transform = 'none';
+      } else {
+        const animName = type + 'Custom';
+        const kf = keyframes[type];
+
+        // Inject keyframes
+        let styleEl = document.getElementById('dynamic-keyframes');
+        if (!styleEl) {
+          styleEl = document.createElement('style');
+          styleEl.id = 'dynamic-keyframes';
+          document.head.appendChild(styleEl);
+        }
+
+        const customKf = kf.replace(type, animName);
+        styleEl.textContent = customKf;
+
+        animBox.style.animation = `${animName} ${dur}s ${easing} ${iterations === 'infinite' ? 'infinite' : iterations}`;
+      }
+
+      // Generate CSS output
+      const motionClass = isReduced() ? '/* Reduced motion active */' : '/* Normal motion */';
+      const reducedRule = isReduced() ?
+        `.box { animation: none; }` :
+        `.box { animation: ${type} ${dur}s ${easing} ${iterations}; }`;
+
+      cssOutput.textContent = `${motionClass}\n\n/* Animation */\n${keyframes[type]}\n\n/* Usage */\n${reducedRule}\n\n@media (prefers-reduced-motion: reduce) {\n  .box {\n    animation: none;\n    /* Preserve final state */\n    opacity: 1;\n    transform: none;\n  }\n}`;
+    }
+
+    function isReduced() {
+      return manualReduce.checked || (window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
+    function updateMotionStatus() {
+      const reduced = isReduced();
+      if (reduced) {
+        motionStatusText.textContent = 'REDUCED MOTION ACTIVE';
+        motionStatusDot.className = 'status-dot inactive';
+        document.body.classList.add('reduce-motion');
+      } else {
+        motionStatusText.textContent = 'Normal motion';
+        motionStatusDot.className = 'status-dot active';
+        document.body.classList.remove('reduce-motion');
+      }
+    }
+
+    animType.addEventListener('change', applyAnimation);
+    animDuration.addEventListener('input', applyAnimation);
+    animIterations.addEventListener('change', applyAnimation);
+    animEasing.addEventListener('change', applyAnimation);
+    manualReduce.addEventListener('change', () => {
+      updateMotionStatus();
+      applyAnimation();
+    });
+
+    // Presets
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        animType.value = btn.dataset.type;
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyAnimation();
+      });
+    });
+
+    // System preference detection
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    motionQuery.addEventListener('change', () => {
+      updateMotionStatus();
+      applyAnimation();
+    });
+
+    updateMotionStatus();
+    applyAnimation();
+  </script>
+</body>
+</html>

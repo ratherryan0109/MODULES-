@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What are CSS cascade layers?", "answer": "CSS cascade layers (@layer) allow you to control the order of precedence for groups of styles, overriding traditional specificity." },
+    { "question": "How do you define a cascade layer?", "answer": "Use the @layer rule: @layer base { body { margin: 0; } } to group styles into a named layer." },
+    { "question": "What is the purpose of cascade layers?", "answer": "Layers let authors control which style declarations win in the cascade regardless of specificity, solving specificity conflicts at scale." },
+    { "question": "How do you specify the order of cascade layers?", "answer": "Declare layer names in order: @layer base, components, utilities; styles in later layers override earlier ones." },
+    { "question": "What happens when styles are in the same layer?", "answer": "Within the same layer, normal cascade rules apply: specificity and source order determine which styles win." },
+    { "question": "Can you add styles to a layer after it is defined?", "answer": "Yes, you can reassign layers later: @layer base { h1 { font-size: 2rem; } } adds new rules to the existing base layer." },
+    { "question": "What is the cascade order with layers?", "answer": "The order is: normal styles in layers (ordered by layer declaration) then normal styles without layers, with each layer evaluated by declaration order." },
+    { "question": "How do layers interact with !important?", "answer": "important reverses layer precedence: later layers lose to earlier layers when !important is used, making earlier layers win." },
+    { "question": "Can you nest layers inside other layers?", "answer": "Yes, use dot notation: @layer ui.components { ... } creates a sublayer ui.components inside the ui layer." },
+    { "question": "How do unlayered styles compare to layered styles?", "answer": "Unlayered styles have higher priority than layered styles in the normal cascade (without !important)." }
+  ],
+  "intermediate": [
+    { "question": "What is a common layering strategy for large projects?", "answer": "A typical strategy: @layer reset, base, components, utilities, overrides; each layer builds on the previous with increasing specificity priority." },
+    { "question": "How do you use @layer with @import?", "answer": "Use @import url('file.css') layer(name); to assign imported stylesheets directly to a specific cascade layer." },
+    { "question": "How do layers affect third-party stylesheet integration?", "answer": "Import third-party CSS into an early layer (e.g., @layer vendor) so your styles automatically override them without specificity hacks." },
+    { "question": "How does the cascade layer order interact with media queries?", "answer": "Layer order is established globally, not per media query; styles from a later layer win over earlier layers across all media contexts." },
+    { "question": "Can you change layer order after layers have been used?", "answer": "No, the first @layer statement that declares the order is final; subsequent @layer references cannot reorder existing layers." },
+    { "question": "How do cascades layers work with the @scope at-rule?", "answer": "Layers and @scope interact; @scope styles are evaluated within their layer scope, and layers determine the base priority before scoping applies." },
+    { "question": "How do layers affect the CSS cascade algorithm?", "answer": "Layers add a new step in the cascade: after origin and !important, layers are evaluated before specificity and source order." },
+    { "question": "How do you prioritize utility styles over component styles using layers?", "answer": "Define utilities in a later layer: @layer base, components, utilities;.utilities override components of equal specificity." },
+    { "question": "Can you use @layer in inline styles or style attributes?", "answer": "No, @layer is an at-rule and cannot be used in inline styles or style attributes; it only works in stylesheets." },
+    { "question": "How do you debug layer conflicts in DevTools?", "answer": "Chrome DevTools shows layer information in the Styles panel; rules are labeled with their layer name to identify the source." }
+  ],
+  "advanced": [
+    { "question": "How does the cascade layer algorithm handle anonymous layers?", "answer": "Anonymous layers created without a name (@layer { ... }) have lower priority than named layers and cannot be referenced later." },
+    { "question": "How do you integrate CSS layers with a design token system?", "answer": "Load token-based styles in a low-priority layer (e.g., @layer tokens) and override with component-specific styles in higher layers." },
+    { "question": "How does @layer interact with the CSS Object Model (CSSOM)?", "answer": "CSSOM exposes layer information through CSSLayerStatementRule and CSSLayerBlockRule, allowing programmatic layer inspection." },
+    { "question": "How do cascade layers interact with shadow DOM encapsulation?", "answer": "Each shadow root has its own layer stack; layers inside shadow DOM do not affect or get affected by layers in the light DOM." },
+    { "question": "How do you create a layer reset strategy without duplicating selectors?", "answer": "Use @layer reset to wrap a full reset stylesheet, ensuring reset styles have the lowest priority without increasing specificity." },
+    { "question": "What happens when layers are defined in different CSS files loaded in different orders?", "answer": "Layer order is determined by the first time @layer declares the order across all loaded stylesheets, regardless of load timing." },
+    { "question": "How do you handle layer ordering when using CSS preprocessors like Sass?", "answer": "Preprocessors compile before browsers see the CSS; use @layer in your Sass output, managing layer order at the compiled CSS level." },
+    { "question": "How does @layer work with CSS animations and @keyframes?", "answer": "Keyframes are not affected by layer ordering since they are property value sources, not style declarations in the cascade." },
+    { "question": "How do cascade layers affect the CSS contain property?", "answer": "Layers do not directly affect containment; contain property scoping works independently of the cascade layer system." },
+    { "question": "How do you migrate a large codebase to use @layer without breaking existing styles?", "answer": "Place existing unlayered styles in a layer (they become layered), then add newer styles in higher-priority layers, testing incrementally." }
+  ]
+}

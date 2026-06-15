@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the clear property do in CSS?", "answer": "The clear property specifies whether an element can be positioned next to floated elements or must be moved below them." },
+    { "question": "What are the values of the clear property?", "answer": "The values are none, left, right, both, and inherit." },
+    { "question": "What does clear: both do?", "answer": "clear: both pushes the element below all preceding floated elements on both the left and right sides." },
+    { "question": "What does clear: left do?", "answer": "clear: left pushes the element below any preceding left-floated elements." },
+    { "question": "What is the default value of clear?", "answer": "The default value of clear is none, allowing the element to sit next to floated elements." },
+    { "question": "How do you clear a footer below floated columns?", "answer": "Apply clear: both to the footer to push it below all floated column elements." },
+    { "question": "Does clear work on non-floated elements?", "answer": "Yes, clear works on any block-level element, not just floated ones." },
+    { "question": "What happens to margins when clear is applied?", "answer": "The browser increases the element's top margin automatically to push it below preceding floats." },
+    { "question": "Can you use clear on inline elements?", "answer": "No, clear only applies to block-level elements." },
+    { "question": "What is the difference between clear and clearfix?", "answer": "Clear is a property on an element to avoid floats; clearfix is a technique on the parent to contain floated children." }
+  ],
+  "intermediate": [
+    { "question": "How does the clearfix technique work?", "answer": "Clearfix uses ::after { content: ''; display: table; clear: both } on the parent to force it to wrap around floated children." },
+    { "question": "How does clear interact with floated elements in terms of margin?", "answer": "Clear adds clearance (extra space above the element) to move it below floats, overriding normal margins." },
+    { "question": "What is clearance in CSS?", "answer": "Clearance is the space introduced above a cleared element to push it past preceding floats, separate from margin." },
+    { "question": "Can clear: both fail to work properly?", "answer": "Yes, if floats are in different block formatting contexts or if the cleared element is inside a nested container." },
+    { "question": "How does clear behave with right-floated elements?", "answer": "clear: right pushes the element below preceding right-floated elements; clear: left ignores right floats." },
+    { "question": "What is the difference between overflow: hidden and clearfix?", "answer": "Both contain floats, but overflow: hidden establishes a BFC and can clip content, while clearfix does not clip." },
+    { "question": "How does float and clear create multi-row layouts?", "answer": "By floating a row of elements and clearing after each row, you can stack rows of floated items." },
+    { "question": "What HTML structure enables clear to work across sibling elements?", "answer": "Floated elements and cleared elements must be siblings in the same parent for clear to take effect." },
+    { "question": "Can you use clear with Flexbox items?", "answer": "Clear has no effect on Flexbox items because float is ignored in a flex formatting context." },
+    { "question": "What happens when multiple cleared elements follow one float?", "answer": "Each cleared element stacks below the float, with clearance creating vertical space between them." }
+  ],
+  "advanced": [
+    { "question": "How does the CSS specification define clearance calculation?", "answer": "Clearance is calculated as the smallest amount that moves the element's border box below the bottom edge of all preceding floats on the cleared side." },
+    { "question": "Explain how clearance interacts with margin collapsing.", "answer": "Clearance prevents margin collapsing between the cleared element and the float container, introducing a non-collapsible gap." },
+    { "question": "What happens when a cleared element has a top margin larger than the clearance needed?", "answer": "The browser sets the element's top border edge below the float, and the larger margin then separates it further from preceding content." },
+    { "question": "How does clear behave in a block formatting context other than the one containing the floats?", "answer": "If a cleared element is in a different BFC, it may not see the floats, and clear will have no visible effect." },
+    { "question": "What are edge cases of clear with negative margins on floats?", "answer": "Negative margins on floats can make clearance calculations unpredictable, sometimes causing elements to overlap." },
+    { "question": "How did the clear property evolve from CSS1 to modern CSS?", "answer": "CSS1 only supported clear: left/right/both/none; modern specs added clear: inline-start and inline-end for logical property support." },
+    { "question": "How does clear interact with display: flow-root?", "answer": "display: flow-root establishes a BFC, containing floats without a clearfix; it does not need clear on child elements." },
+    { "question": "What is the practical impact of clear in print CSS?", "answer": "In print stylesheets, clear ensures floated images or sidebars do not cause text to overlap across page breaks." },
+    { "question": "How does the contain property affect float clearing?", "answer": "Using contain: layout on a parent creates a new BFC, isolating floats and their clearing from the outer layout." },
+    { "question": "Why does clear not work on flex or grid items?", "answer": "Flex and grid formatting contexts override float behavior entirely, so clear is not applicable; it is ignored per spec." }
+  ]
+}

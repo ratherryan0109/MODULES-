@@ -1,0 +1,222 @@
+{
+  "module": "108-css-design-systems",
+  "title": "CSS Design Systems",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is a design token in the context of a CSS design system?",
+      "options": [
+        "An atomic design value (color, spacing, typography) stored as a CSS custom property",
+        "A CSS class used to style components",
+        "A token used for CSS authentication",
+        "A naming convention for CSS files"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Design tokens are the atomic values of a design system — colors, spacing, typography, shadows — stored as CSS custom properties for consistency."
+    },
+    {
+      "id": 2,
+      "question": "What is the difference between a design system and a component library?",
+      "options": [
+        "A design system includes guidelines and process; a component library is just the code",
+        "They are the same thing",
+        "A design system is only for designers; a component library is for developers",
+        "A component library is always larger than a design system"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A design system includes the code (component library) PLUS guidelines, principles, documentation, governance, and processes."
+    },
+    {
+      "id": 3,
+      "question": "Which methodology is BEST for component naming in a design system?",
+      "options": ["BEM (.c-btn--primary)", "OOCSS only", "Inline styles", "Element selectors like 'button'"],
+      "correctAnswer": 0,
+      "explanation": "BEM provides clear, consistent naming for components (.c-btn for block, .c-btn--primary for modifier) with flat specificity."
+    },
+    {
+      "id": 4,
+      "question": "How do you implement dark mode in a design system?",
+      "options": [
+        "Override token values in [data-theme='dark'] selector",
+        "Duplicate all component CSS files",
+        "Use JavaScript to swap all colors",
+        "Use CSS filter: invert() on the whole page"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Override only the tokens that change under [data-theme='dark']. Components reference tokens, so they automatically update."
+    },
+    {
+      "id": 5,
+      "question": "What naming convention should design tokens follow?",
+      "options": [
+        "--category-property-variant (e.g., --color-primary-hover)",
+        "camelCase (e.g., colorPrimaryHover)",
+        "snake_case (e.g., color_primary_hover)",
+        "Any convention is fine as long as it's consistent"
+      ],
+      "correctAnswer": 0,
+      "explanation": "--category-property-variant is the most common and readable convention, matching CSS custom property naming patterns."
+    },
+    {
+      "id": 6,
+      "question": "What is a common base unit for spacing scales in design systems?",
+      "options": ["4px", "3px", "5px", "10px"],
+      "correctAnswer": 0,
+      "explanation": "4px is the most common base spacing unit because it divides evenly into 8, 12, 16, 24, 32, 48 — creating a harmonious scale."
+    },
+    {
+      "id": 7,
+      "question": "What is the purpose of the @layer at-rule in a design system?",
+      "options": [
+        "To control cascade order between tokens, components, and utilities",
+        "To split CSS into separate files for performance",
+        "To create visual layers in the browser",
+        "To organize JavaScript imports"
+      ],
+      "correctAnswer": 0,
+      "explanation": "@layer lets you define explicit cascade order — tokens in the lowest layer, utilities in the highest — preventing specificity wars."
+    },
+    {
+      "id": 8,
+      "question": "Which prefix is commonly used for design system classes?",
+      "options": [".c- for components, .o- for objects, .u- for utilities", ".ds- for everything", ".comp- for all classes", ".sys- for all classes"],
+      "correctAnswer": 0,
+      "explanation": "Common prefix conventions: .c- (components), .o- (objects/layout), .u- (utilities), .is- (states)."
+    },
+    {
+      "id": 9,
+      "question": "What should every interactive component in a design system include?",
+      "options": [
+        "A visible :focus-visible style for keyboard users",
+        "A hover animation",
+        "A JavaScript click handler",
+        "An icon"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Every interactive component must have a visible focus indicator for keyboard accessibility. :focus-visible is the modern standard."
+    },
+    {
+      "id": 10,
+      "question": "Why should design system components never hard-code values like 'background: #3b82f6'?",
+      "options": [
+        "Hard-coded values break theming — changes require editing every component file",
+        "Hard-coded values are slower to parse",
+        "Hard-coded values are invalid CSS",
+        "Hard-coded values cannot be overridden"
+      ],
+      "correctAnswer": 0,
+      "explanation": "If components hard-code values, you can't theme the system by changing tokens. Components must reference var(--color-primary)."
+    },
+    {
+      "id": 11,
+      "question": "What does a modular typography scale accomplish?",
+      "options": [
+        "Creates harmonious, proportional font sizes using a consistent ratio",
+        "Makes all text the same size",
+        "Creates responsive typography automatically",
+        "Replaces the need for font-face declarations"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A modular scale (e.g., 1.25 Major Third) creates proportional font sizes where each level relates mathematically to the next."
+    },
+    {
+      "id": 12,
+      "question": "What is a key responsibility when versioning a design system?",
+      "options": [
+        "Changing a design token value is a breaking change (major version bump)",
+        "Versioning is optional for CSS-only design systems",
+        "Only component additions need version bumps",
+        "Documentation changes require version bumps"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Token changes affect ALL components, making them breaking changes. Use semantic versioning: token changes = major, new components = minor."
+    },
+    {
+      "id": 13,
+      "question": "Which CSS feature allows components to respond to their container size rather than viewport?",
+      "options": ["Container queries (@container)", "Media queries (@media)", "Flexbox", "CSS Grid"],
+      "correctAnswer": 0,
+      "explanation": "@container queries let components adapt based on their container's inline size — essential for reusable design system components."
+    },
+    {
+      "id": 14,
+      "question": "What is the minimum WCAG AA contrast ratio for normal text?",
+      "options": ["4.5:1", "3:1", "7:1", "2:1"],
+      "correctAnswer": 0,
+      "explanation": "WCAG AA requires 4.5:1 contrast ratio for normal text and 3:1 for large text (18px bold or 24px regular)."
+    },
+    {
+      "id": 15,
+      "question": "What does a 'layout primitive' in a design system provide?",
+      "options": [
+        "Reusable layout patterns like grids, stacks, and containers (class-based)",
+        "Primitive HTML elements like div and span",
+        "CSS reset and normalize styles",
+        "JavaScript utility functions"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Layout primitives (like .o-grid, .o-stack, .o-container) are reusable CSS classes for common layout patterns."
+    },
+    {
+      "id": 16,
+      "question": "How should design system components handle reduced motion preferences?",
+      "options": [
+        "Wrap animations in @media (prefers-reduced-motion: no-preference)",
+        "Remove all animations — users don't need them",
+        "Use CSS will-change to speed up animations",
+        "Add longer animation durations instead"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Use prefers-reduced-motion to disable or simplify animations for users who prefer reduced motion."
+    },
+    {
+      "id": 17,
+      "question": "What is the purpose of utility classes like .u-mt-md in a design system?",
+      "options": [
+        "Single-purpose overrides for rapid one-off adjustments",
+        "Component class for spacing styles",
+        "JavaScript utility functions for CSS",
+        "Utility classes for meta-programming"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Utility classes provide quick, single-purpose overrides (margin-top, text-align, display) for one-off scenarios without writing custom CSS."
+    },
+    {
+      "id": 18,
+      "question": "What is a 'living style guide' or 'design system documentation page'?",
+      "options": [
+        "An interactive page showing every component with all variants, states, and usage code",
+        "A PDF document listing design tokens",
+        "A Figma file with component designs",
+        "A README file in the project repository"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A living style guide is an interactive web page where developers can view, test, and copy code for every component in the design system."
+    },
+    {
+      "id": 19,
+      "question": "What should you do when you need a variant of a component not in the design system?",
+      "options": [
+        "Request the new variant through the design system governance process",
+        "Create a one-off override in your project",
+        "Modify the design system source directly",
+        "Use inline styles"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Follow the design system's contribution process. Adding variants to the system ensures consistency, documentation, and maintenance."
+    },
+    {
+      "id": 20,
+      "question": "Which statement best describes the relationship between CSS custom properties and design tokens?",
+      "options": [
+        "CSS custom properties ARE the implementation of design tokens in CSS",
+        "Custom properties replace the need for design tokens",
+        "Design tokens replace the need for custom properties",
+        "They are unrelated concepts"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Design tokens are the concept (the named design values). CSS custom properties (--color-primary) are how you implement tokens in CSS."
+    }
+  ]
+}

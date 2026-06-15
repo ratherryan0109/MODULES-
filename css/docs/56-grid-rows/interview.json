@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does grid-template-rows do in CSS Grid?", "answer": "It defines the number and height of rows in a grid by specifying a space-separated list of track sizes." },
+    { "question": "What is the difference between explicit rows and implicit rows?", "answer": "Explicit rows are defined with grid-template-rows, while implicit rows are auto-created when items are placed beyond the defined rows." },
+    { "question": "What does grid-auto-rows do?", "answer": "grid-auto-rows sets the size of implicitly created rows, providing a default height for extra rows added automatically." },
+    { "question": "What is the default value of grid-auto-rows?", "answer": "The default value is auto, meaning implicit rows size to fit their content." },
+    { "question": "Can you use the fr unit in grid-template-rows?", "answer": "Yes, fr can be used in grid-template-rows to distribute available vertical space proportionally among rows." },
+    { "question": "How do you create equal-height rows in Grid?", "answer": "Use grid-template-rows: 1fr 1fr or repeat(N, 1fr) to create rows of equal height that share the container's vertical space." },
+    { "question": "What happens if content in a row exceeds the defined row height?", "answer": "If the row size is auto or has overflow: visible, the row expands. If the size is fixed, content may overflow." },
+    { "question": "Can you use percentage values in grid-template-rows?", "answer": "Yes, percentages are relative to the grid container's height. If the height is undefined, percentages may not work as expected." },
+    { "question": "What is a fixed-height row in CSS Grid?", "answer": "A row with a fixed px or em value, such as grid-template-rows: 100px 1fr, where the first row is always 100px tall." },
+    { "question": "How do you create a header-content-footer layout with Grid?", "answer": "Use grid-template-rows: auto 1fr auto to have the header and footer auto-size to content and the main content fill remaining space." }
+  ],
+  "intermediate": [
+    { "question": "How does minmax() work in grid-template-rows?", "answer": "minmax(min, max) sets a minimum and maximum height for a row, allowing flexible sizing within a range." },
+    { "question": "What happens when implicit rows differ in height from explicit rows?", "answer": "Implicit rows follow grid-auto-rows sizing, which can be different from grid-template-rows. This creates mixed row heights." },
+    { "question": "How do you make all rows the same minimum height with grid-auto-rows?", "answer": "Set grid-auto-rows: minmax(100px, auto) to give all implicit rows a minimum height of 100px while allowing them to grow." },
+    { "question": "Can grid-template-rows use repeat() with different patterns?", "answer": "Yes, e.g., repeat(2, 100px 1fr) creates two cycles of 100px 1fr, resulting in four rows: 100px, 1fr, 100px, 1fr." },
+    { "question": "How does grid-auto-rows: auto differ from grid-auto-rows: 1fr?", "answer": "auto sizes to content height, while 1fr distributes available space equally among implicit rows." },
+    { "question": "What happens if you only define grid-template-rows but not grid-template-columns?", "answer": "Rows are explicitly defined but columns are implicit. By default, a single column of width auto is created, and items stack vertically." },
+    { "question": "How do you create alternating row heights in CSS Grid?", "answer": "List different sizes explicitly, e.g., grid-template-rows: 100px 200px 100px 200px, or use repeat(2, 100px 200px)." },
+    { "question": "What is the relationship between grid-row and grid-template-rows?", "answer": "grid-row is a property on grid items that positions them by referencing row lines, while grid-template-rows defines the available row tracks." },
+    { "question": "How do rows behave when the grid container has no explicit height?", "answer": "Rows with fr units may collapse because fr requires available space. Rows with auto or fixed sizes work normally." },
+    { "question": "Can grid-auto-rows be used alongside grid-template-rows?", "answer": "Yes, grid-template-rows defines explicit rows, and grid-auto-rows provides the sizing for any implicit rows beyond those." }
+  ],
+  "advanced": [
+    { "question": "How does the implicit row sizing interact with spanning items that cross both explicit and implicit rows?", "answer": "When an item spans from an explicit row into implicit rows, the implicit rows are sized based on grid-auto-rows, but the spanning item's content may force expansion of those rows." },
+    { "question": "What is the behavior of minmax(0, 1fr) in rows when the container has no fixed height?", "answer": "minmax(0, 1fr) can shrink to zero if no extra space exists, often collapsing the row. A min-height on the container can prevent this." },
+    { "question": "How does grid-template-rows interact with grid-template-areas for complex layouts?", "answer": "The number of strings in grid-template-areas determines the number of rows, and grid-template-rows sizes them. Each string corresponds to one row in order." },
+    { "question": "What happens to row auto-sizing when using subgrid with grid-template-rows: subgrid?", "answer": "The nested grid inherits the parent's row track definitions, so rows align perfectly across nested grid items without extra track definitions." },
+    { "question": "How do you create a row-based auto-flow that places items in columns first?", "answer": "Set grid-auto-flow: column to change the auto-placement direction from rows to columns, so items fill columns first." },
+    { "question": "How does the grid row sizing algorithm handle rows with multiple spanning items of different intrinsic sizes?", "answer": "The algorithm distributes intrinsic size contributions across spanned rows, with contributions being weighted based on each row's sizing constraints." },
+    { "question": "What is the effect of grid-auto-rows: min-content on items with large images?", "answer": "min-content makes the row as short as the largest intrinsic minimum of items (e.g., the tallest unwrapped word), which may cause images to overflow." },
+    { "question": "How do explicitly named row lines interact with implicit row generation?", "answer": "Named lines from grid-template-rows only apply to the explicit grid. Implicit rows get auto-generated line numbers and do not inherit names." },
+    { "question": "What happens to grid-template-rows when used with display: contents on a parent?", "answer": "The grid container is removed from the tree, grid-template-rows has no effect, and child items are placed in the ancestor grid if one exists." },
+    { "question": "How does the row sizing resolve when using both auto and fr tracks together?", "answer": "auto tracks are sized based on content first, then remaining space is distributed to fr tracks. If content in auto tracks grows, fr tracks may shrink." }
+  ]
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Accessibility Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 1rem; }
+    h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+    .controls { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; padding: 1rem; background: #f5f5f5; border-radius: 8px; align-items: end; }
+    .controls label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; }
+    .controls input[type="range"] { width: 200px; }
+    .controls select { padding: 0.35rem; border: 1px solid #ccc; border-radius: 4px; }
+    .preview { border: 2px solid #ddd; border-radius: 12px; padding: 1rem; min-height: 200px; margin: 1rem 0; resize: horizontal; overflow: auto; }
+    .demo-card { background: #0055CC; color: white; padding: 1rem; border-radius: 8px; text-align: center; margin: 0.5rem; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .demo-card a { color: white; }
+    .info { background: #f0f0f0; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>Responsive Accessibility Playground</h1>
+
+  <div class="controls">
+    <label>Viewport Width <input type="range" id="widthSlider" min="320" max="1200" value="800"><span id="widthLabel">800px</span></label>
+    <label>Font Base Size <input type="range" id="fontSlider" min="12" max="24" value="16"><span id="fontLabel">16px</span></label>
+    <label>Touch Target <select id="targetSize"><option value="32">32px (too small)</option><option value="44" selected>44px (minimum)</option><option value="56">56px (comfortable)</option></select></label>
+  </div>
+
+  <div class="preview" id="previewArea">
+    <div style="margin-bottom:1rem;">
+      <button id="btn1" style="padding:0.5rem;border:none;background:#0055CC;color:white;border-radius:4px;cursor:pointer;">Button</button>
+      <a href="#" id="link1" style="padding:0.5rem;background:#f0f0f0;border-radius:4px;">Link</a>
+      <input type="text" id="input1" placeholder="Input" style="border:2px solid #ccc;border-radius:4px;">
+    </div>
+    <div class="demo-card" id="demoCard1">Card Content</div>
+  </div>
+
+  <div class="info" id="infoPanel">
+    <div>Current width: <span id="currentWidth">800px</span></div>
+    <div>Font size: <span id="currentFont">16px</span></div>
+    <div>Touch target: <span id="currentTarget">44px</span></div>
+  </div>
+
+  <script>
+    const widthSlider = document.getElementById('widthSlider');
+    const fontSlider = document.getElementById('fontSlider');
+    const targetSize = document.getElementById('targetSize');
+    const previewArea = document.getElementById('previewArea');
+    const widthLabel = document.getElementById('widthLabel');
+    const fontLabel = document.getElementById('fontLabel');
+    const btn1 = document.getElementById('btn1');
+    const link1 = document.getElementById('link1');
+    const input1 = document.getElementById('input1');
+    const demoCard1 = document.getElementById('demoCard1');
+
+    function update() {
+      const w = widthSlider.value;
+      const f = fontSlider.value;
+      const t = targetSize.value;
+
+      previewArea.style.width = w + 'px';
+      previewArea.style.fontSize = f + 'px';
+      widthLabel.textContent = w + 'px';
+      fontLabel.textContent = f + 'px';
+
+      const targets = [btn1, link1, input1, demoCard1];
+      targets.forEach(el => {
+        el.style.minWidth = t + 'px';
+        el.style.minHeight = t + 'px';
+        el.style.padding = parseInt(t) >= 44 ? '0.75rem 1rem' : '0.5rem';
+      });
+
+      document.getElementById('currentWidth').textContent = w + 'px';
+      document.getElementById('currentFont').textContent = f + 'px';
+      document.getElementById('currentTarget').textContent = t + 'px';
+    }
+
+    widthSlider.addEventListener('input', update);
+    fontSlider.addEventListener('input', update);
+    targetSize.addEventListener('change', update);
+    update();
+  </script>
+</body>
+</html>

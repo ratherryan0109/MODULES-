@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the opacity property do?", "answer": "opacity sets the transparency level of an element, where 0 is fully transparent and 1 is fully opaque." },
+    { "question": "What is the range of valid opacity values?", "answer": "opacity accepts values from 0 (invisible) to 1 (fully visible), with decimal values like 0.5 for semitransparent." },
+    { "question": "How is opacity different from visibility: hidden?", "answer": "opacity: 0 makes the element invisible but still occupies space and is interactive; visibility: hidden hides it but space is preserved; display: none removes both." },
+    { "question": "Can opacity be applied to any HTML element?", "answer": "Yes, opacity can be applied to any element and affects the entire element including all its children." },
+    { "question": "Does opacity affect child elements differently than its parent?", "answer": "Yes, opacity is inherited by child elements; you cannot make a child element more opaque than its parent." },
+    { "question": "What does opacity: 0.5 do to an element?", "answer": "It makes the element and all its content 50% transparent." },
+    { "question": "Can you animate opacity?", "answer": "Yes, opacity is an animatable property that can be transitioned or keyframe-animated smoothly." },
+    { "question": "What is the difference between opacity and rgba alpha?", "answer": "opacity affects the entire element and its children; rgba alpha affects only the background color, leaving child element text fully opaque." },
+    { "question": "Is opacity supported in all browsers?", "answer": "Yes, opacity is supported in all modern browsers and IE9+." },
+    { "question": "Does opacity trigger GPU acceleration?", "answer": "Yes, opacity changes can be GPU-accelerated, making them efficient for animations." }
+  ],
+  "intermediate": [
+    { "question": "How does opacity affect stacking contexts?", "answer": "An element with opacity less than 1 creates a new stacking context, causing its children to be stacked relative to it." },
+    { "question": "What is the performance advantage of opacity over other visibility methods?", "answer": "Opacity compositing can be handled by the GPU, avoiding expensive layout reflows that display: none triggers." },
+    { "question": "How do you create a fade-in animation with opacity?", "answer": "Use @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } } with animation: fadeIn 1s." },
+    { "question": "What happens to pointer events when opacity is 0?", "answer": "The element is still interactive by default; use pointer-events: none to prevent interaction on invisible elements." },
+    { "question": "How does filter: opacity() differ from the opacity property?", "answer": "filter: opacity() applies opacity as a filter effect, which can be hardware-accelerated but may affect rendering differently." },
+    { "question": "Can you use opacity on background images?", "answer": "No, opacity affects the entire element. To fade only a background image, use pseudo-elements or rgba background with background-blend-mode." },
+    { "question": "What is the accessibility concern with low-opacity text?", "answer": "Low-opacity text can fail WCAG contrast ratio requirements, making it hard to read for visually impaired users." },
+    { "question": "How does opacity interact with will-change?", "answer": "Using will-change: opacity hints the browser to promote the element to its own compositor layer, improving animation performance." },
+    { "question": "What is the difference between opacity: 0 and visibility: hidden for screen readers?", "answer": "opacity: 0 content is still read by screen readers; visibility: hidden content is also read; both remain in the accessibility tree unless display: none is used." },
+    { "question": "How can you make only a background transparent without affecting children?", "answer": "Use rgba() or hsla() for background-color instead of opacity on the parent." }
+  ],
+  "advanced": [
+    { "question": "How does opacity create a new stacking context?", "answer": "When opacity < 1, the browser creates a new stacking context, isolating z-index layering inside that element from its siblings." },
+    { "question": "How does opacity interact with mix-blend-mode?", "answer": "Opacity reduces the effect of mix-blend-mode; at opacity: 0.5, blending is only partially applied, creating different visual results." },
+    { "question": "What rendering differences exist between opacity and rgba in terms of compositing?", "answer": "Opacity composites the whole element at once on its own layer, while rgba blends each pixel individually during background rendering." },
+    { "question": "How does opacity affect print stylesheets?", "answer": "Most browsers respect opacity in print, but some printers may ignore transparency; it is safer to use non-transparent print fallbacks." },
+    { "question": "What is the relationship between opacity and contains: paint?", "answer": "contain: paint clips an element's painting to its box; combined with opacity, it can optimize rendering by preventing paint of invisible areas." },
+    { "question": "How does opacity behave on SVG elements?", "answer": "Opacity works on SVG elements similarly to HTML; individual SVG shapes can have opacity applied via CSS or the opacity attribute." },
+    { "question": "How does opacity interact with backface-visibility in 3D transforms?", "answer": "Opacity and backface-visibility: hidden can interact to cause flickering on 3D transformed elements; separate compositing helps." },
+    { "question": "What is the difference between opacity and visibility as it relates to layout thrashing?", "answer": "Changing opacity does not cause layout thrashing (no reflow), while toggling display can cause multiple reflows in a frame." },
+    { "question": "How does opacity: 0 affect scrollable overflow?", "answer": "An invisible (opacity: 0) element with overflow can still be scrolled and affect scrollable overflow of its parent." },
+    { "question": "How does opacity interact with Canvas and WebGL contexts?", "answer": "Opacity applied to a <canvas> element affects the rendered canvas output; canvas internal content opacity is handled by the canvas API." }
+  ]
+}

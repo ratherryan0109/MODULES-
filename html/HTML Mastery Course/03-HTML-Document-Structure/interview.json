@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the basic structure of an HTML document?",
+      "answer": "An HTML document has four main parts: <!DOCTYPE html>, <html> as the root element, <head> for metadata, and <body> for visible content."
+    },
+    {
+      "question": "What is the purpose of the <head> section?",
+      "answer": "The <head> section contains metadata about the page including title, character encoding, viewport settings, stylesheet links, and meta tags for SEO."
+    },
+    {
+      "question": "What is the role of the <body> tag?",
+      "answer": "The <body> tag contains all the visible content of the web page including text, images, links, tables, and other elements that users see."
+    },
+    {
+      "question": "What does <!DOCTYPE html> do?",
+      "answer": "It declares that the document is written in HTML5 and tells the browser to render the page in standards mode rather than quirks mode."
+    },
+    {
+      "question": "What is a meta tag?",
+      "answer": "A meta tag provides metadata about the HTML document. Meta tags are placed inside <head> and are not visible on the page but affect SEO, social sharing, and browser behavior."
+    },
+    {
+      "question": "What is the <title> tag used for?",
+      "answer": "The <title> tag defines the page title that appears in the browser tab and is used by search engines as the clickable headline in search results."
+    },
+    {
+      "question": "What happens if you forget the DOCTYPE?",
+      "answer": "The browser switches to 'quirks mode,' which causes inconsistent rendering and layout bugs because the browser tries to emulate old, non-standard behavior."
+    },
+    {
+      "question": "Can you put content directly inside the <html> tag?",
+      "answer": "The <html> tag should only contain <head> and <body> as children. Content should go inside <body>."
+    },
+    {
+      "question": "What is the lang attribute used for?",
+      "answer": "The lang attribute on the <html> tag declares the language of the page (e.g., en for English). It helps screen readers pronounce text correctly and assists search engines."
+    },
+    {
+      "question": "What is the difference between <head> and <body>?",
+      "answer": "<head> contains metadata (title, links, scripts) that is not displayed. <body> contains all visible page content that users interact with."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the purpose of Open Graph meta tags?",
+      "answer": "Open Graph (OG) meta tags control how web pages appear when shared on social media platforms like Facebook, Twitter, LinkedIn, showing a title, description, and image."
+    },
+    {
+      "question": "What is the viewport meta tag and why is it important?",
+      "answer": "The viewport meta tag (<meta name='viewport' content='width=device-width, initial-scale=1.0'>) ensures web pages render correctly on mobile devices by controlling the layout viewport."
+    },
+    {
+      "question": "How does the browser build the DOM tree?",
+      "answer": "The browser parses the HTML byte stream, tokenizes it into tags, builds a node tree, and constructs the DOM. Each HTML element becomes a node in the tree."
+    },
+    {
+      "question": "What is the difference between <section> and <article>?",
+      "answer": "<section> groups related content thematically. <article> represents a self-contained, independent piece of content that could be reused or syndicated (like a blog post)."
+    },
+    {
+      "question": "Why should <meta charset> be the first element in <head>?",
+      "answer": "It ensures the browser knows the character encoding before parsing any other content, preventing misinterpretation of special characters."
+    },
+    {
+      "question": "What is the maximum recommended length for a meta description?",
+      "answer": "The meta description should be 150-160 characters. Longer descriptions may be truncated in search engine results."
+    },
+    {
+      "question": "Can you have multiple <header> elements on a page?",
+      "answer": "Yes, you can have multiple <header> elements. Each section or article can have its own header, but there is typically one main page header."
+    },
+    {
+      "question": "What is the difference between <main> and <div>?",
+      "answer": "<main> is a semantic element representing the dominant content of the page. Only one <main> is allowed per page. <div> is a generic container with no semantic meaning."
+    },
+    {
+      "question": "What is the purpose of a favicon?",
+      "answer": "A favicon is a small icon displayed in the browser tab, bookmarks, and search results. It helps users identify your site visually."
+    },
+    {
+      "question": "What does the <link> element do in the <head> section?",
+      "answer": "The <link> element establishes relationships between the current document and external resources, most commonly CSS stylesheets and favicons."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "What is the critical rendering path and how does HTML structure affect it?",
+      "answer": "The critical rendering path is the sequence of steps the browser takes to render a page: DOM construction, CSSOM construction, render tree, layout, and paint. HTML document structure, especially the order of <script> and <link> elements, directly impacts rendering performance."
+    },
+    {
+      "question": "How does browser quirks mode differ from standards mode?",
+      "answer": "Quirks mode emulates old browser behaviors (like IE5/6 box model) for backwards compatibility. Standards mode follows W3C specifications strictly. The DOCTYPE determines which mode is used."
+    },
+    {
+      "question": "What is the Shadow DOM and how does it relate to the main document DOM?",
+      "answer": "Shadow DOM is a browser technology that encapsulates a DOM subtree within a web component, isolating it from the main document. It has its own DOM tree that does not interfere with the main document's DOM."
+    },
+    {
+      "question": "How does the HTML parser handle script tags with async and defer attributes?",
+      "answer": "Without attributes, the parser blocks on <script> tags. 'async' downloads in parallel and executes as soon as available. 'defer' downloads in parallel but executes in order after parsing completes. Both improve perceived performance."
+    },
+    {
+      "question": "What is the purpose of the <template> element in HTML?",
+      "answer": "The <template> element holds HTML fragments that are not rendered immediately. Its content is parsed but inactive until cloned into the live DOM via JavaScript, enabling efficient client-side templating."
+    },
+    {
+      "question": "How do microdata and structured data relate to HTML document structure?",
+      "answer": "Microdata attributes (itemscope, itemtype, itemprop) add semantic meaning within HTML elements, marking up content for search engines. They are embedded within the existing HTML structure and help generate rich snippets."
+    },
+    {
+      "question": "What is the difference between the DOM and the HTML source?",
+      "answer": "The HTML source is the raw document sent by the server. The DOM is the live, in-memory representation constructed and potentially modified by the browser. JavaScript can manipulate the DOM but not the source."
+    },
+    {
+      "question": "How does the <head> section affect Largest Contentful Paint (LCP)?",
+      "answer": "Resources linked in <head> (fonts, preloads, preconnects) affect LCP by controlling how quickly critical resources are discovered and loaded. Preloading hero images and critical fonts in <head> can improve LCP scores."
+    },
+    {
+      "question": "What is the purpose of the <base> element in HTML?",
+      "answer": "The <base> element sets the base URL for all relative URLs in the document. It can also set the default target attribute for all links. Only one <base> element is allowed per document."
+    },
+    {
+      "question": "How does document structure affect accessibility for screen reader users?",
+      "answer": "Proper document structure with semantic elements (headings hierarchy, landmarks like <nav>, <main>, <aside>) allows screen reader users to navigate quickly between sections. Correct heading nesting (<h1>-<h6>) creates a logical document outline."
+    }
+  ]
+}

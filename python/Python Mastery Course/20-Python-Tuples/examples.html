@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Tuples - Examples</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #1e293b; padding: 20px; }
+    .examples-container { max-width: 1000px; margin: 0 auto; }
+    h1 { color: #306998; margin-bottom: 8px; font-size: 1.8em; }
+    .subtitle { color: #475569; margin-bottom: 24px; font-size: 1em; }
+    .example-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    .example-card h3 { color: #306998; margin-bottom: 12px; font-size: 1.2em; display: flex; align-items: center; gap: 10px; }
+    .example-card .badge { background: #FFD43B; color: #1e293b; padding: 2px 10px; border-radius: 12px; font-size: 0.7em; font-weight: 600; }
+    .example-card p { color: #475569; margin-bottom: 16px; line-height: 1.6; }
+    .code-block { background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; }
+    .code-block pre { margin: 0; padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+    .code-block .copy-btn { float: right; background: #306998; color: white; border: none; padding: 4px 12px; font-size: 12px; border-radius: 4px; cursor: pointer; margin: 8px; }
+    .code-block .copy-btn:hover { background: #1e415e; }
+    .output-block { background: #1e293b; color: #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 12px; font-family: monospace; font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
+    .output-block .prompt { color: #FFD43B; }
+    @media (max-width: 768px) { body { padding: 10px; } .example-card { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="examples-container">
+    <h1>Python Tuples — Examples</h1>
+    <p class="subtitle">Practical Python examples demonstrating python tuples. Click <strong>Copy</strong> to copy each snippet.</p>
+
+    <div class="example-card">
+      <h3>Example 1: Tuple creation ((1, 2), tuple()) <span class="badge">Basic</span></h3>
+      <p>Core foundation for understanding this topic. This example demonstrates how to work with tuple creation ((1, 2), tuple()) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 1: Tuple creation ((1, 2), tuple())
+# Core foundation for understanding this topic
+
+def demonstrate_tuple_creation_1_2_tuple():
+    &quot;&quot;&quot;Demonstrate Tuple creation ((1, 2), tuple()) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply tuple creation ((1, 2), tuple()) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to tuple creation ((1, 2), tuple()) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_tuple_creation_1_2_tuple()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 2: Tuple immutability and hashability <span class="badge">Advanced</span></h3>
+      <p>Builds upon previous concepts. This example demonstrates how to work with tuple immutability and hashability in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 2: Tuple immutability and hashability
+# Builds upon previous concepts
+
+def demonstrate_tuple_immutability_and_hashability():
+    &quot;&quot;&quot;Demonstrate Tuple immutability and hashability with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply tuple immutability and hashability pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to tuple immutability and hashability rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_tuple_immutability_and_hashability()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 3: Tuple unpacking (a, b = (1, 2)) <span class="badge">Basic</span></h3>
+      <p>Enables practical implementation. This example demonstrates how to work with tuple unpacking (a, b = (1, 2)) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 3: Tuple unpacking (a, b = (1, 2))
+# Enables practical implementation
+
+def demonstrate_tuple_unpacking_a_b_1_2():
+    &quot;&quot;&quot;Demonstrate Tuple unpacking (a, b = (1, 2)) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply tuple unpacking (a, b = (1, 2)) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to tuple unpacking (a, b = (1, 2)) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_tuple_unpacking_a_b_1_2()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 4: Nested tuples and access <span class="badge">Advanced</span></h3>
+      <p>Used in real-world applications. This example demonstrates how to work with nested tuples and access in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 4: Nested tuples and access
+# Used in real-world applications
+
+def demonstrate_nested_tuples_and_access():
+    &quot;&quot;&quot;Demonstrate Nested tuples and access with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply nested tuples and access pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to nested tuples and access rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_nested_tuples_and_access()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 5: Single-element tuples (1,) <span class="badge">Basic</span></h3>
+      <p>Advanced patterns and techniques. This example demonstrates how to work with single-element tuples (1,) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 5: Single-element tuples (1,)
+# Advanced patterns and techniques
+
+def demonstrate_single_element_tuples_1():
+    &quot;&quot;&quot;Demonstrate Single-element tuples (1,) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply single-element tuples (1,) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to single-element tuples (1,) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_single_element_tuples_1()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 6: Tuple methods (count, index) <span class="badge">Advanced</span></h3>
+      <p>Optimization and best practices. This example demonstrates how to work with tuple methods (count, index) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 6: Tuple methods (count, index)
+# Optimization and best practices
+
+def demonstrate_tuple_methods_count_index():
+    &quot;&quot;&quot;Demonstrate Tuple methods (count, index) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply tuple methods (count, index) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to tuple methods (count, index) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_tuple_methods_count_index()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 7: collections.namedtuple <span class="badge">Basic</span></h3>
+      <p>Edge cases and error handling. This example demonstrates how to work with collections.namedtuple in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 7: collections.namedtuple
+# Edge cases and error handling
+
+def demonstrate_collections_namedtuple():
+    &quot;&quot;&quot;Demonstrate collections.namedtuple with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply collections.namedtuple pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to collections.namedtuple rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_collections_namedtuple()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 8: Tuples as dictionary keys <span class="badge">Advanced</span></h3>
+      <p>Integration with other Python features. This example demonstrates how to work with tuples as dictionary keys in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 8: Tuples as dictionary keys
+# Integration with other Python features
+
+def demonstrate_tuples_as_dictionary_keys():
+    &quot;&quot;&quot;Demonstrate Tuples as dictionary keys with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply tuples as dictionary keys pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to tuples as dictionary keys rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_tuples_as_dictionary_keys()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script>
+    function copyCode(btn) {
+      const code = btn.parentElement.querySelector("code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

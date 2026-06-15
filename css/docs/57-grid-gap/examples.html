@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Grid Gap - Examples</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:#ff6b6b;font-size:28px;margin-bottom:5px}
+h2{color:#4ecdc4;margin:30px 0 10px;font-size:20px;border-bottom:1px solid #333;padding-bottom:5px}
+h3{color:#ffd93d;margin:15px 0 8px;font-size:16px}
+code{background:#2d2d44;padding:2px 6px;border-radius:3px;color:#ffd93d}
+pre{background:#2d2d44;padding:15px;border-radius:6px;margin:10px 0;overflow-x:auto}
+.demo-box{background:#16213e;padding:15px;border-radius:8px;margin:15px 0}
+.demo-box p{color:#aaa;font-size:14px;margin-bottom:8px}
+.grid{display:grid;padding:10px;background:#2d2d44;border-radius:8px;margin:8px 0}
+.grid>div{background:#ff6b6b;padding:15px;border-radius:4px;text-align:center;font-weight:bold;font-size:14px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.grid>div:nth-child(2n){background:#4ecdc4;color:#1a1a2e}
+.grid>div:nth-child(3n){background:#45b7d1}
+.grid>div:nth-child(5n){background:#a29bfe}
+.note{background:#2d2d44;border-left:4px solid #ffd93d;padding:10px 15px;margin:10px 0;border-radius:0 6px 6px 0;font-size:14px;color:#ccc}
+.compact{font-size:12px;color:#888;text-align:center;padding:4px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Grid Gap Examples</h1>
+<p style="color:#aaa;margin-bottom:20px">Comparing <code>gap</code> values and strategies for grid spacing</p>
+
+<div class="demo-box">
+<h2>1. No Gap vs Gap: 10px vs Gap: 30px</h2>
+<p>See how different gap values affect the visual spacing between grid items.</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap">
+<div style="flex:1;min-width:200px">
+<h3>No gap</h3>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);gap:0">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+</div>
+</div>
+<div style="flex:1;min-width:200px">
+<h3>gap: 10px</h3>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);gap:10px">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+</div>
+</div>
+<div style="flex:1;min-width:200px">
+<h3>gap: 30px</h3>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);gap:30px">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="demo-box">
+<h2>2. Different Row and Column Gaps</h2>
+<p><code>row-gap: 20px</code> (vertical) vs <code>column-gap: 40px</code> (horizontal). Same across all sizes.</p>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);row-gap:20px;column-gap:40px">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;     /* Vertical gap between rows */
+    column-gap: 40px;   /* Horizontal gap between columns */
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>3. Gap vs Margins Comparison</h2>
+<p>Left: Gap (20px). Right: Margins on items (10px). Notice the edge spacing difference.</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap">
+<div style="flex:1;min-width:250px">
+<h3>gap: 20px</h3>
+<div class="grid" style="grid-template-columns:repeat(2,1fr);gap:20px;padding:0">
+<div>Item A</div><div>Item B</div><div>Item C</div><div>Item D</div>
+</div>
+<p class="compact">✓ Clean — no gap at edges</p>
+</div>
+<div style="flex:1;min-width:250px">
+<h3>margin: 10px on items</h3>
+<div style="background:#2d2d44;border-radius:8px;margin:8px 0;overflow:hidden">
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0;">
+<div style="background:#ff6b6b;margin:10px;padding:15px;border-radius:4px;text-align:center;font-weight:bold;display:flex;align-items:center;justify-content:center">Item A</div>
+<div style="background:#4ecdc4;margin:10px;padding:15px;border-radius:4px;text-align:center;font-weight:bold;display:flex;align-items:center;justify-content:center;color:#1a1a2e">Item B</div>
+<div style="background:#45b7d1;margin:10px;padding:15px;border-radius:4px;text-align:center;font-weight:bold;display:flex;align-items:center;justify-content:center">Item C</div>
+<div style="background:#a29bfe;margin:10px;padding:15px;border-radius:4px;text-align:center;font-weight:bold;display:flex;align-items:center;justify-content:center">Item D</div>
+</div>
+</div>
+<p class="compact">✗ Margins at edges — double gap at center</p>
+</div>
+</div>
+</div>
+
+<div class="demo-box">
+<h2>4. Gap + Padding for Complete Spacing</h2>
+<p>Combining <code>gap: 16px</code> with <code>padding: 20px</code> for symmetrical internal AND external spacing.</p>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);gap:16px;padding:20px;background:#6c5ce7">
+<div style="background:#ff6b6b;">1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+</div>
+<pre><code>.container {
+    gap: 16px;
+    padding: 20px;   /* Adds space at outer edges */
+}</code></pre>
+<div class="note">The purple area shows the padding. Items have 16px gap between them. Total internal + external spacing = 36px from any item to container edge.</div>
+</div>
+
+<div class="demo-box">
+<h2>5. Gap Affects fr Calculations</h2>
+<p>Two grids with same container width but different gaps. The fr tracks adjust automatically.</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap">
+<div style="flex:1;min-width:250px">
+<h3>gap: 5px (tight)</h3>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);gap:5px;max-width:400px">
+<div>1</div><div>2</div><div>3</div>
+</div>
+<p class="compact">More space per item</p>
+</div>
+<div style="flex:1;min-width:250px">
+<h3>gap: 30px (wide)</h3>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);gap:30px;max-width:400px">
+<div>1</div><div>2</div><div>3</div>
+</div>
+<p class="compact">Less space per item</p>
+</div>
+</div>
+<pre><code>/* Same fr values, different gaps — items adjust automatically */
+.container { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.container { grid-template-columns: repeat(3, 1fr); gap: 30px; }</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>6. Gap in Responsive Layouts</h2>
+<p>Gap values change at breakpoints for optimal spacing at each screen size.</p>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;max-width:100%">
+<div>S</div><div>M</div><div>A</div><div>L</div><div>L</div>
+<div>8px gap mobile</div>
+</div>
+<pre><code>/* Responsive gap strategy */
+.mobile  { gap: 8px; }   /* Tight on small screens */
+.tablet  { gap: 16px; }  /* Medium on tablets */
+.desktop { gap: 24px; }  /* Generous on large screens */</code></pre>
+<div class="note">💡 Pro tip: Use relative gap values or match gap to your spacing scale for visual consistency.</div>
+</div>
+
+</div>
+</body>
+</html>

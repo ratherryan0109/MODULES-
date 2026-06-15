@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the clip property in CSS?", "answer": "The clip property defines a clipping region for an element. It is deprecated in favor of clip-path but still supported." },
+    { "question": "What is the clip-path property in CSS?", "answer": "clip-path creates a clipping region that determines which part of an element is visible. Content outside the clip region is hidden." },
+    { "question": "What is the mask-image property in CSS?", "answer": "mask-image sets an image or gradient as a luminance or alpha mask for an element, where transparent parts hide the element." },
+    { "question": "What is the mask-size property in CSS?", "answer": "mask-size sets the size of the mask image, similar to background-size. Values: auto, cover, contain, or explicit lengths." },
+    { "question": "How does CSS masking differ from clip-path?", "answer": "Masking uses an image/gradient to control visibility pixel by pixel; clip-path uses a geometric shape to cut out a region." },
+    { "question": "What is an SVG mask?", "answer": "An SVG mask defined with the <mask> element can be referenced in CSS via mask: url(#mask-id) for advanced masking effects." },
+    { "question": "How do you make a gradient mask in CSS?", "answer": "Use mask-image: linear-gradient(to bottom, black, transparent) to fade an element from visible to invisible." },
+    { "question": "What is the default mask-mode?", "answer": "The default mask-mode is alpha, which uses the alpha channel of the mask image to determine visibility." },
+    { "question": "Can you use an image file as a CSS mask?", "answer": "Yes, mask-image: url(mask.png) uses an image's alpha or luminance channel as the mask." },
+    { "question": "What is the difference between clip and clip-path?", "answer": "clip only works on absolutely positioned elements and only supports rectangular shapes. clip-path works on any element and supports complex shapes." }
+  ],
+  "intermediate": [
+    { "question": "How do you use a gradient as a mask to fade an element?", "answer": "mask-image: linear-gradient(to right, black, transparent) fades the element from fully visible on the left to invisible on the right." },
+    { "question": "What is the mask-composite property?", "answer": "mask-composite defines how multiple mask layers combine: add, subtract, intersect, or exclude." },
+    { "question": "How do you create a text reveal effect with masking?", "answer": "Use a gradient mask that animates its position to reveal text gradually from left to right." },
+    { "question": "How does mask-repeat work in CSS?", "answer": "mask-repeat controls whether the mask image repeats, similar to background-repeat. Values: repeat, no-repeat, repeat-x, repeat-y." },
+    { "question": "What is the mask-position property?", "answer": "mask-position sets the position of the mask image relative to the element, similar to background-position." },
+    { "question": "How do you use an SVG element as a mask in CSS?", "answer": "Reference an SVG <mask> element by ID: mask: url(#my-svg-mask) or mask-image: url(#my-svg-mask)." },
+    { "question": "Can you animate CSS masks?", "answer": "Yes, you can animate mask-position, mask-size, and clip-path to create reveal and transition effects." },
+    { "question": "What is the difference between luminance and alpha mask modes?", "answer": "Luminance mode uses the brightness of the mask to determine opacity; alpha mode uses the alpha channel. White/black in luminance maps to opaque/transparent." },
+    { "question": "How do you apply a mask to a video element?", "answer": "CSS mask properties work on video elements, allowing you to apply shape or gradient masks to video content." },
+    { "question": "What is the mask shorthand property?", "answer": "mask is the shorthand for mask-image, mask-mode, mask-repeat, mask-position, mask-size, mask-composite, and mask-origin." }
+  ],
+  "advanced": [
+    { "question": "How does CSS masking interact with CSS filters and blend modes?", "answer": "Masks are applied after filters but before blend modes in the rendering pipeline. The mask determines visibility, then blend modes blend visible content." },
+    { "question": "What are the performance considerations for CSS masking?", "answer": "Masks can be GPU-accelerated but complex SVG masks or animated masks may impact performance, especially on mobile devices." },
+    { "question": "How do you create a circular reveal mask animation?", "answer": "Animate clip-path: circle(0% at center) to circle(100% at center) to create a circular reveal effect." },
+    { "question": "How does masking work with CSS 3D transforms?", "answer": "Masked elements with 3D transforms may have rendering issues in some browsers due to stacking context interactions." },
+    { "question": "What is the interaction between mask-image and background-image on the same element?", "answer": "The mask applies to the entire element including its background. The background is rendered first, then masked." },
+    { "question": "How do you create a split/flip text effect using masking?", "answer": "Use two text elements, each masked with a half gradient (top half / bottom half), and animate them apart." },
+    { "question": "How do SVG masks differ from CSS masks in terms of browser support and capabilities?", "answer": "SVG masks support more complex operations (feMorphology, feColorMatrix) but require inline SVG. CSS masks are simpler and use image/gradient inputs." },
+    { "question": "How do you implement a content-aware image mask using CSS?", "answer": "Use mask-mode: luminance with a gradient or image mask that highlights the subject, combined with clip-path for shape refinement." },
+    { "question": "How does the mask-clip property work?", "answer": "mask-clip determines the area affected by the mask, similar to background-clip. Options include content-box, padding-box, border-box." },
+    { "question": "How do you debug CSS masks that are not showing correctly?", "answer": "Check that the mask image URL is correct, verify the mask-mode (alpha vs luminance), and inspect the element's stacking context." }
+  ]
+}

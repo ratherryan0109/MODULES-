@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "How do you embed a YouTube video in HTML?",
+      "answer": "Use an <iframe> element with src pointing to https://www.youtube.com/embed/VIDEO_ID. Include width, height, title, allow, and allowfullscreen attributes. Replace VIDEO_ID with the unique identifier from the YouTube video URL."
+    },
+    {
+      "question": "How do you find a YouTube video's ID?",
+      "answer": "The video ID is the string after ?v= in a regular YouTube URL (e.g., dQw4w9WgXcQ from youtube.com/watch?v=dQw4w9WgXcQ). Shortened URLs (youtu.be/ID) also contain it. Embed URLs use it directly: youtube.com/embed/VIDEO_ID."
+    },
+    {
+      "question": "What does the allowfullscreen attribute do?",
+      "answer": "allowfullscreen is a boolean attribute that enables the fullscreen button on the YouTube player. Without it, the fullscreen button is disabled and users cannot expand the video to fullscreen mode."
+    },
+    {
+      "question": "How do you autoplay a YouTube embed?",
+      "answer": "Add ?autoplay=1 to the embed URL. However, modern browsers require the video to be muted for autoplay to work, so you should also add &mute=1. Example: src='https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1'."
+    },
+    {
+      "question": "What is the difference between youtube.com and youtube-nocookie.com?",
+      "answer": "youtube-nocookie.com is the privacy-enhanced domain. It does not set cookies on the user's device unless they click the video. Regular youtube.com embeds may set cookies for tracking and personalization even before the user interacts with the video."
+    },
+    {
+      "question": "How do you set the start time for a YouTube embed?",
+      "answer": "Use the start parameter with the number of seconds: ?start=30 starts the video at 30 seconds. You can combine it with other parameters: ?start=30&autoplay=1&mute=1."
+    },
+    {
+      "question": "What is the purpose of the title attribute on a YouTube iframe?",
+      "answer": "The title attribute provides a descriptive label for screen readers and assistive technologies. It's an accessibility requirement. Always set it to something meaningful like 'YouTube video player' or the actual video title."
+    },
+    {
+      "question": "How do you make a YouTube embed responsive?",
+      "answer": "Wrap the iframe in a container with position: relative and padding-bottom: 56.25% (for 16:9 aspect ratio). Set the iframe to position: absolute with width and height at 100%. Alternatively, use CSS aspect-ratio: 16/9 on the iframe."
+    },
+    {
+      "question": "What does the modestbranding parameter do?",
+      "answer": "modestbranding=1 reduces YouTube branding in the player. The YouTube logo is not shown in the control bar, though it still appears as a watermark when the user hovers over the player."
+    },
+    {
+      "question": "How do you embed a YouTube video in a loop?",
+      "answer": "Add loop=1 and playlist=VIDEO_ID to the URL. The playlist parameter is required. Example: src='https://www.youtube.com/embed/VIDEO_ID?loop=1&playlist=VIDEO_ID'."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Explain how the YouTube IFrame Player API works.",
+      "answer": "The IFrame Player API loads the YouTube player via JavaScript. Include the API script (https://www.youtube.com/iframe_api), define the global onYouTubeIframeAPIReady() callback, and create a YT.Player instance with options (videoId, height, width, playerVars, events). The API provides methods for playback control and events for state monitoring."
+    },
+    {
+      "question": "What are the YouTube player states and their numeric values?",
+      "answer": "UNSTARTED = -1, ENDED = 0, PLAYING = 1, PAUSED = 2, BUFFERING = 3, VIDEO_CUED = 5. These are available as YT.PlayerState constants. The onStateChange event fires with each state transition."
+    },
+    {
+      "question": "How do you load a new video into an existing YouTube player?",
+      "answer": "Use player.loadVideoById(videoId, startSeconds, suggestedQuality) to load and play a new video. Use player.cueVideoById(videoId, startSeconds, suggestedQuality) to load without playing. Both methods accept optional parameters for start time and quality."
+    },
+    {
+      "question": "What are common YouTube embed error codes and their meanings?",
+      "answer": "Error codes: 2 — invalid parameter value; 5 — HTML5 player error; 100 — video not found or has been removed; 101 — video embedding not allowed; 150 — video embedding not allowed (same as 101). Handle errors via the onError event callback."
+    },
+    {
+      "question": "How do you implement lazy loading for YouTube embeds?",
+      "answer": "Use Intersection Observer: set data-src instead of src on the iframe. When the iframe enters the viewport, copy data-src to src. This prevents loading the YouTube player until needed, reducing initial page weight and improving performance. Native loading='lazy' is also supported on iframes."
+    },
+    {
+      "question": "What is the origin parameter and why is it important?",
+      "answer": "The origin parameter specifies the domain embedding the video (e.g., origin=https://example.com). It's a security measure that prevents malicious sites from using the IFrame Player API to control your player. The API checks that the origin matches the embedding page's domain."
+    },
+    {
+      "question": "How do you embed a YouTube playlist and control it via the API?",
+      "answer": "Use player.loadPlaylist(playlistIdOrArray, index, startSeconds) to load a playlist. Pass either a playlist ID string or an array of video IDs. Use player.nextVideo(), player.previousVideo(), and player.playVideoAt(index) to navigate. Listen for onStateChange to detect when videos change."
+    },
+    {
+      "question": "How do you customize the YouTube player's appearance beyond URL parameters?",
+      "answer": "URL parameters control: controls visibility (controls=0/1), progress bar color (color=red/white), and branding (modestbranding). For deeper customization, you must build your own controls overlay using the IFrame Player API, hiding the native controls and creating custom HTML/CSS/JS UI elements."
+    },
+    {
+      "question": "How do you detect and respond to volume changes in the YouTube player?",
+      "answer": "The YouTube IFrame Player API does not have a volumechange event. You must poll player.getVolume() using setInterval or check volume when user interactions occur (slider change, mute button click). Alternatively, use MutationObserver on the player iframe, but this is unreliable."
+    },
+    {
+      "question": "What are the restrictions on embedding YouTube videos?",
+      "answer": "Restrictions include: (1) Domain blocking — video owners can block specific domains, (2) Embed disabled — creators can disable embedding entirely, (3) Age-restricted content may require authentication, (4) Copyright-blocked videos in certain regions, (5) Private/unlisted videos accessible only with proper permissions."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How would you implement a custom queue/playlist system with YouTube's API, including shuffle and repeat modes?",
+      "answer": "Create a JavaScript array of video IDs. Maintain currentIndex and modes (shuffle, repeatOne, repeatAll). For shuffle: Fisher-Yates shuffle the array. For repeatOne: replay the same index. For repeatAll: increment index with modulo. Use loadVideoById() for each track. Listen for onStateChange(ENDED) to auto-advance. Persist mode preferences in localStorage."
+    },
+    {
+      "question": "How do you handle YouTube's CORS and security restrictions when building a custom player interface?",
+      "answer": "YouTube's iframe embed uses cross-origin restrictions. You cannot directly access the iframe's DOM. Work within these limitations by: (1) Using the IFrame Player API exclusively, (2) Not attempting to manipulate the iframe's internal elements, (3) Building custom UI overlays that wrap the player div, (4) Using postMessage indirectly through the API, (5) Accepting that some customization is impossible."
+    },
+    {
+      "question": "What strategies can you use to minimize the performance impact of multiple YouTube embeds on a page?",
+      "answer": "Strategies include: (1) Lazy load off-screen embeds with Intersection Observer, (2) Use a single YouTube player instance and swap videos via loadVideoById() rather than multiple iframes, (3) Set the iframe loading='lazy' attribute, (4) Destroy unused players with player.destroy(), (5) Use the 'placeholder thumbnail' technique where a static image is clicked to create the player on-demand, (6) Limit simultaneous players and pause invisible ones."
+    },
+    {
+      "question": "How would you build a YouTube embed with server-side rendering (SSR) for SEO?",
+      "answer": "For SSR: (1) Render a static placeholder with the video thumbnail (use YouTube's thumbnail URLs like https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg), (2) On the client side, hydrate the placeholder into an interactive player using the IFrame Player API, (3) Use a noscript fallback with a direct YouTube link, (4) Add structured data (VideoObject schema) to help search engines index the content, (5) Consider using the YouTube Data API fetch video metadata server-side."
+    },
+    {
+      "question": "How does YouTube's autoplay policy interact with browser autoplay policies, and how do you handle all scenarios?",
+      "answer": "YouTube's autoplay respects the browser's autoplay policy. With mute=1, autoplay works universally. Without mute, autoplay depends on the user's Media Engagement Index (MEI) for that domain. To handle all scenarios: (1) Use autoplay=1&mute=1 for guaranteed autoplay, (2) Provide an unmute button overlay, (3) Use the onStateChange event to detect if playback was blocked, (4) Listen for playVideo() Promise rejection if using the API, (5) Fall back to a click-to-play state if autoplay fails."
+    },
+    {
+      "question": "How do you implement synchronized playback across multiple YouTube embeds?",
+      "answer": "Synchronization is challenging due to separate players. Approach: (1) Use a single YT.Player and load videos sequentially rather than sync multiple, (2) For true sync (e.g., multi-angle), use a master player and periodically check getCurrentTime() on slaves to adjust, (3) Accept that frame-accurate sync is impossible — aim for within 200ms, (4) Use the onStateChange event to pause/play all together, (5) Consider using WebRTC or MSE-based solutions for critical sync needs."
+    },
+    {
+      "question": "What are the differences between the YouTube IFrame Player API versions and how do you handle backward compatibility?",
+      "answer": "YouTube occasionally updates the player API, which can change behavior. Key differences: (1) V3 vs V2 — V3 is the current version; V2 is deprecated, (2) Parameter changes — e.g., rel=0 behavior changed in 2018 to only restrict related videos, not disable them, (3) New parameters added over time (modestbranding, cc_load_policy). Test against the latest API and avoid using undocumented features. Always use onError handlers to catch unexpected behavior changes."
+    },
+    {
+      "question": "How do you optimize YouTube embeds for mobile devices?",
+      "answer": "Mobile optimizations: (1) Use responsive containers with aspect-ratio, (2) Set playsinline=1 for iOS inline playback, (3) Avoid autoplay on cellular connections, (4) Use the Network Information API to detect slow connections and show thumbnail instead, (5) Minimize multiple embeds — mobile performance suffers with many players, (6) Use the YouTube thumbnail API to show static previews rather than full iframes until user taps, (7) Consider native YouTube SDK for mobile apps vs web embeds."
+    },
+    {
+      "question": "How would you implement analytics tracking for a YouTube embed (plays, pauses, watch time)?",
+      "answer": "Use the IFrame Player API events: onStateChange for play/pause/complete, getCurrentTime() for progress. Track: (1) Play count — onStateChange(PLAYING), (2) Pause count — onStateChange(PAUSED), (3) Completion rate — onStateChange(ENDED), (4) Watch time — poll getCurrentTime() every 5 seconds, (5) Seek events — compare time jumps > 1s without play state, (6) Buffering events — onStateChange(BUFFERING). Send analytics in batches every 10-30 seconds to avoid performance overhead."
+    },
+    {
+      "question": "How do you implement DRM or access control for YouTube embeds (e.g., only show to logged-in users)?",
+      "answer": "YouTube's domain-level blocking is the primary access control. For custom access control: (1) Server-side — render or generate the embed code only for authenticated users, (2) Use JavaScript to dynamically create the iframe after checking auth state, (3) Use YouTube's 'unlisted' video privacy with a shared secret URL as a basic access layer, (4) For premium content, use YouTube's paid membership features, (5) Consider server-side token generation for limited-time access, (6) Use Content Security Policy (CSP) to restrict where embeds can appear."
+    }
+  ]
+}

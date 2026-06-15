@@ -1,0 +1,147 @@
+{
+    "module": "33-css-dropdowns",
+    "title": "CSS Dropdowns",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "What CSS property is essential on the parent element for absolute positioning of the dropdown?",
+            "options": ["position: relative", "position: absolute", "display: block", "overflow: hidden"],
+            "correctAnswer": 0,
+            "explanation": "position: relative on the parent establishes the positioning context so the absolutely positioned submenu positions relative to it, not the viewport."
+        },
+        {
+            "id": 2,
+            "question": "How do you show a dropdown menu on hover using CSS?",
+            "options": ["li:hover > ul { display: block; }", "li:focus ul { display: block; }", "ul:hover { display: block; }", "li:active ul { display: block; }"],
+            "correctAnswer": 0,
+            "explanation": "li:hover > ul uses the child combinator to select the direct child ul of the hovered li, making the dropdown visible on hover."
+        },
+        {
+            "id": 3,
+            "question": "Why might you use opacity/visibility instead of display for dropdown show/hide?",
+            "options": ["display cannot be animated", "opacity is faster for rendering", "visibility works on all elements", "display:none causes layout shifts"],
+            "correctAnswer": 0,
+            "explanation": "The display property cannot be animated. opacity and visibility support CSS transitions for smooth fade effects."
+        },
+        {
+            "id": 4,
+            "question": "In a multi-level dropdown, where does the nested submenu position itself?",
+            "options": ["To the right of its parent item (left: 100%)", "Below the entire menu", "At the bottom of the page", "Overlapping the parent menu"],
+            "correctAnswer": 0,
+            "explanation": "A Level 2+ submenu typically positions at left: 100% and top: 0 of its parent item, creating the classic cascading menu pattern."
+        },
+        {
+            "id": 5,
+            "question": "What issue can occur if there is a gap between the trigger and the dropdown?",
+            "options": ["The dropdown disappears when moving the mouse", "The dropdown becomes transparent", "The nav bar breaks", "The dropdown overlaps other content"],
+            "correctAnswer": 0,
+            "explanation": "If there is any space between the parent li and the child ul, the :hover state is lost when the mouse crosses the gap, causing the dropdown to disappear."
+        },
+        {
+            "id": 6,
+            "question": "What is the default display value of a dropdown submenu in CSS?",
+            "options": ["display: block", "display: none", "display: inline", "display: flex"],
+            "correctAnswer": 1,
+            "explanation": "The submenu is hidden by default with display: none, and becomes display: block (or flex/grid) when the parent is hovered."
+        },
+        {
+            "id": 7,
+            "question": "What z-index consideration is important for multi-level dropdowns?",
+            "options": ["No z-index needed", "Each level needs explicit z-index to prevent overlap issues", "z-index must be negative", "z-index is inherited automatically"],
+            "correctAnswer": 1,
+            "explanation": "Each dropdown level needs explicit z-index values to ensure proper stacking, especially when multiple submenus overlap."
+        },
+        {
+            "id": 8,
+            "question": "Which pseudo-class can help keep a dropdown open when submenu items are focused with keyboard?",
+            "options": [":hover", ":focus-within", ":focus", ":active"],
+            "correctAnswer": 1,
+            "explanation": ":focus-within on the parent keeps the dropdown visible when any descendant (like submenu links) receives focus via keyboard navigation."
+        },
+        {
+            "id": 9,
+            "question": "What ARIA attribute should be added to a dropdown trigger element?",
+            "options": ["aria-haspopup='true'", "aria-expanded='true'", "role='button'", "Both aria-haspopup and aria-expanded"],
+            "correctAnswer": 3,
+            "explanation": "aria-haspopup='true' indicates the element has a popup menu, and aria-expanded (toggled by JavaScript) indicates whether the menu is open."
+        },
+        {
+            "id": 10,
+            "question": "What is a mega menu in CSS?",
+            "options": ["A very large dropdown menu", "A multi-column dropdown panel using grid layout", "A full-screen overlay menu", "A menu with animations only"],
+            "correctAnswer": 1,
+            "explanation": "A mega menu is a wide, multi-column dropdown panel, typically using CSS Grid, that displays many navigation options in organized groups."
+        },
+        {
+            "id": 11,
+            "question": "What is the correct positioning for a dropdown submenu that appears below its parent?",
+            "options": ["top: 100%; left: 0", "bottom: 0; left: 0", "top: 0; left: 100%", "top: 50%; left: 50%"],
+            "correctAnswer": 0,
+            "explanation": "top: 100% positions the submenu directly below the parent element, with left: 0 aligning it to the parent's left edge."
+        },
+        {
+            "id": 12,
+            "question": "What is a key limitation of CSS-only dropdowns?",
+            "options": ["They cannot be styled", "They have limited keyboard accessibility", "They cause performance issues", "They don't work in modern browsers"],
+            "correctAnswer": 1,
+            "explanation": "CSS-only dropdowns often can't be opened with keyboard alone. The :focus-within approach helps but JavaScript is recommended for full keyboard support."
+        },
+        {
+            "id": 13,
+            "question": "What should you set on submenus to ensure consistent sizing?",
+            "options": ["fixed width", "min-width", "max-width only", "width: auto"],
+            "correctAnswer": 1,
+            "explanation": "min-width on submenus ensures they don't become too narrow with short content, while allowing them to expand for longer content."
+        },
+        {
+            "id": 14,
+            "question": "How do dropdown menus work on touch devices?",
+            "options": ["They work the same as desktop", ":hover doesn't work reliably on mobile; use :focus-within or JavaScript", "Dropdowns cannot work on mobile", "They require a special meta tag"],
+            "correctAnswer": 1,
+            "explanation": ":hover behavior is unreliable on touch devices. Use :focus-within or JavaScript-based click/tap handlers for mobile dropdowns."
+        },
+        {
+            "id": 15,
+            "question": "What is the purpose of pointer-events: none on disabled dropdown items?",
+            "options": ["Makes items invisible", "Prevents clicks on disabled items", "Speeds up rendering", "Changes cursor style"],
+            "correctAnswer": 1,
+            "explanation": "pointer-events: none prevents mouse and touch interactions on disabled menu items, ensuring they cannot be accidentally activated."
+        },
+        {
+            "id": 16,
+            "question": "What is the recommended box-shadow for dropdown menus?",
+            "options": ["No shadow needed", "0 4px 8px rgba(0,0,0,0.2) or similar subtle shadow", "Drop shadow with blur: 20px", "Inset shadow"],
+            "correctAnswer": 1,
+            "explanation": "A subtle box-shadow (e.g., 0 4px 8px rgba(0,0,0,0.2)) creates visual depth, making the dropdown appear to float above the page content."
+        },
+        {
+            "id": 17,
+            "question": "What does the contain: paint property do for dropdown performance?",
+            "options": ["Improves paint performance by limiting the paint area", "Makes the dropdown transparent", "Prevents the dropdown from rendering", "Adds a paint effect"],
+            "correctAnswer": 0,
+            "explanation": "contain: paint tells the browser that the element's children won't paint outside its bounds, improving rendering performance."
+        },
+        {
+            "id": 18,
+            "question": "Which selector specifically targets only the direct child submenu of a hovered list item?",
+            "options": ["li:hover ul", "li:hover > ul", "li ul:hover", "li:focus-within ul"],
+            "correctAnswer": 1,
+            "explanation": "The child combinator (>) ensures only the direct child ul is targeted, not nested submenus at deeper levels."
+        },
+        {
+            "id": 19,
+            "question": "What is the minimum width recommended for submenu items?",
+            "options": ["100px", "160px", "50px", "250px"],
+            "correctAnswer": 1,
+            "explanation": "A min-width of 160-180px provides enough space for most menu item text while remaining compact enough for the layout."
+        },
+        {
+            "id": 20,
+            "question": "When using transition for animated dropdowns, which properties can be animated together?",
+            "options": ["display and opacity", "opacity and visibility", "display and visibility", "visibility only"],
+            "correctAnswer": 1,
+            "explanation": "opacity and visibility can both be transitioned. display cannot be animated, so the opacity + visibility approach enables smooth fade transitions."
+        }
+    ]
+}

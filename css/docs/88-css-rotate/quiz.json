@@ -1,0 +1,147 @@
+{
+  "module": "88-css-rotate",
+  "title": "CSS Rotate",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does rotate: 45deg do by default?",
+      "options": ["Rotates 45° around Z-axis", "Rotates 45° around X-axis", "Rotates 45° around Y-axis", "No effect"],
+      "correctAnswer": 0,
+      "explanation": "Without an axis prefix, rotate defaults to Z-axis rotation (2D)."
+    },
+    {
+      "id": 2,
+      "question": "Which unit represents a full rotation as 1?",
+      "options": ["turn", "deg", "rad", "grad"],
+      "correctAnswer": 0,
+      "explanation": "The turn unit represents 1 = full rotation, 0.5 = half rotation."
+    },
+    {
+      "id": 3,
+      "question": "What is needed to visualize X-axis rotation?",
+      "options": ["perspective on parent", "None, it works automatically", "transform-style: flat", "backface-visibility: hidden"],
+      "correctAnswer": 0,
+      "explanation": "perspective on the parent creates the 3D depth needed to see X-axis rotation."
+    },
+    {
+      "id": 4,
+      "question": "How do you rotate 180 degrees on the Y axis?",
+      "options": ["rotate: Y 180deg", "rotate: 180deg", "rotateY(180deg)", "rotate: 180deg Y"],
+      "correctAnswer": 0,
+      "explanation": "The syntax is 'rotate: axis angle', e.g., rotate: Y 180deg."
+    },
+    {
+      "id": 5,
+      "question": "What does positive angle rotation do?",
+      "options": ["Clockwise rotation", "Counter-clockwise", "Upward rotation", "Downward rotation"],
+      "correctAnswer": 0,
+      "explanation": "Positive angles produce clockwise rotation by default."
+    },
+    {
+      "id": 6,
+      "question": "Which property controls the center point of rotation?",
+      "options": ["transform-origin", "rotate-origin", "origin", "perspective-origin"],
+      "correctAnswer": 0,
+      "explanation": "transform-origin defines the pivot point for rotations."
+    },
+    {
+      "id": 7,
+      "question": "What is the effect of rotate: X 180deg?",
+      "options": ["Flips element upside down", "Rotates 180° on X-axis", "Spins like a wheel", "No visible effect"],
+      "correctAnswer": 0,
+      "explanation": "rotate: X 180deg flips the element forward/backward around the X-axis."
+    },
+    {
+      "id": 8,
+      "question": "What does backface-visibility: hidden do with rotation?",
+      "options": ["Hides the back of the element when rotated away", "Hides the front", "Prevents rotation", "Shows both sides"],
+      "correctAnswer": 0,
+      "explanation": "backface-visibility hides the element's back when rotated >90 degrees."
+    },
+    {
+      "id": 9,
+      "question": "Which axis produces a 'door opening' effect?",
+      "options": ["Y", "X", "Z", "All axes"],
+      "correctAnswer": 0,
+      "explanation": "Y-axis rotation creates a door-opening (left/right) swing effect."
+    },
+    {
+      "id": 10,
+      "question": "Can you animate the rotate property independently?",
+      "options": ["Yes", "No, only via transform", "Only with JavaScript", "Only in 3D"],
+      "correctAnswer": 0,
+      "explanation": "rotate is an independent CSS property that can be animated directly."
+    },
+    {
+      "id": 11,
+      "question": "What is the value of 90 degrees in turns?",
+      "options": ["0.25turn", "0.5turn", "1turn", "0.1turn"],
+      "correctAnswer": 0,
+      "explanation": "90 degrees = 1/4 turn = 0.25turn."
+    },
+    {
+      "id": 12,
+      "question": "What happens with rotate: 720deg?",
+      "options": ["Two full rotations", "Error", "Same as 360deg", "No rotation"],
+      "correctAnswer": 0,
+      "explanation": "Angles can exceed 360deg, producing multiple rotations."
+    },
+    {
+      "id": 13,
+      "question": "What does transform-style: preserve-3d do?",
+      "options": ["Preserves 3D context for child elements", "Flattens all 3D transforms", "Enables backface visibility", "Disables perspective"],
+      "correctAnswer": 0,
+      "explanation": "preserve-3d allows child elements to maintain their 3D transform positions."
+    },
+    {
+      "id": 14,
+      "question": "Which is NOT a valid rotate value?",
+      "options": ["rotate: Z 45px", "rotate: 45deg", "rotate: X 90deg", "rotate: 0.5turn"],
+      "correctAnswer": 0,
+      "explanation": "Rotation values must use angular units (deg, rad, grad, turn), not length units."
+    },
+    {
+      "id": 15,
+      "question": "How do you rotate only 2D without perspective?",
+      "options": ["rotate: 45deg (no axis needed)", "rotate: Z 45deg", "Both are equivalent", "Cannot rotate without perspective"],
+      "correctAnswer": 2,
+      "explanation": "Z-axis rotation (2D) doesn't need perspective and works the same with or without the Z prefix."
+    },
+    {
+      "id": 16,
+      "question": "What does a negative rotation do?",
+      "options": ["Rotates counter-clockwise", "Rotates clockwise", "Reverses the axis", "No effect"],
+      "correctAnswer": 0,
+      "explanation": "Negative angles rotate counter-clockwise."
+    },
+    {
+      "id": 17,
+      "question": "Which standalone transform is best for a spinning loader?",
+      "options": ["rotate", "translate", "scale", "skew"],
+      "correctAnswer": 0,
+      "explanation": "rotate is ideal for spinning/loading animations."
+    },
+    {
+      "id": 18,
+      "question": "What does rotate: Y 0deg do?",
+      "options": ["No rotation", "Resets to default state", "Minor visual glitch", "Removes the element"],
+      "correctAnswer": 0,
+      "explanation": "0deg means no rotation occurs."
+    },
+    {
+      "id": 19,
+      "question": "What is the default transform-origin for rotate?",
+      "options": ["50% 50% (center)", "0 0 (top-left)", "100% 100% (bottom-right)", "50% 0 (top-center)"],
+      "correctAnswer": 0,
+      "explanation": "The default transform-origin is 50% 50% (center of the element)."
+    },
+    {
+      "id": 20,
+      "question": "Can rotate be used in @keyframes?",
+      "options": ["Yes", "No, only transform", "Only with JavaScript", "Not for 3D rotations"],
+      "correctAnswer": 0,
+      "explanation": "rotate is a regular CSS property and works in @keyframes animations."
+    }
+  ]
+}

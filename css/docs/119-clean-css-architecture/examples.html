@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean CSS Architecture - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    /* Layer definitions */
+    @layer settings {
+      :root { --primary: #06b6d4; --primary-hover: #0891b2; --surface: #f8fafc; --border: #e2e8f0; --text: #0f172a; --text-muted: #64748b; --radius: 8px; --shadow: 0 1px 3px rgba(0,0,0,0.08); --space: 1rem; --font: system-ui, sans-serif; }
+    }
+    @layer generic {
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    }
+    @layer elements {
+      body { font-family: var(--font); color: var(--text); line-height: 1.6; padding: var(--space); background: var(--surface); }
+      h1 { font-size: 2rem; margin-bottom: var(--space); }
+    }
+    @layer objects {
+      .o-container { max-width: 75rem; margin-inline: auto; padding: var(--space); }
+      .o-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space); }
+      .o-flex { display: flex; gap: var(--space); flex-wrap: wrap; }
+    }
+    @layer components {
+      .c-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space); box-shadow: var(--shadow); }
+      .c-card__title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+      .c-card__body { color: var(--text-muted); margin-bottom: var(--space); }
+      .c-card--featured { border-color: var(--primary); border-width: 2px; }
+      .c-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; border: none; border-radius: var(--radius); font-size: 1rem; cursor: pointer; min-height: 44px; text-decoration: none; }
+      .c-btn--primary { background: var(--primary); color: #fff; }
+      .c-btn--primary:hover { background: var(--primary-hover); }
+      .c-btn--secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    }
+    @layer utilities {
+      .u-mt { margin-top: var(--space); }
+      .u-text-center { text-align: center; }
+      .u-text-muted { color: var(--text-muted); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Clean CSS Architecture</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: CSS Cascade Layers (ITCSS)</h2>
+    <p>Six layers from low to high priority prevent specificity wars. Each layer has a clear responsibility.</p>
+    <div class="demo-output">
+      <pre style="background:#f1f5f9;color:#0f172a;font-size:0.85rem;border:2px solid #06b6d4;">@layer settings  { /* Variables, tokens        */ }
+@layer generic   { /* Reset / normalize        */ }
+@layer elements  { /* HTML element defaults    */ }
+@layer objects   { /* Layout patterns          */ }
+@layer components{ /* UI components (cards, btns) */ }
+@layer utilities { /* Override helpers         */ }</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Settings Layer — Design Tokens</h2>
+    <p>All colors, spacing, and typography values live here. No hard-coded values elsewhere.</p>
+    <div class="demo-output">
+      <pre style="background:#1e293b;color:#e2e8f0;font-size:0.85rem;">@layer settings {
+  :root {
+    --primary: #06b6d4;
+    --radius: 8px;
+    --space: 1rem;
+    --font: system-ui, sans-serif;
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Generic Layer — Reset</h2>
+    <p>Normalize box-sizing and remove default margins. This is the foundation.</p>
+    <div class="demo-output">
+      <pre style="background:#1e293b;color:#e2e8f0;font-size:0.85rem;">@layer generic {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Objects Layer — Layout Patterns</h2>
+    <p>Reusable layout classes prefixed with <code>o-</code>. They handle structure, not appearance.</p>
+    <div class="demo-output">
+      <div class="o-container" style="background:#f1f5f9;border-radius:8px;padding:1rem;">
+        <div class="o-flex">
+          <div style="flex:1;padding:1rem;background:#fff;border-radius:8px;text-align:center;">Item 1</div>
+          <div style="flex:1;padding:1rem;background:#fff;border-radius:8px;text-align:center;">Item 2</div>
+          <div style="flex:1;padding:1rem;background:#fff;border-radius:8px;text-align:center;">Item 3</div>
+        </div>
+      </div>
+    </div>
+    <pre><code>@layer objects {
+  .o-container { max-width: 75rem; margin-inline: auto; }
+  .o-flex { display: flex; gap: 1rem; }
+  .o-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Components Layer — UI Modules</h2>
+    <p>Components are prefixed with <code>c-</code> and follow BEM for internal structure.</p>
+    <div class="demo-output">
+      <div class="o-grid">
+        <article class="c-card c-card--featured">
+          <h3 class="c-card__title">Featured Component</h3>
+          <p class="c-card__body">This card and button are in the <code>@layer components</code> layer.</p>
+          <button class="c-btn c-btn--primary">Action</button>
+        </article>
+        <article class="c-card">
+          <h3 class="c-card__title">Standard Component</h3>
+          <p class="c-card__body">Consistent structure with no surprise overrides.</p>
+          <button class="c-btn c-btn--secondary">Learn More</button>
+        </article>
+      </div>
+    </div>
+    <pre><code>@layer components {
+  .c-card { background: #fff; border: 1px solid var(--border); }
+  .c-card__title { font-size: 1.25rem; }
+  .c-card--featured { border-color: var(--primary); }
+  .c-btn { display: inline-flex; padding: 0.5rem 1rem; }
+  .c-btn--primary { background: var(--primary); }
+}</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Utilities Layer — Single-Purpose Overrides</h2>
+    <p>Utilities are prefixed with <code>u-</code> and do one thing. They sit at the highest layer to override anything below.</p>
+    <div class="demo-output">
+      <div class="c-card u-text-center">
+        <p class="c-card__body u-text-muted">This text is centered and muted using utility classes.</p>
+        <button class="c-btn c-btn--primary u-mt">Centered Button</button>
+      </div>
+    </div>
+    <pre><code>@layer utilities {
+  .u-mt { margin-top: 1rem; }
+  .u-text-center { text-align: center; }
+  .u-text-muted { color: #64748b; }
+}</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Why Layers Beat Specificity Hacks</h2>
+    <p>Without layers, a utility class might not override a component style if the component uses a higher-specificity selector. Layers guarantee ordering regardless of specificity.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:2rem;">
+        <div class="bad" style="flex:1;border-left:4px solid #ef4444;padding-left:1rem;">
+          <p style="font-weight:600;color:#ef4444;">No Layers</p>
+          <code>nav ul li a { color: blue; !important }</code>
+          <p style="font-size:0.875rem;color:#64748b;margin-top:0.5rem;">Needs <code>!important</code> or higher specificity to override.</p>
+        </div>
+        <div class="good" style="flex:1;border-left:4px solid #22c55e;padding-left:1rem;">
+          <p style="font-weight:600;color:#22c55e;">With Layers</p>
+          <code>@layer components { ... }   @layer utilities { }</code>
+          <p style="font-size:0.875rem;color:#64748b;margin-top:0.5rem;">Utilities always win regardless of specificity.</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>@layer utilities {
+  .u-text-center { text-align: center; }
+}
+/* Always wins against component-level styles */</pre>
+  </div>
+</body>
+</html>

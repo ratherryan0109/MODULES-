@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Document Structure - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #2c3e50; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .tree { font-family: monospace; line-height: 1.6; background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Module 3: HTML Document Structure — Examples</h1>
+
+    <!-- Example 1: Complete Document Anatomy -->
+    <div class="example">
+        <h2>Example 1: Complete HTML Document Anatomy</h2>
+        <p>Every HTML document has this exact structure. Notice the DOCTYPE, html, head, and body.</p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="A sample page for learning HTML structure"&gt;
+    &lt;title&gt;Document Structure Example&lt;/title&gt;
+    &lt;link rel="icon" href="favicon.ico"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;Welcome to learning HTML document structure.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <h1>Hello, World!</h1>
+            <p>Welcome to learning HTML document structure.</p>
+        </div>
+    </div>
+
+    <!-- Example 2: Head Meta Tags -->
+    <div class="example">
+        <h2>Example 2: Meta Tags in the Head</h2>
+        <p>Meta tags provide information about the page. They are not visible to users but crucial for SEO and functionality.</p>
+        <pre>
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Learn HTML document structure with examples"&gt;
+    &lt;meta name="keywords" content="HTML, structure, web development"&gt;
+    &lt;meta name="author" content="HTML Mastery Course"&gt;
+    &lt;meta property="og:title" content="HTML Document Structure"&gt;
+    &lt;meta property="og:description" content="Complete guide to HTML document anatomy"&gt;
+    &lt;title&gt;Meta Tags Demo&lt;/title&gt;
+&lt;/head&gt;</pre>
+        <div class="output-label">Note:</div>
+        <div class="output">
+            <p>These meta tags are not visible on the page but affect how search engines and social platforms interpret this page.</p>
+        </div>
+    </div>
+
+    <!-- Example 3: Semantic Structure -->
+    <div class="example">
+        <h2>Example 3: Semantic Page Layout</h2>
+        <p>Using HTML5 semantic elements creates a meaningful document structure.</p>
+        <pre>
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;My Website&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;a href="#"&gt;Home&lt;/a&gt;
+            &lt;a href="#"&gt;About&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Article Title&lt;/h2&gt;
+            &lt;p&gt;Article content...&lt;/p&gt;
+        &lt;/article&gt;
+
+        &lt;aside&gt;
+            &lt;h3&gt;Related Links&lt;/h3&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2026 My Website&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <header>
+                <h1>My Website</h1>
+                <nav><a href="#">Home</a> | <a href="#">About</a></nav>
+            </header>
+            <main>
+                <article>
+                    <h2>Article Title</h2>
+                    <p>Article content...</p>
+                </article>
+                <aside>
+                    <h3>Related Links</h3>
+                    <ul><li><a href="#">Link 1</a></li></ul>
+                </aside>
+            </main>
+            <footer><p>&copy; 2026 My Website</p></footer>
+        </div>
+    </div>
+
+    <!-- Example 4: DOM Tree Visualization -->
+    <div class="example">
+        <h2>Example 4: DOM Tree Visualization</h2>
+        <p>The browser parses HTML into a tree structure called the Document Object Model.</p>
+        <div class="tree">
+Document<br>
+└── &lt;html lang="en"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── &lt;head&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── &lt;meta charset="UTF-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── &lt;title&gt;DOM Demo&lt;/title&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── &lt;body&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── &lt;h1&gt;DOM Tree&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── &lt;p&gt;Each element is a node.&lt;/p&gt;
+        </div>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;DOM Demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;DOM Tree&lt;/h1&gt;
+    &lt;p&gt;Each element is a node.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <h1>DOM Tree</h1>
+            <p>Each element is a node.</p>
+        </div>
+    </div>
+
+    <!-- Example 5: Proper Nesting vs Improper Nesting -->
+    <div class="example">
+        <h2>Example 5: Proper Nesting vs Improper Nesting</h2>
+        <pre>
+&lt;!-- ✅ CORRECT: Inner tags close before outer --&gt;
+&lt;div&gt;
+    &lt;p&gt;This is &lt;strong&gt;correct&lt;/strong&gt; nesting.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- ❌ INCORRECT: Overlapping tags --&gt;
+&lt;div&gt;
+    &lt;p&gt;This is &lt;strong&gt;incorrect&lt;/p&gt; nesting.&lt;/strong&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Correct version renders properly:</div>
+        <div class="output">
+            <div><p>This is <strong>correct</strong> nesting.</p></div>
+        </div>
+    </div>
+
+    <!-- Example 6: Without DOCTYPE (Quirks Mode) Warning -->
+    <div class="example">
+        <h2>Example 6: The Importance of DOCTYPE</h2>
+        <p>Without <code>&lt;!DOCTYPE html&gt;</code>, browsers switch to "quirks mode," causing inconsistent rendering.</p>
+        <pre>
+&lt;!-- Without DOCTYPE --&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Bad Practice&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;This page has no DOCTYPE.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="output-label">Always include DOCTYPE:</div>
+        <div class="output" style="border-color: #e74c3c;">
+            <p style="color: #e74c3c;">⚠ Missing DOCTYPE can cause layout bugs!</p>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Use the W3C Validator (https://validator.w3.org) to check your document structure for errors.
+    </div>
+</body>
+</html>

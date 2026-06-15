@@ -1,0 +1,29 @@
+{
+  "module": "73 - CSS Gradients",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Sunset Gradient Button",
+      "description": "Create a button with a linear gradient background that changes on hover.",
+      "instructions": "Build a button using a warm sunset gradient. On hover, reverse or shift the gradient.",
+      "hints": ["Use linear-gradient with warm colors (orange, pink, purple)", "On hover, change direction or colors", "Add smooth transition"],
+      "solution": ".btn { background: linear-gradient(135deg, #f093fb, #f5576c); border: none; color: white; padding: 12px 24px; border-radius: 8px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; } .btn:hover { background: linear-gradient(135deg, #f5576c, #f093fb); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(245,87,108,0.4); }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Pie Chart with Conic Gradient",
+      "description": "Create a pie chart showing 4 data segments using only a conic gradient.",
+      "instructions": "Use conic-gradient with hard stops to create a pie chart showing: 40% Sales, 25% Marketing, 20% R&D, 15% Admin.",
+      "hints": ["Use hard stops at cumulative percentages", "Add labels or a legend near the pie", "Use border-radius: 50% to make a circle"],
+      "solution": ".pie { width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(#3b82f6 0% 40%, #10b981 40% 65%, #f59e0b 65% 85%, #ef4444 85% 100%); }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Animated Gradient Background with Patterns",
+      "description": "Create a full-page animated gradient background that combines linear gradient animation with repeating pattern overlays.",
+      "instructions": "Build a page background with: animated gradient base, semi-transparent repeating pattern overlay, and a glass-morphism card in the center.",
+      "hints": ["Use multiple backgrounds: animated gradient + repeating pattern", "Use backdrop-filter for glass effect on card", "Respect prefers-reduced-motion by pausing animation"],
+      "solution": "body { background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.05) 40px, rgba(255,255,255,0.05) 41px); background-size: 400% 400%, auto; animation: grad 15s ease infinite; } @media (prefers-reduced-motion: reduce) { body { animation: none; } } @keyframes grad { 0% { background-position: 0% 50%, 0 0; } 50% { background-position: 100% 50%, 50px 0; } 100% { background-position: 0% 50%, 0 0; } } .card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; }"
+    }
+  ]
+}

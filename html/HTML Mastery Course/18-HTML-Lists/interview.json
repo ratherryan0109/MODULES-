@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"question":"What are the three types of HTML lists?","answer":"Unordered lists (<ul>) with bullet points, ordered lists (<ol>) with numbers, and description lists (<dl>) with term-definition pairs."},
+    {"question":"How do you create an unordered list?","answer":"Use <ul> with <li> items: <ul><li>Item</li></ul>. Each <li> represents one list item."},
+    {"question":"What is the difference between <ul> and <ol>?","answer":"<ul> (unordered) uses bullet points for items where order doesn't matter. <ol> (ordered) uses numbers/letters for sequential items where order matters."},
+    {"question":"How do you create a description list?","answer":"Use <dl> as the container, <dt> for terms, and <dd> for definitions: <dl><dt>Term</dt><dd>Definition</dd></dl>."},
+    {"question":"What is a nested list?","answer":"A nested list is a list inside another list's <li> element. Used for hierarchical structures like subcategories."},
+    {"question":"Where must a nested list be placed in HTML?","answer":"A nested list must be placed inside an <li> element, not directly inside the parent <ul> or <ol>."},
+    {"question":"What does the 'start' attribute do on an ordered list?","answer":"The start attribute sets the starting number: <ol start='5'> begins counting from 5 instead of 1."},
+    {"question":"How do you change bullet symbols with CSS?","answer":"Use list-style-type: disc (filled circle), circle (empty circle), square, or none."},
+    {"question":"What is the default bullet style for unordered lists?","answer":"The default is 'disc' — a filled circle."},
+    {"question":"Can you nest different list types together?","answer":"Yes, you can nest <ul> inside <ol> items and vice versa. The nested list goes inside the <li>."}
+  ],
+  "intermediate": [
+    {"question":"How does the 'reversed' attribute work on ordered lists?","answer":"The reversed boolean attribute reverses the numbering: <ol reversed> renders items in descending order (3, 2, 1 instead of 1, 2, 3)."},
+    {"question":"What is the 'value' attribute on <li> and how does it affect subsequent items?","answer":"value sets the number for that specific item: <li value='10'>. All subsequent items continue numbering from that value (11, 12, etc.)."},
+    {"question":"How do you create a horizontal navigation menu using an unordered list?","answer":"Use CSS: ul { list-style: none; display: flex; gap: 20px; } on the <ul>. This removes bullets and arranges items horizontally."},
+    {"question":"What is list-style-position and how does it differ between 'inside' and 'outside'?","answer":"'outside' (default) places the marker outside the list item's content box. 'inside' places the marker within the content box, affecting text wrapping alignment."},
+    {"question":"How do you create custom bullet points using CSS?","answer":"Set list-style: none on the list, then use li::before { content: '★ '; } to add custom markers with pseudo-elements."},
+    {"question":"How do screen readers handle lists with ARIA roles?","answer":"Screen readers announce the list type (ordered/unordered/description) and the number of items. Use role='list' and role='listitem' for custom elements styled as lists."},
+    {"question":"What is the difference between <dl>, <dt>, and <dd> in HTML5 vs HTML4?","answer":"In HTML5, <dl> is now a 'description list' (not 'definition list'), allowing multiple names and values. <dt> can contain block-level elements. The structure is more flexible."},
+    {"question":"How do you style list markers with different colors than the list text?","answer":"Use the ::marker pseudo-element: li::marker { color: red; }. Or set different colors on the <li> and use a child element for text."},
+    {"question":"What happens when you omit the closing </li> tag?","answer":"Browsers automatically close <li> when the next <li> or the parent </ul>/</ol> is encountered. It's valid HTML but explicit closing is recommended for clarity."},
+    {"question":"How can you create a list with multiple columns using CSS?","answer":"Use CSS columns: ul { column-count: 3; column-gap: 20px; }. Or use CSS Grid: ul { display: grid; grid-template-columns: repeat(3, 1fr); }."}
+  ],
+  "advanced": [
+    {"question":"How does the browser algorithm for list numbering work with nested lists and the 'value' attribute?","answer":"The browser maintains a counter per list level. Each <ol> resets the counter. The 'value' attribute overrides the counter. Nested lists don't affect the outer list's counter. 'reversed' initializes the counter to the item count and decrements."},
+    {"question":"What is the CSS 'counter-increment' property and how does it relate to HTML lists?","answer":"counter-increment controls the list counter for ordered lists. You can use CSS counters (counter-reset, counter-increment, counter()) to create custom list numbering that HTML lists alone cannot achieve, like nested numbering (1.1, 1.2, 2.1)."},
+    {"question":"How do you implement legal-style nested numbering (1, 1.1, 1.1.1) using CSS counters?","answer":"Use counter-reset on the <ol>, counter-increment on <li>, and the ::before pseudo-element with content: counters(item, '.') '. ' to generate nested decimal numbering."},
+    {"question":"What accessibility considerations apply to complex nested lists?","answer":"Screen readers may announce each nesting level, which can be verbose. Use proper heading structure before lists, limit nesting to 3 levels, use aria-label on lists for context, and test with actual screen readers."},
+    {"question":"How does 'display: contents' interact with list semantics?","answer":"display: contents removes the element's box from the layout while preserving its children. Applied to <ul> or <li>, it removes the list semantics from the accessibility tree, which may break screen reader announcements."},
+    {"question":"What is the HTML 'list' attribute and the associated <datalist> element for input suggestions?","answer":"The 'list' attribute on <input> connects to a <datalist> element: <input list='browsers'><datalist id='browsers'><option value='Chrome'></datalist>. This provides autocomplete suggestions, not a displayed list."},
+    {"question":"How do CSS 'list-style-type: string' values work in modern browsers?","answer":"The 'string' value (e.g., list-style-type: '→ ') allows custom string markers without ::before pseudo-elements. This is simpler than content-based approaches but has limited browser support."},
+    {"question":"How do you create a semantic 'task list' with checkboxes inside list items?","answer":"Use <ul> with <li> containing <input type='checkbox'> and <label>. Style with list-style: none and use CSS :checked to style completed items. Ensure proper label-input association for accessibility."},
+    {"question":"What is the interaction between HTML lists and CSS 'counter-set' property?","answer":"counter-set (newer than counter-reset) sets a counter to a specific value regardless of its previous state. This is useful for resetting list counters in complex nested scenarios where counter-reset might cause unintended resets."},
+    {"question":"Explain how the Shadow DOM affects list styling and semantics for custom elements behaving as lists.","answer":"Shadow DOM encapsulates styles, so external CSS list styling doesn't penetrate into custom elements. Custom list-like components must set role='list' and role='listitem' for accessibility. The <slot> element can project light DOM list items into shadow DOM templates."}
+  ]
+}

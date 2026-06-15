@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website Project - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #e44d26; border-bottom: 3px solid #e44d26; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Module 86: Blog Website Project — Examples</h1>
+
+    <div class="note">
+        <strong>Tip:</strong> Refer to <code>project.md</code> for the complete multi-page blog code. These examples demonstrate individual blog components.
+    </div>
+
+    <!-- Example 1: Post Card -->
+    <div class="example">
+        <h2>Example 1: Blog Post Card</h2>
+        <p>Article preview cards for the blog homepage grid.</p>
+        <pre>
+&lt;article style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); max-width: 350px;"&gt;
+    &lt;div style="height: 180px; background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-size: 40px;"&gt;📝&lt;/div&gt;
+    &lt;div style="padding: 20px;"&gt;
+        &lt;div style="font-size: 12px; color: #2563eb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;"&gt;JavaScript&lt;/div&gt;
+        &lt;h3 style="font-size: 18px; margin-bottom: 10px;"&gt;JavaScript Temporal API Guide&lt;/h3&gt;
+        &lt;p style="color: #666; font-size: 14px; margin-bottom: 12px;"&gt;A modern approach to date and time handling...&lt;/p&gt;
+        &lt;div style="font-size: 13px; color: #999;"&gt;📅 June 2, 2026 · ⏱ 7 min&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <article style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); max-width: 350px;">
+                <div style="height: 150px; background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-size: 36px;">📝</div>
+                <div style="padding: 15px;">
+                    <div style="font-size: 12px; color: #2563eb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">JavaScript</div>
+                    <h3 style="font-size: 17px; margin-bottom: 8px;">JavaScript Temporal API Guide</h3>
+                    <p style="color: #666; font-size: 13px; margin-bottom: 10px;">A modern approach to date and time handling...</p>
+                    <div style="font-size: 12px; color: #999;">📅 June 2, 2026 · ⏱ 7 min</div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Example 2: Sidebar Widget -->
+    <div class="example">
+        <h2>Example 2: Sidebar Widget (Categories)</h2>
+        <p>A categories widget for the blog sidebar.</p>
+        <pre>
+&lt;div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);"&gt;
+    &lt;h3 style="font-size: 18px; margin-bottom: 15px; border-bottom: 3px solid #2563eb; padding-bottom: 10px; display: inline-block;"&gt;Categories&lt;/h3&gt;
+    &lt;ul style="list-style: none;"&gt;
+        &lt;li style="padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;"&gt;
+            &lt;a href="#" style="color: #555; text-decoration: none;"&gt;HTML &amp; CSS&lt;/a&gt;
+            &lt;span style="color: #999; font-size: 13px;"&gt;(12)&lt;/span&gt;
+        &lt;/li&gt;
+        &lt;li style="padding: 8px 0; border-bottom: 1px solid #eee;"&gt;
+            &lt;a href="#" style="color: #555; text-decoration: none;"&gt;JavaScript&lt;/a&gt;
+            &lt;span style="color: #999; font-size: 13px; float: right;"&gt;(18)&lt;/span&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); max-width: 300px;">
+                <h3 style="font-size: 17px; margin-bottom: 12px; border-bottom: 3px solid #2563eb; padding-bottom: 8px; display: inline-block;">Categories</h3>
+                <ul style="list-style: none;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;">
+                        <a href="#" style="color: #555; text-decoration: none;">HTML & CSS</a>
+                        <span style="color: #999; font-size: 13px;">(12)</span>
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;">
+                        <a href="#" style="color: #555; text-decoration: none;">JavaScript</a>
+                        <span style="color: #999; font-size: 13px;">(18)</span>
+                    </li>
+                    <li style="padding: 8px 0; display: flex; justify-content: space-between;">
+                        <a href="#" style="color: #555; text-decoration: none;">React</a>
+                        <span style="color: #999; font-size: 13px;">(9)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 3: Tags Cloud -->
+    <div class="example">
+        <h2>Example 3: Tags Cloud Widget</h2>
+        <pre>
+&lt;div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);"&gt;
+    &lt;h3 style="font-size: 18px; margin-bottom: 15px; border-bottom: 3px solid #2563eb; padding-bottom: 10px; display: inline-block;"&gt;Tags&lt;/h3&gt;
+    &lt;div style="display: flex; flex-wrap: wrap; gap: 8px;"&gt;
+        &lt;a href="#" style="background: #eef2ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 13px; text-decoration: none;"&gt;html&lt;/a&gt;
+        &lt;a href="#" style="background: #eef2ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 13px; text-decoration: none;"&gt;css&lt;/a&gt;
+        &lt;a href="#" style="background: #eef2ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 13px; text-decoration: none;"&gt;javascript&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); max-width: 300px;">
+                <h3 style="font-size: 17px; margin-bottom: 12px; border-bottom: 3px solid #2563eb; padding-bottom: 8px; display: inline-block;">Tags</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <span style="background: #eef2ff; color: #2563eb; padding: 5px 12px; border-radius: 20px; font-size: 12px;">html</span>
+                    <span style="background: #eef2ff; color: #2563eb; padding: 5px 12px; border-radius: 20px; font-size: 12px;">css</span>
+                    <span style="background: #eef2ff; color: #2563eb; padding: 5px 12px; border-radius: 20px; font-size: 12px;">javascript</span>
+                    <span style="background: #eef2ff; color: #2563eb; padding: 5px 12px; border-radius: 20px; font-size: 12px;">react</span>
+                    <span style="background: #eef2ff; color: #2563eb; padding: 5px 12px; border-radius: 20px; font-size: 12px;">node</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 4: Article Content -->
+    <div class="example">
+        <h2>Example 4: Article Content Structure</h2>
+        <p>Proper heading hierarchy and blockquote within a blog post.</p>
+        <pre>
+&lt;article&gt;
+    &lt;h1&gt;Main Article Title (only one h1)&lt;/h1&gt;
+    &lt;p&gt;Introduction paragraph...&lt;/p&gt;
+
+    &lt;h2&gt;Section Heading (h2)&lt;/h2&gt;
+    &lt;p&gt;Section content...&lt;/p&gt;
+
+    &lt;h3&gt;Subsection (h3)&lt;/h3&gt;
+    &lt;p&gt;Subsection content...&lt;/p&gt;
+
+    &lt;blockquote style="border-left: 4px solid #2563eb; background: #eef2ff; padding: 15px 25px; margin: 20px 0; border-radius: 0 8px 8px 0; font-style: italic;"&gt;
+        "A meaningful quote from the article."
+    &lt;/blockquote&gt;
+&lt;/article&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <article>
+                <h1 style="font-size: 22px; margin-bottom: 10px;">Main Article Title</h1>
+                <p style="margin-bottom: 10px;">Introduction paragraph lorem ipsum dolor sit amet...</p>
+                <h2 style="font-size: 18px; margin: 15px 0 8px;">Section Heading</h2>
+                <p style="margin-bottom: 10px;">Section content with more details about the topic...</p>
+                <h3 style="font-size: 16px; margin: 12px 0 6px;">Subsection</h3>
+                <p style="margin-bottom: 10px;">Subsection content goes here...</p>
+                <blockquote style="border-left: 4px solid #2563eb; background: #eef2ff; padding: 12px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; font-style: italic;">"A meaningful quote from the article."</blockquote>
+            </article>
+        </div>
+    </div>
+
+    <!-- Example 5: Related Posts -->
+    <div class="example">
+        <h2>Example 5: Related Posts Section</h2>
+        <pre>
+&lt;section&gt;
+    &lt;h3 style="font-size: 22px; margin-bottom: 20px;"&gt;Related Articles&lt;/h3&gt;
+    &lt;div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;"&gt;
+        &lt;div style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);"&gt;
+            &lt;h4 style="font-size: 15px; margin-bottom: 8px;"&gt;&lt;a href="#" style="color: #333; text-decoration: none;"&gt;Related Post Title 1&lt;/a&gt;&lt;/h4&gt;
+            &lt;div style="font-size: 13px; color: #999;"&gt;June 5, 2026&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);"&gt;
+            &lt;h4 style="font-size: 15px; margin-bottom: 8px;"&gt;&lt;a href="#" style="color: #333; text-decoration: none;"&gt;Related Post Title 2&lt;/a&gt;&lt;/h4&gt;
+            &lt;div style="font-size: 13px; color: #999;"&gt;June 2, 2026&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);"&gt;
+            &lt;h4 style="font-size: 15px; margin-bottom: 8px;"&gt;&lt;a href="#" style="color: #333; text-decoration: none;"&gt;Related Post Title 3&lt;/a&gt;&lt;/h4&gt;
+            &lt;div style="font-size: 13px; color: #999;"&gt;May 28, 2026&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                <div style="background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                    <h4 style="font-size: 14px; margin-bottom: 6px;"><a href="#" style="color: #333; text-decoration: none;">Related Post Title 1</a></h4>
+                    <div style="font-size: 12px; color: #999;">June 5, 2026</div>
+                </div>
+                <div style="background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                    <h4 style="font-size: 14px; margin-bottom: 6px;"><a href="#" style="color: #333; text-decoration: none;">Related Post Title 2</a></h4>
+                    <div style="font-size: 12px; color: #999;">June 2, 2026</div>
+                </div>
+                <div style="background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                    <h4 style="font-size: 14px; margin-bottom: 6px;"><a href="#" style="color: #333; text-decoration: none;">Related Post Title 3</a></h4>
+                    <div style="font-size: 12px; color: #999;">May 28, 2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 6: Blog Layout -->
+    <div class="example">
+        <h2>Example 6: Full Blog Layout (Content + Sidebar)</h2>
+        <p>The two-column layout using CSS Grid.</p>
+        <pre>
+&lt;div style="display: grid; grid-template-columns: 1fr 300px; gap: 30px;"&gt;
+    &lt;main&gt;
+        &lt;h2&gt;Main Content Area&lt;/h2&gt;
+        &lt;p&gt;Blog posts appear here...&lt;/p&gt;
+    &lt;/main&gt;
+    &lt;aside&gt;
+        &lt;div&gt;Sidebar widgets here...&lt;/div&gt;
+    &lt;/aside&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">CSS Layout:</div>
+        <div class="output">
+            <div style="display: grid; grid-template-columns: 1fr 250px; gap: 20px;">
+                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                    <strong>Main Content</strong>
+                    <p style="color: #666; font-size: 14px; margin-top: 8px;">Blog posts, article content, and featured stories appear in this column. It takes up the remaining space after the sidebar.</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                    <strong>Sidebar</strong>
+                    <p style="color: #666; font-size: 14px; margin-top: 8px;">Categories, recent posts, tags, and about widgets.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Project:</strong> The complete multi-page blog code is available in <code>project.md</code>. Create all four HTML files (index.html, post.html, about.html, contact.html) to build the full blog website.
+    </div>
+</body>
+</html>

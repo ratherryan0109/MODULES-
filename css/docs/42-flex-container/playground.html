@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex Container - Playground</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1a1a2e; color: #eee; }
+    h1 { margin-bottom: 1rem; color: #e94560; }
+    .layout { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .editor { flex: 1; min-width: 400px; }
+    .preview { flex: 1; min-width: 400px; }
+    textarea { width: 100%; height: 300px; background: #16213e; color: #eee; padding: 1rem; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 14px; border: 1px solid #e94560; border-radius: 4px; resize: vertical; }
+    iframe { width: 100%; height: 350px; border: 1px solid #e94560; border-radius: 4px; background: white; }
+    button { background: #e94560; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; margin-top: 1rem; font-size: 1rem; }
+    button:hover { background: #c73656; }
+    .controls { margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    label { color: #aaa; }
+    select, input { background: #16213e; color: #eee; padding: 0.5rem; border: 1px solid #e94560; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>🎨 Flex Container - Playground</h1>
+  <div class="layout">
+    <div class="editor">
+      <h2>CSS Editor</h2>
+      <textarea id="cssInput">/* Try different display values */
+.container {
+  display: flex;   /* try: inline-flex */
+  gap: 1rem;        /* try: 0.5rem, 2rem */
+  background: #e3f2fd;
+  padding: 1rem;
+}
+.item {
+  background: #42a5f5;
+  color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+}</textarea>
+      <br>
+      <button onclick="updatePreview()">Run ▶</button>
+    </div>
+    <div class="preview">
+      <h2>Preview</h2>
+      <iframe id="preview"></iframe>
+      <div class="controls">
+        <label>Display:
+          <select id="displaySelect" onchange="updatePreview()">
+            <option value="flex">flex</option>
+            <option value="inline-flex">inline-flex</option>
+          </select>
+        </label>
+        <label>Items:
+          <input type="number" id="itemCount" value="4" min="1" max="8" onchange="updatePreview()">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updatePreview() {
+      const css = document.getElementById('cssInput').value;
+      const display = document.getElementById('displaySelect').value;
+      const count = parseInt(document.getElementById('itemCount').value) || 4;
+      const items = Array.from({length: count}, (_, i) => `<div class="item">Item ${i+1}</div>`).join('');
+
+      const finalCss = css.replace(/display:\s*\w+;/, `display: ${display};`);
+
+      const doc = document.getElementById('preview').contentDocument;
+      doc.open();
+      doc.write(`
+        <html><head><style>
+          body { margin: 0; padding: 1rem; font-family: system-ui, sans-serif; }
+          .container { ${finalCss} }
+          .item { background: #42a5f5; color: white; padding: 1rem; border-radius: 4px; text-align: center; }
+        </style></head><body>
+          <div class="container">
+            ${items}
+          </div>
+        </body></html>
+      `);
+      doc.close();
+    }
+    updatePreview();
+  </script>
+</body>
+</html>

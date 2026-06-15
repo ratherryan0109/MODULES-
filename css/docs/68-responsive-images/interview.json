@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "How do you make images responsive with CSS?", "answer": "Set max-width: 100% and height: auto on images so they scale down on smaller screens but do not exceed their original dimensions." },
+    { "question": "What does max-width: 100% do on images?", "answer": "It ensures the image never exceeds its container's width, scaling proportionally on smaller screens while maintaining its intrinsic aspect ratio." },
+    { "question": "What does height: auto do on a responsive image?", "answer": "It maintains the image's aspect ratio when its width changes, preventing distortion as the image scales." },
+    { "question": "What is the srcset attribute for images?", "answer": "srcset provides a list of image files with their widths or pixel densities, letting the browser choose the most appropriate version." },
+    { "question": "What is the sizes attribute for images?", "answer": "sizes tells the browser the image's display width at different breakpoints, helping it choose the right srcset image." },
+    { "question": "What is the picture element used for?", "answer": "The <picture> element enables art direction—serving different image crops or formats based on media conditions like viewport width." },
+    { "question": "What are the benefits of responsive images for performance?", "answer": "Responsive images reduce bandwidth by serving smaller files to small screens, improving page load times and saving data." },
+    { "question": "What image formats are commonly used for responsive images?", "answer": "JPEG, WebP, and AVIF are common. WebP and AVIF offer better compression than JPEG for the same quality." },
+    { "question": "Can you use the srcset attribute without sizes?", "answer": "Yes, but without sizes the browser assumes 100vw (full viewport width). It is best practice to include sizes for accurate selection." },
+    { "question": "What is the difference between srcset with x descriptors and w descriptors?", "answer": "x descriptors specify pixel density (1x, 2x); w descriptors specify actual image width and require the sizes attribute." }
+  ],
+  "intermediate": [
+    { "question": "How does the browser choose which image to load from srcset?", "answer": "The browser considers the viewport size, device pixel ratio, network conditions, and the sizes attribute to pick the most appropriate image." },
+    { "question": "What is the syntax for srcset with width descriptors?", "answer": "srcset='image-400.jpg 400w, image-800.jpg 800w, image-1200.jpg 1200w' where w values are the actual image pixel widths." },
+    { "question": "How do you use the picture element for art direction?", "answer": "Wrap <source> elements with media attributes inside <picture>, each specifying a different image file for different viewport conditions, with a fallback <img>." },
+    { "question": "What is the type attribute in the picture element?", "answer": "The type attribute specifies the MIME type of the source image, allowing the browser to choose between formats like WebP, AVIF, or JPEG." },
+    { "question": "How do you create responsive background images?", "answer": "Use background-size: cover and background-image with media queries to swap images, or use image-set() for resolution-aware backgrounds." },
+    { "question": "What is the image-set() function in CSS?", "answer": "image-set() provides resolution-aware background images, letting the browser choose the best resolution, similar to srcset for background images." },
+    { "question": "What is lazy loading for images and how is it implemented?", "answer": "Lazy loading defers loading off-screen images using loading='lazy' attribute or Intersection Observer to improve initial page load performance." },
+    { "question": "How do you handle art direction with the picture element?", "answer": "Different <source> elements provide different image crops (e.g., landscape vs portrait) for different viewport sizes, ensuring the subject remains visible." },
+    { "question": "What is the purpose of the loading attribute on images?", "answer": "loading='lazy' tells the browser to defer loading the image until it is near the viewport; loading='eager' loads immediately." },
+    { "question": "How do you use decoding='async' on images?", "answer": "decoding='async' allows the browser to decode the image asynchronously, improving initial render performance by not blocking on image decode." }
+  ],
+  "advanced": [
+    { "question": "How do responsive images interact with Cumulative Layout Shift (CLS)?", "answer": "Setting width and height attributes on images prevents CLS by reserving space before the image loads, even with max-width: 100% and height: auto." },
+    { "question": "What is the relationship between srcset and the browser's network conditions?", "answer": "Modern browsers may consider Save-Data headers and network conditions when selecting srcset images, choosing smaller files on slow connections." },
+    { "question": "How do you implement responsive images for WebP with fallback?", "answer": "Use <picture> with <source type='image/webp' srcset='...'> followed by a fallback <img> with JPEG/PNG srcset." },
+    { "question": "How does the sizes attribute work with CSS Grid layouts?", "answer": "sizes should match the image's CSS grid column width at each breakpoint, e.g., sizes='(min-width: 768px) 50vw, 100vw'." },
+    { "question": "What is intrinsic sizing in responsive images and how does aspect-ratio help?", "answer": "Setting aspect-ratio on images combined with max-width: 100% creates intrinsic sizing that reserves space and prevents CLS without explicit width/height." },
+    { "question": "How do you handle responsive images with object-fit and object-position?", "answer": "Use object-fit: cover with object-position to crop images within their container while maintaining aspect ratio, useful for thumbnails and hero images." },
+    { "question": "What are the performance implications of using many high-resolution srcset options?", "answer": "More srcset options increase HTML size but can save bandwidth. Generally 3-5 resolutions provide good coverage without excessive markup." },
+    { "question": "How do responsive images work with CDN image transformation services?", "answer": "CDNs like Cloudinary, Imgix, and Cloudflare Images generate resized versions on-the-fly based on URL parameters, then list them in srcset." },
+    { "question": "How do you implement responsive images in a framework like Next.js or Nuxt?", "answer": "Frameworks provide image components that auto-generate srcset, handle lazy loading, and optimize images. Next.js uses <Image> with layout='responsive'." },
+    { "question": "What is the interaction between responsive images and CSS Container Queries?", "answer": "With container queries, images can use container query units (cqi) in the sizes attribute, making image selection responsive to the container rather than the viewport." }
+  ]
+}

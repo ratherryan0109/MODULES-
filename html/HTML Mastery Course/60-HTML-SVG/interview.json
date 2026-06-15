@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is SVG and how is it different from Canvas?",
+      "answer": "SVG (Scalable Vector Graphics) is an XML-based vector image format. Unlike Canvas (pixel-based), SVG elements are DOM nodes that can be styled with CSS, manipulated with JS, and are resolution-independent. SVG is better for static graphics, icons, and small numbers of elements; Canvas is better for dynamic rendering like games and image processing."
+    },
+    {
+      "question": "How do you create a circle in SVG?",
+      "answer": "Use the <circle> element: <circle cx='50' cy='50' r='40' fill='coral' />. cx and cy define the center point, r is the radius. Fill sets the interior color and stroke sets the outline."
+    },
+    {
+      "question": "What is the viewBox attribute and why is it important?",
+      "answer": "viewBox='minX minY width height' defines the internal coordinate system of the SVG. It allows the SVG to be scaled to any size while maintaining proportions. Without viewBox, the SVG may not scale properly and coordinates may behave unexpectedly."
+    },
+    {
+      "question": "How do you draw a rectangle with rounded corners?",
+      "answer": "Use the <rect> element with rx and ry attributes: <rect x='10' y='10' width='80' height='50' rx='8' ry='8' fill='steelblue' />. rx and ry control the corner rounding."
+    },
+    {
+      "question": "What is the difference between fill and stroke in SVG?",
+      "answer": "Fill sets the color inside the shape, while stroke sets the color of the outline. Stroke-width controls the thickness of the outline. Both can use colors, gradients, and patterns."
+    },
+    {
+      "question": "How do you embed an SVG in a web page?",
+      "answer": "There are four ways: (1) Inline SVG — write SVG tags directly in HTML, (2) <img src='file.svg' alt='...'/>, (3) CSS background-image: url('file.svg'), (4) <object data='file.svg' type='image/svg+xml' />. Inline is best for interactivity."
+    },
+    {
+      "question": "What are the basic shape elements in SVG?",
+      "answer": "The basic shapes are: <circle> (circles), <rect> (rectangles with optional rounded corners), <ellipse> (ellipses), <line> (straight lines), <polyline> (connected lines), <polygon> (closed shapes with straight edges), and <path> (any custom shape)."
+    },
+    {
+      "question": "How do you add text to an SVG?",
+      "answer": "Use the <text> element: <text x='100' y='50' text-anchor='middle' font-size='20' fill='black'>Hello</text>. For multi-line text, use <tspan> elements. For text along a path, use <textPath>."
+    },
+    {
+      "question": "What does the <defs> element do?",
+      "answer": "<defs> stores definitions (gradients, filters, symbols, patterns) that can be reused throughout the SVG. Elements inside <defs> are not rendered directly but referenced via url(#id) or href attributes."
+    },
+    {
+      "question": "How do you create a line in SVG?",
+      "answer": "Use the <line> element: <line x1='10' y1='10' x2='100' y2='50' stroke='black' stroke-width='2' />. x1,y1 is the start point, x2,y2 is the end point. Stroke is required since a line has no fill area."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do SVG paths work? Explain the main path commands.",
+      "answer": "SVG paths use a string of commands: M (move to), L (line to), H (horizontal line), V (vertical line), C (cubic bezier curve), S (smooth cubic), Q (quadratic bezier), T (smooth quadratic), A (arc), and Z (close path). Uppercase = absolute coordinates, lowercase = relative."
+    },
+    {
+      "question": "What is the <use> element and how does it improve SVG performance?",
+      "answer": "<use href='#id' x='10' y='10' /> clones an existing element at a new position. It improves performance by reusing a single definition multiple times. Used with <symbol>, it's the foundation of SVG icon systems. The cloned element cannot be individually styled in some CSS properties."
+    },
+    {
+      "question": "How do you create and apply SVG gradients?",
+      "answer": "Define gradients in <defs>: <linearGradient id='myGrad' x1='0%' y1='0%' x2='100%' y2='0%'><stop offset='0%' stop-color='red'/><stop offset='100%' stop-color='blue'/></linearGradient>. Apply with fill='url(#myGrad)'. Radial gradients use <radialGradient> with cx, cy, r attributes."
+    },
+    {
+      "question": "Explain SMIL animation in SVG and its elements.",
+      "answer": "SMIL provides native SVG animation: <animate> animates a single attribute, <animateTransform> animates transforms (rotate, scale, translate), <animateMotion> moves along a path. Key attributes: attributeName, from, to, dur, repeatCount, fill='freeze'. SMIL runs independently of JavaScript and CSS."
+    },
+    {
+      "question": "How do SVG filters work? Give examples of common filter effects.",
+      "answer": "SVG filters in <filter> use filter primitives: <feGaussianBlur> (blur), <feDropShadow> (shadows), <feColorMatrix> (color transforms), <feOffset> (movement), <feMerge> (combine), <feTurbulence> (noise). Apply via filter='url(#id)'. Filters can be chained by connecting results via the 'result' attribute."
+    },
+    {
+      "question": "How do you make an SVG responsive?",
+      "answer": "Set the viewBox attribute and remove fixed width/height, or use CSS: width: 100%; height: auto. The viewBox maintains the aspect ratio. Use preserveAspectRatio to control how the content fits (meet, slice, none). Avoid setting both width/height and viewBox to conflicting values."
+    },
+    {
+      "question": "What is the vector-effect attribute and when would you use it?",
+      "answer": "vector-effect='non-scaling-stroke' keeps the stroke width consistent regardless of the SVG's scale. Without it, scaling an SVG also scales the stroke width. This is useful for maps, diagrams, and UI elements where consistent line thickness matters."
+    },
+    {
+      "question": "How do you add event handlers to SVG elements?",
+      "answer": "Since inline SVG elements are DOM nodes, use standard JavaScript: element.addEventListener('click', handler) or onclick attributes. For elements created with JS, use document.createElementNS('http://www.w3.org/2000/svg', 'circle'). Standalone SVG files cannot use inline event handlers as attributes."
+    },
+    {
+      "question": "What is the <symbol> element and how is it different from <g>?",
+      "answer": "<symbol> defines reusable graphics with its own viewBox, width, and height. Unlike <g>, symbols are not rendered until instantiated with <use>. Symbols are ideal for icon systems as they support a viewBox for independent scaling. <g> is a grouping container that renders immediately."
+    },
+    {
+      "question": "How do you create dashed lines in SVG?",
+      "answer": "Use the stroke-dasharray attribute: stroke-dasharray='10,5' creates 10px dashes with 5px gaps. Multiple values create patterns: stroke-dasharray='10,5,2,5'. The stroke-linecap attribute affects how dashes appear at ends. Combine with stroke-dashoffset for line drawing animations."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How would you implement a complex SVG animation system that responds to scroll position?",
+      "answer": "Use JavaScript with requestAnimationFrame and scroll events: (1) Get the scroll progress (0-1) based on element position, (2) Calculate animation states by interpolating between keyframe values, (3) Set SVG attributes directly (e.g., path d attribute for morphing, stroke-dashoffset for drawing). For complex paths, pre-calculate multiple path states and morph between them using path data interpolation."
+    },
+    {
+      "question": "Explain how SVG clipping and masking work, and when to use each.",
+      "answer": "<clipPath> defines a clipping region — anything outside is hidden. It uses shapes as the clipping boundary. <mask> uses luminance or alpha values to determine visibility (0=transparent, 255=opaque). Use clipping for hard edges (image crops), masking for soft transitions (fades, gradients). Apply via clip-path='url(#id)' or mask='url(#id)'."
+    },
+    {
+      "question": "How do you handle SVG accessibility (a11y) requirements?",
+      "answer": "SVG accessibility requires: (1) <title> for name, (2) <desc> for description, (3) role='img' on the <svg>, (4) aria-labelledby pointing to title/desc, (5) focusable elements with tabindex, (6) Avoid using SVG for purely decorative content (aria-hidden='true'), (7) Ensure color contrast for text elements, (8) Test with screen readers."
+    },
+    {
+      "question": "What techniques exist for optimizing SVG performance with many elements?",
+      "answer": "Optimization techniques: (1) Use <use> to clone instead of duplicating, (2) Simplify paths — fewer nodes = better performance, (3) Avoid complex filters on animated elements, (4) Use will-change CSS property, (5) Favor CSS transforms over SMIL for animations, (6) Group elements with <g> to reduce individual manipulation, (7) Use requestAnimationFrame instead of setInterval, (8) Consider Canvas for thousands of elements."
+    },
+    {
+      "question": "How would you implement a cross-browser SVG sprite system for icons?",
+      "answer": "Create an SVG sprite: inline a hidden SVG containing <symbol> definitions for each icon. Reference with <svg><use href='#icon-id'/></svg>. For external files, use <use href='sprite.svg#icon-id'/> (limited browser support). For full compatibility: (1) Inline the sprite in HTML, (2) Use a build tool to generate the sprite, (3) For legacy browsers, provide PNG fallbacks via <picture>."
+    },
+    {
+      "question": "How do you accomplish SVG path morphing (animating from one shape to another)?",
+      "answer": "Path morphing requires both paths to have the same number and types of commands. Tools like Jake's SMIL/Lottie prepare identical paths. Animate the d attribute using SMIL (<animate attributeName='d' ...>) or CSS transitions. If paths don't match, interpolate by: (1) Converting both to the same number of points, (2) Using a library like GSAP (MorphSVGPlugin) or Flubber, (3) For pixel-level morphing, use Canvas instead."
+    },
+    {
+      "question": "How do you create a responsive SVG that scales with its container but maintains aspect ratio?",
+      "answer": "Use viewBox and remove width/height, then use CSS width: 100%; height: auto. The preserveAspectRatio attribute controls fitting: 'xMidYMid meet' (contain), 'xMidYMid slice' (cover), 'none' (stretch). For responsive container scaling, combine with CSS aspect-ratio or padding-bottom trick. Test at multiple viewport sizes."
+    },
+    {
+      "question": "Explain SVG's foreignObject element and its use cases.",
+      "answer": "foreignObject allows embedding non-SVG content (like HTML) inside an SVG. Use cases: (1) HTML-formatted text in SVG (multi-line, links, styled), (2) Embedded form elements in SVG apps, (3) MathML expressions, (4) Fallback content. Limitation: not all browsers support it equally, and it may not work in SVG files used as <img src>."
+    },
+    {
+      "question": "How does the SVG rendering pipeline work in browsers?",
+      "answer": "The browser: (1) Parses SVG XML into a DOM tree, (2) Applies CSS styling (inline, embedded, external), (3) Resolves references (gradients, filters, symbols), (4) Calculates the viewBox transformation matrix, (5) Applies filters and clipping, (6) Renders to a bitmap using the GPU for transforms/opacity. Each SVG element creates a paint layer — complex SVGs can be composited similarly to HTML."
+    },
+    {
+      "question": "How would you implement an SVG-based real-time data dashboard with thousands of data points?",
+      "answer": "For thousands of points: (1) Use a single <path> with many coordinates instead of multiple <circle> or <rect> elements, (2) Implement virtual rendering — only draw visible points based on zoom/pan, (3) Use requestAnimationFrame for smooth updates, (4) Batch attribute changes to minimize reflows, (5) Consider Canvas for >5000 points with fallback to SVG for interaction, (6) Use Web Workers for data processing, (7) Implement LOD (level of detail) — simplify when zoomed out."
+    }
+  ]
+}

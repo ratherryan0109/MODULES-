@@ -1,0 +1,29 @@
+{
+  "module": "68 - Responsive Images",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Responsive Image Gallery",
+      "description": "Create a gallery with 6 images that use srcset to serve appropriate sizes.",
+      "instructions": "Build a 3-column desktop / 2-column tablet / 1-column mobile gallery. Each image should use srcset with 3 widths.",
+      "hints": ["Use grid with auto-fit", "Add srcset with 400w, 800w, 1200w candidates", "Set width and height attributes for CLS prevention"],
+      "solution": "<img src='photo-800.jpg' srcset='photo-400.jpg 400w, photo-800.jpg 800w, photo-1200.jpg 1200w' sizes='(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw' width='800' height='600' loading='lazy' alt='Gallery item'>"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Hero Image with Art Direction",
+      "description": "Create a hero section that uses different image crops for mobile, tablet, and desktop.",
+      "instructions": "Use the <picture> element to serve: mobile (portrait crop 3:4), tablet (square 1:1), desktop (landscape 16:9).",
+      "hints": ["Use <source media='(min-width: X)'> for each breakpoint", "Ensure the <img> has a fallback src", "Use object-fit: cover on the img"],
+      "solution": "<picture>\n  <source media='(min-width: 1024px)' srcset='hero-wide.jpg'>\n  <source media='(min-width: 640px)' srcset='hero-square.jpg'>\n  <img src='hero-mobile.jpg' alt='Hero' style='width:100%;height:100%;object-fit:cover;'>\n</picture>"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Full Image Optimization Pipeline",
+      "description": "Build a page that demonstrates complete image optimization: format selection (AVIF/WebP/JPEG), resolution switching, art direction, lazy loading, and CLS prevention.",
+      "instructions": "Create a page with a hero, gallery, and article images that implement all responsive image best practices.",
+      "hints": ["Combine <picture> with type for format selection", "Use image-set() for CSS background images", "Add fetchpriority='high' to hero, loading='lazy' to galleries", "Use aspect-ratio + object-fit for all image containers"],
+      "solution": "<!-- Hero (eager, high priority) -->\n<picture>\n  <source type='image/avif' srcset='hero.avif'>\n  <source type='image/webp' srcset='hero.webp'>\n  <img src='hero.jpg' alt='Hero' fetchpriority='high' width='1200' height='600'>\n</picture>\n\n<!-- Gallery item (lazy) -->\n<picture>\n  <source type='image/avif' srcset='thumb.avif'>\n  <source type='image/webp' srcset='thumb.webp'>\n  <img src='thumb.jpg' alt='Gallery' loading='lazy' width='400' height='300'>\n</picture>"
+    }
+  ]
+}

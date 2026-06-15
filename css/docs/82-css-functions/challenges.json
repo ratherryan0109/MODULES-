@@ -1,0 +1,38 @@
+[
+  {
+    "id": "func-responsive-layout",
+    "title": "Responsive Layout with Math Functions",
+    "difficulty": "beginner",
+    "description": "Build a responsive page layout using calc(), min(), max(), and clamp() instead of media queries for sizing.",
+    "hint": "Use clamp() for font-size, min() for container width, and calc() for spacing.",
+    "criteria": ["Uses clamp() for typography", "Uses min() or max() for container width", "No media queries needed for sizing"],
+    "starter": ".container {\n  width: min(1200px, 100%);\n  padding: clamp(0.5rem, 3vw, 2rem);\n}\nh1 {\n  font-size: clamp(1.5rem, 5vw, 3rem);\n}"
+  },
+  {
+    "id": "func-color-palette",
+    "title": "Dynamic Color Palette with Color Functions",
+    "difficulty": "intermediate",
+    "description": "Create a color palette system using hsl() and calc() to derive shades, tints, and complementary colors from a base hue.",
+    "hint": "Store hue as a CSS variable and use calc(hue + 180) for complementary colors.",
+    "criteria": ["Base hue variable", "Derived shades using calc() and hsl()", "Complementary color"],
+    "starter": ":root {\n  --hue: 200;\n  --primary: hsl(var(--hue), 70%, 50%);\n  --primary-light: hsl(var(--hue), 70%, 70%);\n  --primary-dark: hsl(var(--hue), 70%, 30%);\n  --complement: hsl(calc(var(--hue) + 180), 70%, 50%);\n}"
+  },
+  {
+    "id": "func-transform-cube",
+    "title": "3D Cube with Transform Functions",
+    "difficulty": "advanced",
+    "description": "Build a 3D cube using CSS transform functions: translateZ(), rotateX(), rotateY(), and perspective().",
+    "hint": "Use perspective() on the parent and rotateX/Y with translateZ on each face.",
+    "criteria": ["6 faces with different transforms", "perspective() on parent", "3D rotation animation"],
+    "starter": ".scene { perspective: 800px; }\n.cube {\n  transform-style: preserve-3d;\n  animation: spin 10s linear infinite;\n}\n.face { position: absolute; width: 200px; height: 200px; }\n.front { transform: translateZ(100px); }\n.back { transform: rotateY(180deg) translateZ(100px); }\n/* Add more faces */"
+  },
+  {
+    "id": "func-fluid-type-scale",
+    "title": "Fluid Type Scale Generator",
+    "difficulty": "intermediate",
+    "description": "Create a fluid type scale using clamp() that generates responsive font sizes for all heading levels.",
+    "hint": "Use a base font size with clamp() and multiply by a modular scale factor.",
+    "criteria": ["Multiple heading levels (h1-h6)", "Uses clamp() for each level", "Modular scale relationship"],
+    "starter": "h1 { font-size: clamp(2rem, 6vw, 4rem); }\nh2 { font-size: clamp(1.6rem, 5vw, 3.2rem); }\nh3 { font-size: clamp(1.3rem, 4vw, 2.6rem); }"
+  }
+]

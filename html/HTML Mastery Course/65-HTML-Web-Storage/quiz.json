@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the main difference between localStorage and sessionStorage?",
+    "options": ["localStorage is synchronous, sessionStorage is async", "localStorage persists until cleared, sessionStorage clears when the tab closes", "localStorage stores objects, sessionStorage stores strings", "localStorage has a larger capacity than sessionStorage"],
+    "answer": "b",
+    "explanation": "localStorage data persists until explicitly deleted. sessionStorage data is cleared when the page session ends (tab or browser closed)."
+  },
+  {
+    "question": "What is the storage capacity of localStorage per origin?",
+    "options": ["1MB", "5-10MB", "100MB", "Unlimited"],
+    "answer": "b",
+    "explanation": "Most browsers provide 5-10MB of storage per origin for localStorage. The exact limit varies by browser."
+  },
+  {
+    "question": "What data types can be stored in localStorage?",
+    "options": ["Strings only", "Strings and numbers", "Strings, numbers, and objects", "Any JavaScript data type"],
+    "answer": "a",
+    "explanation": "localStorage only supports strings. Numbers, objects, arrays, etc. must be converted to strings using JSON.stringify() before storing."
+  },
+  {
+    "question": "Which method retrieves a value from localStorage?",
+    "options": ["localStorage.get(key)", "localStorage.retrieve('key')", "localStorage.getItem('key')", "localStorage.fetch('key')"],
+    "answer": "c",
+    "explanation": "localStorage.getItem('key') returns the string value associated with the key, or null if the key doesn't exist."
+  },
+  {
+    "question": "How do you store a JavaScript object in localStorage?",
+    "options": ["localStorage.setObject('key', obj)", "localStorage.setItem('key', JSON.stringify(obj))", "localStorage.setItem('key', obj.toString())", "localStorage.setItem('key', obj)"],
+    "answer": "b",
+    "explanation": "Objects must be serialized to JSON strings using JSON.stringify() before storing. Retrieve with JSON.parse(localStorage.getItem('key'))."
+  },
+  {
+    "question": "What error is thrown when localStorage exceeds its storage limit?",
+    "options": ["StorageFullError", "QuotaExceededError", "OutOfMemoryError", "LimitExceededError"],
+    "answer": "b",
+    "explanation": "When localStorage exceeds the storage quota, a QuotaExceededError (DOMException) is thrown. It must be caught with try/catch."
+  },
+  {
+    "question": "What event fires when localStorage data changes in another tab?",
+    "options": ["change", "update", "storage", "localchange"],
+    "answer": "c",
+    "explanation": "The 'storage' event fires on the window object of other tabs/windows when localStorage data changes. It does not fire on the tab that made the change."
+  },
+  {
+    "question": "Which property returns the number of items in localStorage?",
+    "options": ["localStorage.count", "localStorage.size", "localStorage.length", "localStorage.items"],
+    "answer": "c",
+    "explanation": "localStorage.length returns the number of key-value pairs currently stored in the localStorage object."
+  },
+  {
+    "question": "How do you remove a single item from localStorage?",
+    "options": ["localStorage.delete('key')", "localStorage.remove('key')", "localStorage.removeItem('key')", "localStorage.clear('key')"],
+    "answer": "c",
+    "explanation": "localStorage.removeItem('key') removes the specified key and its value. To remove all items, use localStorage.clear()."
+  },
+  {
+    "question": "What does localStorage.key(0) return?",
+    "options": ["The first value in storage", "The first key name in storage", "The length of storage", "The storage origin"],
+    "answer": "b",
+    "explanation": "localStorage.key(index) returns the name of the nth key in the storage. It's used to iterate over all stored items."
+  },
+  {
+    "question": "Is Web Storage data sent to the server with HTTP requests?",
+    "options": ["Yes, automatically", "No, never", "Only if explicitly attached", "Only for same-origin requests"],
+    "answer": "b",
+    "explanation": "Unlike cookies, Web Storage data is never automatically sent to the server. It exists only on the client side."
+  },
+  {
+    "question": "Which of the following is NOT a valid use case for localStorage?",
+    "options": ["Storing user preferences", "Caching API responses", "Storing authentication tokens", "Storing product catalog data"],
+    "answer": "c",
+    "explanation": "Storing authentication tokens in localStorage is a security risk. Tokens are accessible to any JavaScript on the same origin, making them vulnerable to XSS attacks."
+  },
+  {
+    "question": "What is the scope of localStorage data?",
+    "options": ["Per browser globally", "Per origin (protocol + host + port)", "Per page URL", "Per domain only"],
+    "answer": "b",
+    "explanation": "localStorage is scoped per origin (protocol, hostname, and port). Data from http://example.com is not accessible from https://example.com."
+  },
+  {
+    "question": "How does sessionStorage differ from localStorage in tab isolation?",
+    "options": ["sessionStorage is shared across tabs, localStorage is isolated", "sessionStorage is isolated per tab, localStorage is shared across tabs", "Both are isolated per tab", "Both are shared across all tabs"],
+    "answer": "b",
+    "explanation": "sessionStorage is isolated to each tab or window. localStorage is shared across all tabs/windows from the same origin."
+  },
+  {
+    "question": "What should you do to handle the case where localStorage is not available?",
+    "options": ["Assume it always works", "Use try/catch or feature detection", "Throw an error", "Redirect to an error page"],
+    "answer": "b",
+    "explanation": "Always use try/catch around storage operations or check availability with a feature detection function. Some browsers block storage in private mode."
+  },
+  {
+    "question": "What is a common pattern to implement item expiry in localStorage?",
+    "options": ["Use the expires attribute", "Store a timestamp alongside the value and check it on retrieval", "Use the setTimeout API", "localStorage has built-in TTL support"],
+    "answer": "b",
+    "explanation": "localStorage has no built-in expiration. Implement it by storing an object with the value and an expiry timestamp, then checking the timestamp on retrieval."
+  },
+  {
+    "question": "What happens when you call localStorage.getItem() for a non-existent key?",
+    "options": ["It throws an error", "It returns undefined", "It returns null", "It returns an empty string"],
+    "answer": "c",
+    "explanation": "localStorage.getItem() returns null if the specified key does not exist in the storage. Always check for null before using the value."
+  },
+  {
+    "question": "Which pattern is best for creating a storage wrapper?",
+    "options": ["A global variable", "A utility function with try/catch and JSON serialization", "Multiple separate functions", "Using cookies instead"],
+    "answer": "b",
+    "explanation": "A storage utility function that wraps setItem/getItem with try/catch, JSON serialization, and default value handling is the best pattern for robust storage access."
+  },
+  {
+    "question": "How can you synchronize localStorage state across multiple browser tabs?",
+    "options": ["Using setInterval to poll", "Using the storage event listener", "Using WebSockets", "Using the fetch API"],
+    "answer": "b",
+    "explanation": "The 'storage' event fires on other tabs when localStorage changes. Listen for it with window.addEventListener('storage', handler) to synchronize state."
+  },
+  {
+    "question": "What is the purpose of the key prefix pattern (e.g., 'app_settings')?",
+    "options": ["To make keys look nicer", "To avoid collisions with other applications on the same origin", "To increase storage capacity", "To encrypt the data"],
+    "answer": "b",
+    "explanation": "Key prefixes (e.g., 'myApp_theme') prevent collisions with other scripts or libraries using the same localStorage on the same origin."
+  }
+]

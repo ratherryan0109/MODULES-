@@ -1,0 +1,50 @@
+{
+  "module": "CSS Transitions",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Fade-In Button",
+      "description": "Create a button that fades in with opacity 0 to 1 on page load using a transition delay.",
+      "hint": "Use an animation or a class toggled after load, combined with transition: opacity 0.5s ease.",
+      "expected_outcome": "A button that smoothly fades into view.",
+      "solution": { "css": ".btn { opacity: 0; transition: opacity 0.5s ease; } .btn.loaded { opacity: 1; }" }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Background Color Transition",
+      "description": "Create a div that transitions its background color from blue to red when hovered.",
+      "hint": "Use transition: background-color 0.3s ease; and :hover.",
+      "expected_outcome": "Smooth color change on hover.",
+      "solution": { "css": ".box { width: 100px; height: 100px; background: blue; transition: background-color 0.3s ease; } .box:hover { background: red; }" }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Smooth Card Lift",
+      "description": "Create a card that lifts up with a shadow effect on hover using transform and box-shadow transitions.",
+      "hint": "Transition both transform (translateY) and box-shadow properties.",
+      "expected_outcome": "Card smoothly lifts with a shadow.",
+      "solution": { "css": ".card { transition: transform 0.3s ease, box-shadow 0.3s ease; } .card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }" }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Staggered Navigation Items",
+      "description": "Create a nav list where each item slides in with a staggered delay (each item 0.1s after the previous).",
+      "hint": "Use transition-delay with nth-child selectors.",
+      "expected_outcome": "Items animate in sequentially.",
+      "solution": { "css": ".nav-item { opacity: 0; transform: translateX(-20px); transition: all 0.3s ease; } .nav-item:nth-child(1) { transition-delay: 0.1s; } .nav-item:nth-child(2) { transition-delay: 0.2s; } .nav-item.active { opacity: 1; transform: translateX(0); }" }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Elastic Bouncing Ball",
+      "description": "Create a ball that drops and bounces using a custom cubic-bezier timing function.",
+      "hint": "Use cubic-bezier with overshoot values and transform translateY.",
+      "expected_outcome": "Ball drops with an elastic bounce effect.",
+      "solution": { "css": ".ball { width: 50px; height: 50px; border-radius: 50%; background: orange; transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); } .ball.drop { transform: translateY(300px); }" }
+    }
+  ]
+}

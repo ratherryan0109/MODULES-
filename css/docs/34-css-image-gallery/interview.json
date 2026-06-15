@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS image gallery?", "answer": "A CSS image gallery is a layout of images arranged in a grid or flexbox pattern, often with captions and hover effects." },
+    { "question": "How do you create a basic image grid with flexbox?", "answer": "Use display: flex; flex-wrap: wrap; on the container and set flex-basis or width on each image item." },
+    { "question": "How do you create a basic image grid with CSS Grid?", "answer": "Use display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; on the container." },
+    { "question": "How do you make images responsive in a gallery?", "answer": "Set img { max-width: 100%; height: auto; } to ensure images scale down on smaller screens." },
+    { "question": "How do you add spacing between gallery images?", "answer": "Use the gap property in Grid or Flexbox, or use margin on individual items." },
+    { "question": "What is the object-fit property and how is it used in galleries?", "answer": "object-fit: cover crops images to fill their container while maintaining aspect ratio, useful for uniform gallery thumbnails." },
+    { "question": "How do you add captions to gallery images?", "answer": "Wrap each image and caption in a container div with position: relative and overlay the caption with absolute positioning." },
+    { "question": "How do you create equal-sized thumbnails in a gallery?", "answer": "Set fixed width and height on the image container and use object-fit: cover on the img element." },
+    { "question": "What HTML elements are commonly used for image galleries?", "answer": "Commonly <figure> and <figcaption> are used for semantic image-with-caption groups." },
+    { "question": "How do you center a gallery on the page?", "answer": "Use justify-content: center on the flex/grid container or margin: 0 auto with a set width." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a masonry-style gallery with CSS?", "answer": "Use CSS columns (column-count) or CSS Grid with masonry-like properties, or use flexbox with varied heights." },
+    { "question": "How do you add hover effects to gallery images?", "answer": "Use transform: scale() on hover, or overlay effects using ::before pseudo-elements with opacity transitions." },
+    { "question": "How do you create a lightbox effect with CSS?", "answer": "Use the :target pseudo-class to show a fullscreen overlay with the enlarged image when a thumbnail link is clicked." },
+    { "question": "How do you use object-position in a gallery?", "answer": "object-position controls which part of the image is visible inside its container when using object-fit: cover." },
+    { "question": "How do you create a responsive gallery that adjusts columns?", "answer": "Use grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) to automatically adjust columns based on available space." },
+    { "question": "How do you add a color overlay on hover to gallery images?", "answer": "Use a pseudo-element or overlay div with background-color and opacity, toggled on hover with transition." },
+    { "question": "How do you create a before/after image comparison slide?", "answer": "Use two images with clip-path to reveal portions, controlled by a range input or mouse drag." },
+    { "question": "How do you handle portrait vs landscape images in a grid?", "answer": "Use grid-row: span N for portrait images or let object-fit handle the cropping with a uniform container size." },
+    { "question": "How do you lazy load images in a gallery?", "answer": "Use loading='lazy' attribute on img elements for native lazy loading, or use Intersection Observer for custom lazy loading." },
+    { "question": "How do you add a loading skeleton for gallery images?", "answer": "Use a placeholder gradient background with animation on the image container, switching to the real image once loaded." }
+  ],
+  "advanced": [
+    { "question": "How do you implement a full-screen grid gallery with CSS Grid?", "answer": "Use 100vh/100vw sizing, grid-template-rows: repeat(auto-fill, 1fr), and object-fit: cover for full-viewport image display." },
+    { "question": "How do you optimize a large image gallery for performance?", "answer": "Use responsive images with srcset and sizes, lazy loading, WebP format, and CSS content-visibility: auto for offscreen items." },
+    { "question": "How do you create a Ken Burns zoom effect on gallery images?", "answer": "Use @keyframes with scale transform on the image inside a fixed-size container, animated with a slow timeline." },
+    { "question": "How do you implement a drag-to-scroll gallery using only CSS?", "answer": "Use overflow-x: auto with scroll-snap-type: x mandatory and scroll-snap-align: center on items for a swipeable gallery." },
+    { "question": "How do you create a polaroid-style stacked gallery?", "answer": "Use absolute positioning with varying rotate transforms and box-shadow for a scattered polaroid effect on a surface." },
+    { "question": "How do you implement aspect-ratio-aware grid cells?", "answer": "Use aspect-ratio: 1 or aspect-ratio: 3/2 on grid items to enforce consistent ratios regardless of image natural size." },
+    { "question": "How does subgrid improve gallery caption alignment?", "answer": "Subgrid allows caption text to align across rows in a complex gallery where captions span different column counts." },
+    { "question": "How do you build a carousel/gallery slider with CSS scroll snap?", "answer": "Use display: flex; overflow-x: auto; scroll-snap-type: x mandatory; on the container and scroll-snap-align: start on each slide." },
+    { "question": "How do you create a CSS-only tooltip overlay on gallery hover?", "answer": "Use parent:hover .tooltip { opacity: 1; } with absolute positioning and transition for a reveal-on-hover caption overlay." },
+    { "question": "How do you handle high-DPI images in a gallery for retina displays?", "answer": "Use srcset with 2x and 3x image variants, or use the image-set() CSS function in background-image." }
+  ]
+}

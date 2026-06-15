@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Columns - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b;margin-bottom:5px}
+.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px;flex-wrap:wrap}
+.controls{flex:0 0 280px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;min-width:400px;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:15px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group input,.group select{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px;font-family:monospace}
+.group input[type="range"]{padding:0;height:6px;cursor:pointer}
+.group .range-value{color:#ffd93d;font-size:12px;text-align:right;margin-top:2px}
+#grid-container{display:grid;background:#2d2d44;border-radius:8px;padding:10px;transition:all .3s;min-height:200px}
+.grid-item{background:#ff6b6b;padding:15px;border-radius:4px;text-align:center;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;min-height:50px}
+.grid-item:nth-child(2n){background:#4ecdc4;color:#1a1a2e}
+.grid-item:nth-child(3n){background:#45b7d1}
+.grid-item:nth-child(5n){background:#a29bfe}
+.grid-item.featured{background:#ffd93d;color:#1a1a2e}
+#css-code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf;white-space:pre;overflow-x:auto}
+#items-code{margin-top:10px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf;white-space:pre;overflow-x:auto}
+.btn{background:#6c5ce7;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:13px;margin-top:5px}
+.btn:hover{background:#5a4bd1}
+.btn-reset{background:#ff6b6b}
+.btn-reset:hover{background:#e05555}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toggle-btn{background:#2d2d44;color:#aaa;border:1px solid #444;padding:6px 12px;border-radius:4px;cursor:pointer;font-size:12px}
+.toggle-btn.active{background:#4ecdc4;color:#1a1a2e;border-color:#4ecdc4}
+</style>
+</head>
+<body>
+<h1>Grid Columns Playground</h1>
+<p class="subtitle">Adjust column properties and see the result in real time</p>
+<div class="layout">
+<div class="controls">
+<div class="group">
+<label>Column Definition (CSS value)</label>
+<select id="preset">
+<option value="repeat(3, 1fr)">3 equal columns</option>
+<option value="repeat(4, 1fr)">4 equal columns</option>
+<option value="200px 1fr 200px">Fixed + flexible + fixed</option>
+<option value="1fr 2fr 1fr">1:2:1 ratio columns</option>
+<option value="repeat(auto-fit, minmax(120px, 1fr))">Auto-fit responsive</option>
+<option value="repeat(auto-fill, minmax(120px, 1fr))">Auto-fill responsive</option>
+<option value="100px 1fr 1fr 100px">Two fixed + two flexible</option>
+<option value="repeat(2, 1fr 2fr)">Pattern (1fr 2fr x2)</option>
+<option value="250px 1fr">Two columns (sidebar + content)</option>
+<option value="custom">Custom value...</option>
+</select>
+</div>
+<div class="group">
+<label>Custom Column Value</label>
+<input type="text" id="custom-cols" placeholder="e.g., 1fr 1fr 1fr" value="repeat(3, 1fr)" disabled>
+</div>
+<div class="group">
+<label>Number of Items</label>
+<input type="range" id="item-count" min="1" max="20" value="6">
+<div class="range-value" id="item-count-val">6 items</div>
+</div>
+<div class="group">
+<label>Gap</label>
+<input type="range" id="gap" min="0" max="40" value="10">
+<div class="range-value" id="gap-val">10px</div>
+</div>
+<div class="group">
+<label>Container Max-Width</label>
+<input type="range" id="container-w" min="300" max="1200" value="600">
+<div class="range-value" id="container-w-val">600px</div>
+</div>
+<div class="group">
+<label>Item Height</label>
+<input type="range" id="item-h" min="40" max="200" value="60">
+<div class="range-value" id="item-h-val">60px</div>
+</div>
+<div class="group">
+<label>Number of Items to Span (applied to item 1)</label>
+<input type="range" id="span-count" min="1" max="6" value="1">
+<div class="range-value" id="span-count-val">1 (no span)</div>
+</div>
+<div class="row">
+<button class="btn btn-reset" onclick="resetPlayground()">Reset All</button>
+</div>
+</div>
+<div class="preview">
+<div id="grid-container"></div>
+<div id="css-code">/* Grid CSS will appear here */</div>
+<div id="items-code">/* Item CSS will appear here */</div>
+</div>
+</div>
+<script>
+const gridEl = document.getElementById('grid-container');
+const cssCode = document.getElementById('css-code');
+const itemsCode = document.getElementById('items-code');
+const preset = document.getElementById('preset');
+const customCols = document.getElementById('custom-cols');
+const itemCount = document.getElementById('item-count');
+const gap = document.getElementById('gap');
+const containerW = document.getElementById('container-w');
+const itemH = document.getElementById('item-h');
+const spanCount = document.getElementById('span-count');
+const itemCountVal = document.getElementById('item-count-val');
+const gapVal = document.getElementById('gap-val');
+const containerWVal = document.getElementById('container-w-val');
+const itemHVal = document.getElementById('item-h-val');
+const spanCountVal = document.getElementById('span-count-val');
+
+function updateDisplay() {
+const cols = preset.value === 'custom' ? customCols.value : preset.value;
+const items = parseInt(itemCount.value);
+const g = parseInt(gap.value);
+const w = parseInt(containerW.value);
+const h = parseInt(itemH.value);
+const span = parseInt(spanCount.value);
+
+gridEl.style.gridTemplateColumns = cols;
+gridEl.style.gap = g + 'px';
+gridEl.style.maxWidth = w + 'px';
+
+gridEl.innerHTML = '';
+for(let i = 1; i <= items; i++) {
+const d = document.createElement('div');
+d.className = 'grid-item' + (i === 1 && span > 1 ? ' featured' : '');
+d.textContent = i === 1 && span > 1 ? `Item ${i} (span ${span})` : `Item ${i}`;
+if(i === 1 && span > 1) {
+d.style.gridColumn = `span ${span}`;
+} else {
+d.style.gridColumn = '';
+}
+d.style.minHeight = h + 'px';
+gridEl.appendChild(d);
+}
+
+itemCountVal.textContent = items + ' item' + (items > 1 ? 's' : '');
+gapVal.textContent = g + 'px';
+containerWVal.textContent = w + 'px';
+itemHVal.textContent = h + 'px';
+spanCountVal.textContent = span > 1 ? `span ${span}` : '1 (no span)';
+
+cssCode.textContent = `.container {
+    display: grid;
+    grid-template-columns: ${cols};
+    gap: ${g}px;
+}`;
+
+itemsCode.textContent = span > 1 ? `.item-1 {
+    grid-column: span ${span};
+    /* Spans ${span} columns */
+}` : '/* No items are spanning */';
+}
+
+customCols.addEventListener('input', function() {
+preset.value = 'custom';
+updateDisplay();
+});
+
+preset.addEventListener('change', function() {
+customCols.disabled = this.value !== 'custom';
+if(this.value !== 'custom') updateDisplay();
+});
+
+document.querySelectorAll('.controls input').forEach(el => el.addEventListener('input', updateDisplay));
+
+function resetPlayground() {
+preset.value = 'repeat(3, 1fr)';
+customCols.value = 'repeat(3, 1fr)';
+customCols.disabled = true;
+itemCount.value = 6;
+gap.value = 10;
+containerW.value = 600;
+itemH.value = 60;
+spanCount.value = 1;
+updateDisplay();
+}
+
+updateDisplay();
+</script>
+</body>
+</html>

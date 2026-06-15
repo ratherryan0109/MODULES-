@@ -1,0 +1,147 @@
+{
+    "module": "32-css-navigation-bar",
+    "title": "CSS Navigation Bar",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "Which HTML element should wrap a navigation bar for semantic and accessibility purposes?",
+            "options": ["div", "nav", "header", "menu"],
+            "correctAnswer": 1,
+            "explanation": "The nav element is a semantic HTML5 landmark that helps screen readers and search engines identify the primary navigation region."
+        },
+        {
+            "id": 2,
+            "question": "What CSS property removes the default bullets from a list used for navigation?",
+            "options": ["list-style: none", "text-decoration: none", "display: inline", "padding: 0"],
+            "correctAnswer": 0,
+            "explanation": "list-style: none removes the default bullets from ul elements that are commonly used for navigation structures."
+        },
+        {
+            "id": 3,
+            "question": "To make navigation links full-width in a vertical nav, use:",
+            "options": ["display: block", "display: inline", "width: auto", "float: left"],
+            "correctAnswer": 0,
+            "explanation": "display: block on anchor links makes them fill the full width of their container, creating a larger clickable area."
+        },
+        {
+            "id": 4,
+            "question": "Which CSS layout method is recommended for modern horizontal navigation bars?",
+            "options": ["float", "flexbox", "position: absolute", "display: table"],
+            "correctAnswer": 1,
+            "explanation": "Flexbox provides better alignment, spacing control, and responsive behavior for horizontal navigation than older float-based methods."
+        },
+        {
+            "id": 5,
+            "question": "How do you indicate the current page in a navigation bar?",
+            "options": ["Use a class like .active on the link", "Use the :hover pseudo-class", "Use a different tag for the current link", "Use JavaScript only"],
+            "correctAnswer": 0,
+            "explanation": "An .active class is applied to the current page link, typically via server-side logic or a template system, combined with aria-current='page'."
+        },
+        {
+            "id": 6,
+            "question": "What is the recommended ARIA attribute for the current page link in navigation?",
+            "options": ["aria-label", "aria-current='page'", "aria-selected='true'", "aria-expanded='true'"],
+            "correctAnswer": 1,
+            "explanation": "aria-current='page' tells screen readers that this link represents the current page, providing important navigation context."
+        },
+        {
+            "id": 7,
+            "question": "What CSS property should be used to create a sticky navigation bar that stays at the top during scroll?",
+            "options": ["position: fixed", "position: sticky", "position: absolute", "position: relative"],
+            "correctAnswer": 1,
+            "explanation": "position: sticky with top: 0 keeps the nav in flow until the scroll threshold is reached, then it sticks. This is more flexible than fixed."
+        },
+        {
+            "id": 8,
+            "question": "What issue occurs when using a fixed navigation bar without adjusting the main content?",
+            "options": ["The nav disappears", "Content is overlapped by the nav bar", "The page scrolls slower", "The nav becomes transparent"],
+            "correctAnswer": 1,
+            "explanation": "Fixed nav bars are removed from normal flow and overlap the top of the page content. Adding padding-top to main content equal to the nav height fixes this."
+        },
+        {
+            "id": 9,
+            "question": "What is the minimum recommended touch target size for mobile navigation links?",
+            "options": ["24x24px", "44x44px", "32x32px", "60x60px"],
+            "correctAnswer": 1,
+            "explanation": "WCAG recommends touch targets of at least 44x44px to ensure comfortable tapping on mobile devices."
+        },
+        {
+            "id": 10,
+            "question": "Which selector is used to add dividers between navigation items with pseudo-elements?",
+            "options": ["nav li:first-child::after", "nav li:not(:last-child)::after", "nav li::before", "nav li:last-child::after"],
+            "correctAnswer": 1,
+            "explanation": "nav li:not(:last-child)::after adds a divider after every item except the last one, creating separators between navigation links."
+        },
+        {
+            "id": 11,
+            "question": "What is the purpose of a skip-to-content link in navigation?",
+            "options": ["To skip animations", "To let keyboard users bypass the nav and go to main content", "To skip to the next page", "To hide the navigation entirely"],
+            "correctAnswer": 1,
+            "explanation": "A skip-to-content link allows keyboard and screen reader users to bypass repetitive navigation links and jump directly to the main content."
+        },
+        {
+            "id": 12,
+            "question": "Which of the following is a common mistake when styling navigation?",
+            "options": ["Using list-style: none", "Removing outline on :focus without providing an alternative", "Using display: block on links", "Setting padding on links"],
+            "correctAnswer": 1,
+            "explanation": "Removing outline: none without providing a visible focus indicator makes navigation impossible for keyboard users."
+        },
+        {
+            "id": 13,
+            "question": "What is the correct hover state CSS for a dark-themed navigation bar?",
+            "options": ["nav a:hover { background: #575757; }", "nav a:hover { color: #575757; }", "nav a:hover { display: block; }", "nav a:hover { outline: none; }"],
+            "correctAnswer": 0,
+            "explanation": "A lighter background on hover provides visual feedback. For dark nav bars (#333), a medium gray (#575757) hover is common."
+        },
+        {
+            "id": 14,
+            "question": "What z-index value is recommended for a sticky navigation bar?",
+            "options": ["1", "100", "999999", "z-index is not needed for sticky"],
+            "correctAnswer": 1,
+            "explanation": "A z-index of 100 is usually sufficient to keep the navigation above page content. Values that are too high can cause maintenance issues."
+        },
+        {
+            "id": 15,
+            "question": "How should a hamburger menu icon be implemented for mobile navigation?",
+            "options": ["U+2630 character", "CSS-only with checkbox hack", "SVG icon", "All of the above are valid approaches"],
+            "correctAnswer": 3,
+            "explanation": "Hamburger menus can use unicode characters, CSS-only checkbox hacks, or SVG icons, though JavaScript is needed for full keyboard accessibility."
+        },
+        {
+            "id": 16,
+            "question": "What property makes navigation items in a flex layout distribute space evenly?",
+            "options": ["gap: auto", "justify-content: space-between", "align-items: center", "flex-wrap: wrap"],
+            "correctAnswer": 1,
+            "explanation": "justify-content: space-between distributes items evenly along the main axis with space between each item, useful for nav bars with logo and links."
+        },
+        {
+            "id": 17,
+            "question": "What does the aria-label attribute on a nav element do?",
+            "options": ["Adds a tooltip", "Provides a descriptive label for screen readers", "Changes the nav color", "Adds a keyboard shortcut"],
+            "correctAnswer": 1,
+            "explanation": "aria-label provides an accessible name for the navigation landmark, useful when multiple nav elements exist on the same page."
+        },
+        {
+            "id": 18,
+            "question": "Why should float be avoided for navigation bar layouts?",
+            "options": ["Float doesn't work on list items", "Flexbox is simpler, more reliable, and better for responsive design", "Float is deprecated", "Float causes security issues"],
+            "correctAnswer": 1,
+            "explanation": "Flexbox provides better alignment, spacing, wrapping, and responsive capabilities than float-based navigation layouts."
+        },
+        {
+            "id": 19,
+            "question": "What CSS selector styles a navigation link that is being clicked?",
+            "options": [":hover", ":active", ":focus", ":visited"],
+            "correctAnswer": 1,
+            "explanation": ":active styles the element during the click, between mouse press and release, providing brief visual feedback."
+        },
+        {
+            "id": 20,
+            "question": "What is the correct HTML structure for a navigation bar?",
+            "options": ["<nav><ul><li><a>Link</a></li></ul></nav>", "<div class='nav'><a>Link</a></div>", "<header><a>Link</a></header>", "<nav><a>Link</a></nav>"],
+            "correctAnswer": 0,
+            "explanation": "Semantic HTML structure uses <nav> with an unordered list (<ul>) containing list items (<li>) with anchor links (<a>), ensuring proper accessibility."
+        }
+    ]
+}

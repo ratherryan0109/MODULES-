@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Animation Properties - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;padding:30px;background:#0f0f1a;color:#e0e0e0;font-size:14px}
+.container{max-width:900px;margin:0 auto}
+h1{color:#ffd700;font-size:1.8rem}.subtitle{color:#aaa;margin-bottom:16px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.panel{background:#1a1a2e;border-radius:10px;padding:16px;border:1px solid #2a2a4a}
+.panel h2{color:#00d4ff;font-size:1rem;margin-bottom:8px}
+.ctrl{margin-bottom:10px}
+.ctrl label{display:block;color:#ccc;margin-bottom:2px;font-size:0.8rem}
+.ctrl input,.ctrl select{width:100%;padding:5px 8px;border:1px solid #333;border-radius:5px;background:#0a0a1a;color:#e0e0e0;font-size:0.85rem}
+.ctrl input[type=range]{padding:0}
+.preview{display:flex;align-items:center;justify-content:center;min-height:200px;background:#12122a;border-radius:8px}
+.target{width:90px;height:90px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:14px;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold}
+.code{background:#0a0a1a;padding:12px;border-radius:8px;margin-top:12px;font-family:'Fira Code',monospace;font-size:0.8rem;color:#a8e6cf}
+@keyframes demoAnim{0%{transform:translateY(0) rotate(0);opacity:1}50%{transform:translateY(-50px) rotate(180deg);opacity:0.7}100%{transform:translateY(0) rotate(360deg);opacity:1}}
+</style>
+</head>
+<body>
+<div class=container>
+<h1>Animation Properties Playground</h1>
+<p class=subtitle>Adjust animation sub-properties in real-time.</p>
+<div class=controls>
+<div class=panel><h2>Timing</h2>
+<div class=ctrl><label>Duration: <span id=durVal>1s</span></label><input type=range id=dur min=100 max=5000 value=1000></div>
+<div class=ctrl><label>Delay: <span id=delVal>0s</span></label><input type=range id=del min=0 max=3000 value=0></div>
+<div class=ctrl><label>Timing Function</label><select id=timing><option value=ease>ease</option><option value=linear>linear</option><option value=ease-in>ease-in</option><option value=ease-out>ease-out</option><option value=ease-in-out>ease-in-out</option><option value=cubic-bezier(0.68,-0.55,0.27,1.55)>bounce</option></select></div>
+</div>
+<div class=panel><h2>Playback</h2>
+<div class=ctrl><label>Iterations: <span id=iterVal>∞</span></label><input type=range id=iter min=1 max=20 value=5></div>
+<div class=ctrl><label>Direction</label><select id=dir><option value=normal>normal</option><option value=reverse>reverse</option><option value=alternate>alternate</option><option value=alternate-reverse>alternate-reverse</option></select></div>
+<div class=ctrl><label>Fill Mode</label><select id=fill><option value=none>none</option><option value=forwards>forwards</option><option value=backwards>backwards</option><option value=both>both</option></select></div>
+<div class=ctrl><label><input type=checkbox id=paused> Paused</label></div>
+</div>
+</div>
+<div class=preview><div class=target id=target>anim</div></div>
+<div class=code id=codeOut>animation: demoAnim 1s ease 0s infinite normal none;</div>
+</div>
+<script>
+const t=document.getElementById('target'),dur=document.getElementById('dur'),del=document.getElementById('del'),timing=document.getElementById('timing'),iter=document.getElementById('iter'),dir=document.getElementById('dir'),fill=document.getElementById('fill'),paused=document.getElementById('paused'),code=document.getElementById('codeOut');
+function update(){
+const d=(dur.value/1000).toFixed(2)+'s',de=(del.value/1000).toFixed(2)+'s',i=iter.value==20?'infinite':iter.value;
+document.getElementById('durVal').textContent=d;document.getElementById('delVal').textContent=de;document.getElementById('iterVal').textContent=iter.value==20?'∞':iter.value;
+t.style.animation=`demoAnim ${d} ${timing.value} ${de} ${i} ${dir.value} ${fill.value}`;
+t.style.animationPlayState=paused.checked?'paused':'running';
+code.textContent=`animation: demoAnim ${d} ${timing.value} ${de} ${i} ${dir.value} ${fill.value};`;
+if(paused.checked)code.textContent+='\nanimation-play-state: paused;';
+}
+[dur,del,timing,iter,dir,fill,paused].forEach(el=>el.addEventListener('input',update));update();
+</script>
+</body>
+</html>

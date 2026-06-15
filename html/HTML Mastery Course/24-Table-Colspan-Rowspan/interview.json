@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is colspan in HTML tables?",
+      "answer": "colspan is an attribute on <td> or <th> that makes the cell span horizontally across multiple columns. Example: <td colspan=\"2\"> merges two columns into one cell."
+    },
+    {
+      "question": "What is rowspan in HTML tables?",
+      "answer": "rowspan is an attribute on <td> or <th> that makes the cell span vertically across multiple rows. Example: <th rowspan=\"3\"> spans three rows."
+    },
+    {
+      "question": "What is the default value of colspan and rowspan?",
+      "answer": "The default value is 1, meaning the cell occupies only one column or row."
+    },
+    {
+      "question": "What happens if you set colspan to 0?",
+      "answer": "colspan=\"0\" is not consistently supported across browsers. Always use a positive integer value."
+    },
+    {
+      "question": "Can colspan be used on both <td> and <th>?",
+      "answer": "Yes, both colspan and rowspan can be used on either <td> or <th> elements."
+    },
+    {
+      "question": "How do you create a header that spans two columns?",
+      "answer": "Use <th colspan=\"2\">Header Text</th> in the header row."
+    },
+    {
+      "question": "What is the minimum positive integer for colspan?",
+      "answer": "1, which is also the default (no spanning)."
+    },
+    {
+      "question": "Do spanned cells affect the total column count?",
+      "answer": "Yes. A cell with colspan=\"n\" counts as n columns toward the row's total column count."
+    },
+    {
+      "question": "Can you style a spanned cell differently?",
+      "answer": "Yes. Use CSS attribute selectors like th[colspan] { ... } or assign a class to the spanned cell."
+    },
+    {
+      "question": "What does rowspan=\"2\" do visually?",
+      "answer": "It makes the cell occupy the space of 2 rows, appearing taller and merging with the cell below it."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you ensure each row has the same number of columns when using colspan?",
+      "answer": "Add up the colspan values of all cells in each row. Every row must total the same number. For example, if one row has colspan=\"3\" + colspan=\"1\" (4 total), all other rows must also total 4 columns."
+    },
+    {
+      "question": "How does rowspan affect the number of cells required in subsequent rows?",
+      "answer": "When a cell uses rowspan, the rows it spans into must omit the cell in that column position. For example, if row 1, column 1 has rowspan=\"3\", then rows 2 and 3 do not include a cell for that column."
+    },
+    {
+      "question": "What is the purpose of scope=\"colgroup\" and scope=\"rowgroup\"?",
+      "answer": "scope=\"colgroup\" is used on a header with colspan to indicate it applies to a group of columns. scope=\"rowgroup\" is used on a header with rowspan to indicate it applies to a group of rows. These improve screen reader accessibility."
+    },
+    {
+      "question": "How do you create a multi-level header structure?",
+      "answer": "Use multiple header rows. The first row has grouped headers with colspan, the second row has individual sub-headers. Example: Row 1: <th colspan=\"2\">Name</th> <th colspan=\"2\">Contact</th>. Row 2: <th>First</th> <th>Last</th> <th>Email</th> <th>Phone</th>."
+    },
+    {
+      "question": "What common layout issues occur with colspan and how do you fix them?",
+      "answer": "Mismatched column counts are the most common issue, causing misaligned columns. Fix by calculating the total column count for each row and ensuring consistency. Use the browser developer tools to inspect the table structure."
+    },
+    {
+      "question": "How would you create a table where an image spans multiple rows?",
+      "answer": "Place the image inside a <td> with rowspan. Example: <td rowspan=\"3\"><img src=\"photo.jpg\" alt=\"Profile\"></td>."
+    },
+    {
+      "question": "Can you use colspan and rowspan together in one cell?",
+      "answer": "Yes. A cell can have both attributes: <td colspan=\"2\" rowspan=\"3\"> spans 2 columns and 3 rows simultaneously."
+    },
+    {
+      "question": "How do you test if your colspan/rowspan layout is correct?",
+      "answer": "Use browser DevTools to inspect the table grid overlay. The W3C HTML Validator checks for structural errors. Also visually verify that all rows have the same number of visible columns."
+    },
+    {
+      "question": "What happens if you put too many cells in a row that has a rowspan from above?",
+      "answer": "Extra cells overflow to the right or create extra columns, breaking the layout. You must account for the spanned column and not add a cell there."
+    },
+    {
+      "question": "How do colspan and rowspan affect table borders?",
+      "answer": "Spanned cells display borders around the entire merged area, not around individual sub-cells. With border-collapse: collapse, the borders merge smoothly around the expanded cell."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the algorithm browsers use to render tables with colspan and rowspan.",
+      "answer": "Browsers parse the table into a grid model. Each cell is placed at the next available column in the current row. colspan reserves additional columns to the right. rowspan reserves cells below in subsequent rows. The browser enforces rectangular cell placement."
+    },
+    {
+      "question": "How do you handle accessibility for complex spanned tables?",
+      "answer": "Use scope attributes (colgroup, rowgroup) on spanned headers. Use id on header cells and headers on data cells to create explicit associations. Add aria-describedby for complex relationships. Use role=\"grid\" for interactive tables."
+    },
+    {
+      "question": "What are the limitations of colgroup styling when used with spanned columns?",
+      "answer": "colgroup styles only affect the base column. Spanned cells that extend beyond their base column may not inherit colgroup styles correctly. Individual cell styles or nth-child selectors are more reliable."
+    },
+    {
+      "question": "How can you create a responsive table that maintains colspan/rowspan integrity on mobile?",
+      "answer": "This is challenging because spanning assumes a grid layout. Options: use overflow-x: auto on a wrapper; restructure the HTML for mobile with a different spanning layout; or use JavaScript to dynamically adjust the table structure based on viewport width."
+    },
+    {
+      "question": "How does colspan interact with table-layout: fixed?",
+      "answer": "With table-layout: fixed, column widths are determined by the first row. colspan in the first row sets combined widths. In later rows, spanned cells must fit within the already-determined column widths."
+    },
+    {
+      "question": "Describe a scenario where using rowspan on multiple cells in the same row creates overlapping spans.",
+      "answer": "This is invalid HTML. For example, if row 1 has <td rowspan=\"2\">A</td> <td rowspan=\"2\">B</td> and row 2 expects no cells in those columns, that is valid (both span down). But overlapping or conflicting spans cause rendering errors."
+    },
+    {
+      "question": "How do you print a table with complex spanning correctly?",
+      "answer": "Use @media print with page-break-inside: avoid on tr and th elements. For very large spanned cells, consider splitting the table or adding print-specific CSS that reduces font sizes and padding."
+    },
+    {
+      "question": "Can you use negative values or zero for colspan in modern HTML?",
+      "answer": "HTML5 allows colspan=\"0\" to mean \"span from the current position to the last column of the column group\". However, this is not consistently supported. Positive integers are recommended."
+    },
+    {
+      "question": "How would you implement an editable table with spanned cells?",
+      "answer": "Use contenteditable on individual cells. For spanned cells, the merged area is one cell, so editing it affects the entire span. For sub-cell editing, avoid rowspan/colspan and use nested tables or JavaScript to split the span on edit."
+    },
+    {
+      "question": "Explain the interaction between the CSS display: contents and table cells with spanning.",
+      "answer": "display: contents removes the element from the rendering tree but keeps its children. Applied to a spanned cell, it can break the table layout because the cell's spanning information is lost, causing the grid to misalign."
+    }
+  ]
+}

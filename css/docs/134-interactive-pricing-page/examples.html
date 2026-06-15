@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Pricing - FlexiPlans</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--primary:#6366f1;--primary-dark:#4f46e5;--bg:#f8fafc;--surface:#fff;--text:#0f172a;--text-light:#64748b;--border:#e2e8f0;--green:#22c55e;--ff:'Inter',system-ui,sans-serif;--radius:1rem;--transition:0.3s cubic-bezier(0.4,0,0.2,1)}
+  body{font-family:var(--ff);background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+  .container{max-width:1100px;margin:0 auto;padding:0 1.5rem;flex:1}
+  :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+
+  .header{text-align:center;padding:4rem 0 2rem}
+  .header h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:.75rem}
+  .header p{color:var(--text-light);max-width:500px;margin:0 auto}
+  .header .save-badge{display:inline-block;background:#dcfce7;color:#166534;font-size:.8rem;padding:.25rem .75rem;border-radius:100px;font-weight:600;margin-left:.5rem}
+
+  .billing-toggle{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:3rem}
+  .billing-label{font-weight:500;color:var(--text-light);transition:color var(--transition)}
+  .billing-label.active{color:var(--text)}
+  .toggle{width:52px;height:28px;background:var(--border);border-radius:14px;cursor:pointer;position:relative;border:none;transition:background var(--transition)}
+  .toggle::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;background:white;border-radius:50%;transition:transform var(--transition);box-shadow:0 2px 4px rgba(0,0,0,0.2)}
+  .toggle.active{background:var(--primary)}
+  .toggle.active::after{transform:translateX(24px)}
+  .toggle:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+
+  .pricing-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-bottom:3rem}
+  @media(min-width:640px){.pricing-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:900px){.pricing-grid{grid-template-columns:1fr 1fr 1fr}}
+
+  .pricing-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;transition:all var(--transition);position:relative}
+  .pricing-card:hover{box-shadow:0 20px 40px rgba(0,0,0,0.05)}
+  .pricing-card.featured{border:2px solid var(--primary);box-shadow:0 20px 40px rgba(99,102,241,0.1)}
+  .pricing-card.featured .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--primary);color:white;font-size:.75rem;font-weight:600;padding:.25rem 1rem;border-radius:100px}
+  .pricing-card h3{font-size:1.125rem;font-weight:600;margin-bottom:.5rem}
+  .pricing-card .price-row{display:flex;align-items:baseline;gap:.25rem;margin-bottom:.25rem;min-height:60px}
+  .pricing-card .price{font-size:3rem;font-weight:800;transition:all var(--transition)}
+  .pricing-card .price.animate{animation:priceChange .3s ease}
+  @keyframes priceChange{0%{opacity:0;transform:translateY(-10px)}100%{opacity:1;transform:translateY(0)}}
+  .pricing-card .period{color:var(--text-light);font-size:.9rem}
+  .pricing-card .saving{font-size:.8rem;color:var(--green);font-weight:500;min-height:24px}
+  .pricing-card .description{color:var(--text-light);font-size:.875rem;margin-bottom:1.5rem;min-height:40px}
+  .pricing-card ul{flex:1;margin-bottom:1.5rem}
+  .pricing-card ul li{padding:.5rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem;font-size:.875rem}
+  .pricing-card ul li::before{content:"✓";color:var(--primary);font-weight:700;font-size:1rem}
+  .pricing-card ul li.disabled{color:var(--text-light);opacity:.5}
+  .pricing-card ul li.disabled::before{content:"✗";color:#94a3b8}
+  .btn{display:block;width:100%;padding:.85rem;border-radius:.5rem;font-weight:600;border:none;cursor:pointer;text-align:center;transition:all var(--transition);font-size:.9rem}
+  .btn-primary{background:var(--primary);color:white}
+  .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px)}
+  .btn-outline{background:transparent;border:2px solid var(--border);color:var(--text)}
+  .btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+
+  .slider-section{text-align:center;margin-bottom:3rem;padding:2rem;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border)}
+  .slider-section label{font-weight:600;display:block;margin-bottom:1rem}
+  .slider-section input[type="range"]{-webkit-appearance:none;width:100%;max-width:400px;height:8px;border-radius:4px;background:var(--border);outline:none}
+  .slider-section input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--primary);cursor:pointer;box-shadow:0 2px 6px rgba(99,102,241,0.3)}
+  .slider-value{font-size:2rem;font-weight:800;margin-top:.5rem}
+  .slider-value span{font-size:1rem;font-weight:400;color:var(--text-light)}
+
+  .comparison{margin-bottom:3rem;overflow-x:auto}
+  .comparison table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:600px}
+  .comparison th,.comparison td{padding:1rem;text-align:center;border-bottom:1px solid var(--border)}
+  .comparison th{background:var(--surface);font-weight:600}
+  .comparison td:first-child{text-align:left;font-weight:500}
+  .comparison .check{color:var(--primary);font-weight:700}
+  .comparison .cross{color:#94a3b8}
+
+  .footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.875rem;border-top:1px solid var(--border);margin-top:auto}
+
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+
+<div class="header"><h1>Choose your plan</h1><p>Simple, transparent pricing for teams of all sizes.</p></div>
+
+<div class="container">
+  <div class="billing-toggle" role="group" aria-label="Billing frequency">
+    <span class="billing-label active" id="monthlyLabel">Monthly</span>
+    <button class="toggle" id="billingToggle" role="switch" aria-checked="false" aria-label="Toggle yearly billing"></button>
+    <span class="billing-label" id="yearlyLabel">Yearly <span class="save-badge">Save 20%</span></span>
+  </div>
+
+  <div class="pricing-grid" id="pricingGrid">
+    <!-- Starter -->
+    <div class="pricing-card" data-monthly="9" data-yearly="7">
+      <h3>Starter</h3>
+      <div class="price-row"><span class="price" id="price1">$9</span><span class="period">/month</span></div>
+      <p class="saving" id="saving1"></p>
+      <p class="description">Perfect for individuals getting started.</p>
+      <ul><li>5 projects</li><li>10GB storage</li><li>Basic analytics</li><li class="disabled">Priority support</li><li class="disabled">API access</li></ul>
+      <button class="btn btn-outline">Get Started</button>
+    </div>
+
+    <!-- Professional (Featured) -->
+    <div class="pricing-card featured" data-monthly="29" data-yearly="23">
+      <div class="badge">Most Popular</div>
+      <h3>Professional</h3>
+      <div class="price-row"><span class="price" id="price2">$29</span><span class="period">/month</span></div>
+      <p class="saving" id="saving2"></p>
+      <p class="description">Best for growing teams and businesses.</p>
+      <ul><li>Unlimited projects</li><li>100GB storage</li><li>Advanced analytics</li><li>Priority support</li><li>API access</li></ul>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="pricing-card" data-monthly="99" data-yearly="79">
+      <h3>Enterprise</h3>
+      <div class="price-row"><span class="price" id="price3">$99</span><span class="period">/month</span></div>
+      <p class="saving" id="saving3"></p>
+      <p class="description">For large organizations with advanced needs.</p>
+      <ul><li>Everything in Pro</li><li>1TB storage</li><li>Custom integrations</li><li>Dedicated support</li><li>SLA guarantee</li><li>SSO</li></ul>
+      <button class="btn btn-outline">Contact Sales</button>
+    </div>
+  </div>
+
+  <div class="slider-section">
+    <label for="userSlider">Number of users <span id="userCount" style="color:var(--primary);font-weight:700">1</span></label>
+    <input type="range" id="userSlider" min="1" max="50" value="1" aria-valuemin="1" aria-valuemax="50" aria-valuenow="1">
+    <div class="slider-value">$<span id="totalPrice">29</span><span>/month</span></div>
+  </div>
+
+  <div class="comparison">
+    <table>
+      <thead><tr><th>Feature</th><th>Starter</th><th>Professional</th><th>Enterprise</th></tr></thead>
+      <tbody>
+        <tr><td>Projects</td><td>5</td><td>Unlimited</td><td>Unlimited</td></tr>
+        <tr><td>Storage</td><td>10GB</td><td>100GB</td><td>1TB</td></tr>
+        <tr><td>Analytics</td><td class="check">Basic</td><td class="check">Advanced</td><td class="check">Custom</td></tr>
+        <tr><td>Support</td><td class="cross">Email</td><td class="check">Priority</td><td class="check">Dedicated</td></tr>
+        <tr><td>API Access</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer class="footer"><p>&copy; 2026 FlexiPlans. All rights reserved.</p></footer>
+
+<script>
+  const toggle=document.getElementById('billingToggle');
+  const labels=document.querySelectorAll('.billing-label');
+  const prices=document.querySelectorAll('.pricing-card');
+  const savings=document.querySelectorAll('.saving');
+  const userSlider=document.getElementById('userSlider');
+  const userCount=document.getElementById('userCount');
+  const totalPrice=document.getElementById('totalPrice');
+  let isYearly=false;
+
+  toggle.addEventListener('click',()=>{
+    isYearly=!isYearly;
+    toggle.classList.toggle('active');
+    toggle.setAttribute('aria-checked',isYearly);
+    labels.forEach(l=>l.classList.toggle('active'));
+    updatePrices();
+  });
+
+  function updatePrices(){
+    prices.forEach((card,i)=>{
+      const monthly=parseInt(card.dataset.monthly);
+      const yearly=parseInt(card.dataset.yearly);
+      const priceEl=card.querySelector('.price');
+      const savingEl=card.querySelector('.saving');
+      if(isYearly){
+        priceEl.textContent='$'+yearly;
+        savingEl.textContent='Save $'+(monthly*12-yearly*12)+' yearly';
+        priceEl.classList.remove('animate');
+        void priceEl.offsetWidth;
+        priceEl.classList.add('animate');
+      }else{
+        priceEl.textContent='$'+monthly;
+        savingEl.textContent='';
+        priceEl.classList.remove('animate');
+        void priceEl.offsetWidth;
+        priceEl.classList.add('animate');
+      }
+    });
+    updateTotal();
+  }
+
+  function updateTotal(){
+    const users=parseInt(userSlider.value);
+    userCount.textContent=users;
+    const basePrice=prices[1].dataset.monthly;
+    const total=parseInt(basePrice)*users;
+    totalPrice.textContent=total;
+  }
+
+  userSlider.addEventListener('input',updateTotal);
+</script>
+</body></html>

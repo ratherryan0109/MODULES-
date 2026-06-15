@@ -1,0 +1,57 @@
+<div class="py-playground">
+  <div class="py-toolbar">
+    <div class="py-mode-badge" id="pyModeBadge">
+      <span class="py-mode-dot" id="pyModeDot"></span>
+      <span class="py-mode-label" id="pyModeLabel">Checking...</span>
+    </div>
+    <div class="py-toolbar-actions">
+      <button class="py-btn py-btn-run" id="pyRunBtn" onclick="PyCodeMirror.run()">Run</button>
+      <button class="py-btn py-btn-secondary" onclick="PyCodeMirror.reset()">Reset</button>
+    </div>
+  </div>
+
+  <div class="py-snippets" id="pySnippetBar">
+    <span class="py-snippets-label">Snippets:</span>
+    <div class="py-snippets-list" id="pySnippetList"></div>
+  </div>
+
+  <div class="py-main">
+    <div class="py-editor-pane">
+      <div id="pyEditorContainer"></div>
+    </div>
+    <div class="py-output-pane">
+      <div class="py-output-header">
+        <span>Output</span>
+        <span class="py-exec-time" id="pyExecTime"></span>
+      </div>
+      <div class="py-output-content" id="pyOutput"></div>
+    </div>
+  </div>
+
+  <div class="py-install-overlay" id="pyInstallOverlay" style="display:none">
+    <div class="py-install-modal">
+      <div class="py-install-title">Installing Packages</div>
+      <div class="py-install-list" id="pyInstallList"></div>
+      <div class="py-install-log" id="pyInstallLog"></div>
+      <div class="py-install-done" id="pyInstallDone" style="display:none">
+        <button class="py-btn py-btn-run" onclick="PyCodeMirror.hideInstallOverlay()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-input-overlay" id="pyInputOverlay" style="display:none">
+    <div class="py-input-modal">
+      <div class="py-input-prompt" id="pyInputPrompt"></div>
+      <input type="text" class="py-input-field" id="pyInputField" autofocus>
+      <div class="py-input-actions">
+        <button class="py-btn py-btn-run" id="pyInputSubmit">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-offline-banner" id="pyOfflineBanner" style="display:none">
+    Package installation requires online mode. Connect to the server for full Python support.<br>
+    <code>python server.py</code> in the project directory.
+  </div>
+</div>
+

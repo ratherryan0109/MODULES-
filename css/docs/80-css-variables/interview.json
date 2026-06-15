@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS custom property (CSS variable)?", "answer": "A CSS custom property is a user-defined property that stores a value for reuse throughout the stylesheet, defined with a -- prefix." },
+    { "question": "How do you define a CSS custom property?", "answer": "Use a double-dash prefix: --property-name: value; typically defined inside a :root selector for global access." },
+    { "question": "How do you use a CSS custom property?", "answer": "Use the var() function: property: var(--property-name)." },
+    { "question": "What is a fallback value in var()?", "answer": "A fallback is the second argument in var(): var(--primary-color, blue). It applies if the custom property is not defined." },
+    { "question": "What is the scope of CSS custom properties?", "answer": "Custom properties are scoped to the element they are defined on and cascade to descendant elements." },
+    { "question": "How do you make a custom property globally available?", "answer": "Define it in the :root selector, which matches the document root element and makes it available to all elements." },
+    { "question": "Do CSS custom properties inherit?", "answer": "Yes, custom properties inherit by default. A child element inherits the custom property value from its parent." },
+    { "question": "Can you override CSS custom properties?", "answer": "Yes, custom properties can be overridden at any level in the cascade, similar to regular CSS properties." },
+    { "question": "What types of values can CSS custom properties hold?", "answer": "They can hold any CSS value: colors, lengths, numbers, strings, URLs, and even multiple values (shorthands)." },
+    { "question": "What is the var() function syntax?", "answer": "var(--custom-prop, fallback) where the first argument is required and the second (fallback) is optional." }
+  ],
+  "intermediate": [
+    { "question": "How do CSS custom properties differ from preprocessor variables (Sass/Less)?", "answer": "CSS custom properties cascade and can be changed at runtime via JavaScript or media queries. Preprocessor variables are compiled once at build time." },
+    { "question": "How do you change a custom property value with JavaScript?", "answer": "Use element.style.setProperty('--name', 'newValue') or setProperty on the style of any element." },
+    { "question": "Can custom properties be used in media queries?", "answer": "No, custom properties cannot be used in @media query conditions because @media conditions are evaluated before custom properties resolve." },
+    { "question": "How do you use custom properties with calc()?", "answer": "Combine them: width: calc(var(--spacing) * 2). The custom property value is substituted before calc() evaluation." },
+    { "question": "What is the difference between a custom property and a regular CSS property?", "answer": "Custom properties are defined by authors (not the CSS spec), have no predefined meaning, and are used purely as containers for values." },
+    { "question": "How do custom properties interact with the cascade and specificity?", "answer": "Custom properties follow the same cascade and specificity rules as regular properties. A more specific selector overrides a less specific one." },
+    { "question": "How do you create a theme with CSS custom properties?", "answer": "Define color values as custom properties in :root, then override them inside a .dark-theme class or under prefers-color-scheme." },
+    { "question": "Can custom properties hold gradient values?", "answer": "Yes, custom properties can hold entire gradient definitions: --gradient: linear-gradient(red, blue)." },
+    { "question": "How do custom properties handle invalid values?", "answer": "If a custom property resolves to an invalid value for the property, the property uses its inherited or initial value." },
+    { "question": "What happens if a custom property references another custom property?", "answer": "Custom properties can reference other custom properties: --small-spacing: var(--base-spacing) / 2. They resolve at computed value time." }
+  ],
+  "advanced": [
+    { "question": "How do CSS custom properties interact with Shadow DOM?", "answer": "Custom properties pierce Shadow DOM boundaries (unlike most CSS), making them ideal for theming web components." },
+    { "question": "How do you use custom properties for responsive design?", "answer": "Redefine custom property values in media queries: --column-count: 1 on mobile, --column-count: 3 on desktop. Use var(--column-count) in the grid template." },
+    { "question": "What are the performance implications of using many custom properties?", "answer": "Custom properties add minimal overhead. The browser resolves them during the computed value stage, which is efficient even with many properties." },
+    { "question": "How do custom properties work with CSS @property for type checking?", "answer": "@property defines the syntax, inheritance, and initial value of a custom property, enabling type checking and animation." },
+    { "question": "How do you debug custom property values in browser DevTools?", "answer": "In the Elements panel, the Styles section shows computed values including resolved custom properties. Hover over var() to see the value." },
+    { "question": "How do you create dynamic spacing systems with custom properties?", "answer": "Define --spacing-unit: 8px and derive --space-sm: calc(var(--spacing-unit) * 1), --space-md: calc(var(--spacing-unit) * 2), etc. Update --spacing-unit globally." },
+    { "question": "How do custom properties interact with CSS cascade layers (@layer)?", "answer": "Custom properties declared in lower-priority layers can be overridden by higher-priority layers, following layer cascade rules." },
+    { "question": "What is the custom property fallback chain pattern?", "answer": "Provide multiple fallbacks: var(--custom, var(--fallback, var(--default, initial))) for complex fallback chains." },
+    { "question": "How do you reset a custom property to inherit?", "answer": "Set --custom-prop: initial to reset it to its initial value (which is an empty/generic initial value for custom properties)." },
+    { "question": "How do custom properties work with CSS animations and keyframes?", "answer": "Custom properties can be animated if registered with @property and a defined syntax. Otherwise, they snap to the new value instantly without interpolation." }
+  ]
+}

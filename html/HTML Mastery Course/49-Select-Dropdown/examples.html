@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Dropdown Examples</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',sans-serif; background:#f0f2f5; padding:30px 20px; }
+    .container { max-width:800px; margin:0 auto; }
+    h1 { color:#1a1a2e; border-bottom:3px solid #4a6cf7; padding-bottom:12px; margin-bottom:30px; }
+    h2 { color:#4a6cf7; margin:30px 0 16px; }
+    .card { background:white; border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:0 2px 12px rgba(0,0,0,0.08); }
+    .card label { display:block; margin-bottom:4px; font-weight:600; color:#333; font-size:14px; }
+    .card select { width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:8px; font-size:15px; background:white; transition:all 0.3s; margin-bottom:12px; cursor:pointer; }
+    .card select:focus { border-color:#4a6cf7; outline:none; box-shadow:0 0 0 3px rgba(74,108,247,0.12); }
+    .card select[multiple] { padding:8px; }
+    .card select[multiple] option { padding:6px 10px; border-radius:4px; }
+    .card select[multiple] option:checked { background:#4a6cf7; color:white; }
+    pre { background:#2d3748; color:#e2e8f0; padding:14px; border-radius:8px; overflow-x:auto; font-size:13px; margin-bottom:12px; }
+    .output { background:#1a1a2e; color:#2ecc71; padding:10px 14px; border-radius:6px; font-family:monospace; font-size:14px; margin-top:8px; }
+    button { background:#4a6cf7; color:white; border:none; padding:10px 24px; border-radius:6px; cursor:pointer; }
+    .flex-row { display:flex; gap:16px; align-items:end; }
+    .custom { appearance:none; -webkit-appearance:none; -moz-appearance:none; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a6cf7' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center; padding-right:40px; }
+    .styled-select { appearance:none; -webkit-appearance:none; -moz-appearance:none; background:#4a6cf7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center; color:white; font-weight:600; padding:12px 44px 12px 16px; border:none; border-radius:8px; font-size:16px; cursor:pointer; width:auto; }
+    .styled-select option { background:white; color:#333; }
+    .tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:600; background:#e2e8f0; color:#4a5568; margin-left:6px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Select Dropdown — Examples</h1>
+  <div class="card">
+    <h2>1. Basic Single Select</h2>
+    <form onsubmit="event.preventDefault(); show('o1', 'Selected: ' + this.country.value)">
+      <label for="country">Country:</label>
+      <select id="country" name="country">
+        <option value="">Select a country...</option>
+        <option value="us">United States</option>
+        <option value="ca">Canada</option>
+        <option value="uk">United Kingdom</option>
+        <option value="de">Germany</option>
+        <option value="fr">France</option>
+        <option value="jp">Japan</option>
+        <option value="au">Australia</option>
+      </select>
+      <button type="submit">Show Selection</button>
+      <div class="output" id="o1">Submit to see selection...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>2. With Optgroup</h2>
+    <form onsubmit="event.preventDefault(); show('o2', 'Selected car: ' + this.car.value)">
+      <label for="car">Choose a car brand:</label>
+      <select id="car" name="car">
+        <option value="">Select...</option>
+        <optgroup label="American">
+          <option value="ford">Ford</option>
+          <option value="chevy">Chevrolet</option>
+          <option value="tesla">Tesla</option>
+        </optgroup>
+        <optgroup label="German">
+          <option value="bmw">BMW</option>
+          <option value="audi">Audi</option>
+          <option value="mercedes">Mercedes-Benz</option>
+        </optgroup>
+        <optgroup label="Japanese">
+          <option value="toyota">Toyota</option>
+          <option value="honda">Honda</option>
+          <option value="nissan">Nissan</option>
+        </optgroup>
+      </select>
+      <button type="submit">Show Selection</button>
+      <div class="output" id="o2">Submit to see selection...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>3. Multiple Select</h2>
+    <form onsubmit="event.preventDefault(); handleMulti(this)">
+      <label for="skills">Select your skills (Ctrl+click for multiple):</label>
+      <select id="skills" name="skills[]" multiple size="6" style="height:auto;">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="js">JavaScript</option>
+        <option value="react">React</option>
+        <option value="node">Node.js</option>
+        <option value="python">Python</option>
+        <option value="sql">SQL</option>
+      </select>
+      <button type="submit">Show Selections</button>
+      <div class="output" id="o3">Submit to see selections...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>4. Disabled Options &amp; Selected Default</h2>
+    <form onsubmit="event.preventDefault(); show('o4', 'Selected: ' + this.priority.value)">
+      <label for="priority">Priority Level:</label>
+      <select id="priority" name="priority">
+        <option value="">Choose...</option>
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium (default)</option>
+        <option value="high">High</option>
+        <option value="urgent" disabled>Urgent (disabled)</option>
+      </select>
+      <button type="submit">Show Selection</button>
+      <div class="output" id="o4">Submit to see...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>5. Custom Styled Select</h2>
+    <pre>appearance: none; + custom dropdown arrow</pre>
+    <form onsubmit="event.preventDefault(); show('o5', 'Theme: ' + this.theme.value)">
+      <label for="theme">Choose Theme:</label>
+      <select id="theme" name="theme" class="custom styled-select">
+        <option value="light">Light Mode</option>
+        <option value="dark">Dark Mode</option>
+        <option value="system">System Default</option>
+      </select>
+      <button type="submit">Apply</button>
+      <div class="output" id="o5">Submit to see...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>6. Size Attribute (Scrollable List)</h2>
+    <pre>&lt;select size="5"&gt; — shows 5 options as a list</pre>
+    <form onsubmit="event.preventDefault(); show('o6', 'Selected: ' + this.browser.value)">
+      <label for="browser">Choose a browser:</label>
+      <select id="browser" name="browser" size="5" style="height:auto;">
+        <option>Chrome</option>
+        <option>Firefox</option>
+        <option>Safari</option>
+        <option>Edge</option>
+        <option>Opera</option>
+        <option>Brave</option>
+      </select>
+      <button type="submit">Show</button>
+      <div class="output" id="o6">Submit to see...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>7. Dynamic Select with JavaScript</h2>
+    <form onsubmit="event.preventDefault();">
+      <label for="category">Category:</label>
+      <select id="category" onchange="updateSubcategory()">
+        <option value="">Select category</option>
+        <option value="tech">Technology</option>
+        <option value="design">Design</option>
+        <option value="business">Business</option>
+      </select>
+      <label for="subcategory">Subcategory:</label>
+      <select id="subcategory">
+        <option value="">Select category first</option>
+      </select>
+    </form>
+    <div class="output" id="o7">Choose a category to populate subcategories...</div>
+  </div>
+  <div class="card">
+    <h2>8. Required Select with Placeholder</h2>
+    <form onsubmit="event.preventDefault(); show('o8', 'Submitted!')">
+      <label for="requiredSelect">Favorite Color <span style="color:#e53e3e;">*</span></label>
+      <select id="requiredSelect" name="color" required>
+        <option value="">— Please select —</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+      </select>
+      <button type="submit">Submit</button>
+      <div class="output" id="o8">The placeholder option has empty value, so validation prevents submission without selection.</div>
+    </form>
+  </div>
+</div>
+<script>
+function show(id, msg) { document.getElementById(id).textContent = '> ' + msg; }
+function handleMulti(form) {
+  const sel = [...form.querySelector('select').selectedOptions].map(o => o.value);
+  document.getElementById('o3').textContent = '> Selected: ' + (sel.length ? sel.join(', ') : 'None');
+}
+const subs = { tech: ['Frontend','Backend','DevOps'], design: ['UI/UX','Graphic','Motion'], business: ['Marketing','Finance','HR'] };
+function updateSubcategory() {
+  const cat = document.getElementById('category').value;
+  const sub = document.getElementById('subcategory');
+  sub.innerHTML = '<option value="">Select...</option>';
+  if (cat && subs[cat]) subs[cat].forEach(s => sub.innerHTML += `<option value="${s.toLowerCase()}">${s}</option>`);
+  document.getElementById('o7').textContent = '> Category: ' + (cat || 'none') + ', subcategories populated: ' + (sub.options.length - 1);
+}
+</script>
+</body>
+</html>

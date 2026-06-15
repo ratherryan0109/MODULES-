@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 35: HTML Section Element - Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f8f9fa; color: #333; }
+    .example-box { background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .example-box h2 { margin-top: 0; color: #2d6a4f; border-bottom: 2px solid #d8f3dc; padding-bottom: 8px; }
+    .output { background: #f1f3f4; border-radius: 4px; padding: 15px; margin: 10px 0; }
+    .output section { border-left: 3px solid #2d6a4f; padding-left: 15px; margin: 10px 0; }
+    code { background: #d8f3dc; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; }
+    pre code { background: none; padding: 0; color: inherit; }
+    .tag { color: #66d9ef; }
+    .attr { color: #a6e22e; }
+    .str { color: #e6db74; }
+    .note { background: #d8f3dc; border: 1px solid #2d6a4f; border-radius: 4px; padding: 10px; margin: 10px 0; }
+    .warning { background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; padding: 10px; margin: 10px 0; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .feature-card { background: #e9ecef; padding: 15px; border-radius: 4px; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .stat-card { background: white; border: 1px solid #dee2e6; padding: 20px; text-align: center; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+  <h1>HTML <code>&lt;section&gt;</code> Element Examples</h1>
+
+  <!-- Example 1: Basic Sections -->
+  <div class="example-box">
+    <h2>Example 1: Basic Landmark Sections</h2>
+    <p>Each <code>&lt;section&gt;</code> below groups related thematic content.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <main>
+        <section>
+          <h2>About Us</h2>
+          <p>We are a team dedicated to teaching web development. Our mission is to make learning accessible to everyone.</p>
+        </section>
+        
+        <section>
+          <h2>Our Services</h2>
+          <p>We offer online courses, one-on-one mentoring, and corporate training programs.</p>
+        </section>
+        
+        <section>
+          <h2>Contact Information</h2>
+          <p>Email: info@example.com<br>Phone: (555) 123-4567</p>
+        </section>
+      </main>
+    </div>
+    
+    <h3>HTML Code:</h3>
+    <pre><code><span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;section&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>About Us<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>We are a team dedicated to teaching web development.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/section&gt;</span>
+  
+  <span class="tag">&lt;section&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Our Services<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>We offer online courses...<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/section&gt;</span>
+  
+  <span class="tag">&lt;section&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Contact Information<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Email: info@example.com<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/section&gt;</span>
+<span class="tag">&lt;/main&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 2: Nested Sections -->
+  <div class="example-box">
+    <h2>Example 2: Nested Sections for Hierarchical Content</h2>
+    <p>Nested <code>&lt;section&gt;</code> elements create a logical document hierarchy.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <section>
+        <h2>Chapter 1: Getting Started</h2>
+        <p>This chapter covers the basics.</p>
+        
+        <section>
+          <h3>1.1 Installation</h3>
+          <p>How to install the required tools.</p>
+        </section>
+        
+        <section>
+          <h3>1.2 First Project</h3>
+          <p>Creating your first project step by step.</p>
+          <section>
+            <h4>1.2.1 Project Setup</h4>
+            <p>Initialize the project structure.</p>
+          </section>
+          <section>
+            <h4>1.2.2 Configuration</h4>
+            <p>Configure build tools and dependencies.</p>
+          </section>
+        </section>
+      </section>
+    </div>
+    
+    <h3>HTML Code:</h3>
+    <pre><code><span class="tag">&lt;section&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Chapter 1: Getting Started<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>This chapter covers the basics.<span class="tag">&lt;/p&gt;</span>
+  
+  <span class="tag">&lt;section&gt;</span>
+    <span class="tag">&lt;h3&gt;</span>1.1 Installation<span class="tag">&lt;/h3&gt;</span>
+    <span class="tag">&lt;p&gt;</span>How to install the required tools.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/section&gt;</span>
+  
+  <span class="tag">&lt;section&gt;</span>
+    <span class="tag">&lt;h3&gt;</span>1.2 First Project<span class="tag">&lt;/h3&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Creating your first project.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/section&gt;</span>
+<span class="tag">&lt;/section&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 3: Section with ARIA Landmark -->
+  <div class="example-box">
+    <h2>Example 3: Sections as ARIA Landmarks</h2>
+    <p>Sections become accessible landmarks when they have an accessible name via <code>aria-labelledby</code> or <code>aria-label</code>.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <section aria-labelledby="features-title">
+        <h2 id="features-title">Key Features</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Fast</h3>
+            <p>Lightning-fast performance</p>
+          </div>
+          <div class="feature-card">
+            <h3>Secure</h3>
+            <p>Enterprise-grade security</p>
+          </div>
+          <div class="feature-card">
+            <h3>Reliable</h3>
+            <p>99.9% uptime guaranteed</p>
+          </div>
+        </div>
+      </section>
+      
+      <section aria-label="Customer testimonials">
+        <h2>What Our Customers Say</h2>
+        <blockquote>"Amazing service! Highly recommended."</blockquote>
+        <blockquote>"Transformed our business processes."</blockquote>
+      </section>
+    </div>
+    
+    <h3>HTML Code:</h3>
+    <pre><code><span class="comment">&lt;!-- Becomes a region landmark --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">aria-labelledby</span>=<span class="str">"features-title"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2</span> <span class="attr">id</span>=<span class="str">"features-title"</span><span class="tag">&gt;</span>Key Features<span class="tag">&lt;/h2&gt;</span>
+  <span class="comment">&lt;!-- Feature cards --&gt;</span>
+<span class="tag">&lt;/section&gt;</span>
+
+<span class="comment">&lt;!-- Also becomes a region landmark --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">aria-label</span>=<span class="str">"Customer testimonials"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>What Our Customers Say<span class="tag">&lt;/h2&gt;</span>
+  <span class="comment">&lt;!-- Testimonials --&gt;</span>
+<span class="tag">&lt;/section&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 4: Dashboard Layout -->
+  <div class="example-box">
+    <h2>Example 4: Dashboard with Sectioned Content</h2>
+    <p>Using <code>&lt;section&gt;</code> for dashboard widgets.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <main>
+        <h1>Dashboard</h1>
+        <div class="dashboard-grid">
+          <section class="stat-card" aria-labelledby="revenue-title">
+            <h2 id="revenue-title" style="font-size:1em; color:#666;">Revenue</h2>
+            <p style="font-size:2em; margin:10px 0;">$45,678</p>
+            <p style="color:#2d6a4f;">↑ 12% from last month</p>
+          </section>
+          
+          <section class="stat-card" aria-labelledby="users-title">
+            <h2 id="users-title" style="font-size:1em; color:#666;">Active Users</h2>
+            <p style="font-size:2em; margin:10px 0;">2,847</p>
+            <p style="color:#2d6a4f;">↑ 8% from last month</p>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Example 5: Common Mistakes -->
+  <div class="example-box">
+    <h2>Example 5: Common Mistakes (What NOT to Do)</h2>
+    
+    <div class="warning">
+      <strong>Warning:</strong> The following demonstrates incorrect usage patterns.
+    </div>
+    
+    <h3>Mistake 1: Section without a heading</h3>
+    <pre><code><span class="comment">&lt;!-- INCORRECT: Missing heading --&gt;</span>
+<span class="tag">&lt;section&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Content without a thematic heading.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/section&gt;</span></code></pre>
+    
+    <h3>Mistake 2: Using section as a styling hook</h3>
+    <pre><code><span class="comment">&lt;!-- INCORRECT: Use div instead --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="str">"red-bg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"photo.jpg"</span> <span class="attr">alt</span>=<span class="str">""</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/section&gt;</span></code></pre>
+    
+    <div class="note">
+      <strong>Remember:</strong> Always ask yourself: "Does this content represent a thematic group?" If yes, use <code>&lt;section&gt;</code>. If you just need a container for styling, use <code>&lt;div&gt;</code>.
+    </div>
+  </div>
+
+</body>
+</html>

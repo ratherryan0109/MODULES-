@@ -1,0 +1,130 @@
+{
+  "module": "116-css-performance-optimization",
+  "title": "CSS Performance Optimization",
+  "beginner": [
+    {
+      "question": "Why does CSS selector performance matter?",
+      "answer": "When a page renders, the browser must match selectors to DOM elements. Complex selectors (universal descendant selectors, overly specific selectors) increase matching time, especially on large DOM trees. Efficient selectors reduce style recalculation time."
+    },
+    {
+      "question": "Which CSS selectors are the fastest for the browser to match?",
+      "answer": "ID selectors (`#id`) and class selectors (`.class`) are the fastest because browsers use hash maps to look them up directly. Universal selectors (`*`), attribute selectors (`[type=\"text\"]`), and pseudo-classes are slower."
+    },
+    {
+      "question": "What is the `will-change` property used for?",
+      "answer": "`will-change: transform, opacity` hints to the browser that an element will animate in the future. The browser optimizes rendering by promoting the element to a compositor layer. Use sparingly — overusing it creates too many layers and consumes GPU memory."
+    },
+    {
+      "question": "What is 'CSS containment' and how does it work?",
+      "answer": "CSS containment (`contain: layout style paint size`) tells the browser that an element's subtree is independent. The browser can skip layout/paint calculations for the rest of the page when changes occur inside the contained element, dramatically improving performance."
+    },
+    {
+      "question": "What does 'paint area' mean in CSS performance?",
+      "answer": "The paint area is the region of the screen that the browser redraws when a style change occurs. Larger paint areas (e.g., shadows, gradients) and overlapping elements increase painting cost. Keeping elements on their own compositor layer reduces paint areas."
+    },
+    {
+      "question": "Why does CSS `box-shadow` affect performance?",
+      "answer": "`box-shadow` is computationally expensive because the browser must blur and blend shadow layers. Large, highly blurred, or multiple layered shadows increase paint time. For frequent animations, use `filter: drop-shadow()` or avoid shadows entirely."
+    },
+    {
+      "question": "What is the most performant approach to CSS animations?",
+      "answer": "Animate only `transform` (translate, scale, rotate) and `opacity` properties. These trigger only compositing (no layout/paint). Properties like `height`, `width`, `margin`, `top`, `left` trigger layout recalculations, which are expensive."
+    },
+    {
+      "question": "What is 'debouncing' in the context of CSS resize events?",
+      "answer": "Debouncing means waiting until the user finishes resizing the window before recalculating layout. Browsers already debounce resize events, but JavaScript resize handlers that trigger CSS changes should also be debounced to avoid excessive style recalculations."
+    },
+    {
+      "question": "How does the `@import` statement affect CSS loading performance?",
+      "answer": "`@import` blocks parallel downloads. When a browser encounters `@import url('other.css')`, it must fetch and parse the imported file before continuing, creating a serial dependency. Use multiple `<link>` tags instead for parallel loading."
+    },
+    {
+      "question": "What is 'render-blocking' CSS?",
+      "answer": "Render-blocking CSS prevents the browser from rendering any content until the CSS file is fully downloaded and parsed. The browser blocks rendering to avoid Flash of Unstyled Content (FOUC). Critical CSS inlining and async loading techniques help mitigate this."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you optimize the Critical Rendering Path for CSS?",
+      "answer": "Extract critical (above-the-fold) CSS and inline it in `<head>`. Load non-critical CSS asynchronously using `<link rel=\"preload\" href=\"styles.css\" as=\"style\" onload=\"this.onload=null;this.rel='stylesheet'\">`. This allows the initial render without waiting for full CSS download."
+    },
+    {
+      "question": "What is the 'minimum viable CSS' approach?",
+      "answer": "Only include CSS that is actually used by the current page. Use tools like PurgeCSS, UnCSS, or Chrome DevTools Coverage tab to identify and remove unused CSS. This can reduce CSS file sizes by 50-90% in large projects."
+    },
+    {
+      "question": "How does `content-visibility: auto` improve rendering performance?",
+      "answer": "`content-visibility: auto` applies lazy rendering — elements outside the viewport are not rendered until they scroll near the visible area. This can dramatically reduce initial paint time for long pages. It's like native lazy loading for rendering."
+    },
+    {
+      "question": "What is the performance impact of `@font-face` loading?",
+      "answer": "Web fonts are render-blocking in most browsers. Use `font-display: swap` to show fallback text immediately while the font loads, preventing invisible text. Use `unicode-range` subsetting and `preload` with `crossorigin` for critical fonts."
+    },
+    {
+      "question": "How do you reduce CSS bundle size in a build step?",
+      "answer": "CSS minification (CSSNano, csso) removes whitespace, comments, and shortens properties. PurgeCSS removes unused CSS. Code splitting extracts per-page CSS chunks. PostCSS plugins apply optimizations like merging identical rules."
+    },
+    {
+      "question": "What is 'compositor-only properties' in GPU compositing?",
+      "answer": "Transform and opacity are compositor-only properties — the browser can apply them on the GPU compositor thread without involving the main thread (layout/paint). This ensures smooth 60fps animations even under heavy main-thread load."
+    },
+    {
+      "question": "How does CSS specificity affect performance?",
+      "answer": "While specificity doesn't directly impact selector matching speed, high-specificity overrides often lead to CSS bloat. Developers add more specific selectors to override existing ones instead of removing/refactoring, increasing file size and cascade complexity."
+    },
+    {
+      "question": "What is the 'Layer Creation Explosion' problem with `will-change`?",
+      "answer": "Applying `will-change` to many elements creates a GPU layer for each one. Each layer consumes GPU memory (textures) and can cause banding, flickering, or crashes on mobile devices. Limit to 2-3 elements per scroll/animation container."
+    },
+    {
+      "question": "How do you optimize CSS for above-the-fold content?",
+      "answer": "Inline critical CSS (less than 14KB for optimal TCP round-trip) directly in the HTML `<head>`. Lazy-load non-critical CSS. Structure your HTML so above-the-fold content is styled by the inlined critical CSS only."
+    },
+    {
+      "question": "What is the performance difference between `translate()` and `top/left`?",
+      "answer": "`translate()` runs on the compositor thread and triggers no layout/paint — it's GPU accelerated. `top`/`left` triggers layout recalculation on the main thread for every frame. For animations, always prefer transform over positioning properties."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "What is the 'Layer Tree' in browser rendering and how does CSS affect it?",
+      "answer": "The browser's compositor creates a layer tree from the DOM. Elements with their own stacking context (positioned elements, elements with opacity < 1, transforms, filters, `will-change`) can be promoted to their own layer. Managing the layer tree is key for smooth scrolling and animations."
+    },
+    {
+      "question": "How does CSS `all` property affect performance?",
+      "answer": "`all: initial` or `all: unset` forces the browser to traverse the entire cascade to resolve values. This is computationally expensive, especially in large shadow DOM scopes. Use specific property resets instead of `all`."
+    },
+    {
+      "question": "What is 'Layout Thrashing' and how does CSS contribute to it?",
+      "answer": "Layout thrashing occurs when JavaScript repeatedly reads layout properties (e.g., `offsetHeight`, `getComputedStyle()`) and then writes styles, causing the browser to perform multiple synchronous layout recalculations. Batch reads and writes to minimize forced reflows."
+    },
+    {
+      "question": "How do you implement CSS-based code splitting for route-based chunks?",
+      "answer": "In build tools (webpack, Vite), configure entry points per route page: `entry: { home: './home.css', about: './about.css' }`. Use `<link>` tags in each page template. Lazy-load CSS via `rel=\"preload\"` and switch to `rel=\"stylesheet\"` when needed."
+    },
+    {
+      "question": "What is 'CSS paint containment' and when should you use it?",
+      "answer": "`contain: paint` clips the element's visual overflow and tells the browser that the element's painted content won't affect the page outside the element's bounds. The browser can skip painting outside the clipping area. Useful for scrollable containers and animations."
+    },
+    {
+      "question": "How does the CSS Object Model (CSSOM) building process impact performance?",
+      "answer": "CSSOM construction blocks rendering. The browser must download, parse, and build the CSSOM before rendering. Large CSS files, deeply nested selectors, and `@import` chains increase CSSOM build time. Inline critical CSS to start rendering before full CSSOM is built."
+    },
+    {
+      "question": "What are 'Layout Boundaries' and how do `contain` properties create them?",
+      "answer": "A layout boundary limits the scope of layout recalculations. Without containment, changing one element can trigger layout in the entire document. `contain: layout` creates a boundary where internal layout changes don't affect external elements. Useful for widgets/carousels."
+    },
+    {
+      "question": "How do you profile CSS performance using Chrome DevTools?",
+      "answer": "Use the Performance tab: record interactions, inspect 'Recalculate Style' and 'Layout' events. The 'Summary' view shows which selectors are slow. Use 'Rendering' → 'Layer borders' to visualize composited layers. Use 'Paint flashing' to find excessive paint areas."
+    },
+    {
+      "question": "What is 'CSS selector matching' in the context of DOM mutation?",
+      "answer": "When the DOM changes (adding/removing/classing elements), the browser re-evaluates CSS selectors for the changed element and its siblings/ancestors. Complex rightmost selectors (`div > ul li:last-child`) force more matching work. Keep selectors simple for dynamic content."
+    },
+    {
+      "question": "How do CSS container queries affect performance compared to media queries?",
+      "answer": "Container queries (`@container`) are more computationally expensive than media queries because the browser must evaluate container-relative conditions for each container, not just the viewport once. Each container query triggers recalculation when the container changes size."
+    }
+  ]
+}

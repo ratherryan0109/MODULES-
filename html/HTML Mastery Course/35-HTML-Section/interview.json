@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <section> element in HTML?",
+      "answer": "The <section> element is a semantic HTML5 element that represents a standalone thematic grouping of content, typically with a heading. It's used to divide content into meaningful parts."
+    },
+    {
+      "question": "Do I need to put a heading inside every <section>?",
+      "answer": "Yes, it's strongly recommended. A <section> should always have a heading (<h1>–<h6>) to describe its purpose. The HTML validator may warn if a section has no heading."
+    },
+    {
+      "question": "What is the difference between <section> and <div>?",
+      "answer": "A <section> has semantic meaning — it represents a thematic group of content. A <div> is a generic container with no semantic meaning. Use <div> for styling hooks and <section> for meaningful content groupings."
+    },
+    {
+      "question": "Can a <section> be nested inside another <section>?",
+      "answer": "Yes, sections can be nested to create hierarchical content structures. For example, a chapter section can contain multiple sub-sections."
+    },
+    {
+      "question": "Is <section> a block-level or inline element?",
+      "answer": "The <section> element is a block-level element by default. It takes up the full width available and starts on a new line."
+    },
+    {
+      "question": "What is the default ARIA role of <section>?",
+      "answer": "A <section> has an implicit role of 'region' only when it has an accessible name (via aria-labelledby or aria-label). Without an accessible name, it has no implicit role."
+    },
+    {
+      "question": "Can <section> contain an <article>?",
+      "answer": "Yes, a <section> can contain one or more <article> elements. This is common when a section groups related articles together."
+    },
+    {
+      "question": "Should I use <section> or <main> for my main content area?",
+      "answer": "Use <main> for the overall primary content container. Use <section> for thematic groupings inside <main> or other sectioning elements. They serve different purposes."
+    },
+    {
+      "question": "What global attributes can I use on a <section>?",
+      "answer": "The <section> element supports all global HTML attributes: id, class, style, lang, title, hidden, data-*, aria-*, tabindex, and more."
+    },
+    {
+      "question": "Can I use CSS to style a <section> element?",
+      "answer": "Yes, <section> can be styled with CSS just like any other block-level element. You can target it with element selectors (section), class selectors, or ID selectors."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does <section> differ from <article> in practical terms?",
+      "answer": "Use <article> when the content can stand alone and be independently distributed (syndicated). Use <section> for thematic groupings that are part of a larger whole. A blog post is an <article>; a chapter within a tutorial is a <section>."
+    },
+    {
+      "question": "What is the HTML5 document outline algorithm and how does <section> relate to it?",
+      "question": "The HTML5 outline algorithm defines that <section> (along with <article>, <aside>, and <nav>) creates entries in the document outline. However, this algorithm is not implemented by browsers or assistive technology, so proper heading hierarchy is essential."
+    },
+    {
+      "question": "How can you make a <section> into an accessible landmark?",
+      "answer": "Provide an accessible name using aria-labelledby (referencing a heading's id) or aria-label. This gives the section an implicit role of 'region', making it navigable via screen reader landmarks."
+    },
+    {
+      "question": "Can you put a <section> inside a <footer> or <header>?",
+      "answer": "While technically possible in HTML, it is semantically incorrect. The <footer> and <header> elements already represent specific roles. If you need to group content inside them, use <div> instead."
+    },
+    {
+      "question": "What is the difference between the HTML5 outline heading level and heading hierarchy?",
+      "answer": "The HTML5 outline algorithm was supposed to allow sections to define their own heading level independent of the h1-h6 hierarchy, but this was never implemented. Always use explicit h1-h6 levels for accessibility."
+    },
+    {
+      "question": "How do search engines use the <section> element?",
+      "answer": "Search engines use <section> elements to understand the structure and thematic groupings of content. This can help with featured snippets and rich results by identifying distinct content areas."
+    },
+    {
+      "question": "What is the proper way to add an aria-label to a <section>?",
+      "answer": "Use the aria-label attribute directly on the <section> tag: <section aria-label='Features overview'>. This provides an accessible name that screen readers announce when navigating by landmarks."
+    },
+    {
+      "question": "Can a <section> exist without any heading if the heading is provided by a parent element?",
+      "answer": "The HTML spec allows a <section> without a heading if the purpose is clear from context or the heading is at a higher level. However, it's still best practice to include a heading for clarity."
+    },
+    {
+      "question": "What are the common use cases for nested <section> elements?",
+      "answer": "Nested sections are ideal for documentation, tutorials, chapters with sub-chapters, FAQ categories with sub-topics, and any hierarchical content where each level represents a logical subsection."
+    },
+    {
+      "question": "How should you handle heading levels when using nested <section> elements?",
+      "answer": "Always maintain proper heading hierarchy. If your outer section uses <h2>, inner sections should use <h3>. This ensures a logical structure for screen readers and accessibility."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "What happens to the document outline when you use <section> with a heading in a Shadow DOM?",
+      "answer": "In Shadow DOM, each shadow root has its own document outline. The <section> elements within a shadow tree create their own outline scope, isolated from the light DOM outline."
+    },
+    {
+      "question": "How does the CSS 'contain' property interact with <section> elements?",
+      "answer": "The contain property can be applied to <section> for performance optimization. Using 'contain: layout style paint' on a section creates a containment context, limiting the scope of rendering calculations to that section."
+    },
+    {
+      "question": "Explain the relationship between <section> and the HTML5 sectioning content model. What elements are sectioning roots vs. sectioning content?",
+      "answer": "Sectioning content elements (<article>, <aside>, <nav>, <section>) define the scope of heading elements in the outline. Sectioning roots (<blockquote>, <body>, <details>, <dialog>, <fieldset>, <figure>, <td>) have their own internal outlines. <section> is sectioning content."
+    },
+    {
+      "question": "What accessibility issues arise from using <section> without proper heading structure in single-page applications?",
+      "answer": "In SPAs, dynamically loaded sections without headings or with incorrect heading levels create confusing navigation for screen reader users. The landmark structure should be preserved, and new content should maintain proper heading hierarchy."
+    },
+    {
+      "question": "How does the <section> element interact with the CSS Grid and Flexbox layout models?",
+      "answer": "The <section> element, as a block-level element, can be used as a grid container (display: grid) or flex container (display: flex). Its semantic role is preserved regardless of CSS display value changes."
+    },
+    {
+      "question": "What are the implications of using too many <section> elements on accessibility?",
+      "answer": "Overusing <section> elements (especially without accessible names) creates unnecessary clutter for screen reader users navigating by landmarks. Each section should represent a meaningful thematic group, not be used for every minor grouping."
+    },
+    {
+      "question": "How can you test whether your <section> elements are properly accessible?",
+      "answer": "Use browser accessibility tools (Chrome DevTools Accessibility panel, Firefox Accessibility Inspector) to view the accessibility tree. Ensure sections with accessible names appear as 'region' landmarks. Use a screen reader to verify landmark navigation."
+    },
+    {
+      "question": "What happens when a <section> contains both <header> and <footer>?",
+      "answer": "A <section> can contain its own <header> and <footer> for the section's internal structure. These are scoped to the section, not the page. For example, a testimonial section might have a header with the section title and a footer with attribution."
+    },
+    {
+      "question": "How does the inert attribute affect <section> elements?",
+      "answer": "The inert attribute makes the <section> and all its descendants non-interactive and invisible to assistive technology. This is useful for modals or off-screen content, but should not be used for normal document sections."
+    },
+    {
+      "question": "What is the difference between using <section> and declaring role='region' on a <div>?",
+      "answer": "Using <section> provides native semantic meaning and automatic landmark behavior (with accessible name). A <div role='region'> requires explicit ARIA to achieve the same behavior. Additionally, <section> affects the HTML5 document outline, while role='region' does not."
+    }
+  ]
+}

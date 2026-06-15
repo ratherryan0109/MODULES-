@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>CSS Colors - Playground</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;background:#1a202c;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column}
+header{background:#2d3748;padding:20px;border-bottom:3px solid #4299e1;text-align:center}h1{color:#63b3ed}
+.container{display:flex;flex:1}.editor-panel{flex:1;display:flex;flex-direction:column;border-right:2px solid #2d3748}
+.preview-panel{flex:1;display:flex;flex-direction:column}.panel-label{background:#2d3748;padding:8px 15px;font-size:0.8em;color:#a0aec0;font-weight:bold;text-transform:uppercase}
+textarea{flex:1;background:#1a202c;color:#e2e8f0;border:none;padding:15px;font-family:'Courier New',monospace;font-size:14px;resize:none;outline:none}
+iframe{flex:1;background:white;border:none;width:100%}.controls{background:#2d3748;padding:10px 15px;display:flex;gap:10px;align-items:center}
+button{background:#4299e1;color:white;border:none;padding:8px 20px;border-radius:5px;cursor:pointer;font-weight:bold}button:hover{background:#3182ce}
+button.reset{background:#4a5568}button.reset:hover{background:#718096}.status{color:#68d391;font-size:0.85em;margin-left:auto}
+</style></head><body>
+<header><h1>🎨 CSS Colors Playground</h1><p style="color:#a0aec0;margin-top:5px">Experiment with different color formats — HEX, RGB, HSL, and named colors!</p></header>
+<div class="container">
+<div class="editor-panel"><div class="panel-label">📝 CSS Editor — Try different color formats</div>
+<textarea id="cssEditor" spellcheck="false">/* ===== CSS COLORS PLAYGROUND ===== */
+
+/* Try these challenges:
+   1. Change body background to #1a202c or rgb(26,32,44)
+   2. Make h1 use hsl(210, 80%, 60%) 
+   3. Add a gradient background to .card
+   4. Use currentColor on the button border
+   5. Set .highlight to rgba(255, 200, 0, 0.3)
+*/
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+  background: #f0f4f8;
+  color: #2d3748;
+}
+
+h1 {
+  color: #1a365d;
+  border-bottom: 3px solid #4299e1;
+  padding-bottom: 10px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.highlight {
+  background: rgba(66, 153, 225, 0.15);
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.primary-btn {
+  background: hsl(210, 80%, 55%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: hsl(210, 80%, 40%);
+}
+
+/* Color swatches */
+.swatch-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 5px;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+  color: #718096;
+  font-size: 0.85em;
+}
+</textarea>
+<div class="controls">
+<button onclick="updatePreview()">▶ Run</button>
+<button class="reset" onclick="resetCSS()">↺ Reset</button>
+<span class="status" id="status">Ready</span>
+</div></div>
+<div class="preview-panel"><div class="panel-label">🔍 Live Preview</div><iframe id="preview"></iframe></div></div>
+<script>
+const defaultCSS = document.getElementById('cssEditor').value;
+function getHTML(css){return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview</title><style>${css}</style></head><body>
+<h1>CSS Colors Demo</h1>
+<div class="card"><h2 style="color:#2b6cb0">Working with Colors</h2><p>This card uses <span class="highlight">multiple color formats</span>. The background uses named colors, the heading uses hex, and the highlight uses rgba.</p></div>
+<div class="card"><h2 style="color:#2b6cb0">Color Swatches</h2><div class="swatch-grid"><div class="swatch" style="background:#e53e3e">#e53e3e</div><div class="swatch" style="background:#38a169">#38a169</div><div class="swatch" style="background:#4299e1">#4299e1</div><div class="swatch" style="background:#d69e2e">#d69e2e</div><div class="swatch" style="background:#9f7aea">#9f7aea</div></div></div>
+<div class="card"><button class="primary-btn">Primary Button</button></div>
+<footer><p>Try changing colors in the editor — use hex, rgb, rgba, hsl, or named colors!</p></footer>
+</body></html>`;}
+function updatePreview(){const css=document.getElementById('cssEditor').value;document.getElementById('preview').src='data:text/html;charset=utf-8,'+encodeURIComponent(getHTML(css));document.getElementById('status').textContent='✓ Updated';setTimeout(()=>{document.getElementById('status').textContent='Ready';},2000);}
+function resetCSS(){document.getElementById('cssEditor').value=defaultCSS;updatePreview();}
+window.addEventListener('load',updatePreview);
+document.getElementById('cssEditor').addEventListener('keydown',function(e){if(e.key==='Enter'&&e.ctrlKey)updatePreview();});
+</script></body></html>

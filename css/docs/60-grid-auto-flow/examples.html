@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Grid Auto Flow - Examples</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:#ff6b6b;font-size:28px}h2{color:#4ecdc4;margin:30px 0 10px;border-bottom:1px solid #333;padding-bottom:5px}
+h3{color:#ffd93d;margin:15px 0 8px;font-size:16px}
+code{background:#2d2d44;padding:2px 6px;border-radius:3px;color:#ffd93d}
+pre{background:#2d2d44;padding:15px;border-radius:6px;margin:10px 0;overflow-x:auto}
+.demo-box{background:#16213e;padding:15px;border-radius:8px;margin:15px 0}
+.demo-box p{color:#aaa;font-size:14px;margin-bottom:8px}
+.note{background:#2d2d44;border-left:4px solid #ffd93d;padding:10px 15px;margin:10px 0;border-radius:0 6px 6px 0;font-size:14px;color:#ccc}
+.grid{display:grid;gap:4px;padding:4px;background:#2d2d44;border-radius:8px;margin:8px 0}
+.grid>div{display:flex;align-items:center;justify-content:center;padding:15px;border-radius:4px;font-weight:bold;font-size:14px;text-align:center}
+.c1{background:#ff6b6b}.c2{background:#4ecdc4;color:#1a1a2e}.c3{background:#45b7d1}.c4{background:#a29bfe}.c5{background:#ffd93d;color:#1a1a2e}.c6{background:#6c5ce7}.c7{background:#fdcb6e;color:#1a1a2e}.c8{background:#e17055}
+.wide{grid-column:span 2}.tall{grid-row:span 2}.big{grid-column:span 2;grid-row:span 2}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Grid Auto Flow Examples</h1>
+<p style="color:#aaa;margin-bottom:20px">See how <code>grid-auto-flow</code> changes item placement behavior</p>
+
+<div class="demo-box">
+<h2>1. Default (row) vs Column Flow</h2>
+<div style="display:flex;gap:20px;flex-wrap:wrap">
+<div style="flex:1;min-width:200px"><h3>grid-auto-flow: row</h3><div class="grid" style="grid-template-columns:repeat(3,1fr);grid-auto-flow:row"><div class="c1">1</div><div class="c2">2</div><div class="c3">3</div><div class="c4">4</div><div class="c5">5</div><div class="c6">6</div><div class="c7">7</div><div class="c8">8</div></div></div>
+<div style="flex:1;min-width:200px"><h3>grid-auto-flow: column</h3><div class="grid" style="grid-template-columns:repeat(3,1fr);grid-auto-flow:column"><div class="c1">1</div><div class="c2">2</div><div class="c3">3</div><div class="c4">4</div><div class="c5">5</div><div class="c6">6</div><div class="c7">7</div><div class="c8">8</div></div></div>
+</div>
+<pre><code>.row    { grid-auto-flow: row; }    /* 1 2 3 / 4 5 6 / 7 8 — row-major */
+.column { grid-auto-flow: column; } /* 1 4 7 / 2 5 8 / 3 6 — column-major */</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>2. Without dense vs With dense</h2>
+<p>Item 1 spans 2 columns. Without dense, item 2 creates a gap. With dense, it fills the gap.</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap">
+<div style="flex:1;min-width:250px"><h3>Without dense</h3><div class="grid" style="grid-template-columns:repeat(3,1fr);grid-auto-flow:row"><div class="c1 wide">1 (spans 2)</div><div class="c2">2</div><div class="c3">3</div><div class="c4">4</div><div class="c5">5</div><div class="c6">6</div></div><p class="note">Item 2 gets pushed to row 2 leaving a gap</p></div>
+<div style="flex:1;min-width:250px"><h3>With dense</h3><div class="grid" style="grid-template-columns:repeat(3,1fr);grid-auto-flow:dense"><div class="c1 wide">1 (spans 2)</div><div class="c2">2</div><div class="c3">3</div><div class="c4">4</div><div class="c5">5</div><div class="c6">6</div></div><p class="note">Item 2 fills the gap next to item 1! Items visually reorder.</p></div>
+</div>
+<pre><code>.no-dense { grid-auto-flow: row; }    /* Items in DOM order, possible gaps */
+.dense    { grid-auto-flow: dense; }   /* Fills gaps, may reorder visually */</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>3. Gallery with Dense Packing</h2>
+<p>Multiple items with different spans. Dense packing fills all gaps for a compact look.</p>
+<div class="grid" style="grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;grid-auto-rows:60px;gap:6px;padding:6px">
+<div class="c1 big" style="background:#ff6b6b">Big</div>
+<div class="c2" style="background:#4ecdc4">2</div>
+<div class="c3" style="background:#45b7d1">3</div>
+<div class="c4 wide" style="background:#a29bfe">Wide</div>
+<div class="c5 tall" style="background:#ffd93d;color:#1a1a2e">Tall</div>
+<div class="c6" style="background:#6c5ce7">6</div>
+<div class="c7" style="background:#fdcb6e;color:#1a1a2e">7</div>
+<div class="c8" style="background:#e17055">8</div>
+<div class="c1" style="background:#00cec9">9</div>
+<div class="c2" style="background:#fd79a8">10</div>
+</div>
+<pre><code>.gallery {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: dense;
+    grid-auto-rows: 60px;
+}
+.big   { grid-column: span 2; grid-row: span 2; }
+.wide  { grid-column: span 2; }
+.tall  { grid-row: span 2; }</code></pre>
+<div class="note">💡 Notice how items are packed tightly with no wasted space. The DOM order may not match visual order.</div>
+</div>
+
+<div class="demo-box">
+<h2>4. Auto Flow with Implicit Rows</h2>
+<p>Items beyond the explicit grid create implicit rows. <code>grid-auto-rows</code> controls their height.</p>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,50px);grid-auto-rows:40px;grid-auto-flow:row">
+<div class="c1">1</div><div class="c2">2</div><div class="c3">3</div>
+<div class="c4">4</div><div class="c5">5</div><div class="c6">6</div>
+<div class="c7">7 (40px implicit)</div><div class="c8">8 (40px implicit)</div>
+<div class="c1">9 (40px implicit)</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 50px);  /* Row 1-2: 50px */
+    grid-auto-rows: 40px;                 /* Row 3+: 40px */
+    grid-auto-flow: row;
+}</code></pre>
+</div>
+
+</div>
+</body>
+</html>

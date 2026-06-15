@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Flex Grow - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .row { display: flex; background: #f1f5f9; padding: 0.5rem; border-radius: 6px; gap: 0.5rem; }
+    .row div { color: white; padding: 1rem; border-radius: 4px; text-align: center; }
+    .row div:nth-child(1) { background: #06b6d4; }
+    .row div:nth-child(2) { background: #f59e0b; }
+    .row div:nth-child(3) { background: #10b981; }
+    .row div:nth-child(4) { background: #8b5cf6; }
+    .label { font-size: 0.8rem; color: #64748b; margin-top: 0.25rem; text-align: center; font-family: monospace; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Flex Grow - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: All Items flex-grow: 1 (Equal Distribution)</h2>
+    <p>Each item gets an equal share of the available space.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1 1 0;">1</div>
+        <div style="flex:1 1 0;">1</div>
+        <div style="flex:1 1 0;">1</div>
+      </div>
+      <div class="label">flex-grow: 1 &nbsp;|&nbsp; flex-grow: 1 &nbsp;|&nbsp; flex-grow: 1</div>
+    </div>
+    <pre><code>.item { flex: 1; }  /* flex-grow: 1, flex-shrink: 1, flex-basis: 0 */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Proportional Growth (1 : 2 : 1)</h2>
+    <p>The middle item gets twice the extra space of its siblings.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1 1 0;">flex: 1</div>
+        <div style="flex:2 1 0;">flex: 2</div>
+        <div style="flex:1 1 0;">flex: 1</div>
+      </div>
+      <div class="label">flex-grow: 1 &nbsp;|&nbsp; flex-grow: 2 &nbsp;|&nbsp; flex-grow: 1</div>
+    </div>
+    <pre><code>.sidebar { flex: 1; }
+.main   { flex: 2; }  /* Takes twice the extra space */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Sidebar + Content Layout</h2>
+    <p>A practical layout: narrow sidebar, wide content area.</p>
+    <div class="demo-output">
+      <div class="row" style="min-height:120px;">
+        <div style="flex:1; background:#8b5cf7; display:flex; align-items:center; justify-content:center;">Sidebar<br><small>flex: 1</small></div>
+        <div style="flex:3; background:#06b6d4; display:flex; align-items:center; justify-content:center;">Main Content<br><small>flex: 3</small></div>
+      </div>
+    </div>
+    <pre><code>.sidebar { flex: 1; }  /* 25% of extra space */
+.content { flex: 3; }  /* 75% of extra space */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Mix of Grow and Fixed</h2>
+    <p>Some items grow while others stay at a fixed size.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1;">Grows</div>
+        <div style="flex:0 0 120px; background:#ef4444; color:white; display:flex; align-items:center; justify-content:center;">Fixed 120px</div>
+        <div style="flex:1;">Grows</div>
+      </div>
+      <div class="label">flex: 1 &nbsp;|&nbsp; flex: 0 0 120px &nbsp;|&nbsp; flex: 1</div>
+    </div>
+    <pre><code>.flexible { flex: 1; }           /* Grows to fill space */
+.fixed    { flex: 0 0 120px; }  /* Never grows, stays 120px */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Three-Column Dashboard</h2>
+    <p>Dashboard layout using proportional growth.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1; padding:1.5rem;">Left Panel</div>
+        <div style="flex:2; padding:1.5rem; background:#f59e0b;">Center (Main)</div>
+        <div style="flex:1; padding:1.5rem;">Right Panel</div>
+      </div>
+      <div class="label">flex: 1 &nbsp;|&nbsp; flex: 2 &nbsp;|&nbsp; flex: 1</div>
+    </div>
+    <pre><code>.left   { flex: 1; }  /* 25% of extra space */
+.center { flex: 2; }  /* 50% of extra space */
+.right  { flex: 1; }  /* 25% of extra space */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Variable Growth with Cards</h2>
+    <p>Cards with different <code>flex-grow</code> values adjust their share of space.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1; padding:1.5rem;">1x</div>
+        <div style="flex:3; padding:1.5rem; background:#f59e0b;">3x</div>
+        <div style="flex:2; padding:1.5rem; background:#10b981;">2x</div>
+        <div style="flex:1; padding:1.5rem;">1x</div>
+      </div>
+      <div class="label">1 &nbsp;|&nbsp; 3 &nbsp;|&nbsp; 2 &nbsp;|&nbsp; 1</div>
+    </div>
+    <pre><code>.item { flex-grow: &lt;number&gt;; }
+/* Total = 7. Item 2 gets 3/7 of extra space */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: How flex-grow Works</h2>
+    <p>The formula: <code>flex-grow</code> distributes <em>extra space</em> proportionally. Total extra space is divided by the sum of all grow factors, then each item gets its share.</p>
+    <div class="demo-output">
+      <div style="background:#f1f5f9; padding:1rem; border-radius:6px;">
+        <div style="display:flex; gap:0;">
+          <div style="flex:1; background:#06b6d4; color:white; padding:1rem; text-align:center;">flex: 1<br>25%</div>
+          <div style="flex:1; background:#f59e0b; color:white; padding:1rem; text-align:center;">flex: 1<br>25%</div>
+          <div style="flex:2; background:#10b981; color:white; padding:1rem; text-align:center;">flex: 2<br>50%</div>
+        </div>
+      </div>
+      <p style="font-size:0.85rem; color:#64748b; margin-top:0.5rem;">Sum of grow factors = 4. Each "share" = extra space ÷ 4.</p>
+    </div>
+    <pre><code>/* Total flex-grow = 1+1+2 = 4 */
+/* Item 3 gets 2/4 = 50% of the extra space */</code></pre>
+  </div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+{
+  "module": "02-css-syntax",
+  "title": "CSS Syntax",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the correct CSS syntax to style all paragraph elements with red color?",
+      "options": [
+        "p { color: red; }",
+        "p ( color: red; )",
+        "p = { color: red; }",
+        "{ p: color: red; }"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct syntax is 'selector { property: value; }'. For paragraphs: 'p { color: red; }'"
+    },
+    {
+      "id": 2,
+      "question": "In a CSS declaration, what separates the property from the value?",
+      "options": [
+        "A semicolon (;)",
+        "A colon (:)",
+        "An equals sign (=)",
+        "A comma (,)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A colon (:) separates the property from the value: 'property: value;'"
+    },
+    {
+      "id": 3,
+      "question": "What separates multiple CSS declarations inside a rule?",
+      "options": [
+        "Commas",
+        "Semicolons",
+        "Colons",
+        "Spaces"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Multiple declarations are separated by semicolons (;). Each declaration ends with a semicolon."
+    },
+    {
+      "id": 4,
+      "question": "Which of these is the correct shorthand for setting top and bottom margins to 10px and left/right to 20px?",
+      "options": [
+        "margin: 10px 20px;",
+        "margin: 10px 20px 10px 20px;",
+        "margin: 10px, 20px;",
+        "margin: (10px 20px);"
+      ],
+      "correctAnswer": 0,
+      "explanation": "With 2 values in margin shorthand: first = top/bottom (10px), second = left/right (20px). Both options 0 and 1 are valid, but 0 is the most concise."
+    },
+    {
+      "id": 5,
+      "question": "What happens if you forget the semicolon after the first declaration in a rule?",
+      "options": [
+        "The entire rule is ignored",
+        "Only the second declaration is ignored",
+        "The browser fixes the error automatically",
+        "The stylesheet fails to load"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When a semicolon is missing between declarations, the browser interprets them as a single invalid declaration and ignores the second one."
+    },
+    {
+      "id": 6,
+      "question": "Which characters enclose the declaration block in a CSS rule?",
+      "options": [
+        "Parentheses ( )",
+        "Square brackets [ ]",
+        "Curly braces { }",
+        "Angle brackets < >"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Curly braces { } enclose the declaration block containing property-value pairs."
+    },
+    {
+      "id": 7,
+      "question": "How do you apply the same styles to multiple selectors?",
+      "options": [
+        "Use the & symbol between selectors",
+        "Use a comma between selectors",
+        "Use a plus sign between selectors",
+        "Nest selectors inside each other"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Separate selectors with commas to apply the same styles: 'h1, h2, h3 { color: blue; }'"
+    },
+    {
+      "id": 8,
+      "question": "What is the purpose of vendor prefixes like -webkit- in CSS?",
+      "options": [
+        "To make CSS run faster",
+        "To support experimental features in specific browsers",
+        "To validate CSS syntax",
+        "To compress CSS files"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Vendor prefixes allow browsers to support experimental CSS features before they become standard (e.g., -webkit- for Chrome/Safari, -moz- for Firefox)."
+    },
+    {
+      "id": 9,
+      "question": "Which of these is NOT valid CSS?",
+      "options": [
+        "margin: 10px;",
+        "color: red;",
+        "font-size = 16px;",
+        "padding: 5px 10px;"
+      ],
+      "correctAnswer": 2,
+      "explanation": "'font-size = 16px;' is invalid because CSS uses a colon (:), not an equals sign (=), between property and value."
+    },
+    {
+      "id": 10,
+      "question": "When should quotes be used around font names in CSS?",
+      "options": [
+        "Always",
+        "Only when the font name contains spaces",
+        "Never — quotes are not valid in font-family",
+        "Only for serif fonts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Quotes are needed for font names containing spaces, like 'Times New Roman'. Single-word names like Arial don't need quotes."
+    },
+    {
+      "id": 11,
+      "question": "What does the 'C' in CSS stand for, and what does it mean for syntax?",
+      "options": [
+        "Cascading — rules can override each other based on priority",
+        "Combining — rules are always combined together",
+        "Coding — it refers to the programming aspect",
+        "Creative — CSS allows creative freedom"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Cascading means the browser follows specific rules (importance, specificity, source order) to determine which style applies when multiple rules conflict."
+    },
+    {
+      "id": 12,
+      "question": "What does '!important' do in CSS?",
+      "options": [
+        "Makes the declaration the most important, overriding all other rules",
+        "Marks the declaration as optional",
+        "Highlights the declaration for debugging",
+        "Prevents the declaration from being inherited"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'!important' gives a declaration the highest priority, overriding the normal cascade including inline styles and ID selectors."
+    },
+    {
+      "id": 13,
+      "question": "In the shorthand 'border: 2px dashed red;', which component is the style?",
+      "options": [
+        "2px",
+        "dashed",
+        "red",
+        "border"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The order is 'border: width style color;'. 'dashed' is the border-style value."
+    },
+    {
+      "id": 14,
+      "question": "Which of these is a valid CSS comment?",
+      "options": [
+        "// This is a comment",
+        "<!-- This is a comment -->",
+        "/* This is a comment */",
+        "# This is a comment"
+      ],
+      "correctAnswer": 2,
+      "explanation": "CSS uses /* */ for comments. // comments are not valid in CSS (though they work in some preprocessors)."
+    },
+    {
+      "id": 15,
+      "question": "What does the 'content' property require in CSS?",
+      "options": [
+        "A numeric value",
+        "A string value in quotes",
+        "A color value",
+        "A length value"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'content' property (used with ::before and ::after) requires a quoted string value, e.g., content: \"→ \";"
+    },
+    {
+      "id": 16,
+      "question": "Is 'Background-Color' (camelCase) valid CSS?",
+      "options": [
+        "Yes, CSS properties are case-insensitive",
+        "No, CSS properties must be lowercase",
+        "Yes, but only in modern browsers",
+        "No, camelCase is never valid"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS property names are case-insensitive. 'Background-Color', 'background-color', and 'BACKGROUND-COLOR' are all technically valid, but lowercase is the standard convention."
+    },
+    {
+      "id": 17,
+      "question": "What is wrong with this CSS? p { font-family: Arial, , sans-serif; }",
+      "options": [
+        "Missing quotes around Arial",
+        "Empty font name between commas",
+        "sans-serif should be 'sans-serif'",
+        "Nothing, it's valid"
+      ],
+      "correctAnswer": 1,
+      "explanation": "There's an empty font name between the two commas (Arial, , sans-serif). This is invalid and the browser will skip the entire font-family declaration."
+    },
+    {
+      "id": 18,
+      "question": "How does the browser handle CSS when it encounters an invalid property or value?",
+      "options": [
+        "It stops parsing the entire stylesheet",
+        "It ignores just that one declaration and continues",
+        "It throws a visible error on the page",
+        "It attempts to fix the value automatically"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Browsers are forgiving — they ignore individual invalid declarations and continue parsing the rest of the stylesheet."
+    },
+    {
+      "id": 19,
+      "question": "What is the purpose of whitespace (spaces, tabs, newlines) in CSS?",
+      "options": [
+        "It has no purpose — CSS ignores extra whitespace",
+        "It changes how properties are applied",
+        "It speeds up CSS parsing",
+        "It's required between every token"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS ignores most whitespace. It's used only for human readability. You can format CSS however you like as long as the syntax is valid."
+    },
+    {
+      "id": 20,
+      "question": "Which of the following values is the correct standard property (without vendor prefix) for transform?",
+      "options": [
+        "-webkit-transform",
+        "-moz-transform",
+        "transform",
+        "-ms-transform"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The standard, unprefixed property is 'transform'. Vendor prefixes (-webkit-, -moz-, -ms-) are for experimental/older support. The standard version should always come last."
+    }
+  ]
+}

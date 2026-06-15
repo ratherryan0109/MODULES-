@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Links - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .link-demo a { display: block; margin: 0.5rem 0; padding: 0.6rem 1rem; background: #f0f9ff; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+    .link-demo a:link { color: #2563eb; }
+    .link-demo a:visited { color: #7c3aed; }
+    .link-demo a:hover { background: #dbeafe; padding-left: 1.5rem; }
+    .link-demo a:active { color: #dc2626; }
+    .btn-link { display: inline-block; padding: 0.7rem 1.5rem; background: #06b6d4; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; transition: background 0.2s; margin: 0.3rem; border: none; cursor: default; }
+    .btn-link:hover { background: #0891b2; }
+    .btn-link:focus { outline: 3px solid #67e8f9; outline-offset: 2px; }
+    .link-types a { margin: 0.5rem; padding: 0.5rem 1rem; display: inline-block; }
+    .fancy-underline { text-decoration: none; position: relative; font-weight: 600; color: #2563eb; }
+    .fancy-underline::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: #2563eb; transform: scaleX(0); transition: transform 0.2s; }
+    .fancy-underline:hover::after { transform: scaleX(1); }
+    .icon-link { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.8rem; color: #2563eb; text-decoration: none; border-radius: 4px; transition: background 0.2s; }
+    .icon-link:hover { background: #dbeafe; }
+  </style>
+</head>
+<body>
+  <h1>CSS Links - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Link States (LVHA Order)</h2>
+    <p>Links have four states that must be styled in the correct order: <code>:link</code>, <code>:visited</code>, <code>:hover</code>, <code>:active</code> (LVHA).</p>
+    <div class="demo-output">
+      <div class="link-demo">
+        <a href="#">Normal link (try hovering and clicking)</a>
+        <a href="#">Another link to test hover effect</a>
+      </div>
+    </div>
+    <pre><code>a:link    { color: #2563eb; }   /* Unvisited */
+a:visited { color: #7c3aed; }   /* Visited */
+a:hover   { background: #dbeafe; }  /* Hover */
+a:active  { color: #dc2626; }   /* While clicking */
+/* Order matters: LoVe HAte (link, visited, hover, active) */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Removing Underline</h2>
+    <p>The default underline on links can be removed with <code>text-decoration: none</code> and replaced with custom styling.</p>
+    <div class="demo-output">
+      <p><a href="#" style="text-decoration:none;color:#2563eb;font-weight:600">This link has no underline</a></p>
+      <p style="margin-top:0.5rem"><a href="#" class="fancy-underline">This link has an animated underline on hover</a></p>
+    </div>
+    <pre><code>.no-underline { text-decoration: none; }
+
+/* Animated underline */
+.fancy-underline {
+  text-decoration: none;
+  position: relative;
+}
+.fancy-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 2px;
+  background: #2563eb;
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+.fancy-underline:hover::after {
+  transform: scaleX(1);
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Button-Style Links</h2>
+    <p>Style <code>&lt;a&gt;</code> elements to look like buttons for call-to-action elements.</p>
+    <div class="demo-output">
+      <div>
+        <a href="#" class="btn-link">Primary Action</a>
+        <a href="#" class="btn-link" style="background:#22c55e">Success</a>
+        <a href="#" class="btn-link" style="background:#ef4444">Danger</a>
+        <a href="#" class="btn-link" style="background:#f59e0b">Warning</a>
+        <a href="#" class="btn-link" style="background:#64748b">Secondary</a>
+      </div>
+    </div>
+    <pre><code>.btn-link {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: #06b6d4;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btn-link:hover { background: #0891b2; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Icons in Links</h2>
+    <p>Add SVG icons to links for better visual communication.</p>
+    <div class="demo-output">
+      <div>
+        <a href="#" class="icon-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          External Link
+        </a>
+        <a href="#" class="icon-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download
+        </a>
+      </div>
+    </div>
+    <pre><code>.icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Different Link Types</h2>
+    <p>Links can target different protocols using specific URL schemes.</p>
+    <div class="demo-output">
+      <div class="link-types">
+        <p><a href="https://example.com">https://example.com (external)</a></p>
+        <p><a href="mailto:user@example.com">mailto:user@example.com</a></p>
+        <p><a href="tel:+1234567890">tel:+1 (234) 567-890</a></p>
+      </div>
+    </div>
+    <pre><code>&lt;a href="https://example.com"&gt;Web link&lt;/a&gt;
+&lt;a href="mailto:user@example.com"&gt;Email link&lt;/a&gt;
+&lt;a href="tel:+1234567890"&gt;Phone link&lt;/a&gt;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Styling by Link Type with Attribute Selectors</h2>
+    <p>Use attribute selectors to style links differently based on their destination.</p>
+    <div class="demo-output">
+      <div class="link-types">
+        <p><a href="https://secure.example.com" style="color:#22c55e;font-weight:600">Secure link (https) — green</a></p>
+        <p><a href="http://example.com" style="color:#ef4444;font-weight:600">Insecure link (http) — red</a></p>
+      </div>
+    </div>
+    <pre><code>a[href^="https"] { color: #22c55e; }  /* Secure links */
+a[href^="http:"] { color: #ef4444; }  /* Insecure links */
+a[href$=".pdf"]::after { content: ' (PDF)'; }  /* File type */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Focus Styles for Accessibility</h2>
+    <p>Never remove focus outlines entirely. Use <code>:focus-visible</code> to show outlines only during keyboard navigation.</p>
+    <div class="demo-output">
+      <p><a href="#" style="padding:0.5rem 1rem;color:#2563eb;display:inline-block" class="focus-link" tabindex="0">Tab to me — focus ring appears</a></p>
+    </div>
+    <pre><code>/* ❌ Bad — removes focus for everyone */
+a:focus { outline: none; }
+
+/* ✅ Good — hides focus for mouse, shows for keyboard */
+a:focus-visible {
+  outline: 3px solid #06b6d4;
+  outline-offset: 2px;
+}</code></pre>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Which HTML element is used to embed audio content in a web page?",
+    "options": ["<sound>", "<audio>", "<media>", "<music>"],
+    "answer": "b",
+    "explanation": "The <audio> element is the HTML5 standard for embedding audio content. <sound>, <media>, and <music> are not valid HTML elements."
+  },
+  {
+    "question": "What attribute must be added to the <audio> element to show native playback controls?",
+    "options": ["showcontrols", "controls", "playback", "toolbar"],
+    "answer": "b",
+    "explanation": "The controls attribute is a boolean attribute that, when present, displays the browser's native audio controls (play, pause, volume, seek)."
+  },
+  {
+    "question": "Which attribute is required alongside 'autoplay' to allow automatic playback in modern browsers?",
+    "options": ["loop", "muted", "preload", "volume"],
+    "answer": "b",
+    "explanation": "Modern browsers block autoplay with sound. The muted attribute must be present for autoplay to work. Without muted, the browser will block autoplay."
+  },
+  {
+    "question": "What is the correct MIME type for an MP3 audio file?",
+    "options": ["audio/mp3", "audio/mpeg", "audio/mp3peg", "audio/mp4"],
+    "answer": "b",
+    "explanation": "The correct MIME type for MP3 files is audio/mpeg. While 'audio/mp3' is sometimes used, 'audio/mpeg' is the official and most widely supported MIME type."
+  },
+  {
+    "question": "What does the preload='metadata' attribute do?",
+    "options": ["Loads the entire audio file", "Loads only metadata like duration", "Prevents any loading until play", "Loads only the first 10 seconds"],
+    "answer": "b",
+    "explanation": "preload='metadata' tells the browser to load only the metadata of the audio file (duration, sample rate, etc.) without downloading the entire audio data."
+  },
+  {
+    "question": "Which JavaScript property gets the total duration of an audio file?",
+    "options": ["audio.length", "audio.total", "audio.duration", "audio.time"],
+    "answer": "c",
+    "explanation": "The duration property of the HTMLAudioElement returns the total length of the audio in seconds. It is read-only and only available after the loadedmetadata event fires."
+  },
+  {
+    "question": "What does audio.play() return?",
+    "options": ["void", "a boolean", "a Promise", "a number"],
+    "answer": "c",
+    "explanation": "audio.play() returns a Promise that resolves when playback starts successfully and rejects if playback fails (e.g., autoplay blocked). Always use .catch() to handle failures."
+  },
+  {
+    "question": "Which event fires when the audio playback position changes?",
+    "options": ["positionchange", "seek", "timeupdate", "progress"],
+    "answer": "c",
+    "explanation": "The timeupdate event fires whenever the current playback position changes, typically multiple times per second. It is used to update seek bars and time displays."
+  },
+  {
+    "question": "What range of values does the volume property accept?",
+    "options": ["0 to 10", "0.0 to 1.0", "0 to 100", "-1 to 1"],
+    "answer": "b",
+    "explanation": "The volume property accepts floating-point values from 0.0 (silent) to 1.0 (maximum volume). Values outside this range are silently clamped."
+  },
+  {
+    "question": "Which method checks if a browser supports a given audio format?",
+    "options": ["audio.supportsType()", "audio.canPlayType()", "audio.formatSupported()", "navigator.supportsAudio()"],
+    "answer": "b",
+    "explanation": "audio.canPlayType(type) returns 'probably', 'maybe', or '' (empty string). 'probably' indicates strong support, 'maybe' indicates possible support, and '' means not supported."
+  },
+  {
+    "question": "What happens if no <source> element provides a playable format?",
+    "options": ["The browser shows an error dialog", "The fallback content between <audio> tags is displayed", "The page crashes", "The browser downloads all sources and tries again"],
+    "answer": "b",
+    "explanation": "If none of the <source> elements provide a playable format, the browser displays the fallback content (text or HTML) placed between the opening and closing <audio> tags."
+  },
+  {
+    "question": "Which JavaScript property sets the playback speed of an audio element?",
+    "options": ["audio.speed", "audio.rate", "audio.playbackRate", "audio.speedRate"],
+    "answer": "c",
+    "explanation": "The playbackRate property controls the speed of audio playback. 1.0 is normal speed, 0.5 is half speed, 2.0 is double speed. Values must be positive."
+  },
+  {
+    "question": "What is the purpose of the HTMLAudioElement constructor?",
+    "options": ["To check audio support", "To create a new audio element in JavaScript", "To validate audio files", "To register event handlers"],
+    "answer": "b",
+    "explanation": "new Audio('src.mp3') creates a new HTMLAudioElement in memory. It's equivalent to document.createElement('audio') but with the src attribute pre-set."
+  },
+  {
+    "question": "Which attribute makes the audio repeat continuously?",
+    "options": ["repeat", "loop", "cycle", "restart"],
+    "answer": "b",
+    "explanation": "The loop attribute is a boolean attribute that causes the audio to restart from the beginning each time it reaches the end."
+  },
+  {
+    "question": "What does the AudioContext.resume() method do?",
+    "options": ["Pauses all audio nodes", "Resumes a suspended AudioContext", "Restarts the current audio track", "Increases the volume"],
+    "answer": "b",
+    "explanation": "AudioContext.resume() resumes a suspended audio context. Many browsers suspend AudioContexts until a user gesture occurs to prevent unwanted background audio."
+  },
+  {
+    "question": "Which event indicates that enough audio data has loaded to play through without buffering?",
+    "options": ["canplay", "canplaythrough", "loadeddata", "progress"],
+    "answer": "b",
+    "explanation": "The canplaythrough event fires when the browser estimates it has downloaded enough audio data to play the entire file without needing to stop for buffering."
+  },
+  {
+    "question": "How do you set audio to start at the 30-second mark?",
+    "options": ["audio.start(30)", "audio.seek(30)", "audio.currentTime = 30", "audio.position = 30"],
+    "answer": "c",
+    "explanation": "The currentTime property gets or sets the current playback position in seconds. Setting audio.currentTime = 30 jumps to the 30-second mark."
+  },
+  {
+    "question": "What is the default value of the preload attribute?",
+    "options": ["none", "metadata", "auto", "The browser decides"],
+    "answer": "c",
+    "explanation": "The default value for preload is 'auto' in most browsers when the attribute is omitted, meaning the browser decides to load the entire audio file."
+  },
+  {
+    "question": "Which object should you use for advanced audio processing and visualization?",
+    "options": ["HTMLAudioElement", "AudioContext", "MediaElement", "SoundProcessor"],
+    "answer": "b",
+    "explanation": "The AudioContext from the Web Audio API provides advanced audio processing capabilities including filtering, visualization, and spatial audio. HTMLAudioElement is for basic playback control."
+  },
+  {
+    "question": "What does the 'ended' event indicate?",
+    "options": ["The audio file has errors", "The audio has reached the end of playback", "The user ended playback", "The audio element has been removed from DOM"],
+    "answer": "b",
+    "explanation": "The ended event fires when the audio playback has reached the end of the file (or the loop point). It's commonly used to trigger next-track logic in playlists."
+  }
+]

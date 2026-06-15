@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Dashboard Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f1f5f9; color: #333; padding: 1rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #2563eb; margin-bottom: 1rem; }
+    h2 { color: #1e40af; margin: 2rem 0 0.5rem; font-size: 1.15rem; }
+    .demo { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+    .badge { background: #dbeafe; color: #1e40af; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block; margin-bottom: 0.5rem; }
+
+    /* === 1. Dashboard Layout === */
+    .dashboard { display: grid; gap: 1rem; grid-template-areas: 'header' 'stats' 'chart' 'activity' 'table'; min-height: 400px; }
+    .dashboard > * { background: white; border-radius: 10px; padding: 1.25rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .dash-header { grid-area: header; display: flex; justify-content: space-between; align-items: center; }
+    .dash-stats { grid-area: stats; }
+    .dash-chart { grid-area: chart; }
+    .dash-activity { grid-area: activity; }
+    .dash-table { grid-area: table; }
+    @media (min-width: 768px) { .dashboard { grid-template-areas: 'header header' 'stats stats' 'chart activity' 'table table'; grid-template-columns: 2fr 1fr; } }
+    @media (min-width: 1024px) { .dashboard { grid-template-areas: 'sidebar header header' 'sidebar stats stats' 'sidebar chart activity' 'sidebar table table'; grid-template-columns: 200px 2fr 1fr; } }
+
+    /* === 2. KPI Stats Grid === */
+    .stats-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .kpi { background: #f8fafc; border-radius: 8px; padding: 1rem; }
+    .kpi .value { font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 700; color: #0f172a; }
+    .kpi .label { font-size: 0.8rem; color: #64748b; }
+    .kpi .change { font-size: 0.75rem; font-weight: 600; }
+    .kpi .change.up { color: #059669; }
+    .kpi .change.down { color: #dc2626; }
+
+    /* === 3. Chart Area === */
+    .chart-box { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 8px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: #3b82f6; font-weight: 500; }
+
+    /* === 4. Activity Feed === */
+    .activity-item { display: flex; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9; }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .activity-text { flex: 1; font-size: 0.85rem; }
+    .activity-text strong { color: #0f172a; }
+    .activity-text .time { font-size: 0.75rem; color: #94a3b8; display: block; }
+
+    /* === 5. Responsive Table === */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 500px; }
+    th { background: #f8fafc; padding: 0.75rem; text-align: left; font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 0.75rem; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
+    .status { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.75rem; font-weight: 500; }
+    .status.active { background: #dcfce7; color: #059669; }
+    .status.pending { background: #fef3c7; color: #d97706; }
+    .status.inactive { background: #fee2e2; color: #dc2626; }
+    @media (max-width: 640px) { table, thead, tbody, th, td, tr { display: block; } thead { display: none; } tr { margin-bottom: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.75rem; } td { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #f1f5f9; } td:last-child { border-bottom: none; } td::before { content: attr(data-label); font-weight: 600; font-size: 0.8rem; color: #475569; } }
+
+    /* === 6. Sidebar === */
+    .sidebar { background: #1e293b; border-radius: 10px; padding: 1rem; color: white; }
+    .sidebar a { color: #94a3b8; text-decoration: none; display: block; padding: 0.6rem 0.75rem; border-radius: 6px; margin-bottom: 0.25rem; font-size: 0.9rem; }
+    .sidebar a:hover, .sidebar a.active { background: #334155; color: white; }
+
+    /* === 7. Compact Mobile Header === */
+    .dash-header .search { padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.85rem; max-width: 200px; }
+    @media (max-width: 640px) { .dash-header { flex-direction: column; gap: 0.5rem; align-items: stretch; } .dash-header .search { max-width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Responsive Dashboard Examples</h1>
+    <p style="margin-bottom:2rem;color:#64748b;">Resize browser to see the dashboard adapt across breakpoints.</p>
+
+    <div class="demo">
+      <span class="badge">Example 1</span>
+      <h2>Full Dashboard Layout</h2>
+      <div class="dashboard">
+        <div class="dash-header" style="display:flex;justify-content:space-between;align-items:center;">
+          <strong>Dashboard</strong>
+          <input type="text" class="search" placeholder="Search...">
+          <span>👤 John Doe</span>
+        </div>
+        <div class="dash-stats">
+          <div class="stats-grid">
+            <div class="kpi"><div class="value">$12,430</div><div class="label">Revenue</div><div class="change up">↑ 12.5%</div></div>
+            <div class="kpi"><div class="value">1,892</div><div class="label">Users</div><div class="change up">↑ 8.2%</div></div>
+            <div class="kpi"><div class="value">84.5%</div><div class="label">Conversion</div><div class="change down">↓ 2.1%</div></div>
+            <div class="kpi"><div class="value">4.2min</div><div class="label">Session</div><div class="change up">↑ 5.3%</div></div>
+          </div>
+        </div>
+        <div class="dash-chart">
+          <div style="display:flex;justify-content:space-between;margin-bottom:1rem;"><strong>Revenue Chart</strong><span style="font-size:0.8rem;color:#64748b;">Last 30 days</span></div>
+          <div class="chart-box">📊 Chart Area (SVG/Canvas)</div>
+        </div>
+        <div class="dash-activity"><strong style="display:block;margin-bottom:0.75rem;">Recent Activity</strong>
+          <div class="activity-item"><div class="activity-dot" style="background:#3b82f6;"></div><div class="activity-text"><strong>New user registered</strong><span class="time">2 min ago</span></div></div>
+          <div class="activity-item"><div class="activity-dot" style="background:#10b981;"></div><div class="activity-text"><strong>Payment received</strong><span class="time">15 min ago</span></div></div>
+          <div class="activity-item"><div class="activity-dot" style="background:#f59e0b;"></div><div class="activity-text"><strong>Order shipped</strong><span class="time">1 hour ago</span></div></div>
+        </div>
+        <div class="dash-table"><strong style="display:block;margin-bottom:0.75rem;">Recent Orders</strong>
+          <div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>
+            <tr><td data-label="Order">#1234</td><td data-label="Customer">Alice Johnson</td><td data-label="Amount">$249.00</td><td data-label="Status"><span class="status active">Active</span></td><td data-label="Date">2026-06-10</td></tr>
+            <tr><td data-label="Order">#1235</td><td data-label="Customer">Bob Smith</td><td data-label="Amount">$129.00</td><td data-label="Status"><span class="status pending">Pending</span></td><td data-label="Date">2026-06-09</td></tr>
+            <tr><td data-label="Order">#1236</td><td data-label="Customer">Carol White</td><td data-label="Amount">$399.00</td><td data-label="Status"><span class="status inactive">Cancelled</span></td><td data-label="Date">2026-06-08</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 2</span>
+      <h2>Sidebar Navigation</h2>
+      <div class="sidebar" style="max-width:250px;">
+        <div style="font-weight:700;padding:0.75rem;margin-bottom:0.5rem;font-size:1.1rem;">MyApp</div>
+        <a href="#" class="active">📊 Dashboard</a>
+        <a href="#">👥 Users</a>
+        <a href="#">📦 Orders</a>
+        <a href="#">📈 Analytics</a>
+        <a href="#">⚙️ Settings</a>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 3</span>
+      <h2>KPI Cards Grid</h2>
+      <div class="stats-grid">
+        <div class="kpi"><div class="value">$48,290</div><div class="label">Total Revenue</div><div class="change up">↑ 18.7%</div></div>
+        <div class="kpi"><div class="value">2,847</div><div class="label">Total Users</div><div class="change up">↑ 6.3%</div></div>
+        <div class="kpi"><div class="value">93.2%</div><div class="label">Uptime</div><div class="change up">↑ 0.5%</div></div>
+        <div class="kpi"><div class="value">1,203</div><div class="label">Tickets</div><div class="change down">↓ 3.8%</div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

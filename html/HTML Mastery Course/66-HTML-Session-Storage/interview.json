@@ -1,0 +1,118 @@
+[
+  {
+    "question": "What is sessionStorage and how does it differ from localStorage?",
+    "answer": "sessionStorage is a web storage mechanism that stores key-value pairs in the browser for the duration of a page session. The key difference is lifetime: sessionStorage data is cleared when the tab or browser window is closed, while localStorage persists until explicitly deleted. sessionStorage is also isolated per tab, meaning data stored in one tab is not accessible from another tab."
+  },
+  {
+    "question": "What does 'session' mean in the context of sessionStorage?",
+    "answer": "In sessionStorage, a 'session' refers to the lifetime of a browser tab or window. It begins when a page is loaded in a tab and ends when that tab is closed. Navigating to a different page or reloading within the same tab continues the session. Opening a new tab or window starts a brand new session with an empty sessionStorage."
+  },
+  {
+    "question": "What is the API surface of sessionStorage?",
+    "answer": "sessionStorage provides the same API as localStorage: setItem(key, value) to store, getItem(key) to retrieve (returns null if missing), removeItem(key) to delete one, clear() to delete all, key(index) to get a key by position, and length to get the item count. All methods are synchronous."
+  },
+  {
+    "question": "Can sessionStorage be used to share data between browser tabs?",
+    "answer": "Generally no. sessionStorage is isolated per tab or window. Data stored in one tab cannot be read by another tab. The exception is when a page opens a new tab using window.open() — in some browsers (like Chrome), the new tab may inherit a copy of the opener's sessionStorage, but subsequent changes are not synced."
+  },
+  {
+    "question": "What are the most common use cases for sessionStorage?",
+    "answer": "Common use cases include: (1) Multi-step form wizard progress — data persists across steps but auto-clears when the tab closes. (2) One-time flags — showing onboarding tours or cookie consent banners only once per session. (3) Temporary UI state — scroll positions, accordion states, tab selections. (4) Navigation history — tracking which pages were visited during the session. (5) Pre-login shopping cart data that will be transferred to the user account on login."
+  },
+  {
+    "question": "How do you handle the case where sessionStorage might be unavailable?",
+    "answer": "Use a try/catch pattern for feature detection: try { sessionStorage.setItem('__test__', '1'); sessionStorage.removeItem('__test__'); } catch (e) { /* fallback to in-memory store */ }. In private/incognito mode, some browsers may disable sessionStorage or clear it when the last private tab closes. Always have a fallback strategy, such as an in-memory JavaScript object."
+  },
+  {
+    "question": "What is the storage limit for sessionStorage?",
+    "answer": "sessionStorage typically has a 5-10MB limit per origin, the same as localStorage. The exact limit varies by browser. The limit applies to the total size of all key-value pairs for a given origin within a single tab session. Exceeding the limit throws a QuotaExceededError."
+  },
+  {
+    "question": "How does sessionStorage behave with iframes from the same origin?",
+    "answer": "An iframe from the same origin can access the parent page's sessionStorage (and vice versa) because they share the same origin and tab context. However, if the iframe is from a different origin, it cannot access the parent's sessionStorage due to the same-origin policy."
+  },
+  {
+    "question": "What happens to sessionStorage data when a server-side session expires?",
+    "answer": "sessionStorage is completely independent of server-side sessions. The browser's sessionStorage is managed entirely on the client side and is not affected by server-side session expiration, cookie deletion, or any server-side events."
+  },
+  {
+    "question": "How would you implement a 'first visit this session' flag using sessionStorage?",
+    "answer": "Check for a flag on page load: if (!sessionStorage.getItem('visited')) { showOnboarding(); sessionStorage.setItem('visited', 'true'); }. The flag persists across page reloads within the same tab but is cleared when the tab closes, so the user will see the onboarding again in their next session."
+  },
+  {
+    "question": "What are the security implications of using sessionStorage?",
+    "answer": "sessionStorage shares the same XSS vulnerabilities as localStorage — any JavaScript running on the same origin can read/write to it. Never store authentication tokens, passwords, or sensitive personal data in sessionStorage. Its advantage is that data is naturally cleaned up when the tab closes, reducing the risk of lingering sensitive data."
+  },
+  {
+    "question": "Can sessionStorage survive a page refresh?",
+    "answer": "Yes. sessionStorage data persists across page refreshes and navigations within the same tab. This makes it useful for preserving form data, scroll positions, and UI state during a user's visit. It is only cleared when the tab or browser window is closed."
+  },
+  {
+    "question": "How can you detect the sessionStorage availability in a browser?",
+    "answer": "Use a try/catch wrapper: function sessionStorageAvailable() { try { const s = window.sessionStorage; const x = '__test__'; s.setItem(x, x); s.removeItem(x); return true; } catch (e) { return false; } }. This catches cases where storage might be disabled in private browsing or by browser policy."
+  },
+  {
+    "question": "What is the 'QuotaExceededError' in the context of sessionStorage?",
+    "answer": "QuotaExceededError is thrown when an operation attempts to exceed the storage limit (typically 5-10MB). It's a DOMException. Handle it by wrapping sessionStorage operations in try/catch and implementing fallback behavior — notifying the user, clearing less important data, or falling back to in-memory storage."
+  },
+  {
+    "question": "How would you build a session-based caching layer using sessionStorage?",
+    "answer": "Create a cache utility that stores API responses with timestamps. For each cache key, store { data, timestamp, ttl }. On retrieval, check if the data is still within its TTL. sessionStorage naturally clears when the tab closes, so no explicit cleanup is needed for the session boundary. Example: sessionStorage.setItem('cache_api_endpoint', JSON.stringify({ data: response, timestamp: Date.now(), ttl: 300000 }))."
+  },
+  {
+    "question": "What is the difference between sessionStorage and session cookies?",
+    "answer": "Session cookies are sent to the server with every HTTP request, have a 4KB limit, and support the HttpOnly/Secure/SameSite flags. sessionStorage stays client-side only, has a 5-10MB limit, and is accessible to JavaScript. Session cookies expire when the browser closes (if no Max-Age/Expires is set), similar to sessionStorage, but session cookies can be shared across tabs while sessionStorage cannot."
+  },
+  {
+    "question": "How do you iterate over all items in sessionStorage?",
+    "answer": "Use the length property and key() method: for (let i = 0; i < sessionStorage.length; i++) { const key = sessionStorage.key(i); const value = sessionStorage.getItem(key); }. Alternatively, use Object.keys(sessionStorage) which returns an array of all keys (non-standard but widely supported)."
+  },
+  {
+    "question": "What happens to sessionStorage when a user uses browser 'Restore previous session'?",
+    "answer": "When the browser restores a previous session (reopening tabs after a restart), sessionStorage data is typically NOT restored because the 'session' has ended. The new tabs start with fresh, empty sessionStorage. This behavior may vary slightly by browser, but in general, sessionStorage does not survive browser restarts."
+  },
+  {
+    "question": "Can you use sessionStorage in server-side rendering frameworks like Next.js?",
+    "answer": "No. sessionStorage is a browser-only API and is not available on the server. In SSR frameworks, wrap sessionStorage access in useEffect (React) or check typeof window !== 'undefined' before accessing it. Attempting to use sessionStorage during server-side rendering will throw a ReferenceError."
+  },
+  {
+    "question": "How would you migrate a feature from sessionStorage to localStorage?",
+    "answer": "To migrate: (1) Read all data from sessionStorage using iteration. (2) Write each item to localStorage under the same key. (3) Optionally clear sessionStorage after successful migration. (4) Update feature detection and read logic to check localStorage first with a fallback to sessionStorage for backward compatibility. Use a version flag in localStorage to avoid re-migrating on subsequent visits."
+  },
+  {
+    "question": "What is the 'storage' event and how does it relate to sessionStorage?",
+    "answer": "The 'storage' event fires on the window object when storage changes occur. For sessionStorage, the event is more limited — it typically only fires in iframes from the same origin that share the sessionStorage context. Unlike localStorage, sessionStorage changes in one tab do NOT fire events in other tabs because each tab has its own isolated storage instance."
+  },
+  {
+    "question": "How would you implement undo/redo using sessionStorage?",
+    "answer": "Maintain a history stack in sessionStorage: an array of snapshots. Each time the user makes a change, push the current state onto the undo stack (stored as JSON). For undo, pop from the undo stack and push to a redo stack. Example: sessionStorage.setItem('undoStack', JSON.stringify([state1, state2, state3])). sessionStorage naturally clears when the tab closes, which is appropriate for session-scoped undo history."
+  },
+  {
+    "question": "What are the performance characteristics of sessionStorage?",
+    "answer": "sessionStorage operations are synchronous and fast for small data sizes (< 100KB). Each read/write blocks the main thread, so frequent operations (e.g., on every keystroke) should be debounced. For large datasets or high-frequency writes, IndexedDB (asynchronous) is a better choice. The memory used by sessionStorage is allocated per tab, so having many tabs with large sessionStorage data can impact overall browser performance."
+  },
+  {
+    "question": "How is sessionStorage affected by browser privacy features like Safari ITP?",
+    "answer": "Modern privacy features (Safari ITP, Firefox ETP, Chrome Privacy Sandbox) primarily target cross-site tracking and third-party cookies. sessionStorage as first-party storage is largely unaffected. However, Safari may clear all website data (including sessionStorage) after 7 days of no user interaction under ITP rules. Additionally, third-party iframes may get partitioned storage, affecting how sessionStorage behaves across embedded contexts."
+  },
+  {
+    "question": "How would you implement a session-based analytics tracker?",
+    "answer": "Create a session analytics object in sessionStorage. Track events like page views, clicks, and form submissions as an array of events with timestamps. On page load, check if a session ID exists (generate one via Math.random or crypto.randomUUID). Store events in sessionStorage and batch-send them to the server when the user navigates away (using navigator.sendBeacon on beforeunload). sessionStorage ensures events aren't duplicated across sessions."
+  },
+  {
+    "question": "What is the relationship between sessionStorage and the browser's back/forward cache (bfcache)?",
+    "answer": "When a user navigates back/forward using browser history, the page may be restored from bfcache. sessionStorage data persists during bfcache restoration because the tab session continues. However, the 'pageshow' event fires instead of 'load', so code that reads sessionStorage should handle both events to correctly restore state."
+  },
+  {
+    "question": "How would you test sessionStorage behavior programmatically?",
+    "answer": "Use automated browser tests (Playwright, Cypress) to: (1) Set sessionStorage in one tab and verify it's empty in another tab (tab isolation). (2) Set sessionStorage, reload the page, and verify data persists (within-tab persistence). (3) Close the tab, open a new one, and verify data is empty (session cleanup). (4) Exceed the quota and verify QuotaExceededError is thrown. (5) Test in incognito/private mode to verify feature detection works."
+  },
+  {
+    "question": "What are the alternatives to sessionStorage for session-scoped data?",
+    "answer": "Alternatives include: (1) In-memory JavaScript variables — fastest but lost on navigation/refresh. (2) Session cookies — sent to server, shared across tabs, supports HttpOnly. (3) sessionStorage on top of localStorage — use a session ID key in localStorage to organize data per session. (4) IndexedDB — for larger data or complex queries within a session. (5) URL state — query parameters for simple navigation data. Each has trade-offs between persistence, security, and scope."
+  },
+  {
+    "question": "How would you handle sessionStorage in a Progressive Web App (PWA) context?",
+    "answer": "In a PWA: (1) sessionStorage works in the main thread but not in Service Workers. (2) Use sessionStorage for transient UI state that doesn't need to survive app closure (e.g., current page in a wizard). (3) For offline-first data, use the Cache API or IndexedDB instead. (4) When the PWA is installed and runs as a standalone window, sessionStorage behavior is the same as a browser tab — data clears when the PWA window closes."
+  }
+]

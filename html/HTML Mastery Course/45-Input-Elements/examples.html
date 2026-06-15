@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Elements Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 8px; }
+    h2 { color: #2980b9; margin-top: 30px; }
+    .example {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .example form {
+      background: #f1f8ff;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #3498db;
+      margin-top: 10px;
+    }
+    .example label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    .example input {
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+    .example input:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+    }
+    .example button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .example button:hover { background: #2980b9; }
+    .output {
+      background: #2c3e50;
+      color: #2ecc71;
+      padding: 12px 16px;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+    code {
+      background: #ecf0f1;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+    .note {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+    pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Input Elements — Practical Examples</h1>
+
+<div class="example">
+  <h2>1. Basic Text Input</h2>
+  <p>A simple text input with label and placeholder.</p>
+  <pre>&lt;label for="username"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="username" name="username" placeholder="Enter your username"&gt;</pre>
+  <form onsubmit="event.preventDefault(); showOutput('output1', 'Username: ' + this.username.value)">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter your username">
+    <button type="submit">Submit</button>
+  </form>
+  <div class="output" id="output1">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>2. Password Input with Toggle</h2>
+  <p>Password input masks the text. A show/hide toggle improves UX.</p>
+  <pre>&lt;input type="password" id="pwd" name="password"&gt;</pre>
+  <form onsubmit="event.preventDefault(); showOutput('output2', 'Password entered (' + this.password.value.length + ' chars)')">
+    <label for="password">Password:</label>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <input type="password" id="password" name="password" placeholder="At least 8 characters" style="flex:1; margin-bottom:0;">
+      <button type="button" onclick="togglePassword()" style="padding:8px 12px; font-size:13px;">Show</button>
+    </div>
+    <button type="submit" style="margin-top:12px;">Submit</button>
+  </form>
+  <div class="output" id="output2">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>3. Email Input with Validation</h2>
+  <p>Browsers validate email format automatically. Try an invalid email.</p>
+  <pre>&lt;input type="email" id="email" name="email" required&gt;</pre>
+  <form onsubmit="event.preventDefault(); showOutput('output3', 'Email submitted: ' + this.email.value)">
+    <label for="email">Email Address <span style="color:#e74c3c;">*</span></label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Submit</button>
+  </form>
+  <div class="output" id="output3">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>4. Number Input with Min/Max/Step</h2>
+  <p>Numeric input with increment buttons and constraints.</p>
+  <pre>&lt;input type="number" id="quantity" name="quantity" min="1" max="10" step="1" value="1"&gt;</pre>
+  <form onsubmit="event.preventDefault(); showOutput('output4', 'Quantity: ' + this.quantity.value)">
+    <label for="quantity">Quantity (1–10):</label>
+    <input type="number" id="quantity" name="quantity" min="1" max="10" step="1" value="1" style="width:100px;">
+    <button type="submit">Submit</button>
+  </form>
+  <div class="output" id="output4">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>5. File Upload Input</h2>
+  <p>File input with accept restriction to images only.</p>
+  <pre>&lt;input type="file" id="avatar" name="avatar" accept="image/*"&gt;</pre>
+  <form onsubmit="event.preventDefault(); showOutput('output5', 'Selected file: ' + (this.avatar.files[0] ? this.avatar.files[0].name : 'none'))">
+    <label for="avatar">Profile Picture:</label>
+    <input type="file" id="avatar" name="avatar" accept="image/*">
+    <div style="margin-top:8px;">
+      <img id="preview" style="max-width:150px; border-radius:8px; display:none;">
+    </div>
+    <button type="submit">Show Selection</button>
+  </form>
+  <div class="output" id="output5">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>6. Checkbox &amp; Radio Inputs</h2>
+  <p>Checkboxes for multiple selections; radio for single choice.</p>
+  <form onsubmit="event.preventDefault(); handleForm6(this)">
+    <fieldset style="border:2px solid #3498db; border-radius:6px; padding:15px;">
+      <legend style="font-weight:700; color:#2980b9;">Select Options</legend>
+      <label style="display:inline-flex; align-items:center; gap:6px; margin-right:15px;">
+        <input type="checkbox" name="hobby" value="coding"> Coding
+      </label>
+      <label style="display:inline-flex; align-items:center; gap:6px; margin-right:15px;">
+        <input type="checkbox" name="hobby" value="design"> Design
+      </label>
+      <label style="display:inline-flex; align-items:center; gap:6px;">
+        <input type="checkbox" name="hobby" value="music"> Music
+      </label>
+    </fieldset>
+    <fieldset style="border:2px solid #e74c3c; border-radius:6px; padding:15px; margin-top:15px;">
+      <legend style="font-weight:700; color:#c0392b;">Experience Level</legend>
+      <label style="display:inline-flex; align-items:center; gap:6px; margin-right:15px;">
+        <input type="radio" name="level" value="beginner" checked> Beginner
+      </label>
+      <label style="display:inline-flex; align-items:center; gap:6px; margin-right:15px;">
+        <input type="radio" name="level" value="intermediate"> Intermediate
+      </label>
+      <label style="display:inline-flex; align-items:center; gap:6px;">
+        <input type="radio" name="level" value="advanced"> Advanced
+      </label>
+    </fieldset>
+    <button type="submit" style="margin-top:12px;">Show Selections</button>
+  </form>
+  <div class="output" id="output6">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>7. Hidden Input</h2>
+  <p>Hidden inputs store data invisible to users (e.g., CSRF tokens).</p>
+  <pre>&lt;input type="hidden" name="token" value="abc123xyz"&gt;</pre>
+  <form onsubmit="event.preventDefault(); showOutput('output7', 'Form submitted with token: ' + this.token.value)">
+    <label for="public">Public Field:</label>
+    <input type="text" id="public" name="public_data" placeholder="Visible to user">
+    <input type="hidden" name="token" value="abc123xyz">
+    <button type="submit">Submit</button>
+  </form>
+  <div class="output" id="output7">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>8. Styled Input with States</h2>
+  <p>Inputs styled for default, focus, error, and success states.</p>
+  <style>
+    .styled-input { width:100%; padding:10px 14px; border:2px solid #ddd; border-radius:6px; font-size:15px; transition:all 0.3s ease; margin-bottom:10px; box-sizing:border-box; }
+    .styled-input:focus { border-color:#3498db; outline:none; box-shadow:0 0 0 3px rgba(52,152,219,0.2); }
+    .styled-input.success { border-color:#2ecc71; }
+    .styled-input.success:focus { box-shadow:0 0 0 3px rgba(46,204,113,0.2); }
+    .styled-input.error { border-color:#e74c3c; }
+    .styled-input.error:focus { box-shadow:0 0 0 3px rgba(231,76,60,0.2); }
+    .styled-input:disabled { background:#f5f5f5; cursor:not-allowed; opacity:0.6; }
+    .styled-input:read-only { background:#fef9e7; border-color:#f39c12; }
+  </style>
+  <form onsubmit="event.preventDefault(); showOutput('output8', 'Form submitted')">
+    <label>Default:</label>
+    <input class="styled-input" placeholder="Normal state">
+
+    <label>Focus State (click to see):</label>
+    <input class="styled-input" value="Click here">
+
+    <label>Success State:</label>
+    <input class="styled-input success" value="Valid input">
+
+    <label>Error State:</label>
+    <input class="styled-input error" value="Invalid input">
+
+    <label>Disabled:</label>
+    <input class="styled-input" value="Cannot edit" disabled>
+
+    <label>Read-only:</label>
+    <input class="styled-input" value="Read only content" readonly>
+
+    <button type="submit">Test</button>
+  </form>
+  <div class="output" id="output8">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>9. Autocomplete and Inputmode</h2>
+  <p>Using <code>autocomplete</code> and <code>inputmode</code> for better UX.</p>
+  <form onsubmit="event.preventDefault(); showOutput('output9', 'Form submitted')">
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" autocomplete="name" class="styled-input" placeholder="e.g. John Doe">
+
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="numeric" class="styled-input" placeholder="+1 (555) 000-0000">
+
+    <label for="zip">ZIP Code:</label>
+    <input type="text" id="zip" name="zip" autocomplete="postal-code" inputmode="numeric" class="styled-input" placeholder="12345" pattern="[0-9]{5}">
+
+    <label for="website">Website:</label>
+    <input type="url" id="website" name="website" autocomplete="url" inputmode="url" class="styled-input" placeholder="https://example.com">
+
+    <button type="submit">Submit</button>
+  </form>
+  <div class="output" id="output9">Output will appear here...</div>
+</div>
+
+<div class="example">
+  <h2>10. All Input Types Demo</h2>
+  <p>A showcase of every major input type.</p>
+  <form onsubmit="event.preventDefault(); alert('Form submitted!')">
+    <table style="width:100%; border-collapse:collapse;">
+      <tr><td style="padding:6px; font-weight:600;">text</td><td style="padding:6px;"><input type="text" class="styled-input" style="margin:0;"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">password</td><td style="padding:6px;"><input type="password" class="styled-input" style="margin:0;" value="secret"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">email</td><td style="padding:6px;"><input type="email" class="styled-input" style="margin:0;" placeholder="a@b.com"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">tel</td><td style="padding:6px;"><input type="tel" class="styled-input" style="margin:0;" placeholder="555-0000"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">url</td><td style="padding:6px;"><input type="url" class="styled-input" style="margin:0;" placeholder="https://"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">number</td><td style="padding:6px;"><input type="number" class="styled-input" style="margin:0;" min="0" max="100"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">range</td><td style="padding:6px;"><input type="range" min="0" max="100" value="50" oninput="this.nextElementSibling.textContent=this.value"><span> 50</span></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">color</td><td style="padding:6px;"><input type="color" value="#3498db"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">date</td><td style="padding:6px;"><input type="date"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">datetime-local</td><td style="padding:6px;"><input type="datetime-local"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">month</td><td style="padding:6px;"><input type="month"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">week</td><td style="padding:6px;"><input type="week"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">time</td><td style="padding:6px;"><input type="time"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">search</td><td style="padding:6px;"><input type="search" class="styled-input" style="margin:0;" placeholder="Search..."></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">file</td><td style="padding:6px;"><input type="file"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">checkbox</td><td style="padding:6px;"><input type="checkbox"> <label>Subscribe</label></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">radio</td><td style="padding:6px;"><input type="radio" name="g" checked> <input type="radio" name="g"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">hidden</td><td style="padding:6px;"><input type="hidden" value="hidden-data"> (invisible)</td></tr>
+      <tr><td style="padding:6px; font-weight:600;">button</td><td style="padding:6px;"><input type="button" value="Click Me" onclick="alert('Clicked!')"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">submit</td><td style="padding:6px;"><input type="submit" value="Send"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">reset</td><td style="padding:6px;"><input type="reset" value="Clear"></td></tr>
+      <tr><td style="padding:6px; font-weight:600;">image</td><td style="padding:6px;"><input type="image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%233498db'%3E%3Cpath d='M1.5 4.5h21v15h-21z'/%3E%3C/svg%3E" alt="Submit" style="width:24px; height:24px;"></td></tr>
+    </table>
+  </form>
+</div>
+
+<script>
+function showOutput(id, msg) {
+  document.getElementById(id).textContent = '> ' + msg;
+}
+
+function togglePassword() {
+  const pwd = document.getElementById('password');
+  const btn = event.target;
+  if (pwd.type === 'password') {
+    pwd.type = 'text';
+    btn.textContent = 'Hide';
+  } else {
+    pwd.type = 'password';
+    btn.textContent = 'Show';
+  }
+}
+
+function handleForm6(form) {
+  const hobbies = [...form.querySelectorAll('input[name="hobby"]:checked')].map(cb => cb.value);
+  const level = form.querySelector('input[name="level"]:checked').value;
+  showOutput('output6', 'Hobbies: ' + (hobbies.length ? hobbies.join(', ') : 'none') + '\nLevel: ' + level);
+}
+
+document.getElementById('avatar').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const img = document.getElementById('preview');
+      img.src = ev.target.result;
+      img.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Counters Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; margin: 0; }
+    section { background: #fff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+    /* Example 1: Section Numbering */
+    .doc-body { counter-reset: chapter; }
+    .doc-body h2::before {
+      counter-increment: chapter;
+      content: "Chapter " counter(chapter) ": ";
+      color: #007bff;
+    }
+    .doc-body h2 { counter-reset: section; }
+    .doc-body h3::before {
+      counter-increment: section;
+      content: counter(chapter) "." counter(section) " ";
+      color: #6c757d;
+    }
+
+    /* Example 2: Custom Ordered List */
+    .custom-list { counter-reset: item; list-style: none; padding: 0; }
+    .custom-list li { counter-increment: item; padding: 8px 0; border-bottom: 1px solid #eee; }
+    .custom-list li::before {
+      content: counter(item, upper-roman) ". ";
+      font-weight: bold;
+      color: #28a745;
+      margin-right: 8px;
+    }
+
+    /* Example 3: Figure Numbering */
+    .content-area { counter-reset: figure; }
+    .content-area figure { counter-increment: figure; text-align: center; margin: 20px 0; }
+    .content-area figcaption::before {
+      content: "Figure " counter(figure) ": ";
+      font-weight: bold;
+    }
+
+    /* Example 4: Nested List Counters */
+    ol.nested { counter-reset: nested; list-style: none; padding-left: 20px; }
+    ol.nested li { counter-increment: nested; }
+    ol.nested li::before {
+      content: counters(nested, ".") " ";
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Counters Examples</h1>
+
+  <section class="doc-body">
+    <h2>Introduction</h2>
+    <p>Content here...</p>
+    <h3>Background</h3>
+    <p>Background details...</p>
+    <h3>Scope</h3>
+    <p>Scope details...</p>
+
+    <h2>Getting Started</h2>
+    <p>Getting started content...</p>
+    <h3>Prerequisites</h3>
+    <p>Prerequisites...</p>
+    <h3>Installation</h3>
+    <p>Installation steps...</p>
+  </section>
+
+  <section>
+    <h2>Custom Ordered List (Roman Numerals)</h2>
+    <ol class="custom-list">
+      <li>First item</li>
+      <li>Second item</li>
+      <li>Third item</li>
+      <li>Fourth item</li>
+    </ol>
+  </section>
+
+  <section class="content-area">
+    <h2>Figure Numbering</h2>
+    <figure>
+      <img src="https://placehold.co/300x150/007bff/fff?text=Figure+1" alt="Figure 1">
+      <figcaption>A sample figure showing the main layout.</figcaption>
+    </figure>
+    <figure>
+      <img src="https://placehold.co/300x150/28a745/fff?text=Figure+2" alt="Figure 2">
+      <figcaption>Another figure demonstrating secondary content.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Nested Counters</h2>
+    <ol class="nested">
+      <li>Item 1
+        <ol class="nested">
+          <li>Item 1.1</li>
+          <li>Item 1.2
+            <ol class="nested">
+              <li>Item 1.2.1</li>
+              <li>Item 1.2.2</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>Item 2
+        <ol class="nested">
+          <li>Item 2.1</li>
+        </ol>
+      </li>
+    </ol>
+  </section>
+</body>
+</html>

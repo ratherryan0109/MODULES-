@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does align-content do in Flexbox?", "answer": "align-content distributes space between and around wrapped flex lines along the cross axis." },
+    { "question": "When does align-content have an effect?", "answer": "align-content only works when flex-wrap is set to wrap or wrap-reverse and there are multiple lines of items." },
+    { "question": "What are the values of align-content?", "answer": "The values are stretch, flex-start, flex-end, center, space-between, space-around, space-evenly." },
+    { "question": "What is the default value of align-content?", "answer": "The default value is stretch." },
+    { "question": "What does align-content: stretch do?", "answer": "stretch distributes wrapped lines evenly to fill the entire cross-axis space of the container." },
+    { "question": "What does align-content: flex-start do?", "answer": "flex-start packs all wrapped lines at the start of the cross axis." },
+    { "question": "What does align-content: center do?", "answer": "center packs wrapped lines in the center of the cross axis." },
+    { "question": "What does align-content: space-between do?", "answer": "space-between distributes wrapped lines evenly, with the first line at the start and the last at the end." },
+    { "question": "What does align-content: space-around do?", "answer": "space-around distributes lines with equal space around each line, but edge spaces are half the interior spaces." },
+    { "question": "What is the difference between align-items and align-content?", "answer": "align-items aligns individual items within a line; align-content distributes multiple lines within the container." }
+  ],
+  "intermediate": [
+    { "question": "Why does align-content not work with flex-wrap: nowrap?", "answer": "With nowrap, there is only one flex line, so there are no wrapped lines to distribute; align-content is ignored." },
+    { "question": "How does align-content differ from justify-content?", "answer": "justify-content distributes items along the main axis; align-content distributes wrapped lines along the cross axis." },
+    { "question": "How do you vertically center wrapped rows using align-content?", "answer": "Use align-content: center on a multi-line flex container with flex-wrap: wrap." },
+    { "question": "How does align-content: space-evenly differ from space-around?", "answer": "space-evenly gives equal spacing at edges and between lines; space-around gives half spacing at the edges." },
+    { "question": "How does align-content work with flex-direction: column and wrap?", "answer": "In column direction, align-content distributes wrapped columns along the horizontal cross axis." },
+    { "question": "What is required for align-content to show visible results?", "answer": "The container must have extra space on the cross axis beyond what the wrapped lines occupy." },
+    { "question": "How does align-content: stretch distribute extra space?", "answer": "stretch evenly expands each flex line to fill the cross-axis space, increasing the cross-axis size of each line." },
+    { "question": "How does align-content interact with the gap property?", "answer": "gap adds fixed spacing between lines in addition to the distribution provided by align-content." },
+    { "question": "How does align-content handle single-line layouts?", "answer": "With a single line (or nowrap), align-content has no effect because there are no multiple lines to distribute." },
+    { "question": "How do align-content and align-items work together?", "answer": "align-content distributes the lines, then align-items positions items within each line's cross-axis space." }
+  ],
+  "advanced": [
+    { "question": "How does align-content: stretch differ from stretch as an align-items value?", "answer": "align-content stretch expands entire flex lines to fill the container; align-items stretch expands individual items to fill a line." },
+    { "question": "How does align-content behave when the container is taller than the total line height?", "answer": "The extra vertical space is distributed according to the align-content value (e.g., center centers all lines)." },
+    { "question": "How does align-content interact with min-height on the flex container?", "answer": "min-height sets a floor for the container; align-content distributes space only if the container is larger than the content." },
+    { "question": "How does the safe modifier affect align-content distribution?", "answer": "safe prevents data loss by falling back to a safer alignment if the items overflow the container." },
+    { "question": "How does align-content work in a flex container with variable line heights?", "answer": "Each line retains its height based on content; align-content distributes the remaining space between and around these variable-height lines." },
+    { "question": "How does align-content differ between Flexbox and CSS Grid?", "answer": "In Flexbox, align-content distributes flex lines; in Grid, it distributes grid tracks along the block axis." },
+    { "question": "How does align-content: space-between behave with uneven line counts?", "answer": "Space is distributed evenly between lines; uneven line sizes still get equal spacing between them." },
+    { "question": "How does align-content affect the scrollable overflow of a flex container?", "answer": "If content overflows, align-content may clip items at the edges; overflow: auto can reveal clipped content." },
+    { "question": "How does align-content work with the place-content shorthand?", "answer": "place-content: center center sets both align-content and justify-content to center." },
+    { "question": "How does the CSS Box Alignment spec define align-content's behavior for replaced elements as lines?", "answer": "Each flex line is treated as a distribution unit; replaced elements within lines do not affect the algorithm." }
+  ]
+}

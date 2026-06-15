@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Attribute Selectors Playground</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 800px; margin: 0 auto; }
+    .controls { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .controls label { display: flex; flex-direction: column; gap: 5px; }
+
+    .demo-area {
+      background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Dynamic selectors applied via style injection */
+    .selector-panel { margin-bottom: 20px; }
+    .selector-panel select, .selector-panel input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+
+    .results { display: flex; gap: 12px; flex-wrap: wrap; }
+    .results div {
+      padding: 16px; border-radius: 6px; background: #f8f9fa;
+      border: 2px solid transparent; transition: all 0.3s;
+    }
+
+    #highlightStyle {}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Attribute Selectors Playground</h1>
+    <div class="controls">
+      <label>
+        Selector:
+        <select id="selectorSelect">
+          <option value="">None</option>
+          <option value="[data-type]">[data-type]</option>
+          <option value="[data-type='primary']">[data-type="primary"]</option>
+          <option value="[data-type^='sec']">[data-type^="sec"]</option>
+          <option value="[data-type$='y']">[data-type$="y"]</option>
+          <option value="[data-type*='ia']">[data-type*="ia"]</option>
+          <option value="[data-priority='high']">[data-priority="high"]</option>
+        </select>
+      </label>
+    </div>
+    <div class="demo-area">
+      <div class="results" id="results">
+        <div data-type="primary" data-priority="high">Primary - High</div>
+        <div data-type="secondary" data-priority="medium">Secondary - Medium</div>
+        <div data-type="tertiary" data-priority="low">Tertiary - Low</div>
+        <div data-type="primary" data-priority="low">Primary - Low</div>
+        <div data-type="secondary" data-priority="high">Secondary - High</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const select = document.getElementById('selectorSelect');
+    const results = document.getElementById('results');
+    let styleEl = document.getElementById('highlightStyle');
+    if (!styleEl) {
+      styleEl = document.createElement('style');
+      styleEl.id = 'highlightStyle';
+      document.head.appendChild(styleEl);
+    }
+
+    select.addEventListener('change', () => {
+      const sel = select.value;
+      if (!sel) {
+        styleEl.textContent = '';
+        return;
+      }
+      // Highlight matching elements
+      styleEl.textContent = `
+        .results div { border-color: transparent; background: #f8f9fa; }
+        .results div${sel} { border-color: #007bff; background: #cce5ff; }
+      `;
+    });
+  </script>
+</body>
+</html>

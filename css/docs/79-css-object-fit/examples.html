@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Object-Fit - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .note { background: #f0fdfa; border-left: 4px solid #06b6d4; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.875rem; color: #475569; }
+    .flex-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:8px; }
+    .flex-row > div { flex:1; min-width:160px; text-align:center; }
+    .img-frame { width:100%; height:140px; background:#e2e8f0; border-radius:6px; overflow:hidden; margin-bottom:4px; }
+    .img-frame img { width:100%; height:100%; }
+  </style>
+</head>
+<body>
+  <h1>CSS Object-Fit &amp; Object-Position</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: object-fit Values Comparison</h2>
+    <p>All images are 160x140 containers receiving a 300x200 source image. Each value handles it differently.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="img-frame"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%2306b6d4'/%3E%3Ctext x='70' y='115' fill='white' font-size='24' font-family='sans-serif'%3E300x200%3C/text%3E%3C/svg%3E" alt="" style="object-fit:fill"></div><code style="font-size:0.7rem">fill (stretched)</code></div>
+        <div><div class="img-frame"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%2306b6d4'/%3E%3Ctext x='70' y='115' fill='white' font-size='24' font-family='sans-serif'%3E300x200%3C/text%3E%3C/svg%3E" alt="" style="object-fit:contain"></div><code style="font-size:0.7rem">contain (fits)</code></div>
+        <div><div class="img-frame"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%2306b6d4'/%3E%3Ctext x='70' y='115' fill='white' font-size='24' font-family='sans-serif'%3E300x200%3C/text%3E%3C/svg%3E" alt="" style="object-fit:cover"></div><code style="font-size:0.7rem">cover (cropped)</code></div>
+        <div><div class="img-frame"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%2306b6d4'/%3E%3Ctext x='70' y='115' fill='white' font-size='24' font-family='sans-serif'%3E300x200%3C/text%3E%3C/svg%3E" alt="" style="object-fit:none"></div><code style="font-size:0.7rem">none (original)</code></div>
+        <div><div class="img-frame"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%2306b6d4'/%3E%3Ctext x='70' y='115' fill='white' font-size='24' font-family='sans-serif'%3E300x200%3C/text%3E%3C/svg%3E" alt="" style="object-fit:scale-down"></div><code style="font-size:0.7rem">scale-down</code></div>
+      </div>
+    </div>
+    <pre><code>.fill       { object-fit: fill; }       /* Stretches, may distort */
+.contain    { object-fit: contain; }    /* Fits entire image, may show bars */
+.cover      { object-fit: cover; }      /* Covers area, may crop */
+.none       { object-fit: none; }       /* Original size, may overflow */
+.scale-down { object-fit: scale-down; } /* Smaller of none vs contain */</code></pre>
+    <div class="note">cover is the most commonly used value — it fills the container while preserving aspect ratio, cropping the excess.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: object-position</h2>
+    <p>Controls which part of the image stays visible when using object-fit: cover. All images use a wide 400x200 source.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="img-frame" style="height:120px"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%2306b6d4'/%3E%3Ccircle cx='320' cy='100' r='50' fill='%23fff' opacity='0.9'/%3E%3Ctext x='35' y='115' fill='white' font-size='20' font-family='sans-serif'%3EPosition demo%3C/text%3E%3C/svg%3E" alt="" style="object-fit:cover;object-position:center"></div><code style="font-size:0.7rem">center (default)</code></div>
+        <div><div class="img-frame" style="height:120px"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%2306b6d4'/%3E%3Ccircle cx='320' cy='100' r='50' fill='%23fff' opacity='0.9'/%3E%3Ctext x='35' y='115' fill='white' font-size='20' font-family='sans-serif'%3EPosition demo%3C/text%3E%3C/svg%3E" alt="" style="object-fit:cover;object-position:top"></div><code style="font-size:0.7rem">top</code></div>
+        <div><div class="img-frame" style="height:120px"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%2306b6d4'/%3E%3Ccircle cx='320' cy='100' r='50' fill='%23fff' opacity='0.9'/%3E%3Ctext x='35' y='115' fill='white' font-size='20' font-family='sans-serif'%3EPosition demo%3C/text%3E%3C/svg%3E" alt="" style="object-fit:cover;object-position:right"></div><code style="font-size:0.7rem">right</code></div>
+        <div><div class="img-frame" style="height:120px"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%2306b6d4'/%3E%3Ccircle cx='320' cy='100' r='50' fill='%23fff' opacity='0.9'/%3E%3Ctext x='35' y='115' fill='white' font-size='20' font-family='sans-serif'%3EPosition demo%3C/text%3E%3C/svg%3E" alt="" style="object-fit:cover;object-position:20% 80%"></div><code style="font-size:0.7rem">20% 80%</code></div>
+      </div>
+    </div>
+    <pre><code>.center  { object-fit: cover; object-position: center; }  /* Default — keeps middle visible */
+.top     { object-fit: cover; object-position: top; }     /* Keeps top visible */
+.right   { object-fit: cover; object-position: right; }   /* Keeps right side visible */
+.custom  { object-fit: cover; object-position: 20% 80%; } /* Custom x y position */</code></pre>
+    <div class="note">object-position is essential for portrait photos placed in landscape containers — choose which part stays visible.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: fill vs cover — Side by Side</h2>
+    <p>A square image in a rectangular container. fill distorts, cover crops to fill.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div>
+          <div class="img-frame" style="height:200px;background:#f1f5f9"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23ec4899'/%3E%3Ccircle cx='100' cy='100' r='70' fill='white' opacity='0.5'/%3E%3Ctext x='45' y='110' fill='white' font-size='22' font-family='sans-serif'%3ESquare%3C/text%3E%3C/svg%3E" alt="" style="object-fit:fill"></div>
+          <p style="font-size:0.8rem;font-weight:600">fill</p>
+          <code style="font-size:0.7rem">Distorted — stretched to fit</code>
+        </div>
+        <div>
+          <div class="img-frame" style="height:200px;background:#f1f5f9"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%2306b6d4'/%3E%3Ccircle cx='100' cy='100' r='70' fill='white' opacity='0.5'/%3E%3Ctext x='45' y='110' fill='white' font-size='22' font-family='sans-serif'%3ESquare%3C/text%3E%3C/svg%3E" alt="" style="object-fit:cover"></div>
+          <p style="font-size:0.8rem;font-weight:600">cover</p>
+          <code style="font-size:0.7rem">Cropped but aspect preserved</code>
+        </div>
+        <div>
+          <div class="img-frame" style="height:200px;background:#f1f5f9"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%236366f1'/%3E%3Ccircle cx='100' cy='100' r='70' fill='white' opacity='0.5'/%3E%3Ctext x='45' y='110' fill='white' font-size='22' font-family='sans-serif'%3ESquare%3C/text%3E%3C/svg%3E" alt="" style="object-fit:contain"></div>
+          <p style="font-size:0.8rem;font-weight:600">contain</p>
+          <code style="font-size:0.7rem">Fits with bars at sides</code>
+        </div>
+      </div>
+    </div>
+    <pre><code>.fill    { object-fit: fill; }    /* Warning: distorts aspect ratio */
+.cover   { object-fit: cover; }   /* Safe: preserves ratio, may crop */
+.contain { object-fit: contain; } /* Safe: shows entire image with bars */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Aspect-Ratio + object-fit</h2>
+    <p>Combine aspect-ratio with object-fit: cover for predictable image crops across different aspect ratios.</p>
+    <div class="demo-output">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+        <div style="text-align:center"><div style="aspect-ratio:1;border-radius:8px;overflow:hidden;background:#e2e8f0"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%2306b6d4'/%3E%3Ctext x='50' y='115' fill='white' font-size='20' font-family='sans-serif'%3E1:1%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div><code style="font-size:0.7rem">1:1 square</code></div>
+        <div style="text-align:center"><div style="aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:#e2e8f0"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%236366f1'/%3E%3Ctext x='50' y='115' fill='white' font-size='20' font-family='sans-serif'%3E4:3%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div><code style="font-size:0.7rem">4:3 landscape</code></div>
+        <div style="text-align:center"><div style="aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#e2e8f0"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23ec4899'/%3E%3Ctext x='50' y='115' fill='white' font-size='20' font-family='sans-serif'%3E16:9%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div><code style="font-size:0.7rem">16:9 widescreen</code></div>
+        <div style="text-align:center"><div style="aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:#e2e8f0"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23f59e0b'/%3E%3Ctext x='50' y='115' fill='white' font-size='20' font-family='sans-serif'%3E3:4%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div><code style="font-size:0.7rem">3:4 portrait</code></div>
+      </div>
+    </div>
+    <pre><code>.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops to fill the aspect-ratio box */
+}
+.container { aspect-ratio: 16/9; } /* Set desired ratio on parent */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Video with object-fit: cover</h2>
+    <p>object-fit works on video elements too, useful for video backgrounds that must fill the space.</p>
+    <div class="demo-output">
+      <div style="aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#0f172a;display:flex;align-items:center;justify-content:center;color:white;position:relative">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#06b6d4,#6366f1);object-fit:cover;display:flex;align-items:center;justify-content:center;font-size:3rem">▶</div>
+        <div style="position:relative;z-index:1;text-align:center">
+          <p style="font-weight:700">Video Background</p>
+          <p style="font-size:0.8rem;opacity:0.8">object-fit: cover on &lt;video&gt;</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Fills the container without distortion */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Gallery Grid with object-fit</h2>
+    <p>Uniform thumbnail grid where all images are square-cropped with cover.</p>
+    <div class="demo-output">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px">
+        <div style="aspect-ratio:1;border-radius:6px;overflow:hidden"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300'%3E%3Crect width='200' height='300' fill='%2306b6d4'/%3E%3Ctext x='50' y='160' fill='white' font-size='16' font-family='sans-serif'%3E1%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="aspect-ratio:1;border-radius:6px;overflow:hidden"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%236366f1'/%3E%3Ctext x='120' y='115' fill='white' font-size='16' font-family='sans-serif'%3E2%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="aspect-ratio:1;border-radius:6px;overflow:hidden"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Crect width='250' height='250' fill='%23ec4899'/%3E%3Ctext x='90' y='140' fill='white' font-size='16' font-family='sans-serif'%3E3%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="aspect-ratio:1;border-radius:6px;overflow:hidden"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='350'%3E%3Crect width='180' height='350' fill='%23f59e0b'/%3E%3Ctext x='50' y='185' fill='white' font-size='16' font-family='sans-serif'%3E4%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="aspect-ratio:1;border-radius:6px;overflow:hidden"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='150'%3E%3Crect width='400' height='150' fill='%2310b981'/%3E%3Ctext x='160' y='90' fill='white' font-size='16' font-family='sans-serif'%3E5%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+      </div>
+    </div>
+    <pre><code>.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+}
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Forces all images into uniform squares */
+    aspect-ratio: 1;
+}</code></pre>
+    <div class="note">object-fit: cover is the standard for image galleries — it handles mixed portrait/landscape images perfectly.</div>
+  </div>
+</body>
+</html>

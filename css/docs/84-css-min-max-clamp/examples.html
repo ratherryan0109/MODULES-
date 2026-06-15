@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS min(), max(), clamp() — Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; padding: 2rem; color: #333; }
+    h1 { margin-bottom: 0.5rem; }
+    .subtitle { color: #666; margin-bottom: 2rem; }
+
+    .section { margin-bottom: 2rem; }
+    .section h2 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #3498db; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #3498db; }
+    .card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+    .card code { font-size: 0.75rem; background: #f0f0f0; padding: 0.2rem 0.4rem; border-radius: 4px; display: block; margin-top: 0.5rem; }
+
+    .demo-box { background: linear-gradient(135deg, #3498db, #2ecc71); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: bold; text-align: center; padding: 1rem; margin-bottom: 0.5rem; min-height: 60px; }
+    .db-min { width: min(100%, 250px); }
+    .db-max { width: max(200px, 50%); }
+    .db-clamp { width: clamp(150px, 60%, 400px); }
+    .db-container { width: min(90%, 1200px); margin: 0 auto 1rem; background: #e74c3c; color: white; padding: 1rem; border-radius: 8px; text-align: center; }
+
+    .fluid-type p { margin-bottom: 0.5rem; }
+    .ft-h1 { font-size: clamp(1.5rem, 5vw, 3rem); }
+    .ft-h2 { font-size: clamp(1.2rem, 4vw, 2.4rem); }
+    .ft-h3 { font-size: clamp(1rem, 3vw, 1.8rem); }
+    .ft-body { font-size: clamp(0.875rem, 1.5vw, 1.125rem); }
+    .ft-small { font-size: clamp(0.75rem, 1vw, 0.875rem); }
+
+    .clamp-spacing { padding: clamp(0.5rem, 3vw, 2rem); background: #9b59b6; color: white; border-radius: 12px; text-align: center; margin-bottom: 1rem; }
+    .clamp-spacing p { font-size: clamp(0.875rem, 2vw, 1.25rem); }
+
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .comp-card { border-radius: 8px; padding: 1rem; text-align: center; color: white; }
+    .comp-card h3 { font-size: 0.9rem; margin-bottom: 0.3rem; color: white; }
+    .comp-min { background: #3498db; }
+    .comp-max { background: #e74c3c; }
+    .comp-clamp { background: #2ecc71; }
+
+    .compound { margin-top: 1rem; }
+    .compound-box { width: clamp(200px, 50%, 500px); padding: clamp(0.5rem, 2vw, 2rem); background: linear-gradient(135deg, #e74c3c, #f39c12); color: white; border-radius: 12px; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>CSS min(), max(), and clamp()</h1>
+  <p class="subtitle">Responsive, constraint-based CSS without media queries</p>
+
+  <div class="section">
+    <h2>Basic Comparison Functions</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>min() — Selects Smallest</h3>
+        <div class="demo-box db-min">min(100%, 250px)</div>
+        <p>Fills container but never exceeds 250px.</p>
+        <code>width: min(100%, 250px);</code>
+      </div>
+      <div class="card">
+        <h3>max() — Selects Largest</h3>
+        <div class="demo-box db-max">max(200px, 50%)</div>
+        <p>At least 200px wide, grows with container.</p>
+        <code>width: max(200px, 50%);</code>
+      </div>
+      <div class="card">
+        <h3>clamp() — Range Constraint</h3>
+        <div class="demo-box db-clamp">clamp(150px, 60%, 400px)</div>
+        <p>Stays between 150px and 400px, prefers 60%.</p>
+        <code>width: clamp(150px, 60%, 400px);</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Fluid Typography with clamp()</h2>
+    <p style="margin-bottom:1rem;color:#666">Resize the browser to see the typography scale smoothly.</p>
+    <div class="fluid-type card">
+      <p class="ft-h1">Heading 1 — clamp(1.5rem, 5vw, 3rem)</p>
+      <p class="ft-h2">Heading 2 — clamp(1.2rem, 4vw, 2.4rem)</p>
+      <p class="ft-h3">Heading 3 — clamp(1rem, 3vw, 1.8rem)</p>
+      <p class="ft-body">Body text — clamp(0.875rem, 1.5vw, 1.125rem)</p>
+      <p class="ft-small">Small text — clamp(0.75rem, 1vw, 0.875rem)</p>
+    </div>
+    <code style="display:block;margin-top:0.5rem">font-size: clamp(minSize, preferredSize, maxSize);</code>
+  </div>
+
+  <div class="section">
+    <h2>Responsive Container</h2>
+    <div class="db-container">width: min(90%, 1200px); — Responsive container</div>
+    <code>.container { width: min(90%, 1200px); margin: 0 auto; }</code>
+  </div>
+
+  <div class="section">
+    <h2>Dynamic Spacing</h2>
+    <div class="clamp-spacing">
+      <p>This box uses clamp() for padding and font-size. All values scale fluidly with the viewport.</p>
+    </div>
+    <code>.box { padding: clamp(0.5rem, 3vw, 2rem); }</code>
+  </div>
+
+  <div class="section">
+    <h2>Comparison: min vs max vs clamp</h2>
+    <div class="comparison-grid">
+      <div class="comp-card comp-min">
+        <h3>min()</h3>
+        <p style="font-size:0.75rem">Never exceeds bound</p>
+        <p style="font-size:0.7rem;margin-top:0.5rem">Great for max-width</p>
+      </div>
+      <div class="comp-card comp-max">
+        <h3>max()</h3>
+        <p style="font-size:0.75rem">Never goes below bound</p>
+        <p style="font-size:0.7rem;margin-top:0.5rem">Great for min-width</p>
+      </div>
+      <div class="comp-card comp-clamp">
+        <h3>clamp()</h3>
+        <p style="font-size:0.75rem">Stays within range</p>
+        <p style="font-size:0.7rem;margin-top:0.5rem">Fluid typography</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Compound Example: Card with clamp()</h2>
+    <div class="compound">
+      <div class="compound-box">
+        <p style="font-weight:bold">Responsive Card</p>
+        <p style="font-size:clamp(0.75rem,1.5vw,1rem);margin-top:0.5rem">Width, padding, and font all use clamp() for a fully fluid component.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

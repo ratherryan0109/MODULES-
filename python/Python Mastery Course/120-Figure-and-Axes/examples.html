@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure and Axes - Examples</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #1e293b; padding: 20px; }
+    .examples-container { max-width: 1000px; margin: 0 auto; }
+    h1 { color: #306998; margin-bottom: 8px; font-size: 1.8em; }
+    .subtitle { color: #475569; margin-bottom: 24px; font-size: 1em; }
+    .example-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    .example-card h3 { color: #306998; margin-bottom: 12px; font-size: 1.2em; display: flex; align-items: center; gap: 10px; }
+    .example-card .badge { background: #FFD43B; color: #1e293b; padding: 2px 10px; border-radius: 12px; font-size: 0.7em; font-weight: 600; }
+    .example-card p { color: #475569; margin-bottom: 16px; line-height: 1.6; }
+    .code-block { background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; }
+    .code-block pre { margin: 0; padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+    .code-block .copy-btn { float: right; background: #306998; color: white; border: none; padding: 4px 12px; font-size: 12px; border-radius: 4px; cursor: pointer; margin: 8px; }
+    .code-block .copy-btn:hover { background: #1e415e; }
+    .output-block { background: #1e293b; color: #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 12px; font-family: monospace; font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
+    .output-block .prompt { color: #FFD43B; }
+    @media (max-width: 768px) { body { padding: 10px; } .example-card { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="examples-container">
+    <h1>Figure and Axes — Examples</h1>
+    <p class="subtitle">Practical Python examples demonstrating figure and axes. Click <strong>Copy</strong> to copy each snippet.</p>
+
+    <div class="example-card">
+      <h3>Example 1: Figure object (fig = plt.figure()) <span class="badge">Basic</span></h3>
+      <p>Core foundation for understanding this topic. This example demonstrates how to work with figure object (fig = plt.figure()) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 1: Figure object (fig = plt.figure())
+# Core foundation for understanding this topic
+
+def demonstrate_figure_object_fig_plt_figure():
+    &quot;&quot;&quot;Demonstrate Figure object (fig = plt.figure()) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply figure object (fig = plt.figure()) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to figure object (fig = plt.figure()) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_figure_object_fig_plt_figure()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 2: Axes object (ax = fig.add_subplot()) <span class="badge">Advanced</span></h3>
+      <p>Builds upon previous concepts. This example demonstrates how to work with axes object (ax = fig.add_subplot()) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 2: Axes object (ax = fig.add_subplot())
+# Builds upon previous concepts
+
+def demonstrate_axes_object_ax_fig_add_subplot():
+    &quot;&quot;&quot;Demonstrate Axes object (ax = fig.add_subplot()) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply axes object (ax = fig.add_subplot()) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to axes object (ax = fig.add_subplot()) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_axes_object_ax_fig_add_subplot()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 3: Adding axes (fig.add_axes([l,b,w,h])) <span class="badge">Basic</span></h3>
+      <p>Enables practical implementation. This example demonstrates how to work with adding axes (fig.add_axes([l,b,w,h])) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 3: Adding axes (fig.add_axes([l,b,w,h]))
+# Enables practical implementation
+
+def demonstrate_adding_axes_fig_add_axes_l_b_w_h():
+    &quot;&quot;&quot;Demonstrate Adding axes (fig.add_axes([l,b,w,h])) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply adding axes (fig.add_axes([l,b,w,h])) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to adding axes (fig.add_axes([l,b,w,h])) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_adding_axes_fig_add_axes_l_b_w_h()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 4: Figure size and DPI <span class="badge">Advanced</span></h3>
+      <p>Used in real-world applications. This example demonstrates how to work with figure size and dpi in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 4: Figure size and DPI
+# Used in real-world applications
+
+def demonstrate_figure_size_and_dpi():
+    &quot;&quot;&quot;Demonstrate Figure size and DPI with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply figure size and dpi pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to figure size and dpi rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_figure_size_and_dpi()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 5: Figure layout (constrained, tight) <span class="badge">Basic</span></h3>
+      <p>Advanced patterns and techniques. This example demonstrates how to work with figure layout (constrained, tight) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 5: Figure layout (constrained, tight)
+# Advanced patterns and techniques
+
+def demonstrate_figure_layout_constrained_tight():
+    &quot;&quot;&quot;Demonstrate Figure layout (constrained, tight) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply figure layout (constrained, tight) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to figure layout (constrained, tight) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_figure_layout_constrained_tight()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 6: Multiple axes in one figure <span class="badge">Advanced</span></h3>
+      <p>Optimization and best practices. This example demonstrates how to work with multiple axes in one figure in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 6: Multiple axes in one figure
+# Optimization and best practices
+
+def demonstrate_multiple_axes_in_one_figure():
+    &quot;&quot;&quot;Demonstrate Multiple axes in one figure with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply multiple axes in one figure pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to multiple axes in one figure rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_multiple_axes_in_one_figure()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 7: Shared axes (sharex, sharey) <span class="badge">Basic</span></h3>
+      <p>Edge cases and error handling. This example demonstrates how to work with shared axes (sharex, sharey) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 7: Shared axes (sharex, sharey)
+# Edge cases and error handling
+
+def demonstrate_shared_axes_sharex_sharey():
+    &quot;&quot;&quot;Demonstrate Shared axes (sharex, sharey) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply shared axes (sharex, sharey) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to shared axes (sharex, sharey) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_shared_axes_sharex_sharey()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 8: Removing axes spines <span class="badge">Advanced</span></h3>
+      <p>Integration with other Python features. This example demonstrates how to work with removing axes spines in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 8: Removing axes spines
+# Integration with other Python features
+
+def demonstrate_removing_axes_spines():
+    &quot;&quot;&quot;Demonstrate Removing axes spines with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply removing axes spines pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to removing axes spines rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_removing_axes_spines()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script>
+    function copyCode(btn) {
+      const code = btn.parentElement.querySelector("code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

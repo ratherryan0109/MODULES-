@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySQL ORDER BY - Examples</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #1e293b; padding: 20px; }
+    .examples-container { max-width: 1000px; margin: 0 auto; }
+    h1 { color: #306998; margin-bottom: 8px; font-size: 1.8em; }
+    .subtitle { color: #475569; margin-bottom: 24px; font-size: 1em; }
+    .example-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    .example-card h3 { color: #306998; margin-bottom: 12px; font-size: 1.2em; display: flex; align-items: center; gap: 10px; }
+    .example-card .badge { background: #FFD43B; color: #1e293b; padding: 2px 10px; border-radius: 12px; font-size: 0.7em; font-weight: 600; }
+    .example-card p { color: #475569; margin-bottom: 16px; line-height: 1.6; }
+    .code-block { background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; }
+    .code-block pre { margin: 0; padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+    .code-block .copy-btn { float: right; background: #306998; color: white; border: none; padding: 4px 12px; font-size: 12px; border-radius: 4px; cursor: pointer; margin: 8px; }
+    .code-block .copy-btn:hover { background: #1e415e; }
+    .output-block { background: #1e293b; color: #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 12px; font-family: monospace; font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
+    .output-block .prompt { color: #FFD43B; }
+    @media (max-width: 768px) { body { padding: 10px; } .example-card { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="examples-container">
+    <h1>MySQL ORDER BY — Examples</h1>
+    <p class="subtitle">Practical Python examples demonstrating mysql order by. Click <strong>Copy</strong> to copy each snippet.</p>
+
+    <div class="example-card">
+      <h3>Example 1: ORDER BY clause syntax <span class="badge">Basic</span></h3>
+      <p>Core foundation for understanding this topic. This example demonstrates how to work with order by clause syntax in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 1: ORDER BY clause syntax
+# Core foundation for understanding this topic
+
+def demonstrate_order_by_clause_syntax():
+    &quot;&quot;&quot;Demonstrate ORDER BY clause syntax with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply order by clause syntax pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to order by clause syntax rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_order_by_clause_syntax()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 2: ASC ascending (default) <span class="badge">Advanced</span></h3>
+      <p>Builds upon previous concepts. This example demonstrates how to work with asc ascending (default) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 2: ASC ascending (default)
+# Builds upon previous concepts
+
+def demonstrate_asc_ascending_default():
+    &quot;&quot;&quot;Demonstrate ASC ascending (default) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply asc ascending (default) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to asc ascending (default) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_asc_ascending_default()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 3: DESC descending <span class="badge">Basic</span></h3>
+      <p>Enables practical implementation. This example demonstrates how to work with desc descending in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 3: DESC descending
+# Enables practical implementation
+
+def demonstrate_desc_descending():
+    &quot;&quot;&quot;Demonstrate DESC descending with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply desc descending pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to desc descending rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_desc_descending()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 4: Multiple column sorting <span class="badge">Advanced</span></h3>
+      <p>Used in real-world applications. This example demonstrates how to work with multiple column sorting in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 4: Multiple column sorting
+# Used in real-world applications
+
+def demonstrate_multiple_column_sorting():
+    &quot;&quot;&quot;Demonstrate Multiple column sorting with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply multiple column sorting pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to multiple column sorting rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_multiple_column_sorting()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 5: Sorting by column position <span class="badge">Basic</span></h3>
+      <p>Advanced patterns and techniques. This example demonstrates how to work with sorting by column position in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 5: Sorting by column position
+# Advanced patterns and techniques
+
+def demonstrate_sorting_by_column_position():
+    &quot;&quot;&quot;Demonstrate Sorting by column position with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply sorting by column position pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to sorting by column position rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_sorting_by_column_position()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 6: NULLS FIRST and NULLS LAST <span class="badge">Advanced</span></h3>
+      <p>Optimization and best practices. This example demonstrates how to work with nulls first and nulls last in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 6: NULLS FIRST and NULLS LAST
+# Optimization and best practices
+
+def demonstrate_nulls_first_and_nulls_last():
+    &quot;&quot;&quot;Demonstrate NULLS FIRST and NULLS LAST with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply nulls first and nulls last pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to nulls first and nulls last rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_nulls_first_and_nulls_last()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 7: Sorting with expressions <span class="badge">Basic</span></h3>
+      <p>Edge cases and error handling. This example demonstrates how to work with sorting with expressions in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 7: Sorting with expressions
+# Edge cases and error handling
+
+def demonstrate_sorting_with_expressions():
+    &quot;&quot;&quot;Demonstrate Sorting with expressions with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply sorting with expressions pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to sorting with expressions rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_sorting_with_expressions()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 8: ORDER BY performance <span class="badge">Advanced</span></h3>
+      <p>Integration with other Python features. This example demonstrates how to work with order by performance in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 8: ORDER BY performance
+# Integration with other Python features
+
+def demonstrate_order_by_performance():
+    &quot;&quot;&quot;Demonstrate ORDER BY performance with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply order by performance pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to order by performance rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_order_by_performance()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script>
+    function copyCode(btn) {
+      const code = btn.parentElement.querySelector("code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

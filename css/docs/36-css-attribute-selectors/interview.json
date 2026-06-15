@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What are CSS attribute selectors?", "answer": "CSS attribute selectors match elements based on the presence or value of their HTML attributes." },
+    { "question": "What does [attr] select?", "answer": "[attr] selects all elements that have the specified attribute, regardless of its value." },
+    { "question": "What does [attr=value] select?", "answer": "[attr=value] selects elements where the attribute exactly equals the specified value." },
+    { "question": "What does [attr^=value] select?", "answer": "[attr^=value] selects elements where the attribute value starts with the specified string." },
+    { "question": "What does [attr$=value] select?", "answer": "[attr$=value] selects elements where the attribute value ends with the specified string." },
+    { "question": "What does [attr*=value] select?", "answer": "[attr*=value] selects elements where the attribute value contains the specified string anywhere." },
+    { "question": "What does [attr~=value] select?", "answer": "[attr~=value] selects elements where the attribute value contains the specified word in a space-separated list." },
+    { "question": "What does [attr|=value] select?", "answer": "[attr|=value] selects elements where the attribute value is exactly the value or starts with the value followed by a hyphen." },
+    { "question": "How do you select all elements with a specific class using attribute selectors?", "answer": "Use [class=classname], though .classname is more common." },
+    { "question": "Can attribute selectors be case-insensitive?", "answer": "Yes, add i before the closing bracket: [attr=value i] makes the match case-insensitive." }
+  ],
+  "intermediate": [
+    { "question": "How do you select all links that open in a new tab?", "answer": "Use a[target=_blank] to select anchor elements with target='_blank'." },
+    { "question": "How do you style all external links using attribute selectors?", "answer": "Use a[href^=http] or a[href^=https] to select links pointing to external URLs." },
+    { "question": "How do you select all images with specific file extensions?", "answer": "Use img[src$=.jpg], img[src$=.png], etc., to match image elements by file extension." },
+    { "question": "How do you select elements with an attribute that starts with a specific value?", "answer": "Use [attr^=value], e.g., [class^=icon-] selects classes starting with 'icon-'." },
+    { "question": "How do you select elements with an attribute that contains a specific word?", "answer": "Use [attr~=word] for space-separated words or [attr*=word] for any substring." },
+    { "question": "How do you select elements with an attribute ending with a specific string?", "answer": "Use [attr$=value], e.g., [href$=.pdf] selects links to PDF files." },
+    { "question": "What is the specificity of an attribute selector compared to a class?", "answer": "Attribute selectors have the same specificity as class selectors: (0,1,0)." },
+    { "question": "How do you combine multiple attribute selectors?", "answer": "Chain them: input[type=text][required] selects required text inputs." },
+    { "question": "How do you select elements by data attributes?", "answer": "Use [data-*] selectors, e.g., [data-role=button] selects elements with data-role='button'." },
+    { "question": "How do you select inputs by type?", "answer": "Use input[type=text], input[type=email], input[type=submit], etc." }
+  ],
+  "advanced": [
+    { "question": "How do attribute selectors interact with the :not() pseudo-class?", "answer": "Use :not([attr]) to select elements that do not have a specific attribute." },
+    { "question": "How do you use attribute selectors for form validation styling?", "answer": "Use input[required] to style required fields or input[type=email]:invalid for validation state." },
+    { "question": "What is the performance difference between attribute selectors and class selectors?", "answer": "Class selectors are faster because browsers use lookup tables, while attribute selectors require value matching." },
+    { "question": "How do attribute selectors work with custom elements and web components?", "answer": "Attribute selectors work on custom elements just as on standard HTML elements, enabling component-specific styling." },
+    { "question": "How do you use the case-insensitive modifier i in attribute selectors?", "answer": "[attr=value i] matches regardless of case, useful for type attributes or user-entered data attributes." },
+    { "question": "How do you select elements where an attribute is not present or is empty?", "answer": "Use :not([attr]) or [attr=''] to match elements without the attribute or with an empty attribute." },
+    { "question": "How do attribute selectors enable progressive enhancement patterns?", "answer": "Target supporting browsers with [attr] selectors while providing fallbacks, enabling CSS feature detection without JavaScript." },
+    { "question": "How do attribute selectors work with ARIA attributes for accessibility?", "answer": "Use [aria-current=page], [aria-expanded=true], [aria-hidden=true] to style elements based on their ARIA states." },
+    { "question": "What happens when attribute selectors are used with dynamic attribute changes in JavaScript?", "answer": "Styles from attribute selectors are applied immediately when attributes are modified via JavaScript, as the browser recalculates selectors." },
+    { "question": "How do you use attribute selectors to style based on the lang attribute?", "answer": "Use [lang=en] or [lang|=en] to target elements with specific language settings, useful for typography adjustments per language." }
+  ]
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debugging Techniques - Playground</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #1e293b; color: #e2e8f0; height: 100vh; display: flex; flex-direction: column; }
+    .header { background: #0f172a; padding: 12px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #334155; }
+    .header h1 { font-size: 1.1em; color: #FFD43B; flex: 1; }
+    .header .status { font-size: 0.8em; color: #94a3b8; }
+    .header .status.loaded { color: #4ade80; }
+    .header button { background: #306998; color: white; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 0.85em; font-weight: 600; }
+    .header button:hover { background: #1e415e; }
+    .header button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .snippets { background: #0f172a; padding: 8px 20px; display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid #334155; }
+    .snippets button { background: #334155; color: #cbd5e1; border: 1px solid #475569; padding: 4px 14px; border-radius: 16px; cursor: pointer; font-size: 0.8em; }
+    .snippets button.active { background: #306998; color: white; border-color: #306998; }
+    .snippets button:hover { background: #475569; }
+    .main { display: flex; flex: 1; overflow: hidden; }
+    .editor-pane { flex: 1; display: flex; flex-direction: column; border-right: 1px solid #334155; }
+    .editor-pane textarea { flex: 1; background: #0f172a; color: #e2e8f0; border: none; padding: 16px; font-family: "JetBrains Mono", "Fira Code", monospace; font-size: 13px; line-height: 1.6; resize: none; outline: none; tab-size: 4; white-space: pre; overflow-wrap: normal; overflow-x: auto; }
+    .output-pane { flex: 1; display: flex; flex-direction: column; }
+    .output-pane .label { background: #0f172a; padding: 8px 16px; font-size: 0.8em; color: #94a3b8; border-bottom: 1px solid #334155; }
+    .output-pane .content { flex: 1; padding: 16px; font-family: "JetBrains Mono", "Fira Code", monospace; font-size: 13px; line-height: 1.6; overflow-y: auto; white-space: pre-wrap; }
+    .output-pane .content .error { color: #f87171; }
+    .output-pane .content .success { color: #4ade80; }
+    .loading-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 100; justify-content: center; align-items: center; flex-direction: column; gap: 16px; }
+    .loading-overlay.show { display: flex; }
+    .loading-overlay .spinner { width: 48px; height: 48px; border: 4px solid #334155; border-top-color: #FFD43B; border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 768px) { .main { flex-direction: column; } .editor-pane { border-right: none; border-bottom: 1px solid #334155; height: 50%; } }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div>Loading Python (Pyodide)...</div>
+  </div>
+  <div class="header">
+    <h1>🐍 Debugging Techniques — Python Playground</h1>
+    <span class="status" id="pyStatus">Pyodide: not loaded</span>
+    <button id="runBtn" onclick="runCode()" disabled>▶ Run</button>
+    <button onclick="resetCode()">↺ Reset</button>
+  </div>
+  <div class="snippets" id="snippetTabs">
+    <button class="active" onclick="loadSnippet(0)">print() debugging basics</button>
+    <button class="" onclick="loadSnippet(1)">pdb (Python Debugger) commands</button>
+    <button class="" onclick="loadSnippet(2)">pdb.set_trace() breakpoints</button>
+    <button class="" onclick="loadSnippet(3)">VS Code debugger usage</button>
+    <button class="" onclick="loadSnippet(4)">Post-mortem debugging (pdb.pm())</button>
+  </div>
+  <div class="main">
+    <div class="editor-pane">
+      <textarea id="codeEditor" spellcheck="false"></textarea>
+    </div>
+    <div class="output-pane">
+      <div class="label">Output</div>
+      <div class="content" id="output"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+  <script>
+    const snippets = ["# print() debugging basics\n# Explore print() debugging basics interactively\n\ndef print_debugging_basics_example():\n    \"\"\"Demonstrate print() debugging basics.\"\"\"\n    print(\"=== print() debugging basics ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    print_debugging_basics_example()","# pdb (Python Debugger) commands\n# Explore pdb (python debugger) commands interactively\n\ndef pdb_python_debugger_commands_example():\n    \"\"\"Demonstrate pdb (python debugger) commands.\"\"\"\n    print(\"=== pdb (Python Debugger) commands ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    pdb_python_debugger_commands_example()","# pdb.set_trace() breakpoints\n# Explore pdb.set_trace() breakpoints interactively\n\ndef pdb_set_trace_breakpoints_example():\n    \"\"\"Demonstrate pdb.set_trace() breakpoints.\"\"\"\n    print(\"=== pdb.set_trace() breakpoints ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    pdb_set_trace_breakpoints_example()","# VS Code debugger usage\n# Explore vs code debugger usage interactively\n\ndef vs_code_debugger_usage_example():\n    \"\"\"Demonstrate vs code debugger usage.\"\"\"\n    print(\"=== VS Code debugger usage ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    vs_code_debugger_usage_example()","# Post-mortem debugging (pdb.pm())\n# Explore post-mortem debugging (pdb.pm()) interactively\n\ndef post_mortem_debugging_pdb_pm_example():\n    \"\"\"Demonstrate post-mortem debugging (pdb.pm()).\"\"\"\n    print(\"=== Post-mortem debugging (pdb.pm()) ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    post_mortem_debugging_pdb_pm_example()"];
+    let pyodide = null;
+    const editor = document.getElementById("codeEditor");
+    const output = document.getElementById("output");
+    const runBtn = document.getElementById("runBtn");
+    const status = document.getElementById("pyStatus");
+    const loadingEl = document.getElementById("loadingOverlay");
+
+    async function initPyodide() {
+      loadingEl.classList.add("show");
+      try {
+        pyodide = await loadPyodide();
+        status.textContent = "Pyodide: ready";
+        status.classList.add("loaded");
+        runBtn.disabled = false;
+        loadingEl.classList.remove("show");
+        loadSnippet(0);
+      } catch (e) {
+        output.innerHTML = `<span class="error">Failed to load Pyodide: ${e.message}</span>`;
+        loadingEl.classList.remove("show");
+      }
+    }
+
+    function runCode() {
+      if (!pyodide) { output.innerHTML = "Loading..."; return; }
+      const code = editor.value;
+      output.innerHTML = "";
+      try {
+        pyodide.runPython(`
+import sys
+from io import StringIO
+_old_stdout = sys.stdout
+sys.stdout = StringIO()
+        `);
+        pyodide.runPython(code);
+        const captured = pyodide.runPython("sys.stdout.getvalue()");
+        pyodide.runPython("sys.stdout = _old_stdout");
+        output.textContent = captured || "(no output)";
+      } catch (e) {
+        output.innerHTML = `<span class="error">${e.message}</span>`;
+      }
+    }
+
+    function loadSnippet(index) {
+      if (snippets[index]) {
+        editor.value = snippets[index];
+        document.querySelectorAll(".snippets button").forEach((b, i) => {
+          b.classList.toggle("active", i === index);
+        });
+        output.innerHTML = "";
+      }
+    }
+
+    function resetCode() {
+      loadSnippet(0);
+    }
+
+    editor.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        e.preventDefault();
+        const start = editor.selectionStart;
+        const end = editor.selectionEnd;
+        editor.value = editor.value.substring(0, start) + "    " + editor.value.substring(end);
+        editor.selectionStart = editor.selectionEnd = start + 4;
+      }
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { runCode(); }
+    });
+
+    initPyodide();
+  </script>
+</body>
+</html>

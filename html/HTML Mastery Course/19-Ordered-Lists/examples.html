@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 19: Ordered Lists - Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: #333; line-height: 1.8; padding: 20px; }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    .example-box { background: white; border: 2px solid #ddd; border-radius: 10px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .example-box h2 { color: #2980b9; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .code-block { background: #2d2d2d; color: #f8f8f2; padding: 18px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 14px; overflow-x: auto; margin: 15px 0; white-space: pre-wrap; }
+    .output { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 6px; margin: 10px 0; }
+    .output ol { padding-left: 25px; margin: 10px 0; }
+    .output li { margin: 4px 0; }
+    .counter-demo { list-style: none; counter-reset: step; }
+    .counter-demo li { counter-increment: step; margin: 8px 0; }
+    .counter-demo li::before { content: "Step " counter(step) ": "; font-weight: bold; color: #2563eb; }
+    .legal-demo { list-style: none; counter-reset: article; }
+    .legal-demo > li { counter-increment: article; margin: 12px 0; }
+    .legal-demo > li::before { content: "Article " counter(article) " — "; font-weight: bold; color: #e94560; }
+    .legal-demo ol { list-style: none; counter-reset: section; padding-left: 25px; }
+    .legal-demo ol li { counter-increment: section; }
+    .legal-demo ol li::before { content: counter(article) "." counter(section) " "; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>🔢 Ordered Lists — Code Examples</h1>
+
+  <div class="example-box">
+    <h2>Example 1: Basic Ordered List</h2>
+    <div class="output">
+      <p><strong>Top 3 Programming Languages (2026):</strong></p>
+      <ol>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>TypeScript</li>
+      </ol>
+    </div>
+    <div class="code-block">
+      &lt;ol&gt;
+        &lt;li&gt;JavaScript&lt;/li&gt;
+        &lt;li&gt;Python&lt;/li&gt;
+        &lt;li&gt;TypeScript&lt;/li&gt;
+      &lt;/ol&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 2: Type Attribute Variants</h2>
+    <div class="output">
+      <p><strong>Uppercase letters (type="A"):</strong></p>
+      <ol type="A"><li>Option A</li><li>Option B</li><li>Option C</li></ol>
+      <p><strong>Lowercase letters (type="a"):</strong></p>
+      <ol type="a"><li>Option a</li><li>Option b</li><li>Option c</li></ol>
+      <p><strong>Uppercase Roman (type="I"):</strong></p>
+      <ol type="I"><li>Chapter I</li><li>Chapter II</li><li>Chapter III</li></ol>
+      <p><strong>Lowercase Roman (type="i"):</strong></p>
+      <ol type="i"><li>Page i</li><li>Page ii</li><li>Page iii</li></ol>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 3: Start Attribute</h2>
+    <div class="output">
+      <p><strong>Starting at 10:</strong></p>
+      <ol start="10">
+        <li>Item 10</li>
+        <li>Item 11</li>
+        <li>Item 12</li>
+      </ol>
+      <p><strong>Starting at F (type="A" start="6"):</strong></p>
+      <ol type="A" start="6">
+        <li>Item F</li>
+        <li>Item G</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 4: Reversed Attribute</h2>
+    <div class="output">
+      <p><strong>Top 3 countdown:</strong></p>
+      <ol reversed>
+        <li>Bronze medal</li>
+        <li>Silver medal</li>
+        <li>Gold medal</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 5: Value Attribute on li</h2>
+    <div class="output">
+      <ol>
+        <li>First item</li>
+        <li value="100">Item 100 (jumped)</li>
+        <li>Item 101 (continued from 100)</li>
+        <li>Item 102</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 6: Nested Ordered Lists</h2>
+    <div class="output">
+      <ol>
+        <li>Frontend Setup
+          <ol type="a">
+            <li>Install Node.js</li>
+            <li>Initialize project</li>
+            <li>Install dependencies</li>
+          </ol>
+        </li>
+        <li>Backend Setup
+          <ol type="a">
+            <li>Set up database</li>
+            <li>Create API routes</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 7: CSS Counters (Custom Numbering)</h2>
+    <div class="output">
+      <ol class="counter-demo">
+        <li>Gather ingredients</li>
+        <li>Preheat oven to 350°F</li>
+        <li>Mix dry ingredients</li>
+        <li>Add wet ingredients</li>
+        <li>Bake for 30 minutes</li>
+      </ol>
+    </div>
+    <div class="code-block">
+      ol { list-style: none; counter-reset: step; }
+      ol li { counter-increment: step; }
+      ol li::before { content: "Step " counter(step) ": "; font-weight: bold; }
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 8: Legal Document Numbering</h2>
+    <div class="output">
+      <ol class="legal-demo">
+        <li>Definitions
+          <ol>
+            <li>"Agreement" means this contract</li>
+            <li>"Party" means the signatory</li>
+          </ol>
+        </li>
+        <li>Terms
+          <ol>
+            <li>Term shall begin on the Effective Date</li>
+            <li>Term shall end after 12 months</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 9: Mixed List (ol with ul inside)</h2>
+    <div class="output">
+      <ol>
+        <li>Learn HTML
+          <ul>
+            <li>Tags and elements</li>
+            <li>Forms</li>
+          </ul>
+        </li>
+        <li>Learn CSS
+          <ul>
+            <li>Selectors</li>
+            <li>Flexbox</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+</body>
+</html>

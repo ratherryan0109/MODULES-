@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Max-Width - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .resp-container { max-width: 700px; width: 100%; margin: 0 auto; background: #f0f9ff; padding: 1.25rem; border-radius: 8px; text-align: center; font-weight: 600; border: 1px solid #bae6fd; }
+    .readable-text { max-width: 65ch; margin: 0 auto; background: #fffbeb; padding: 1.25rem; border-radius: 8px; line-height: 1.8; border: 1px solid #fde68a; }
+    .img-placeholder { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+    .min-max-box { min-width: 150px; max-width: 500px; width: 100%; margin: 0.5rem auto; background: #8b5cf6; color: white; padding: 1rem; text-align: center; border-radius: 8px; font-weight: 600; }
+    .no-max-width { width: 100%; background: #fecaca; padding: 1rem; text-align: center; border-radius: 8px; font-weight: 600; color: #991b1b; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+    @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+    .center-demo { max-width: 300px; margin: 0 auto; background: #06b6d4; color: white; padding: 1rem; text-align: center; border-radius: 8px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>CSS Max-Width - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Responsive Container</h2>
+    <p><code>max-width</code> with <code>width: 100%</code> creates a container that fills small screens but caps at a maximum size on large screens.</p>
+    <div class="demo-output">
+      <div class="resp-container">max-width: 700px; width: 100%; margin: 0 auto;<br>Shrinks on small screens, capped at 700px on large screens.</div>
+    </div>
+    <pre><code>.container {
+  max-width: 700px;
+  width: 100%;      /* Fills parent when smaller than 700px */
+  margin: 0 auto;   /* Centers horizontally */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: With vs Without Max-Width</h2>
+    <p>Without max-width, a block element stretches to fill its container, which can be unreadable on wide screens.</p>
+    <div class="demo-output">
+      <div class="compare-grid">
+        <div>
+          <strong>Without max-width</strong>
+          <div class="no-max-width">This stretches to fill the entire container width, which can be hard to read.</div>
+        </div>
+        <div>
+          <strong>With max-width</strong>
+          <div class="resp-container">This is capped at 700px, improving readability on wide screens.</div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.no-limit  { width: 100%; }               /* Stretches fully */
+.limited   { max-width: 700px; width: 100%; }  /* Capped */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Optimal Line Length (65ch)</h2>
+    <p>Using <code>max-width: 65ch</code> creates the ideal line length for readability (about 65 characters per line).</p>
+    <div class="demo-output">
+      <div class="readable-text">
+        max-width: 65ch is widely considered the optimal line length for comfortable reading. Lines that are too long cause the reader's eye to have trouble tracking from the end of one line to the start of the next. Lines that are too short cause excessive eye movement and break the reading rhythm. The "ch" unit equals the width of the "0" character in the current font, making it a natural choice for text containers.
+      </div>
+    </div>
+    <pre><code>.article {
+  max-width: 65ch;    /* ~65 characters per line */
+  margin: 0 auto;
+  line-height: 1.8;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Responsive Image</h2>
+    <p><code>max-width: 100%; height: auto</code> makes images scale down on small screens without cropping or overflowing.</p>
+    <div class="demo-output">
+      <div style="background:#f1f5f9;padding:0.75rem;border-radius:8px;text-align:center">
+        <svg class="img-placeholder" width="600" height="200" viewBox="0 0 600 200">
+          <rect width="600" height="200" fill="#06b6d4" rx="8"/>
+          <text x="300" y="110" text-anchor="middle" fill="white" font-size="24" font-weight="bold">Responsive Image</text>
+          <text x="300" y="140" text-anchor="middle" fill="white" font-size="14" opacity="0.8">max-width: 100%; height: auto;</text>
+        </svg>
+      </div>
+    </div>
+    <pre><code>img {
+  max-width: 100%;   /* Never wider than parent */
+  height: auto;       /* Maintain aspect ratio */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Min-Width and Max-Width Combined</h2>
+    <p>Set a responsive range: <code>min-width</code> prevents the element from becoming too narrow; <code>max-width</code> prevents it from becoming too wide.</p>
+    <div class="demo-output">
+      <div class="min-max-box">min-width: 150px, max-width: 500px<br>Grows and shrinks within this range.</div>
+    </div>
+    <pre><code>.constrained {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;           /* Fluid between 150px and 500px */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Centering with Max-Width and Auto Margins</h2>
+    <p>The classic centering technique: <code>max-width</code> + <code>margin: 0 auto</code>.</p>
+    <div class="demo-output">
+      <div class="center-demo">max-width: 300px; margin: 0 auto;<br>Centers horizontally</div>
+    </div>
+    <pre><code>.center {
+  max-width: 300px;
+  margin: 0 auto;    /* Auto left/right = centering */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Max-Height for Scrollable Containers</h2>
+    <p><code>max-height</code> limits vertical growth and pairs with <code>overflow</code> to create scrollable areas.</p>
+    <div class="demo-output">
+      <div style="max-height:120px;overflow-y:auto;background:#f1f5f9;padding:0.75rem;border-radius:8px;border:1px solid #e2e8f0">
+        <p><strong>max-height: 120px</strong> — scroll when content exceeds</p>
+        <p>Line 2: This container has a maximum height.</p>
+        <p>Line 3: When content overflows, a scrollbar appears.</p>
+        <p>Line 4: This is useful for expandable sections.</p>
+        <p>Line 5: Chat messages, notification panels, etc.</p>
+        <p>Line 6: The scrollbar only shows if needed.</p>
+      </div>
+    </div>
+    <pre><code>.scrollable {
+  max-height: 120px;
+  overflow-y: auto;   /* Scroll only when needed */
+}</code></pre>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Navigation Bar Playground</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .controls { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .controls label { display: flex; flex-direction: column; gap: 5px; }
+    .nav-preview { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    #navMenu ul {
+      list-style: none; margin: 0; padding: 0; display: flex;
+      background: var(--nav-bg, #333);
+    }
+    #navMenu li a {
+      display: block; color: var(--nav-text, #fff);
+      padding: var(--nav-padding, 14px 20px);
+      text-decoration: none; transition: background 0.3s;
+    }
+    #navMenu li a:hover { background: var(--nav-hover, #575757); }
+    #navMenu .active { background: var(--nav-active, #04aa6d); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Navigation Bar Playground</h1>
+    <div class="controls">
+      <label>
+        Background Color:
+        <input type="color" id="navBg" value="#333333">
+      </label>
+      <label>
+        Text Color:
+        <input type="color" id="navText" value="#ffffff">
+      </label>
+      <label>
+        Hover Color:
+        <input type="color" id="navHover" value="#575757">
+      </label>
+      <label>
+        Active Color:
+        <input type="color" id="navActive" value="#04aa6d">
+      </label>
+      <label>
+        Padding:
+        <input type="range" id="navPadding" min="4" max="30" value="14">
+        <span id="paddingValue">14px</span>
+      </label>
+    </div>
+    <div class="nav-preview">
+      <nav id="navMenu">
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <script>
+    const nav = document.getElementById('navMenu');
+
+    document.getElementById('navBg').addEventListener('input', e => {
+      nav.style.setProperty('--nav-bg', e.target.value);
+    });
+    document.getElementById('navText').addEventListener('input', e => {
+      nav.style.setProperty('--nav-text', e.target.value);
+    });
+    document.getElementById('navHover').addEventListener('input', e => {
+      nav.style.setProperty('--nav-hover', e.target.value);
+    });
+    document.getElementById('navActive').addEventListener('input', e => {
+      nav.style.setProperty('--nav-active', e.target.value);
+    });
+    document.getElementById('navPadding').addEventListener('input', e => {
+      const val = e.target.value + 'px';
+      document.getElementById('paddingValue').textContent = val;
+      nav.style.setProperty('--nav-padding', val);
+    });
+  </script>
+</body>
+</html>

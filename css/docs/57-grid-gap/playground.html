@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Grid Gap - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b}
+.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px;flex-wrap:wrap}
+.controls{flex:0 0 280px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;min-width:400px;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:15px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group input,.group select{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px}
+.group input[type="range"]{padding:0;height:6px;cursor:pointer}
+.group .range-value{color:#ffd93d;font-size:12px;text-align:right}
+#grid-container{display:grid;background:#2d2d44;border-radius:8px;padding:10px;transition:all .3s}
+.grid-item{background:#ff6b6b;padding:15px;border-radius:4px;text-align:center;display:flex;align-items:center;justify-content:center;font-weight:bold;min-height:60px}
+.grid-item:nth-child(2n){background:#4ecdc4;color:#1a1a2e}
+.grid-item:nth-child(3n){background:#45b7d1}
+.grid-item:nth-child(5n){background:#a29bfe}
+#css-code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf;white-space:pre;overflow-x:auto}
+.btn-reset{background:#ff6b6b;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;margin-top:5px}
+.gap-visual{display:flex;gap:8px;align-items:center;margin-top:15px;padding:10px;background:#1a1a2e;border-radius:8px;font-size:13px;color:#aaa}
+.gap-bar{background:#ffd93d;border-radius:2px;transition:all .3s}
+</style>
+</head>
+<body>
+<h1>Grid Gap Playground</h1>
+<p class="subtitle">Adjust gap values and see spacing change in real time</p>
+<div class="layout">
+<div class="controls">
+<div class="group"><label>Row Gap (px)</label><input type="range" id="row-gap" min="0" max="60" value="16"><div class="range-value" id="row-gap-val">16px</div></div>
+<div class="group"><label>Column Gap (px)</label><input type="range" id="col-gap" min="0" max="60" value="16"><div class="range-value" id="col-gap-val">16px</div></div>
+<button class="btn-reset" onclick="document.getElementById('row-gap').value=16;document.getElementById('col-gap').value=16;update();">Reset to 16px</button>
+<div class="group" style="margin-top:20px"><label>Columns</label><input type="range" id="cols" min="1" max="6" value="3"><div class="range-value" id="cols-val">3</div></div>
+<div class="group"><label>Items</label><input type="range" id="items" min="1" max="24" value="8"><div class="range-value" id="items-val">8</div></div>
+<div class="group"><label>Container Padding (px)</label><input type="range" id="padding" min="0" max="40" value="10"><div class="range-value" id="padding-val">10px</div></div>
+<div class="group"><label>Use same value</label><select id="sync"><option value="yes">Yes (sync gaps)</option><option value="no">No (independent)</option></select></div>
+</div>
+<div class="preview">
+<div id="grid-container"></div>
+<div id="css-code">/* CSS will appear here */</div>
+<div class="gap-visual">
+<span>Row gap: <strong id="visual-row">16px</strong></span>
+<div class="gap-bar" id="row-bar" style="width:16px;height:16px"></div>
+<span>Col gap: <strong id="visual-col">16px</strong></span>
+<div class="gap-bar" id="col-bar" style="width:16px;height:16px"></div>
+</div>
+</div>
+</div>
+<script>
+const gridEl=document.getElementById('grid-container'),cssCode=document.getElementById('css-code');
+const rowGap=document.getElementById('row-gap'),colGap=document.getElementById('col-gap');
+const cols=document.getElementById('cols'),items=document.getElementById('items');
+const padding=document.getElementById('padding'),sync=document.getElementById('sync');
+
+function update(){
+const rg=parseInt(rowGap.value),cg=sync.value==='yes'?rg:parseInt(colGap.value);
+const c=parseInt(cols.value),n=parseInt(items.value),p=parseInt(padding.value);
+if(sync.value==='yes') colGap.value=rg;
+gridEl.style.rowGap=rg+'px';gridEl.style.columnGap=cg+'px';
+gridEl.style.gridTemplateColumns=`repeat(${c}, 1fr)`;
+gridEl.style.padding=p+'px';
+gridEl.innerHTML='';
+for(let i=1;i<=n;i++){const d=document.createElement('div');d.className='grid-item';d.textContent=`#${i}`;gridEl.appendChild(d);}
+document.getElementById('row-gap-val').textContent=rg+'px';
+document.getElementById('col-gap-val').textContent=cg+'px';
+document.getElementById('cols-val').textContent=c;
+document.getElementById('items-val').textContent=n;
+document.getElementById('padding-val').textContent=p+'px';
+document.getElementById('visual-row').textContent=rg+'px';
+document.getElementById('visual-col').textContent=cg+'px';
+document.getElementById('row-bar').style.width=Math.min(rg,60)+'px';
+document.getElementById('col-bar').style.width=Math.min(cg,60)+'px';
+cssCode.textContent=`.container {\n  display: grid;\n  grid-template-columns: repeat(${c}, 1fr);\n  row-gap: ${rg}px;\n  column-gap: ${cg}px;\n  padding: ${p}px;\n}`;
+}
+[rowGap,colGap,cols,items,padding,sync].forEach(el=>el.addEventListener('input',update));
+update();
+</script>
+</body>
+</html>

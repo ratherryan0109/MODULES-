@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Aspect Ratio - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .example-card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; }
+    .pre { font-family: monospace; background: #181825; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; white-space: pre-wrap; border-left: 3px solid #89b4fa; }
+    .flex-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .note { background: #45475a; padding: 0.5rem 1rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.9rem; border-left: 3px solid #f9e2af; }
+
+    /* Example 1: Basic ratios */
+    .ratio-demo { display: flex; gap: 16px; flex-wrap: wrap; }
+    .ratio-box { width: 150px; background: linear-gradient(135deg, #89b4fa, #cba6f7); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #1e1e2e; font-weight: 700; font-size: 0.9rem; }
+    .box-16-9 { aspect-ratio: 16 / 9; }
+    .box-4-3 { aspect-ratio: 4 / 3; }
+    .box-1-1 { aspect-ratio: 1; }
+    .box-2-1 { aspect-ratio: 2 / 1; }
+    .box-3-4 { aspect-ratio: 3 / 4; }
+
+    /* Example 2: Video embed */
+    .video-demo { width: 100%; max-width: 560px; }
+    .video-demo video, .video-demo iframe { width: 100%; aspect-ratio: 16 / 9; border-radius: 8px; background: #181825; display: block; }
+
+    /* Example 3: Image gallery */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .gallery-item { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; background: #45475a; display: flex; align-items: center; justify-content: center; color: #6c7086; font-size: 0.8rem; }
+    .gallery-item:nth-child(1) { background: linear-gradient(135deg, #f38ba8, #fab387); }
+    .gallery-item:nth-child(2) { background: linear-gradient(135deg, #a6e3a1, #89dceb); }
+    .gallery-item:nth-child(3) { background: linear-gradient(135deg, #cba6f7, #f5c2e7); }
+    .gallery-item:nth-child(4) { background: linear-gradient(135deg, #fab387, #f38ba8); }
+    .gallery-item:nth-child(5) { background: linear-gradient(135deg, #89dceb, #a6e3a1); }
+    .gallery-item:nth-child(6) { background: linear-gradient(135deg, #f5c2e7, #cba6f7); }
+
+    /* Example 4: Avatar */
+    .avatar { width: 80px; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 3px solid #89b4fa; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Example 5: Object-fit comparison */
+    .obj-fit-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .obj-fit-item { width: 180px; text-align: center; }
+    .obj-fit-item .demo-placeholder { width: 100%; aspect-ratio: 1; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+    .obj-fit-item.cover .demo-placeholder { background: linear-gradient(135deg, #89b4fa, #cba6f7); object-fit: cover; }
+    .obj-fit-item.contain .demo-placeholder { background: linear-gradient(135deg, #a6e3a1, #89dceb); object-fit: contain; border: 2px dashed #45475a; }
+    .obj-fit-item.fill .demo-placeholder { background: linear-gradient(135deg, #f38ba8, #fab387); object-fit: fill; }
+
+    /* Example 6: Non-media elements */
+    .shape-demo { width: 100%; aspect-ratio: 5 / 1; background: linear-gradient(90deg, #667eea, #764ba2, #f093fb); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+    .skeleton { width: 100%; max-width: 400px; aspect-ratio: 16 / 9; background: linear-gradient(90deg, #45475a 25%, #585b70 50%, #45475a 75%); background-size: 200% 100%; border-radius: 8px; animation: shimmer 1.5s infinite; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    .tag { display: inline-block; background: #45475a; padding: 2px 10px; border-radius: 4px; font-size: 0.8rem; margin: 2px; }
+  </style>
+</head>
+<body>
+  <h1>CSS Aspect Ratio — Interactive Examples</h1>
+
+  <div class="example-card">
+    <h2>1. Different Aspect Ratios</h2>
+    <p>Each box has the same width (150px) but different aspect ratios. Notice how the height changes.</p>
+    <div class="ratio-demo">
+      <div class="ratio-box box-16-9">16:9</div>
+      <div class="ratio-box box-4-3">4:3</div>
+      <div class="ratio-box box-1-1">1:1</div>
+      <div class="ratio-box box-2-1">2:1</div>
+      <div class="ratio-box box-3-4">3:4</div>
+    </div>
+    <div class="pre">aspect-ratio: 16 / 9;  /* Widescreen */\naspect-ratio: 1;       /* Square */\naspect-ratio: 3 / 4;   /* Portrait */</div>
+  </div>
+
+  <div class="example-card">
+    <h2>2. Responsive Video Embed</h2>
+    <p><code>aspect-ratio: 16 / 9</code> on the video element makes it responsive without any wrapper. Resize the browser to see it adapt.</p>
+    <div class="video-demo">
+      <div class="video-placeholder" style="width:100%;aspect-ratio:16/9;background:#181825;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#6c7086;font-size:1.2rem;">
+        ▶ Video Player (16:9)
+      </div>
+    </div>
+    <div class="pre">video, iframe {\n  width: 100%;\n  aspect-ratio: 16 / 9;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>3. Image Gallery with Consistent Ratios</h2>
+    <p>All images in this grid use <code>aspect-ratio: 4 / 3</code> with <code>object-fit: cover</code> for a perfectly uniform grid.</p>
+    <div class="gallery">
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+    </div>
+    <div class="pre">.gallery-item {\n  width: 100%;\n  aspect-ratio: 4 / 3;\n  object-fit: cover;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>4. Circular Avatars</h2>
+    <p>Using <code>aspect-ratio: 1</code> with <code>border-radius: 50%</code> for perfect circles.</p>
+    <div class="flex-row">
+      <div class="avatar" style="background:linear-gradient(135deg,#f38ba8,#fab387);display:flex;align-items:center;justify-content:center;font-weight:700;color:#1e1e2e;">JD</div>
+      <div class="avatar" style="background:linear-gradient(135deg,#a6e3a1,#89dceb);display:flex;align-items:center;justify-content:center;font-weight:700;color:#1e1e2e;">AK</div>
+      <div class="avatar" style="background:linear-gradient(135deg,#cba6f7,#f5c2e7);display:flex;align-items:center;justify-content:center;font-weight:700;color:#1e1e2e;">SM</div>
+    </div>
+    <div class="pre">.avatar {\n  width: 80px;\n  aspect-ratio: 1;\n  border-radius: 50%;\n  overflow: hidden;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>5. Object-Fit Comparison</h2>
+    <p>Same aspect ratio (1:1) but different <code>object-fit</code> values. All boxes are 180px × 180px.</p>
+    <div class="obj-fit-row">
+      <div class="obj-fit-item cover">
+        <div class="demo-placeholder" style="background:linear-gradient(135deg,#89b4fa,#cba6f7);overflow:hidden;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(45deg,transparent 40%,rgba(255,255,255,0.2) 50%,transparent 60%);"></div>
+        </div>
+        <p style="margin-top:4px;font-size:0.85rem;">object-fit: cover</p>
+      </div>
+      <div class="obj-fit-item contain">
+        <div class="demo-placeholder" style="background:#45475a;overflow:hidden;position:relative;">
+          <div style="position:absolute;inset:10%;background:linear-gradient(135deg,#a6e3a1,#89dceb);border-radius:4px;"></div>
+        </div>
+        <p style="margin-top:4px;font-size:0.85rem;">object-fit: contain</p>
+      </div>
+      <div class="obj-fit-item fill">
+        <div class="demo-placeholder" style="background:#f38ba8;overflow:hidden;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,0.3) 50%,transparent 70%);"></div>
+        </div>
+        <p style="margin-top:4px;font-size:0.85rem;">object-fit: fill</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <h2>6. Non-Media Elements</h2>
+    <p><code>aspect-ratio</code> works on any element, not just images and video.</p>
+    <div style="margin-bottom:1rem;">
+      <p style="margin-bottom:0.5rem;">Decorative divider (5:1):</p>
+      <div class="shape-demo">Gradient Banner</div>
+    </div>
+    <div>
+      <p style="margin-bottom:0.5rem;">Skeleton loader (16:9):</p>
+      <div class="skeleton"></div>
+    </div>
+    <div class="pre">/* Decorative elements */\n.divider { aspect-ratio: 5 / 1; }\n.skeleton { aspect-ratio: 16 / 9; }</div>
+  </div>
+</body>
+</html>

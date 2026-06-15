@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Style Specific Elements with Selectors",
+    "description": "Given the HTML, use CSS selectors to: (1) Make h1 blue, (2) Make .highlight paragraphs yellow, (3) Make #special bold and italic. Do not change the HTML.",
+    "starterCode": "<h1>Title</h1>\n<p class=\"highlight\">This should be yellow</p>\n<p id=\"special\">This should be bold and italic</p>\n<p>This should be normal</p>\n\n<style>\n  /* Add your CSS here */\n</style>",
+    "solution": "<h1>Title</h1>\n<p class=\"highlight\">This should be yellow</p>\n<p id=\"special\">This should be bold and italic</p>\n<p>This should be normal</p>\n\n<style>\nh1 { color: blue; }\n.highlight { background: yellow; }\n#special { font-weight: bold; font-style: italic; }\n</style>"
+  },
+  "medium": {
+    "title": "Create a Zebra-Striped Nested List",
+    "description": "Style a nested list so that: (1) Top-level items are bold, (2) Even top-level items have a gray background, (3) Nested items are normal weight with italic text.",
+    "starterCode": "<ul class=\"nav\">\n  <li>Section A\n    <ul><li>Item 1</li><li>Item 2</li></ul>\n  </li>\n  <li>Section B\n    <ul><li>Item 3</li><li>Item 4</li></ul>\n  </li>\n  <li>Section C\n    <ul><li>Item 5</li><li>Item 6</li></ul>\n  </li>\n</ul>\n\n<style>\n  /* Add your CSS here — use child combinators and :nth-child */\n</style>",
+    "solution": "<ul class=\"nav\">\n  <li>Section A\n    <ul><li>Item 1</li><li>Item 2</li></ul>\n  </li>\n  <li>Section B\n    <ul><li>Item 3</li><li>Item 4</li></ul>\n  </li>\n  <li>Section C\n    <ul><li>Item 5</li><li>Item 6</li></ul>\n  </li>\n</ul>\n\n<style>\nul.nav { list-style: none; padding: 0; font-family: Arial; }\nul.nav > li { font-weight: bold; padding: 8px; }\nul.nav > li:nth-child(even) { background: #f0f0f0; }\nul.nav li li { font-weight: normal; font-style: italic; }\n</style>"
+  },
+  "hard": {
+    "title": "Build a Style System Using Advanced Selectors",
+    "description": "Create a blog page style system that uses at least 6 different selector types: element selectors for base typography, class selectors for components, ID selectors for layout sections, combinators for navigation, attribute selectors for external links, and pseudo-classes for interactive states.",
+    "starterCode": "<header id=\"header\">\n  <nav class=\"nav\">\n    <a href=\"/\">Home</a>\n    <a href=\"/blog\">Blog</a>\n    <a href=\"https://external.com\">External</a>\n  </nav>\n</header>\n<main id=\"content\">\n  <article class=\"post\">\n    <h2 class=\"post-title\">Blog Post</h2>\n    <p>Content here...</p>\n  </article>\n</main>\n<footer id=\"footer\">&copy; 2026</footer>\n\n<style>\n  /* Add your CSS with at least 6 selector types */\n</style>",
+    "solution": "<header id=\"header\">\n  <nav class=\"nav\">\n    <a href=\"/\">Home</a>\n    <a href=\"/blog\">Blog</a>\n    <a href=\"https://external.com\">External</a>\n  </nav>\n</header>\n<main id=\"content\">\n  <article class=\"post featured\">\n    <h2 class=\"post-title\">Blog Post</h2>\n    <p>Content here...</p>\n  </article>\n</main>\n<footer id=\"footer\">&copy; 2026</footer>\n\n<style>\nbody { font-family: Georgia, serif; line-height: 1.8; color: #333; }\n#header { background: #2c3e50; padding: 20px; }\n#content { max-width: 800px; margin: 0 auto; padding: 20px; }\n#footer { background: #34495e; color: white; text-align: center; padding: 20px; }\n.nav a { color: white; text-decoration: none; padding: 8px 16px; }\nnav a:hover { background: #4a5568; border-radius: 4px; }\na[href^=\"https\"]::after { content: \" ↗\"; font-size: 0.8em; }\n.post { padding: 20px; border: 1px solid #ddd; border-radius: 8px; }\n.post-title { color: #2c3e50; }\n.featured { border-left: 4px solid #4299e1; }\n</style>"
+  }
+}

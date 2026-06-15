@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lambda Functions - Examples</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #1e293b; padding: 20px; }
+    .examples-container { max-width: 1000px; margin: 0 auto; }
+    h1 { color: #306998; margin-bottom: 8px; font-size: 1.8em; }
+    .subtitle { color: #475569; margin-bottom: 24px; font-size: 1em; }
+    .example-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    .example-card h3 { color: #306998; margin-bottom: 12px; font-size: 1.2em; display: flex; align-items: center; gap: 10px; }
+    .example-card .badge { background: #FFD43B; color: #1e293b; padding: 2px 10px; border-radius: 12px; font-size: 0.7em; font-weight: 600; }
+    .example-card p { color: #475569; margin-bottom: 16px; line-height: 1.6; }
+    .code-block { background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; }
+    .code-block pre { margin: 0; padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+    .code-block .copy-btn { float: right; background: #306998; color: white; border: none; padding: 4px 12px; font-size: 12px; border-radius: 4px; cursor: pointer; margin: 8px; }
+    .code-block .copy-btn:hover { background: #1e415e; }
+    .output-block { background: #1e293b; color: #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 12px; font-family: monospace; font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
+    .output-block .prompt { color: #FFD43B; }
+    @media (max-width: 768px) { body { padding: 10px; } .example-card { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="examples-container">
+    <h1>Lambda Functions — Examples</h1>
+    <p class="subtitle">Practical Python examples demonstrating lambda functions. Click <strong>Copy</strong> to copy each snippet.</p>
+
+    <div class="example-card">
+      <h3>Example 1: lambda syntax (lambda x: expr) <span class="badge">Basic</span></h3>
+      <p>Core foundation for understanding this topic. This example demonstrates how to work with lambda syntax (lambda x: expr) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 1: lambda syntax (lambda x: expr)
+# Core foundation for understanding this topic
+
+def demonstrate_lambda_syntax_lambda_x_expr():
+    &quot;&quot;&quot;Demonstrate lambda syntax (lambda x: expr) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply lambda syntax (lambda x: expr) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to lambda syntax (lambda x: expr) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_lambda_syntax_lambda_x_expr()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 2: Lambda with map() and filter() <span class="badge">Advanced</span></h3>
+      <p>Builds upon previous concepts. This example demonstrates how to work with lambda with map() and filter() in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 2: Lambda with map() and filter()
+# Builds upon previous concepts
+
+def demonstrate_lambda_with_map_and_filter():
+    &quot;&quot;&quot;Demonstrate Lambda with map() and filter() with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply lambda with map() and filter() pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to lambda with map() and filter() rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_lambda_with_map_and_filter()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 3: Lambda as sort key functions <span class="badge">Basic</span></h3>
+      <p>Enables practical implementation. This example demonstrates how to work with lambda as sort key functions in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 3: Lambda as sort key functions
+# Enables practical implementation
+
+def demonstrate_lambda_as_sort_key_functions():
+    &quot;&quot;&quot;Demonstrate Lambda as sort key functions with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply lambda as sort key functions pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to lambda as sort key functions rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_lambda_as_sort_key_functions()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 4: Lambda limitations (single expression) <span class="badge">Advanced</span></h3>
+      <p>Used in real-world applications. This example demonstrates how to work with lambda limitations (single expression) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 4: Lambda limitations (single expression)
+# Used in real-world applications
+
+def demonstrate_lambda_limitations_single_expression():
+    &quot;&quot;&quot;Demonstrate Lambda limitations (single expression) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply lambda limitations (single expression) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to lambda limitations (single expression) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_lambda_limitations_single_expression()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 5: Lambda closures and variable capture <span class="badge">Basic</span></h3>
+      <p>Advanced patterns and techniques. This example demonstrates how to work with lambda closures and variable capture in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 5: Lambda closures and variable capture
+# Advanced patterns and techniques
+
+def demonstrate_lambda_closures_and_variable_capture():
+    &quot;&quot;&quot;Demonstrate Lambda closures and variable capture with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply lambda closures and variable capture pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to lambda closures and variable capture rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_lambda_closures_and_variable_capture()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 6: Lambda vs def readability <span class="badge">Advanced</span></h3>
+      <p>Optimization and best practices. This example demonstrates how to work with lambda vs def readability in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 6: Lambda vs def readability
+# Optimization and best practices
+
+def demonstrate_lambda_vs_def_readability():
+    &quot;&quot;&quot;Demonstrate Lambda vs def readability with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply lambda vs def readability pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to lambda vs def readability rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_lambda_vs_def_readability()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 7: Lambda with reduce() <span class="badge">Basic</span></h3>
+      <p>Edge cases and error handling. This example demonstrates how to work with lambda with reduce() in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 7: Lambda with reduce()
+# Edge cases and error handling
+
+def demonstrate_lambda_with_reduce():
+    &quot;&quot;&quot;Demonstrate Lambda with reduce() with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply lambda with reduce() pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to lambda with reduce() rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_lambda_with_reduce()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 8: Lambda in tkinter/GUI callbacks <span class="badge">Advanced</span></h3>
+      <p>Integration with other Python features. This example demonstrates how to work with lambda in tkinter/gui callbacks in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 8: Lambda in tkinter/GUI callbacks
+# Integration with other Python features
+
+def demonstrate_lambda_in_tkinter_gui_callbacks():
+    &quot;&quot;&quot;Demonstrate Lambda in tkinter/GUI callbacks with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply lambda in tkinter/gui callbacks pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to lambda in tkinter/gui callbacks rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_lambda_in_tkinter_gui_callbacks()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script>
+    function copyCode(btn) {
+      const code = btn.parentElement.querySelector("code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

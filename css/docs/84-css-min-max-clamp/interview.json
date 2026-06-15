@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the min() function do in CSS?", "answer": "min() selects the smallest value from a comma-separated list of values, used for responsive sizing that caps at a maximum." },
+    { "question": "What does the max() function do in CSS?", "answer": "max() selects the largest value from a comma-separated list, ensuring a value never goes below a minimum threshold." },
+    { "question": "What does the clamp() function do in CSS?", "answer": "clamp() accepts three values (MIN, PREFERRED, MAX) and clamps the result between the minimum and maximum." },
+    { "question": "How do you use min() for responsive widths without media queries?", "answer": "width: min(100%, 1200px) gives the element the full width on small screens and caps it at 1200px on large screens." },
+    { "question": "How do you use max() for minimum sizing?", "answer": "width: max(300px, 50%) ensures the element is at least 300px wide while also being at least 50% of the container." },
+    { "question": "How do you use clamp() for fluid typography?", "answer": "font-size: clamp(1rem, 2vw + 1rem, 2.5rem) creates text that scales between 1rem and 2.5rem based on viewport width." },
+    { "question": "What is the difference between min() and max() in terms of constraints?", "answer": "min() sets an upper bound (value cannot exceed the smallest), max() sets a lower bound (value cannot go below the largest)." },
+    { "question": "Can min(), max(), and clamp() accept more than two values?", "answer": "min() and max() accept multiple values (two or more). clamp() accepts exactly three values: minimum, preferred, maximum." },
+    { "question": "Can min(), max(), and clamp() use different CSS units?", "answer": "Yes, they accept mixed units: min(100%, 800px) mixes percentages and pixels." },
+    { "question": "Can these functions be nested inside each other?", "answer": "Yes: clamp(min(1rem, 3vw), 2rem, max(3rem, 5vw)) is valid and useful for complex constraints." }
+  ],
+  "intermediate": [
+    { "question": "What is a common use case for min() in typography?", "answer": "font-size: min(5vw, 2rem) makes headings scale with viewport but never exceed 2rem." },
+    { "question": "What is a common use case for max() in layout?", "answer": "width: max(60%, 400px) ensures a container fills at least 60% of its parent and never shrinks below 400px." },
+    { "question": "How do you create a fluid card grid with min() and max()?", "answer": "grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)) prevents grid overflow on very small screens." },
+    { "question": "How do you combine clamp() with CSS Grid for responsive layouts?", "answer": "Use clamp() in grid track sizes: grid-template-columns: repeat(3, clamp(200px, 30%, 400px)) for responsive column widths." },
+    { "question": "What is the formula for fluid typography with clamp()?", "answer": "clamp(minSize, preferredCalc, maxSize). The middle value often uses: fontSizeAtSmallViewport + slope * (100vw - smallViewportSize)." },
+    { "question": "How do clamp() and container queries work together?", "answer": "Use clamp(1rem, 2cqi + 1rem, 2.5rem) for container-relative fluid typography that scales with the container's inline size." },
+    { "question": "What is the difference between using min() vs max-width?", "answer": "min(100%, 800px) used as width is equivalent to max-width: 800px. min() is more composable and can be used in any property." },
+    { "question": "What is the advantage of clamp() over media queries for typography?", "answer": "clamp() provides continuous fluid scaling between min and max, while media queries create discrete jumps at specific breakpoints." },
+    { "question": "Can min() and max() work with CSS custom properties?", "answer": "Yes: width: min(100%, var(--max-width)) makes responsive sizing configurable through custom properties." },
+    { "question": "How do you create a fluid spacing system with clamp()?", "answer": "Define --space: clamp(0.5rem, 1vw + 0.5rem, 2rem) and use it for margins and padding throughout the design." }
+  ],
+  "advanced": [
+    { "question": "How do min(), max(), and clamp() compare to traditional media queries in terms of browser support and performance?", "answer": "These functions have excellent modern browser support and are efficient since they compute in the style resolution phase without triggering layout recalculations." },
+    { "question": "How do you create a complete fluid design system using only min(), max(), and clamp()?", "answer": "Define token values with clamp() for font sizes, spacing, and layout widths. This creates a continuously responsive system without any media queries." },
+    { "question": "How does clamp() interact with CSS aspect-ratio and object-fit for fluid media?", "answer": "Combined with aspect-ratio and object-fit, clamp() can control both container size and media crop dynamically based on viewport." },
+    { "question": "What is the interaction between min()/max() and CSS Grid's minmax() function?", "answer": "minmax(min(200px, 20vw), 1fr) uses min() inside a track's minimum size, creating a dynamic minimum track width." },
+    { "question": "How do you use clamp() with logical CSS properties for multilingual fluid layouts?", "answer": "Use clamp() with inline-size and block-size logical properties to create fluid layouts that adapt to writing direction." },
+    { "question": "What are the accessibility considerations when using clamp() for typography?", "answer": "Ensure the minimum font size is at least 1rem (16px equivalent) and test that text scales properly when users zoom." },
+    { "question": "How do you create a fluid background position with min() and max()?", "answer": "background-position: min(10vw, 100px) 50% creates a responsive offset that never exceeds 100px from the edge." },
+    { "question": "How does clamp() interact with CSS @property for custom property animation?", "answer": "Register a custom property with syntax: '<length>', then use clamp() in keyframes to animate between fluid values." },
+    { "question": "How do you debug min(), max(), and clamp() values that are not working as expected?", "answer": "Use browser DevTools to inspect computed values in the Styles panel. The resolved value after the function is applied shows the actual result." },
+    { "question": "What is the future of comparison functions in CSS with possible min()/max() in @container queries?", "answer": "The CSS spec is exploring allowing min()/max() in container query conditions, enabling container-relative breakpoints." }
+  ]
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Website Layout Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .controls { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .controls label { display: flex; flex-direction: column; gap: 5px; }
+
+    .layout-preview {
+      border: 2px solid #007bff;
+      border-radius: 8px;
+      overflow: hidden;
+      display: grid;
+    }
+    .layout-preview > * { padding: 20px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Website Layout Playground</h1>
+    <div class="controls">
+      <label>
+        Layout Type:
+        <select id="layoutSelect">
+          <option value="holy-grail">Holy Grail</option>
+          <option value="sidebar-left">Sidebar Left</option>
+          <option value="sidebar-right">Sidebar Right</option>
+          <option value="full-width">Full Width</option>
+        </select>
+      </label>
+    </div>
+    <div class="layout-preview" id="layoutPreview">
+    </div>
+  </div>
+  <script>
+    const preview = document.getElementById('layoutPreview');
+    const select = document.getElementById('layoutSelect');
+
+    const layouts = {
+      'holy-grail': `
+        <style>
+          #layoutPreview {
+            grid-template-areas:
+              "header header header"
+              "nav    main   aside"
+              "footer footer footer";
+            grid-template-columns: 200px 1fr 200px;
+            grid-template-rows: auto 1fr auto;
+            min-height: 400px;
+          }
+          #layoutPreview .ly-header { grid-area: header; background: #007bff; color: #fff; }
+          #layoutPreview .ly-nav    { grid-area: nav; background: #f8f9fa; }
+          #layoutPreview .ly-main   { grid-area: main; }
+          #layoutPreview .ly-aside  { grid-area: aside; background: #f8f9fa; }
+          #layoutPreview .ly-footer { grid-area: footer; background: #333; color: #fff; }
+        </style>
+        <div class="ly-header">Header</div>
+        <div class="ly-nav">Sidebar Nav</div>
+        <div class="ly-main">Main Content<br><br>Main content area</div>
+        <div class="ly-aside">Right Sidebar</div>
+        <div class="ly-footer">Footer</div>
+      `,
+      'sidebar-left': `
+        <style>
+          #layoutPreview {
+            grid-template-areas:
+              "header header"
+              "nav    main"
+              "footer footer";
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 400px;
+          }
+          #layoutPreview .ly-header { grid-area: header; background: #28a745; color: #fff; }
+          #layoutPreview .ly-nav    { grid-area: nav; background: #f8f9fa; }
+          #layoutPreview .ly-main   { grid-area: main; }
+          #layoutPreview .ly-footer { grid-area: footer; background: #333; color: #fff; }
+        </style>
+        <div class="ly-header">Header</div>
+        <div class="ly-nav">Left Sidebar</div>
+        <div class="ly-main">Main Content</div>
+        <div class="ly-footer">Footer</div>
+      `,
+      'sidebar-right': `
+        <style>
+          #layoutPreview {
+            grid-template-areas:
+              "header header"
+              "main   aside"
+              "footer footer";
+            grid-template-columns: 1fr 250px;
+            grid-template-rows: auto 1fr auto;
+            min-height: 400px;
+          }
+          #layoutPreview .ly-header { grid-area: header; background: #dc3545; color: #fff; }
+          #layoutPreview .ly-main   { grid-area: main; }
+          #layoutPreview .ly-aside  { grid-area: aside; background: #f8f9fa; }
+          #layoutPreview .ly-footer { grid-area: footer; background: #333; color: #fff; }
+        </style>
+        <div class="ly-header">Header</div>
+        <div class="ly-main">Main Content</div>
+        <div class="ly-aside">Right Sidebar</div>
+        <div class="ly-footer">Footer</div>
+      `,
+      'full-width': `
+        <style>
+          #layoutPreview {
+            grid-template-areas:
+              "header"
+              "main"
+              "footer";
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 400px;
+          }
+          #layoutPreview .ly-header { grid-area: header; background: #6f42c1; color: #fff; }
+          #layoutPreview .ly-main   { grid-area: main; }
+          #layoutPreview .ly-footer { grid-area: footer; background: #333; color: #fff; }
+        </style>
+        <div class="ly-header">Header</div>
+        <div class="ly-main">Main Content (Full Width)</div>
+        <div class="ly-footer">Footer</div>
+      `
+    };
+
+    function applyLayout() {
+      preview.innerHTML = layouts[select.value];
+    }
+
+    select.addEventListener('change', applyLayout);
+    applyLayout();
+  </script>
+</body>
+</html>

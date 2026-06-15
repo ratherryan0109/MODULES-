@@ -1,0 +1,247 @@
+﻿{
+    "module":  "22-css-z-index",
+    "title":  "CSS Z-index",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "What does the z-index property control?",
+                          "options":  [
+                                          "Horizontal alignment",
+                                          "Vertical alignment",
+                                          "Stacking order along the z-axis",
+                                          "Element opacity"
+                                      ],
+                          "explanation":  "Z-index controls the stacking order of positioned elements along the z-axis. Higher values appear closer to the viewer.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  2,
+                          "question":  "Which of these is a valid z-index value?",
+                          "options":  [
+                                          "auto",
+                                          "100",
+                                          "-1",
+                                          "All of the above"
+                                      ],
+                          "explanation":  "Z-index accepts auto (default), positive integers, negative integers, and 0.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What is required for z-index to work on an element?",
+                          "options":  [
+                                          "The element must be a block element",
+                                          "The element must have a position value other than static",
+                                          "The element must have a background color",
+                                          "The element must have a width set"
+                                      ],
+                          "explanation":  "Z-index only works on positioned elements (relative, absolute, fixed, or sticky).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "What is a stacking context?",
+                          "options":  [
+                                          "A group of elements with the same z-index",
+                                          "A group of elements that share a common parent and are stacked together",
+                                          "The order of elements in the HTML document",
+                                          "A CSS framework for managing layers"
+                                      ],
+                          "explanation":  "A stacking context is a group of elements with a common parent that are stacked together. Elements within one stacking context can\u0027t interleave with elements from another.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  5,
+                          "question":  "Which of these properties creates a new stacking context?",
+                          "options":  [
+                                          "opacity: 0.99",
+                                          "color: red",
+                                          "font-size: 16px",
+                                          "margin: 10px"
+                                      ],
+                          "explanation":  "An opacity value less than 1 creates a new stacking context. Other values that do this include transform, filter, and position with z-index.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  6,
+                          "question":  "What is the default value of z-index?",
+                          "options":  [
+                                          "0",
+                                          "auto",
+                                          "1",
+                                          "inherit"
+                                      ],
+                          "explanation":  "The default value of z-index is auto, which means the element doesn\u0027t create a stacking context and has the same stack level as its parent.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  7,
+                          "question":  "If two positioned elements have the same z-index, which one appears on top?",
+                          "options":  [
+                                          "The one with higher z-index",
+                                          "The one that appears later in the DOM",
+                                          "The one with smaller width",
+                                          "They blend together"
+                                      ],
+                          "explanation":  "When elements have the same z-index, the one that comes later in the DOM appears on top (back-to-front painting order).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  8,
+                          "question":  "What happens when an element has z-index: -1?",
+                          "options":  [
+                                          "It disappears",
+                                          "It goes behind its parent\u0027s background",
+                                          "It goes behind all elements",
+                                          "It becomes transparent"
+                                      ],
+                          "explanation":  "A negative z-index places the element behind its parent\u0027s background and borders, but still within the parent\u0027s stacking context.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  9,
+                          "question":  "Which CSS property can isolate a stacking context?",
+                          "options":  [
+                                          "overflow: hidden",
+                                          "display: block",
+                                          "isolation: isolate",
+                                          "position: static"
+                                      ],
+                          "explanation":  "The isolation: isolate property creates a new stacking context, ensuring the element\u0027s children are stacked independently of the rest of the page.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  10,
+                          "question":  "Why might z-index: 999999 not bring an element to the front?",
+                          "options":  [
+                                          "The maximum z-index is 99999",
+                                          "It might be in a child stacking context",
+                                          "Z-index doesn\u0027t work with position: fixed",
+                                          "The browser ignores values over 1000"
+                                      ],
+                          "explanation":  "If the element is inside a stacking context with a lower z-index parent, its z-index is limited to that context. The parent\u0027s stacking order determines visibility.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  11,
+                          "question":  "What is the recommended approach for managing z-index in large projects?",
+                          "options":  [
+                                          "Use z-index: 999999 for everything",
+                                          "Use CSS variables with a logical scale",
+                                          "Avoid z-index entirely",
+                                          "Use inline styles for all z-index values"
+                                      ],
+                          "explanation":  "CSS custom properties (variables) with a logical scale (e.g., --z-dropdown: 100, --z-modal: 500) helps maintain organized z-index values across large projects.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  12,
+                          "question":  "Which position value does NOT work with z-index?",
+                          "options":  [
+                                          "relative",
+                                          "absolute",
+                                          "static",
+                                          "fixed"
+                                      ],
+                          "explanation":  "Z-index doesn\u0027t work with static positioning. The element must be positioned (relative, absolute, fixed, or sticky) for z-index to take effect.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  13,
+                          "question":  "What is the correct order of painting within a stacking context (back to front)?",
+                          "options":  [
+                                          "Positive z-index â†’ Negative z-index â†’ Normal flow â†’ Floats",
+                                          "Negative z-index â†’ Normal flow â†’ Floats â†’ Inline â†’ Positive z-index",
+                                          "Normal flow â†’ Floats â†’ Inline â†’ Negative z-index â†’ Positive z-index",
+                                          "Floats â†’ Normal flow â†’ Inline â†’ Z-index"
+                                      ],
+                          "explanation":  "Within a stacking context, elements are painted back-to-front: negative z-index, non-positioned elements, floats, inline elements, and finally positive z-index.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  14,
+                          "question":  "How does transform affect stacking context?",
+                          "options":  [
+                                          "It doesn\u0027t affect it",
+                                          "A transform other than none creates a new stacking context",
+                                          "It only creates a stacking context with z-index",
+                                          "It destroys existing stacking contexts"
+                                      ],
+                          "explanation":  "Applying a CSS transform (other than none) to an element creates a new stacking context, which can affect how z-index works for that element and its children.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  15,
+                          "question":  "What happens when an element has position: fixed and z-index is not set?",
+                          "options":  [
+                                          "It always stays on top",
+                                          "It follows normal stacking rules",
+                                          "It goes to the very back",
+                                          "It becomes invisible"
+                                      ],
+                          "explanation":  "Without a z-index, fixed elements follow normal stacking rules. They appear on top of non-positioned elements but respect the order of other positioned elements.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  16,
+                          "question":  "Which DevTools feature helps debug z-index issues?",
+                          "options":  [
+                                          "Console tab",
+                                          "Stacking context visualization",
+                                          "Network tab",
+                                          "Sources tab"
+                                      ],
+                          "explanation":  "Browser DevTools (e.g., Chrome) has a stacking context visualization in the Elements panel that shows which elements create stacking contexts and their order.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  17,
+                          "question":  "Can z-index accept decimal values like 2.5?",
+                          "options":  [
+                                          "Yes",
+                                          "No, only integers",
+                                          "Only in some browsers",
+                                          "Only with position: relative"
+                                      ],
+                          "explanation":  "Z-index only accepts integer values. Decimal values are invalid and the property will be ignored.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  18,
+                          "question":  "What is the purpose of isolation: isolate?",
+                          "options":  [
+                                          "To remove an element from the DOM",
+                                          "To create a new stacking context boundary",
+                                          "To hide an element visually",
+                                          "To prevent click events"
+                                      ],
+                          "explanation":  "isolation: isolate creates a new stacking context, ensuring children of that element are stacked within that context and don\u0027t interfere with elements outside it.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "In a modal implementation, what should the z-index relationship be between overlay and modal?",
+                          "options":  [
+                                          "Modal \u003e Overlay",
+                                          "Overlay \u003e Modal",
+                                          "Both equal",
+                                          "No z-index needed"
+                                      ],
+                          "explanation":  "The modal content should have a higher z-index than the overlay so it appears on top of the semi-transparent overlay background.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  20,
+                          "question":  "Which of the following does NOT create a stacking context?",
+                          "options":  [
+                                          "filter: blur(5px)",
+                                          "opacity: 0.5",
+                                          "display: flex",
+                                          "mix-blend-mode: multiply"
+                                      ],
+                          "explanation":  "display: flex does not create a stacking context on its own. filter, opacity less than 1, and mix-blend-mode all create stacking contexts.",
+                          "correctAnswer":  2
+                      }
+                  ]
+}

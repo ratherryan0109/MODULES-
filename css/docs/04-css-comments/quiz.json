@@ -1,0 +1,247 @@
+{
+  "module": "04-css-comments",
+  "title": "CSS Comments",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the correct syntax for a CSS comment?",
+      "options": [
+        "// comment",
+        "<!-- comment -->",
+        "/* comment */",
+        "# comment"
+      ],
+      "correctAnswer": 2,
+      "explanation": "CSS uses /* */ for comments. // works in Sass/Less but not in vanilla CSS."
+    },
+    {
+      "id": 2,
+      "question": "Can CSS comments be nested like /* /* */ */?",
+      "options": [
+        "Yes, CSS supports nested comments",
+        "No, the inner */ closes the outer comment",
+        "Yes, but only in modern browsers",
+        "No, comments cannot contain asterisks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CSS does not support nested comments. The first */ encountered ends the comment that was opened with /*."
+    },
+    {
+      "id": 3,
+      "question": "Which of these is a GOOD use of a CSS comment?",
+      "options": [
+        "p { color: blue; /* makes text blue */ }",
+        "/* Using !important here to override third-party widget styles */",
+        "/* This is a paragraph style */",
+        "p { /* color */ : blue; }"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Good comments explain WHY something was done (like overriding third-party styles). Don't state the obvious."
+    },
+    {
+      "id": 4,
+      "question": "How do you temporarily disable a CSS rule using comments?",
+      "options": [
+        "Delete the rule",
+        "Wrap the rule in /* */",
+        "Add // before each line",
+        "Use <!-- --> around the rule"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Wrap the CSS rule in /* */ to comment it out. The browser will ignore the commented code."
+    },
+    {
+      "id": 5,
+      "question": "What happens to CSS comments when the page renders?",
+      "options": [
+        "They appear as tooltips",
+        "The browser ignores them completely",
+        "They appear in the page source but not the visual output",
+        "They show as green text on the page"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Comments appear in the HTML source/CSS file but have no effect on the visual rendering of the page."
+    },
+    {
+      "id": 6,
+      "question": "Can you use // comments in vanilla CSS?",
+      "options": [
+        "Yes, all CSS versions support //",
+        "No, // is only valid in CSS preprocessors like Sass",
+        "Yes, but only in CSS3",
+        "No, // comments cause a syntax error"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Single-line // comments are NOT valid in vanilla CSS. They work in Sass, Less, and other preprocessors."
+    },
+    {
+      "id": 7,
+      "question": "What is the best practice for commenting CSS?",
+      "options": [
+        "Comment every line",
+        "Comment every selector",
+        "Comment WHY not WHAT",
+        "Don't use comments at all"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Explain WHY you made certain decisions (browser hacks, fallbacks, design choices). The CSS code itself shows WHAT it does."
+    },
+    {
+      "id": 8,
+      "question": "Should CSS comments be kept in production files?",
+      "options": [
+        "Yes, always",
+        "No, they should be removed/minified for production",
+        "Only TODO comments should be kept",
+        "Yes, they help browser rendering"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Comments increase file size. Use CSS minification tools to strip comments in production."
+    },
+    {
+      "id": 9,
+      "question": "What does TODO mean in a CSS comment?",
+      "options": [
+        "The code is complete",
+        "A task that still needs to be done",
+        "The code has an error",
+        "This is a template"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TODO marks something that still needs to be addressed, like adding a fallback or implementing a feature."
+    },
+    {
+      "id": 10,
+      "question": "Can comments appear inside CSS property values?",
+      "options": [
+        "Yes, anywhere",
+        "No, only outside declarations",
+        "Yes, but only in values with spaces",
+        "Yes, but only in modern CSS"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Comments cannot appear inside property values. They can appear between declarations or around entire rules."
+    },
+    {
+      "id": 11,
+      "question": "What happens when you use <!-- --> inside a CSS stylesheet?",
+      "options": [
+        "It creates a valid comment",
+        "It may cause parsing errors",
+        "It hides the CSS from older browsers",
+        "It works the same as /* */"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HTML comments <!-- --> are not valid in CSS and may cause parsing errors. CSS only recognizes /* */ for comments."
+    },
+    {
+      "id": 12,
+      "question": "Which comment style is preserved in compiled Sass output?",
+      "options": [
+        "// comments",
+        "/* */ comments",
+        "Both // and /* */",
+        "Neither"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Sass, /* */ comments are preserved in compiled CSS output, while // comments are stripped during compilation."
+    },
+    {
+      "id": 13,
+      "question": "What is a FIXME comment used for?",
+      "options": [
+        "Marking completed code",
+        "Flagging a known bug that needs fixing",
+        "Highlighting code that runs faster",
+        "Indicating an accessible feature"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FIXME flags areas with known bugs or issues that need to be addressed, often with a short description of the problem."
+    },
+    {
+      "id": 14,
+      "question": "What is a documentation-style comment block in CSS?",
+      "options": [
+        "/* -- comment -- */",
+        "/** ... */ with structured documentation",
+        "<!-- ... --> with metadata",
+        "// documentation block"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Documentation blocks use /** ... */ with structured fields describing the component's usage, modifiers, and states."
+    },
+    {
+      "id": 15,
+      "question": "How should section headers be formatted in CSS comments?",
+      "options": [
+        "// Section Name",
+        "/* ===== SECTION NAME ===== */",
+        "# Section Name",
+        "<!-- Section Name -->"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Section headers like /* ===== SECTION NAME ===== */ create visually distinct markers that help navigate long stylesheets."
+    },
+    {
+      "id": 16,
+      "question": "Why is it important to update comments when code changes?",
+      "options": [
+        "Comments affect how the CSS renders",
+        "Stale comments are misleading and erode developer trust",
+        "The browser validates comments against code",
+        "Comments automatically generate documentation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Stale comments that contradict the actual code are worse than no comments because they actively mislead developers."
+    },
+    {
+      "id": 17,
+      "question": "What is the risk of leaving commented-out code in production?",
+      "options": [
+        "It increases page load time significantly",
+        "It creates dead code that adds maintenance burden",
+        "It causes JavaScript errors",
+        "It breaks the stylesheet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Commented-out code clutters the stylesheet and creates maintenance burden. Use version control history instead of commented-out code."
+    },
+    {
+      "id": 18,
+      "question": "Which CSS comment annotation is commonly used for browser-specific hacks?",
+      "options": [
+        "/* HACK: */",
+        "/* TODO: */",
+        "/* FIXME: */",
+        "/* BUG: */"
+      ],
+      "correctAnswer": 0,
+      "explanation": "HACK annotations explain why a browser-specific workaround is needed, making the intent clear to other developers."
+    },
+    {
+      "id": 19,
+      "question": "What does date-stamping a CSS comment accomplish?",
+      "options": [
+        "Makes the comment visible at a specific date",
+        "Provides traceability for when a decision was made",
+        "Causes the comment to expire automatically",
+        "Triggers a build tool to remove it"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Date-stamped comments (e.g., /* 2024-01-15: ... */) provide traceability and context for when and why certain decisions were made."
+    },
+    {
+      "id": 20,
+      "question": "Which tool can automatically remove CSS comments in production?",
+      "options": [
+        "Sass compiler",
+        "CSS minification tools like cssnano",
+        "Browser DevTools",
+        "HTML validator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CSS minification tools like cssnano, CleanCSS, and UglifyCSS automatically strip comments during the build process for production."
+    }
+  ]
+}

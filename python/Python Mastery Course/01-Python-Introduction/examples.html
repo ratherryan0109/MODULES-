@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Introduction - Examples</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #1e293b; padding: 20px; }
+    .examples-container { max-width: 1000px; margin: 0 auto; }
+    h1 { color: #306998; margin-bottom: 8px; font-size: 1.8em; }
+    .subtitle { color: #475569; margin-bottom: 24px; font-size: 1em; }
+    .example-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    .example-card h3 { color: #306998; margin-bottom: 12px; font-size: 1.2em; display: flex; align-items: center; gap: 10px; }
+    .example-card .badge { background: #FFD43B; color: #1e293b; padding: 2px 10px; border-radius: 12px; font-size: 0.7em; font-weight: 600; }
+    .example-card .note { background: #eef2ff; border-left: 3px solid #6366f1; padding: 8px 12px; margin-bottom: 12px; font-size: 0.9em; color: #4338ca; border-radius: 0 6px 6px 0; }
+
+    .code-block { position: relative; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; }
+    .code-block pre { margin: 0; padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+    .copy-btn {
+      position: absolute; top: 6px; right: 6px;
+      background: #e2e8f0; border: none; border-radius: 6px;
+      cursor: pointer; padding: 6px 7px; opacity: 0;
+      transition: opacity 0.15s, background 0.15s;
+      color: #64748b; line-height: 0;
+    }
+    .code-block:hover .copy-btn { opacity: 1; }
+    .copy-btn:hover { background: #cbd5e1; color: #334155; }
+
+    .output-block { background: #1e293b; color: #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 12px; font-family: monospace; font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
+    .output-block .prompt { color: #FFD43B; }
+    @media (max-width: 768px) { body { padding: 10px; } .example-card { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="examples-container">
+    <h1>Python Introduction — Examples</h1>
+    <p class="subtitle">Real Python examples demonstrating print(), strings, and program structure.</p>
+
+    <div class="example-card">
+      <h3>Example 1: Hello, World! <span class="badge">Basic</span></h3>
+      <p>The simplest Python program. Every programmer's first step.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy code">
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <pre><code class="language-python">
+# The classic first program
+# Displays "Hello, World!" on the screen
+print("Hello, World!")
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python hello.py<br>
+        Hello, World!
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 2: Printing Different Data Types <span class="badge">Basic</span></h3>
+      <p>You can print strings, numbers, and calculation results.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy code">
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <pre><code class="language-python">
+# Printing different types of data
+print("Text")       # String
+print(42)           # Integer (whole number)
+print(3.14159)      # Float (decimal number)
+print(2 + 2)        # Expression — Python calculates first, then prints
+print("Result:", 10 * 5)  # Mixing text and numbers
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python types.py<br>
+        Text<br>
+        42<br>
+        3.14159<br>
+        4<br>
+        Result: 50
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 3: Multiple Arguments and Custom Separators <span class="badge">Basic</span></h3>
+      <p>Using commas to print multiple items and the <code>sep</code> parameter to control spacing.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy code">
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <pre><code class="language-python">
+# Multiple items (comma-separated)
+print("apple", "banana", "cherry")
+
+# Custom separator with sep parameter
+print("apple", "banana", "cherry", sep=", ")
+print("apple", "banana", "cherry", sep=" | ")
+print("apple", "banana", "cherry", sep="")
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python separators.py<br>
+        apple banana cherry<br>
+        apple, banana, cherry<br>
+        apple | banana | cherry<br>
+        applebananacherry
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 4: Controlling Line Endings <span class="badge">Medium</span></h3>
+      <p>By default, print() ends with a newline. The <code>end</code> parameter changes this behavior.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy code">
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <pre><code class="language-python">
+# Default: each print adds a newline
+print("Line 1")
+print("Line 2")
+print("Line 3")
+
+# Using end="" keeps output on the same line
+print("Hello ", end="")
+print("World")             # Output: Hello World
+
+# Using end with custom character
+print("Processing", end="... ")
+print("Done!")             # Output: Processing... Done!
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python endings.py<br>
+        Line 1<br>
+        Line 2<br>
+        Line 3<br>
+        Hello World<br>
+        Processing... Done!
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 5: String Repetition for Borders <span class="badge">Medium</span></h3>
+      <p>Multiplying a string by a number repeats it — perfect for creating visual borders.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy code">
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <pre><code class="language-python">
+# Repeating characters with string multiplication
+print("=" * 30)
+print("     SECTION HEADER")
+print("=" * 30)
+
+# Different border styles
+print("-" * 30)
+print("*" * 30)
+print("#" * 30)
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python borders.py<br>
+        ==============================<br>
+             SECTION HEADER<br>
+        ==============================<br>
+        ------------------------------<br>
+        ******************************<br>
+        ##############################
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 6: Multi-line Output with One Print <span class="badge">Medium</span></h3>
+      <p>Using <code>\n</code> (newline) inside a string to create multi-line output from a single print().</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy code">
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <pre><code class="language-python">
+# Using \n (newline character) inside a string
+print("Line 1\nLine 2\nLine 3")
+
+# Practical: formatted address
+print("John Doe\n123 Main Street\nNew York, NY 10001\nUSA")
+
+# Poem with line breaks
+print("Roses are red,\nViolets are blue,\nPython is awesome,\nAnd so are you!")
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python multiline.py<br>
+        Line 1<br>
+        Line 2<br>
+        Line 3<br>
+        John Doe<br>
+        123 Main Street<br>
+        New York, NY 10001<br>
+        USA<br>
+        Roses are red,<br>
+        Violets are blue,<br>
+        Python is awesome,<br>
+        And so are you!
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 7: Program with Comments <span class="badge">Basic</span></h3>
+      <p>Comments explain code without affecting execution. They are for the human reader.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy code">
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <pre><code class="language-python">
+# This is a comment — Python ignores it
+print("This code runs")  # Inline comment
+
+# Comments can explain WHY you did something
+# (not WHAT the code does — the code shows that)
+
+# Calculate total cost
+print(5 * 10)   # 5 items at $10 each = $50
+print(3 * 8)    # 3 items at $8 each = $24
+print(50 + 24)  # Total cost
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python comments.py<br>
+        This code runs<br>
+        50<br>
+        24<br>
+        74
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 8: Common Mistakes <span class="badge">Debugging</span></h3>
+      <p>Learn what goes wrong so you can fix it when it happens.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy code">
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <pre><code class="language-python">
+# MISTAKE 1: Missing quotes
+# print(Hello)  # ← NameError
+print("Hello")   # ← Fixed: added quotes
+
+# MISTAKE 2: Mismatched quotes
+# print("Hello')  # ← SyntaxError
+print("Hello")    # ← Fixed: matching quotes
+
+# MISTAKE 3: Missing parentheses (Python 3)
+# print "Hello"   # ← SyntaxError
+print("Hello")    # ← Fixed: added parentheses
+
+# MISTAKE 4: Wrong capitalization
+# Print("Hello")  # ← NameError
+print("Hello")    # ← Fixed: lowercase p
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python fixes.py<br>
+        Hello<br>
+        Hello<br>
+        Hello<br>
+        Hello
+      </div>
+      <div class="note">Try uncommenting each mistake to see the error. Understanding errors is a key programming skill!</div>
+    </div>
+
+  </div>
+  <script>
+    function copyCode(btn) {
+      const code = btn.parentElement.querySelector("code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.querySelector(".copy-icon").style.display = "none";
+        btn.querySelector(".check-icon").style.display = "";
+        setTimeout(() => {
+          btn.querySelector(".copy-icon").style.display = "";
+          btn.querySelector(".check-icon").style.display = "none";
+        }, 2000);
+      });
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

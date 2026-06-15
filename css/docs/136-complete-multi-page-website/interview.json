@@ -1,0 +1,130 @@
+{
+  "module": "136-complete-multi-page-website",
+  "title": "Complete Multi-Page Website",
+  "beginner": [
+    {
+      "question": "What is a 'multi-page website' compared to a single-page app?",
+      "answer": "A multi-page website has separate HTML files/pages for different sections (Home, About, Services, Contact), each with its own URL. Navigation involves full page loads. This is the traditional web architecture, in contrast to SPAs which load content dynamically."
+    },
+    {
+      "question": "What is the typical navigation structure for a multi-page site?",
+      "answer": "A global navigation bar (header) appears on every page with links to main sections. Active page is highlighted. Secondary pages may have sub-navigation or breadcrumbs. Footer has supplemental links (Privacy, Terms, Sitemap)."
+    },
+    {
+      "question": "What is a 'consistent design system' across pages?",
+      "answer": "A unified set of design tokens (colors, typography, spacing, components) shared across all pages. CSS custom properties define the system. The same button, card, and form styles appear on every page, ensuring visual coherence."
+    },
+    {
+      "question": "How do you manage CSS across multiple pages without duplication?",
+      "answer": "Use a shared CSS file for global styles (layout, typography, components). Page-specific styles go in separate files or sections. CSS custom properties keep values consistent. A build tool concatenates files for production."
+    },
+    {
+      "question": "What is a 'page template' pattern for multi-page sites?",
+      "answer": "Common HTML structure: `<!DOCTYPE html>` → `<head>` (meta, title, CSS) → `<body>` → `<header>` (nav) → `<main>` (page content) → `<footer>`. Each page shares the `<header>` and `<footer>` but has unique `<main>` content."
+    },
+    {
+      "question": "How do you create a responsive navigation that works across all pages?",
+      "answer": "Same HTML structure on every page. Desktop: horizontal links with active state. Mobile: hamburger menu. Active page indicated with an `.active` class or `aria-current=\"page\"`. The nav style must be consistent regardless of which page is active."
+    },
+    {
+      "question": "What is a 'breadcrumb' and when is it used on multi-page sites?",
+      "answer": "Breadcrumbs show the page hierarchy (Home > Products > Category > Product). Used on deep pages, not typically on the homepage. Helps users understand location and navigate back. Use `<nav aria-label=\"Breadcrumb\">`."
+    },
+    {
+      "question": "How do you design a consistent footer across pages?",
+      "answer": "A footer with: logo, navigation links, social icons, newsletter signup, copyright, and legal links. Desktop: multi-column layout. Mobile: single column with accordion. Same CSS component on all pages."
+    },
+    {
+      "question": "What is a 'hero section' on a homepage vs interior pages?",
+      "answer": "Homepage hero is large and promotional (headline, CTA, imagery). Interior page heroes are smaller (page title, subtitle, maybe breadcrumbs). Both share the same design system but differ in scale and purpose."
+    },
+    {
+      "question": "How do you create a responsive 'page header' for interior pages?",
+      "answer": "A page header with: title, optional subtitle/subnav, and maybe breadcrumbs. Use consistent typography: `h1` for the title. Padding: `padding: 4rem 0;` desktop, `padding: 2rem 0;` mobile. Background color or subtle image."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you handle active navigation states across multiple pages?",
+      "answer": "Add an `.active` class or `aria-current=\"page\"` to the current page's nav link. Use server-side template logic or JavaScript to set the class based on the current URL. CSS: `.nav-link[aria-current=\"page\"] { font-weight: bold; color: var(--primary); }`."
+    },
+    {
+      "question": "How do you ensure consistent spacing across all pages and templates?",
+      "answer": "Use a consistent spacing scale as CSS custom properties: `--space-xs: 0.5rem; --space-sm: 1rem; --space-md: 2rem; --space-lg: 4rem;`. Apply section padding with these variables. Vertical rhythm is maintained by consistent heading and paragraph margins."
+    },
+    {
+      "question": "How do you create a 'component library' for a multi-page site?",
+      "answer": "Reusable CSS components: buttons (`.btn`, `.btn--primary`), cards, forms, alerts, and navigation. Each component is a self-contained CSS module. Document components in a style guide or use Storybook. Import components into each page."
+    },
+    {
+      "question": "How do you handle page-specific hero images while maintaining consistency?",
+      "answer": "Use CSS custom properties for the hero background: `.page-hero { background-image: var(--hero-image); }`. Set per page: `<style> .page-hero { --hero-image: url('/images/about-hero.jpg'); } </style>`."
+    },
+    {
+      "question": "How do you manage CSS file loading for performance across multiple pages?",
+      "answer": "Critical CSS inlined in `<head>`. Shared CSS in one file (cached across pages). Page-specific CSS loaded only on relevant pages. Use `<link rel=\"preload\">` for above-fold CSS. Defer non-critical CSS with `media=\"print\"` onload trick."
+    },
+    {
+      "question": "How do you design a consistent 'section' pattern across pages?",
+      "answer": "Use utility section classes: `.section { padding: var(--space-lg) 0; }`. Variants: `.section--dark { background: var(--bg-dark); }`. Each content page uses the same section components for visual rhythm."
+    },
+    {
+      "question": "How do you create a responsive 'sidebar layout' that works on multiple pages?",
+      "answer": "Use a layout class: `.layout--sidebar { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; }`. On mobile: single column. On pages without sidebar, use `.layout--full { max-width: 800px; margin: 0 auto; }`."
+    },
+    {
+      "question": "How do you implement 'search' across website pages?",
+      "answer": "A search input in the header/nav. Desktop: visible search box. Mobile: expandable search icon. Search results page shows matching content. Use CSS for consistent styling of search input, results list, and highlighting of matched terms."
+    },
+    {
+      "question": "How do you handle '404 page' design in a multi-page site?",
+      "answer": "A custom 404 page with: 'Page Not Found' message, illustration, search box, and links to popular pages. Uses the same header/footer as other pages. Keeps the design system consistent. Lighthearted tone is common."
+    },
+    {
+      "question": "How do you create a consistent 'form' style across all pages?",
+      "answer": "Define form component styles: `.form-group`, `.form-label`, `.form-input`, `.form-select`, `.form-textarea`, `.form-error`, `.form-success`. Consistent padding, border, focus ring, and error states. Apply the same pattern on every form."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a 'design system' that spans HTML templates, CSS, and documentation?",
+      "answer": "Design tokens stored in JSON. Build tools generate CSS custom properties and documentation. Component CSS is reusable via partials/templates. Use a tool like Style Dictionary to maintain a single source of truth for colors, spacing, and typography."
+    },
+    {
+      "question": "How do you handle 'progressive enhancement' across multiple pages with different complexity?",
+      "answer": "Start with core HTML and CSS on every page. Layer enhancements using `@supports` and `prefers-*` media queries. Simple pages (About, Contact) get fewer enhancements. Complex pages (Dashboard, Interactive tools) get more. All pages work without JS."
+    },
+    {
+      "question": "How do you implement 'page transitions' for a multi-page website?",
+      "answer": "Use the View Transitions API: `document.startViewTransition(() => navigate(url))`. CSS `::view-transition-old()` and `::view-transition-new()` control animations. Fallback: instant navigation without animation. Respect `prefers-reduced-motion`."
+    },
+    {
+      "question": "How do you create a 'multi-language' multi-page website with CSS?",
+      "answer": "Use `:lang()` pseudo-class for language-specific styles: `:lang(de) { --font-body: 'Noto Sans', sans-serif; }`. For RTL languages: `:lang(ar) { direction: rtl; }`. Set appropriate `font-family` per script. Adjust spacing for text expansion/contraction."
+    },
+    {
+      "question": "How do you implement 'A/B testing' across multiple pages without duplicating CSS?",
+      "answer": "Use CSS custom properties for variant values. Load variant A or B CSS via `data-variant` attribute on `<html>`. Each variant only overrides the relevant custom properties. All component CSS stays the same — only token values change."
+    },
+    {
+      "question": "How do you design a responsive 'sitemap' page?",
+      "answer": "A hierarchical list of all pages organized by section. Desktop: multi-column grid. Mobile: single column nested list. Use CSS columns: `column-count: 3;` desktop, `1` mobile. Links with descriptive text. Helps users and SEO."
+    },
+    {
+      "question": "How do you handle 'modals' and 'overlays' consistently across pages?",
+      "answer": "A shared modal component: same backdrop, animation, close behavior. Customize content per use case. Use `position: fixed; inset: 0;` overlay with centered content. Trap focus. Close on Escape key and backdrop click. Consistent transition: fade + scale."
+    },
+    {
+      "question": "How do you implement 'server-side rendering' of CSS to avoid FOUC across pages?",
+      "answer": "Extract critical CSS per page route (using tools like Critical CSS). Inline in `<head>`. Load full CSS asynchronously. This ensures each page renders correctly on first paint regardless of which page the user lands on."
+    },
+    {
+      "question": "How do you create a 'cookie consent' or 'GDPR banner' that appears on all pages?",
+      "answer": "A shared banner component appended to the `<body>`. `position: fixed; bottom: 0; width: 100%; z-index: 10000;`. Categorized by necessary/preferences/marketing. Same styling across all pages. Include `aria-label` for accessibility."
+    },
+    {
+      "question": "How do you architect CSS for a content management system (CMS) that serves multiple page types?",
+      "answer": "Define page-type layouts: `.page--landing`, `.page--article`, `.page--product`, `.page--archive`. Each layout inherits from base styles and overrides grid/column structure. Content blocks are reusable components. Templates include only the CSS they need via build-time code splitting."
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Masking - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .note { background: #f0fdfa; border-left: 4px solid #06b6d4; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.875rem; color: #475569; }
+    .flex-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .flex-row > div { flex:1; min-width:180px; text-align:center; }
+    .mask-item { height:120px; border-radius:8px; background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899); }
+  </style>
+</head>
+<body>
+  <h1>CSS Masking</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Linear Gradient Mask (Fade)</h2>
+    <p>mask-image with a gradient gradually reveals or hides parts of an element. Black = visible, transparent = hidden.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="mask-item" style="-webkit-mask-image:linear-gradient(to right,transparent,black);mask-image:linear-gradient(to right,transparent,black);"></div><code style="font-size:0.75rem">Fade left → right</code></div>
+        <div><div class="mask-item" style="-webkit-mask-image:linear-gradient(to bottom,black,transparent);mask-image:linear-gradient(to bottom,black,transparent);"></div><code style="font-size:0.75rem">Fade bottom → top</code></div>
+        <div><div class="mask-item" style="-webkit-mask-image:linear-gradient(90deg,transparent 10%,black 30%,black 70%,transparent 90%);mask-image:linear-gradient(90deg,transparent 10%,black 30%,black 70%,transparent 90%);"></div><code style="font-size:0.75rem">Reveal band</code></div>
+      </div>
+    </div>
+    <pre><code>.fade-right {
+    -webkit-mask-image: linear-gradient(to right, transparent, black);
+    mask-image: linear-gradient(to right, transparent, black);
+}
+/* transparent = hidden, black = fully visible */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Radial Gradient Mask (Reveal)</h2>
+    <p>Radial masks create circular, elliptical, or spotlight reveal effects.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="mask-item" style="-webkit-mask-image:radial-gradient(circle,black 30%,transparent 70%);mask-image:radial-gradient(circle,black 30%,transparent 70%);"></div><code style="font-size:0.75rem">Circular reveal</code></div>
+        <div><div class="mask-item" style="-webkit-mask-image:radial-gradient(ellipse,black 40%,transparent 60%);mask-image:radial-gradient(ellipse,black 40%,transparent 60%);"></div><code style="font-size:0.75rem">Elliptical</code></div>
+        <div><div class="mask-item" style="-webkit-mask-image:radial-gradient(circle at top left,black,transparent 70%);mask-image:radial-gradient(circle at top left,black,transparent 70%);"></div><code style="font-size:0.75rem">Spotlight</code></div>
+      </div>
+    </div>
+    <pre><code>.circular  { mask-image: radial-gradient(circle, black 30%, transparent 70%); }
+.spotlight { mask-image: radial-gradient(circle at top left, black, transparent 70%); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Pattern Masks</h2>
+    <p>Use repeating gradients to create pattern masks like stripes or checkerboards.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="mask-item" style="-webkit-mask-image:repeating-linear-gradient(45deg,black 0px,black 8px,transparent 8px,transparent 16px);mask-image:repeating-linear-gradient(45deg,black 0px,black 8px,transparent 8px,transparent 16px);"></div><code style="font-size:0.75rem">Diagonal stripes</code></div>
+        <div><div class="mask-item" style="-webkit-mask-image:repeating-linear-gradient(0deg,black 0px,black 6px,transparent 6px,transparent 12px);mask-image:repeating-linear-gradient(0deg,black 0px,black 6px,transparent 6px,transparent 12px);"></div><code style="font-size:0.75rem">Horizontal lines</code></div>
+        <div><div class="mask-item" style="-webkit-mask-image:repeating-radial-gradient(circle,black 0px,black 4px,transparent 4px,transparent 10px);mask-image:repeating-radial-gradient(circle,black 0px,black 4px,transparent 4px,transparent 10px);"></div><code style="font-size:0.75rem">Dotted pattern</code></div>
+      </div>
+    </div>
+    <pre><code>.stripes  { mask-image: repeating-linear-gradient(45deg, black 0px, black 8px, transparent 8px, transparent 16px); }
+.dots     { mask-image: repeating-radial-gradient(circle, black 0px, black 4px, transparent 4px, transparent 10px); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: SVG Masks</h2>
+    <p>An SVG <code>&lt;mask&gt;</code> element defines a reusable mask with shapes. Use it via <code>mask: url(#id)</code>.</p>
+    <div class="demo-output">
+      <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <mask id="circleMask">
+            <circle cx="100" cy="100" r="80" fill="white"/>
+          </mask>
+          <mask id="starMask">
+            <polygon points="100,10 40,190 190,70 10,70 160,190" fill="white"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="200" height="200" fill="url(#grad)" mask="url(#circleMask)" style="--grad:linear-gradient(135deg,#06b6d4,#6366f1)"/>
+        <rect x="0" y="0" width="200" height="200" fill="url(#grad2)" mask="url(#starMask)" y="210" style="--grad2:linear-gradient(135deg,#ec4899,#f59e0b)"/>
+      </svg>
+      <div style="display:flex;gap:20px;margin-top:12px">
+        <div style="flex:1"><div style="height:120px;background:linear-gradient(135deg,#06b6d4,#6366f1);-webkit-mask:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22white%22/%3E%3C/svg%3E') center/contain;mask:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22white%22/%3E%3C/svg%3E') center/contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;border-radius:0"></div><code style="font-size:0.75rem">SVG circle mask</code></div>
+        <div style="flex:1"><div style="height:120px;background:linear-gradient(135deg,#ec4899,#f59e0b);-webkit-mask:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cpolygon points=%22100,10 40,190 190,70 10,70 160,190%22 fill=%22white%22/%3E%3C/svg%3E') center/contain;mask:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cpolygon points=%22100,10 40,190 190,70 10,70 160,190%22 fill=%22white%22/%3E%3C/svg%3E') center/contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;border-radius:0"></div><code style="font-size:0.75rem">SVG star mask</code></div>
+      </div>
+    </div>
+    <pre><code>.masked {
+    mask: url('circle.svg') center / contain;
+    mask-repeat: no-repeat;
+}
+/* SVG mask uses white = visible, black = hidden */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Image with Mask</h2>
+    <p>Apply masks directly to images for creative cropping.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Crect width='160' height='120' fill='%2306b6d4'/%3E%3Ctext x='30' y='65' fill='white' font-size='16' font-family='sans-serif'%3EPhoto%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px;-webkit-mask:radial-gradient(circle,black 50%,transparent 52%);mask:radial-gradient(circle,black 50%,transparent 52%);"><code style="font-size:0.75rem">Circle crop</code></div>
+        <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Crect width='160' height='120' fill='%236366f1'/%3E%3Ctext x='30' y='65' fill='white' font-size='16' font-family='sans-serif'%3EPhoto%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px;-webkit-mask:linear-gradient(to bottom,black 50%,transparent 100%);mask:linear-gradient(to bottom,black 50%,transparent 100%);"><code style="font-size:0.75rem">Fade out</code></div>
+        <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Crect width='160' height='120' fill='%23ec4899'/%3E%3Ctext x='30' y='65' fill='white' font-size='16' font-family='sans-serif'%3EPhoto%3C/text%3E%3C/svg%3E" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px;-webkit-mask:linear-gradient(45deg,transparent 30%,black 30%,black 70%,transparent 70%);mask:linear-gradient(45deg,transparent 30%,black 30%,black 70%,transparent 70%);"><code style="font-size:0.75rem">Diamond</code></div>
+      </div>
+    </div>
+    <pre><code>.circle  { mask: radial-gradient(circle, black 50%, transparent 52%); }
+.fade    { mask: linear-gradient(to bottom, black 50%, transparent 100%); }
+.diamond { mask: linear-gradient(45deg, transparent 30%, black 30%, black 70%, transparent 70%); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Text Masking (background-clip)</h2>
+    <p>While not strictly mask-image, background-clip: text uses the text as a mask for the background.</p>
+    <div class="demo-output">
+      <p style="font-size:3rem;font-weight:900;background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;">GRADIENT TEXT</p>
+    </div>
+    <pre><code>.gradient-text {
+    background: linear-gradient(135deg, #06b6d4, #6366f1, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}</code></pre>
+  </div>
+</body>
+</html>

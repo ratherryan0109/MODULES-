@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"q": "What is an unordered list and when should you use it?", "a": "An unordered list (<ul>) displays items with bullet points where sequence doesn't matter. Use it for navigation menus, feature lists, ingredient lists, and grouped links."},
+    {"q": "What is the default bullet style for <ul>?", "a": "The default is 'disc' — a filled circle. It can be changed with list-style-type to circle, square, or none."},
+    {"q": "How do you remove bullets from a list?", "a": "Use CSS: ul { list-style: none; }. This is most commonly used for navigation menus."},
+    {"q": "What is the correct HTML for a nested unordered list?", "a": "Nest a new <ul> inside an <li> of the parent list. Never nest <ul> directly inside another <ul>."},
+    {"q": "Can you use an ordered list inside an unordered list?", "a": "Yes. An <ol> can be nested inside an <li> of a <ul>, creating a mixed list structure."},
+    {"q": "What is the list-style-position property?", "a": "It controls whether the marker is inside or outside the list item's box. 'inside' wraps text under the marker; 'outside' (default) aligns text to the right of the marker."},
+    {"q": "How do you create a horizontal navigation menu using a list?", "a": "Use CSS: nav ul { list-style: none; display: flex; gap: 20px; }. This removes bullets and lays items horizontally."},
+    {"q": "What is the ::marker pseudo-element used for?", "a": "It targets the bullet marker of list items, allowing you to change its color, size, or font properties independently."},
+    {"q": "How do screen readers handle unordered lists?", "a": "Screen readers announce the list structure and item count (e.g., 'List with 4 items'), then read each item."},
+    {"q": "What is list-style-image?", "a": "A CSS property that replaces the default bullet with a custom image: ul { list-style-image: url('bullet.png'); }."}
+  ],
+  "intermediate": [
+    {"q": "How do you create a custom checkmark list using ::before?", "a": "Set ul { list-style: none; padding-left: 0; } then li::before { content: '✓ '; color: green; } to insert a custom marker before each item."},
+    {"q": "What is the difference between list-style-position: inside and outside?", "a": "Outside (default) aligns the marker in the padding area, keeping text aligned. Inside puts the marker within the content box, so wrapped text aligns under the marker."},
+    {"q": "How do you create breadcrumb navigation with an unordered list?", "a": "Use a horizontal list with CSS: li::after { content: '›'; margin: 0 8px; } to add separators between items. The last item uses li:last-child::after { content: ''; }."},
+    {"q": "Can you style list markers with margin or padding?", "a": "Not directly. The ::marker pseudo-element has limited styling (color, font-size, font-weight, content). For full control, use ::before and remove the default list-style."},
+    {"q": "What accessibility concerns exist with custom bullets?", "a": "Custom bullets using ::before are decorative and not announced by screen readers. Ensure meaningful content isn't conveyed only through custom markers."},
+    {"q": "How do you create a multi-column list layout?", "a": "Use CSS columns: ul { columns: 2; column-gap: 40px; }. The list fills vertically first, then wraps to the next column."},
+    {"q": "What happens when you combine list-style with custom ::before?", "a": "If list-style: none is set, ::before replaces the marker entirely. If both exist, the original bullet may appear alongside the pseudo-element content."},
+    {"q": "How do you add hover effects to navigation list items?", "a": "Style li a:hover with background-color, color, or transform changes. Use transition: all 0.3s for smooth animations."},
+    {"q": "What is the difference between <menu> and <ul>?", "a": "<menu> is semantically intended for toolbar/menu items and works similarly to <ul>. In practice, <ul> is more widely supported and commonly used for menus."},
+    {"q": "How do you create an inline list without flex?", "a": "Set li { display: inline; } or li { display: inline-block; }. Inline removes list markers; inline-block preserves them with spacing control."}
+  ],
+  "advanced": [
+    {"q": "How would you create a styled tag cloud from an unordered list?", "a": "Use a list with varying font sizes based on data attributes or classes: li[data-weight='5'] { font-size: 24px; }. Arrange with flex and random or weighted sizing."},
+    {"q": "How do you create a CSS-only accordion menu using unordered lists?", "a": "Use nested lists. Hide child lists with ul ul { max-height: 0; overflow: hidden; } and toggle with li:hover > ul { max-height: 500px; } or using :focus-within."},
+    {"q": "How can you implement a custom numbering system with ul and counters?", "a": "Although ul has no default counter, CSS counters work on any element. Use counter-reset/increment on ul/li and display via ::before to create numbered lists from ul elements."},
+    {"q": "What are performance implications of deep list nesting?", "a": "Deep nesting (5+ levels) increases DOM size and can slow rendering. It also creates accessibility issues with screen reader navigation. Aim for 3 levels max."},
+    {"q": "How do you create a drag-and-drop reorderable list?", "a": "Use the HTML Drag and Drop API: add draggable='true' to li elements, handle dragstart/dragover/drop events, and use JavaScript to reorder DOM nodes."},
+    {"q": "How do you handle list items with long text that needs custom bullets?", "a": "Use vertical-align on the ::before content, set display: inline-flex on li, or use background-image with padding-left for precise alignment."},
+    {"q": "How do you create a responsive mega-menu with nested unordered lists?", "a": "Use multiple nested lists in columns. Structure: ul > li > a + ul.submenu > li > a + ul.sub-submenu. Use CSS grid or multi-column layout. Toggle submenus with JavaScript on click or hover."},
+    {"q": "How does a virtual DOM library (React) handle list rendering?", "a": "React requires a unique key prop on each li. It reconciles by key rather than index. The virtual DOM diffing algorithm efficiently updates only changed items."},
+    {"q": "How do you create accessible tab panels with unordered lists?", "a": "Use ul as the tab list with role='tablist', li elements as role='tab' with aria-controls, and corresponding div panels with role='tabpanel' and aria-labelledby."},
+    {"q": "What are WAI-ARIA roles relevant to unordered lists?", "a": "Use role='list' for the ul (default), role='listitem' for li elements. For nav, use role='navigation' or <nav>. Remove role when using list for presentational purposes and add aria-hidden='true' to decorative bullets."}
+  ]
+}

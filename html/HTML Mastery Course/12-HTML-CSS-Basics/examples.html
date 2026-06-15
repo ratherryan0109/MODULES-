@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 12: HTML CSS Basics - Examples</title>
+
+  <!-- Internal CSS Example -->
+  <style>
+    /* ===== GLOBAL RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      color: #34495e;
+      margin: 30px 0 15px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid #3498db;
+    }
+
+    /* ===== EXAMPLE BOXES ===== */
+    .example-box {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .example-box h3 {
+      color: #2980b9;
+      margin-bottom: 15px;
+    }
+
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 18px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin: 15px 0;
+      white-space: pre-wrap;
+    }
+
+    .note {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+      padding: 12px 18px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎨 HTML CSS Basics — Code Examples</h1>
+  <p style="text-align:center; color:#7f8c8d; margin-bottom:40px;">
+    Open this page in a browser to see CSS in action.
+  </p>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 1: INLINE CSS -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 1: Inline CSS</h3>
+    <p>
+      Inline CSS is applied directly on an element using the <code>style</code> attribute.
+      It has the highest specificity but mixes content with presentation.
+    </p>
+
+    <div style="background-color: #e74c3c; color: white; padding: 15px; border-radius: 6px; text-align: center; font-weight: bold;">
+      This div is styled with inline CSS — red background, white text, centered.
+    </div>
+
+    <div class="code-block">
+      &lt;div style="background-color: #e74c3c; color: white; padding: 15px; border-radius: 6px; text-align: center; font-weight: bold;"&gt;
+        This div is styled with inline CSS
+      &lt;/div&gt;
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 2: CLASS vs ID SELECTORS -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 2: Class Selector vs ID Selector</h3>
+
+    <style>
+      .card {
+        background: #ecf0f1;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border-left: 5px solid #3498db;
+      }
+      .card.highlight {
+        border-left-color: #e67e22;
+        background: #fef9e7;
+      }
+      #special-card {
+        background: #2c3e50;
+        color: white;
+        border-left: 5px solid #e74c3c;
+        font-size: 1.2em;
+      }
+    </style>
+
+    <div class="card">This is a regular card.</div>
+    <div class="card highlight">This card has both "card" and "highlight" classes.</div>
+    <div id="special-card">This card uses an ID selector (unique).</div>
+
+    <div class="code-block">
+      &lt;div class="card"&gt;Regular card&lt;/div&gt;
+      &lt;div class="card highlight"&gt;Highlighted card&lt;/div&gt;
+      &lt;div id="special-card"&gt;Special card (ID)&lt;/div&gt;
+
+      /* CSS */
+      .card { background: #ecf0f1; border-left: 5px solid #3498db; }
+      .card.highlight { border-left-color: #e67e22; background: #fef9e7; }
+      #special-card { background: #2c3e50; color: white; border-left-color: #e74c3c; }
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> Classes can be reused on multiple elements. IDs must be unique per page.
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 3: TYPOGRAPHY STYLES -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 3: Typography Properties</h3>
+
+    <style>
+      .typo-demo p {
+        margin: 10px 0;
+      }
+      .typo-demo .serif {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 18px;
+        font-style: italic;
+      }
+      .typo-demo .sans-serif {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .typo-demo .mono {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+        line-height: 1.8;
+        color: #2c3e50;
+      }
+      .typo-demo .decorated {
+        text-decoration: line-through;
+        color: #e74c3c;
+        font-weight: 300;
+      }
+      .typo-demo .shadow {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        font-size: 24px;
+        color: #2c3e50;
+      }
+    </style>
+
+    <div class="typo-demo">
+      <p class="serif">This is serif text — Georgia, italic, 18px.</p>
+      <p class="sans-serif">This is sans-serif text — bold, uppercase, tracked out.</p>
+      <p class="mono">This is monospace text — Courier, 15px, loose line-height.</p>
+      <p class="decorated">This text has a line-through decoration.</p>
+      <p class="shadow">This text has a drop shadow.</p>
+    </div>
+
+    <div class="code-block">
+      .serif { font-family: Georgia, serif; font-size: 18px; font-style: italic; }
+      .sans-serif { font-family: 'Segoe UI', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+      .mono { font-family: 'Courier New', monospace; line-height: 1.8; }
+      .decorated { text-decoration: line-through; color: #e74c3c; }
+      .shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 4: THE BOX MODEL -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 4: The CSS Box Model</h3>
+
+    <style>
+      .box-model-demo {
+        background: #f9f9f9;
+        padding: 20px;
+      }
+      .box-model-demo .box {
+        width: 300px;
+        margin: 25px auto;
+        padding: 20px;
+        border: 5px solid #3498db;
+        background: #fff;
+        text-align: center;
+      }
+      .box-model-demo .content {
+        background: #e8f4fd;
+        padding: 15px;
+        border: 2px dashed #2980b9;
+      }
+      .box-model-demo .annotations {
+        font-size: 14px;
+        color: #7f8c8d;
+      }
+      .box-model-demo .annotations span {
+        display: inline-block;
+        margin: 0 10px;
+      }
+      .box-model-demo .annotations .margin { color: #e67e22; font-weight: bold; }
+      .box-model-demo .annotations .border { color: #3498db; font-weight: bold; }
+      .box-model-demo .annotations .padding { color: #2ecc71; font-weight: bold; }
+      .box-model-demo .annotations .content { color: #e74c3c; font-weight: bold; }
+    </style>
+
+    <div class="box-model-demo">
+      <div class="annotations" style="text-align:center; margin-bottom:10px;">
+        <span class="margin">Margin</span> →
+        <span class="border">Border</span> →
+        <span class="padding">Padding</span> →
+        <span class="content">Content</span>
+      </div>
+
+      <div class="box">
+        <div class="content">
+          This is the content area<br>
+          <small>width: 300px</small>
+        </div>
+      </div>
+
+      <p style="text-align:center; font-size:14px; color:#555;">
+        Total width = 300px (content) + 40px (padding) + 10px (border) = 350px
+      </p>
+    </div>
+
+    <div class="code-block">
+      .box {
+        width: 300px;
+        margin: 25px auto;    /* orange - space outside border */
+        padding: 20px;         /* green - space inside border */
+        border: 5px solid #3498db;  /* blue - border line */
+        background: #fff;
+      }
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 5: DISPLAY VALUES -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 5: Display Property — Block, Inline, Inline-Block</h3>
+
+    <style>
+      .display-demo {
+        margin: 15px 0;
+      }
+      .display-demo .block-item {
+        display: block;
+        background: #3498db;
+        color: white;
+        padding: 10px;
+        margin: 5px 0;
+        text-align: center;
+      }
+      .display-demo .inline-item {
+        display: inline;
+        background: #e67e22;
+        color: white;
+        padding: 10px;
+        margin: 5px;
+      }
+      .display-demo .inline-block-item {
+        display: inline-block;
+        background: #2ecc71;
+        color: white;
+        padding: 15px;
+        margin: 5px;
+        width: 120px;
+        text-align: center;
+      }
+    </style>
+
+    <p><strong>Block:</strong> Each item starts on a new line, takes full width.</p>
+    <div class="display-demo">
+      <div class="block-item">Block 1</div>
+      <div class="block-item">Block 2</div>
+      <div class="block-item">Block 3</div>
+    </div>
+
+    <p><strong>Inline:</strong> Items flow inline, ignore width/height.</p>
+    <div class="display-demo">
+      <span class="inline-item">Inline 1</span>
+      <span class="inline-item">Inline 2</span>
+      <span class="inline-item">Inline 3</span>
+    </div>
+
+    <p><strong>Inline-Block:</strong> Flow inline but respect width/height.</p>
+    <div class="display-demo">
+      <div class="inline-block-item">Inline-Block 1</div>
+      <div class="inline-block-item">Inline-Block 2</div>
+      <div class="inline-block-item">Inline-Block 3</div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 6: SPECIFICITY DEMO -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 6: CSS Specificity</h3>
+
+    <style>
+      .specificity-demo p { color: #333; }
+      .specificity-demo .text { color: #e67e22; }
+      .specificity-demo #override-text { color: #2980b9; }
+    </style>
+
+    <div class="specificity-demo">
+      <p>This paragraph uses <strong>element selector</strong> — color: #333</p>
+      <p class="text">This paragraph uses <strong>class selector</strong> — color: #e67e22 (wins over element)</p>
+      <p class="text" id="override-text">This paragraph uses an <strong>ID selector</strong> — color: #2980b9 (wins over class)</p>
+      <p class="text" id="override-text" style="color:#2c3e50;">
+        This paragraph uses <strong>inline style</strong> — color: #2c3e50 (wins over ID)
+      </p>
+    </div>
+
+    <div class="code-block">
+      /* Specificity weights: */
+      p { color: #333; }               /* 0,0,0,1  — weakest */
+      .text { color: #e67e22; }        /* 0,0,1,0 */
+      #override-text { color: #2980b9; } /* 0,1,0,0 */
+      style="color:#2c3e50;"           /* 1,0,0,0  — strongest */
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 7: MARGIN & PADDING SHORTHAND -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 7: Margin and Padding Shorthand</h3>
+
+    <style>
+      .spacing-demo {
+        background: #ecf0f1;
+        padding: 30px;
+      }
+      .spacing-demo .shorthand-box {
+        background: #9b59b6;
+        color: white;
+        text-align: center;
+        margin: 10px 0;
+      }
+      .spacing-demo .box-1 { padding: 10px; }
+      .spacing-demo .box-2 { padding: 15px 30px; }
+      .spacing-demo .box-3 { padding: 10px 20px 30px 40px; }
+      .spacing-demo .box-4 { margin: 5px 10px 15px; }
+    </style>
+
+    <div class="spacing-demo">
+      <div class="shorthand-box box-1">padding: 10px (all sides equal)</div>
+      <div class="shorthand-box box-2">padding: 15px 30px (top/bottom 15, left/right 30)</div>
+      <div class="shorthand-box box-3">padding: 10px 20px 30px 40px (top, right, bottom, left)</div>
+      <div class="shorthand-box box-4">margin: 5px 10px 15px (top, left/right, bottom)</div>
+    </div>
+
+    <div class="code-block">
+      /* Shorthand order: top, right, bottom, left (clockwise) */
+      padding: 10px;              /* all four sides */
+      padding: 15px 30px;         /* top/bottom, left/right */
+      padding: 10px 20px 30px;    /* top, left/right, bottom */
+      padding: 10px 20px 30px 40px; /* top, right, bottom, left */
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 8: BACKGROUND STYLES -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 8: Background Properties</h3>
+
+    <style>
+      .bg-demo {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .bg-demo h4 { margin-bottom: 10px; font-size: 1.5em; }
+      .bg-demo p { opacity: 0.9; }
+    </style>
+
+    <div class="bg-demo">
+      <h4>Gradient Background</h4>
+      <p>This box uses a linear gradient background from purple to indigo.</p>
+    </div>
+
+    <br>
+
+    <style>
+      .bg-pattern {
+        background:
+          radial-gradient(circle at 20% 50%, rgba(52,152,219,0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 50%, rgba(231,76,60,0.3) 0%, transparent 50%),
+          #fff;
+        padding: 30px;
+        border-radius: 8px;
+        text-align: center;
+      }
+    </style>
+
+    <div class="bg-pattern">
+      <h4>Layered Backgrounds</h4>
+      <p>Multiple background layers create rich visual effects.</p>
+    </div>
+
+    <div class="code-block">
+      .bg-demo {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .bg-pattern {
+        background:
+          radial-gradient(circle at 20% 50%, rgba(52,152,219,0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 50%, rgba(231,76,60,0.3) 0%, transparent 50%),
+          #fff;
+      }
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 9: BORDER AND BORDER-RADIUS -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 9: Borders and Border Radius</h3>
+
+    <style>
+      .border-demo {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .border-demo .b {
+        width: 140px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 12px;
+        background: #ecf0f1;
+      }
+      .border-demo .b1 { border: 3px solid #e74c3c; }
+      .border-demo .b2 { border: 4px dashed #3498db; border-radius: 10px; }
+      .border-demo .b3 { border: 5px dotted #2ecc71; border-radius: 20px; }
+      .border-demo .b4 { border: 6px double #9b59b6; border-radius: 50%; }
+      .border-demo .b5 { border: 3px solid #e67e22; border-radius: 20px/10px; }
+      .border-demo .b6 { border: 8px ridge #1abc9c; }
+    </style>
+
+    <div class="border-demo">
+      <div class="b b1">solid</div>
+      <div class="b b2">dashed<br>border-radius: 10px</div>
+      <div class="b b3">dotted<br>border-radius: 20px</div>
+      <div class="b b4">double<br>border-radius: 50%</div>
+      <div class="b b5">solid<br>border-radius: 20px/10px</div>
+      <div class="b b6">ridge</div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXAMPLE 10: EXTERNAL CSS DEMO -->
+  <!-- ======================================================== -->
+  <div class="example-box">
+    <h3>Example 10: How to Link External CSS</h3>
+
+    <p>In a real project, you would create a <code>styles.css</code> file and link it in the <code>&lt;head&gt;</code>:</p>
+
+    <div class="code-block">
+      &lt;!-- index.html --&gt;
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;My Website&lt;/title&gt;
+        &lt;link rel="stylesheet" href="styles.css"&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;Hello World&lt;/h1&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </div>
+
+    <div class="code-block">
+      /* styles.css */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: system-ui, sans-serif;
+        background: #f8f9fa;
+        color: #333;
+      }
+      h1 { color: #2563eb; text-align: center; margin-top: 50px; }
+    </div>
+
+    <div class="note">
+      <strong>Key point:</strong> Always include <code>rel="stylesheet"</code> in the &lt;link&gt; tag, otherwise the browser won't load your CSS.
+    </div>
+  </div>
+
+</body>
+</html>

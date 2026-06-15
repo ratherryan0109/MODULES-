@@ -1,0 +1,29 @@
+{
+  "module": "66 - Breakpoints",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Content-First Breakpoints",
+      "description": "Take a single-column layout and add exactly 3 content-based breakpoints where the layout naturally needs them.",
+      "instructions": "Create a page with text, images, and cards. Add breakpoints only where content looks awkward. Name your breakpoints based on the content change.",
+      "hints": ["Resize slowly and watch for text line-length issues", "Look for when cards have too much whitespace", "Add a breakpoint when navigation items have room to be horizontal"],
+      "solution": "/* Content-based breakpoints */\n@media (min-width: 600px) { /* Navigation fits horizontally */ }\n@media (min-width: 850px) { /* Cards can fit in 2 columns */ }\n@media (min-width: 1100px) { /* Sidebar layout works */ }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Custom Framework Breakpoints",
+      "description": "Design a custom breakpoint system with Sass/CSS variables and use it consistently across components.",
+      "instructions": "Define 5 breakpoints as CSS custom properties. Create reusable utility classes that use these breakpoints.",
+      "hints": ["Use CSS custom properties for breakpoint values", "Create utility classes like .hide-desktop, .show-mobile", "Use min-width prefixes like @media (min-width: var(--bp-sm))"],
+      "solution": ":root { --bp-sm: 640px; --bp-md: 768px; --bp-lg: 1024px; --bp-xl: 1280px; --bp-xxl: 1536px; }\n@media (min-width: var(--bp-md)) { .md\\:flex { display: flex; } }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Fluid Layout with Minimum Breakpoints",
+      "description": "Build a complete page layout with a 1-column, 2-column, and 3-column grid using only 2 breakpoints. Use CSS Grid auto-fit for the rest.",
+      "instructions": "Combine auto-fit grids with strategic breakpoints to create a layout that works at all widths with minimal media queries.",
+      "hints": ["Use auto-fit with minmax for the main column flexibility", "Use explicit breakpoints only when grid-template-columns needs to change fundamentally", "Consider using clamp() for fluid sizing between breakpoints"],
+      "solution": ".grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }\n@media (min-width: 700px) { .grid { grid-template-columns: repeat(2, 1fr); } }\n@media (min-width: 1100px) { .grid { grid-template-columns: repeat(3, 1fr); } }"
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>32 - HTML Header Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 20px;
+      background: #f0f2f5;
+      color: #333;
+    }
+    .example-box {
+      background: white;
+      border-radius: 10px;
+      padding: 0;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .example-box h2 {
+      margin: 0;
+      padding: 15px 20px;
+      background: #2563eb;
+      color: white;
+      font-size: 1.2em;
+    }
+    .example-desc {
+      padding: 15px 20px 5px;
+      color: #666;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 15px;
+      overflow-x: auto;
+      font-size: 14px;
+      margin: 0 20px 15px;
+      border-radius: 6px;
+    }
+    /* Reset styles for inner examples */
+    .demo-area {
+      padding: 0;
+    }
+
+    /* Example 1: Simple Header */
+    .simple-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 40px;
+      text-align: center;
+    }
+    .simple-header h1 { margin: 0; font-size: 2em; }
+    .simple-header p { margin: 8px 0 0; opacity: 0.9; }
+
+    /* Example 2: Logo + Nav */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+      background: #fff;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    .site-header .logo { display: flex; align-items: center; gap: 10px; }
+    .site-header .logo .logo-box {
+      width: 40px; height: 40px;
+      background: #2563eb;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: bold; font-size: 1.2em;
+    }
+    .site-header .logo span { font-size: 1.3em; font-weight: 700; color: #1e293b; }
+    .site-header nav ul {
+      display: flex; gap: 25px; list-style: none; margin: 0; padding: 0;
+    }
+    .site-header nav a {
+      text-decoration: none; color: #475569; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .site-header nav a:hover { color: #2563eb; }
+    .site-header .search-form { display: flex; gap: 5px; }
+    .site-header .search-form input {
+      padding: 6px 12px; border: 1px solid #d1d5db; border-radius: 4px;
+    }
+    .site-header .search-form button {
+      padding: 6px 12px; background: #2563eb; color: white;
+      border: none; border-radius: 4px; cursor: pointer;
+    }
+
+    /* Example 3: Article Header */
+    .article-card {
+      padding: 30px 40px;
+    }
+    .article-header {
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    .article-header h2 { margin: 0 0 8px; color: #1e293b; }
+    .article-header .meta {
+      color: #6b7280; font-size: 0.9em;
+    }
+    .article-header .meta span { margin-right: 15px; }
+    .article-body { line-height: 1.8; color: #374151; }
+
+    /* Example 4: Section Header */
+    .section-demo {
+      padding: 30px 40px;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .section-header h2 {
+      color: #1e293b; font-size: 1.8em; margin: 0 0 8px;
+    }
+    .section-header p {
+      color: #6b7280; max-width: 500px; margin: 0 auto;
+    }
+    .service-cards { display: flex; gap: 15px; }
+    .service-card {
+      flex: 1; padding: 20px; background: #f8fafc;
+      border-radius: 8px; text-align: center;
+    }
+    .service-card h3 { margin: 0 0 6px; color: #2563eb; }
+
+    /* Example 5: Modern Sticky Header */
+    .modern-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+      background: #1e293b;
+      color: white;
+    }
+    .modern-header .logo { font-size: 1.3em; font-weight: bold; }
+    .modern-header nav ul {
+      display: flex; gap: 20px; list-style: none; margin: 0; padding: 0;
+    }
+    .modern-header nav a {
+      color: #cbd5e1; text-decoration: none; transition: color 0.2s;
+    }
+    .modern-header nav a:hover { color: white; }
+    .modern-header .cta {
+      background: #3b82f6; color: white; padding: 8px 20px;
+      border-radius: 6px; text-decoration: none; font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏷️ HTML Header Element - Examples</h1>
+
+  <!-- Example 1: Simple Header -->
+  <div class="example-box">
+    <h2>Example 1: Simple Page Header</h2>
+    <p class="example-desc">A minimal header with a heading and tagline:</p>
+    <pre>
+&lt;header class="simple-header"&gt;
+  &lt;h1&gt;My Website&lt;/h1&gt;
+  &lt;p&gt;Welcome to my personal website.&lt;/p&gt;
+&lt;/header&gt;
+    </pre>
+    <div class="demo-area">
+      <header class="simple-header">
+        <h1>My Website</h1>
+        <p>Welcome to my personal website. Explore my portfolio and blog.</p>
+      </header>
+    </div>
+  </div>
+
+  <!-- Example 2: Logo + Nav + Search -->
+  <div class="example-box">
+    <h2>Example 2: Site Header with Logo, Navigation, and Search</h2>
+    <p class="example-desc">A complete page header with branding, links, and a search form:</p>
+    <pre>
+&lt;header class="site-header"&gt;
+  &lt;div class="logo"&gt;
+    &lt;div class="logo-box"&gt;B&lt;/div&gt;
+    &lt;span&gt;BrandName&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;nav aria-label="Main"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/products"&gt;Products&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+  &lt;form class="search-form"&gt;
+    &lt;input type="search" placeholder="Search..."&gt;
+    &lt;button&gt;Go&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/header&gt;
+    </pre>
+    <div class="demo-area">
+      <header class="site-header">
+        <div class="logo">
+          <div class="logo-box">B</div>
+          <span>BrandName</span>
+        </div>
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <form class="search-form" role="search">
+          <input type="search" placeholder="Search...">
+          <button type="submit">Go</button>
+        </form>
+      </header>
+    </div>
+  </div>
+
+  <!-- Example 3: Article Header -->
+  <div class="example-box">
+    <h2>Example 3: Article Header with Metadata</h2>
+    <p class="example-desc">A header inside an article with title, author, date, and categories:</p>
+    <pre>
+&lt;article&gt;
+  &lt;header class="article-header"&gt;
+    &lt;h2&gt;Understanding CSS Grid&lt;/h2&gt;
+    &lt;p class="meta"&gt;
+      &lt;span&gt;By Jane Doe&lt;/span&gt;
+      &lt;span&gt;March 15, 2025&lt;/span&gt;
+      &lt;span&gt;Category: CSS&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/header&gt;
+  &lt;p&gt;CSS Grid is a powerful layout system...&lt;/p&gt;
+&lt;/article&gt;
+    </pre>
+    <div class="demo-area">
+      <div class="article-card">
+        <article>
+          <header class="article-header">
+            <h2>Understanding CSS Grid</h2>
+            <p class="meta">
+              <span>👤 By Jane Doe</span>
+              <span>📅 March 15, 2025</span>
+              <span>🏷️ Category: CSS</span>
+            </p>
+          </header>
+          <div class="article-body">
+            <p>CSS Grid is a powerful two-dimensional layout system that allows you to create complex web layouts with rows and columns. It is supported in all modern browsers and has revolutionized the way developers approach page layout.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 4: Section Header -->
+  <div class="example-box">
+    <h2>Example 4: Section-Level Header</h2>
+    <p class="example-desc">A header used inside a section to introduce its content:</p>
+    <pre>
+&lt;section&gt;
+  &lt;header class="section-header"&gt;
+    &lt;h2&gt;Our Services&lt;/h2&gt;
+    &lt;p&gt;We offer professional services to grow your business.&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;div class="service-cards"&gt; ... &lt;/div&gt;
+&lt;/section&gt;
+    </pre>
+    <div class="demo-area">
+      <div class="section-demo">
+        <section>
+          <header class="section-header">
+            <h2>Our Services</h2>
+            <p>We offer a wide range of professional services to help your business grow and succeed in the digital landscape.</p>
+          </header>
+          <div class="service-cards">
+            <div class="service-card">
+              <h3>Web Design</h3>
+              <p>Beautiful, responsive websites.</p>
+            </div>
+            <div class="service-card">
+              <h3>Development</h3>
+              <p>Full-stack web applications.</p>
+            </div>
+            <div class="service-card">
+              <h3>SEO</h3>
+              <p>Search engine optimization.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 5: Modern Dark Header -->
+  <div class="example-box">
+    <h2>Example 5: Modern Dark Header with CTA</h2>
+    <p class="example-desc">A dark-themed site header with logo, navigation, and call-to-action button:</p>
+    <pre>
+&lt;header class="modern-header"&gt;
+  &lt;div class="logo"&gt;TechCorp&lt;/div&gt;
+  &lt;nav aria-label="Main"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Features&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+  &lt;a href="#" class="cta"&gt;Get Started&lt;/a&gt;
+&lt;/header&gt;
+    </pre>
+    <div class="demo-area">
+      <header class="modern-header">
+        <div class="logo">🚀 TechCorp</div>
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </nav>
+        <a href="#" class="cta">Get Started</a>
+      </header>
+    </div>
+  </div>
+
+</body>
+</html>

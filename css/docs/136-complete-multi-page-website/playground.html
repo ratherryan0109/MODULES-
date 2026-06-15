@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Playground - Multi-Page Website</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;background:#1e293b;color:#fff;height:100vh;display:flex;flex-direction:column}.toolbar{background:#0f172a;padding:.5rem 1rem;display:flex;align-items:center;gap:1rem}.toolbar h2{font-size:1rem}.toolbar button{background:#334155;color:#fff;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer}.main-split{display:flex;flex:1;overflow:hidden}.editor-pane{flex:1;display:flex;flex-direction:column;border-right:1px solid #334155}.preview-pane{flex:1;background:#f8fafc}iframe{width:100%;height:100%;border:none}textarea{width:100%;flex:1;background:#1e293b;color:#e2e8f0;border:none;padding:1rem;font-family:'Consolas',monospace;font-size:.875rem;resize:none;outline:none}.tabs{display:flex;background:#0f172a}.tabs button{background:transparent;color:#94a3b8;border:none;padding:.5rem 1rem;cursor:pointer;border-bottom:2px solid transparent}.tabs button.active{color:#fff;border-bottom-color:#8b5cf6}}</style></head>
+<body>
+<div class="toolbar"><h2>Multi-Page Playground</h2><button id="run">&#9654; Run</button><button id="reset">&#8635; Reset</button></div>
+<div class="main-split"><div class="editor-pane"><div class="tabs"><button class="active" data-tab="html">HTML</button><button data-tab="css">CSS</button></div>
+<textarea id="html"><div style="padding:2rem;font-family:sans-serif">
+  <nav style="display:flex;gap:1.5rem;margin-bottom:2rem;border-bottom:1px solid #e2e8f0;padding-bottom:1rem">
+    <a href="#" style="color:#8b5cf6;font-weight:600">Home</a>
+    <a href="#" style="color:#64748b">About</a>
+    <a href="#" style="color:#64748b">Contact</a>
+  </nav>
+  <h1 style="font-size:2.5rem;font-weight:800;color:#0f172a">Welcome to Vertex</h1>
+  <p style="color:#475569;max-width:500px">A complete multi-page website built with a shared CSS design system.</p>
+</div></textarea>
+<textarea id="css">body{margin:0;font-family:'Inter',sans-serif;background:#f8fafc;color:#475569}</textarea>
+</div><div class="preview-pane"><iframe id="preview"></iframe></div></div>
+<script>
+  const h=document.getElementById('html'),c=document.getElementById('css'),p=document.getElementById('preview'),r=document.getElementById('run'),rs=document.getElementById('reset'),tb=document.querySelectorAll('[data-tab]');
+  function render(){const d='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>*,*::before,*::after{box-sizing:border-box}'+c.value+'</style></head><body>'+h.value+'</body></html>';p.src='data:text/html;charset=utf-8,'+encodeURIComponent(d)}
+  function reset(){h.value='<div style="padding:2rem;font-family:sans-serif">\n  <nav style="display:flex;gap:1.5rem;margin-bottom:2rem;border-bottom:1px solid #e2e8f0;padding-bottom:1rem">\n    <a href="#" style="color:#8b5cf6;font-weight:600">Home</a>\n    <a href="#" style="color:#64748b">About</a>\n    <a href="#" style="color:#64748b">Contact</a>\n  </nav>\n  <h1 style="font-size:2.5rem;font-weight:800;color:#0f172a">Welcome to Vertex</h1>\n  <p style="color:#475569;max-width:500px">A complete multi-page website built with a shared CSS design system.</p>\n</div>';c.value='body{margin:0;font-family:\'Inter\',sans-serif;background:#f8fafc;color:#475569}';render()}
+  r.addEventListener('click',render);rs.addEventListener('click',reset);
+  tb.forEach(b=>{b.addEventListener('click',()=>{tb.forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.editor-pane textarea').forEach(t=>t.style.display='none');if(b.dataset.tab==='html')h.style.display='block';if(b.dataset.tab==='css')c.style.display='block'})});h.style.display='block';c.style.display='none';render();
+</script></body></html>

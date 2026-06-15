@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>CSS Layers - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;padding:30px;background:#0f0f1a;color:#e0e0e0}
+.container{max-width:900px;margin:0 auto}
+h1{color:#ffd700}.subtitle{color:#aaa;margin-bottom:16px}
+.panel{background:#1a1a2e;border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid #2a2a4a}
+.panel h2{color:#00d4ff;font-size:1rem;margin-bottom:8px}
+.ctrl{margin-bottom:10px}
+.ctrl label{display:block;color:#ccc;margin-bottom:2px;font-size:0.8rem}
+.ctrl textarea{width:100%;padding:8px;border:1px solid #333;border-radius:6px;background:#0a0a1a;color:#a8e6cf;font-family:'Fira Code',monospace;font-size:0.8rem;min-height:120px}
+.code{background:#0a0a1a;padding:12px;border-radius:8px;font-family:'Fira Code',monospace;font-size:0.8rem;color:#a8e6cf;margin-top:12px;min-height:60px}
+.demo-box{display:flex;gap:12px;flex-wrap:wrap;padding:16px;background:#12122a;border-radius:8px;margin-top:12px;align-items:center}
+.btn{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;color:white;font-size:0.85rem}
+.btn-apply{background:#3b82f6}
+</style>
+</head>
+<body>
+<div class=container>
+<h1>CSS Layers Playground</h1>
+<p class=subtitle>Experiment with CSS @layer order and see the cascade in action.</p>
+<div class=panel><h2>Layer Order (comma-separated)</h2>
+<div class=ctrl><label>Layer Order:</label><input type=text id=layerOrder style="width:100%;padding:8px;border:1px solid #333;border-radius:6px;background:#0a0a1a;color:#e0e0e0" value="reset, base, components, utilities"></div>
+</div>
+<div class=panel><h2>Layer Content</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div><label>@layer reset</label><textarea id=layerReset>* { margin: 0; padding: 0; }</textarea></div>
+<div><label>@layer base</label><textarea id=layerBase>.box { background: #1a1a2e; color: white; padding: 20px; }</textarea></div>
+<div><label>@layer components</label><textarea id=layerComp>.box { background: #3b82f6; color: white; padding: 24px; border-radius: 12px; }</textarea></div>
+<div><label>@layer utilities</label><textarea id=layerUtil>.box { background: #10b981; padding: 32px; }</textarea></div>
+</div>
+<button class="btn btn-apply" onclick="applyLayers()" style="margin-top:12px">Apply Layers</button>
+</div>
+<div class=code id=codeOut>Click "Apply Layers" to compile and preview.</div>
+<div class=demo-box><div class=box id=previewBox>This box shows the winning styles</div></div>
+</div>
+<script>
+function applyLayers(){
+const order=document.getElementById('layerOrder').value.split(',').map(s=>s.trim()).filter(Boolean);
+const layers={};
+order.forEach(name=>{
+layers[name]=document.getElementById('layer'+name.charAt(0).toUpperCase()+name.slice(1))?.value||'';
+});
+let css='';
+order.forEach(name=>{
+if(layers[name])css+=`@layer ${name} { ${layers[name]} }\n`;
+});
+let styleEl=document.getElementById('layerStyle');
+if(!styleEl){styleEl=document.createElement('style');styleEl.id='layerStyle';document.head.appendChild(styleEl)}
+styleEl.textContent=css;
+document.getElementById('codeOut').textContent=css||'No CSS generated.';
+}
+applyLayers();
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Variables — Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-primary: #3498db;
+      --color-secondary: #2ecc71;
+      --color-accent: #e74c3c;
+      --color-bg: #f0f2f5;
+      --color-text: #333;
+      --color-text-light: #888;
+      --spacing-xs: 0.25rem;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 2rem;
+      --spacing-xl: 4rem;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+      --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --font-size-sm: 0.875rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.25rem;
+      --font-size-xl: 2rem;
+      --max-width: 1200px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      padding: var(--spacing-lg);
+    }
+
+    h1 { font-size: var(--font-size-xl); margin-bottom: var(--spacing-sm); }
+    .subtitle { color: var(--color-text-light); margin-bottom: var(--spacing-lg); }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+    .card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid var(--color-primary);
+    }
+    .card h2 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); }
+    .card p { font-size: var(--font-size-sm); color: var(--color-text-light); line-height: 1.6; }
+    .card .badge {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: var(--spacing-sm);
+    }
+    .badge-primary { background: var(--color-primary); color: white; }
+    .badge-secondary { background: var(--color-secondary); color: white; }
+    .badge-accent { background: var(--color-accent); color: white; }
+
+    .card.accent { border-top-color: var(--color-accent); }
+    .card.secondary { border-top-color: var(--color-secondary); }
+
+    .theme-demo { margin-bottom: var(--spacing-lg); }
+    .theme-btn {
+      padding: var(--spacing-sm) var(--spacing-md);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-md);
+      cursor: pointer;
+      margin-right: var(--spacing-sm);
+    }
+
+    .scoped-demo {
+      --color-primary: #8e44ad;
+      --color-accent: #e67e22;
+      background: white;
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+    .scoped-demo h3 { color: var(--color-primary); margin-bottom: var(--spacing-sm); }
+    .scoped-demo button {
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+    .scoped-demo button:hover { background: var(--color-accent); }
+
+    .fallback-demo {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+    .fallback-demo p {
+      color: var(--undefined-variable, #e74c3c);
+    }
+    .fallback-demo code {
+      background: #f0f0f0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+    }
+
+    .spacing-demo { margin-bottom: var(--spacing-lg); }
+    .spacing-box {
+      background: var(--color-primary);
+      color: white;
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      margin-bottom: var(--spacing-sm);
+    }
+    .spacing-box.wide { padding: var(--spacing-lg) var(--spacing-xl); }
+    .spacing-box.tight { padding: var(--spacing-xs) var(--spacing-sm); }
+  </style>
+</head>
+<body>
+  <h1>CSS Variables (Custom Properties)</h1>
+  <p class="subtitle">Design tokens, theming, and dynamic styles with CSS custom properties</p>
+
+  <div class="theme-demo">
+    <button class="theme-btn" style="background:#3498db;color:white" onclick="applyTheme('default')">Default</button>
+    <button class="theme-btn" style="background:#2ecc71;color:white" onclick="applyTheme('green')">Green</button>
+    <button class="theme-btn" style="background:#9b59b6;color:white" onclick="applyTheme('purple')">Purple</button>
+    <button class="theme-btn" style="background:#e74c3c;color:white" onclick="applyTheme('red')">Red</button>
+    <span style="margin-left:var(--spacing-sm);color:var(--color-text-light);font-size:var(--font-size-sm)">Click to switch theme</span>
+  </div>
+
+  <h2>Component Cards (using variables)</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h2>Primary Card</h2>
+      <p>Uses --color-primary for the top border. Variables define all spacing, colors, and shadows consistently.</p>
+      <span class="badge badge-primary">Primary</span>
+    </div>
+    <div class="card secondary">
+      <h2>Secondary Card</h2>
+      <p>Uses --color-secondary. Changing a variable value updates every component that references it.</p>
+      <span class="badge badge-secondary">Secondary</span>
+    </div>
+    <div class="card accent">
+      <h2>Accent Card</h2>
+      <p>Uses --color-accent. This makes global theme changes simple and reliable.</p>
+      <span class="badge badge-accent">Accent</span>
+    </div>
+  </div>
+
+  <h2>Scoped Variables</h2>
+  <div class="scoped-demo">
+    <h3>Scoped Section</h3>
+    <p style="margin-bottom:var(--spacing-sm);color:var(--color-text-light)">This section overrides --color-primary to purple and --color-accent to orange, scoped to this container.</p>
+    <button>Scoped Button</button>
+    <button style="margin-left:var(--spacing-sm);background:var(--color-accent);">Accent Button</button>
+  </div>
+
+  <h2>Fallback Values</h2>
+  <div class="fallback-demo">
+    <p>This text uses a variable <code>--undefined-variable</code> that doesn't exist, so it falls back to <code>#e74c3c</code>.</p>
+    <p style="color: var(--another-undefined, var(--color-primary));">This text has a chained fallback: first tries --another-undefined, then falls back to --color-primary.</p>
+  </div>
+
+  <h2>Spacing with Variables</h2>
+  <div class="spacing-demo">
+    <div class="spacing-box">padding: var(--spacing-md)</div>
+    <div class="spacing-box wide">padding: var(--spacing-lg) var(--spacing-xl)</div>
+    <div class="spacing-box tight">padding: var(--spacing-xs) var(--spacing-sm)</div>
+  </div>
+
+  <script>
+    const themes = {
+      default: { primary: '#3498db', secondary: '#2ecc71', accent: '#e74c3c', bg: '#f0f2f5' },
+      green: { primary: '#2ecc71', secondary: '#27ae60', accent: '#1abc9c', bg: '#e8f8f0' },
+      purple: { primary: '#9b59b6', secondary: '#8e44ad', accent: '#e67e22', bg: '#f4ecf7' },
+      red: { primary: '#e74c3c', secondary: '#c0392b', accent: '#f39c12', bg: '#fdedec' }
+    };
+
+    function applyTheme(name) {
+      const t = themes[name];
+      if (!t) return;
+      const root = document.documentElement;
+      root.style.setProperty('--color-primary', t.primary);
+      root.style.setProperty('--color-secondary', t.secondary);
+      root.style.setProperty('--color-accent', t.accent);
+      root.style.setProperty('--color-bg', t.bg);
+    }
+  </script>
+</body>
+</html>

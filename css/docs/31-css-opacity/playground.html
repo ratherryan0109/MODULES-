@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Opacity Playground</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(45deg, #f4f4f4, #e0e0e0);
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .controls {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    .controls label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .demo-box {
+      background: #007bff;
+      color: #fff;
+      padding: 40px;
+      text-align: center;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      margin: 20px 0;
+    }
+    .bg-box {
+      background: url('https://placehold.co/400x200/cccccc/999999?text=Background') center/cover;
+      padding: 30px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .bg-box p {
+      background: #fff;
+      padding: 15px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Opacity Playground</h1>
+
+    <div class="controls">
+      <label>
+        Element Opacity:
+        <input type="range" id="opacitySlider" min="0" max="1" step="0.05" value="1">
+        <span id="opacityValue">1.00</span>
+      </label>
+      <label>
+        Background Alpha (rgba):
+        <input type="range" id="alphaSlider" min="0" max="1" step="0.05" value="0.3">
+        <span id="alphaValue">0.30</span>
+      </label>
+    </div>
+
+    <h2>Element Opacity (affects all children)</h2>
+    <div class="demo-box" id="opacityBox" style="opacity: 1;">
+      <p>This box and all its content will fade</p>
+      <small>Child text also gets transparent</small>
+    </div>
+
+    <h2>Background Alpha (rgba) — text stays opaque</h2>
+    <div class="bg-box" id="alphaBox">
+      <p style="background: rgba(255,255,255,0.8);">
+        This paragraph has a semi-transparent white background.
+        The text remains fully readable.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const opacitySlider = document.getElementById('opacitySlider');
+    const opacityValue = document.getElementById('opacityValue');
+    const opacityBox = document.getElementById('opacityBox');
+
+    const alphaSlider = document.getElementById('alphaSlider');
+    const alphaValue = document.getElementById('alphaValue');
+    const alphaBox = document.getElementById('alphaBox');
+
+    opacitySlider.addEventListener('input', () => {
+      const val = parseFloat(opacitySlider.value);
+      opacityValue.textContent = val.toFixed(2);
+      opacityBox.style.opacity = val;
+    });
+
+    alphaSlider.addEventListener('input', () => {
+      const val = parseFloat(alphaSlider.value);
+      alphaValue.textContent = val.toFixed(2);
+      alphaBox.querySelector('p').style.background = `rgba(255,255,255,${val})`;
+    });
+  </script>
+</body>
+</html>

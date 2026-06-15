@@ -1,0 +1,130 @@
+{
+  "module": "125-responsive-landing-page",
+  "title": "Responsive Landing Page",
+  "beginner": [
+    {
+      "question": "What is a 'landing page' in web design?",
+      "answer": "A landing page is a standalone web page designed for a focused marketing or conversion goal. It typically has a hero section, value propositions, feature highlights, social proof, and a call-to-action (CTA). No navigation menus are common."
+    },
+    {
+      "question": "What is a 'hero section' on a landing page?",
+      "answer": "A hero section is the large, prominent area at the top of a landing page. It typically includes a headline, subheadline, primary CTA button, and often a background image or illustration. It's the first thing visitors see."
+    },
+    {
+      "question": "What is a 'Call to Action' (CTA) button?",
+      "answer": "A CTA button is a prominently styled button that encourages users to take a specific action (Sign Up, Get Started, Buy Now). It's typically large, high-contrast, and appears multiple times throughout the landing page."
+    },
+    {
+      "question": "How should a hero section respond on mobile devices?",
+      "answer": "The hero section should stack vertically on mobile: headline, subtext, CTA, and background image/media each take full width. Text sizing should be responsive (using clamp() or relative units). The CTA should be full-width or large for touch targets."
+    },
+    {
+      "question": "What is a 'responsive CTA'?",
+      "answer": "A responsive CTA adapts to screen size: on desktop it's an inline button with padding; on mobile it becomes full-width (for easy touch access) or stacked if multiple CTAs exist. It should remain prominent and tappable at all sizes."
+    },
+    {
+      "question": "What is the typical structure of a landing page?",
+      "answer": "Hero → Features/Benefits → How It Works → Social Proof/Testimonials → Pricing (optional) → FAQ → Final CTA → Footer. Each section should guide the user toward conversion."
+    },
+    {
+      "question": "How do you make a landing page background image responsive?",
+      "answer": "Use `background-size: cover; background-position: center;` and `min-height: 100vh` for full-screen hero. For mobile, consider a smaller image file or switching to a simplified graphic using media queries."
+    },
+    {
+      "question": "What are 'feature sections' on a landing page?",
+      "answer": "Feature sections highlight product/service benefits. Typically a 3-column grid on desktop (icon + title + description), collapsing to single column on mobile. Each feature should be scannable and visually consistent."
+    },
+    {
+      "question": "How do you build a responsive feature grid?",
+      "answer": "Use CSS Grid: `grid-template-columns: repeat(3, 1fr)` at desktop, `repeat(2, 1fr)` at tablet, `1fr` at mobile. Consistent gap and padding. Each feature card is a flex container with icon, heading, and paragraph."
+    },
+    {
+      "question": "What is the role of whitespace in landing page design?",
+      "answer": "Whitespace (negative space) improves readability, creates visual hierarchy, and draws attention to CTAs. On mobile, reduce whitespace but don't eliminate it — cramped mobile CTAs hurt conversion."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement a sticky header/navbar that's responsive?",
+      "answer": "Use `position: sticky; top: 0; z-index: 100;`. On mobile, the sticky header should be shorter (reduced padding). Add `backdrop-filter: blur()` for a modern glass effect. Hide secondary nav items on small screens."
+    },
+    {
+      "question": "How do you handle responsive typography for landing pages?",
+      "answer": "Use `clamp()` for fluid type: `font-size: clamp(2rem, 5vw, 4rem)` for headlines. Body text: `clamp(1rem, 2.5vw, 1.25rem)`. This ensures readable text at all viewports without media queries for every breakpoint."
+    },
+    {
+      "question": "How do you implement a 'smooth scroll' effect for anchor links on a landing page?",
+      "answer": "Add `scroll-behavior: smooth;` to the `<html>` element. Use `id` attributes on sections (`<section id=\"features\">`) and `href=\"#features\"` in navigation links. This is purely CSS and works without JavaScript."
+    },
+    {
+      "question": "How do you create a responsive 'split layout' hero (text left, image right)?",
+      "answer": "Use CSS Grid or Flexbox: `grid-template-columns: 1fr 1fr` on desktop, `grid-template-columns: 1fr` on mobile. On mobile, the image moves below or above the text. Use `order` to control the stacking order."
+    },
+    {
+      "question": "How do you handle responsive images in a landing page hero?",
+      "answer": "Use `<picture>` with multiple `<source>` elements for different viewports. Serve WebP for modern browsers, JPEG fallback. Use `sizes` and `srcset` for resolution switching. Set `max-width: 100%; height: auto;` in CSS."
+    },
+    {
+      "question": "What is the 'fold' concept in responsive landing pages?",
+      "answer": "The fold is the area visible without scrolling. On mobile, above-the-fold content is much smaller (typically 500-700px height). The hero must communicate value immediately. CTA should be visible or near the fold."
+    },
+    {
+      "question": "How do you implement a responsive testimonial section?",
+      "answer": "Use a CSS Grid with `auto-fit` and `minmax()`: `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))`. Each testimonial is a card with quote, author photo, name, and role. Consider a horizontal carousel on mobile."
+    },
+    {
+      "question": "How do you create a responsive pricing section?",
+      "answer": "Use CSS Grid with columns based on number of plans. Highlight the recommended plan with a modifier class. On mobile, stack plans vertically. Ensure the CTA buttons are tappable. Use `order` to move the featured plan to the top on mobile if needed."
+    },
+    {
+      "question": "How do you handle responsive navigation for a single-page landing page?",
+      "answer": "Desktop: horizontal links with smooth-scroll anchors. Mobile: hamburger menu (accessible button with `aria-expanded`) that opens a full-screen or slide-in overlay. Close menu on anchor click."
+    },
+    {
+      "question": "How do you design a responsive 'stats/counter' section?",
+      "answer": "Desktop: 3-4 columns with large numbers and labels. Mobile: 2 columns or a vertical list. Use CSS Grid: `grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))`. Numbers should be large and bold. Consider counting animation via IntersectionObserver."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a scroll-triggered animation system for landing pages that respects reduced motion?",
+      "answer": "Use IntersectionObserver for reveal animations. Wrap all animations in `@media (prefers-reduced-motion: no-preference)`. On `reduce`, reveal all elements immediately with `opacity: 1; transform: none`. Use `will-change: transform, opacity` for performance."
+    },
+    {
+      "question": "How do you optimize a landing page for Core Web Vitals (LCP, CLS, INP)?",
+      "answer": "LCP: optimize hero image (properly sized, preloaded, WebP format). CLS: set explicit image/video dimensions, avoid late-loading layouts, use `aspect-ratio` on media. INP: minimize JavaScript, avoid long tasks, use `content-visibility` for below-fold sections."
+    },
+    {
+      "question": "How do you implement a multi-step form or 'quiz' in a landing page responsive?",
+      "answer": "Use CSS transitions for step changes (slide/fade). Each step is a `<fieldset>` with show/hide. Use `flex: 1 0 100%` and `overflow: hidden` on the container for a horizontal carousel-like step flow. Progress indicator at top."
+    },
+    {
+      "question": "How do you create a responsive 'wave' or shape divider between sections?",
+      "answer": "Use SVG as `background-image` or inline SVG as a decorative element: `background-image: url('data:image/svg+xml,...')` or use CSS `clip-path: polygon(...)`. For responsive, use percentage-based clip values. Test at all breakpoints."
+    },
+    {
+      "question": "How do you implement a dynamic 'floating' CTA that appears on scroll on mobile?",
+      "answer": "Use `position: fixed; bottom: 0;` on mobile only (`@media (max-width: 768px)`). Add `transform: translateY(100%)` and transition to `translateY(0)` after scrolling past the hero. Use IntersectionObserver to toggle visibility."
+    },
+    {
+      "question": "How do you handle responsive A/B testing variations on landing pages?",
+      "answer": "Use CSS custom properties for variant values: `:root { --cta-bg: var(--variant-a-bg); }`. Switch via a data attribute or URL parameter: `[data-variant='b'] { --cta-bg: var(--variant-b-bg); }`. Ensure all variants are responsive."
+    },
+    {
+      "question": "How do you create a responsive 'comparison table' that works on mobile?",
+      "answer": "On mobile, convert the table to a stacked card layout using CSS Grid. Use `overflow-x: auto` with horizontal scrolling as fallback. Consider horizontal scroll with sticky first column for feature names. The toggle view is user-friendly for mobile."
+    },
+    {
+      "question": "How do you implement a 'video hero' background that's responsive and accessible?",
+      "answer": "Use `<video>` with `playsinline muted autoplay loop` for mobile (no autoplay without muted). Provide a fallback image. Add a play/pause button for accessibility. Respect `prefers-reduced-motion` — show static image instead."
+    },
+    {
+      "question": "How do you future-proof landing page CSS for container queries?",
+      "answer": "Structure components to be container-aware: use `@container` queries for component-level responsiveness. Landing page components (feature cards, testimonials, pricing cards) should respond to their container size, enabling reuse in different layouts."
+    },
+    {
+      "question": "What is the 'progressive enhancement' strategy for landing page animations?",
+      "answer": "Start with the static, functional layout (no animations). Layer animations progressively: animate on browsers that support `prefers-reduced-motion: no-preference`. Use `@supports (animation: ...)` for feature detection. This ensures universal access."
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Editors - Examples & Setup Guide</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #007acc; border-bottom: 3px solid #007acc; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #007acc; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Module 2: HTML Editors — Examples & Setup Guide</h1>
+
+    <!-- Example 1: Emmet in Action -->
+    <div class="example">
+        <h2>Example 1: Emmet Abbreviations (VS Code)</h2>
+        <p>Type these abbreviations and press Tab to expand them in VS Code.</p>
+        <table>
+            <tr><th>Emmet Abbreviation</th><th>Expanded HTML</th></tr>
+            <tr><td><code>!</code></td><td>Full HTML5 Boilerplate</td></tr>
+            <tr><td><code>h1{Hello World}</code></td><td><code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></td></tr>
+            <tr><td><code>ul&gt;li*3</code></td><td><code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;</code></td></tr>
+            <tr><td><code>div#main</code></td><td><code>&lt;div id="main"&gt;&lt;/div&gt;</code></td></tr>
+            <tr><td><code>.container</code></td><td><code>&lt;div class="container"&gt;&lt;/div&gt;</code></td></tr>
+        </table>
+        <div class="output-label">Emmet expansion demo:</div>
+        <div class="output">
+            <p>Try this in VS Code: Type <code>nav>ul>li*3>a[href="#"]{Link $}</code> and press Tab.</p>
+        </div>
+    </div>
+
+    <!-- Example 2: Live Server Demo -->
+    <div class="example">
+        <h2>Example 2: Setting Up Live Server</h2>
+        <p>Instructions to get live reload working in VS Code.</p>
+        <pre>
+Step 1: Install the "Live Server" extension from the VS Code marketplace.
+Step 2: Create an index.html file with the following content:
+        </pre>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Live Server Demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Live Server is Running!&lt;/h1&gt;
+    &lt;p&gt;Edit this file and save — the browser will auto-refresh.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="output-label">Step 3:</div>
+        <div class="output">
+            <p>Right-click on the HTML file → "Open with Live Server"<br>
+            Your default browser opens at <code>http://127.0.0.1:5500</code></p>
+        </div>
+    </div>
+
+    <!-- Example 3: Browser DevTools -->
+    <div class="example">
+        <h2>Example 3: Using Browser DevTools</h2>
+        <p>Inspect and edit HTML live in Chrome/Firefox/Edge.</p>
+        <pre>
+&lt;h1 id="demo"&gt;Inspect Me!&lt;/h1&gt;
+&lt;p&gt;Right-click this paragraph and select "Inspect" to see its HTML.&lt;/p&gt;</pre>
+        <div class="output-label">Try it in your browser:</div>
+        <div class="output">
+            <h1 id="demo">Inspect Me!</h1>
+            <p>Right-click this paragraph and select "Inspect" to see its HTML.</p>
+        </div>
+    </div>
+
+    <!-- Example 4: Comparing Editors -->
+    <div class="example">
+        <h2>Example 4: Same HTML in Different Editors</h2>
+        <p>Here is the same HTML code you would write in any editor:</p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome&lt;/h1&gt;
+    &lt;p&gt;This code works in Notepad, VS Code, Sublime Text, or any editor.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="output-label">Rendered (same in every browser):</div>
+        <div class="output">
+            <h1>Welcome</h1>
+            <p>This code works in Notepad, VS Code, Sublime Text, or any editor.</p>
+        </div>
+    </div>
+
+    <!-- Example 5: Online Editor (CodePen) -->
+    <div class="example">
+        <h2>Example 5: Embedded CodePen-like HTML</h2>
+        <p>Online editors let you write HTML, CSS, and JS in one panel and see the result instantly.</p>
+        <pre>
+&lt;!-- HTML Panel --&gt;
+&lt;h1&gt;Hello from CodePen!&lt;/h1&gt;
+&lt;button onclick="alert('Clicked!')"&gt;Click Me&lt;/button&gt;</pre>
+        <div class="output-label">Live Preview:</div>
+        <div class="output">
+            <h1>Hello from Online Editor!</h1>
+            <button onclick="alert('Clicked!')">Click Me</button>
+        </div>
+    </div>
+
+    <!-- Example 6: HTML Snippet with Formatting -->
+    <div class="example">
+        <h2>Example 6: Well-Formatted vs Poorly-Formatted HTML</h2>
+        <p>Good formatting makes code readable. Both examples render identically.</p>
+        <pre>
+&lt;!-- Poor formatting (works but hard to read) --&gt;
+&lt;div&gt;&lt;h1&gt;Title&lt;/h1&gt;&lt;p&gt;Text&lt;/p&gt;&lt;/div&gt;
+
+&lt;!-- Good formatting (readable, maintainable) --&gt;
+&lt;div&gt;
+    &lt;h1&gt;Title&lt;/h1&gt;
+    &lt;p&gt;Text&lt;/p&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Both render as:</div>
+        <div class="output">
+            <div>
+                <h1>Title</h1>
+                <p>Text</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Press <code>Shift+Alt+F</code> in VS Code to automatically format your HTML document.
+    </div>
+</body>
+</html>

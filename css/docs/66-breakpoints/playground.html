@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakpoints Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #0f172a; color: #e2e8f0; padding: 1rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #38bdf8; margin-bottom: 0.5rem; }
+    .sub { color: #64748b; font-size: 0.85rem; margin-bottom: 1rem; }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+    .panel { background: #1e293b; border: 1px solid #334155; border-radius: 8px; overflow: hidden; }
+    .panel h2 { background: #334155; padding: 0.5rem 1rem; font-size: 0.8rem; color: #94a3b8; margin: 0; }
+    textarea { width: 100%; min-height: 250px; background: #1e293b; color: #e2e8f0; border: none; padding: 1rem; font-family: 'Courier New', monospace; font-size: 0.85rem; resize: vertical; }
+    textarea:focus { outline: none; }
+    .preview-area { background: white; min-height: 350px; border-radius: 0 0 8px 8px; }
+    .toolbar { display: flex; gap: 0.25rem; padding: 0.5rem 1rem; background: #1e293b; border-top: 1px solid #334155; flex-wrap: wrap; align-items: center; }
+    .toolbar button, .toolbar label { background: #334155; color: #e2e8f0; border: 1px solid #475569; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .toolbar button.active { background: #3b82f6; border-color: #3b82f6; }
+    .bp-indicator { display: flex; gap: 0; margin-left: auto; }
+    .bp-indicator span { padding: 0.2rem 0.4rem; font-size: 0.65rem; border-right: 1px solid #475569; color: #64748b; }
+    .bp-indicator span.active { color: #38bdf8; background: #0f172a; }
+    .viewport-size { color: #94a3b8; font-size: 0.75rem; margin-left: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Breakpoints Playground</h1>
+    <p class="sub">Explore how content responds at different viewport widths.</p>
+    <div class="layout">
+      <div>
+        <div class="panel" style="margin-bottom:1rem;">
+          <h2>HTML</h2>
+          <textarea id="htmlInput">&lt;div class="page"&gt;
+  &lt;header class="header"&gt;Header&lt;/header&gt;
+  &lt;nav class="nav"&gt;
+    &lt;a href="#"&gt;Link 1&lt;/a&gt;
+    &lt;a href="#"&gt;Link 2&lt;/a&gt;
+    &lt;a href="#"&gt;Link 3&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;main class="content"&gt;
+    &lt;div class="card"&gt;Card A&lt;/div&gt;
+    &lt;div class="card"&gt;Card B&lt;/div&gt;
+    &lt;div class="card"&gt;Card C&lt;/div&gt;
+  &lt;/main&gt;
+  &lt;aside class="sidebar"&gt;Sidebar&lt;/aside&gt;
+  &lt;footer class="footer"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</textarea>
+        </div>
+        <div class="panel">
+          <h2>CSS (Add Your Breakpoints)</h2>
+          <textarea id="cssInput">* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui; }
+.page { padding: 0.5rem; font-size: 14px; }
+.header { background: #3b82f6; color: white; padding: 1rem; text-align: center; }
+.nav { display: flex; flex-direction: column; gap: 0.25rem; margin: 0.5rem 0; }
+.nav a { background: #f1f5f9; padding: 0.5rem; text-align: center; text-decoration: none; color: #333; }
+.content { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.5rem 0; }
+.card { background: #dbeafe; padding: 1.5rem; text-align: center; }
+.sidebar { background: #f1f5f9; padding: 1rem; text-align: center; }
+.footer { background: #1e293b; color: white; padding: 0.75rem; text-align: center; }
+
+/* === TRY EDITING THESE BREAKPOINTS === */
+
+/* Tablet: 2 columns */
+@media (min-width: 640px) {
+  .content { flex-direction: row; flex-wrap: wrap; }
+  .card { flex: 1 1 calc(50% - 0.5rem); }
+  .nav { flex-direction: row; justify-content: center; }
+}
+
+/* Desktop: 3 columns + sidebar */
+@media (min-width: 1024px) {
+  .card { flex: 1 1 calc(33.33% - 0.5rem); }
+  .page { display: grid; grid-template-columns: 1fr 250px; padding: 1rem; }
+  .header { grid-column: 1 / -1; }
+  .nav { grid-column: 1 / -1; }
+  .footer { grid-column: 1 / -1; }
+}</textarea>
+        </div>
+      </div>
+      <div>
+        <div class="panel">
+          <div class="toolbar">
+            <button onclick="setWidth('375px')"> 375</button>
+            <button onclick="setWidth('640px')"> 640</button>
+            <button onclick="setWidth('768px')"> 768</button>
+            <button onclick="setWidth('1024px')"> 1024</button>
+            <button onclick="setWidth('1440px')"> 1440</button>
+            <button onclick="setWidth('100%')" class="active">Fluid</button>
+            <span class="viewport-size" id="vpSize">Viewport: fluid</span>
+          </div>
+          <div class="bp-indicator" id="bpBar">
+            <span data-bp="0">base</span>
+            <span data-bp="640">640</span>
+            <span data-bp="1024">1024</span>
+          </div>
+          <div class="preview-area" id="previewArea"></div>
+        </div>
+        <div class="toolbar" style="border-top:none;">
+          <button onclick="render()"> Render</button>
+          <label><input type="checkbox" id="liveCheck" checked> Live</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const htmlInput = document.getElementById('htmlInput');
+    const cssInput = document.getElementById('cssInput');
+    const preview = document.getElementById('previewArea');
+
+    function render() {
+      preview.innerHTML = `<style>${cssInput.value}</style>${htmlInput.value}`;
+    }
+
+    function setWidth(w) {
+      document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
+      if (w === '100%') {
+        preview.style.width = '100%';
+        preview.style.margin = '0';
+        document.querySelector('button[onclick*="100%"]').classList.add('active');
+        document.getElementById('vpSize').textContent = 'Viewport: fluid';
+      } else {
+        preview.style.width = w;
+        preview.style.margin = '0 auto';
+        document.querySelector(`button[onclick*="${w}"]`).classList.add('active');
+        document.getElementById('vpSize').textContent = `Viewport: ${w}`;
+      }
+      updateBPIndicators(parseInt(w));
+      render();
+    }
+
+    function updateBPIndicators(width) {
+      document.querySelectorAll('.bp-indicator span').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.bp-indicator span').forEach(s => {
+        const bp = parseInt(s.dataset.bp);
+        if (width >= bp) s.classList.add('active');
+      });
+    }
+
+    let debounce;
+    function debouncedRender() {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        if (document.getElementById('liveCheck').checked) render();
+      }, 300);
+    }
+    htmlInput.addEventListener('input', debouncedRender);
+    cssInput.addEventListener('input', debouncedRender);
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Fix Spacing Between Sections",
+    "description": "The page has three sections but they are touching each other. Fix the spacing by adding proper margins: 20px between sections and center the main content with auto margins.",
+    "starterCode": "<header>Header</header>\n<main>Main Content</main>\n<footer>Footer</footer>\n\n<style>\nheader, main, footer { padding: 20px; background: #f0f0f0; font-family: Arial; }\n</style>",
+    "solution": "<header>Header</header>\n<main>Main Content</main>\n<footer>Footer</footer>\n\n<style>\nheader, main, footer {\n  padding: 20px;\n  background: #f0f0f0;\n  font-family: Arial;\n  max-width: 800px;\n  margin-left: auto;\n  margin-right: auto;\n}\nmain { margin: 20px 0; }\nfooter { margin-top: 30px; }\n</style>"
+  },
+  "medium": {
+    "title": "Build a Card Layout with Margins",
+    "description": "Create a 3-card layout with proper margin spacing between cards and the container. Cards should have 20px bottom margin and the container should be centered with auto margins.",
+    "starterCode": "<div class=\"container\">\n  <div class=\"card\">Card 1</div>\n  <div class=\"card\">Card 2</div>\n  <div class=\"card\">Card 3</div>\n</div>\n\n<style>\n  /* Center the container and space the cards */\n</style>",
+    "solution": "<div class=\"container\">\n  <div class=\"card\">Card 1</div>\n  <div class=\"card\">Card 2</div>\n  <div class=\"card\">Card 3</div>\n</div>\n\n<style>\n.container {\n  max-width: 700px;\n  margin: 40px auto;\n  font-family: Arial;\n}\n.card {\n  background: #f0f4f8;\n  padding: 30px;\n  margin-bottom: 20px;\n  text-align: center;\n  font-weight: bold;\n  font-size: 1.2em;\n  border: 1px solid #e2e8f0;\n  border-radius: 8px;\n}\n</style>"
+  },
+  "hard": {
+    "title": "Fix Margin Collapse and Create a Vertical Rhythm",
+    "description": "The given HTML has margin collapse issues between sections and child elements. Fix the layout by preventing unwanted margin collapse and establishing a consistent vertical rhythm using margin-bottom only.",
+    "starterCode": "<div class=\"content\">\n  <section class=\"intro\">\n    <h2>Introduction</h2>\n    <p>Paragraph about the topic with some content that explains things.</p>\n  </section>\n  <section class=\"details\">\n    <h2>Details</h2>\n    <p>More detailed information here.</p>\n  </section>\n  <section class=\"cta\">\n    <p>Call to action text that should be spaced properly.</p>\n  </section>\n</div>\n\n<style>\n* { margin: 0; padding: 0; }\n.content { background: #f7fafc; padding: 20px; }\nsection { background: white; }\nh2 { margin-bottom: 30px; }\np { margin-top: 20px; }\n</style>",
+    "solution": "<div class=\"content\">\n  <section class=\"intro\">\n    <h2>Introduction</h2>\n    <p>Paragraph about the topic with some content that explains things.</p>\n  </section>\n  <section class=\"details\">\n    <h2>Details</h2>\n    <p>More detailed information here.</p>\n  </section>\n  <section class=\"cta\">\n    <p>Call to action text that should be spaced properly.</p>\n  </section>\n</div>\n\n<style>\n* { margin: 0; padding: 0; }\n.content {\n  background: #f7fafc;\n  padding: 20px;\n  display: flow-root;\n  font-family: Arial;\n}\nsection {\n  background: white;\n  padding: 20px;\n  margin-bottom: 16px;\n  border-radius: 8px;\n}\nh2 { margin-bottom: 16px; }\np { margin-top: 8px; }\n</style>"
+  }
+}

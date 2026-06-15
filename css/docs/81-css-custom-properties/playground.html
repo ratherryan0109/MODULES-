@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Custom Properties — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @property --hue {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 200;
+    }
+    @property --saturation {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 70;
+    }
+    @property --lightness {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 50;
+    }
+    @property --rotation {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 0deg;
+    }
+    @property --border-radius {
+      syntax: '<length>';
+      inherits: false;
+      initial-value: 12px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1a1a2e;
+      padding: 2rem;
+      color: #eee;
+    }
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: #aaa; margin-bottom: 2rem; }
+
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+
+    .controls {
+      background: #16213e;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .checkbox-group { display: flex; gap: 1rem; margin-top: 0.5rem; }
+    .checkbox-group label { font-size: 0.85rem; color: #aaa; display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+
+    .preview-area {
+      background: #16213e;
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+
+    .preview-box {
+      --hue: 200;
+      --saturation: 70;
+      --lightness: 50;
+      --rotation: 0deg;
+      --border-radius: 12px;
+      width: 250px;
+      height: 250px;
+      background: hsl(var(--hue), calc(var(--saturation) * 1%), calc(var(--lightness) * 1%));
+      border-radius: var(--border-radius);
+      transform: rotate(var(--rotation));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: --hue 0.1s, --saturation 0.1s, --lightness 0.1s, --rotation 0.1s, --border-radius 0.1s;
+    }
+
+    .preview-box.animated {
+      animation: colorCycle 4s linear infinite;
+    }
+
+    @keyframes colorCycle {
+      0% { --hue: 0; --rotation: 0deg; }
+      25% { --hue: 90; --rotation: 90deg; }
+      50% { --hue: 180; --rotation: 180deg; }
+      75% { --hue: 270; --rotation: 270deg; }
+      100% { --hue: 360; --rotation: 360deg; }
+    }
+
+    .code-output {
+      background: #0a0a1a;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #a8d8ea;
+      white-space: pre-wrap;
+      word-break: break-all;
+      width: 100%;
+    }
+
+    .@property-declaration {
+      background: #0a0a1a;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #a8d8ea;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Advanced Custom Properties Playground</h1>
+  <p class="subtitle">Experiment with @property-registered custom properties and animations</p>
+
+  <div class="container">
+    <div class="controls">
+      <h2>Controls</h2>
+
+      <div class="@property-declaration" id="propDeclaration">
+        @property --hue { syntax: '&lt;number&gt;'; inherits: true; initial-value: 200; }
+      </div>
+
+      <div class="control-group">
+        <label>--hue (0–360) <span class="value" id="valHue">200</span></label>
+        <input type="range" id="hue" min="0" max="360" value="200" oninput="updateCustomProps()">
+      </div>
+      <div class="control-group">
+        <label>--saturation (0–100) <span class="value" id="valSat">70</span></label>
+        <input type="range" id="sat" min="0" max="100" value="70" oninput="updateCustomProps()">
+      </div>
+      <div class="control-group">
+        <label>--lightness (0–100) <span class="value" id="valLight">50</span></label>
+        <input type="range" id="light" min="0" max="100" value="50" oninput="updateCustomProps()">
+      </div>
+      <div class="control-group">
+        <label>--rotation (deg) <span class="value" id="valRotation">0</span></label>
+        <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateCustomProps()">
+      </div>
+      <div class="control-group">
+        <label>--border-radius (px) <span class="value" id="valRadius">12</span></label>
+        <input type="range" id="radius" min="0" max="60" value="12" oninput="updateCustomProps()">
+      </div>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="enableAnimation" onchange="toggleAnimation()"> Enable RGB Animation</label>
+      </div>
+
+      <button onclick="resetProps()" style="padding:0.5rem 1rem;margin-top:1rem;border:none;border-radius:6px;background:#e94560;color:white;cursor:pointer">Reset</button>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <div class="preview-box" id="previewBox">
+          hsl(var(--hue), var(--sat)%, var(--light)%)
+        </div>
+      </div>
+      <div class="code-output" id="codeOutput">
+        --hue: 200;<br>
+        --saturation: 70;<br>
+        --lightness: 50;<br>
+        --rotation: 0deg;<br>
+        --border-radius: 12px;<br><br>
+        background: hsl(200, 70%, 50%);
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const defaults = { hue: 200, sat: 70, light: 50, rotation: 0, radius: 12 };
+
+    function updateCustomProps() {
+      const hue = parseInt(document.getElementById('hue').value);
+      const sat = parseInt(document.getElementById('sat').value);
+      const light = parseInt(document.getElementById('light').value);
+      const rotation = parseInt(document.getElementById('rotation').value);
+      const radius = parseInt(document.getElementById('radius').value);
+
+      document.getElementById('valHue').textContent = hue;
+      document.getElementById('valSat').textContent = sat;
+      document.getElementById('valLight').textContent = light;
+      document.getElementById('valRotation').textContent = rotation;
+      document.getElementById('valRadius').textContent = radius;
+
+      const box = document.getElementById('previewBox');
+      box.style.setProperty('--hue', hue);
+      box.style.setProperty('--saturation', sat);
+      box.style.setProperty('--lightness', light);
+      box.style.setProperty('--rotation', rotation + 'deg');
+      box.style.setProperty('--border-radius', radius + 'px');
+
+      document.getElementById('codeOutput').innerHTML =
+        `--hue: ${hue};<br>` +
+        `--saturation: ${sat};<br>` +
+        `--lightness: ${light};<br>` +
+        `--rotation: ${rotation}deg;<br>` +
+        `--border-radius: ${radius}px;<br><br>` +
+        `background: hsl(${hue}, ${sat}%, ${light}%);<br>` +
+        `transform: rotate(${rotation}deg);`;
+    }
+
+    function toggleAnimation() {
+      const box = document.getElementById('previewBox');
+      if (document.getElementById('enableAnimation').checked) {
+        box.classList.add('animated');
+      } else {
+        box.classList.remove('animated');
+      }
+    }
+
+    function resetProps() {
+      document.getElementById('hue').value = defaults.hue;
+      document.getElementById('sat').value = defaults.sat;
+      document.getElementById('light').value = defaults.light;
+      document.getElementById('rotation').value = defaults.rotation;
+      document.getElementById('radius').value = defaults.radius;
+      document.getElementById('enableAnimation').checked = false;
+      document.getElementById('previewBox').classList.remove('animated');
+      updateCustomProps();
+    }
+
+    updateCustomProps();
+  </script>
+</body>
+</html>

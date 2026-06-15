@@ -1,0 +1,147 @@
+{
+  "module": "59-grid-alignment",
+  "title": "Grid Alignment",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `justify-items` control in CSS Grid?",
+      "options": ["Horizontal alignment of items within their cells", "Vertical alignment of items within their cells", "Horizontal alignment of tracks in the container", "Vertical alignment of tracks in the container"],
+      "correctAnswer": 0,
+      "explanation": "`justify-items` controls horizontal (inline/row axis) alignment of grid items within their assigned cells."
+    },
+    {
+      "id": 2,
+      "question": "What is the default value for `align-items` on a grid container?",
+      "options": ["stretch", "start", "center", "normal"],
+      "correctAnswer": 0,
+      "explanation": "The default for `align-items` (and `justify-items`) in CSS Grid is `stretch`, meaning items fill their entire cell."
+    },
+    {
+      "id": 3,
+      "question": "What's the difference between `justify-items` and `justify-content`?",
+      "options": ["justify-items aligns items in cells; justify-content aligns tracks in the container", "They are the same thing", "justify-content only works with stretch", "justify-items is for rows; justify-content is for columns"],
+      "correctAnswer": 0,
+      "explanation": "`justify-items` controls how items behave within their grid cells. `justify-content` controls how the grid tracks are positioned within the container."
+    },
+    {
+      "id": 4,
+      "question": "When does `justify-content` have a visible effect?",
+      "options": ["When the total track width is smaller than the container", "Always", "Only when the container has a background", "Only when items are stretched"],
+      "correctAnswer": 0,
+      "explanation": "`justify-content` (and `align-content`) only have a visible effect when the grid tracks are smaller than the container. If tracks fill the container, there's nothing to distribute."
+    },
+    {
+      "id": 5,
+      "question": "How do you center a single grid item in its cell?",
+      "options": ["place-self: center", "place-items: center", "grid-align: center", "item-align: center"],
+      "correctAnswer": 0,
+      "explanation": "`place-self: center` is the shorthand for `align-self: center; justify-self: center;` and centers a single item in its grid cell."
+    },
+    {
+      "id": 6,
+      "question": "Which shorthand property covers both `align-items` and `justify-items`?",
+      "options": ["place-items", "place-content", "place-self", "item-align"],
+      "correctAnswer": 0,
+      "explanation": "`place-items` is a shorthand that sets both `align-items` and `justify-items`. `place-items: center` centers items on both axes."
+    },
+    {
+      "id": 7,
+      "question": "What does `justify-content: space-evenly` do?",
+      "options": ["Distributes tracks with equal space between them and at the edges", "Distributes tracks with space only between them", "Centers all tracks", "Stretches all tracks equally"],
+      "correctAnswer": 0,
+      "explanation": "`space-evenly` distributes the tracks with equal space between each track and also between the outermost tracks and the container edges."
+    },
+    {
+      "id": 8,
+      "question": "Which property would you use to make a single item stick to the bottom-right of its cell?",
+      "options": ["place-self: end end", "justify-self: end; align-self: end", "grid-area: end", "Both A and B"],
+      "correctAnswer": 3,
+      "explanation": "Both `place-self: end end` (shorthand) and `justify-self: end; align-self: end` (longhand) position an item at the bottom-right of its cell."
+    },
+    {
+      "id": 9,
+      "question": "What is the difference between `space-between` and `space-around`?",
+      "options": ["space-between: no space at edges; space-around: half-space at edges", "space-between: equal space; space-around: unequal space", "They are identical", "space-around only works for columns"],
+      "correctAnswer": 0,
+      "explanation": "`space-between` puts all extra space between tracks with none at edges. `space-around` puts half the space at each edge and full space between tracks."
+    },
+    {
+      "id": 10,
+      "question": "If you set `justify-items: center` on a container, can a single item align to the right?",
+      "options": ["Yes — use `justify-self: end` on that item", "No — the container setting applies to all items", "Only if the item has a fixed width", "Only in Firefox"],
+      "correctAnswer": 0,
+      "explanation": "`justify-self` on an individual item overrides the container's `justify-items` setting for that item only."
+    },
+    {
+      "id": 11,
+      "question": "What does `place-content: center` do?",
+      "options": ["Centers the entire grid in the container on both axes", "Centers items within their cells", "Creates a centered column", "Centers only one item"],
+      "correctAnswer": 0,
+      "explanation": "`place-content: center` is shorthand for `align-content: center; justify-content: center;`, centering the grid tracks within the container."
+    },
+    {
+      "id": 12,
+      "question": "Why might `justify-content: center` appear to have no effect?",
+      "options": ["Tracks are using `fr` units that fill the container — there's no space to distribute", "The container has no height", "Items aren't stretched", "justify-content only works on rows"],
+      "correctAnswer": 0,
+      "explanation": "When using `fr` units, the tracks fill the entire container, leaving no extra space for content alignment to act on."
+    },
+    {
+      "id": 13,
+      "question": "What values are valid for `justify-content` but NOT for `justify-items`?",
+      "options": ["space-between, space-around, space-evenly", "start, end, center", "stretch", "baseline"],
+      "correctAnswer": 0,
+      "explanation": "Distribution values (`space-between`, `space-around`, `space-evenly`) are exclusive to content alignment properties (`justify-content`/`align-content`). Item alignment uses `start`, `end`, `center`, `stretch`, and `baseline`."
+    },
+    {
+      "id": 14,
+      "question": "What does `align-self: baseline` do?",
+      "options": ["Aligns the item's text baseline with other items in the same row", "Aligns the item to the bottom of its cell", "Aligns the item to the grid baseline", "Sets a baseline for responsive design"],
+      "correctAnswer": 0,
+      "explanation": "`baseline` alignment aligns the text baseline of grid items within the same row, which is useful for cards with varying content heights."
+    },
+    {
+      "id": 15,
+      "question": "Which of these is NOT a valid value for `justify-items`?",
+      "options": ["space-between", "stretch", "center", "start"],
+      "correctAnswer": 0,
+      "explanation": "`space-between` is a content distribution value, available on `justify-content`/`align-content` but not on item alignment properties."
+    },
+    {
+      "id": 16,
+      "question": "If an item has `width: 50px` in a grid cell of 100px, what alignment property controls its horizontal position?",
+      "options": ["justify-self", "align-self", "grid-column", "justify-content"],
+      "correctAnswer": 0,
+      "explanation": "`justify-self` controls horizontal alignment within the cell. With `width: 50px` in a 100px cell, you can use `justify-self: start`, `center`, or `end`."
+    },
+    {
+      "id": 17,
+      "question": "What does `place-items: center stretch` do?",
+      "options": ["Centers items vertically, stretches them horizontally", "Centers items both axes", "Stretches items both axes", "Centers items horizontally, stretches vertically"],
+      "correctAnswer": 0,
+      "explanation": "`place-items` is `align-items justify-items`. So `place-items: center stretch` means `align-items: center` (vertical center) and `justify-items: stretch` (horizontal stretch)."
+    },
+    {
+      "id": 18,
+      "question": "In a 500px container with 3 columns of 100px each, which content alignment creates the most space between columns?",
+      "options": ["space-between", "space-evenly", "start", "All create the same spacing"],
+      "correctAnswer": 0,
+      "explanation": "`space-between` puts ALL remaining space (500 - 300 = 200px) between the three columns (100px between each pair), giving the widest gaps."
+    },
+    {
+      "id": 19,
+      "question": "What does `align-content: end` do in a grid taller than its tracks?",
+      "options": ["Pushes all the grid tracks to the bottom of the container", "Aligns items to the end of their cells", "Ends the grid at the bottom", "Aligns the last row of items"],
+      "correctAnswer": 0,
+      "explanation": "`align-content: end` (when tracks total less than container height) pushes all grid tracks to the bottom of the container, leaving space at the top."
+    },
+    {
+      "id": 20,
+      "question": "Which is the correct way to center both items AND the grid?",
+      "options": ["place-items: center on items; place-content: center on the grid in container", "place-items: center centers everything", "place-content: center centers everything", "Only one can be centered at a time"],
+      "correctAnswer": 0,
+      "explanation": "These solve different problems. `place-items: center` centers items within their cells. `place-content: center` centers the tracks within the container. Use both for complete centering."
+    }
+  ]
+}

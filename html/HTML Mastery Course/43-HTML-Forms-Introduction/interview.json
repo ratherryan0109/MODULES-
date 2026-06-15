@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <form> element and what is its purpose?",
+      "answer": "The <form> element is a container for form controls that allows users to input data and submit it to a server for processing."
+    },
+    {
+      "question": "What is the difference between GET and POST methods?",
+      "answer": "GET appends data to the URL as query parameters (visible, limited length). POST sends data in the request body (invisible, no size limit)."
+    },
+    {
+      "question": "How do you create a text input field in HTML?",
+      "answer": "Use <input type='text' id='fieldname' name='fieldname'> or <input type='email'> for email-specific input."
+    },
+    {
+      "question": "What is the purpose of the <label> element?",
+      "answer": "<label> provides a textual description for a form control, making it clickable and improving screen reader accessibility."
+    },
+    {
+      "question": "How do you create a submit button?",
+      "answer": "Using <input type='submit' value='Submit'> or <button type='submit'>Submit</button>."
+    },
+    {
+      "question": "What is a <textarea> used for?",
+      "answer": "<textarea> creates a multi-line text input field for longer text entries like comments or messages."
+    },
+    {
+      "question": "How do you create checkboxes in HTML?",
+      "answer": "Use <input type='checkbox' id='option' name='option' value='value'> with a <label> linked via the for attribute."
+    },
+    {
+      "question": "What is a radio button and how do you group them?",
+      "answer": "Radio buttons allow single selection. Group them by giving them the same name attribute value."
+    },
+    {
+      "question": "How do you create a dropdown menu?",
+      "answer": "Use the <select> element with <option> elements inside for each choice."
+    },
+    {
+      "question": "What is the action attribute on a form?",
+      "answer": "The action attribute specifies the URL where the form data is sent when the form is submitted."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the purpose of <fieldset> and <legend>?",
+      "answer": "<fieldset> groups related form controls, and <legend> provides a caption for the group, improving accessibility and structure."
+    },
+    {
+      "question": "How do you use the autocomplete attribute?",
+      "answer": "autocomplete='on' (default) enables browser autofill suggestions. autocomplete='off' disables them. Per-field values like 'name', 'email', 'address' provide specific hints."
+    },
+    {
+      "question": "What is form validation and how does HTML5 support it?",
+      "answer": "Form validation ensures correct data before submission. HTML5 supports it via attributes like required, pattern, min, max, type='email', etc."
+    },
+    {
+      "question": "How do you handle form submission in JavaScript?",
+      "answer": "Use the submit event on the form element: form.addEventListener('submit', function(e) { e.preventDefault(); /* handle data */ });"
+    },
+    {
+      "question": "What is the enctype attribute and when would you change it?",
+      "answer": "enctype specifies the encoding type. Change to multipart/form-data when uploading files."
+    },
+    {
+      "question": "How do you create a hidden form field?",
+      "answer": "Use <input type='hidden' name='fieldname' value='value'> for data that should be submitted but not visible to the user."
+    },
+    {
+      "question": "What is the difference between <button> and <input type='submit'>?",
+      "answer": "<button> can contain HTML content (icons, images), while <input type='submit'> is a self-closing element that only shows text."
+    },
+    {
+      "question": "How do you reset a form with HTML?",
+      "answer": "Use <input type='reset' value='Reset'> or <button type='reset'>Reset</button> to restore all fields to their initial values."
+    },
+    {
+      "question": "What is the novalidate attribute used for?",
+      "answer": "novalidate disables the browser's built-in HTML5 form validation, useful when using custom JavaScript validation."
+    },
+    {
+      "question": "How do you pre-select an option in a dropdown?",
+      "answer": "Add the selected attribute to the desired <option> element: <option value='A' selected>Option A</option>."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "What is the form attribute and how does it decouple inputs from forms?",
+      "answer": "The form attribute on an input allows it to be associated with a <form> by its id, even if the input is placed outside the <form> container."
+    },
+    {
+      "question": "How does the HTML5 constraint validation API work?",
+      "answer": "The Constraint Validation API provides methods like checkValidity(), reportValidity(), setCustomValidity(), and properties like validity (valid, patternMismatch, valueMissing, etc.) for custom validation."
+    },
+    {
+      "question": "Explain the difference between form events: submit, input, change, and blur.",
+      "answer": "submit fires on form submission; input fires on every value change; change fires after value change and focus loss; blur fires when focus leaves the field."
+    },
+    {
+      "question": "What are form-associated custom elements?",
+      "answer": "Form-associated custom elements are web components that participate in form submission and validation. They extend HTMLElement with FormAssociated mixin to integrate with forms."
+    },
+    {
+      "question": "How does the requestSubmit() method differ from form.submit()?",
+      "answer": "requestSubmit() triggers HTML5 validation and fires the submit event, while form.submit() bypasses validation and event handlers."
+    },
+    {
+      "question": "What is the purpose of the FormData API?",
+      "answer": "FormData provides a way to programmatically construct and manipulate form data sets for XHR/fetch requests, supporting file blobs and key-value pairs."
+    },
+    {
+      "question": "How do you implement progressive enhancement for forms?",
+      "answer": "Build the form with HTML first (action, method, server endpoint), then layer on CSS for styling, then enhance with JavaScript for validation, AJAX submission, and UX improvements."
+    },
+    {
+      "question": "What is the role of autocomplete tokens and how do they improve UX?",
+      "answer": "Autocomplete tokens (name, email, address-line1, country-name, etc.) provide semantic hints for browser autofill, reducing user typing and improving conversion rates."
+    },
+    {
+      "question": "How does the validityState object work in detail?",
+      "answer": "validityState is a property of the input element with boolean flags: valueMissing, typeMismatch, patternMismatch, tooLong, tooShort, rangeUnderflow, rangeOverflow, stepMismatch, badInput, customError, valid."
+    },
+    {
+      "question": "What are the security considerations when handling form data?",
+      "answer": "Always validate both client-side and server-side, use POST for sensitive data, implement CSRF tokens, sanitize inputs, use HTTPS, set appropriate enctype, and never trust user input."
+    }
+  ]
+}

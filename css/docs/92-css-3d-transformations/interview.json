@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a 3D transform in CSS?", "answer": "A 3D transform modifies an element in three-dimensional space using functions like rotateX, rotateY, translateZ, and perspective." },
+    { "question": "What is the perspective property used for?", "answer": "perspective defines the distance from the viewer to the z=0 plane, creating a vanishing point for 3D transforms." },
+    { "question": "What does rotateX() do in 3D?", "answer": "rotateX(angle) rotates an element around its horizontal X-axis, tilting it forward or backward." },
+    { "question": "What does rotateY() do in 3D?", "answer": "rotateY(angle) rotates an element around its vertical Y-axis, creating a horizontal spin effect." },
+    { "question": "What does translateZ() do?", "answer": "translateZ(value) moves an element closer or farther from the viewer along the Z-axis in 3D space." },
+    { "question": "How do you apply perspective to a parent element?", "answer": "Set perspective: 800px; on the parent element to create a shared 3D space for its children." },
+    { "question": "What does transform-style: preserve-3d do?", "answer": "preserve-3d ensures child elements maintain their 3D positions relative to the transformed parent." },
+    { "question": "What is backface-visibility?", "answer": "backface-visibility controls whether the reverse side of a 3D-transformed element is visible when facing away." },
+    { "question": "What is the default value for perspective?", "answer": "The default value is none, meaning no 3D perspective is applied." },
+    { "question": "Can 3D transforms be combined with 2D transforms?", "answer": "Yes, 2D and 3D transform functions can be combined in the same transform property, e.g., translate(10px) rotateY(45deg)." }
+  ],
+  "intermediate": [
+    { "question": "How does the perspective() function differ from the perspective property?", "answer": "perspective() is a transform function applied to individual elements; perspective as a property is set on the parent and shared by children." },
+    { "question": "What happens when perspective is set to a small value like 100px?", "answer": "Small perspective values create extreme depth distortion, making Z-axis movements appear very exaggerated." },
+    { "question": "How does translateZ interact with perspective to create depth?", "answer": "Elements with positive translateZ appear larger (closer); negative translateZ appears smaller (farther), with the effect intensity dependent on perspective value." },
+    { "question": "How do you create a 3D carousel with CSS?", "answer": "Arrange items in a circle using rotateY and translateZ on each item, with perspective on the parent and preserve-3d for depth." },
+    { "question": "What is the purpose of transform-style: flat?", "answer": "transform-style: flat (the default) flattens all child elements into the parent's 2D plane, preventing nested 3D depth." },
+    { "question": "How do 3D transforms affect stacking context?", "answer": "3D transforms create new stacking contexts and can introduce z-axis sorting based on 3D position." },
+    { "question": "How does perspective-origin work?", "answer": "perspective-origin sets the vanishing point position within the perspective container, defaulting to center (50% 50%)." },
+    { "question": "Can you have multiple elements with different perspectives in the same scene?", "answer": "Yes, each element or group can have its own perspective, creating independent 3D spaces within the same page." },
+    { "question": "How do you create a 3D cube with CSS transforms?", "answer": "Use six faces positioned with translateZ (half cube width) from center, then rotate each face to form the cube sides, all in preserve-3d context." },
+    { "question": "How does backface-visibility: hidden help in card flip effects?", "answer": "It hides the back face of the element when rotated beyond 90deg, preventing the mirrored content from showing during the flip." }
+  ],
+  "advanced": [
+    { "question": "How does the browser render 3D transformed elements on the GPU?", "answer": "Elements with 3D transforms are promoted to compositor layers and rasterized by the GPU, enabling hardware-accelerated rendering." },
+    { "question": "What is the difference between perspective on parent vs perspective() on each child?", "answer": "Parent perspective creates a single shared vanishing point; perspective() on each child creates individual vanishing points at each element's center." },
+    { "question": "How do 3D transforms interact with CSS filters like blur or drop-shadow?", "answer": "Filters apply after the transform in the rendering pipeline; blurred 3D elements may show clipping at layer boundaries." },
+    { "question": "How can you solve z-fighting issues in 3D CSS scenes?", "answer": "Z-fighting occurs when elements share the same Z depth; use slight Z-offsets, backface-visibility, or adjust render order to prevent flickering." },
+    { "question": "How does will-change: transform affect 3D rendering?", "answer": "will-change: transform creates a new compositor layer, reduces paint area, and shifts rendering to the GPU for smoother 3D animations." },
+    { "question": "How do 3D transforms affect element containment and clipping?", "answer": "contain: paint can clip elements that extend beyond their bounds in 3D space; preserve-3d requires careful containment strategy." },
+    { "question": "How can you create a 3D perspective text effect?", "answer": "Use perspective on parent, rotateX on the text element, and translateZ for depth; combine with scale for a forced-perspective look." },
+    { "question": "How do 3D transforms interact with scroll and viewport visibility?", "answer": "IntersectionObserver uses the element's original layout box; 3D-transformed elements may be visible but reported as non-intersecting." },
+    { "question": "How does matrix3d() encode 3D transformations?", "answer": "matrix3d() is a 4x4 homogeneous transformation matrix with 16 parameters representing combined 3D translate, rotate, scale, and perspective." },
+    { "question": "How can you optimize a scene with many 3D transformed elements?", "answer": "Minimize layer count, use contain: layout style, avoid overlapping animated 3D layers, and prefer opacity for fade effects over 3D depth changes." }
+  ]
+}

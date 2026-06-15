@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is a description list and how do you create one in HTML?",
+      "answer": "A description list is a structured list of terms and descriptions created using the <dl> element. Inside <dl>, you use <dt> for terms and <dd> for descriptions."
+    },
+    {
+      "question": "What do the tags <dl>, <dt>, and <dd> stand for?",
+      "answer": "<dl> stands for Description List, <dt> stands for Description Term, and <dd> stands for Description Details."
+    },
+    {
+      "question": "How is a description list different from an unordered list?",
+      "answer": "An unordered list (<ul>) presents bulleted items where all items are siblings. A description list (<dl>) presents term-description pairs, where <dt> specifies the term and <dd> provides the description."
+    },
+    {
+      "question": "What is the default browser styling for <dd> elements?",
+      "answer": "Browsers typically apply a left margin indentation to <dd> elements to visually separate them from <dt> elements."
+    },
+    {
+      "question": "Can you have more than one <dd> for a single <dt>?",
+      "answer": "Yes, you can have multiple <dd> elements following a single <dt> to provide multiple descriptions for one term."
+    },
+    {
+      "question": "Can you have more than one <dt> for a single <dd>?",
+      "answer": "Yes, multiple <dt> elements can be followed by a single <dd> to share the same description across multiple terms."
+    },
+    {
+      "question": "Write a simple description list for HTML, CSS, and JavaScript.",
+      "answer": "<dl><dt>HTML</dt><dd>Structure</dd><dt>CSS</dt><dd>Styling</dd><dt>JavaScript</dt><dd>Interactivity</dd></dl>"
+    },
+    {
+      "question": "What happens if you put a <dt> after a <dd>?",
+      "answer": "It is still valid HTML, but it breaks the logical term-first structure. Screen readers and search engines may interpret the content incorrectly."
+    },
+    {
+      "question": "Is <dl> a block-level or inline element?",
+      "answer": "<dl> is a block-level element, meaning it takes up the full width available and starts on a new line."
+    },
+    {
+      "question": "What was <dl> called in HTML4?",
+      "answer": "In HTML4, <dl> was called a 'definition list' and was primarily used for dictionary-style definitions."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How can you style a description list with CSS to display terms and descriptions side by side?",
+      "answer": "Use CSS flexbox or grid on <dl>, set <dt> to a fixed width, and <dd> to flex: 1. For example: dl { display: grid; grid-template-columns: 150px 1fr; }"
+    },
+    {
+      "question": "Can you nest other HTML lists inside a description list?",
+      "answer": "Yes, you can nest <ul>, <ol>, or even another <dl> inside a <dd> element, since <dd> accepts flow content."
+    },
+    {
+      "question": "In HTML5, can you use <div> elements inside <dl>? What is the benefit?",
+      "answer": "Yes, HTML5 allows <div> elements to wrap <dt>-<dd> groups inside <dl>. This helps with styling groups of terms as a unit."
+    },
+    {
+      "question": "How do screen readers interpret description lists?",
+      "answer": "Screen readers announce the <dl> with a 'list' role, navigate through <dt> and <dd> as list items, and often indicate the relationship between terms and descriptions."
+    },
+    {
+      "question": "What is wrong with using <br> tags to create manual term-description layouts instead of <dl>?",
+      "answer": "Using <br> lacks semantic meaning, has poor accessibility, and makes content harder to style. <dl> provides proper structure for browsers and assistive technologies."
+    },
+    {
+      "question": "How would you create a horizontally aligned description list using CSS?",
+      "answer": "Use display: flex on <dl> with flex-wrap: wrap, then set <dt> to width: 30% and <dd> to width: 70%, or use CSS Grid with grid-template-columns: auto 1fr."
+    },
+    {
+      "question": "What is the difference between <dl> and <table> for displaying key-value pairs?",
+      "answer": "<dl> is for term-description relationships (one-to-many). <table> is for tabular data. Use <dl> when the relationship is definitional, and <table> for rows and columns of data."
+    },
+    {
+      "question": "How can you make a description list accessible for users with screen readers?",
+      "answer": "Use proper nesting (<dt> before <dd>), add aria-label if needed, ensure enough color contrast, and test with screen reader tools like NVDA or VoiceOver."
+    },
+    {
+      "question": "Can you use heading tags (<h1>-<h6>) inside a <dd>?",
+      "answer": "Yes, you can place headings inside <dd> elements because <dd> accepts flow content. However, be mindful of document outline semantics."
+    },
+    {
+      "question": "How would you create a two-column layout for a description list where terms are on the left and descriptions on the right?",
+      "answer": "Use CSS: dl { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; } dt { font-weight: bold; } dd { margin: 0; }"
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the HTML5 specification define the content model for <dl>?",
+      "answer": "The <dl> content model is: zero or more groups each consisting of one or more <dt> elements followed by one or more <dd> elements, optionally wrapped in <div> elements."
+    },
+    {
+      "question": "What is the difference between the implicit ARIA roles of <dl> in HTML4 vs HTML5?",
+      "answer": "In HTML4, <dl> had no implicit ARIA role. In HTML5, <dl> has the implicit role of 'list', with <dt> and <dd> having 'listitem' roles."
+    },
+    {
+      "question": "How can you use Microdata or RDFa with description lists to add semantic meaning?",
+      "answer": "Add attributes like itemscope, itemtype, itemprop to <dl>, <dt>, and <dd> elements to define structured data vocabularies, enabling search engines to understand the content."
+    },
+    {
+      "question": "Describe a scenario where you would choose nested <dl> elements instead of a flat structure.",
+      "answer": "For complex glossaries where a term contains sub-terms, such as programming terminology: <dl><dt>CSS</dt><dd><dl><dt>Flexbox</dt><dd>Layout module</dd>...</dl></dd></dl>"
+    },
+    {
+      "question": "How would you implement a responsive description list that switches from horizontal to vertical on mobile?",
+      "answer": "Use CSS Grid with a media query: desktop uses grid-template-columns: 1fr 2fr; mobile (max-width: 600px) uses grid-template-columns: 1fr; so terms stack above descriptions."
+    },
+    {
+      "question": "What happens to the accessibility tree when <div> wrappers are used inside <dl>?",
+      "answer": "The <div> wrappers do not affect the accessibility tree. The list structure is preserved because <dt> and <dd> maintain their implicit roles regardless of <div> grouping."
+    },
+    {
+      "question": "Can you use <dl> to mark up conversation transcripts? What are the pros and cons?",
+      "answer": "Technically yes, using <dt> for speaker names and <dd> for dialogue. However, it's not semantically ideal. Better alternatives include structured <div> with aria roles or proper HTML5 semantic elements."
+    },
+    {
+      "question": "How does using <dl> impact SEO compared to using heading-text pairs?",
+      "answer": "<dl> provides a distinct semantic signal for term-description relationships. Search engines may use this structure for rich snippets. However, <dl> does not replace heading hierarchy for document structure."
+    },
+    {
+      "question": "What are the limitations of using <dl> in a content management system that stores data as key-value pairs?",
+      "answer": "<dl> only supports simple term-description nesting. For deeply nested or complex hierarchical data, you may need to combine <dl> with other structures or use JSON-LD for structured data."
+    },
+    {
+      "question": "How would you use CSS columns with a <dl> to create a multi-column glossary?",
+      "answer": "Apply column-count: 3 to the <dl>, set break-inside: avoid on <dt>/<dd> groups (or <div> wrappers), and adjust column-gap for spacing. Use break-inside: avoid to prevent terms being split across columns."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"question":"What is the <aside> element used for?","answer":"The <aside> element represents content tangentially related to the main content, such as sidebars, pull quotes, related links, or advertisements."},
+    {"question":"Is <aside> a semantic or non-semantic element?","answer":"<aside> is a semantic element. It conveys that the content is indirectly related to the main content."},
+    {"question":"What is the default display of <aside>?","answer":"<aside> is a block-level element by default."},
+    {"question":"Can <aside> be placed inside an <article>?","answer":"Yes, <aside> can be nested inside <article> for content that is tangentially related to that specific article."},
+    {"question":"What is the difference between <aside> and <div>?","answer":"<aside> has semantic meaning representing complementary content. <div> is a generic container with no semantic meaning."},
+    {"question":"Should <aside> have a heading?","answer":"Yes, it's recommended to include a heading in <aside> for structure and accessibility."},
+    {"question":"What kind of content goes in an <aside>?","answer":"Related links, advertisements, pull quotes, glossaries, author bios, and other tangential content."},
+    {"question":"Is <aside> a landmark region?","answer":"Yes, when used outside an article or section, <aside> is a complementary landmark."},
+    {"question":"Can I use CSS to style <aside>?","answer":"Yes, <aside> can be styled with CSS like any block-level element."},
+    {"question":"What global attributes does <aside> support?","answer":"<aside> supports all global HTML attributes including id, class, style, aria-*, and data-*."}
+  ],
+  "intermediate": [
+    {"question":"What ARIA role does <aside> have by default?","answer":"<aside> has an implicit role of 'complementary' when it's outside a sectioning element like article or section."},
+    {"question":"How do you provide an accessible name to an <aside>?","answer":"Use aria-labelledby referencing a heading's id, or use aria-label directly on the <aside> element."},
+    {"question":"What happens when <aside> is nested inside another <aside>?","answer":"The inner <aside> loses its complementary role because it's no longer directly related to the main content but to another aside."},
+    {"question":"Can <aside> contain <nav>?","answer":"Yes, <aside> can contain <nav> for secondary navigation like related articles or category links."},
+    {"question":"What's the difference between <aside> and <sidebar> (if such element existed)?","answer":"<aside> is the semantic HTML element for sidebar-type content. There is no <sidebar> element in HTML."},
+    {"question":"Should <aside> come before or after <main> in the DOM?","answer":"Semantically, <aside> should come after <main>. However, CSS can visually position it to the left or right regardless of DOM order."},
+    {"question":"How does <aside> interact with the HTML5 outline?","answer":"<aside> is a sectioning element that creates an entry in the document outline, similar to <section> and <article>."},
+    {"question":"What's the difference between <aside> and <section> with role='complementary'?","answer":"Using <aside> provides native semantic meaning and automatic complementary role. A section with role='complementary' requires explicit ARIA but achieves similar landmark behavior."},
+    {"question":"Can you put forms inside an <aside>?","answer":"Yes, forms like search boxes or newsletter signups are appropriate in <aside> if they are tangential to the main content."},
+    {"question":"How does WordPress typically use the <aside> element?","answer":"WordPress themes commonly use <aside> for widget areas, sidebars, and supplementary content panels."}
+  ],
+  "advanced": [
+    {"question":"How does the <aside> element behave with the CSS 'float' property in terms of the complementary landmark?","answer":"CSS float does not affect the semantic landmark role. An <aside> remains a complementary landmark regardless of its visual positioning via CSS."},
+    {"question":"What are the accessibility implications of using <aside> for a sticky sidebar?","answer":"A sticky <aside> with position: sticky remains a complementary landmark. Ensure it has an accessible name and that the main content remains reachable when the sidebar takes up screen space."},
+    {"question":"How does the inert attribute affect <aside> elements?","answer":"Applying inert to an <aside> makes it non-interactive and invisible to assistive technology. This can be useful for off-canvas sidebars that slide in."},
+    {"question":"Explain the sectioning behavior of <aside> in the HTML5 outline algorithm.","answer":"<aside> is a sectioning content element. It creates a new section in the outline algorithm, with its own heading hierarchy scoped within the aside."},
+    {"question":"How should you handle <aside> in a print stylesheet?","answer":"In print, <aside> content (like ads, related links) is typically hidden (display: none) since it's tangential and not relevant to the printed page's primary content."},
+    {"question":"What happens to the complementary landmark when an <aside> is dynamically loaded via AJAX?","answer":"Dynamically loaded <aside> content is recognized by screen readers if it's inside a live region. The complementary landmark role is preserved regardless of when it's added to the DOM."},
+    {"question":"How can you use <aside> with CSS Grid to create a responsive sidebar?","answer":"Use grid-template-columns: 1fr 300px on a wrapper, place <main> in the first column and <aside> in the second. On mobile, use a media query to stack them."},
+    {"question":"What is the interaction between <aside> and the CSS content-visibility property?","answer":"Applying content-visibility: auto to <aside> can improve performance by deferring rendering of sidebar content until it is near the viewport."},
+    {"question":"How does <aside> affect SEO in terms of content relevance?","answer":"Search engines recognize <aside> as complementary content, which may be weighted differently than main content. Primary keywords should reside in <main> rather than <aside>."},
+    {"question":"What ARIA pattern should you use when <aside> contains a list of related links?","answer":"Use aria-label on the <aside>, and consider using role='list' on the <ul> and role='listitem' on <li> elements for maximum AT compatibility, though they are implicit."}
+  ]
+}

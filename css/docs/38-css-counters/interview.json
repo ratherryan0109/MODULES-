@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What are CSS counters?", "answer": "CSS counters are variables managed by CSS that automatically increment and can be used for numbering elements." },
+    { "question": "What does counter-reset do?", "answer": "counter-reset initializes or resets a counter to a specific value (default 0)." },
+    { "question": "What does counter-increment do?", "answer": "counter-increment increases a counter's value by a specified amount (default 1)." },
+    { "question": "What does the counter() function do?", "answer": "counter() returns the current value of a named counter for use in the content property." },
+    { "question": "How do you display a counter value on a page?", "answer": "Use ::after { content: counter(counter-name); } on the elements you want to number." },
+    { "question": "What is the default increment value of counter-increment?", "answer": "The default increment value is 1." },
+    { "question": "Can you create multiple counters on one page?", "answer": "Yes, you can define and use multiple independent counters with different names." },
+    { "question": "How do you set a counter to start at 5?", "answer": "Use counter-reset: mycounter 5; to initialize the counter at 5." },
+    { "question": "What is the counters() function?", "answer": "counters() returns a string of all counter values from nested counters, using a specified separator." },
+    { "question": "How do you number sections in a document with CSS counters?", "answer": "Reset a counter on the body, increment it on each section, and display it in the section heading with content: counter(section) '.'." }
+  ],
+  "intermediate": [
+    { "question": "How do you create nested numbering (e.g., 1.1, 1.2) with CSS counters?", "answer": "Reset a sub-counter on each parent element and increment it on children, then display both: content: counter(parent) '.' counter(child)." },
+    { "question": "How do you use counters with headings (h1, h2, h3)?", "answer": "Reset h1 counter on body, increment h1 on each h1; reset h2 counter on each h1, increment h2 on each h2, etc." },
+    { "question": "How do you change the counter display format to roman numerals?", "answer": "Use counter(name, upper-roman) or counter(name, lower-alpha) to change the number style." },
+    { "question": "How do you increment a counter by a custom amount?", "answer": "Use counter-increment: mycounter 2; to increase the counter by 2 each time." },
+    { "question": "How do you use counters to number figures or tables?", "answer": "Reset counter on the container, increment on each figure, display in figcaption: content: 'Figure ' counter(figcount) ':'." },
+    { "question": "What happens if counter-increment is applied before counter-reset?", "answer": "The counter is incremented from its default starting value (0) if not reset, or the previous value in scope is used." },
+    { "question": "How do counters interact with the content property?", "answer": "Counters are only rendered when used in the content property of ::before or ::after pseudo-elements." },
+    { "question": "How do you create a custom counter style?", "answer": "Use @counter-style to define custom numbering patterns with symbols, ranges, and fallbacks." },
+    { "question": "How do you decrement a counter?", "answer": "Use counter-increment: mycounter -1; to decrement the counter by 1." },
+    { "question": "What is the scope of a CSS counter?", "answer": "Counters are scoped to the element where they are reset and its children; sibling elements get fresh counter instances." }
+  ],
+  "advanced": [
+    { "question": "How does the CSS counter scope algorithm work for nested elements?", "answer": "Each counter-reset creates a new counter instance in that element's scope; inner scopes override outer scopes for the same counter name." },
+    { "question": "How do you create a table of contents with CSS counters?", "answer": "Use counters() function with nesting: content: counters(section, '.') to display full hierarchical numbering like 1.2.3." },
+    { "question": "How do you style specific numbered items differently using counters?", "answer": "Combine counters with :nth-child() or :nth-of-type() to apply different styles to specific positions while maintaining numbering." },
+    { "question": "How do counters behave with display: none elements?", "answer": "Elements with display: none do not increment counters; visibility: hidden elements still increment counters." },
+    { "question": "How do you implement page numbering for print with CSS counters?", "answer": "Use @page with counter(page) in the margin boxes to display page numbers in printed output." },
+    { "question": "How does the @counter-style rule define custom systems?", "answer": "@counter-style allows defining cyclic, numeric, alphabetic, symbolic, additive, or fixed systems with custom symbols and ranges." },
+    { "question": "How do you create a counter that resets at each section but continues numbering across subsections?", "answer": "Reset the main counter at the section level, and do not reset the sub-counter; let it increment continuously within each section." },
+    { "question": "How do CSS counters interact with generated content in ::marker?", "answer": "::marker can use counter values for list numbering, overriding the default list-style-type with custom counter formats." },
+    { "question": "What is the difference between counter() and counters() in terms of output?", "answer": "counter() returns the innermost counter value; counters() returns all ancestor counter values concatenated with a separator." },
+    { "question": "How does counter-set differ from counter-reset?", "answer": "counter-set sets a counter to a specific value without creating a new scope; counter-reset creates a new scope and sets the initial value." }
+  ]
+}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator - Examples</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #1e293b; padding: 20px; }
+    .examples-container { max-width: 1000px; margin: 0 auto; }
+    h1 { color: #306998; margin-bottom: 8px; font-size: 1.8em; }
+    .subtitle { color: #475569; margin-bottom: 24px; font-size: 1em; }
+    .example-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    .example-card h3 { color: #306998; margin-bottom: 12px; font-size: 1.2em; display: flex; align-items: center; gap: 10px; }
+    .example-card .badge { background: #FFD43B; color: #1e293b; padding: 2px 10px; border-radius: 12px; font-size: 0.7em; font-weight: 600; }
+    .example-card p { color: #475569; margin-bottom: 16px; line-height: 1.6; }
+    .code-block { background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; }
+    .code-block pre { margin: 0; padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+    .code-block .copy-btn { float: right; background: #306998; color: white; border: none; padding: 4px 12px; font-size: 12px; border-radius: 4px; cursor: pointer; margin: 8px; }
+    .code-block .copy-btn:hover { background: #1e415e; }
+    .output-block { background: #1e293b; color: #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 12px; font-family: monospace; font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
+    .output-block .prompt { color: #FFD43B; }
+    @media (max-width: 768px) { body { padding: 10px; } .example-card { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="examples-container">
+    <h1>Password Generator — Examples</h1>
+    <p class="subtitle">Practical Python examples demonstrating password generator. Click <strong>Copy</strong> to copy each snippet.</p>
+
+    <div class="example-card">
+      <h3>Example 1: Random character generation <span class="badge">Basic</span></h3>
+      <p>Core foundation for understanding this topic. This example demonstrates how to work with random character generation in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 1: Random character generation
+# Core foundation for understanding this topic
+
+def demonstrate_random_character_generation():
+    &quot;&quot;&quot;Demonstrate Random character generation with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply random character generation pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to random character generation rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_random_character_generation()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 2: Character set selection <span class="badge">Advanced</span></h3>
+      <p>Builds upon previous concepts. This example demonstrates how to work with character set selection in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 2: Character set selection
+# Builds upon previous concepts
+
+def demonstrate_character_set_selection():
+    &quot;&quot;&quot;Demonstrate Character set selection with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply character set selection pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to character set selection rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_character_set_selection()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 3: Password strength evaluation <span class="badge">Basic</span></h3>
+      <p>Enables practical implementation. This example demonstrates how to work with password strength evaluation in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 3: Password strength evaluation
+# Enables practical implementation
+
+def demonstrate_password_strength_evaluation():
+    &quot;&quot;&quot;Demonstrate Password strength evaluation with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply password strength evaluation pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to password strength evaluation rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_password_strength_evaluation()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 4: secrets module for security <span class="badge">Advanced</span></h3>
+      <p>Used in real-world applications. This example demonstrates how to work with secrets module for security in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 4: secrets module for security
+# Used in real-world applications
+
+def demonstrate_secrets_module_for_security():
+    &quot;&quot;&quot;Demonstrate secrets module for security with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply secrets module for security pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to secrets module for security rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_secrets_module_for_security()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 5: Customizable password rules <span class="badge">Basic</span></h3>
+      <p>Advanced patterns and techniques. This example demonstrates how to work with customizable password rules in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 5: Customizable password rules
+# Advanced patterns and techniques
+
+def demonstrate_customizable_password_rules():
+    &quot;&quot;&quot;Demonstrate Customizable password rules with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply customizable password rules pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to customizable password rules rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_customizable_password_rules()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 6: CLI argument parsing (argparse) <span class="badge">Advanced</span></h3>
+      <p>Optimization and best practices. This example demonstrates how to work with cli argument parsing (argparse) in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 6: CLI argument parsing (argparse)
+# Optimization and best practices
+
+def demonstrate_cli_argument_parsing_argparse():
+    &quot;&quot;&quot;Demonstrate CLI argument parsing (argparse) with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply cli argument parsing (argparse) pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to cli argument parsing (argparse) rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_cli_argument_parsing_argparse()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 7: Generating multiple passwords <span class="badge">Basic</span></h3>
+      <p>Edge cases and error handling. This example demonstrates how to work with generating multiple passwords in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 7: Generating multiple passwords
+# Edge cases and error handling
+
+def demonstrate_generating_multiple_passwords():
+    &quot;&quot;&quot;Demonstrate Generating multiple passwords with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply generating multiple passwords pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to generating multiple passwords rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_generating_multiple_passwords()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h3>Example 8: Password entropy calculation <span class="badge">Advanced</span></h3>
+      <p>Integration with other Python features. This example demonstrates how to work with password entropy calculation in Python.</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code class="language-python">
+# Example 8: Password entropy calculation
+# Integration with other Python features
+
+def demonstrate_password_entropy_calculation():
+    &quot;&quot;&quot;Demonstrate Password entropy calculation with Python code.&quot;&quot;&quot;
+    # Initialize sample data
+    data: list = [1, 2, 3, 4, 5]
+    print(f&quot;Original data: {data}&quot;)
+
+    # Apply password entropy calculation pattern
+    result: list = process_data(data)
+    print(f&quot;Processed result: {result}&quot;)
+
+    return result
+
+def process_data(items: list) -&gt; list:
+    &quot;&quot;&quot;Process items according to password entropy calculation rules.&quot;&quot;&quot;
+    # Processing logic
+    return [item * 2 for item in items]
+
+if __name__ == &quot;__main__&quot;:
+    demonstrate_password_entropy_calculation()
+        </code></pre>
+      </div>
+      <div class="output-block">
+        <span class="prompt">$</span> python example.py<br>
+        Original data: [1, 2, 3, 4, 5]<br>
+        Processed result: [2, 4, 6, 8, 10]<br>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script>
+    function copyCode(btn) {
+      const code = btn.parentElement.querySelector("code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

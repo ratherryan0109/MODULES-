@@ -1,0 +1,247 @@
+{
+  "module": "06-css-backgrounds",
+  "title": "CSS Backgrounds",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which property sets the background color of an element?",
+      "options": [
+        "color",
+        "background-color",
+        "bgcolor",
+        "background"
+      ],
+      "correctAnswer": 1,
+      "explanation": "background-color sets the background color. 'color' sets text color."
+    },
+    {
+      "id": 2,
+      "question": "What does background-repeat: no-repeat do?",
+      "options": [
+        "Repeats the image horizontally",
+        "Shows the image only once",
+        "Repeats the image vertically",
+        "Repeats the image in both directions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "no-repeat shows the background image only once without tiling."
+    },
+    {
+      "id": 3,
+      "question": "Which value for background-size ensures the image covers the entire element?",
+      "options": [
+        "contain",
+        "auto",
+        "cover",
+        "100%"
+      ],
+      "correctAnswer": 2,
+      "explanation": "cover scales the image to cover the entire element, potentially cropping parts of the image."
+    },
+    {
+      "id": 4,
+      "question": "What is the correct syntax for a linear gradient?",
+      "options": [
+        "linear-gradient(direction, color-stop...)",
+        "gradient-linear(direction, color)",
+        "linear(direction, gradient)",
+        "color-gradient(linear, direction)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "linear-gradient(direction, color1, color2, ...) is the correct syntax."
+    },
+    {
+      "id": 5,
+      "question": "How do you set multiple background images?",
+      "options": [
+        "background-images: url(1), url(2)",
+        "background: url(1), url(2)",
+        "background-image: url(1) + url(2)",
+        "Multiple backgrounds aren't supported"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Separate multiple backgrounds with commas in the background shorthand or background-image property."
+    },
+    {
+      "id": 6,
+      "question": "What does background-attachment: fixed do?",
+      "options": [
+        "Keeps the background fixed relative to the viewport during scroll",
+        "Prevents the background from loading",
+        "Makes the background scroll faster than content",
+        "Locks the background image in one position"
+      ],
+      "correctAnswer": 0,
+      "explanation": "background-attachment: fixed keeps the background stationary relative to the viewport while content scrolls over it."
+    },
+    {
+      "id": 7,
+      "question": "What is the default value of background-repeat?",
+      "options": [
+        "no-repeat",
+        "repeat",
+        "repeat-x",
+        "space"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default value for background-repeat is 'repeat', which tiles the image both horizontally and vertically."
+    },
+    {
+      "id": 8,
+      "question": "Which background-clip value creates a text-masked gradient effect?",
+      "options": [
+        "border-box",
+        "padding-box",
+        "content-box",
+        "text"
+      ],
+      "correctAnswer": 3,
+      "explanation": "background-clip: text clips the background to the shape of the text, creating gradient text when combined with color: transparent."
+    },
+    {
+      "id": 9,
+      "question": "What is the difference between background-size: cover and contain?",
+      "options": [
+        "cover fills the element fully (may crop); contain shows entire image (may leave gaps)",
+        "cover shows entire image; contain fills the element",
+        "They are identical in behavior",
+        "cover works for images; contain works for gradients"
+      ],
+      "correctAnswer": 0,
+      "explanation": "cover scales to fill the element completely (cropping if needed). contain scales so the whole image is visible (leaving gaps if aspect ratio differs)."
+    },
+    {
+      "id": 10,
+      "question": "What is a conic gradient used for?",
+      "options": [
+        "Creating linear transitions",
+        "Creating pie charts and color wheels",
+        "Creating radial bursts",
+        "Creating repeating patterns"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Conic gradients transition colors around a center point, making them ideal for pie charts, color wheels, and circular progress indicators."
+    },
+    {
+      "id": 11,
+      "question": "In the background shorthand, how are position and size separated?",
+      "options": [
+        "With a comma",
+        "With a slash (/)",
+        "With a space",
+        "With a colon"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Position and size are paired as 'position / size' in the background shorthand. The slash between them is critical."
+    },
+    {
+      "id": 12,
+      "question": "Where does background-color appear in relation to background-image?",
+      "options": [
+        "On top of the image",
+        "Behind the image",
+        "Next to the image",
+        "It doesn't appear when an image is set"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Background color paints behind any background images. It shows through transparent portions of images and acts as a fallback."
+    },
+    {
+      "id": 13,
+      "question": "What does background-position: 50% 50% do?",
+      "options": [
+        "Places the image at 50px from left and 50px from top",
+        "Centers the image within the element",
+        "Places the image at 50% of image size",
+        "Tiles the image starting at 50%"
+      ],
+      "correctAnswer": 1,
+      "explanation": "50% 50% aligns the image's center point with the element's center point, effectively centering the background image."
+    },
+    {
+      "id": 14,
+      "question": "What is the benefit of using a CSS gradient over an image file for simple patterns?",
+      "options": [
+        "Gradients have more colors",
+        "Gradients reduce HTTP requests and are GPU-accelerated",
+        "Gradients work in older browsers",
+        "Gradients are easier to animate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CSS gradients are generated by the browser, eliminating HTTP requests and are often GPU-accelerated for better performance."
+    },
+    {
+      "id": 15,
+      "question": "How do you create a hard-stop gradient with no transition?",
+      "options": [
+        "Use gradient-stop: hard",
+        "Set adjacent color stops at the same position",
+        "Use gradient-mode: solid",
+        "It's not possible with CSS"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A hard stop is created by placing two color stops at the same position, e.g., linear-gradient(to right, red 50%, blue 50%)."
+    },
+    {
+      "id": 16,
+      "question": "What does background-origin control?",
+      "options": [
+        "Where the background starts rendering",
+        "Where the background positioning area is measured from",
+        "The origin point of the image file",
+        "The starting color of gradients"
+      ],
+      "correctAnswer": 1,
+      "explanation": "background-origin defines the positioning area reference (border-box, padding-box, or content-box) for background images."
+    },
+    {
+      "id": 17,
+      "question": "Which of these is a valid way to create a semi-transparent overlay on a background image?",
+      "options": [
+        "Use a pseudo-element with opacity",
+        "Layer a gradient with rgba over the image",
+        "Use background-blend-mode",
+        "All of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Multiple techniques work: pseudo-elements with opacity, gradient overlays with rgba, and background-blend-mode."
+    },
+    {
+      "id": 18,
+      "question": "What does background-repeat: space do?",
+      "options": [
+        "Creates empty space around the image",
+        "Tiles the image with even spacing between tiles",
+        "Adds space before the image",
+        "Stretches the image to fill space"
+      ],
+      "correctAnswer": 1,
+      "explanation": "space tiles the image and distributes even spacing between the tiles so they fit perfectly within the container."
+    },
+    {
+      "id": 19,
+      "question": "Why is it important to always set a background-color when using background-image?",
+      "options": [
+        "It adds depth to the design",
+        "It acts as a fallback when images fail to load",
+        "It's required by the CSS specification",
+        "It improves image loading speed"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A background-color fallback ensures the element has visual content even when the background image fails to load or loads slowly."
+    },
+    {
+      "id": 20,
+      "question": "For a responsive hero section with a background image, what combination is recommended?",
+      "options": [
+        "Always use the same image at all sizes",
+        "Use different background images at different breakpoints via media queries",
+        "Use only background-color for responsiveness",
+        "Set background-size to auto"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Using different background images at different breakpoints ensures optimal image size and quality across devices."
+    }
+  ]
+}

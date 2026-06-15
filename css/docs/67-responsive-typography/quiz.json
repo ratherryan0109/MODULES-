@@ -1,0 +1,147 @@
+{
+  "module": "67-responsive-typography",
+  "title": "Responsive Typography",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS function creates fluid typography that stays within minimum and maximum bounds?",
+      "options": ["calc()", "min()", "max()", "clamp()"],
+      "correctAnswer": 3,
+      "explanation": "clamp(MIN, PREFERRED, MAX) provides fluid sizing within a range."
+    },
+    {
+      "id": 2,
+      "question": "What is the recommended minimum font size for body text?",
+      "options": ["12px", "14px", "16px", "20px"],
+      "correctAnswer": 2,
+      "explanation": "16px (1rem) is the minimum recommended body font size for readability."
+    },
+    {
+      "id": 3,
+      "question": "What unit represents the width of the '0' character?",
+      "options": ["em", "rem", "ch", "ex"],
+      "correctAnswer": 2,
+      "explanation": "The ch unit equals the width of the '0' glyph in the current font."
+    },
+    {
+      "id": 4,
+      "question": "What is the optimal line length for readability?",
+      "options": ["20-30 characters", "45-75 characters", "100-120 characters", "200+ characters"],
+      "correctAnswer": 1,
+      "explanation": "45-75 characters per line is the optimal range for comfortable reading."
+    },
+    {
+      "id": 5,
+      "question": "What line-height does WCAG recommend for body text?",
+      "options": ["1.0", "1.2", "1.5", "2.0"],
+      "correctAnswer": 2,
+      "explanation": "WCAG 1.4.8 recommends line-height of at least 1.5 for body text."
+    },
+    {
+      "id": 6,
+      "question": "Which unit is relative to the root element's font-size?",
+      "options": ["em", "rem", "vw", "%"],
+      "correctAnswer": 1,
+      "explanation": "rem is relative to the root (html) element's font-size."
+    },
+    {
+      "id": 7,
+      "question": "What does font-display: swap do?",
+      "options": ["Hides text until font loads", "Shows fallback font immediately, swaps when custom font loads", "Only loads font on demand", "Disables custom fonts"],
+      "correctAnswer": 1,
+      "explanation": "font-display: swap shows text in a fallback font immediately, then swaps to the custom font when it loads."
+    },
+    {
+      "id": 8,
+      "question": "What is a modular type scale?",
+      "options": ["A scale that changes by device", "A set of font sizes based on a ratio", "CSS modules for fonts", "A scale of modular units"],
+      "correctAnswer": 1,
+      "explanation": "A modular type scale uses a consistent ratio (like 1.25) to generate harmonious font sizes."
+    },
+    {
+      "id": 9,
+      "question": "What is the problem with using only vw for font-size?",
+      "options": ["Slow rendering", "Text too small on mobile, too large on desktop", "Not supported in browsers", "Accessibility issue"],
+      "correctAnswer": 1,
+      "explanation": "Pure vw units scale linearly, making text unreadable on small screens and huge on large screens."
+    },
+    {
+      "id": 10,
+      "question": "Which CSS property controls the space between text lines?",
+      "options": ["letter-spacing", "word-spacing", "line-height", "text-indent"],
+      "correctAnswer": 2,
+      "explanation": "line-height controls the vertical space between lines of text."
+    },
+    {
+      "id": 11,
+      "question": "What is 'vertical rhythm' in typography?",
+      "options": ["A dancing text animation", "Consistent vertical spacing between elements", "Text that scrolls vertically", "Line height oscillation"],
+      "correctAnswer": 1,
+      "explanation": "Vertical rhythm maintains consistent spacing based on the baseline grid."
+    },
+    {
+      "id": 12,
+      "question": "Which font loading strategy minimizes layout shift?",
+      "options": ["font-display: block", "font-display: swap with size-adjust", "font-display: fallback", "font-display: optional"],
+      "correctAnswer": 1,
+      "explanation": "font-display: swap with size-adjust in @font-face minimizes Cumulative Layout Shift."
+    },
+    {
+      "id": 13,
+      "question": "What does the 'ch' unit measure?",
+      "options": ["Character height", "Channel width", "Width of '0' character", "Container height"],
+      "correctAnswer": 2,
+      "explanation": "ch equals the width of the '0' (zero) glyph in the current font."
+    },
+    {
+      "id": 14,
+      "question": "Which font stack loads the fastest?",
+      "options": ["Google Fonts", "Adobe Fonts", "System font stack", "Custom @font-face"],
+      "correctAnswer": 2,
+      "explanation": "System font stack uses fonts already on the device, requiring zero network requests."
+    },
+    {
+      "id": 15,
+      "question": "What is the main advantage of variable fonts?",
+      "options": ["Smaller file size for multiple weights", "Animated text", "Better kerning", "More colors"],
+      "correctAnswer": 0,
+      "explanation": "Variable fonts contain multiple weights in one file, reducing download size."
+    },
+    {
+      "id": 16,
+      "question": "Which CSS value for line-height is recommended for headings?",
+      "options": ["1.0", "1.2", "1.5", "2.0"],
+      "correctAnswer": 1,
+      "explanation": "Headings typically use tighter line-height (1.1-1.3) since they're shorter."
+    },
+    {
+      "id": 17,
+      "question": "What does the clamp(1rem, 2.5vw, 2rem) expression do?",
+      "options": ["Sets font-size always to 1rem", "Scales between 1rem and 2rem fluidly", "Sets font-size to 2.5vw", "Clamps to 2rem always"],
+      "correctAnswer": 1,
+      "explanation": "It scales from 1rem (min) to 2rem (max) with a preferred value of 2.5vw."
+    },
+    {
+      "id": 18,
+      "question": "Why should you avoid text justification for body text?",
+      "options": ["It's slower to render", "It creates uneven word spacing (rivers)", "It's not supported", "It uses more CSS"],
+      "correctAnswer": 1,
+      "explanation": "Justified text can create uneven spacing (rivers of white) that hurts readability, especially for dyslexic users."
+    },
+    {
+      "id": 19,
+      "question": "What is the purpose of size-adjust in @font-face?",
+      "options": ["Changes font size", "Normalizes font metrics to reduce layout shift", "Adjusts letter spacing", "Sets minimum font size"],
+      "correctAnswer": 1,
+      "explanation": "size-adjust normalizes font metrics so fallback and custom fonts have similar sizes."
+    },
+    {
+      "id": 20,
+      "question": "Which letter-spacing value is recommended for dyslexia-friendly text?",
+      "options": ["-0.05em", "normal", "0.12em", "0.5em"],
+      "correctAnswer": 2,
+      "explanation": "0.12em letter spacing is recommended for dyslexia-friendly typography."
+    }
+  ]
+}

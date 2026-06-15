@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 65: Web Storage Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; color: #222; }
+    h1 { border-bottom: 3px solid #FF8C00; padding-bottom: 10px; }
+    h2 { color: #FF8C00; margin-top: 30px; }
+    .example-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; margin: 10px 0; }
+    .output { background: #f9f9f9; border: 1px dashed #999; border-radius: 6px; padding: 15px; margin: 10px 0; }
+    .note { background: #fff8e1; border-left: 4px solid #FF8C00; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    .tag { background: #FF8C00; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+    button { padding: 8px 16px; background: #FF8C00; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; margin: 4px; }
+    button:hover { background: #e07e00; }
+    button.secondary { background: #6c757d; }
+    button.secondary:hover { background: #5a6268; }
+    input, textarea { padding: 8px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box; margin-top: 4px; }
+    .storage-inspector { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 13px; min-height: 100px; white-space: pre-wrap; overflow-x: auto; }
+    .row { display: flex; gap: 10px; align-items: center; margin: 8px 0; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; }
+    .badge.success { background: #d4edda; color: #155724; }
+    .badge.danger { background: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+
+<h1>Web Storage — Interactive Examples</h1>
+
+<!-- Example 1: Basic CRUD -->
+<h2>1. Basic localStorage CRUD</h2>
+<div class="example-box">
+  <p>Create, Read, Update, Delete operations with localStorage.</p>
+  <div class="output">
+    <div class="row">
+      <input type="text" id="crudKey" placeholder="Key" style="width:150px;">
+      <input type="text" id="crudValue" placeholder="Value" style="width:200px;">
+      <button onclick="crudSet()">Set Item</button>
+    </div>
+    <div class="row">
+      <input type="text" id="crudGetKey" placeholder="Key to get" style="width:150px;">
+      <button onclick="crudGet()">Get Item</button>
+      <button onclick="crudRemove()" class="secondary">Remove Item</button>
+      <button onclick="crudClear()" class="secondary" style="background:#dc3545;">Clear All</button>
+    </div>
+    <div id="crudResult" class="storage-inspector" style="margin-top:10px;">// Results will appear here</div>
+    <script>
+      function crudSet() {
+        const key = document.getElementById('crudKey').value;
+        const value = document.getElementById('crudValue').value;
+        if (!key) return;
+        localStorage.setItem(key, value);
+        crudRefresh();
+      }
+      function crudGet() {
+        const key = document.getElementById('crudGetKey').value || document.getElementById('crudKey').value;
+        const val = localStorage.getItem(key);
+        document.getElementById('crudResult').textContent = `getItem('${key}') → ${JSON.stringify(val)}`;
+      }
+      function crudRemove() {
+        const key = document.getElementById('crudGetKey').value || document.getElementById('crudKey').value;
+        localStorage.removeItem(key);
+        crudRefresh();
+      }
+      function crudClear() { localStorage.clear(); crudRefresh(); }
+      function crudRefresh() {
+        const items = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          items[k] = localStorage.getItem(k);
+        }
+        document.getElementById('crudResult').textContent = JSON.stringify(items, null, 2) || '(empty)';
+      }
+      crudRefresh();
+    </script>
+  </div>
+</div>
+
+<!-- Example 2: Object Storage -->
+<h2>2. Storing Objects with JSON</h2>
+<div class="example-box">
+  <p>Use <code>JSON.stringify()</code> and <code>JSON.parse()</code> to store complex data.</p>
+  <div class="output">
+    <div class="row">
+      <input type="text" id="objName" placeholder="Name" style="width:150px;">
+      <input type="number" id="objAge" placeholder="Age" style="width:80px;">
+      <select id="objRole" style="padding:8px;">
+        <option>Admin</option><option>Editor</option><option>Viewer</option>
+      </select>
+      <button onclick="saveUser()">Save User</button>
+    </div>
+    <div id="objResult" class="storage-inspector">// No user saved</div>
+    <script>
+      function saveUser() {
+        const user = {
+          name: document.getElementById('objName').value,
+          age: parseInt(document.getElementById('objAge').value),
+          role: document.getElementById('objRole').value,
+          savedAt: new Date().toLocaleString()
+        };
+        localStorage.setItem('demoUser', JSON.stringify(user));
+        loadUser();
+      }
+      function loadUser() {
+        const data = localStorage.getItem('demoUser');
+        if (data) {
+          const user = JSON.parse(data);
+          document.getElementById('objResult').textContent = JSON.stringify(user, null, 2);
+        } else {
+          document.getElementById('objResult').textContent = '// No user saved';
+        }
+      }
+      loadUser();
+    </script>
+  </div>
+</div>
+
+<!-- Example 3: Theme Persistence -->
+<h2>3. Theme Preference Persistence</h2>
+<div class="example-box">
+  <p>Switch themes — preference is remembered across page reloads.</p>
+  <div class="output" id="themeDemo">
+    <div style="padding:20px;border-radius:8px;transition:0.3s;">
+      <p>Choose your theme:</p>
+      <button onclick="setTheme('light')">☀️ Light</button>
+      <button onclick="setTheme('dark')">🌙 Dark</button>
+      <button onclick="setTheme('blue')">💙 Blue</button>
+      <p id="themeStatus">Current theme: <span id="currentTheme">light</span></p>
+    </div>
+    <script>
+      function setTheme(theme) {
+        localStorage.setItem('demoTheme', theme);
+        applyTheme(theme);
+      }
+      function applyTheme(theme) {
+        const container = document.querySelector('#themeDemo > div');
+        const themes = {
+          light: { bg: '#ffffff', text: '#222', border: '#ddd' },
+          dark: { bg: '#333', text: '#f0f0f0', border: '#555' },
+          blue: { bg: '#e3f2fd', text: '#1565c0', border: '#90caf9' }
+        };
+        const t = themes[theme] || themes.light;
+        container.style.background = t.bg;
+        container.style.color = t.text;
+        container.style.border = `2px solid ${t.border}`;
+        document.getElementById('currentTheme').textContent = theme;
+      }
+      (function() {
+        const saved = localStorage.getItem('demoTheme') || 'light';
+        applyTheme(saved);
+      })();
+    </script>
+  </div>
+</div>
+
+<!-- Example 4: Form Autosave -->
+<h2>4. Form Autosave Draft</h2>
+<div class="example-box">
+  <p>Type in the form and reload the page — your draft is preserved!</p>
+  <div class="output">
+    <label>Title <input type="text" id="draftTitle" placeholder="Post title"></label>
+    <label style="display:block;margin-top:8px;">Content<textarea id="draftContent" rows="4" style="margin-top:4px;" placeholder="Write your content..."></textarea></label>
+    <button onclick="clearDraft()" class="secondary">Clear Draft</button>
+    <span id="draftStatus" style="font-size:12px;color:#666;margin-left:10px;"></span>
+    <script>
+      const draftFields = ['draftTitle','draftContent'];
+      let draftTimeout;
+
+      function saveDraft() {
+        const data = {};
+        draftFields.forEach(id => data[id] = document.getElementById(id).value);
+        localStorage.setItem('formDraft', JSON.stringify(data));
+        document.getElementById('draftStatus').textContent = 'Draft saved at ' + new Date().toLocaleTimeString();
+      }
+
+      draftFields.forEach(id => {
+        document.getElementById(id).addEventListener('input', () => {
+          clearTimeout(draftTimeout);
+          draftTimeout = setTimeout(saveDraft, 500);
+        });
+      });
+
+      (function loadDraft() {
+        const data = JSON.parse(localStorage.getItem('formDraft'));
+        if (data) {
+          draftFields.forEach(id => {
+            if (data[id]) document.getElementById(id).value = data[id];
+          });
+          document.getElementById('draftStatus').textContent = 'Draft restored';
+        }
+      })();
+
+      function clearDraft() {
+        localStorage.removeItem('formDraft');
+        draftFields.forEach(id => document.getElementById(id).value = '');
+        document.getElementById('draftStatus').textContent = 'Draft cleared';
+      }
+    </script>
+  </div>
+</div>
+
+<!-- Example 5: Expiring Data -->
+<h2>5. Expiring Data (Manual TTL)</h2>
+<div class="example-box">
+  <p>localStorage has no built-in expiry. This pattern adds one.</p>
+  <div class="output">
+    <div class="row">
+      <input type="text" id="ttlValue" placeholder="Value to store" style="width:200px;">
+      <select id="ttlDuration" style="padding:8px;">
+        <option value="0.5">30 seconds</option>
+        <option value="1">1 minute</option>
+        <option value="5">5 minutes</option>
+      </select>
+      <button onclick="saveWithTTL()">Save with Expiry</button>
+    </div>
+    <div id="ttlStatus">No data stored</div>
+    <script>
+      function saveWithTTL() {
+        const item = {
+          value: document.getElementById('ttlValue').value,
+          expiry: Date.now() + parseFloat(document.getElementById('ttlDuration').value) * 60 * 1000
+        };
+        localStorage.setItem('expiringData', JSON.stringify(item));
+        checkTTL();
+      }
+      function checkTTL() {
+        const data = localStorage.getItem('expiringData');
+        if (!data) { document.getElementById('ttlStatus').textContent = 'No data stored or expired'; return; }
+        const parsed = JSON.parse(data);
+        const remaining = Math.max(0, parsed.expiry - Date.now());
+        if (remaining <= 0) {
+          localStorage.removeItem('expiringData');
+          document.getElementById('ttlStatus').textContent = '⚠️ Data has expired and been removed';
+        } else {
+          document.getElementById('ttlStatus').textContent = `✅ Value: "${parsed.value}" — Expires in ${Math.round(remaining/1000)}s`;
+        }
+      }
+      checkTTL();
+      setInterval(checkTTL, 1000);
+    </script>
+  </div>
+</div>
+
+<!-- Example 6: Storage Event Cross-Tab -->
+<h2>6. Cross-Tab Synchronization (Storage Event)</h2>
+<div class="example-box">
+  <p>Open this page in two tabs. Changes in one tab are reflected in the other via <code>storage</code> events.</p>
+  <div class="output">
+    <div class="row">
+      <input type="text" id="crossTabInput" placeholder="Type a message" style="width:250px;">
+      <button onclick="broadcastMessage()">Broadcast to Other Tabs</button>
+    </div>
+    <div id="crossTabLog" class="storage-inspector" style="max-height:150px;overflow-y:auto;">// Messages from other tabs will appear here</div>
+    <script>
+      function broadcastMessage() {
+        const msg = document.getElementById('crossTabInput').value;
+        localStorage.setItem('crossTabMessage', JSON.stringify({
+          text: msg,
+          time: new Date().toLocaleTimeString(),
+          tab: Math.random().toString(36).substring(2, 8)
+        }));
+        localStorage.removeItem('crossTabMessage'); // Clean up
+      }
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'crossTabMessage' && e.newValue) {
+          const data = JSON.parse(e.newValue);
+          const log = document.getElementById('crossTabLog');
+          log.textContent += `\n[${data.time}] Tab ${data.tab}: "${data.text}"`;
+          log.scrollTop = log.scrollHeight;
+        }
+      });
+    </script>
+    <div class="note"><strong>Note:</strong> The event fires in other tabs, not the one making the change. Open a second tab to see it in action.</div>
+  </div>
+</div>
+
+<!-- Example 7: Shopping Cart -->
+<h2>7. Shopping Cart with localStorage</h2>
+<div class="example-box">
+  <p>Items persist across page reloads. Refresh the page — cart is preserved!</p>
+  <div class="output">
+    <div id="cartItems" style="margin-bottom:10px;">
+      <button onclick="addToCart('Wireless Mouse', 29.99)">🖱️ Wireless Mouse — $29.99</button>
+      <button onclick="addToCart('Mechanical Keyboard', 89.99)">⌨️ Mechanical Keyboard — $89.99</button>
+      <button onclick="addToCart('USB-C Hub', 39.99)">🔌 USB-C Hub — $39.99</button>
+    </div>
+    <div id="cartDisplay" class="storage-inspector">// Cart is empty</div>
+    <button onclick="clearCart()" class="secondary" style="margin-top:8px;">🗑 Clear Cart</button>
+    <script>
+      function getCart() { return JSON.parse(localStorage.getItem('demoCart')) || []; }
+      function saveCart(cart) { localStorage.setItem('demoCart', JSON.stringify(cart)); renderCart(); }
+
+      function addToCart(name, price) {
+        const cart = getCart();
+        const existing = cart.find(item => item.name === name);
+        if (existing) existing.qty++;
+        else cart.push({ name, price, qty: 1 });
+        saveCart(cart);
+      }
+
+      function removeItem(name) {
+        let cart = getCart().filter(item => item.name !== name);
+        saveCart(cart);
+      }
+
+      function clearCart() { localStorage.removeItem('demoCart'); renderCart(); }
+
+      function renderCart() {
+        const cart = getCart();
+        const el = document.getElementById('cartDisplay');
+        if (cart.length === 0) { el.textContent = '// Cart is empty'; return; }
+        let total = 0;
+        let html = cart.map(item => {
+          total += item.price * item.qty;
+          return `${item.name} × ${item.qty} = $${(item.price * item.qty).toFixed(2)} [<a href="#" onclick="removeItem('${item.name}');return false;">✕</a>]`;
+        }).join('\n');
+        html += `\n\nTotal: $${total.toFixed(2)}`;
+        el.textContent = html;
+      }
+      renderCart();
+    </script>
+  </div>
+</div>
+
+<!-- Example 8: Feature Detection -->
+<h2>8. Storage Availability Detection</h2>
+<div class="example-box">
+  <p>Not all browsers support Web Storage, especially in private/incognito mode. Always check availability.</p>
+  <div class="output">
+    <div id="storageCheck" class="storage-inspector">Checking storage availability...</div>
+    <script>
+      function storageAvailable(type) {
+        try {
+          const storage = window[type];
+          const x = '__storage_test__';
+          storage.setItem(x, x);
+          storage.removeItem(x);
+          return true;
+        } catch (e) {
+          return e.name === 'QuotaExceededError' && storage && storage.length > 0;
+        }
+      }
+
+      document.getElementById('storageCheck').textContent = 
+        `localStorage available: ${storageAvailable('localStorage')}\n` +
+        `sessionStorage available: ${storageAvailable('sessionStorage')}\n` +
+        `Cookies enabled: ${navigator.cookieEnabled}\n` +
+        `Current localStorage keys: ${localStorage.length}\n` +
+        `Storage limit: ~5-10MB per origin`;
+    </script>
+  </div>
+</div>
+
+<!-- Example 9: Storage Inspector -->
+<h2>9. Live Storage Inspector</h2>
+<div class="example-box">
+  <p>View all items currently stored in localStorage for this origin.</p>
+  <div class="output">
+    <button onclick="refreshInspector()">🔄 Refresh</button>
+    <button onclick="clearAllStorage()" class="secondary" style="background:#dc3545;">🗑 Clear All</button>
+    <div id="inspector" class="storage-inspector" style="margin-top:10px;"></div>
+    <script>
+      function refreshInspector() {
+        const items = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          try { items[k] = JSON.parse(localStorage.getItem(k)); } catch { items[k] = localStorage.getItem(k); }
+        }
+        const el = document.getElementById('inspector');
+        if (Object.keys(items).length === 0) el.textContent = '// No items in localStorage';
+        else el.textContent = JSON.stringify(items, null, 2);
+      }
+      function clearAllStorage() {
+        if (confirm('Clear all localStorage data for this origin?')) {
+          localStorage.clear();
+          refreshInspector();
+        }
+      }
+      refreshInspector();
+    </script>
+  </div>
+</div>
+
+<!-- Example 10: Usage Statistics -->
+<h2>10. Storage Usage Statistics</h2>
+<div class="example-box">
+  <p>Monitor how much storage your app is using.</p>
+  <div class="output">
+    <div id="statsDisplay" class="storage-inspector"></div>
+    <button onclick="calculateStats()" style="margin-top:8px;">📊 Calculate Usage</button>
+    <button onclick="addTestData()" class="secondary">➕ Add 100KB Test Data</button>
+    <button onclick="removeTestData()" class="secondary" style="background:#dc3545;">🧹 Remove Test Data</button>
+    <script>
+      function calculateStats() {
+        let totalBytes = 0;
+        let itemCount = 0;
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          const v = localStorage.getItem(k);
+          totalBytes += (k.length + v.length) * 2; // UTF-16
+          itemCount++;
+        }
+        const mb = (totalBytes / (1024 * 1024)).toFixed(3);
+        const kb = (totalBytes / 1024).toFixed(1);
+        document.getElementById('statsDisplay').textContent = 
+          `Items stored: ${itemCount}\n` +
+          `Total size: ${kb} KB (${mb} MB)\n` +
+          `Estimated limit: 5 MB per origin\n` +
+          `Usage: ${((totalBytes / (5 * 1024 * 1024)) * 100).toFixed(2)}% of 5MB limit`;
+      }
+      function addTestData() {
+        const chunk = 'x'.repeat(1024); // 1KB
+        for (let i = 0; i < 100; i++) {
+          try { localStorage.setItem('_test_' + i, chunk + i); } catch { break; }
+        }
+        calculateStats();
+      }
+      function removeTestData() {
+        Object.keys(localStorage).filter(k => k.startsWith('_test_')).forEach(k => localStorage.removeItem(k));
+        calculateStats();
+      }
+      calculateStats();
+    </script>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What attribute is used for Open Graph meta tags?",
+    "options": ["name", "property", "http-equiv", "charset"],
+    "answer": "b",
+    "explanation": "Open Graph meta tags use the 'property' attribute (e.g., <meta property='og:title' content='...'>)."
+  },
+  {
+    "question": "Which Open Graph tag defines the title of the page when shared?",
+    "options": ["og:site_name", "og:title", "og:url", "og:type"],
+    "answer": "b",
+    "explanation": "og:title defines the title of the content that appears in social sharing previews."
+  },
+  {
+    "question": "What is the recommended image size for Open Graph images on Facebook?",
+    "options": ["800×600", "1200×630", "1024×768", "500×500"],
+    "answer": "b",
+    "explanation": "The recommended Open Graph image size is 1200×630 pixels with a 1.91:1 aspect ratio for optimal display on Facebook and most platforms."
+  },
+  {
+    "question": "Which OG property defines the type of content (e.g., article, website, video)?",
+    "options": ["og:content", "og:type", "og:format", "og:category"],
+    "answer": "b",
+    "explanation": "og:type defines the type of content, such as 'article', 'website', 'video.movie', 'music.song', or 'profile'."
+  },
+  {
+    "question": "What is the correct way to specify the page URL for Open Graph?",
+    "options": ["<meta property='og:url' content='/page.html'>", "<meta property='og:url' content='https://example.com/page'>", "<meta name='og:url' content='https://example.com/page'>", "<meta property='og:link' content='https://example.com/page'>"],
+    "answer": "b",
+    "explanation": "og:url must use an absolute URL with the full protocol (https://example.com/page), not a relative path."
+  },
+  {
+    "question": "Which Open Graph tag should you use to specify the site name?",
+    "options": ["og:title", "og:name", "og:site_name", "og:publisher"],
+    "answer": "c",
+    "explanation": "og:site_name specifies the name of the website, which typically appears above the title in share cards."
+  },
+  {
+    "question": "How do you specify multiple images for Open Graph?",
+    "options": ["Use a comma-separated list", "Use multiple og:image meta tags", "Use og:images with square brackets", "You can only use one image"],
+    "answer": "b",
+    "explanation": "You can include multiple og:image meta tags for different aspect ratios. The platform selects the best match."
+  },
+  {
+    "question": "What is the correct format for the og:locale value?",
+    "options": ["en", "english", "en_US", "eng-us"],
+    "answer": "c",
+    "explanation": "The locale format is language_TERRITORY, e.g., en_US for English (United States) or fr_FR for French (France)."
+  },
+  {
+    "question": "Which property is used to specify when an article was published?",
+    "options": ["article:date", "article:published_time", "og:published", "article:created"],
+    "answer": "b",
+    "explanation": "article:published_time specifies the publication date and time in ISO 8601 format."
+  },
+  {
+    "question": "How does Twitter handle pages that have Open Graph tags but no Twitter Card tags?",
+    "options": ["Shows nothing", "Falls back to Open Graph tags", "Shows a generic link preview", "Prevents sharing"],
+    "answer": "b",
+    "explanation": "Twitter falls back to Open Graph tags (og:title, og:description, og:image) if Twitter Card tags are not present."
+  },
+  {
+    "question": "What attribute do Twitter Card meta tags use?",
+    "options": ["property", "name", "http-equiv", "twitter"],
+    "answer": "b",
+    "explanation": "Twitter Card meta tags use the 'name' attribute (e.g., <meta name='twitter:card' content='summary_large_image'>), unlike OG tags which use 'property'."
+  },
+  {
+    "question": "Which og:type value is appropriate for a blog post?",
+    "options": ["website", "blog", "article", "post"],
+    "answer": "c",
+    "explanation": "The og:type value 'article' is the correct choice for blog posts, news articles, and other written content."
+  },
+  {
+    "question": "What does og:image:width and og:image:height provide?",
+    "options": ["They resize the image", "They give the browser image dimensions for faster rendering", "They provide aspect ratio hints to the social platform", "They crop the image"],
+    "answer": "c",
+    "explanation": "og:image:width and og:image:height provide dimension hints so the social platform can optimize the image display and avoid layout shifts."
+  },
+  {
+    "question": "What happens if og:image is a relative URL?",
+    "options": ["It works fine", "Social crawlers may fail to fetch it since they need an absolute URL", "It is automatically converted to absolute", "The browser adds the domain automatically"],
+    "answer": "b",
+    "explanation": "Social media crawlers need absolute URLs (with https://) for og:image because they fetch the image from their own servers, not from the user's browser."
+  },
+  {
+    "question": "Which Open Graph tag provides alternative text for the image?",
+    "options": ["og:image:alt", "og:image:text", "og:alt", "og:image:description"],
+    "answer": "a",
+    "explanation": "og:image:alt provides alternative text for the Open Graph image, improving accessibility and providing context when the image cannot be displayed."
+  },
+  {
+    "question": "What is the maximum recommended length for og:title?",
+    "options": ["40-60 characters", "100 characters", "200 characters", "No limit"],
+    "answer": "a",
+    "explanation": "og:title should be 40-60 characters for optimal display on most social platforms. Longer titles may be truncated."
+  },
+  {
+    "question": "How do you specify multiple tags for an article in Open Graph?",
+    "options": ["<meta property='article:tags' content='HTML, CSS, JS'>", "Multiple <meta property='article:tag' content='...'> tags", "<meta property='article:category' content='HTML'>", "<meta property='article:keywords' content='...'>"],
+    "answer": "b",
+    "explanation": "Use multiple <meta property='article:tag' content='...'> tags, one for each tag, rather than combining them into one."
+  },
+  {
+    "question": "Which tool can you use to test Open Graph tags for Facebook?",
+    "options": ["Google Search Console", "Facebook Sharing Debugger", "Twitter Card Validator", "W3C Validator"],
+    "answer": "b",
+    "explanation": "The Facebook Sharing Debugger (developers.facebook.com/tools/debug) lets you test how your page appears when shared on Facebook and clears cached OG data."
+  },
+  {
+    "question": "What is the correct property for specifying a secure (HTTPS) video URL?",
+    "options": ["og:video:https", "og:video:secure_url", "og:video:ssl", "og:video:https_url"],
+    "answer": "b",
+    "explanation": "og:video:secure_url specifies the HTTPS version of the video URL, which is required for secure pages."
+  },
+  {
+    "question": "Which og:type would you use for a person's profile page?",
+    "options": ["website", "article", "profile", "person"],
+    "answer": "c",
+    "explanation": "The 'profile' og:type is used for person profile pages, and can be combined with profile:first_name, profile:last_name, and profile:username."
+  }
+]

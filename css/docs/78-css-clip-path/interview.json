@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is clip-path in CSS?", "answer": "clip-path creates a clipping region using a shape (circle, ellipse, polygon, inset) or SVG path, hiding content outside the shape." },
+    { "question": "What does clip-path: circle() do?", "answer": "clip-path: circle(radius at center) clips an element into a circular shape. Example: circle(50% at center)." },
+    { "question": "What does clip-path: ellipse() do?", "answer": "clip-path: ellipse(rx ry at cx cy) clips an element into an elliptical shape, with separate horizontal and vertical radii." },
+    { "question": "What does clip-path: polygon() do?", "answer": "clip-path: polygon(x1 y1, x2 y2, ...) clips an element into a custom polygonal shape defined by coordinate pairs." },
+    { "question": "What does clip-path: inset() do?", "answer": "clip-path: inset(top right bottom left round radius) creates a rectangular clip with optional rounded corners." },
+    { "question": "What is the clip-path: path() function?", "answer": "clip-path: path('SVG path data') uses an SVG path string to define a custom clipping shape." },
+    { "question": "What is the default value of clip-path?", "answer": "The default value is none, meaning no clipping is applied and the full element is visible." },
+    { "question": "Can you animate clip-path?", "answer": "Yes, clip-path can be animated with CSS transitions and @keyframes, but both states must have the same number of points." },
+    { "question": "What happens to content outside the clip-path region?", "answer": "Content outside the clipping region is hidden (not rendered), similar to overflow: hidden but shaped." },
+    { "question": "Does clip-path affect the element's box model?", "answer": "No, clip-path only affects visual rendering. The element still occupies its original space in the layout." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a triangle shape with clip-path?", "answer": "clip-path: polygon(50% 0%, 0% 100%, 100% 100%) creates a downward-pointing triangle." },
+    { "question": "How do you create a hexagon shape with clip-path?", "answer": "clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%) creates a regular hexagon." },
+    { "question": "What is the relationship between clip-path and border-radius?", "answer": "clip-path takes precedence over border-radius. If both are set, clip-path determines the visible shape; border-radius has no effect." },
+    { "question": "How do you animate from one clip-path shape to another?", "answer": "Both shapes must have the same number of coordinate pairs. For example, morphing between polygon shapes with the same number of points." },
+    { "question": "How do you use clip-path with images for creative cropping?", "answer": "Apply clip-path: circle() or polygon() to images to create non-rectangular image crops, like circular profile pictures." },
+    { "question": "What is the fill-rule in clip-path: polygon()?", "answer": "fill-rule (nonzero or evenodd) determines how overlapping polygon regions are handled for complex shapes." },
+    { "question": "How do you create a star shape with clip-path?", "answer": "Use polygon() with alternating inner and outer points: clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)." },
+    { "question": "How does clip-path interact with CSS filters?", "answer": "Filters are applied to the clipped content. The visible clipped area gets the filter effect; clipped-away content is unaffected." },
+    { "question": "How do you create a diagonal split effect with clip-path?", "answer": "Use clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%) to create a diagonal bottom edge for a section divider." },
+    { "question": "What is the interaction between clip-path and CSS transforms?", "answer": "Transforms move the entire element including its clip region. The clip-path moves with the transformed element." }
+  ],
+  "advanced": [
+    { "question": "How do you use clip-path with SVG path() for complex shapes?", "answer": "clip-path: path('M0,0 L100,0 L100,100 Z') uses SVG path syntax. The path coordinates are relative to the element's bounding box." },
+    { "question": "How do you create a morphing animation between different clip-path shapes?", "answer": "For smooth morphing, use polygon() with equal point counts and interpolatable coordinates. For path(), both paths must have identical structure." },
+    { "question": "How does clip-path interact with CSS 3D transforms and perspective?", "answer": "clip-path applies in the element's transformed coordinate space. 3D transforms may produce unexpected clip results due to rendering order." },
+    { "question": "What are the performance considerations for animating clip-path?", "answer": "Animating clip-path can be expensive as it requires repainting. Prefer animating simpler properties when possible." },
+    { "question": "How do you implement a curtain reveal effect using clip-path?", "answer": "Animate clip-path: circle(0% at 50% 50%) to circle(100% at 50% 50%) to create a circular curtain reveal from center." },
+    { "question": "How does clip-path behave with text elements?", "answer": "clip-path works on text elements, clipping the text shape. For clipping only the text shape itself, use background-clip: text instead." },
+    { "question": "What is the difference between clip-path and mask-image for complex shapes?", "answer": "clip-path uses geometric primitives and is resolution-independent; mask-image uses raster or gradient images and can have soft edges." },
+    { "question": "How do you create a responsive clip-path shape?", "answer": "Use percentage-based coordinates in polygon() or use viewport-relative units for the shape parameters." },
+    { "question": "How do you debug clip-path values during development?", "answer": "Use browser DevTools to inspect clip-path elements, toggle the clip-path property, and visually adjust polygon points in Firefox DevTools." },
+    { "question": "How does clip-path interact with CSS containment (contain: paint)?", "answer": "contain: paint with clip-path can improve performance by isolating clipping calculations, but both must be compatible." }
+  ]
+}

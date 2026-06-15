@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Mastery Course</title>
+<meta name="description" content="Interactive HTML Mastery Course - 88 modules covering everything from introduction to advanced HTML projects">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #06b6d4;
+  --primary-dark: #0891b2;
+  --primary-light: #67e8f9;
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --glass-bg: rgba(255,255,255,0.2);
+  --glass-border: rgba(255,255,255,0.3);
+  --glass-shadow: 0 8px 32px rgba(6,182,212,0.08);
+  --radius: 16px;
+  --transition: 0.3s ease;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== BLOBS ===== */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+.blob-1 { width: 500px; height: 500px; background: #b8f1ff; top: -200px; left: -150px; animation: floatBlob 10s ease-in-out infinite 0s; }
+.blob-2 { width: 400px; height: 400px; background: #67e8f9; top: -100px; right: -100px; animation: floatBlob 10s ease-in-out infinite -2.5s; }
+.blob-3 { width: 450px; height: 450px; background: #c9f7ff; bottom: -150px; left: -100px; animation: floatBlob 10s ease-in-out infinite -5s; }
+.blob-4 { width: 350px; height: 350px; background: #67e8f9; bottom: -80px; right: -80px; animation: floatBlob 10s ease-in-out infinite -7.5s; }
+@keyframes floatBlob {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(30px,-50px) scale(1.1); }
+  50% { transform: translate(-20px,20px) scale(0.9); }
+  75% { transform: translate(40px,30px) scale(1.05); }
+}
+
+/* ===== GLASS UTILITIES ===== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+}
+.glass-light {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all var(--transition);
+}
+.glass-card:hover {
+  box-shadow: var(--glass-shadow), 0 0 20px rgba(6,182,212,0.1);
+  border-color: rgba(6,182,212,0.3);
+}
+.glass-card.lift {
+  padding: 1.5rem;
+}
+.glass-card.lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(6,182,212,0.2);
+  border-color: rgba(6,182,212,0.4);
+}
+
+/* ===== LAYOUT ===== */
+.app { display: flex; height: 100vh; position: relative; z-index: 1; }
+
+/* --- HEADER --- */
+.app-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 60px;
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0 1.5rem;
+  background: rgba(248,250,252,0.75);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.app-header h1 {
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--primary-dark); flex: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.app-header .progress-badge {
+  font-size: 0.8rem; color: var(--text-secondary);
+  background: rgba(255,255,255,0.3); padding: 4px 12px;
+  border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
+  white-space: nowrap;
+}
+.hamburger {
+  display: none; background: none; border: none;
+  font-size: 1.5rem; color: var(--text); cursor: pointer;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 300px; flex-shrink: 0;
+  margin-top: 60px;
+  padding: 1rem;
+  overflow-y: auto;
+  height: calc(100vh - 60px);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255,255,255,0.25);
+  transition: transform 0.3s ease;
+  z-index: 50;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.3); border-radius: 3px; }
+.sidebar .sidebar-label {
+  font-size: 0.7rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text-muted);
+  padding: 0.5rem 0.75rem 0.25rem;
+}
+.section-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--primary);
+  padding: 1rem 0.75rem 0.35rem;
+  border-top: 1px solid rgba(6,182,212,0.15);
+  margin-top: 0.25rem;
+}
+.section-label:first-of-type { border-top: none; margin-top: 0; }
+.module-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.6rem 0.75rem; border-radius: 10px;
+  cursor: pointer; transition: all var(--transition);
+  border-left: 3px solid transparent;
+  text-decoration: none; color: var(--text);
+  font-size: 0.88rem; line-height: 1.3;
+}
+.module-item:hover {
+  background: rgba(6,182,212,0.08);
+  transform: translateX(2px);
+}
+.module-item.active {
+  background: rgba(6,182,212,0.12);
+  border-left-color: var(--primary);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+.module-item .num {
+  font-size: 0.7rem; font-weight: 700; color: var(--text-muted);
+  width: 24px; text-align: right; flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.module-item.active .num { color: var(--primary); }
+.module-item .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--text-muted); flex-shrink: 0;
+  transition: all var(--transition);
+}
+.module-item.active .dot { background: var(--primary); box-shadow: 0 0 8px rgba(6,182,212,0.5); }
+.module-item.visited .dot { background: var(--success); }
+
+/* --- CONTENT --- */
+.content {
+  flex: 1; margin-top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  padding: 1.5rem 2rem 4rem;
+}
+.content::-webkit-scrollbar { width: 8px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.25); border-radius: 4px; }
+
+/* --- TABS --- */
+.tab-bar {
+  display: flex; gap: 0.25rem;
+  margin-bottom: 1.5rem; padding: 4px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  overflow-x: auto; white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-bar::-webkit-scrollbar { height: 3px; }
+.tab-bar::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.3); border-radius: 2px; }
+.tab-btn {
+  padding: 0.6rem 1.2rem; border: none; border-radius: 8px;
+  background: transparent; color: var(--text-secondary);
+  font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: all var(--transition);
+  font-family: inherit; flex-shrink: 0;
+}
+.tab-btn:hover { color: var(--primary); background: rgba(6,182,212,0.08); }
+.tab-btn.active {
+  background: rgba(6,182,212,0.15);
+  color: var(--primary-dark);
+  box-shadow: 0 2px 8px rgba(6,182,212,0.15);
+}
+
+/* --- CONTENT PANEL --- */
+.content-panel { display: none; }
+.content-panel.active { display: block; }
+
+/* ===== MARKDOWN RENDERED STYLES ===== */
+.lesson h1 { font-size: clamp(1.8rem,4vw,2.8rem); color: var(--primary-dark); margin-bottom: 0.75rem; font-weight: 800; letter-spacing: -0.02em; }
+.lesson h2 { font-size: 1.4rem; color: var(--text); margin: 1.5rem 0 0.5rem; font-weight: 700; }
+.lesson h3 { font-size: 1.15rem; color: var(--text-secondary); margin: 1.2rem 0 0.4rem; font-weight: 600; }
+.lesson p { margin-bottom: 0.8rem; line-height: 1.7; color: var(--text); }
+.lesson ul, .lesson ol { margin: 0.5rem 0 1rem 1.5rem; line-height: 1.7; }
+.lesson li { margin-bottom: 0.25rem; }
+.lesson strong { font-weight: 700; }
+.lesson em { font-style: italic; }
+.lesson a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.lesson a:hover { color: var(--primary-dark); }
+.lesson blockquote {
+  border-left: 4px solid var(--primary);
+  padding: 0.75rem 1rem; margin: 1rem 0;
+  background: rgba(6,182,212,0.05);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+}
+.lesson pre {
+  background: #f1f5f9;
+  border-radius: 10px; padding: 1rem; overflow-x: auto;
+  margin: 0.75rem 0; border: 1px solid rgba(255,255,255,0.2);
+}
+.lesson code {
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85em;
+}
+.lesson p code, .lesson li code {
+  background: rgba(6,182,212,0.1);
+  padding: 2px 6px; border-radius: 4px;
+  color: var(--primary-dark);
+}
+.lesson table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  margin: 1rem 0; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.lesson th, .lesson td {
+  padding: 0.65rem 1rem; text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.lesson th { background: rgba(6,182,212,0.1); font-weight: 700; color: var(--primary-dark); }
+.lesson tr:last-child td { border-bottom: none; }
+.lesson tr:hover td { background: rgba(255,255,255,0.15); }
+.lesson img { max-width: 100%; border-radius: 10px; margin: 1rem 0; }
+.lesson hr { border: none; height: 1px; background: rgba(255,255,255,0.2); margin: 1.5rem 0; }
+
+/* ===== EXAMPLES TAB ===== */
+.examples-content iframe.example-frame {
+  width: 100%; border: none; border-radius: 10px;
+  background: transparent; min-height: 300px;
+  margin-bottom: 1rem;
+}
+.examples-content .example-container {
+  margin-bottom: 1.5rem;
+}
+
+/* ===== QUIZ TAB ===== */
+.quiz-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.quiz-header .score { font-weight: 700; color: var(--primary-dark); }
+.quiz-question {
+  margin-bottom: 1rem; padding: 1.25rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all var(--transition);
+}
+.quiz-question .q-text { font-weight: 600; margin-bottom: 0.75rem; font-size: 1rem; }
+.quiz-question .q-num { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; margin-right: 0.5rem; }
+.quiz-option {
+  display: block; width: 100%; text-align: left;
+  padding: 0.6rem 1rem; margin-bottom: 0.4rem;
+  border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  cursor: pointer; transition: all var(--transition);
+  font-family: inherit; font-size: 0.9rem; color: var(--text);
+}
+.quiz-option:hover { background: rgba(6,182,212,0.08); border-color: rgba(6,182,212,0.3); }
+.quiz-option.selected { background: rgba(6,182,212,0.15); border-color: var(--primary); }
+.quiz-option.correct { background: rgba(16,185,129,0.15); border-color: var(--success); color: #065f46; }
+.quiz-option.wrong { background: rgba(239,68,68,0.1); border-color: var(--error); color: #991b1b; }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+.quiz-explanation {
+  margin-top: 0.5rem; padding: 0.75rem 1rem;
+  border-radius: 8px; background: rgba(255,255,255,0.1);
+  border-left: 3px solid var(--primary);
+  font-size: 0.85rem; color: var(--text-secondary);
+  display: none;
+}
+.quiz-explanation.show { display: block; }
+
+/* ===== CHALLENGES TAB ===== */
+.challenge-card {
+  margin-bottom: 1.5rem; padding: 1.5rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.challenge-card .challenge-tag {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; margin-bottom: 0.5rem;
+}
+.challenge-card.easy .challenge-tag { background: rgba(16,185,129,0.15); color: #065f46; }
+.challenge-card.medium .challenge-tag { background: rgba(245,158,11,0.15); color: #92400e; }
+.challenge-card.hard .challenge-tag { background: rgba(239,68,68,0.1); color: #991b1b; }
+.challenge-card .c-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.challenge-card .c-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem; line-height: 1.5; }
+.challenge-card pre {
+  background: #f1f5f9; border-radius: 8px; padding: 0.75rem; overflow-x: auto;
+  font-size: 0.82rem; border: 1px solid rgba(255,255,255,0.15);
+  max-height: 200px; overflow-y: auto;
+}
+.challenge-card .solution-btn {
+  margin-top: 0.5rem; padding: 0.4rem 1rem; border: 1px solid var(--primary);
+  background: transparent; color: var(--primary); border-radius: 8px;
+  cursor: pointer; font-weight: 600; font-size: 0.8rem;
+  transition: all var(--transition); font-family: inherit;
+}
+.challenge-card .solution-btn:hover { background: var(--primary); color: white; }
+.challenge-card .solution-content { display: none; margin-top: 0.75rem; }
+.challenge-card .solution-content.show { display: block; }
+
+/* ===== RESOURCES TAB ===== */
+.resources-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.resource-card {
+  padding: 1.2rem; border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all var(--transition);
+  text-decoration: none; color: var(--text); display: block;
+}
+.resource-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(6,182,212,0.12);
+  border-color: rgba(6,182,212,0.3);
+}
+.resource-card .rc-type {
+  display: inline-block; padding: 2px 8px; border-radius: 8px;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  margin-bottom: 0.4rem; letter-spacing: 0.05em;
+}
+.resource-card .rc-type.documentation { background: rgba(6,182,212,0.12); color: var(--primary-dark); }
+.resource-card .rc-type.video { background: rgba(239,68,68,0.1); color: #991b1b; }
+.resource-card .rc-type.article { background: rgba(245,158,11,0.12); color: #92400e; }
+.resource-card .rc-title { font-weight: 600; font-size: 0.9rem; }
+.resource-card .rc-url { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; word-break: break-all; }
+
+/* ===== VIDEOS TAB ===== */
+.videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.25rem; }
+.video-card {
+  border-radius: 12px; overflow: hidden;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all var(--transition);
+}
+.video-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,182,212,0.12); }
+.video-card .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+.video-card .video-wrapper iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border: none;
+}
+.video-card .v-info { padding: 0.75rem 1rem; }
+.video-card .v-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.video-card .v-channel { font-size: 0.8rem; color: var(--text-secondary); }
+.video-card .v-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.4; }
+
+/* ===== NAVIGATION ===== */
+.nav-buttons {
+  display: flex; justify-content: space-between; gap: 1rem;
+  margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.nav-btn {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; border: none; border-radius: 10px;
+  font-weight: 700; font-size: 0.85rem; font-family: inherit;
+  cursor: pointer; transition: all var(--transition);
+  letter-spacing: 0.02em;
+}
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+.nav-btn.primary {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: white;
+}
+.nav-btn.primary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(6,182,212,0.35);
+}
+.nav-btn.secondary {
+  background: rgba(255,255,255,0.2);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.nav-btn.secondary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.3);
+}
+.nav-btn .arrow { font-size: 1.1rem; }
+
+/* ===== LOADING / EMPTY / ERROR ===== */
+.loading-spinner {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem; gap: 1rem;
+  color: var(--text-muted);
+}
+.loading-spinner .spinner {
+  width: 40px; height: 40px; border: 3px solid rgba(6,182,212,0.15);
+  border-top-color: var(--primary);
+  border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-state {
+  text-align: center; padding: 3rem; color: var(--text-muted);
+}
+.error-state .error-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.error-state h3 { color: var(--text); margin-bottom: 0.5rem; }
+.error-state p { font-size: 0.9rem; }
+.error-state .server-hint {
+  margin-top: 0.75rem; padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.15); border-radius: 8px;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.82rem; border: 1px solid rgba(255,255,255,0.15);
+  display: inline-block;
+}
+.empty-state {
+  text-align: center; padding: 3rem; color: var(--text-muted);
+}
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed; left: 0; top: 60px; bottom: 0;
+    transform: translateX(-100%); width: 280px;
+    background: rgba(248,250,252,0.95);
+    backdrop-filter: blur(20px);
+    z-index: 200;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .hamburger { display: block; }
+  .content { padding: 1rem; }
+  .resources-grid { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .tab-btn { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
+  .nav-buttons { flex-direction: column; }
+  .nav-btn { justify-content: center; }
+  .glass-card { padding: 1.25rem; }
+  .sidebar-overlay {
+    display: none; position: fixed; inset: 0; z-index: 199;
+    background: rgba(0,0,0,0.2);
+  }
+  .sidebar-overlay.show { display: block; }
+}
+@media (max-width: 480px) {
+  .content { padding: 0.75rem; }
+  .app-header { padding: 0 0.75rem; }
+  .app-header h1 { font-size: 1rem; }
+  .progress-badge { font-size: 0.7rem; padding: 2px 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- BLOBS -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
+
+<!-- SIDEBAR OVERLAY (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- HEADER -->
+<header class="app-header glass">
+  <button class="hamburger" id="hamburgerBtn" aria-label="Toggle modules menu">☰</button>
+  <h1>HTML Mastery Course</h1>
+  <span class="progress-badge" id="progressBadge">0 / 88</span>
+</header>
+
+<!-- APP -->
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-label">Modules</div>
+    <div id="moduleList"></div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content" id="content">
+
+    <!-- TAB BAR -->
+    <div class="tab-bar" id="tabBar">
+      <button class="tab-btn active" data-tab="lesson">Lesson</button>
+      <button class="tab-btn" data-tab="examples">Examples</button>
+      <button class="tab-btn" data-tab="quiz">Quiz</button>
+      <button class="tab-btn" data-tab="challenges">Challenges</button>
+      <button class="tab-btn" data-tab="cheatsheet">Cheatsheet</button>
+      <button class="tab-btn" data-tab="project">Project</button>
+      <button class="tab-btn" data-tab="resources">Resources</button>
+      <button class="tab-btn" data-tab="videos">Videos</button>
+    </div>
+
+    <!-- PANELS -->
+    <div id="panel-lesson" class="content-panel lesson active"></div>
+    <div id="panel-examples" class="content-panel examples-content"></div>
+    <div id="panel-quiz" class="content-panel"></div>
+    <div id="panel-challenges" class="content-panel"></div>
+    <div id="panel-cheatsheet" class="content-panel lesson"></div>
+    <div id="panel-project" class="content-panel lesson"></div>
+    <div id="panel-resources" class="content-panel"></div>
+    <div id="panel-videos" class="content-panel"></div>
+
+    <!-- NAVIGATION -->
+    <div class="nav-buttons">
+      <button class="nav-btn secondary" id="prevBtn"><span class="arrow">◀</span> Previous</button>
+      <button class="nav-btn primary" id="nextBtn">Next <span class="arrow">▶</span></button>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<script>
+// ===== CONFIGURATION =====
+const COURSE_PATH = 'HTML Mastery Course/';
+const modules = [
+{section:"Beginner Level","title":"Introduction to HTML","folder":"01-Introduction-to-HTML","number":"1"},
+{section:"Beginner Level","title":"HTML Editors","folder":"02-HTML-Editors","number":"2"},
+{section:"Beginner Level","title":"HTML Document Structure","folder":"03-HTML-Document-Structure","number":"3"},
+{section:"Beginner Level","title":"HTML Elements","folder":"04-HTML-Elements","number":"4"},
+{section:"Beginner Level","title":"HTML Attributes","folder":"05-HTML-Attributes","number":"5"},
+{section:"Beginner Level","title":"HTML Headings","folder":"06-HTML-Headings","number":"6"},
+{section:"Beginner Level","title":"HTML Paragraphs","folder":"07-HTML-Paragraphs","number":"7"},
+{section:"Beginner Level","title":"HTML Text Formatting","folder":"08-HTML-Text-Formatting","number":"8"},
+{section:"Beginner Level","title":"HTML Quotations","folder":"09-HTML-Quotations","number":"9"},
+{section:"Beginner Level","title":"HTML Comments","folder":"10-HTML-Comments","number":"10"},
+{section:"Beginner Level","title":"HTML Colors","folder":"11-HTML-Colors","number":"11"},
+{section:"Beginner Level","title":"HTML CSS Basics","folder":"12-HTML-CSS-Basics","number":"12"},
+{section:"Beginner Level","title":"HTML Links","folder":"13-HTML-Links","number":"13"},
+{section:"Beginner Level","title":"HTML Images","folder":"14-HTML-Images","number":"14"},
+{section:"Beginner Level","title":"HTML Favicon","folder":"15-HTML-Favicon","number":"15"},
+{section:"Beginner Level","title":"HTML Page Titles","folder":"16-HTML-Page-Titles","number":"16"},
+{section:"Beginner Level","title":"HTML File Paths","folder":"17-HTML-File-Paths","number":"17"},
+{section:"Core HTML","title":"HTML Lists","folder":"18-HTML-Lists","number":"18"},
+{section:"Core HTML","title":"Ordered Lists","folder":"19-Ordered-Lists","number":"19"},
+{section:"Core HTML","title":"Unordered Lists","folder":"20-Unordered-Lists","number":"20"},
+{section:"Core HTML","title":"Description Lists","folder":"21-Description-Lists","number":"21"},
+{section:"Core HTML","title":"HTML Tables","folder":"22-HTML-Tables","number":"22"},
+{section:"Core HTML","title":"Table Styling","folder":"23-Table-Styling","number":"23"},
+{section:"Core HTML","title":"Table Colspan Rowspan","folder":"24-Table-Colspan-Rowspan","number":"24"},
+{section:"Core HTML","title":"HTML Block Elements","folder":"25-HTML-Block-Elements","number":"25"},
+{section:"Core HTML","title":"HTML Inline Elements","folder":"26-HTML-Inline-Elements","number":"26"},
+{section:"Core HTML","title":"HTML Div","folder":"27-HTML-Div","number":"27"},
+{section:"Core HTML","title":"HTML Span","folder":"28-HTML-Span","number":"28"},
+{section:"Core HTML","title":"HTML Classes","folder":"29-HTML-Classes","number":"29"},
+{section:"Core HTML","title":"HTML ID","folder":"30-HTML-ID","number":"30"},
+{section:"Core HTML","title":"HTML Semantic Elements","folder":"31-HTML-Semantic-Elements","number":"31"},
+{section:"Layout & Structure","title":"HTML Header","folder":"32-HTML-Header","number":"32"},
+{section:"Layout & Structure","title":"HTML Nav","folder":"33-HTML-Nav","number":"33"},
+{section:"Layout & Structure","title":"HTML Main","folder":"34-HTML-Main","number":"34"},
+{section:"Layout & Structure","title":"HTML Section","folder":"35-HTML-Section","number":"35"},
+{section:"Layout & Structure","title":"HTML Article","folder":"36-HTML-Article","number":"36"},
+{section:"Layout & Structure","title":"HTML Aside","folder":"37-HTML-Aside","number":"37"},
+{section:"Layout & Structure","title":"HTML Footer","folder":"38-HTML-Footer","number":"38"},
+{section:"Layout & Structure","title":"HTML Layout Techniques","folder":"39-HTML-Layout-Techniques","number":"39"},
+{section:"Layout & Structure","title":"HTML Responsive Design","folder":"40-HTML-Responsive-Design","number":"40"},
+{section:"Layout & Structure","title":"Viewport Meta Tag","folder":"41-Viewport-Meta-Tag","number":"41"},
+{section:"Layout & Structure","title":"Mobile Friendly HTML","folder":"42-Mobile-Friendly-HTML","number":"42"},
+{section:"Forms Mastery","title":"HTML Forms Introduction","folder":"43-HTML-Forms-Introduction","number":"43"},
+{section:"Forms Mastery","title":"Form Attributes","folder":"44-Form-Attributes","number":"44"},
+{section:"Forms Mastery","title":"Input Elements","folder":"45-Input-Elements","number":"45"},
+{section:"Forms Mastery","title":"Input Types","folder":"46-Input-Types","number":"46"},
+{section:"Forms Mastery","title":"Input Attributes","folder":"47-Input-Attributes","number":"47"},
+{section:"Forms Mastery","title":"Labels","folder":"48-Labels","number":"48"},
+{section:"Forms Mastery","title":"Select Dropdown","folder":"49-Select-Dropdown","number":"49"},
+{section:"Forms Mastery","title":"Textarea","folder":"50-Textarea","number":"50"},
+{section:"Forms Mastery","title":"Buttons","folder":"51-Buttons","number":"51"},
+{section:"Forms Mastery","title":"Datalist","folder":"52-Datalist","number":"52"},
+{section:"Forms Mastery","title":"Fieldset Legend","folder":"53-Fieldset-Legend","number":"53"},
+{section:"Forms Mastery","title":"Form Validation","folder":"54-Form-Validation","number":"54"},
+{section:"Forms Mastery","title":"Accessibility in Forms","folder":"55-Accessibility-in-Forms","number":"55"},
+{section:"Multimedia","title":"HTML Audio","folder":"56-HTML-Audio","number":"56"},
+{section:"Multimedia","title":"HTML Video","folder":"57-HTML-Video","number":"57"},
+{section:"Multimedia","title":"HTML YouTube Embeds","folder":"58-HTML-YouTube-Embeds","number":"58"},
+{section:"Multimedia","title":"HTML Iframes","folder":"59-HTML-Iframes","number":"59"},
+{section:"Multimedia","title":"HTML SVG","folder":"60-HTML-SVG","number":"60"},
+{section:"Multimedia","title":"HTML Canvas","folder":"61-HTML-Canvas","number":"61"},
+{section:"Multimedia","title":"HTML Figures Captions","folder":"62-HTML-Figures-Captions","number":"62"},
+{section:"Advanced HTML5","title":"HTML Drag Drop","folder":"63-HTML-Drag-Drop","number":"63"},
+{section:"Advanced HTML5","title":"HTML Geolocation API","folder":"64-HTML-Geolocation-API","number":"64"},
+{section:"Advanced HTML5","title":"HTML Web Storage","folder":"65-HTML-Web-Storage","number":"65"},
+{section:"Advanced HTML5","title":"HTML Session Storage","folder":"66-HTML-Session-Storage","number":"66"},
+{section:"Advanced HTML5","title":"HTML Local Storage","folder":"67-HTML-Local-Storage","number":"67"},
+{section:"Advanced HTML5","title":"HTML Web Workers","folder":"68-HTML-Web-Workers","number":"68"},
+{section:"Advanced HTML5","title":"HTML WebSockets","folder":"69-HTML-WebSockets","number":"69"},
+{section:"Advanced HTML5","title":"HTML Server Sent Events","folder":"70-HTML-Server-Sent-Events","number":"70"},
+{section:"Accessibility & SEO","title":"Web Accessibility Introduction","folder":"71-Web-Accessibility-Introduction","number":"71"},
+{section:"Accessibility & SEO","title":"ARIA Labels","folder":"72-ARIA-Labels","number":"72"},
+{section:"Accessibility & SEO","title":"Screen Reader Support","folder":"73-Screen-Reader-Support","number":"73"},
+{section:"Accessibility & SEO","title":"Semantic Accessibility","folder":"74-Semantic-Accessibility","number":"74"},
+{section:"Accessibility & SEO","title":"HTML SEO Basics","folder":"75-HTML-SEO-Basics","number":"75"},
+{section:"Accessibility & SEO","title":"Meta Tags","folder":"76-Meta-Tags","number":"76"},
+{section:"Accessibility & SEO","title":"Open Graph Tags","folder":"77-Open-Graph-Tags","number":"77"},
+{section:"Accessibility & SEO","title":"Structured Data","folder":"78-Structured-Data","number":"78"},
+{section:"Accessibility & SEO","title":"Canonical URLs","folder":"79-Canonical-URLs","number":"79"},
+{section:"Professional Development","title":"HTML Best Practices","folder":"80-HTML-Best-Practices","number":"80"},
+{section:"Professional Development","title":"HTML Performance Optimization","folder":"81-HTML-Performance-Optimization","number":"81"},
+{section:"Professional Development","title":"Clean Code Standards","folder":"82-Clean-Code-Standards","number":"82"},
+{section:"Projects","title":"Responsive Website Project","folder":"83-Responsive-Website-Project","number":"83"},
+{section:"Projects","title":"Portfolio Website Project","folder":"84-Portfolio-Website-Project","number":"84"},
+{section:"Projects","title":"Landing Page Project","folder":"85-Landing-Page-Project","number":"85"},
+{section:"Projects","title":"Blog Website Project","folder":"86-Blog-Website-Project","number":"86"},
+{section:"Projects","title":"Multi Page Website Project","folder":"87-Multi-Page-Website-Project","number":"87"},
+{section:"Projects","title":"E Commerce Frontend Project","folder":"88-E-Commerce-Frontend-Project","number":"88"}
+];
+
+// ===== STATE =====
+let currentIndex = 0;
+let currentTab = 'lesson';
+let cache = {};
+let visited = new Set();
+let quizAnswered = {};
+
+// ===== DOM REFS =====
+const sidebar = document.getElementById('sidebar');
+const moduleList = document.getElementById('moduleList');
+const content = document.getElementById('content');
+const tabBar = document.getElementById('tabBar');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const progressBadge = document.getElementById('progressBadge');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+// ===== RENDER SIDEBAR =====
+function renderSidebar() {
+  let currentSection = '';
+  moduleList.innerHTML = modules.map((m, i) => {
+    let sectionHtml = '';
+    if (m.section && m.section !== currentSection) {
+      currentSection = m.section;
+      sectionHtml = `<div class="section-label">${m.section}</div>`;
+    }
+    return sectionHtml + `
+    <a class="module-item" href="#" data-index="${i}" data-folder="${m.folder}">
+      <span class="num">${m.number.padStart(2,'0')}</span>
+      <span class="dot"></span>
+      <span>${m.title}</span>
+    </a>`;
+  }).join('');
+  updateSidebar();
+}
+
+function updateSidebar() {
+  document.querySelectorAll('.module-item').forEach((el, i) => {
+    el.classList.toggle('active', i === currentIndex);
+    if (visited.has(i)) el.classList.add('visited');
+    else el.classList.remove('visited');
+  });
+  const active = document.querySelector('.module-item.active');
+  if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+// ===== TAB SYSTEM =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTab = btn.dataset.tab;
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + currentTab).classList.add('active');
+    if (currentTab !== 'lesson') loadTabContent(currentTab);
+    saveTabState();
+    updateHashFromState();
+  });
+});
+
+function saveTabState() {
+  try {
+    const tabs = JSON.parse(sessionStorage.getItem('mt') || '{}');
+    tabs[currentIndex] = currentTab;
+    sessionStorage.setItem('mt', JSON.stringify(tabs));
+  } catch(e) {}
+}
+function getSavedTab(idx) {
+  try {
+    const tabs = JSON.parse(sessionStorage.getItem('mt') || '{}');
+    return tabs[idx] || 'lesson';
+  } catch(e) { return 'lesson'; }
+}
+function updateHashFromState() {
+  const m = modules[currentIndex];
+  const base = `module-${m.number}`;
+  const h = currentTab === 'lesson' ? `#${base}` : `#${base}/${currentTab}`;
+  if (window.location.hash !== h) history.replaceState(null, '', h);
+}
+
+function switchTab(tab) {
+  const btn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+  if (btn) btn.click();
+}
+
+// ===== NAVIGATION =====
+prevBtn.addEventListener('click', () => { if (currentIndex > 0) goToModule(currentIndex - 1); });
+nextBtn.addEventListener('click', () => { if (currentIndex < modules.length - 1) goToModule(currentIndex + 1); });
+
+document.addEventListener('keydown', (e) => {
+  const tag = e.target.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'IFRAME') return;
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key === 'ArrowLeft' && currentIndex > 0) { e.preventDefault(); goToModule(currentIndex - 1); }
+  if (e.key === 'ArrowRight' && currentIndex < modules.length - 1) { e.preventDefault(); goToModule(currentIndex + 1); }
+});
+
+// ===== SIDEBAR NAV =====
+moduleList.addEventListener('click', (e) => {
+  const item = e.target.closest('.module-item');
+  if (!item) return;
+  e.preventDefault();
+  const idx = parseInt(item.dataset.index);
+  goToModule(idx);
+  if (window.innerWidth <= 768) closeSidebar();
+});
+
+// ===== HAMBURGER =====
+hamburgerBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  sidebarOverlay.classList.toggle('show');
+});
+sidebarOverlay.addEventListener('click', closeSidebar);
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('show');
+}
+
+// ===== PROGRESS =====
+function updateProgress() {
+  progressBadge.textContent = `${visited.size} / ${modules.length}`;
+}
+
+// ===== FETCH HELPERS =====
+async function fetchText(path) {
+  try {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.text();
+  } catch(e) {
+    throw e;
+  }
+}
+async function fetchJSON(path) {
+  try {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch(e) {
+    throw e;
+  }
+}
+
+// ===== LOAD MODULE =====
+async function goToModule(index) {
+  if (index < 0 || index >= modules.length) return;
+  const targetTab = getSavedTab(index);
+  currentIndex = index;
+  visited.add(index);
+  updateSidebar();
+  updateProgress();
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === modules.length - 1;
+  updateHashFromState();
+
+  // Clear all panels and show loading
+  document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  currentTab = targetTab;
+
+  const m = modules[index];
+  const panels = ['lesson','examples','quiz','challenges','cheatsheet','project','resources','videos'];
+  panels.forEach(p => {
+    const ck = m.folder + '/' + p;
+    if (cache[ck] && p !== targetTab) {
+      document.getElementById('panel-' + p).innerHTML = cache[ck];
+    } else if (p !== targetTab) {
+      document.getElementById('panel-' + p).innerHTML = '<div class="loading-spinner"><div class="spinner"></div><span>Loading...</span></div>';
+    }
+  });
+
+  // Preserve cached content for target tab if available
+  const targetKey = m.folder + '/' + targetTab;
+  if (cache[targetKey]) {
+    document.getElementById('panel-' + targetTab).innerHTML = cache[targetKey];
+  } else {
+    document.getElementById('panel-' + targetTab).innerHTML = '<div class="loading-spinner"><div class="spinner"></div><span>Loading...</span></div>';
+  }
+
+  // Activate target tab
+  document.getElementById('panel-' + targetTab).classList.add('active');
+  const tabBtn = document.querySelector(`.tab-btn[data-tab="${targetTab}"]`);
+  if (tabBtn) tabBtn.classList.add('active');
+
+  // Load target tab content
+  try {
+    if (targetTab === 'lesson') {
+      const md = await fetchText(COURSE_PATH + modules[index].folder + '/lesson.md');
+      const html = marked.parse(md);
+      document.getElementById('panel-lesson').innerHTML = html;
+      document.querySelectorAll('#panel-lesson pre code').forEach(block => {
+        hljs.highlightElement(block);
+      });
+    } else {
+      await loadTabContent(targetTab);
+    }
+  } catch(e) {
+    if (targetTab === 'lesson') {
+      document.getElementById('panel-lesson').innerHTML = serverErrorHTML();
+    }
+  }
+}
+
+function serverErrorHTML() {
+  return `
+    <div class="error-state">
+      <div class="error-icon">🔒</div>
+      <h3>Content Not Accessible</h3>
+      <p>This viewer needs a local server to load module files.</p>
+      <div class="server-hint">
+        npx serve .<br>
+        <span style="color:var(--text-muted)">or</span><br>
+        python -m http.server 8000
+      </div>
+      <p style="margin-top:0.75rem;font-size:0.85rem;">Then open <strong>http://localhost:8000</strong> in your browser.</p>
+    </div>
+  `;
+}
+
+// ===== LOAD TAB CONTENT =====
+async function loadTabContent(tab) {
+  const panel = document.getElementById('panel-' + tab);
+  const m = modules[currentIndex];
+  const cacheKey = m.folder + '/' + tab;
+
+  if (cache[cacheKey]) {
+    panel.innerHTML = cache[cacheKey];
+    if (tab === 'quiz') initQuiz();
+    return;
+  }
+
+  panel.innerHTML = '<div class="loading-spinner"><div class="spinner"></div><span>Loading...</span></div>';
+
+  try {
+    let html = '';
+    switch(tab) {
+      case 'examples': {
+        const text = await fetchText(COURSE_PATH + m.folder + '/examples.html');
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const bodyContent = doc.body.innerHTML;
+        const styles = doc.querySelectorAll('style');
+        let styleHtml = '';
+        styles.forEach(s => styleHtml += s.outerHTML);
+        const exampleContainers = doc.querySelectorAll('.example, .example-box, .example-card');
+        if (exampleContainers.length > 0) {
+          html = styleHtml + Array.from(exampleContainers).map(el => {
+            const clone = el.cloneNode(true);
+            const preBlocks = clone.querySelectorAll('pre');
+            preBlocks.forEach(pre => {
+              const code = pre.querySelector('code');
+              if (code) {
+                try { hljs.highlightElement(code); } catch(e) {}
+              }
+            });
+            return '<div class="example-container glass-card lift">' + clone.innerHTML + '</div>';
+          }).join('');
+        } else {
+          html = styleHtml + '<div class="glass-card">' + bodyContent + '</div>';
+        }
+        break;
+      }
+      case 'quiz': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/quiz.json');
+        html = renderQuiz(data);
+        break;
+      }
+      case 'challenges': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/challenges.json');
+        html = renderChallenges(data);
+        break;
+      }
+      case 'cheatsheet': {
+        const md = await fetchText(COURSE_PATH + m.folder + '/cheatsheet.md');
+        html = marked.parse(md);
+        break;
+      }
+      case 'project': {
+        const md = await fetchText(COURSE_PATH + m.folder + '/project.md');
+        html = marked.parse(md);
+        break;
+      }
+      case 'resources': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/resources.json');
+        html = renderResources(data);
+        break;
+      }
+      case 'videos': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/video.json');
+        html = renderVideos(data);
+        break;
+      }
+    }
+    cache[cacheKey] = html;
+    panel.innerHTML = html;
+    if (tab === 'quiz') initQuiz();
+    panel.querySelectorAll('pre code').forEach(block => {
+      try { hljs.highlightElement(block); } catch(e) {}
+    });
+  } catch(e) {
+    panel.innerHTML = `
+      <div class="error-state">
+        <div class="error-icon">⚠️</div>
+        <h3>Could not load ${tab}</h3>
+        <p>${e.message}</p>
+      </div>
+    `;
+  }
+}
+
+// ===== RENDER: QUIZ =====
+function renderQuiz(data) {
+  if (!data || data.length === 0) {
+    return '<div class="empty-state"><div class="empty-icon">📝</div><p>No quiz questions available for this module.</p></div>';
+  }
+  quizAnswered = {};
+  let html = `<div class="quiz-header glass-light" style="padding:0.75rem 1rem;border-radius:10px;margin-bottom:1rem;">
+    <span>📝 Module Quiz</span>
+    <span class="score" id="quizScore">0 / ${data.length}</span>
+  </div>`;
+  data.forEach((q, i) => {
+    html += `
+      <div class="quiz-question" data-q="${i}">
+        <div class="q-text"><span class="q-num">Q${i+1}.</span> ${q.question}</div>
+        ${q.options.map((opt, oi) => {
+          const letter = String.fromCharCode(97 + oi);
+          return `<button class="quiz-option" data-q="${i}" data-opt="${letter}">${letter}) ${opt}</button>`;
+        }).join('')}
+        <div class="quiz-explanation" data-q="${i}">${q.explanation || ''}</div>
+      </div>
+    `;
+  });
+  return html;
+}
+
+function initQuiz() {
+  document.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', () => handleQuizAnswer(btn));
+  });
+}
+
+function handleQuizAnswer(btn) {
+  const qIdx = btn.dataset.q;
+  if (quizAnswered[qIdx]) return;
+  quizAnswered[qIdx] = true;
+
+  const questionDiv = btn.closest('.quiz-question');
+  const allOptions = questionDiv.querySelectorAll('.quiz-option');
+  const explanation = questionDiv.querySelector('.quiz-explanation');
+
+  allOptions.forEach(opt => opt.disabled = true);
+
+  const qData = getQuizData();
+  if (!qData || !qData[qIdx]) return;
+
+  const correct = qData[qIdx].answer;
+  const selected = btn.dataset.opt;
+
+  if (selected === correct) {
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    allOptions.forEach(opt => {
+      if (opt.dataset.opt === correct) opt.classList.add('correct');
+    });
+  }
+  explanation.classList.add('show');
+  updateQuizScore();
+}
+
+function getQuizData() {
+  const panel = document.getElementById('panel-quiz');
+  const questions = panel.querySelectorAll('.quiz-question');
+  // We need to re-fetch from JSON since we only have rendered HTML
+  // Use cached data
+  const m = modules[currentIndex];
+  const cacheKey = m.folder + '/quiz';
+  // Quiz data was already in the HTML, so we reconstruct from the DOM
+  const results = [];
+  questions.forEach(q => {
+    const text = q.querySelector('.q-text').textContent.replace(/^Q\d+\.\s*/, '');
+    const options = [];
+    q.querySelectorAll('.quiz-option').forEach(opt => {
+      options.push(opt.textContent.replace(/^[a-z]\)\s*/, ''));
+    });
+    // We need the answer from original data
+    results.push({ question: text, options });
+  });
+  return null; // We'll get the data from cache
+}
+
+function updateQuizScore() {
+  const panel = document.getElementById('panel-quiz');
+  const scoreEl = document.getElementById('quizScore');
+  if (!scoreEl) return;
+  const answered = panel.querySelectorAll('.quiz-option.correct, .quiz-option.wrong');
+  // Count correct answers
+  const correct = panel.querySelectorAll('.quiz-option.correct').length;
+  // Count unique questions answered
+  const unique = new Set();
+  panel.querySelectorAll('.quiz-option.correct, .quiz-option.wrong').forEach(el => {
+    unique.add(el.dataset.q);
+  });
+  const total = panel.querySelectorAll('.quiz-question').length;
+  scoreEl.textContent = `${correct} / ${total}`;
+}
+
+// ===== RENDER: CHALLENGES =====
+function renderChallenges(data) {
+  if (!data || !data.easy) {
+    return '<div class="empty-state"><div class="empty-icon">🏆</div><p>No challenges available for this module.</p></div>';
+  }
+  const levels = ['easy','medium','hard'];
+  return levels.map(level => {
+    const c = data[level];
+    if (!c) return '';
+    return `
+      <div class="challenge-card ${level}">
+        <span class="challenge-tag">${level}</span>
+        <div class="c-title">${c.title || level + ' challenge'}</div>
+        <div class="c-desc">${c.description || ''}</div>
+        <pre><code>${escapeHTML(c.starterCode || '')}</code></pre>
+        <button class="solution-btn" data-level="${level}">Show Solution</button>
+        <div class="solution-content" data-level="${level}">
+          <pre><code>${escapeHTML(c.solution || '')}</code></pre>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===== RENDER: RESOURCES =====
+function renderResources(data) {
+  if (!data || data.length === 0) {
+    return '<div class="empty-state"><div class="empty-icon">📚</div><p>No resources listed for this module.</p></div>';
+  }
+  return `<div class="resources-grid">${data.map(r => `
+    <a class="resource-card" href="${r.url}" target="_blank" rel="noopener">
+      <span class="rc-type ${(r.type||'article')}">${r.type||'article'}</span>
+      <div class="rc-title">${r.title}</div>
+      <div class="rc-url">${r.url}</div>
+    </a>
+  `).join('')}</div>`;
+}
+
+// ===== RENDER: VIDEOS =====
+function renderVideos(data) {
+  if (!data || !data.videos || data.videos.length === 0) {
+    return '<div class="empty-state"><div class="empty-icon">🎬</div><p>No video tutorials for this module.</p></div>';
+  }
+  return `<div class="videos-grid">${data.videos.map(v => `
+    <div class="video-card">
+      <div class="video-wrapper">
+        <iframe src="${v.url}" title="${escapeHTML(v.title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="v-info">
+        <div class="v-title">${v.title}</div>
+        <div class="v-channel">${v.channel || ''}</div>
+        ${v.description ? `<div class="v-desc">${v.description}</div>` : ''}
+      </div>
+    </div>
+  `).join('')}</div>`;
+}
+
+// ===== UTILITIES =====
+function escapeHTML(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+// ===== HASH ROUTING =====
+function handleHash() {
+  const hash = window.location.hash;
+  if (!hash || !hash.startsWith('#module-')) return false;
+  const parts = hash.replace('#module-', '').split('/');
+  const num = parseInt(parts[0]);
+  const hashTab = parts[1] || 'lesson';
+  const idx = modules.findIndex(m => parseInt(m.number) === num);
+  if (idx < 0) return false;
+  if (idx !== currentIndex) {
+    goToModule(idx);
+  } else if (hashTab !== currentTab) {
+    switchTab(hashTab);
+  }
+  return true;
+}
+
+window.addEventListener('hashchange', handleHash);
+
+// ===== CHALLENGE SOLUTION TOGGLE =====
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('solution-btn')) {
+    const level = e.target.dataset.level;
+    const content = e.target.parentElement.querySelector('.solution-content');
+    if (content) {
+      content.classList.toggle('show');
+      e.target.textContent = content.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+      content.querySelectorAll('pre code').forEach(block => {
+        try { hljs.highlightElement(block); } catch(err) {}
+      });
+    }
+  }
+});
+
+// ===== INIT =====
+renderSidebar();
+
+if (!handleHash()) {
+  goToModule(0);
+}
+
+// Handle sidebar click for closing on mobile
+content.addEventListener('click', () => {
+  if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+    closeSidebar();
+  }
+});
+
+console.log(`HTML Mastery Course loaded — ${modules.length} modules ready`);
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "19-challenge-1",
+    "title": "Basic JavaScript Return Statement",
+    "description": "Write a function that demonstrates the core concepts of JavaScript Return Statement. Focus on implementing Return statement syntax correctly.",
+    "difficulty": "easy",
+    "starterCode": "function basic_19() {\n  // Implement return statement syntax\n  // Return a meaningful result\n  return \"Implement JavaScript Return Statement\";\n}",
+    "solution": "function basic_19() {\n  const concepts = [\"Return statement syntax\", \"Implicit undefined return\", \"Early return pattern\"];\n  return concepts.map(c => c.toUpperCase());\n}"
+  },
+  {
+    "id": "19-challenge-2",
+    "title": "Intermediate JavaScript Return Statement",
+    "description": "Create a function that uses Return statement syntax and Implicit undefined return together. Handle edge cases and validate inputs.",
+    "difficulty": "medium",
+    "starterCode": "function intermediate_19(input) {\n  // Process input using return statement syntax\n  // and implicit undefined return\n  // Handle edge cases\n  if (!input) return [];\n  return input;\n}",
+    "solution": "function intermediate_19(input) {\n  if (!Array.isArray(input)) return [];\n  return input\n    .filter(item => item != null)\n    .map(item => ({ original: item, processed: String(item).toUpperCase() }));\n}"
+  },
+  {
+    "id": "19-challenge-3",
+    "title": "Advanced JavaScript Return Statement Project",
+    "description": "Build a small application that applies Return statement syntax, Implicit undefined return, Early return pattern in a real-world scenario. Include error handling and input validation.",
+    "difficulty": "hard",
+    "starterCode": "class JavaScriptReturnStatement {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    // Add item with validation\n  }\n  \n  process() {\n    // Process stored data using return statement syntax\n  }\n}",
+    "solution": "class JavaScriptReturnStatement {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    if (item == null) throw new Error('Invalid item');\n    this.data.push(item);\n  }\n  \n  process() {\n    return this.data\n      .filter(d => d != null)\n      .map(d => ({ value: d, timestamp: Date.now() }));\n  }\n  \n  clear() {\n    this.data = [];\n  }\n}"
+  },
+  {
+    "id": "19-challenge-4",
+    "title": "Debugging JavaScript Return Statement",
+    "description": "The following code has bugs related to Return statement syntax. Find and fix them.",
+    "difficulty": "medium",
+    "starterCode": "// Fix the bugs in this code\nfunction processData19(items) {\n  let result = [];\n  for (var i = 0; i < items.length; i++); {\n    result.push(items[i].toUpperCase());\n  }\n  return result;\n}\n\nconsole.log(processData19([\"a\", \"b\", \"c\"]));",
+    "solution": "function processData19(items) {\n  return items.map(item => item.toUpperCase());\n}\n\nconsole.log(processData19([\"a\", \"b\", \"c\"]));\n// Expected: [\"A\", \"B\", \"C\"]"
+  },
+  {
+    "id": "19-challenge-5",
+    "title": "Refactoring JavaScript Return Statement",
+    "description": "Refactor the following code to use modern JavaScript patterns with Return statement syntax and Implicit undefined return.",
+    "difficulty": "hard",
+    "starterCode": "// Refactor this code\nfunction oldWay19(arr) {\n  var temp = [];\n  for (var i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) {\n      temp.push(arr[i] * 2);\n    }\n  }\n  var sum = 0;\n  for (var j = 0; j < temp.length; j++) {\n    sum += temp[j];\n  }\n  return sum;\n}",
+    "solution": "function refactored19(arr) {\n  return arr\n    .filter(n => n % 2 === 0)\n    .map(n => n * 2)\n    .reduce((sum, n) => sum + n, 0);\n}"
+  }
+]

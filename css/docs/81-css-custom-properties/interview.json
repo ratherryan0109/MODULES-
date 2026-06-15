@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the difference between a CSS custom property and a CSS variable?", "answer": "They are the same thing. CSS custom properties (--custom-name) are commonly called CSS variables; the terms are interchangeable." },
+    { "question": "What does the @property rule do in CSS?", "answer": "@property registers a custom property with a defined syntax, initial value, and inheritance behavior, enabling type checking and animation." },
+    { "question": "What is the syntax of the @property rule?", "answer": "@property --property-name { syntax: '<type>'; inherits: true/false; initial-value: value; }" },
+    { "question": "What are typed values in CSS custom properties?", "answer": "Typed values are custom properties registered with @property that have a defined syntax (like <color>, <length>, <number>), ensuring type safety." },
+    { "question": "What are valid syntax types for @property?", "answer": "Valid types include <length>, <number>, <percentage>, <color>, <angle>, <time>, <resolution>, <string>, and combinations." },
+    { "question": "How does @property enable custom property animation?", "answer": "Without @property, the browser does not know how to interpolate custom properties. @property tells the browser the type, enabling smooth transitions." },
+    { "question": "What is the inherits descriptor in @property?", "answer": "inherits: true means the custom property cascades to descendants; inherits: false means it only applies to the element it is set on." },
+    { "question": "What is the initial-value in @property?", "answer": "initial-value provides a fallback value used when the custom property is not explicitly set, ensuring the property always has a valid value." },
+    { "question": "Can @property be used without a syntax descriptor?", "answer": "No, the syntax descriptor is required in @property. Without it, the rule is invalid." },
+    { "question": "What happens if you assign a value of the wrong type to a registered custom property?", "answer": "The assignment is treated as invalid and ignored. The property falls back to its initial value or the inherited value." }
+  ],
+  "intermediate": [
+    { "question": "How does @property improve upon plain custom properties for animations?", "answer": "Plain custom properties snap between values because the browser does not know the type. @property-registered properties interpolate smoothly because the type is known." },
+    { "question": "How do you register a custom property with a color syntax for gradient animation?", "answer": "@property --grad-color { syntax: '<color>'; inherits: false; initial-value: red; } allows animating color values in gradients." },
+    { "question": "Can @property be used with complex syntax like <length-percentage>?", "answer": "Yes, <length-percentage> accepts both length and percentage values. Combinations like <color> | <number> use the | operator." },
+    { "question": "What is the syntax for a custom property that accepts multiple types?", "answer": "Use the | operator: syntax: '<color> | <number>'. This accepts either a color or a number value." },
+    { "question": "How does @property interact with CSS cascade layers?", "answer": "@property rules follow cascade layer ordering. Later @property declarations in higher-priority layers override earlier ones." },
+    { "question": "How do you use @property with JavaScript’s CSS.registerProperty()?", "answer": "CSS.registerProperty({ name: '--prop', syntax: '<length>', inherits: false, initialValue: '0px' }) is the JavaScript equivalent of @property." },
+    { "question": "What is the difference between registered and unregistered custom properties in terms of inheritance?", "answer": "Unregistered custom properties default to inheriting. With @property, you explicitly set inherits: true or false." },
+    { "question": "How do typed custom properties help with design system tokens?", "answer": "Typed properties enforce type constraints on design tokens, preventing invalid assignments and enabling smooth transitions for themed values." },
+    { "question": "Can @property be used for custom properties that hold multiple values like shadows?", "answer": "Yes, use syntax: '*', which accepts any valid CSS value. More specific syntax like '<shadow>' is also available." },
+    { "question": "What happens if @property is declared after the custom property has been used?", "answer": "The @property rule applies regardless of order. Declared values are re-evaluated based on the registered syntax." }
+  ],
+  "advanced": [
+    { "question": "How does @property interact with CSS Houdini and the Paint API?", "answer": "@property-registered custom properties can be used as input properties in CSS Paint (paint() function), enabling type-checked paint parameters." },
+    { "question": "How do you create a color theme system with @property for type safety?", "answer": "Register each theme color with syntax: '<color>', ensuring only valid color values are assigned and enabling smooth theme transitions." },
+    { "question": "What are the performance implications of using many @property declarations?", "answer": "@property declarations add minimal overhead. Each registered property is validated during style recalc, but the impact is negligible for reasonable numbers." },
+    { "question": "How do you animate a custom property that is used in a gradient?", "answer": "Register the property with syntax: '<color>' or '<length-percentage>', then it animates smoothly within the gradient function." },
+    { "question": "How does @property interact with CSS custom property fallbacks and the cascade?", "answer": "The registered initial-value serves as the final fallback if no value is set. The cascade still applies for explicit assignments." },
+    { "question": "What is the <custom-ident> syntax in @property and when would you use it?", "answer": "<custom-ident> accepts user-defined identifiers (like keyword values). Useful for animation names or other keyword-based properties." },
+    { "question": "How do you use @property with CSS keyframes for interpolating length values?", "answer": "Register with syntax: '<length>', then in @keyframes animate between different length values. The browser interpolates between them." },
+    { "question": "What is the relationship between @property and CSS Container Queries?", "answer": "Container query units (cqi, cqb) can be used in @property initial values and in registered properties, enabling container-aware typed values." },
+    { "question": "How do you handle @property in browsers that do not support it?", "answer": "Use unregistered custom properties as a fallback. @property is ignored in unsupported browsers, so the custom property works as an unregistered one." },
+    { "question": "What is the future of @property with CSS Mixins and other emerging specs?", "answer": "@property provides the type foundation for CSS mixins, ensuring component properties can be typed, animated, and validated." }
+  ]
+}

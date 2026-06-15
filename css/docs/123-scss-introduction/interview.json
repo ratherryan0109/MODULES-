@@ -1,0 +1,130 @@
+{
+  "module": "123-scss-introduction",
+  "title": "SCSS Introduction",
+  "beginner": [
+    {
+      "question": "What is SCSS and how is it related to Sass?",
+      "answer": "SCSS (Sassy CSS) is a syntax of Sass (Syntactically Awesome StyleSheets), a CSS preprocessor. SCSS uses curly braces and semicolons like CSS, making it easier to adopt. The original Sass syntax uses indentation. All valid CSS is valid SCSS."
+    },
+    {
+      "question": "How do you declare a variable in SCSS?",
+      "answer": "Use `$` prefix: `$primary-color: #3b82f6; $font-stack: 'Inter', sans-serif; $spacing-unit: 8px;`. Variables can store colors, fonts, numbers, strings, lists, and maps."
+    },
+    {
+      "question": "How does nesting work in SCSS?",
+      "answer": "SCSS allows CSS rules to be nested inside other rules, reflecting HTML structure: `.card { padding: 1rem; .card__title { font-size: 1.25rem; } }`. The `&` parent selector references the parent: `.btn { &--primary { ... } }`."
+    },
+    {
+      "question": "What is a SCSS mixin?",
+      "answer": "A mixin (`@mixin`) is a reusable block of styles. Define: `@mixin flex-center { display: flex; align-items: center; justify-content: center; }`. Use: `.hero { @include flex-center; }`. Mixins can accept parameters."
+    },
+    {
+      "question": "How do you write a mixin with parameters?",
+      "answer": "`@mixin button-variant($bg, $color) { background: $bg; color: $color; &:hover { background: darken($bg, 10%); } }` and use it: `.btn-primary { @include button-variant(blue, white); }`."
+    },
+    {
+      "question": "What is a SCSS function and how is it different from a mixin?",
+      "answer": "A function (`@function`) returns a single value, not CSS rules. Use `@function rem($px) { @return $px / 16px * 1rem; }` and call: `font-size: rem(24px);`. Functions compute values; mixins output style declarations."
+    },
+    {
+      "question": "What is a SCSS partial?",
+      "answer": "A partial is a SCSS file starting with underscore (e.g., `_variables.scss`). Partials are meant to be imported into other files and not compiled into separate CSS. They help organize code into modular pieces."
+    },
+    {
+      "question": "How do you import a partial in SCSS?",
+      "answer": "Use `@use 'variables';` (modern) or `@import 'variables';` (deprecated but still common). The underscore and `.scss` extension are omitted. `@use` creates a namespace: `variables.$primary-color`."
+    },
+    {
+      "question": "What does the `@extend` directive do in SCSS?",
+      "answer": "`@extend` tells SCSS to inherit styles from another selector: `.btn { padding: 10px; } .btn-primary { @extend .btn; background: blue; }`. `@extend` groups selectors together in the compiled CSS, reducing repetition."
+    },
+    {
+      "question": "What is the difference between `@extend` and `@include`?",
+      "answer": "`@extend` copies the selector to share the rule set (selectors are grouped in output). `@include` copies the mixin's declarations into the calling rule. `@extend` is better for related selectors; `@include` is better for parameterized styles."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the SCSS `@use` namespace and how do you control it?",
+      "answer": "`@use 'variables'` creates a namespace based on the filename (e.g., `variables.$primary`). Control it with `as`: `@use 'variables' as v;` → `v.$primary`. Use `as *` to merge into the current file's scope (use cautiously)."
+    },
+    {
+      "question": "How do SCSS maps work and when would you use them?",
+      "answer": "Maps are key-value pairs: `$breakpoints: (sm: 640px, md: 768px, lg: 1024px)`. Access values: `map-get($breakpoints, md)` → 768px. Iterate: `@each $name, $width in $breakpoints { ... }`. Maps consolidate related values."
+    },
+    {
+      "question": "What is `@content` in SCSS mixins?",
+      "answer": "`@content` allows passing a block of styles into a mixin: `@mixin respond-to($bp) { @media (min-width: $bp) { @content; } }`. Use: `@include respond-to(768px) { .card { grid-template-columns: 1fr 1fr; } }`."
+    },
+    {
+      "question": "How do you write conditional logic in SCSS?",
+      "answer": "Use `@if`, `@else if`, `@else`: `@mixin theme($mode) { @if $mode == 'dark' { background: black; } @else { background: white; } }`. Combined with `@for`, `@each`, `@while` loops for generating repetitive CSS."
+    },
+    {
+      "question": "What is the difference between `@import` and `@use` in modern SCSS?",
+      "answer": "`@use` is the modern replacement for `@import`. Unlike `@import` (which is being deprecated), `@use` loads each file only once, creates namespaces, and is scoped to the current file. `@forward` passes through imports from another file."
+    },
+    {
+      "question": "How does SCSS handle `@for` loops?",
+      "answer": "`@for $i from 1 through 5 { .col-#{$i} { width: 20% * $i; } }` generates `.col-1` through `.col-5`. Use `to` instead of `through` to exclude the end value. Interpolation `#{}` injects values into property names or selectors."
+    },
+    {
+      "question": "What is the `@each` directive in SCSS?",
+      "answer": "`@each $item in $list { .icon-#{$item} { background-image: url('/images/#{$item}.png'); } }` iterates over a list or map. For maps: `@each $key, $value in $map { ... }`."
+    },
+    {
+      "question": "How do you modularize SCSS across multiple files?",
+      "answer": "Structure: `abstracts/` (variables, mixins, functions), `base/` (reset, typography), `components/` (buttons, cards), `layouts/` (header, footer), `pages/` (home, about). A main `styles.scss` uses `@use` to import all partials."
+    },
+    {
+      "question": "What is the SCSS `lighten()` and `darken()` color function?",
+      "answer": "`lighten($color, 15%)` and `darken($color, 15%)` adjust a color's lightness. Examples: `lighten(blue, 20%)` → lighter blue, `darken(red, 10%)` → darker red. Other color functions: `saturate()`, `desaturate()`, `adjust-hue()`, `mix()`."
+    },
+    {
+      "question": "How do you compile SCSS to CSS?",
+      "answer": "Use: (1) `npm install -g sass` then `sass input.scss output.css`, (2) with `--watch` for auto-compilation, (3) build tools like webpack (sass-loader), Vite (preconfigured), or Gulp (gulp-sass). Dart Sass is the reference implementation."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does SCSS `@at-root` work and when is it useful?",
+      "answer": "`@at-root` moves nested rules to the root of the stylesheet, bypassing the parent selector. Used for generating BEM-like classes without extra nesting: `.card { @at-root #{&}__title { ... } }` outputs `.card .card__title`."
+    },
+    {
+      "question": "What is the SCSS module system (`@use`, `@forward`, `@import`) migration path?",
+      "answer": "Replace `@import` with `@use` for each file. Use `@forward` in index files to re-export multiple partials. Add `@use '...' as *` sparingly. The `sass-migrator` CLI tool automates `@import` → `@use` conversion."
+    },
+    {
+      "question": "How does SCSS handle custom @media queries inside mixins with `@content`?",
+      "answer": "`@mixin media($bp) { @media (min-width: $bp) { @content; } }`. Use: `@include media(768px) { .grid { grid-template-columns: 1fr 1fr; } }`. `@content` passes the entire rule block to the media query context."
+    },
+    {
+      "question": "What is the `!default` flag in SCSS variables?",
+      "answer": "`$primary-color: blue !default;` sets a default value that can be overridden by a previous declaration. Used in libraries: a user sets `$primary-color: red;` before `@use 'library'`, and the library uses the user's value."
+    },
+    {
+      "question": "How do you create a SCSS function that handles multiple unit conversions?",
+      "answer": "`@function convert($value, $from, $to) { @if $from == 'px' and $to == 'rem' { @return $value / 16px * 1rem; } @if $from == 'rem' and $to == 'px' { @return $value * 16px; } @return $value; }`."
+    },
+    {
+      "question": "What is the performance cost of SCSS nesting?",
+      "answer": "SCSS nesting itself has no runtime cost (it's compiled to CSS). However, deep nesting generates long descendant selectors (`.sidebar .widget .title a`) that increase CSS file size and selector matching time. Limit to 3 levels max."
+    },
+    {
+      "question": "How does `@debug`, `@warn`, and `@error` work in SCSS?",
+      "answer": "`@debug 'Value is: #{$value}'` prints to the console during compilation. `@warn 'Deprecated mixin'` shows a warning. `@error 'Invalid parameter'` stops compilation. Useful for authoring SCSS libraries and debugging complex mixins."
+    },
+    {
+      "question": "How do you create a SCSS `@mixin` that generates responsive utility classes?",
+      "answer": "`@mixin generate-spacing($prefix, $property) { @each $size, $value in $spacing-scale { .#{$prefix}-#{$size} { #{$property}: $value; } @each $bp, $width in $breakpoints { @media (min-width: $width) { .#{$bp}\\:#{$prefix}-#{$size} { #{$property}: $value; } } } } }`."
+    },
+    {
+      "question": "How does Dart Sass differ from LibSass (Node Sass)?",
+      "answer": "Dart Sass is the primary implementation developed by the Sass team. LibSass (Node Sass) is deprecated and no longer maintained. Dart Sass includes the `@use` module system, newer JS API, and is actively developed. Migrate from Node Sass to Dart Sass."
+    },
+    {
+      "question": "How do you handle SCSS sourcemaps for production debugging?",
+      "answer": "Enable sourcemaps in the build config: `sass input.scss output.css --style compressed --source-map`. Sourcemap files are separate in production. The browser maps compiled CSS back to SCSS source. Ensure sourcemap files are available but not exposed publicly."
+    }
+  ]
+}

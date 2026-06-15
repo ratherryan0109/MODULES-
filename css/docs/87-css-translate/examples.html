@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Translate - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; }
+    .demo-area { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; min-height: 150px; }
+    .box {
+      width: 120px; height: 120px; background: #89b4fa; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; color: #1e1e2e;
+      font-weight: 700; transition: translate 0.4s ease; position: relative;
+    }
+    .pre { font-family: monospace; background: #181825; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Translate — Practical Examples</h1>
+
+  <div class="card">
+    <h2>1. Basic Translate X</h2>
+    <p>Moving element along X-axis.</p>
+    <div class="demo-area">
+      <div class="box" onmouseover="this.style.translate='100px 0'" onmouseout="this.style.translate='0 0'">translateX</div>
+    </div>
+    <div class="pre">translate: 100px 0;</div>
+  </div>
+
+  <div class="card">
+    <h2>2. Translate XY</h2>
+    <p>Moving element along both axes.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#f38ba8;" onmouseover="this.style.translate='60px 60px'" onmouseout="this.style.translate='0 0'">translate(x,y)</div>
+    </div>
+    <div class="pre">translate: 60px 60px;</div>
+  </div>
+
+  <div class="card">
+    <h2>3. Percentage Translate (Centering)</h2>
+    <p>Using percentage to center an element.</p>
+    <div class="demo-area" style="position:relative; height:200px; background:#181825; border-radius:8px;">
+      <div class="box" style="position:absolute; top:50%; left:50%; translate:-50% -50%; background:#a6e3a1;">Centered</div>
+    </div>
+    <div class="pre">position: absolute; top: 50%; left: 50%; translate: -50% -50%;</div>
+  </div>
+
+  <div class="card">
+    <h2>4. Negative Translate</h2>
+    <p>Moving element in negative direction.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#fab387;" onmouseover="this.style.translate='-60px -40px'" onmouseout="this.style.translate='0 0'">negative</div>
+    </div>
+    <div class="pre">translate: -60px -40px;</div>
+  </div>
+
+  <div class="card">
+    <h2>5. 3D Translate Z</h2>
+    <p>Moving element along Z-axis (requires perspective on parent).</p>
+    <div class="demo-area" style="perspective:800px;">
+      <div class="box" style="background:#cba6f7;" onmouseover="this.style.translate='0 0 200px'" onmouseout="this.style.translate='0 0 0'">translateZ</div>
+    </div>
+    <div class="pre">translate: 0 0 200px; /* parent needs perspective */</div>
+  </div>
+
+  <div class="card">
+    <h2>6. Translate vs Transform translate</h2>
+    <p>Standalone translate (left) vs transform translate (right). Same visual result.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#89dceb;" onmouseover="this.style.translate='80px 0'" onmouseout="this.style.translate='0 0'">translate: 80px</div>
+      <div class="box" style="background:#f38ba8;" onmouseover="this.style.transform='translate(80px, 0)'" onmouseout="this.style.transform='translate(0, 0)'">transform</div>
+    </div>
+    <div class="pre">/* Standalone */ translate: 80px 0;<br>/* Transform */ transform: translate(80px, 0);</div>
+  </div>
+</body>
+</html>

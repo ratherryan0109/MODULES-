@@ -1,0 +1,247 @@
+{
+  "module": "10-css-height-width",
+  "title": "CSS Height and Width",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does width: 50%; mean?",
+      "options": [
+        "50% of viewport width",
+        "50% of parent element's width",
+        "50px",
+        "50% of screen width"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Percentage width is calculated relative to the parent element's width."
+    },
+    {
+      "id": 2,
+      "question": "What is the difference between max-width and width?",
+      "options": [
+        "They are the same",
+        "max-width sets a limit; the element can be smaller",
+        "width sets a limit; max-width is the default",
+        "max-width only works on images"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-width sets the maximum width the element can grow to, but it can be smaller. width sets an explicit size."
+    },
+    {
+      "id": 3,
+      "question": "Why might height: 100% not work on an element?",
+      "options": [
+        "Percentages don't work on height",
+        "The parent element doesn't have an explicit height set",
+        "height: 100% is invalid CSS",
+        "The element must be a block element"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Percentage height requires the parent to have an explicit height. If the parent's height is auto (default), 100% is undefined."
+    },
+    {
+      "id": 4,
+      "question": "What does vw stand for in CSS units?",
+      "options": [
+        "Variable Width",
+        "Viewport Width",
+        "Virtual Width",
+        "Vertical Width"
+      ],
+      "correctAnswer": 1,
+      "explanation": "vw stands for viewport width, where 1vw equals 1% of the viewport's width."
+    },
+    {
+      "id": 5,
+      "question": "What is the default width behavior of a block-level element?",
+      "options": [
+        "Width: 0",
+        "Width: 100px",
+        "Width: auto (fills available space)",
+        "Width: 100%"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Block-level elements default to width: auto, which fills the available horizontal space."
+    },
+    {
+      "id": 6,
+      "question": "What unit would you use to make an element half the viewport height?",
+      "options": [
+        "width: 50%",
+        "height: 50vh",
+        "height: 50%",
+        "height: 50vw"
+      ],
+      "correctAnswer": 1,
+      "explanation": "50vh sets the height to 50% of the viewport height. vh = viewport height."
+    },
+    {
+      "id": 7,
+      "question": "What does overflow: hidden do when content exceeds an element's dimensions?",
+      "options": [
+        "Adds scrollbars",
+        "Clips the overflowing content",
+        "Expands the element to fit",
+        "Hides the entire element"
+      ],
+      "correctAnswer": 1,
+      "explanation": "overflow: hidden clips any content that extends beyond the element's boundaries without adding scrollbars."
+    },
+    {
+      "id": 8,
+      "question": "What does the ch unit measure?",
+      "options": [
+        "Character height",
+        "Width of the '0' character in the current font",
+        "Container height",
+        "Centimeter height"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The ch unit equals the width of the '0' (zero) glyph in the element's font, useful for setting line lengths."
+    },
+    {
+      "id": 9,
+      "question": "What does min-width: 320px do?",
+      "options": [
+        "Sets the minimum width to 320px; the element can be wider",
+        "Sets the width to exactly 320px",
+        "Sets the maximum width to 320px",
+        "Prevents the element from being wider than 320px"
+      ],
+      "correctAnswer": 0,
+      "explanation": "min-width sets a lower bound — the element can grow wider than 320px but cannot shrink below it."
+    },
+    {
+      "id": 10,
+      "question": "How do vmin and vmax units work?",
+      "options": [
+        "vmin = smaller of vw/vh; vmax = larger of vw/vh",
+        "vmin = viewport minimum width; vmax = viewport maximum width",
+        "vmin = vertical minimum; vmax = vertical maximum",
+        "vmin = viewport minimum; vmax = viewport maximum"
+      ],
+      "correctAnswer": 0,
+      "explanation": "vmin uses the smaller viewport dimension, vmax uses the larger. 50vmin = half the smaller viewport side."
+    },
+    {
+      "id": 11,
+      "question": "What is fit-content for width?",
+      "options": [
+        "Fills the containing block",
+        "Shrinks to fit the content, but no larger than available space",
+        "Sets width to exactly 100%",
+        "Expands to fill available space regardless of content"
+      ],
+      "correctAnswer": 1,
+      "explanation": "fit-content makes the element as wide as its content, but not wider than the available space in the container."
+    },
+    {
+      "id": 12,
+      "question": "What does aspect-ratio: 16/9 do?",
+      "options": [
+        "Sets width to 16px and height to 9px",
+        "Maintains a 16:9 proportion between width and height",
+        "Creates a 16:9 aspect ratio for images only",
+        "Scales the element to 16 by 9 units"
+      ],
+      "correctAnswer": 1,
+      "explanation": "aspect-ratio ensures the element maintains a 16:9 proportion based on one calculated dimension."
+    },
+    {
+      "id": 13,
+      "question": "When would max-height be useful?",
+      "options": [
+        "To prevent an element from growing too tall",
+        "To make an element exactly a certain height",
+        "To hide overflowing content permanently",
+        "To set the minimum height of an element"
+      ],
+      "correctAnswer": 0,
+      "explanation": "max-height limits how tall an element can grow, useful for expandable sections or preventing excessive height."
+    },
+    {
+      "id": 14,
+      "question": "What happens when both width and max-width are set?",
+      "options": [
+        "width always wins",
+        "max-width overrides width if width exceeds max-width",
+        "Both are added together",
+        "The browser ignores both"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-width overrides width when the computed width would be larger than the max-width value."
+    },
+    {
+      "id": 15,
+      "question": "What is the default height of a block-level element with no content?",
+      "options": [
+        "100% of parent height",
+        "0 (no height)",
+        "100px",
+        "auto"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A block element with no content has 0 height by default because height defaults to auto and there's nothing to size."
+    },
+    {
+      "id": 16,
+      "question": "How do you make an element fill the full viewport height?",
+      "options": [
+        "height: 100%",
+        "height: 100vh",
+        "height: full",
+        "height: 100vw"
+      ],
+      "correctAnswer": 1,
+      "explanation": "height: 100vh sets the element height to 100% of the viewport height, regardless of parent dimensions."
+    },
+    {
+      "id": 17,
+      "question": "What does width: auto do on an inline element?",
+      "options": [
+        "Fills the full available width",
+        "Shrinks to fit the content width",
+        "Sets width to 100px",
+        "Ignores the property"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Inline elements with width: auto shrink-wrap to their content — they don't fill available space like block elements."
+    },
+    {
+      "id": 18,
+      "question": "What is the purpose of the aspect-ratio property?",
+      "options": [
+        "To set the ratio of width to height for responsive scaling",
+        "To determine the screen aspect ratio",
+        "To set the image file format",
+        "To control the element's proportions on print"
+      ],
+      "correctAnswer": 0,
+      "explanation": "aspect-ratio maintains a proportional relationship between width and height, useful for responsive images and videos."
+    },
+    {
+      "id": 19,
+      "question": "What does overflow: auto do?",
+      "options": [
+        "Always shows scrollbars",
+        "Shows scrollbars only when content overflows",
+        "Hides overflow without scrollbars",
+        "Automatically resizes the element"
+      ],
+      "correctAnswer": 1,
+      "explanation": "overflow: auto adds scrollbars only when content exceeds the element's dimensions, keeping the layout clean otherwise."
+    },
+    {
+      "id": 20,
+      "question": "How do you ensure an image doesn't exceed its container width?",
+      "options": [
+        "width: 100%; height: auto",
+        "max-width: 100%; height: auto",
+        "height: 100%; width: auto",
+        "max-height: 100%; width: auto"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-width: 100% prevents the image from exceeding container width, and height: auto maintains aspect ratio."
+    }
+  ]
+}

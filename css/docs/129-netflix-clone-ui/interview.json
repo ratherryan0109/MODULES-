@@ -1,0 +1,130 @@
+{
+  "module": "129-netflix-clone-ui",
+  "title": "Netflix Clone UI",
+  "beginner": [
+    {
+      "question": "What is the 'hero section' in a Netflix-like streaming UI?",
+      "answer": "The hero section is a large featured banner at the top of the page showing a currently promoted movie/show. It has a background image/video, title, description, and 'Play' / 'More Info' buttons. Typically 80-100vh tall."
+    },
+    {
+      "question": "What is a 'row carousel' in a Netflix clone?",
+      "answer": "A row carousel is a horizontally scrollable row of content thumbnails (movies/TV shows), organized by category (Trending, Continue Watching, New Releases). Each row has a title and scrollable content strip with forward/backward arrows."
+    },
+    {
+      "question": "How do you create a responsive thumbnail card for a streaming service?",
+      "answer": "Use a consistent aspect ratio (typically 2:3 for posters, 16:9 for wide thumbnails). Use `aspect-ratio: 2/3; object-fit: cover;`. Cards scale with the row. Desktop: 200-250px wide. Mobile: 120-150px wide."
+    },
+    {
+      "question": "What is the 'hover effect' on streaming thumbnails?",
+      "answer": "On hover, thumbnails scale up (typically 1.3-1.5x), add shadow, show additional info (title, rating, year, buttons), and sometimes play a preview video. Use `transform: scale()` with `transition`, and `z-index` to overlay adjacent items."
+    },
+    {
+      "question": "What is the 'overlay' effect on the hero section?",
+      "answer": "The hero overlay is a gradient (usually bottom-to-top or both sides) that darkens the background image so text over it remains readable. Example: `background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%)`."
+    },
+    {
+      "question": "How do you build a responsive navigation for a streaming service?",
+      "answer": "A top navbar with logo (left), category links (center), and user menu (right). On mobile, category links collapse into a hamburger menu. The navbar becomes transparent on top of the hero and solid on scroll. Use `position: fixed`."
+    },
+    {
+      "question": "What is the 'category row' structure in a Netflix clone?",
+      "answer": "Each category row contains a label (e.g., 'Trending Now') and a horizontally scrollable container of thumbnails. The row uses `overflow-x: auto` with `scroll-snap-type: x mandatory` for smooth scrolling."
+    },
+    {
+      "question": "How do you style a 'Play' button for a streaming hero?",
+      "answer": "A prominent button with large padding, white background, black text (or inverse), and an SVG play icon. On mobile: slightly smaller but still touch-friendly. Use `display: inline-flex; align-items: center; gap: 8px;`."
+    },
+    {
+      "question": "What colors are typically used in a Netflix-like UI?",
+      "answer": "Dark backgrounds (#141414, #181818, #222), white text (#fff, #e5e5e5), red accent (#e50914 for branding/hover), and gray for secondary text (#808080). The dark theme reduces eye strain for video browsing."
+    },
+    {
+      "question": "What is the purpose of the 'More Info' button on the hero?",
+      "answer": "The 'More Info' (or details) button opens a modal/drawer with additional details about the featured content: synopsis, cast, genres, ratings, and related recommendations. It's semi-transparent to differentiate from the primary Play button."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement a smooth horizontal scroll for Netflix-style rows?",
+      "answer": "Use `overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory;` with `scroll-snap-align: start` on thumbnails. Hide scrollbar with `::-webkit-scrollbar { display: none; }`. Implement left/right arrow buttons for desktop."
+    },
+    {
+      "question": "How do you create the thumbnail hover scale effect without affecting layout?",
+      "answer": "Use `transform: scale(1.3); transform-origin: center; transition: transform 0.3s ease;` with `z-index: 1` on hover (`z-index: 10` on hover). The parent container needs adequate padding/margin to accommodate the scaled card."
+    },
+    {
+      "question": "How do you implement responsive thumbnail row sizing?",
+      "answer": "Use CSS custom properties for thumbnail width: `--card-width: clamp(120px, 15vw, 250px);`. Set `flex: 0 0 var(--card-width)` on each card. Number of visible cards varies by viewport: 6 on desktop, 3 on tablet, 2 on mobile."
+    },
+    {
+      "question": "How do you create the Netflix 'top 10' badge on thumbnails?",
+      "answer": "Use `position: absolute` on the thumbnail container with a numbered badge (1-10). Style as a large bold number with a subtle background or outline. Use `z-index` to layer above the image. Adjust size for mobile thumbnails."
+    },
+    {
+      "question": "How do you implement a 'billboard' hero with video background?",
+      "answer": "Use `<video>` with `autoplay muted loop playsinline`. Overlay with gradient. Show title and buttons. On mobile, use a static image instead of video (reduce data usage). Respect `prefers-reduced-motion`."
+    },
+    {
+      "question": "How do you create the Netflix 'scroll-down' gradient effect on the navbar?",
+      "answer": "Initially, navbar has `background: transparent`. On scroll past hero, add a class `.scrolled` with `background: #141414`. Use `transition: background 0.3s ease`. In CSS, `.navbar { transition: background 0.3s; }`."
+    },
+    {
+      "question": "How do you implement the 'My List' toggle button?",
+      "answer": "A button with a checkmark (+) icon. Toggle between 'Add to My List' and 'Remove from My List' states. Use `aria-label` for accessibility. Style with semi-transparent background and hover fill. Store state in JavaScript."
+    },
+    {
+      "question": "How do you design a responsive 'content details' modal?",
+      "answer": "Desktop: centered modal (max-width: 900px) with hero image, synopsis, cast, related titles. Mobile: full-screen modal with vertical scrolling. Close button top-right. Use `overflow-y: auto`. Trap focus for accessibility."
+    },
+    {
+      "question": "How do you handle responsive font sizes for the hero title?",
+      "answer": "Use `clamp()`: `font-size: clamp(1.5rem, 6vw, 4rem)`. The title should be large and bold. On mobile, the title shrinks but remains prominent. Adjust line-height for multi-line titles."
+    },
+    {
+      "question": "How do you create animated skeleton loaders for streaming thumbnails?",
+      "answer": "Use `aspect-ratio` containers with a shimmer gradient: `background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%); background-size: 200%; animation: shimmer 1.5s ease-in-out infinite;`. Row layout mirrors real content."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement Netflix-style 'click to expand' row (the row that expands on click)?",
+      "answer": "When a user clicks a thumbnail, the row's height expands to show title, description, cast, and action buttons below the thumbnail. Use `max-height` transition or `grid-template-rows` transition for smooth expansion. Collapse other open rows."
+    },
+    {
+      "question": "How do you create a 'preview autoplay' video on thumbnail hover?",
+      "answer": "Use a `<video>` element hidden behind the thumbnail poster. On hover, play the video (muted, low volume). On mouse leave, pause and reset to poster. Use `IntersectionObserver` to only load videos for visible rows."
+    },
+    {
+      "question": "How do you implement keyboard navigation for Netflix-style rows?",
+      "answer": "Use arrow keys to navigate between rows (up/down) and within rows (left/right). Maintain a focus state on the current thumbnail. Use `tabindex=\"0\"` on each card and programmatic focus management. Trap focus within rows."
+    },
+    {
+      "question": "How do you create a responsive 'genre carousel' with multi-row layout?",
+      "answer": "Desktop: 2-3 rows of thumbnails visible at once in a vertically scrollable category section. Mobile: single row, scroll vertically between genres. Use CSS Grid with `grid-auto-flow: column` and `grid-template-rows: repeat(3, 1fr)`."
+    },
+    {
+      "question": "How do you implement responsive 'continue watching' progress bars on thumbnails?",
+      "answer": "An absolute-positioned bar at the bottom of the thumbnail showing watch progress. Use `width: var(--progress)%` with `height: 3px; background: red;`. The `<figure>` or card wrapper has `position: relative;`."
+    },
+    {
+      "question": "How do you create a 'user profile switcher' UI?",
+      "answer": "Desktop: dropdown with profile avatars and names. Mobile: full-screen profile grid. Each profile is a clickable card with avatar image. 'Add Profile' option at the end. Use CSS Grid for responsive layout. Active profile has a check indicator."
+    },
+    {
+      "question": "How do you implement 'maturity rating' badges on thumbnails?",
+      "answer": "Absolute-positioned badges on thumbnail corners: TV-MA, PG-13, R, etc. Use `position: absolute; top: 8px; left: 8px;` with `background: rgba(0,0,0,0.8); color: white; padding: 2px 6px; border-radius: 2px; font-size: 0.75rem;`."
+    },
+    {
+      "question": "How do you implement responsive 'audio/subtitle' selector UI?",
+      "answer": "A modal or dropdown listing available audio languages and subtitle options. Desktop: dropdown from a button. Mobile: bottom sheet. Use `<ul>` with radio-style selection. Show checkmark next to current selection."
+    },
+    {
+      "question": "How do you create a Netflix-style 'title screen' with multiple background images?",
+      "answer": "Use CSS `background-image` with multiple backgrounds: a primary hero image and a gradient overlay. `background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 50%), url('hero.jpg') center/cover no-repeat;`."
+    },
+    {
+      "question": "How do you implement 'Lazy Loading' for thumbnail images below the fold?",
+      "answer": "Use `loading=\"lazy\"` on all thumbnail images not in the initial viewport. Use IntersectionObserver to load images when they enter the viewport. Show placeholder/shimmer until loaded. Use `will-change: transform` for smooth reveal."
+    }
+  ]
+}

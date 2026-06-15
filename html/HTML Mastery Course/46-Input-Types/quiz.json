@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Which input type triggers a numeric keypad on mobile devices?",
+    "options": ["text", "tel", "email", "search"],
+    "answer": "b",
+    "explanation": "`type=\"tel\"` triggers a numeric keypad on mobile devices, making it ideal for phone number entry."
+  },
+  {
+    "question": "What is the default input type if no `type` attribute is specified?",
+    "options": ["text", "string", "input", "auto"],
+    "answer": "a",
+    "explanation": "The default type is `text`. Without a type attribute, `<input>` renders as a single-line text field."
+  },
+  {
+    "question": "Which input type provides built-in email format validation?",
+    "options": ["text", "tel", "email", "url"],
+    "answer": "c",
+    "explanation": "`type=\"email\"` validates that the input contains a valid email format (must include @ and a domain)."
+  },
+  {
+    "question": "What value format does `<input type=\"date\">` return?",
+    "options": ["DD/MM/YYYY", "MM/DD/YYYY", "YYYY-MM-DD", "YYYY/MM/DD"],
+    "answer": "c",
+    "explanation": "The date input returns values in ISO 8601 format: YYYY-MM-DD (e.g., 2025-04-15)."
+  },
+  {
+    "question": "Which input type should NOT be used for phone numbers if you want to preserve formatting?",
+    "options": ["tel", "text", "number", "email"],
+    "answer": "c",
+    "explanation": "Using `type=\"number\"` for phone numbers strips leading zeros and prevents formatting characters like hyphens and parentheses."
+  },
+  {
+    "question": "What special form attribute is required when using `<input type=\"file\">`?",
+    "options": ["method=\"GET\"", "enctype=\"multipart/form-data\"", "novalidate", "autocomplete=\"off\""],
+    "answer": "b",
+    "explanation": "File uploads require `enctype=\"multipart/form-data\"` on the form element to properly encode binary data."
+  },
+  {
+    "question": "Which input type displays a color picker interface?",
+    "options": ["picker", "colour", "color", "palette"],
+    "answer": "c",
+    "explanation": "`type=\"color\"` renders a native color picker in supported browsers, returning a 7-character hex value (#RRGGBB)."
+  },
+  {
+    "question": "How do you allow `<input type=\"email\">` to accept multiple comma-separated addresses?",
+    "options": ["multiple", "allow-multiple", "multi", "several"],
+    "answer": "a",
+    "explanation": "The `multiple` attribute on type=\"email\" allows the input to accept multiple comma-separated email addresses."
+  },
+  {
+    "question": "What is the purpose of the `step` attribute on `<input type=\"time\">`?",
+    "options": ["Sets the increment in minutes", "Sets the increment in seconds", "Sets the timezone offset", "Sets the display format"],
+    "answer": "b",
+    "explanation": "On time inputs, `step` is in seconds. `step=\"900\"` creates 15-minute intervals (900 seconds = 15 minutes)."
+  },
+  {
+    "question": "Which input type allows users to select multiple options simultaneously?",
+    "options": ["radio", "checkbox", "select", "switch"],
+    "answer": "b",
+    "explanation": "Checkboxes allow multiple independent selections. Radio buttons enforce single selection within a group."
+  },
+  {
+    "question": "What happens when you use `<input type=\"number\">` with `step=\"2\"`?",
+    "options": ["Only even numbers are accepted", "The increment arrows jump by 2", "The input accepts 2-digit numbers only", "Both a and b"],
+    "answer": "d",
+    "explanation": "`step=\"2\"` means the value must be a multiple of 2, and the increment arrows adjust the value by 2."
+  },
+  {
+    "question": "Which input type is best for a search field on a website?",
+    "options": ["text", "search", "find", "query"],
+    "answer": "b",
+    "explanation": "`type=\"search\"` provides a search-optimized input with a clear button in some browsers and triggers a search keyboard on mobile."
+  },
+  {
+    "question": "What is the value format of `<input type=\"week\">`?",
+    "options": ["YYYY-Www (e.g., 2025-W14)", "Week number only (e.g., 14)", "MM/DD/YYYY", "YYYY-MM-WW"],
+    "answer": "a",
+    "explanation": "Week input returns a value in the format YYYY-Www, where Www is the week number (01-53)."
+  },
+  {
+    "question": "Which attribute filters file types in a file input?",
+    "options": ["filter", "accept", "allow", "type"],
+    "answer": "b",
+    "explanation": "The `accept` attribute specifies which file types the file picker should show. Example: `accept=\"image/*\"` or `accept=\".pdf,.doc\"`."
+  },
+  {
+    "question": "What happens when you use `<input type=\"reset\">` in a form?",
+    "options": ["All fields become empty", "All fields return to their initial HTML values", "The form is submitted with empty values", "The page reloads"],
+    "answer": "b",
+    "explanation": "Reset restores all form controls to their initial values (as specified in the HTML), not to empty."
+  },
+  {
+    "question": "Which input type submits click coordinates along with the form data?",
+    "options": ["submit", "image", "button", "coords"],
+    "answer": "b",
+    "explanation": "`type=\"image\"` acts as a submit button and also submits the x and y coordinates of where the user clicked."
+  },
+  {
+    "question": "How do you make a checkbox initially selected?",
+    "options": ["selected=\"true\"", "checked", "default=\"on\"", "value=\"on\""],
+    "answer": "b",
+    "explanation": "The `checked` boolean attribute sets the initial state of a checkbox or radio button to selected."
+  },
+  {
+    "question": "What format does `<input type=\"color\">` return the value in?",
+    "options": ["RGB tuple (e.g., 255,0,0)", "HSL string", "Hex code (e.g., #ff0000)", "Color name (e.g., red)"],
+    "answer": "c",
+    "explanation": "Color inputs return a 7-character hexadecimal color value in #RRGGBB format."
+  },
+  {
+    "question": "What is the main benefit of using `<input type=\"url\">` over `type=\"text\"`?",
+    "options": ["It auto-completes URLs", "It provides basic URL format validation", "It shortens URLs", "It fetches page previews"],
+    "answer": "b",
+    "explanation": "`type=\"url\"` validates that the input contains a properly formatted URL (with a valid protocol like http://)."
+  },
+  {
+    "question": "What happens when a browser doesn't support a specific input type like `date`?",
+    "options": ["The page throws an error", "The input is hidden", "It falls back to `type=\"text\"`", "It falls back to `type=\"date\"` with a polyfill"],
+    "answer": "c",
+    "explanation": "Unsupported input types degrade gracefully to `type=\"text\"`, maintaining functionality but losing the native UI widget."
+  }
+]

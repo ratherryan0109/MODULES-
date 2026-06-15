@@ -1,0 +1,147 @@
+{
+  "module": "63-responsive-web-design",
+  "title": "CSS Responsive Web Design",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Who coined the term 'Responsive Web Design'?",
+      "options": ["Tim Berners-Lee", "Ethan Marcotte", "Jeffrey Zeldman", "Aaron Gustafson"],
+      "correctAnswer": 1,
+      "explanation": "Ethan Marcotte coined the term in his 2010 article on A List Apart."
+    },
+    {
+      "id": 2,
+      "question": "Which meta tag is essential for responsive design on mobile devices?",
+      "options": ["<meta charset='UTF-8'>", "<meta name='viewport'>", "<meta name='description'>", "<meta http-equiv='X-UA-Compatible'>"],
+      "correctAnswer": 1,
+      "explanation": "The viewport meta tag controls layout on mobile browsers."
+    },
+    {
+      "id": 3,
+      "question": "What does 'width=device-width' in the viewport meta tag do?",
+      "options": ["Sets the page to desktop width", "Sets page width to device screen width", "Sets the device width to page width", "Disables zooming"],
+      "correctAnswer": 1,
+      "explanation": "It matches the page width to the device's screen width."
+    },
+    {
+      "id": 4,
+      "question": "Which CSS unit is NOT considered a relative unit?",
+      "options": ["%", "em", "px", "vw"],
+      "correctAnswer": 2,
+      "explanation": "px (pixels) is an absolute unit, while %, em, and vw are relative."
+    },
+    {
+      "id": 5,
+      "question": "What does 'max-width: 100%' on an image achieve?",
+      "options": ["Makes image 100px wide", "Prevents image from exceeding its container width", "Stretches image to fill container", "Makes image responsive in height only"],
+      "correctAnswer": 1,
+      "explanation": "It ensures the image scales down to fit its container but never exceeds its natural size."
+    },
+    {
+      "id": 6,
+      "question": "Which CSS feature automatically creates as many columns as will fit?",
+      "options": ["grid-template-columns: repeat(3, 1fr)", "grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))", "grid-template-columns: 1fr 1fr 1fr", "grid-template-columns: auto auto auto"],
+      "correctAnswer": 1,
+      "explanation": "auto-fit with minmax creates flexible columns that wrap automatically."
+    },
+    {
+      "id": 7,
+      "question": "What is the recommended minimum touch target size for accessibility?",
+      "options": ["24x24px", "32x32px", "44x44px", "60x60px"],
+      "correctAnswer": 2,
+      "explanation": "WCAG recommends at least 44x44px for touch targets."
+    },
+    {
+      "id": 8,
+      "question": "Which approach is recommended for responsive CSS?",
+      "options": ["Desktop-first", "Mobile-first", "Tablet-first", "Print-first"],
+      "correctAnswer": 1,
+      "explanation": "Mobile-first builds from smallest screen up, ensuring progressive enhancement."
+    },
+    {
+      "id": 9,
+      "question": "Which CSS property creates fluid typography that scales between minimum and maximum values?",
+      "options": ["calc()", "min()", "max()", "clamp()"],
+      "correctAnswer": 3,
+      "explanation": "clamp(MIN, VAL, MAX) creates fluid typography within bounds."
+    },
+    {
+      "id": 10,
+      "question": "What is the purpose of the 'fr' unit in CSS Grid?",
+      "options": ["Fixed ratio", "Fraction of available space", "Font relative unit", "Frame unit"],
+      "correctAnswer": 1,
+      "explanation": "fr represents a fraction of the available space in the grid container."
+    },
+    {
+      "id": 11,
+      "question": "Which pattern is best for showing/hiding navigation on mobile?",
+      "options": ["Layout Shifter", "Off Canvas", "Column Drop", "Tiny Tweaks"],
+      "correctAnswer": 1,
+      "explanation": "Off Canvas slides navigation off-screen, common in mobile menus."
+    },
+    {
+      "id": 12,
+      "question": "What does 'initial-scale=1.0' in the viewport tag do?",
+      "options": ["Sets initial zoom to 100%", "Disables zoom", "Sets page to full width", "Prevents horizontal scroll"],
+      "correctAnswer": 0,
+      "explanation": "It sets the initial zoom level to 1:1 (no zoom)."
+    },
+    {
+      "id": 13,
+      "question": "Which CSS property helps prevent layout shift from images?",
+      "options": ["object-fit", "aspect-ratio", "display: block", "max-width"],
+      "correctAnswer": 1,
+      "explanation": "aspect-ratio reserves space for images before they load, reducing layout shift."
+    },
+    {
+      "id": 14,
+      "question": "What is the default viewport width for mobile browsers without the viewport meta tag?",
+      "options": ["320px", "375px", "768px", "980px"],
+      "correctAnswer": 3,
+      "explanation": "Without the viewport tag, mobile browsers default to 980px and zoom out."
+    },
+    {
+      "id": 15,
+      "question": "Which media query approach is best for mobile-first design?",
+      "options": ["@media (max-width: ...)", "@media (min-width: ...)", "@media (device-width: ...)", "@media (screen)"],
+      "correctAnswer": 1,
+      "explanation": "min-width queries layer on styles as viewport grows, supporting mobile-first."
+    },
+    {
+      "id": 16,
+      "question": "What is the benefit of 'content-visibility: auto'?",
+      "options": ["Hides content permanently", "Defers rendering of off-screen content", "Animates content", "Makes content printable"],
+      "correctAnswer": 1,
+      "explanation": "It defers rendering of off-screen sections, improving initial load performance."
+    },
+    {
+      "id": 17,
+      "question": "Which responsive pattern involves content reordering at breakpoints?",
+      "options": ["Mostly Fluid", "Column Drop", "Layout Shifter", "Off Canvas"],
+      "correctAnswer": 2,
+      "explanation": "Layout Shifter moves content blocks to different positions at different breakpoints."
+    },
+    {
+      "id": 18,
+      "question": "What is the role of 'object-fit: cover' on images?",
+      "options": ["Stretches image", "Crops image to fill container while maintaining aspect ratio", "Repeats image", "Makes image transparent"],
+      "correctAnswer": 1,
+      "explanation": "object-fit: cover crops the image to fill the container while preserving aspect ratio."
+    },
+    {
+      "id": 19,
+      "question": "Which is NOT a benefit of responsive images with srcset?",
+      "options": ["Bandwidth savings", "Better image quality on retina", "Faster page loads", "Smaller HTML file size"],
+      "correctAnswer": 3,
+      "explanation": "srcset can increase HTML size, but the bandwidth savings from serving correct sizes outweigh this."
+    },
+    {
+      "id": 20,
+      "question": "What is the purpose of 'prefers-reduced-data' media query?",
+      "options": ["Detects reduced motion preference", "Detects data saver mode on devices", "Detects color scheme preference", "Detects screen resolution"],
+      "correctAnswer": 1,
+      "explanation": "prefers-reduced-data detects when the user has enabled data-saving mode."
+    }
+  ]
+}

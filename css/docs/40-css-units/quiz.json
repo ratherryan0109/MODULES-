@@ -1,0 +1,147 @@
+{
+    "module": "40-css-units",
+    "title": "CSS Units",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "Which unit is relative to the root element's font-size?",
+            "options": ["rem", "em", "%", "ch"],
+            "correctAnswer": 0,
+            "explanation": "rem (root em) is always relative to the root element's font-size, making it predictable and not affected by nesting."
+        },
+        {
+            "id": 2,
+            "question": "What issue can occur with nested em units?",
+            "options": ["Compounding font sizes", "Font doesn't render", "Elements overflow", "No issue at all"],
+            "correctAnswer": 0,
+            "explanation": "em compounds when nested — 0.8em inside another 0.8em results in 0.64em total. rem avoids this issue."
+        },
+        {
+            "id": 3,
+            "question": "Which unit represents 1% of the viewport width?",
+            "options": ["vw", "vh", "vmin", "vmax"],
+            "correctAnswer": 0,
+            "explanation": "vw (viewport width) equals 1% of the viewport width. 100vw fills the entire viewport width."
+        },
+        {
+            "id": 4,
+            "question": "What does fr stand for in CSS Grid?",
+            "options": ["Fraction of available space", "Free remaining space", "Fixed ratio", "Flexible row"],
+            "correctAnswer": 0,
+            "explanation": "fr represents a fraction of the available space in a CSS Grid container, distributing only free space after gaps and fixed tracks."
+        },
+        {
+            "id": 5,
+            "question": "Which unit is best for setting a readable line length?",
+            "options": ["ch", "vw", "%", "em"],
+            "correctAnswer": 0,
+            "explanation": "ch (character unit) is based on the width of the '0' character. max-width: 60-70ch creates optimal line length for readability."
+        },
+        {
+            "id": 6,
+            "question": "What unit is commonly recommended for typography in responsive designs?",
+            "options": ["rem", "px", "em", "vh"],
+            "correctAnswer": 0,
+            "explanation": "rem is recommended for typography because it respects user font-size preferences, doesn't compound like em, and provides consistent sizing."
+        },
+        {
+            "id": 7,
+            "question": "Which unit solves the mobile browser 100vh issue with dynamic toolbars?",
+            "options": ["dvh", "svh", "lvh", "All of the above — each handles viewport differently"],
+            "correctAnswer": 3,
+            "explanation": "dvh (dynamic), svh (small), and lvh (large) each handle mobile browser chrome differently: dynamic adjusts, small is smallest possible, large is largest."
+        },
+        {
+            "id": 8,
+            "question": "What does calc(100% - 80px) do?",
+            "options": ["Calculates the remaining width after subtracting 80px", "Adds 80px to 100%", "Subtracts 100% from 80px", "Creates a calculation error"],
+            "correctAnswer": 0,
+            "explanation": "calc() allows mixing units in arithmetic. calc(100% - 80px) is commonly used for full-width layouts with fixed-width sidebars."
+        },
+        {
+            "id": 9,
+            "question": "What does the em unit for width reference?",
+            "options": ["The element's own font-size", "The parent element's font-size", "The root font-size", "The width of the letter 'm'"],
+            "correctAnswer": 0,
+            "explanation": "When used for width, em is relative to the element's own computed font-size, not its parent's font-size."
+        },
+        {
+            "id": 10,
+            "question": "What is the recommended safe value for vw when used alone for font-size?",
+            "options": ["Combine with rem using clamp()", "Use vw alone", "Use vh instead", "Use px instead"],
+            "correctAnswer": 0,
+            "explanation": "vw-sized text doesn't scale with browser zoom. Using clamp(min-rem, preferred-vw, max-rem) ensures accessibility and responsive sizing."
+        },
+        {
+            "id": 11,
+            "question": "What does the min(100%, 1200px) function do?",
+            "options": ["Uses whichever is smaller: 100% or 1200px", "Uses whichever is larger", "Calculates the minimum", "Creates a fixed 1200px width"],
+            "correctAnswer": 0,
+            "explanation": "min() selects the smallest value. min(100%, 1200px) creates a responsive container that fills the width up to 1200px."
+        },
+        {
+            "id": 12,
+            "question": "What is the default font-size of the root element in most browsers?",
+            "options": ["16px", "14px", "12px", "18px"],
+            "correctAnswer": 0,
+            "explanation": "The default root font-size is 16px in most browsers. Users can change this in browser settings, which is why relative units are important."
+        },
+        {
+            "id": 13,
+            "question": "Why is setting html { font-size: 10px } problematic?",
+            "options": ["It breaks user font-size preferences", "It doesn't affect rem", "It's not supported in browsers", "It causes layout shifts"],
+            "correctAnswer": 0,
+            "explanation": "Setting a fixed pixel font-size overrides user preferences. Use font-size: 62.5% instead (10px at default 16px) to maintain accessibility."
+        },
+        {
+            "id": 14,
+            "question": "What does the ex unit represent?",
+            "options": ["The height of the 'x' character in the element's font", "The width of the 'x' character", "The x-height of the viewport", "The element's width"],
+            "correctAnswer": 0,
+            "explanation": "ex is relative to the height of the 'x' character in the element's font. It's useful for vertical measurements in typography."
+        },
+        {
+            "id": 15,
+            "question": "What is the difference between fr and % in CSS Grid?",
+            "options": ["fr distributes only available space after gaps; % includes gaps in calculation", "They are the same", "fr is for rows only", "% doesn't work in Grid"],
+            "correctAnswer": 0,
+            "explanation": "fr distributes free space after accounting for gaps and fixed tracks. Using % for all columns can cause overflow when gaps are present."
+        },
+        {
+            "id": 16,
+            "question": "What does the clamp(1rem, 2.5vw, 2rem) function achieve?",
+            "options": ["Font-size that scales between 1rem and 2rem based on viewport", "Fixed 2.5vw font-size", "Font-size that is always 1rem", "Font-size clamped to 2rem only"],
+            "correctAnswer": 0,
+            "explanation": "clamp() creates fluid typography: minimum 1rem, scales with 2.5vw as preferred, capped at 2rem maximum."
+        },
+        {
+            "id": 17,
+            "question": "When should you use px instead of relative units?",
+            "options": ["For borders, shadows, and fine details that shouldn't scale", "For all measurements", "Only for print", "Never use px"],
+            "correctAnswer": 0,
+            "explanation": "px is appropriate for borders (1px solid), box-shadows, media query breakpoints, and icon sizing — things that shouldn't scale with user preferences."
+        },
+        {
+            "id": 18,
+            "question": "What is the purpose of the lh unit?",
+            "options": ["Relative to the element's line-height", "Relative to viewport height", "Relative to font-size", "Relative to container height"],
+            "correctAnswer": 0,
+            "explanation": "lh is relative to the line-height of the current element, useful for setting heights that match text line heights."
+        },
+        {
+            "id": 19,
+            "question": "What accessibility consideration applies to using vw for typography?",
+            "options": ["vw-based text doesn't scale with browser zoom", "vw text is too large on mobile", "vw is not supported in screen readers", "vw causes color contrast issues"],
+            "correctAnswer": 0,
+            "explanation": "Browser zoom does not scale vw-based text proportionally, which can make text unreadable for users who rely on zoom for accessibility."
+        },
+        {
+            "id": 20,
+            "question": "What is the correct CSS for a responsive container that is 90% width up to 1200px?",
+            "options": ["width: min(90%, 1200px); margin-inline: auto", "width: 90%; max-width: 1200px; margin: 0 auto", "Both are valid approaches", "width: clamp(90%, 1200px)"],
+            "correctAnswer": 2,
+            "explanation": "Both min(90%, 1200px) with margin-inline: auto and width: 90% with max-width: 1200px and margin: 0 auto achieve the same responsive container behavior."
+        }
+    ]
+}

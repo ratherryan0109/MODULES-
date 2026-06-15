@@ -1,0 +1,187 @@
+{
+  "module": "HTML Drag & Drop",
+  "title": "Drag and Drop Interview Questions",
+  "instructions": "Prepare for technical interviews with these 30 questions covering the Drag and Drop API, event lifecycle, DataTransfer, file handling, touch support, and best practices.",
+  "questions": [
+    {
+      "id": 1,
+      "difficulty": "basic",
+      "question": "What is the HTML Drag and Drop API and what does it enable?",
+      "answer": "The Drag and Drop API is a set of HTML5 interfaces that enable native drag-and-drop interactions in the browser. It allows users to click and drag elements, drop them onto targets, transfer data, and handle file drops from the operating system."
+    },
+    {
+      "id": 2,
+      "difficulty": "basic",
+      "question": "How do you make an element draggable?",
+      "answer": "Add the draggable='true' attribute to the HTML element. For images and links, which are draggable by default, you can set draggable='false' to disable dragging."
+    },
+    {
+      "id": 3,
+      "difficulty": "basic",
+      "question": "What are the main events in the Drag and Drop API?",
+      "answer": "Main events: dragstart (on source when drag begins), drag (on source during drag), dragenter (on target when entering), dragover (on target repeatedly), dragleave (on target when leaving), drop (on target when dropped), dragend (on source when operation ends)."
+    },
+    {
+      "id": 4,
+      "difficulty": "basic",
+      "question": "What is the DataTransfer object and what is its purpose?",
+      "answer": "The DataTransfer object holds data being transferred during a drag operation. It provides methods to set/get data (setData/getData), specify drag effects (effectAllowed/dropEffect), access dropped files (files), set custom drag images (setDragImage), and enumerate data types (types)."
+    },
+    {
+      "id": 5,
+      "difficulty": "basic",
+      "question": "Why must you call preventDefault() on the dragover event?",
+      "answer": "Calling preventDefault() on dragover signals that the element is a valid drop target. Without it, the drop event will never fire because the browser does not consider the element a valid target."
+    },
+    {
+      "id": 6,
+      "difficulty": "intermediate",
+      "question": "Explain the difference between effectAllowed and dropEffect.",
+      "answer": "effectAllowed is set on the drag source (in dragstart) and specifies what operations the source allows (none, copy, move, link, etc.). dropEffect is set on the drop target (in dragover/dragenter) and specifies the current operation effect, controlling the cursor icon displayed to the user."
+    },
+    {
+      "id": 7,
+      "difficulty": "intermediate",
+      "question": "How do you handle multiple data formats in a drag operation?",
+      "answer": "Call setData() multiple times with different formats: text/plain for plain text, text/html for HTML content, text/uri-list for URLs. The drop target can then getData() with the appropriate format. The types property lists all available formats."
+    },
+    {
+      "id": 8,
+      "difficulty": "intermediate",
+      "question": "How do you implement file drag and drop from the operating system?",
+      "answer": "Listen for dragover (with preventDefault) and drop events on the target. In the drop handler, access event.dataTransfer.files which is a FileList. Use FileReader to read file contents (e.g., readAsDataURL for images, readAsText for text files)."
+    },
+    {
+      "id": 9,
+      "difficulty": "intermediate",
+      "question": "How do you create a sortable list with drag and drop?",
+      "answer": "Make each list item draggable. On dragstart, store the item's identifier. On dragover/dragenter on other items, determine the drop position (above or below the target based on mouse Y coordinate). On drop, use insertBefore to reorder."
+    },
+    {
+      "id": 10,
+      "difficulty": "intermediate",
+      "question": "What is the dragenter/dragleave bubbling problem and how do you solve it?",
+      "answer": "When a draggable enters a child element inside a drop zone, dragenter fires on the child and dragleave fires on the parent (incorrectly). Solution: track dragenter/dragleave counts, use pointer coordinate checks against the element's bounding rect, or use CSS pointer-events: none on children."
+    },
+    {
+      "id": 11,
+      "difficulty": "intermediate",
+      "question": "How do you implement visual feedback during drag operations?",
+      "answer": "Add CSS classes on dragstart (reducing opacity, scaling), dragenter/dragover (highlighting drop zones with border colors or backgrounds), and remove them on dragleave/dragend. Use transitions for smooth visual changes."
+    },
+    {
+      "id": 12,
+      "difficulty": "intermediate",
+      "question": "How do you set a custom drag image?",
+      "answer": "Call dataTransfer.setDragImage(element, xOffset, yOffset) in dragstart. The element can be an HTML element (visible or hidden), an Image object, or a canvas element. xOffset and yOffset set the cursor position relative to the drag image."
+    },
+    {
+      "id": 13,
+      "difficulty": "intermediate",
+      "question": "How do you restrict drops to specific file types?",
+      "answer": "In the drop handler, check file.type (MIME type) against allowed patterns (e.g., file.type.startsWith('image/')). Check file.size for size limits. Reject invalid files with a user-facing error message."
+    },
+    {
+      "id": 14,
+      "difficulty": "intermediate",
+      "question": "What happens if you try to call getData() outside of drop or dragend events?",
+      "answer": "getData() returns an empty string or behaves unpredictably outside of drop and dragend handlers. The data is only guaranteed to be available during those specific events for security reasons."
+    },
+    {
+      "id": 15,
+      "difficulty": "intermediate",
+      "question": "How do you drag elements between different containers?",
+      "answer": "Use a shared data identifier via setData. Remove the dragged element from its source container in the drop handler (or in dragstart for immediate move). Append it to the target container. Ensure both containers are set up as drop targets."
+    },
+    {
+      "id": 16,
+      "difficulty": "advanced",
+      "question": "How do you implement drag and drop on touch devices?",
+      "answer": "The native API does not support touch. Implement custom touch event handling: touchstart (identify drag element), touchmove (move element with position: fixed, use document.elementFromPoint for hit testing), touchend (finalize drop). Consider libraries like SortableJS or MobileDragDrop for cross-platform support."
+    },
+    {
+      "id": 17,
+      "difficulty": "advanced",
+      "question": "Explain the security restrictions around DataTransfer in cross-origin scenarios.",
+      "answer": "If a draggable element originates from a cross-origin source (e.g., an image from another domain), getData() returns an empty string for security. This prevents unauthorized data extraction. File drops from the OS are not subject to same-origin restrictions."
+    },
+    {
+      "id": 18,
+      "difficulty": "advanced",
+      "question": "How do you sanitize dragged HTML content to prevent XSS?",
+      "answer": "Never trust dragged HTML directly. Use DOMPurify or a sanitization library. Alternatively, prefer text/plain data over text/html, or parse the HTML and strip script tags, event handlers, and javascript: URLs before insertion."
+    },
+    {
+      "id": 19,
+      "difficulty": "advanced",
+      "question": "How do you implement a file upload progress indicator during drag-and-drop?",
+      "answer": "Use XMLHttpRequest or fetch for the upload. Monitor the upload progress event (xhr.upload.onprogress) to calculate percentage. Display a progress bar or percentage text. Handle completion and error states."
+    },
+    {
+      "id": 20,
+      "difficulty": "advanced",
+      "question": "What is the proper way to clean up drag-and-drop event listeners?",
+      "answer": "Use named event handler functions instead of anonymous functions. On component unmount or cleanup, call removeEventListener for each attached event. Use AbortController with addEventListener options for easier cleanup."
+    },
+    {
+      "id": 21,
+      "difficulty": "advanced",
+      "question": "How do you implement a drag-and-drop kanban board?",
+      "answer": "Create columns as drop zones. Make cards draggable. On drop, move the card element to the target column's DOM. Store board state (card-column mapping) and persist it. Handle animations for smooth card movement between columns."
+    },
+    {
+      "id": 22,
+      "difficulty": "advanced",
+      "question": "How would you handle dragging between iframes or browser tabs?",
+      "answer": "The native DnD API supports dragging between iframes from the same origin via the DataTransfer object. For cross-origin iframes or different tabs, use postMessage or a shared storage mechanism alongside a custom drag implementation."
+    },
+    {
+      "id": 23,
+      "difficulty": "advanced",
+      "question": "How do you detect when the dragged element is not over any valid drop target?",
+      "answer": "Monitor drag events and check if no dragenter/dragover events fire within a timeout. Alternatively, track which drop zone the element is over via counters. In dragend, if no drop occurred, provide visual feedback that the drop was cancelled."
+    },
+    {
+      "id": 24,
+      "difficulty": "advanced",
+      "question": "What are the performance implications of complex drag-and-drop operations?",
+      "answer": "Frequent DOM mutations during drag (reordering, class toggling) can cause layout thrashing. Solution: batch DOM updates, use CSS transforms for positioning instead of top/left, use requestAnimationFrame for visual updates, and minimize reflow-triggering operations."
+    },
+    {
+      "id": 25,
+      "difficulty": "advanced",
+      "question": "How do you implement accessibility for drag-and-drop operations?",
+      "answer": "Provide keyboard alternatives (buttons to move items up/down, select from dropdown), use aria-grabbed for current drag state, announce changes via aria-live regions, ensure focus management after drop, and provide clear instructions for assistive technology users."
+    },
+    {
+      "id": 26,
+      "difficulty": "advanced",
+      "question": "How do you handle nested drop zones correctly?",
+      "answer": "Use a drag counter approach: increment on dragenter (regardless of nesting), decrement on dragleave. Only consider the zone 'active' when the counter is > 0. This prevents flickering when moving between parent and child elements."
+    },
+    {
+      "id": 27,
+      "difficulty": "advanced",
+      "question": "How do you use the items property of DataTransfer for advanced drag data?",
+      "answer": "dataTransfer.items is a DataTransferItemList. Each item has kind ('string' or 'file') and type (MIME). For string kinds, use item.getAsString(callback). For file kinds, item.getAsFile() returns a File. This provides more granular control than the files property alone."
+    },
+    {
+      "id": 28,
+      "difficulty": "advanced",
+      "question": "How do you implement a 'copy' vs 'move' modifier (e.g., holding Ctrl to copy)?",
+      "answer": "Check event.ctrlKey or event.metaKey in the drop handler. If the modifier is held, clone the dragged element instead of moving it. Set effectAllowed and dropEffect accordingly to show the correct cursor (copy cursor vs move cursor)."
+    },
+    {
+      "id": 29,
+      "difficulty": "advanced",
+      "question": "How do you implement drag-and-drop for a tree view or hierarchical data?",
+      "answer": "Each tree node is draggable and a drop target. Calculate drop position: above, below, or as child (indented). Use depth tracking to determine valid parent-child relationships. Prevent dropping a parent into its own descendant using ancestry checks."
+    },
+    {
+      "id": 30,
+      "difficulty": "advanced",
+      "question": "How do you test drag-and-drop functionality programmatically?",
+      "answer": "Create and dispatch DragEvent objects: new DragEvent('dragstart', { dataTransfer: new DataTransfer() }). Simulate the full event sequence (dragstart, dragenter, dragover, drop, dragend) with appropriate coordinates. Use testing libraries like Cypress or Playwright for integration tests with real browser DnD."
+    }
+  ]
+}

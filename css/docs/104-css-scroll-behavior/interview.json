@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does scroll-behavior: smooth do?", "answer": "scroll-behavior: smooth makes anchor links and JavaScript scrollTo calls animate smoothly instead of jumping instantly." },
+    { "question": "What is the default value of scroll-behavior?", "answer": "The default value is auto, meaning scrolling jumps instantly to the target position without animation." },
+    { "question": "How do you enable smooth scrolling for the entire page?", "answer": "Set scroll-behavior: smooth; on the html element for global smooth scrolling on all anchor links." },
+    { "question": "What is scroll-padding used for?", "answer": "scroll-padding adds insets to the scrollport, offsetting scroll targets from the edges to account for fixed headers or spacing." },
+    { "question": "How does scroll-padding differ from scroll-margin?", "answer": "scroll-padding is set on the scroll container and adds space inside the scrollport; scroll-margin is on children and adds space outside their snap box." },
+    { "question": "Can scroll-behavior be applied to any scrollable element?", "answer": "Yes, scroll-behavior works on any element with overflow: auto or overflow: scroll that creates a scroll container." },
+    { "question": "What is the syntax for scroll-padding?", "answer": "scroll-padding uses shorthand values like padding: scroll-padding: 60px 0 0 0; adds 60px top offset to the scrollport." },
+    { "question": "Does scroll-behavior: smooth work with JavaScript scrollIntoView?", "answer": "Yes, element.scrollIntoView({ behavior: 'smooth' }) uses the CSS scroll-behavior setting or can specify it inline." },
+    { "question": "What is the relationship between scroll-behavior and scroll snap?", "answer": "scroll-behavior controls the smoothness of scrolling between positions; scroll snap controls where the scroll stops; they can work together." },
+    { "question": "Can scroll-behavior be overridden on specific links?", "answer": "No, scroll-behavior is a container-level setting; individual links cannot override it without JavaScript." }
+  ],
+  "intermediate": [
+    { "question": "How do you use scroll-padding with fixed headers for smooth scroll?", "answer": "Set scroll-padding-top: 80px; on the scroll container so anchor targets scroll to 80px below the top, clearing the fixed header." },
+    { "question": "How does scroll-behavior interact with the prefers-reduced-motion setting?", "answer": "Browsers may ignore scroll-behavior: smooth when prefers-reduced-motion: reduce is active to prevent motion sickness." },
+    { "question": "How do you customize scroll-padding for different breakpoints?", "answer": "Use media queries to adjust scroll-padding: @media (max-width: 768px) { html { scroll-padding-top: 60px; } }" },
+    { "question": "Can scroll-behavior: smooth be animated with CSS transitions?", "answer": "No, scroll-behavior is not animatable; it only controls the scroll method (instant vs smooth)." },
+    { "question": "How does scroll-behavior work with programmatic scrollBy and scrollTo?", "answer": "JavaScript scrollTo({ top: 500, behavior: 'smooth' }) respects the element's scroll-behavior or uses the specified behavior." },
+    { "question": "What happens when both scroll-behavior and scroll snap are on the same container?", "answer": "Scroll snap takes priority; smooth scrolling only applies between snap positions, and snap may interrupt the smooth animation." },
+    { "question": "How do you detect smooth scroll support in browsers?", "answer": "Check CSS.supports('scroll-behavior', 'smooth') or use JavaScript scroll-behavior detection before applying smooth scroll." },
+    { "question": "How does scroll-behavior work in iframe contexts?", "answer": "Each iframe has its own scroll container; scroll-behavior inside an iframe does not affect the parent page scrolling." },
+    { "question": "Can you apply scroll-padding to only one side?", "answer": "Yes, scroll-padding-top, scroll-padding-bottom, etc., target individual sides, similar to physical padding properties." },
+    { "question": "How does scroll-behavior affect browser back/forward navigation?", "answer": "Browser history navigation (back/forward) may not use smooth scrolling; this is browser-dependent." }
+  ],
+  "advanced": [
+    { "question": "How do you create a scroll-based navigation highlight using scroll-padding?", "answer": "Use scroll-padding combined with IntersectionObserver margin to detect which section is in view relative to the scrollport." },
+    { "question": "How does scroll-behavior interact with the CSSOM scroll API?", "answer": "The CSSOM scroll API (window.scroll, element.scrollLeft) bypasses scroll-behavior; smooth scrolling only applies to methods accepting ScrollBehaviorOptions." },
+    { "question": "How do you implement smooth scrolling that respects user preferences?", "answer": "Use @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } } to only enable smooth scrolling when the user permits motion." },
+    { "question": "How do you override scroll-behavior for a specific element with JavaScript?", "answer": "Pass { behavior: 'instant' } in scrollTo options: element.scrollTo({ top: 0, behavior: 'instant' }); overrides the CSS setting." },
+    { "question": "How does scroll-padding interact with CSS logical properties (scroll-padding-inline)?", "answer": "scroll-padding-inline and scroll-padding-block adapt to writing direction, automatically adjusting for RTL or vertical text." },
+    { "question": "How do you handle smooth scrolling in virtual scroll or infinite scroll implementations?", "answer": "Virtual scroll replaces DOM elements; use manual JavaScript scroll management rather than CSS scroll-behavior for smooth scrolling in these contexts." },
+    { "question": "How does scroll-behavior interact with CSS scroll-driven animations?", "answer": "scroll-behavior and scroll-driven animations are independent; smooth scrolling does not affect the timeline of scroll-driven animations." },
+    { "question": "How do you create an anchored scroll effect with both smooth behavior and scroll padding?", "answer": "Set scroll-behavior: smooth and scroll-padding-top on html; all hash links will smoothly scroll with the correct offset for fixed elements." },
+    { "question": "How does scroll-behavior affect performance and frame rate?", "answer": "Smooth scrolling can cause dropped frames on low-end devices if the page has heavy rendering; use judiciously with performance testing." },
+    { "question": "How do you programmatically check the current scroll-behavior of an element?", "answer": "Use getComputedStyle(element).scrollBehavior to read the effective scroll-behavior value as applied by the cascade." }
+  ]
+}

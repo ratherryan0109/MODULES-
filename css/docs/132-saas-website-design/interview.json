@@ -1,0 +1,130 @@
+{
+  "module": "132-saas-website-design",
+  "title": "SaaS Website Design",
+  "beginner": [
+    {
+      "question": "What is a 'SaaS landing page'?",
+      "answer": "A SaaS (Software as a Service) landing page is a marketing site designed to convert visitors into trial users or customers. Key sections: Hero, Features, How It Works, Pricing, Testimonials, FAQ, and Final CTA."
+    },
+    {
+      "question": "What are 'feature sections' on a SaaS website?",
+      "answer": "Feature sections highlight product capabilities, typically in a 3-column grid or alternating rows (text left, screenshot right). Each feature has an icon, title, description, and sometimes an animated demo or screenshot."
+    },
+    {
+      "question": "What is a 'pricing card' in a SaaS site?",
+      "answer": "A pricing card displays a plan name, monthly/yearly price, feature list, and CTA button. Three tiers (Basic, Pro, Enterprise) are common, with the middle/Pro tier highlighted as 'Most Popular'. Cards are arranged in a responsive row."
+    },
+    {
+      "question": "What are 'testimonials' in a SaaS context?",
+      "answer": "Testimonials are quotes from satisfied customers. Each includes the quote, customer name, title, company logo, and sometimes a photo. Display as cards in a grid or a carousel. Social proof builds trust."
+    },
+    {
+      "question": "What is a 'CTA' (Call to Action) section in a SaaS page?",
+      "answer": "The primary CTA section typically appears at the bottom ('Ready to get started?') with a large button and supporting text. It's often the final section before the footer. Use high contrast, generous padding, and persuasive copy."
+    },
+    {
+      "question": "How do you design a responsive hero for a SaaS site?",
+      "answer": "Desktop: headline (large, benefit-focused), subheadline, two CTA buttons (primary: Sign Up Free, secondary: See Demo), and an app screenshot/illustration. Mobile: stack vertically, smaller text, screenshot below text."
+    },
+    {
+      "question": "What is the 'social proof' section?",
+      "answer": "A row of customer logos showing reputable companies that use the product. Use grayscale logos with hover effect (color on hover). Arrange in a responsive flex row with `justify-content: space-around` or `center`."
+    },
+    {
+      "question": "What is a 'feature comparison table'?",
+      "answer": "A table comparing features across pricing plans. Rows are features, columns are plans with checkmark/cross indicators. Desktop: full table. Mobile: horizontal scroll or accordion-style per plan. Highlight the recommended plan."
+    },
+    {
+      "question": "What is the purpose of a 'How It Works' section?",
+      "answer": "A step-by-step explanation (typically 3 steps) showing how the product solves the user's problem. Each step has a number, icon, title, description, and optionally an illustration. Steps are arranged horizontally on desktop, vertically on mobile."
+    },
+    {
+      "question": "What is a 'FAQ section' in a SaaS landing page?",
+      "answer": "Frequently Asked Questions displayed as an accordion. Questions cover pricing, features, support, and technical concerns. Use `aria-expanded` on toggle buttons. Schema markup for FAQ structured data for SEO."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement an animated 'stat counter' for a SaaS site (users, revenue, etc.)?",
+      "answer": "Use IntersectionObserver to detect when stats enter viewport. Animate number counting with JavaScript interval (or CSS `@property` animation for modern browsers). Display large numbers with suffixes (K, M, B) and labels."
+    },
+    {
+      "question": "How do you create a responsive 'testimonial carousel'?",
+      "answer": "Desktop: 2-3 testimonials visible at once in a grid or horizontal scroll. Mobile: single testimonial with dot indicators for navigation. Use `scroll-snap-type: x mandatory; overflow-x: auto;` for CSS-only carousel."
+    },
+    {
+      "question": "How do you design a responsive 'pricing toggle' (monthly vs yearly)?",
+      "answer": "A toggle switch or segmented control at the top of the pricing section. Yearly shows a savings badge (e.g., 'Save 20%'). Use `<input type=\"checkbox\">` for the toggle. Show yearly prices as the default (cheaper)."
+    },
+    {
+      "question": "How do you implement an 'enterprise CTAs' section?",
+      "answer": "A separate callout for enterprise prospects: 'Need more? Talk to sales.' or 'Custom pricing available.' Use a card with different styling (darker/different border). Link to a contact/sales form. Add trust signals (SOC2, GDPR badges)."
+    },
+    {
+      "question": "How do you create an 'integrations showcase' grid?",
+      "answer": "A grid of tool logos showing integrations (Slack, GitHub, Figma, etc.). Use CSS Grid with `auto-fit`/`minmax(120px, 1fr)`. Each integration is a card with logo and name. On hover, show a subtle scale/background effect."
+    },
+    {
+      "question": "How do you design a responsive 'app screenshot' display?",
+      "answer": "Show the app UI inside a device frame (browser window or phone mockup). Use `border-radius` for browser frames, `max-width: 100%; height: auto;` for screenshots. On mobile, show a simplified version without the device frame."
+    },
+    {
+      "question": "How do you implement a 'sticky CTA bar' that appears on scroll?",
+      "answer": "A fixed bar at the bottom that appears when the user scrolls past the hero. Desktop: subtle with smaller text. Mobile: prominent with full-width button. Use CSS `position: fixed; bottom: 0;` with `transform: translateY(100%)` transition."
+    },
+    {
+      "question": "How do you handle responsive typography for SaaS landing pages?",
+      "answer": "Use `clamp()` for fluid sizing: hero heading `clamp(2rem, 5vw, 3.5rem)`, section headings `clamp(1.5rem, 3vw, 2.5rem)`, body `clamp(0.95rem, 1.5vw, 1.125rem)`. Use a consistent modular scale (1.25 ratio)."
+    },
+    {
+      "question": "How do you create a 'feature tour' interactive section?",
+      "answer": "A tab-based or anchor-linked section where clicking a feature name updates a screenshot/demo on the right. Desktop: side-by-side (text tabs left, preview right). Mobile: stacked (tabs on top, preview below)."
+    },
+    {
+      "question": "How do you design a responsive 'footer' for a SaaS site?",
+      "answer": "Multi-column footer: company info + social links, Product links, Resources, Company links. Desktop: 4 columns. Tablet: 2x2 grid. Mobile: single column accordion. Include logo, copyright, and legal links at the bottom."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement 'exit-intent popups' with CSS-only fallback?",
+      "answer": "CSS-only: show a modal after a delay using `:target` or `:checked` hack. Full: JavaScript detects mouse leaving viewport (top). Show a modal with a special offer. Use `prefers-reduced-motion: no-preference` for entrance animation."
+    },
+    {
+      "question": "How do you implement 'A/B testing' styles without duplicating CSS?",
+      "answer": "Use CSS custom properties: `:root { --hero-heading-size: clamp(2rem, 5vw, 4rem); }`. Variants: `.variant-b { --hero-heading-size: clamp(2rem, 5vw, 3.5rem); }`. Toggle variant class on `<html>` based on experiment assignment."
+    },
+    {
+      "question": "How do you create a responsive 'interactive product demo' embed?",
+      "answer": "Use an iframe with the actual product UI in a sandboxed environment. Responsive: `aspect-ratio: 16/9; max-width: 100%;`. Mobile: switch to a simplified interactive tour or video demo. Use `loading=\"lazy\"` for iframe."
+    },
+    {
+      "question": "How do you implement 'scroll-triggered' reveal animations for SaaS sections?",
+      "answer": "Use IntersectionObserver to add a `.visible` class when sections enter viewport. CSS: `.section { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; } .section.visible { opacity: 1; transform: none; }`."
+    },
+    {
+      "question": "How do you create a 'video testimonial' section with responsive thumbnails?",
+      "answer": "A grid of video cards with play button overlay. Desktop: 2-3 columns. Mobile: single column. Each card has a thumbnail, play icon (`position: absolute;` centered), duration badge, and customer name. Click opens a modal with the video."
+    },
+    {
+      "question": "How do you implement a 'live chat' widget with CSS that doesn't interfere with the layout?",
+      "answer": "`position: fixed; bottom: 24px; right: 24px; z-index: 1000;`. The chat bubble button is a small circle. On click, expands to a window (320-380px wide). Use `transform-origin: bottom right; transform: scale(0);` for animation."
+    },
+    {
+      "question": "How do you design a responsive 'case study' card layout?",
+      "answer": "Each case study: company logo, quote, results (stats), and CTA to read full case study. Desktop: 2-column grid with alternating layouts. Mobile: single column cards. Use CSS Grid with `grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))`."
+    },
+    {
+      "question": "How do you implement 'personalized' content sections based on URL parameters?",
+      "answer": "Read URL params with JavaScript (`URLSearchParams`). Toggle CSS classes based on segments: `[data-industry=\"healthcare\"]` shows healthcare-specific testimonial. CSS: `[data-industry] .generic-content { display: none; } [data-industry=\"healthcare\"] .healthcare-content { display: block; }`."
+    },
+    {
+      "question": "How do you handle responsive 'cookie consent' banners?",
+      "answer": "Desktop: bottom bar with description and buttons (Accept All, Reject, Customize). Mobile: bottom sheet that takes up more height. Use `position: fixed; bottom: 0; width: 100%; z-index: 10000;`. Animations respect `prefers-reduced-motion`."
+    },
+    {
+      "question": "How do you implement 'multi-step onboarding wizard' in CSS?",
+      "answer": "Steps displayed as a progress indicator with numbered circles. Each step panel uses `display: none;` with `.active` class showing `display: block;`. Use `width: 100%; overflow: hidden;` on container with horizontal slide transitions."
+    }
+  ]
+}

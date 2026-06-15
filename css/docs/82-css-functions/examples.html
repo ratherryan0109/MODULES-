@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Functions — Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; padding: 2rem; color: #333; }
+    h1 { margin-bottom: 0.5rem; }
+    .subtitle { color: #666; margin-bottom: 2rem; }
+
+    .category { margin-bottom: 2rem; }
+    .category h2 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #3498db; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #3498db; }
+    .card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+    .card code { font-size: 0.75rem; background: #f0f0f0; padding: 0.2rem 0.4rem; border-radius: 4px; display: inline-block; margin-top: 0.3rem; }
+
+    .demo-box { width: 100%; height: 80px; background: linear-gradient(135deg, #e74c3c, #3498db); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; font-weight: bold; margin-bottom: 1rem; }
+    .demo-box.calc { width: calc(100% - 40px); }
+    .demo-box.min { width: min(100%, 200px); }
+    .demo-box.max { width: max(200px, 50%); }
+    .demo-box.clamp { width: clamp(150px, 60%, 400px); }
+
+    .color-demo { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .color-swatch { width: 60px; height: 60px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.6rem; text-align: center; }
+
+    .transform-demo { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem; }
+    .transform-box { width: 80px; height: 80px; background: #3498db; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: bold; }
+    .t-translate { transform: translate(20px, 10px); }
+    .t-scale { transform: scale(1.2); }
+    .t-rotate { transform: rotate(45deg); }
+    .t-skew { transform: skew(10deg, 5deg); }
+    .t-multi { transform: translate(10px, 5px) scale(1.1) rotate(15deg); }
+
+    .gradient-demo { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .grad-box { width: 150px; height: 80px; border-radius: 8px; }
+
+    .attr-demo::after { content: " (" attr(data-count) ")"; font-weight: bold; color: #e74c3c; }
+
+    .env-demo { padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); background: #2ecc71; color: white; border-radius: 8px; padding: 0.5rem 1rem; display: inline-block; }
+  </style>
+</head>
+<body>
+  <h1>CSS Functions</h1>
+  <p class="subtitle">Explore math, color, transform, gradient, and reference functions</p>
+
+  <div class="category">
+    <h2>Math Functions</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>calc()</h3>
+        <div class="demo-box calc">calc(100% - 40px)</div>
+        <p>Perform arithmetic with mixed units.</p>
+        <code>width: calc(100% - 40px);</code>
+      </div>
+      <div class="card">
+        <h3>min()</h3>
+        <div class="demo-box min">min(100%, 200px)</div>
+        <p>Selects the smallest value.</p>
+        <code>width: min(100%, 200px);</code>
+      </div>
+      <div class="card">
+        <h3>max()</h3>
+        <div class="demo-box max">max(200px, 50%)</div>
+        <p>Selects the largest value.</p>
+        <code>width: max(200px, 50%);</code>
+      </div>
+      <div class="card">
+        <h3>clamp()</h3>
+        <div class="demo-box clamp">clamp(150px, 60%, 400px)</div>
+        <p>Constrains a value between min and max.</p>
+        <code>width: clamp(150px, 60%, 400px);</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Color Functions</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>rgb() / rgba()</h3>
+        <div class="color-demo">
+          <div class="color-swatch" style="background:rgb(231,76,60)">rgb</div>
+          <div class="color-swatch" style="background:rgba(52,152,219,0.7)">rgba</div>
+        </div>
+        <code>background: rgb(231, 76, 60);</code>
+      </div>
+      <div class="card">
+        <h3>hsl() / hsla()</h3>
+        <div class="color-demo">
+          <div class="color-swatch" style="background:hsl(200,70%,50%)">hsl</div>
+          <div class="color-swatch" style="background:hsla(120,60%,50%,0.7)">hsla</div>
+        </div>
+        <code>background: hsl(200, 70%, 50%);</code>
+      </div>
+      <div class="card">
+        <h3>hwb()</h3>
+        <div class="color-demo">
+          <div class="color-swatch" style="background:hwb(200 30% 10%)">hwb</div>
+          <div class="color-swatch" style="background:hwb(0 40% 20%)">hwb</div>
+        </div>
+        <code>background: hwb(200 30% 10%);</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Transform Functions</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>translate()</h3>
+        <div class="transform-demo"><div class="transform-box t-translate">translate</div></div>
+        <code>transform: translate(20px, 10px);</code>
+      </div>
+      <div class="card">
+        <h3>scale()</h3>
+        <div class="transform-demo"><div class="transform-box t-scale">scale</div></div>
+        <code>transform: scale(1.2);</code>
+      </div>
+      <div class="card">
+        <h3>rotate()</h3>
+        <div class="transform-demo"><div class="transform-box t-rotate">rotate</div></div>
+        <code>transform: rotate(45deg);</code>
+      </div>
+      <div class="card">
+        <h3>skew()</h3>
+        <div class="transform-demo"><div class="transform-box t-skew">skew</div></div>
+        <code>transform: skew(10deg, 5deg);</code>
+      </div>
+      <div class="card">
+        <h3>Combined</h3>
+        <div class="transform-demo"><div class="transform-box t-multi">multi</div></div>
+        <code>transform: translate(10px, 5px) scale(1.1) rotate(15deg);</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Gradient Functions</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>linear-gradient()</h3>
+        <div class="gradient-demo"><div class="grad-box" style="background:linear-gradient(135deg, #e74c3c, #3498db)"></div></div>
+      </div>
+      <div class="card">
+        <h3>radial-gradient()</h3>
+        <div class="gradient-demo"><div class="grad-box" style="background:radial-gradient(circle, #f39c12, #e74c3c)"></div></div>
+      </div>
+      <div class="card">
+        <h3>conic-gradient()</h3>
+        <div class="gradient-demo"><div class="grad-box" style="background:conic-gradient(#e74c3c, #f39c12, #2ecc71, #3498db, #9b59b6, #e74c3c)"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Reference Functions</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>var()</h3>
+        <p>Reference CSS custom properties with fallback support.</p>
+        <code>color: var(--primary, #3498db);</code>
+      </div>
+      <div class="card">
+        <h3>attr()</h3>
+        <p class="attr-demo" data-count="42">Items count</p>
+        <code>content: attr(data-count);</code>
+      </div>
+      <div class="card">
+        <h3>url()</h3>
+        <p>Reference URLs for backgrounds, fonts, etc.</p>
+        <code>background: url('image.png');</code>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "module": "CSS Scale",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Hover Zoom Card",
+      "description": "Create a card that zooms to 1.1x when hovered.",
+      "hint": "Use :hover with scale: 1.1 and transition.",
+      "expected_outcome": "Card smoothly enlarges on hover.",
+      "solution": { "css": ".card { transition: scale 0.3s ease; } .card:hover { scale: 1.1; }" }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Active Press Button",
+      "description": "Create a button that scales down to 0.9 when pressed.",
+      "hint": "Use :active pseudo-class with scale: 0.9.",
+      "expected_outcome": "Button shrinks on press, returns on release.",
+      "solution": { "css": ".btn { transition: scale 0.1s ease; } .btn:active { scale: 0.9; }" }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Image Gallery with Hover Zoom",
+      "description": "Create a grid of images that enlarge on hover with a smooth transition.",
+      "hint": "Set overflow: hidden on parent, scale image inside on hover.",
+      "expected_outcome": "Images zoom in smoothly on hover without overflowing.",
+      "solution": { "css": ".gallery-item { overflow: hidden; } .gallery-item img { transition: scale 0.4s ease; } .gallery-item:hover img { scale: 1.15; }" }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Pulse Animation",
+      "description": "Create a pulsing circle that scales up and down continuously.",
+      "hint": "Use @keyframes alternating scale values.",
+      "expected_outcome": "Circle pulses (grows and shrinks) rhythmically.",
+      "solution": { "css": "@keyframes pulse { 0%, 100% { scale: 1; } 50% { scale: 1.2; } } .pulse { animation: pulse 2s ease-in-out infinite; }" }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Bounce Reveal Animation",
+      "description": "Create an element that starts at scale 0 and bounces to scale 1 with an elastic timing function.",
+      "hint": "Use a custom cubic-bezier with scale from 0 to 1.",
+      "expected_outcome": "Element bounces into view from zero size.",
+      "solution": { "css": "@keyframes bounceIn { 0% { scale: 0; } 50% { scale: 1.15; } 70% { scale: 0.95; } 100% { scale: 1; } } .el { animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); }" }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "88-challenge-1",
+    "title": "Basic JavaScript Internationalization",
+    "description": "Write a function that demonstrates the core concepts of JavaScript Internationalization. Focus on implementing Intl.DateTimeFormat correctly.",
+    "difficulty": "easy",
+    "starterCode": "function basic_88() {\n  // Implement intl.datetimeformat\n  // Return a meaningful result\n  return \"Implement JavaScript Internationalization\";\n}",
+    "solution": "function basic_88() {\n  const concepts = [\"Intl.DateTimeFormat\", \"Intl.NumberFormat\", \"Intl.Collator for sorting\"];\n  return concepts.map(c => c.toUpperCase());\n}"
+  },
+  {
+    "id": "88-challenge-2",
+    "title": "Intermediate JavaScript Internationalization",
+    "description": "Create a function that uses Intl.DateTimeFormat and Intl.NumberFormat together. Handle edge cases and validate inputs.",
+    "difficulty": "medium",
+    "starterCode": "function intermediate_88(input) {\n  // Process input using intl.datetimeformat\n  // and intl.numberformat\n  // Handle edge cases\n  if (!input) return [];\n  return input;\n}",
+    "solution": "function intermediate_88(input) {\n  if (!Array.isArray(input)) return [];\n  return input\n    .filter(item => item != null)\n    .map(item => ({ original: item, processed: String(item).toUpperCase() }));\n}"
+  },
+  {
+    "id": "88-challenge-3",
+    "title": "Advanced JavaScript Internationalization Project",
+    "description": "Build a small application that applies Intl.DateTimeFormat, Intl.NumberFormat, Intl.Collator for sorting in a real-world scenario. Include error handling and input validation.",
+    "difficulty": "hard",
+    "starterCode": "class JavaScriptInternationalization {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    // Add item with validation\n  }\n  \n  process() {\n    // Process stored data using intl.datetimeformat\n  }\n}",
+    "solution": "class JavaScriptInternationalization {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    if (item == null) throw new Error('Invalid item');\n    this.data.push(item);\n  }\n  \n  process() {\n    return this.data\n      .filter(d => d != null)\n      .map(d => ({ value: d, timestamp: Date.now() }));\n  }\n  \n  clear() {\n    this.data = [];\n  }\n}"
+  },
+  {
+    "id": "88-challenge-4",
+    "title": "Debugging JavaScript Internationalization",
+    "description": "The following code has bugs related to Intl.DateTimeFormat. Find and fix them.",
+    "difficulty": "medium",
+    "starterCode": "// Fix the bugs in this code\nfunction processData88(items) {\n  let result = [];\n  for (var i = 0; i < items.length; i++); {\n    result.push(items[i].toUpperCase());\n  }\n  return result;\n}\n\nconsole.log(processData88([\"a\", \"b\", \"c\"]));",
+    "solution": "function processData88(items) {\n  return items.map(item => item.toUpperCase());\n}\n\nconsole.log(processData88([\"a\", \"b\", \"c\"]));\n// Expected: [\"A\", \"B\", \"C\"]"
+  },
+  {
+    "id": "88-challenge-5",
+    "title": "Refactoring JavaScript Internationalization",
+    "description": "Refactor the following code to use modern JavaScript patterns with Intl.DateTimeFormat and Intl.NumberFormat.",
+    "difficulty": "hard",
+    "starterCode": "// Refactor this code\nfunction oldWay88(arr) {\n  var temp = [];\n  for (var i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) {\n      temp.push(arr[i] * 2);\n    }\n  }\n  var sum = 0;\n  for (var j = 0; j < temp.length; j++) {\n    sum += temp[j];\n  }\n  return sum;\n}",
+    "solution": "function refactored88(arr) {\n  return arr\n    .filter(n => n % 2 === 0)\n    .map(n => n * 2)\n    .reduce((sum, n) => sum + n, 0);\n}"
+  }
+]

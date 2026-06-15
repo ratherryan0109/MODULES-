@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reduced Motion Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #f8f9fa; color: #222; overflow-x: hidden; }
+    h1 { margin-bottom: 0.5rem; }
+    .subtitle { color: #666; margin-bottom: 2rem; }
+    section { background: #fff; border: 1px solid #dee2e6; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+    h2 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #eee; }
+    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .bad { border-left: 4px solid #e74c3c; padding-left: 1rem; }
+    .good { border-left: 4px solid #2ecc71; padding-left: 1rem; }
+
+    /* Decorative bounce animation */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-10px) rotate(2deg); }
+      66% { transform: translateY(5px) rotate(-1deg); }
+    }
+    @keyframes progressBar {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    /* Bad: all animations without respect */
+    .bounce-box { animation: bounce 1s ease-in-out infinite; width: 100px; height: 100px; background: #e74c3c; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+    .shake-box { animation: shake 0.5s ease-in-out infinite; width: 100px; height: 100px; background: #f39c12; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+    .float-element { animation: float 3s ease-in-out infinite; }
+
+    /* Good functional animations */
+    .loader { width: 40px; height: 40px; border: 4px solid #eee; border-top-color: #0066cc; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .progress-bar { width: 300px; height: 12px; background: #eee; border-radius: 6px; overflow: hidden; }
+    .progress-fill { height: 100%; background: #0066cc; border-radius: 6px; animation: progressBar 3s ease-in-out infinite; }
+
+    /* Notification animation - bad vs good */
+    .notification { padding: 1rem; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 8px; display: flex; align-items: center; gap: 0.75rem; }
+    .notification-slide { animation: slideIn 0.5s ease-out; }
+    @media (prefers-reduced-motion: reduce) {
+      .notification-slide { animation: fadeIn 0.3s ease-out; }
+    }
+
+    /* Parallax */
+    .parallax-container { height: 200px; overflow: hidden; border-radius: 8px; position: relative; background: linear-gradient(135deg, #667eea, #764ba2); }
+    .parallax-content { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.5rem; font-weight: 700; }
+
+    /* Hover effects */
+    .card { display: inline-block; padding: 1.5rem; background: #fff; border: 2px solid #dee2e6; border-radius: 8px; transition: all 0.3s; cursor: default; }
+    .card:hover { transform: scale(1.05); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    @media (prefers-reduced-motion: reduce) {
+      .card:hover { transform: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    }
+
+    /* Manual toggle */
+    .motion-toggle { position: fixed; top: 1rem; right: 1rem; z-index: 1000; padding: 0.5rem 1rem; border: 2px solid #333; border-radius: 6px; background: #fff; cursor: pointer; font-weight: 600; }
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    /* Skeleton screen */
+    @keyframes shimmer {
+      0% { background-position: -200px 0; }
+      100% { background-position: calc(200px + 100%) 0; }
+    }
+    .skeleton { display: inline-block; height: 1em; background: #eee; border-radius: 4px; position: relative; overflow: hidden; }
+    .skeleton::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); background-size: 200px 100%; animation: shimmer 1.5s infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .skeleton::after { animation: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bounce-box, .shake-box, .float-element { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <button class="motion-toggle" id="motion-toggle" onclick="toggleMotion()">⚙️ Motion: ON</button>
+
+  <h1>🎬 Reduced Motion & Accessible Animations</h1>
+  <p class="subtitle">Learn how to design animations that respect user preferences</p>
+
+  <section>
+    <h2>1. Decorative vs Functional Animation</h2>
+    <div class="demo-grid">
+      <div class="bad">
+        <h3>❌ Decorative (Remove)</h3>
+        <div style="display:flex;gap:1rem;align-items:center;">
+          <div class="bounce-box">Bounce</div>
+          <div class="shake-box">Shake</div>
+          <div style="display:inline-block;" class="float-element">🤹 Floating</div>
+        </div>
+        <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">Pure decoration — should be removed when motion is reduced.</p>
+      </div>
+      <div class="good">
+        <h3>✅ Functional (Keep)</h3>
+        <div style="display:flex;gap:2rem;align-items:center;flex-wrap:wrap;">
+          <div class="loader"></div>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <div style="display:flex;gap:0.5rem;">
+            <div style="width:12px;height:12px;background:#0066cc;border-radius:50%;animation:pulse 1.5s infinite;animation-delay:0s;"></div>
+            <div style="width:12px;height:12px;background:#0066cc;border-radius:50%;animation:pulse 1.5s infinite;animation-delay:0.3s;"></div>
+            <div style="width:12px;height:12px;background:#0066cc;border-radius:50%;animation:pulse 1.5s infinite;animation-delay:0.6s;"></div>
+          </div>
+        </div>
+        <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">Loading indicators and progress bars serve a purpose — keep them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Notification Animation: Slide vs Fade</h2>
+    <div class="demo-grid">
+      <div class="bad">
+        <h3>❌ Slide In (No Respect)</h3>
+        <div class="notification" style="animation:slideIn 0.5s ease-out;">
+          <span>🔔</span> New message received!
+        </div>
+      </div>
+      <div class="good">
+        <h3>✅ Fade In (Respects Preference)</h3>
+        <div class="notification notification-slide">
+          <span>🔔</span> New message received!
+        </div>
+        <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">With reduced motion, this fades in instead of sliding.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Parallax: Fixed vs Scroll</h2>
+    <div class="parallax-container">
+      <div class="parallax-content" style="background-attachment:fixed;">Parallax Background</div>
+    </div>
+    <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">With reduced motion, background-attachment changes to scroll (static).</p>
+  </section>
+
+  <section>
+    <h2>4. Hover Effects: Scale vs Static</h2>
+    <div style="display:flex;gap:2rem;">
+      <div class="card">Hover over me</div>
+      <div class="card">Me too!</div>
+    </div>
+    <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">With reduced motion, hover scaling is replaced by a subtle shadow.</p>
+  </section>
+
+  <section>
+    <h2>5. Skeleton Loading</h2>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;max-width:400px;">
+      <div class="skeleton" style="width:60%;height:1.5rem;"></div>
+      <div class="skeleton" style="width:90%;height:1rem;"></div>
+      <div class="skeleton" style="width:75%;height:1rem;"></div>
+      <div class="skeleton" style="width:40%;height:1rem;"></div>
+    </div>
+    <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">The shimmer effect stops with reduced motion, leaving static placeholder blocks.</p>
+  </section>
+
+  <section>
+    <h2>6. Full Reduction Demo</h2>
+    <p style="margin-bottom:1rem;">
+      Enable "Reduce motion" in your OS settings or use the manual toggle button (top right).
+      All animations on this page will respond accordingly.
+    </p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <div style="width:80px;height:80px;background:#e74c3c;border-radius:50%;animation:pulse 1s infinite;"></div>
+      <div style="width:80px;height:80px;background:#3498db;border-radius:12px;animation:spin 2s linear infinite;"></div>
+      <div style="width:80px;height:80px;background:#2ecc71;border-radius:12px;animation:bounce 1s ease-in-out infinite;"></div>
+    </div>
+  </section>
+
+  <footer style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:0.875rem;color:#888;">
+    <p>System settings: Windows → Ease of Access → Display → Reduce motion. macOS → Accessibility → Display → Reduce motion.</p>
+  </footer>
+
+  <script>
+    function toggleMotion() {
+      document.body.classList.toggle('reduce-motion');
+      document.getElementById('motion-toggle').textContent =
+        document.body.classList.contains('reduce-motion') ? '⚙️ Motion: OFF' : '⚙️ Motion: ON';
+    }
+
+    // Detect system preference
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motionQuery.matches) {
+      document.body.classList.add('reduce-motion');
+    }
+  </script>
+</body>
+</html>

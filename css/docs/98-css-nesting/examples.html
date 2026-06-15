@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Nesting - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    p { color: #475569; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-output { padding: 1.5rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; flex: 1; min-width: 200px; }
+    .card .title { color: #0f172a; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .card .desc { color: #64748b; font-size: 0.9rem; }
+    .card.featured { border-color: #3b82f6; border-width: 2px; }
+    .card.featured .title { color: #3b82f6; }
+
+    .btn { display: inline-block; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; }
+    .btn-primary { background: #3b82f6; color: white; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-outline { background: transparent; color: #8b5cf6; border: 2px solid #8b5cf6; }
+    .btn-outline:hover { background: #8b5cf6; color: white; }
+
+    .list-demo { width: 100%; }
+    .list-demo ul { list-style: none; padding: 0; }
+    .list-demo ul li { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; }
+    .list-demo ul li:last-child { border-bottom: none; }
+    .list-demo ul li::before { content: '\2713'; color: #10b981; font-weight: 700; }
+    .list-demo ul li:hover { background: #f1f5f9; }
+
+    .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; width: 100%; }
+    .media-grid .item { background: #f1f5f9; border-radius: 8px; padding: 20px; text-align: center; }
+    .media-grid .item h4 { color: #0f172a; margin-bottom: 4px; }
+    .media-grid .item p { font-size: 0.85rem; }
+    .media-grid .item.featured { background: #dbeafe; border: 1px solid #3b82f6; }
+    .media-grid .item.featured h4 { color: #3b82f6; }
+
+    .form-group { width: 100%; max-width: 320px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.9rem; color: #0f172a; }
+    .form-group input { width: 100%; padding: 8px 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem; transition: border-color 0.2s; }
+    .form-group input:focus { outline: none; border-color: #3b82f6; }
+    .form-group .hint { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
+
+    .nesting-toggle { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-top: 0.5rem; text-align: center; }
+    .nesting-toggle a { color: #3b82f6; text-decoration: none; font-weight: 600; }
+    .nesting-toggle a:hover { text-decoration: underline; }
+    .nesting-toggle a::after { content: ' \2192'; }
+  </style>
+</head>
+<body>
+  <h1>CSS Nesting</h1>
+
+  <div class="demo-section">
+    <h2>1. Component: Card with Elements &amp; Modifier</h2>
+    <p>Using nested selectors to style child elements and modifier classes inside a card block.</p>
+    <div class="demo-output">
+      <div class="card">
+        <div class="title">Standard Card</div>
+        <div class="desc">A regular card with no modifier.</div>
+      </div>
+      <div class="card featured">
+        <div class="title">Featured Card</div>
+        <div class="desc">This card has the featured modifier — note the blue border and title.</div>
+      </div>
+    </div>
+    <pre><code>.card {
+  border: 1px solid #e2e8f0; border-radius: 12px;
+  padding: 20px;
+
+  .title { color: #0f172a; font-size: 1.1rem; font-weight: 700; }
+  .desc  { color: #64748b; font-size: 0.9rem; }
+
+  &.featured {
+    border-color: #3b82f6; border-width: 2px;
+    .title { color: #3b82f6; }
+  }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>2. Nested Pseudo-Classes &amp; Compound Selectors</h2>
+    <p>Buttons with <code>&amp;:hover</code> and <code>&amp;.outline</code> demonstrate nesting with the parent selector.</p>
+    <div class="demo-output">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-outline">Outline</button>
+    </div>
+    <pre><code>.btn {
+  padding: 10px 20px; border-radius: 8px; border: none;
+  font-weight: 600; transition: all 0.2s;
+
+  &amp;:hover { /* &amp; = .btn */ }
+}
+
+.btn-primary {
+  background: #3b82f6; color: white;
+  &amp;:hover { background: #1d4ed8; }
+}
+
+.btn-outline {
+  background: transparent; color: #8b5cf6;
+  border: 2px solid #8b5cf6;
+  &amp;:hover { background: #8b5cf6; color: white; }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>3. Nested Pseudo-Elements</h2>
+    <p>Using <code>&amp;::before</code> and <code>&amp;:hover</code> inside a list component creates clean, scoped styling.</p>
+    <div class="demo-output">
+      <div class="list-demo">
+        <ul>
+          <li>Responsive design</li>
+          <li>CSS Grid &amp; Flexbox</li>
+          <li>Modern animations</li>
+          <li>Cross-browser support</li>
+        </ul>
+      </div>
+    </div>
+    <pre><code>ul {
+  list-style: none; padding: 0;
+
+  li {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e2e8f0;
+
+    &amp;::before { content: '\2713'; color: #10b981; }
+    &amp;:last-child { border-bottom: none; }
+    &amp;:hover { background: #f1f5f9; }
+  }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>4. Nested at-rules (@media)</h2>
+    <p>Media queries can be nested directly inside a selector, keeping responsive styles colocated.</p>
+    <div class="demo-output" style="flex-direction:column;">
+      <div class="media-grid">
+        <div class="item"><h4>Card A</h4><p>Resize browser to see grid collapse.</p></div>
+        <div class="item featured"><h4>Card B</h4><p>Featured item with nested media query support.</p></div>
+        <div class="item"><h4>Card C</h4><p>Last item in the responsive grid.</p></div>
+      </div>
+    </div>
+    <pre><code>.media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+
+  .item {
+    background: #f1f5f9; border-radius: 8px; padding: 20px;
+
+    &amp;.featured {
+      background: #dbeafe; border: 1px solid #3b82f6;
+    }
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr; /* nested media query */
+  }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>5. Nested Form with States</h2>
+    <p>Form elements with nested <code>:focus</code>, <code>:hover</code>, and adjacent sibling selectors.</p>
+    <div class="demo-output">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        <div class="hint">We'll never share your details.</div>
+      </div>
+    </div>
+    <pre><code>.form-group {
+  label { display: block; font-weight: 600; margin-bottom: 4px; }
+  input {
+    width: 100%; padding: 8px 12px;
+    border: 2px solid #e2e8f0; border-radius: 6px;
+    &amp;:focus { outline: none; border-color: #3b82f6; }
+  }
+  .hint { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>6. Nested Link Styles</h2>
+    <p>All link states (link, hover, active, focus) nested inside the parent selector for clean organization.</p>
+    <div class="demo-output">
+      <div class="nesting-toggle">
+        <a href="#">Learn more about CSS Nesting</a>
+      </div>
+    </div>
+    <pre><code>.link-group {
+  a {
+    color: #3b82f6; text-decoration: none; font-weight: 600;
+
+    &amp;:hover { text-decoration: underline; }
+    &amp;:active { color: #1d4ed8; }
+    &amp;:focus { outline: 2px solid #93c5fd; }
+    &amp;::after { content: ' \2192'; }
+  }
+}</code></pre>
+  </div>
+</body>
+</html>

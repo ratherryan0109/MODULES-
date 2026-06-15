@@ -1,0 +1,147 @@
+{
+  "module": "50-flex-basis",
+  "title": "Flex Basis",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `flex-basis` set?",
+      "options": ["Initial main-axis size before grow/shrink", "Final size after grow/shrink", "Minimum size", "Maximum size"],
+      "correctAnswer": 0,
+      "explanation": "`flex-basis` sets the initial size of a flex item along the main axis before any growing or shrinking occurs."
+    },
+    {
+      "id": 2,
+      "question": "What is the default value of `flex-basis`?",
+      "options": ["0", "auto", "100%", "1fr"],
+      "correctAnswer": 1,
+      "explanation": "The default is `auto`, which uses the item's content size or its width/height property."
+    },
+    {
+      "id": 3,
+      "question": "In `flex-direction: row`, what dimension does `flex-basis` control?",
+      "options": ["Width", "Height", "Both", "Neither"],
+      "correctAnswer": 0,
+      "explanation": "In row direction, flex-basis controls the width. In column direction, it controls the height."
+    },
+    {
+      "id": 4,
+      "question": "What does `flex-basis: 0` with `flex-grow: 1` achieve?",
+      "options": ["Equal-width columns regardless of content", "Content-sized columns", "Fixed-width columns", "Minimum-width columns"],
+      "correctAnswer": 0,
+      "explanation": "`flex-basis: 0` ignores content size; with `flex-grow: 1`, all items grow equally from zero."
+    },
+    {
+      "id": 5,
+      "question": "What determines the wrapping point in `flex: 1 1 300px`?",
+      "options": ["300px (flex-basis)", "1 (flex-grow)", "1 (flex-shrink)", "Content size"],
+      "correctAnswer": 0,
+      "explanation": "The flex-basis (300px) determines the ideal size and wrapping point in a flex-wrap layout."
+    },
+    {
+      "id": 6,
+      "question": "When flex-basis is set to auto and no explicit width is given, what size does the item use?",
+      "options": ["Its content size (shrink-to-fit)", "0", "100% of container", "50% of container"],
+      "correctAnswer": 0,
+      "explanation": "With flex-basis: auto and no width, the item sizes to its content (shrink-to-fit)."
+    },
+    {
+      "id": 7,
+      "question": "What happens when you set both width and flex-basis on a flex item?",
+      "options": ["flex-basis overrides width (in row direction)", "width overrides flex-basis", "They are added together", "Both apply equally"],
+      "correctAnswer": 0,
+      "explanation": "In a flex container, flex-basis takes precedence over width (or height in column direction)."
+    },
+    {
+      "id": 8,
+      "question": "What does flex-basis: content do?",
+      "options": ["Sizes the item based on its content", "Sizes to 0", "Sizes to 100%", "Sizes to auto"],
+      "correctAnswer": 0,
+      "explanation": "flex-basis: content sizes the item based on its content, similar to auto but without considering width."
+    },
+    {
+      "id": 9,
+      "question": "In flex-direction: column, what CSS property does flex-basis replace?",
+      "options": ["height", "width", "min-height", "max-height"],
+      "correctAnswer": 0,
+      "explanation": "In a column layout, flex-basis controls the height, effectively replacing the height property."
+    },
+    {
+      "id": 10,
+      "question": "What is the difference between flex-basis: 0 and flex-basis: 0px?",
+      "options": ["They are equivalent (both mean 0 length)", "0px is invalid", "0 is a keyword, 0px is a length", "0 means auto, 0px means 0"],
+      "correctAnswer": 0,
+      "explanation": "In CSS, 0 is length-unitless. flex-basis: 0 and flex-basis: 0px are functionally identical."
+    },
+    {
+      "id": 11,
+      "question": "What does the shorthand flex: 1 set flex-basis to?",
+      "options": ["0", "auto", "100%", "content"],
+      "correctAnswer": 0,
+      "explanation": "flex: 1 expands to flex-grow: 1, flex-shrink: 1, flex-basis: 0. The basis is set to 0."
+    },
+    {
+      "id": 12,
+      "question": "What happens if flex-basis is larger than the container?",
+      "options": ["Items overflow or shrink depending on flex-shrink", "Items collapse to 0", "Container expands", "Items wrap automatically"],
+      "correctAnswer": 0,
+      "explanation": "If total flex-basis exceeds container size, flex-shrink determines how items reduce, or they overflow."
+    },
+    {
+      "id": 13,
+      "question": "Can flex-basis use percentage values?",
+      "options": ["Yes, percentages are valid and relative to the container's main-axis size", "No, percentages are invalid", "Only in grid layouts", "Only values 0-100%"],
+      "correctAnswer": 0,
+      "explanation": "flex-basis accepts percentages, which are relative to the flex container's main axis size."
+    },
+    {
+      "id": 14,
+      "question": "How does flex-basis: auto differ from flex-basis: 0?",
+      "options": ["auto uses content/width size; 0 starts from zero regardless of content", "auto = 0; they're identical", "0 uses content size; auto starts from zero", "auto is not valid"],
+      "correctAnswer": 0,
+      "explanation": "auto respects the item's content and width properties; 0 ignores them and starts from zero."
+    },
+    {
+      "id": 15,
+      "question": "What is the effect of setting flex-basis to a very large value?",
+      "options": ["The item tries to take that much space, but grow/shrink and container limits apply", "The item will always be that size", "It overflows the page", "The browser ignores it"],
+      "correctAnswer": 0,
+      "explanation": "flex-basis is the preferred size. The actual size depends on grow/shrink and container constraints."
+    },
+    {
+      "id": 16,
+      "question": "With flex-wrap: wrap, what role does flex-basis play?",
+      "options": ["It determines the minimum width before an item wraps to the next line", "It has no effect with wrap", "It determines the maximum width", "It sets the gap"],
+      "correctAnswer": 0,
+      "explanation": "With wrap enabled, flex-basis acts as an ideal width trigger for wrapping items to new lines."
+    },
+    {
+      "id": 17,
+      "question": "What does flex-basis: max-content do?",
+      "options": ["Sizes the item to the width needed by its content without wrapping", "Sizes to 0", "Sizes to 100%", "Sizes to container width"],
+      "correctAnswer": 0,
+      "explanation": "max-content makes the item as wide as its content requires without any line wrapping."
+    },
+    {
+      "id": 18,
+      "question": "If you set flex-basis on a flex item and also set width, which wins?",
+      "options": ["flex-basis wins (in row direction)", "width wins", "They are averaged", "The larger value wins"],
+      "correctAnswer": 0,
+      "explanation": "When an element is a flex item, flex-basis takes priority over the width property in row direction."
+    },
+    {
+      "id": 19,
+      "question": "What is the effect of flex-basis: fit-content?",
+      "options": ["Sizes the item to fit its content, clamped by min/max width", "Sizes to the container width", "Sizes to 0", "Sizes to auto"],
+      "correctAnswer": 0,
+      "explanation": "fit-content sizes the item to its content, but within the bounds of min-width and max-width."
+    },
+    {
+      "id": 20,
+      "question": "What's the difference between setting width: 200px and flex-basis: 200px on a flex item?",
+      "options": ["flex-basis can be overridden by grow/shrink; width cannot be overridden by flex properties", "They are identical", "width is ignored in flex containers", "flex-basis is ignored in flex containers"],
+      "correctAnswer": 0,
+      "explanation": "When flex-grow/shrink are active, flex-basis can change. A set width is more rigid but flex-basis still takes precedence as the starting point."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Flex Shorthand - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .row { display: flex; background: #f1f5f9; padding: 0.5rem; border-radius: 6px; gap: 0.5rem; }
+    .row div { color: white; padding: 1rem; border-radius: 4px; text-align: center; }
+    .row div:nth-child(1) { background: #06b6d4; }
+    .row div:nth-child(2) { background: #f59e0b; }
+    .row div:nth-child(3) { background: #10b981; }
+    .row div:nth-child(4) { background: #8b5cf7; }
+    .label { font-size: 0.8rem; color: #64748b; margin-top: 0.25rem; font-family: monospace; }
+    table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 0.875rem; }
+    th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    th { background: #1e293b; color: #e2e8f0; font-weight: 600; }
+    tr:nth-child(even) { background: #f8fafc; }
+    code.inline { background: #e2e8f0; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Flex Shorthand - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: flex: initial (0 1 auto)</h2>
+    <p>The default. Items are content-sized, can shrink, but do not grow.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:initial;">Short</div>
+        <div style="flex:initial;">Longer content here</div>
+        <div style="flex:initial;">Medium</div>
+      </div>
+      <div class="label">Content-sized, shrink allowed, no grow</div>
+    </div>
+    <pre><code>.item { flex: initial; }
+/* flex-grow: 0, flex-shrink: 1, flex-basis: auto */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: flex: auto (1 1 auto)</h2>
+    <p>Items are content-sized but can both grow and shrink to fill the container.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:auto;">Content</div>
+        <div style="flex:auto;">Grows to fill</div>
+        <div style="flex:auto;">Takes space</div>
+      </div>
+      <div class="label">Content-sized base, grows &amp; shrinks</div>
+    </div>
+    <pre><code>.item { flex: auto; }
+/* flex-grow: 1, flex-shrink: 1, flex-basis: auto */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: flex: none (0 0 auto)</h2>
+    <p>Items are fully inflexible — they stay at their content size regardless of container space.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:none;">Fixed</div>
+        <div style="flex:none;">No Grow</div>
+        <div style="flex:none;">No Shrink</div>
+      </div>
+      <div class="label">No flexibility at all — content-sized, no grow, no shrink</div>
+    </div>
+    <pre><code>.item { flex: none; }
+/* flex-grow: 0, flex-shrink: 0, flex-basis: auto */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: flex: 1 (1 1 0) — Equal Columns</h2>
+    <p>The most common pattern. All items get equal width regardless of content.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1;">1</div>
+        <div style="flex:1;">2</div>
+        <div style="flex:1;">3</div>
+        <div style="flex:1;">4</div>
+      </div>
+      <div class="label">All items share equal space</div>
+    </div>
+    <pre><code>.item { flex: 1; }
+/* flex-grow: 1, flex-shrink: 1, flex-basis: 0 */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Proportional (flex: 2 vs flex: 1)</h2>
+    <p>Different values create proportional layouts — great for sidebars.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1; background:#8b5cf7;">flex: 1</div>
+        <div style="flex:2; background:#06b6d4;">flex: 2</div>
+        <div style="flex:1; background:#8b5cf7;">flex: 1</div>
+      </div>
+      <div class="label">1 : 2 : 1 proportion</div>
+    </div>
+    <pre><code>.sidebar { flex: 1; }  /* 25% */
+.content { flex: 2; }  /* 50% (main area) */
+</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: flex: 1 1 300px (Responsive Cards)</h2>
+    <p>Combined with <code>flex-wrap: wrap</code>, this creates responsive cards without media queries.</p>
+    <div class="demo-output">
+      <div style="display:flex; flex-wrap:wrap; gap:0.75rem; background:#f1f5f9; padding:0.75rem; border-radius:6px;">
+        <div style="flex:1 1 250px; background:#06b6d4; color:white; padding:1.5rem; border-radius:6px; text-align:center;">Card</div>
+        <div style="flex:1 1 250px; background:#f59e0b; color:white; padding:1.5rem; border-radius:6px; text-align:center;">Card</div>
+        <div style="flex:1 1 250px; background:#10b981; color:white; padding:1.5rem; border-radius:6px; text-align:center;">Card</div>
+      </div>
+      <div class="label">flex: 1 1 250px — minimum 250px, grows, wraps</div>
+    </div>
+    <pre><code>.card { flex: 1 1 250px; }
+/* Grows, shrinks, ideal starting size 250px */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Summary Reference Table</h2>
+    <p>Quick reference for all shorthand values.</p>
+    <div class="demo-output" style="padding:0;">
+      <table>
+        <tr><th>Shorthand</th><th>flex-grow</th><th>flex-shrink</th><th>flex-basis</th><th>Behavior</th></tr>
+        <tr><td><code class="inline">flex: initial</code></td><td>0</td><td>1</td><td>auto</td><td>Content-sized, can shrink</td></tr>
+        <tr><td><code class="inline">flex: auto</code></td><td>1</td><td>1</td><td>auto</td><td>Content-sized, grows &amp; shrinks</td></tr>
+        <tr><td><code class="inline">flex: none</code></td><td>0</td><td>0</td><td>auto</td><td>Fully inflexible</td></tr>
+        <tr><td><code class="inline">flex: 1</code></td><td>1</td><td>1</td><td>0</td><td>Equal distribution</td></tr>
+        <tr><td><code class="inline">flex: 2</code></td><td>2</td><td>1</td><td>0</td><td>Double share</td></tr>
+        <tr><td><code class="inline">flex: 0 0 200px</code></td><td>0</td><td>0</td><td>200px</td><td>Fixed 200px</td></tr>
+        <tr><td><code class="inline">flex: 1 1 300px</code></td><td>1</td><td>1</td><td>300px</td><td>Responsive card</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Design Systems - Examples</title>
+  <style>
+    /* ===== TOKENS ===== */
+    :root {
+      --color-primary: #3b82f6;
+      --color-primary-hover: #2563eb;
+      --color-primary-subtle: #dbeafe;
+      --color-secondary: #8b5cf6;
+      --color-success: #22c55e;
+      --color-warning: #f59e0b;
+      --color-error: #ef4444;
+      --color-surface: #313244;
+      --color-surface-alt: #45475a;
+      --color-bg: #1e1e2e;
+      --color-text: #cdd6f4;
+      --color-text-secondary: #a6adc8;
+      --color-text-muted: #6c7086;
+      --color-border: #45475a;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+      --spacing-2xl: 48px;
+      --font-sans: system-ui, sans-serif;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.25rem;
+      --font-size-xl: 1.5rem;
+      --font-weight-medium: 500;
+      --font-weight-bold: 700;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+      --transition-fast: 150ms ease;
+    }
+
+    /* ===== GENERIC ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); padding: 2rem; }
+    h1 { margin-bottom: 2rem; color: var(--color-primary); }
+    h2 { color: #a6e3a1; margin: 1.5rem 0 0.5rem; }
+    code { background: var(--color-surface-alt); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+    .pre { font-family: monospace; background: #181825; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; white-space: pre-wrap; border-left: 3px solid var(--color-primary); }
+
+    /* ===== LAYOUT PRIMITIVES ===== */
+    .o-container { max-width: 1200px; margin-inline: auto; }
+    .o-grid { display: grid; gap: var(--spacing-md); }
+    .o-grid--2 { grid-template-columns: repeat(2, 1fr); }
+    .o-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .o-grid--auto { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .o-flex { display: flex; gap: var(--spacing-md); flex-wrap: wrap; align-items: center; }
+    .o-stack { display: flex; flex-direction: column; gap: var(--spacing-md); }
+    .section { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-lg); border: 1px solid var(--color-border); }
+
+    /* ===== COMPONENTS ===== */
+    .c-btn { display: inline-flex; align-items: center; gap: var(--spacing-sm); padding: var(--spacing-sm) var(--spacing-md); font-size: var(--font-size-base); font-family: var(--font-sans); font-weight: var(--font-weight-medium); border: 2px solid transparent; border-radius: var(--radius-md); cursor: pointer; transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); text-decoration: none; white-space: nowrap; }
+    .c-btn--primary { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+    .c-btn--primary:hover { background: var(--color-primary-hover); }
+    .c-btn--outline { background: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+    .c-btn--outline:hover { background: var(--color-primary-subtle); }
+    .c-btn--danger { background: var(--color-error); color: white; border-color: var(--color-error); }
+    .c-btn--sm { padding: var(--spacing-xs) var(--spacing-sm); font-size: var(--font-size-sm); }
+    .c-btn--lg { padding: var(--spacing-md) var(--spacing-lg); font-size: var(--font-size-lg); }
+
+    .c-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--spacing-lg); box-shadow: var(--shadow-sm); }
+    .c-card__title { font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-sm); }
+    .c-card__body { color: var(--color-text-secondary); }
+
+    .c-badge { display: inline-block; padding: 2px var(--spacing-sm); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); }
+    .c-badge--success { background: var(--color-success); color: #1e1e2e; }
+    .c-badge--warning { background: var(--color-warning); color: #1e1e2e; }
+    .c-badge--error { background: var(--color-error); color: white; }
+
+    .c-input { display: grid; gap: var(--spacing-xs); }
+    .c-input__label { font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--color-text-secondary); }
+    .c-input__field { padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); color: var(--color-text); font-family: var(--font-sans); font-size: var(--font-size-base); transition: border-color var(--transition-fast); }
+    .c-input__field:focus { outline: none; border-color: var(--color-primary); }
+
+    /* ===== UTILITIES ===== */
+    .u-mt-sm { margin-top: var(--spacing-sm); }
+    .u-mt-md { margin-top: var(--spacing-md); }
+    .u-mb-md { margin-bottom: var(--spacing-md); }
+    .u-text-center { text-align: center; }
+    .u-text-muted { color: var(--color-text-muted); }
+  </style>
+</head>
+<body>
+  <div class="o-container">
+    <h1>CSS Design Systems — Component Examples</h1>
+
+    <div class="section">
+      <h2>1. Button Component (.c-btn)</h2>
+      <p class="u-mb-md">Design system buttons using CSS custom properties for all values.</p>
+      <div class="o-flex">
+        <button class="c-btn c-btn--primary">Primary</button>
+        <button class="c-btn c-btn--outline">Outline</button>
+        <button class="c-btn c-btn--danger">Danger</button>
+        <button class="c-btn c-btn--primary c-btn--sm">Small</button>
+        <button class="c-btn c-btn--primary c-btn--lg">Large</button>
+        <button class="c-btn c-btn--primary" disabled>Disabled</button>
+        <a href="#" class="c-btn c-btn--outline">Link Button</a>
+      </div>
+      <div class="pre u-mt-md">.c-btn {\n  background: var(--color-primary);\n  color: white;\n  padding: var(--spacing-sm) var(--spacing-md);\n  border-radius: var(--radius-md);\n  font-family: var(--font-sans);\n  cursor: pointer;\n}</div>
+    </div>
+
+    <div class="section">
+      <h2>2. Card Component (.c-card)</h2>
+      <p class="u-mb-md">Cards with BEM elements and consistent spacing tokens.</p>
+      <div class="o-grid o-grid--auto">
+        <div class="c-card">
+          <div class="c-card__title">Card One</div>
+          <div class="c-card__body">This card uses design system tokens for every visual property — spacing, color, border-radius, and typography.</div>
+        </div>
+        <div class="c-card">
+          <div class="c-card__title">Card Two</div>
+          <div class="c-card__body">Because all values come from tokens, theming the entire system is as simple as changing the token values.</div>
+        </div>
+        <div class="c-card">
+          <div class="c-card__title">Card Three</div>
+          <div class="c-card__body">Tokens ensure consistency across all components — the same spacing, colors, and typography everywhere.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>3. Badge Component (.c-badge)</h2>
+      <p class="u-mb-md">Small status indicators using semantic color tokens.</p>
+      <div class="o-flex">
+        <span class="c-badge c-badge--success">Success</span>
+        <span class="c-badge c-badge--warning">Warning</span>
+        <span class="c-badge" style="background:var(--color-primary);color:white;">Info</span>
+        <span class="c-badge c-badge--error">Error</span>
+      </div>
+      <div class="pre u-mt-md">.c-badge--success { background: var(--color-success); }\n.c-badge--warning { background: var(--color-warning); }\n.c-badge--error { background: var(--color-error); }</div>
+    </div>
+
+    <div class="section">
+      <h2>4. Form Input (.c-input)</h2>
+      <p class="u-mb-md">Consistent form elements using design tokens.</p>
+      <div class="o-grid o-grid--2">
+        <div class="c-input">
+          <label class="c-input__label">Username</label>
+          <input class="c-input__field" type="text" placeholder="Enter username">
+        </div>
+        <div class="c-input">
+          <label class="c-input__label">Email</label>
+          <input class="c-input__field" type="email" placeholder="Enter email">
+        </div>
+      </div>
+      <div class="pre u-mt-md">.c-input__field {\n  border: 2px solid var(--color-border);\n  border-radius: var(--radius-md);\n  padding: var(--spacing-sm) var(--spacing-md);\n  font-family: var(--font-sans);\n}\n.c-input__field:focus {\n  border-color: var(--color-primary);\n}</div>
+    </div>
+
+    <div class="section">
+      <h2>5. Layout Primitives</h2>
+      <p class="u-mb-md">Reusable layout objects (grid, stack, flex) using design tokens.</p>
+      <div class="o-stack">
+        <div style="background:var(--color-surface-alt);padding:var(--spacing-md);border-radius:var(--radius-md);">.o-stack — vertical flex with gap</div>
+        <div style="background:var(--color-surface-alt);padding:var(--spacing-md);border-radius:var(--radius-md);">All spacing uses var(--spacing-md)</div>
+      </div>
+      <div class="o-flex u-mt-md">
+        <span class="c-badge c-badge--success">Token</span>
+        <span class="c-badge c-badge--warning">Based</span>
+        <span class="c-badge" style="background:var(--color-primary);color:white;">Layouts</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>6. Design System Composition</h2>
+      <p class="u-mb-md">Components working together to form a UI. Everything uses tokens — nothing is hard-coded.</p>
+      <div class="c-card">
+        <div class="c-card__title">Welcome to the Design System</div>
+        <div class="c-card__body u-mb-md">This entire UI is built from design system components and tokens. Every color, spacing, border-radius, and font comes from a CSS custom property.</div>
+        <div class="o-flex">
+          <button class="c-btn c-btn--primary">Get Started</button>
+          <button class="c-btn c-btn--outline">Learn More</button>
+          <span class="c-badge c-badge--success">v2.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

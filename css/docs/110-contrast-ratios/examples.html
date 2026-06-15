@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contrast Ratios Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #f4f4f9; color: #222; }
+    h1 { margin-bottom: 0.5rem; }
+    .subtitle { color: #666; margin-bottom: 2rem; }
+    section { background: #fff; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    h2 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #eee; }
+
+    .contrast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .contrast-card { padding: 2rem; border-radius: 8px; text-align: center; border: 1px solid #eee; }
+    .contrast-card .ratio { font-size: 1.25rem; font-weight: 700; margin: 0.5rem 0; }
+    .contrast-card .label { font-size: 1rem; margin-bottom: 0.5rem; }
+    .contrast-card .status { font-size: 0.875rem; padding: 0.25rem 0.75rem; border-radius: 12px; display: inline-block; }
+
+    .sample-text { font-size: 1rem; line-height: 1.6; margin: 1rem 0; padding: 1rem; border-radius: 6px; }
+    .sample-text.thin { font-weight: 200; }
+    .sample-text.normal { font-weight: 400; }
+    .sample-text.bold { font-weight: 700; }
+
+    .gradient-hero { position: relative; min-height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 8px; overflow: hidden; margin: 1rem 0; }
+    .gradient-hero::before { content: ''; position: absolute; inset: 0; }
+    .gradient-hero .content { position: relative; z-index: 1; text-align: center; padding: 2rem; }
+
+    .gradient-overlay .content { color: #fff; }
+    .gradient-overlay::before { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23ddd" width="100" height="100"/></svg>'); }
+    .gradient-none::before { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23ddd" width="100" height="100"/></svg>'); }
+    .gradient-none .content { color: #888; }
+
+    .size-demo { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+    .size-sample { padding: 1rem; border-radius: 8px; color: #888; background: #fff; border: 1px solid #ddd; }
+
+    .image-text-demo { position: relative; width: 100%; height: 250px; border-radius: 8px; overflow: hidden; margin: 1rem 0; }
+    .image-text-demo img { width: 100%; height: 100%; object-fit: cover; }
+    .image-text-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; }
+    .image-text-overlay p { color: #fff; font-size: 1.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+
+    .toggle-contrast { padding: 0.75rem 1.5rem; border: 2px solid #333; border-radius: 6px; background: #fff; cursor: pointer; margin: 1rem 0; }
+
+    @media (prefers-contrast: high) {
+      body { background: #000; color: #fff; }
+      section { background: #111; border-color: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Contrast Ratios in Practice</h1>
+  <p class="subtitle">Exploring WCAG contrast requirements with real examples</p>
+
+  <section>
+    <h2>1. Contrast Ratio Spectrum</h2>
+    <div class="contrast-grid">
+      <div class="contrast-card" style="background:#fff;color:#000;">
+        <div class="label">Maximum Contrast</div>
+        <div class="ratio">21:1</div>
+        <div class="status" style="background:#d4edda;color:#155724;">AAA Pass</div>
+      </div>
+      <div class="contrast-card" style="background:#fff;color:#595959;">
+        <div class="label">Normal Text AAA</div>
+        <div class="ratio">7:1</div>
+        <div class="status" style="background:#d4edda;color:#155724;">AAA Pass</div>
+      </div>
+      <div class="contrast-card" style="background:#fff;color:#767676;">
+        <div class="label">Normal Text AA</div>
+        <div class="ratio">4.5:1</div>
+        <div class="status" style="background:#d4edda;color:#155724;">AA Pass</div>
+      </div>
+      <div class="contrast-card" style="background:#fff;color:#999;">
+        <div class="label">Too Light</div>
+        <div class="ratio">2.8:1</div>
+        <div class="status" style="background:#f8d7da;color:#721c24;">FAIL</div>
+      </div>
+      <div class="contrast-card" style="background:#fff;color:#ccc;">
+        <div class="label">Very Light</div>
+        <div class="ratio">1.6:1</div>
+        <div class="status" style="background:#f8d7da;color:#721c24;">FAIL</div>
+      </div>
+      <div class="contrast-card" style="background:#000;color:#fff;">
+        <div class="label">Inverted</div>
+        <div class="ratio">21:1</div>
+        <div class="status" style="background:#d4edda;color:#155724;">AAA Pass</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Font Weight and Contrast Perception</h2>
+    <p style="margin-bottom:1rem;color:#888;">Thinner fonts need higher contrast ratios to be equally readable.</p>
+    <div style="background:#f5f5f5;padding:1rem;border-radius:8px;">
+      <p class="sample-text thin" style="color:#888;">This is 200 weight text with low contrast — very hard to read.</p>
+      <p class="sample-text normal" style="color:#666;">This is 400 weight text with moderate contrast.</p>
+      <p class="sample-text bold" style="color:#333;">This is 700 weight text with good contrast — much more readable.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Text Over Images</h2>
+    <div class="image-text-demo">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#667eea,#764ba2);"></div>
+      <div class="image-text-overlay">
+        <p>Text with overlay for contrast</p>
+      </div>
+    </div>
+    <p style="color:#888;font-size:0.875rem;">A semi-transparent overlay ensures text meets contrast requirements.</p>
+  </section>
+
+  <section>
+    <h2>4. Large vs Normal Text Thresholds</h2>
+    <div class="size-demo">
+      <div class="size-sample" style="font-size:0.875rem;">Small text (14px) - needs 4.5:1</div>
+      <div class="size-sample" style="font-size:1rem;">Normal text (16px) - needs 4.5:1</div>
+      <div class="size-sample" style="font-size:1.125rem;font-weight:700;">Bold large (18px bold) - needs 3:1</div>
+      <div class="size-sample" style="font-size:1.5rem;">Large text (24px) - needs 3:1</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>5. Disabled State Contrast</h2>
+    <button style="padding:0.75rem 1.5rem;border:none;border-radius:6px;background:#ccc;color:#999;cursor:not-allowed;margin-right:1rem;" disabled>Disabled Button</button>
+    <button style="padding:0.75rem 1.5rem;border:none;border-radius:6px;background:#0066cc;color:#fff;cursor:pointer;">Active Button</button>
+    <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">Disabled buttons often fail contrast. Consider darker disabled colors.</p>
+  </section>
+
+  <section>
+    <h2>6. Icon Contrast</h2>
+    <div style="display:flex;gap:2rem;align-items:center;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="font-size:1.5rem;color:#ccc;">★</span>
+        <span style="color:#999;">Low contrast icon (2.8:1)</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="font-size:1.5rem;color:#333;">★</span>
+        <span style="color:#333;">Good contrast icon (8.6:1)</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. High Contrast Mode Toggle</h2>
+    <p style="margin-bottom:1rem;">Simulate high contrast preferences:</p>
+    <div class="contrast-grid" id="demo-grid">
+      <div class="contrast-card" style="background:#fff;color:#666;">Normal contrast</div>
+      <div class="contrast-card" style="background:#fff;color:#999;">Low contrast text</div>
+      <div class="contrast-card" style="background:#f0f0f0;color:#aaa;">Very low</div>
+    </div>
+    <button class="toggle-contrast" onclick="toggleHighContrast()">Toggle High Contrast Demo</button>
+  </section>
+
+  <footer style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:0.875rem;color:#888;">
+    <p>Use <a href="https://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker</a> for validation. Open DevTools → Rendering to test contrast.</p>
+  </footer>
+
+  <script>
+    let highContrast = false;
+    function toggleHighContrast() {
+      highContrast = !highContrast;
+      const grid = document.getElementById('demo-grid');
+      if (highContrast) {
+        grid.style.setProperty('--bg', '#000');
+        grid.style.setProperty('--text', '#fff');
+        grid.querySelectorAll('.contrast-card').forEach((card, i) => {
+          card.style.background = '#000';
+          card.style.color = i === 0 ? '#fff' : i === 1 ? '#ddd' : '#bbb';
+          card.style.borderColor = '#fff';
+        });
+      } else {
+        grid.querySelectorAll('.contrast-card').forEach((card, i) => {
+          card.style.background = '#fff';
+          card.style.color = i === 0 ? '#666' : i === 1 ? '#999' : '#aaa';
+          card.style.borderColor = '#eee';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

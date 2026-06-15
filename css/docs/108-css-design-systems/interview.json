@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What are design tokens in CSS?", "answer": "Design tokens are the atomic design decisions (colors, spacing, typography, shadows) stored as named values that form the foundation of a design system." },
+    { "question": "What is a CSS design system?", "answer": "A CSS design system is a collection of reusable components, design tokens, and guidelines that ensure visual and functional consistency across a product." },
+    { "question": "How are CSS custom properties used in design systems?", "answer": "CSS custom properties store design tokens (--color-primary, --spacing-md) for consistent, themeable, and maintainable component styling." },
+    { "question": "What is a component library in CSS?", "answer": "A component library is a collection of pre-built, reusable UI components (buttons, cards, modals) styled with a consistent design language." },
+    { "question": "How do design tokens improve consistency?", "answer": "Tokens centralize design decisions into reusable variables, ensuring every component uses the same colors, spacing, and typography throughout." },
+    { "question": "What is the difference between a design system and a style guide?", "answer": "A design system includes code, components, and patterns; a style guide documents visual standards and usage guidelines." },
+    { "question": "How do CSS custom properties enable theming?", "answer": "Custom properties can be redefined at different scopes (e.g., [data-theme='dark']) to apply different values for light and dark themes." },
+    { "question": "What types of values are stored as design tokens?", "answer": "Colors, typography (font family, sizes, weights), spacing (margin, padding), shadows, border-radius, breakpoints, z-index values, and animation durations." },
+    { "question": "How do you organize CSS custom properties in a design system?", "answer": "Group by category: --color-*, --spacing-*, --font-*, --shadow-*, --radius-*, --animation-* for clear naming and discoverability." },
+    { "question": "What is the relationship between design tokens and component libraries?", "answer": "Component libraries consume design tokens as their source of truth; tokens define the visual language that components implement." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a scalable naming convention for design tokens?", "answer": "Use category-purpose-variant format: --color-primary-base, --color-primary-hover, --spacing-stack-xs, --font-size-body-lg." },
+    { "question": "How do you implement dark mode with CSS custom properties?", "answer": "Define tokens on :root for light mode, then override with [data-theme='dark'] selector: --color-bg: #000; components use var(--color-bg) automatically." },
+    { "question": "How do you version design tokens in a design system?", "answer": "Use semantic versioning for token packages, maintain a changelog, and provide migration guides when token values change." },
+    { "question": "How do design tokens integrate with preprocessors like Sass?", "answer": "Define tokens as SCSS variables, then pass them to CSS custom properties: $color-primary: #007bff; --color-primary: #{$color-primary}; for both runtime and compile-time use." },
+    { "question": "How do you structure CSS custom properties for responsive design tokens?", "answer": "Use media queries to redefine tokens: @media (min-width: 768px) { :root { --spacing-md: 24px; } } values update automatically in all consumers." },
+    { "question": "What is the role of the :root selector in design systems?", "answer": ":root is the global scope where base design tokens are defined; all components can access these tokens via var() anywhere in the document." },
+    { "question": "How do you document design tokens for developers?", "answer": "Use tools like Style Dictionary to generate token documentation, or maintain a CSS file with commented token groups and visual examples." },
+    { "question": "How do component libraries handle CSS specificity with design tokens?", "answer": "Components use class-based selectors with low specificity and reference tokens via var(); this keeps components easy to override and theme." },
+    { "question": "What is the difference between global tokens and component tokens?", "answer": "Global tokens (--color-primary) are shared across all components; component tokens (--btn-bg) are scoped to specific components and reference global tokens." },
+    { "question": "How do you ensure backward compatibility when changing design tokens?", "answer": "Deprecate tokens gradually by marking them as @deprecated, providing replacement tokens, and running codemods to update existing usage." }
+  ],
+  "advanced": [
+    { "question": "How do you implement a multi-brand design system with CSS custom properties?", "answer": "Define brand-specific token sets in separate selectors: [data-brand='acme'] { --color-primary: #...; } [data-brand='globex'] { --color-primary: #...; }" },
+    { "question": "How do you use Style Dictionary to generate platform-specific tokens?", "answer": "Style Dictionary reads JSON token files and outputs platform formats: CSS custom properties for web, JSON for iOS, XML for Android." },
+    { "question": "How do you handle token aliasing (aliasing one token to another)?", "answer": "Create alias tokens that reference base tokens: --color-link: var(--color-primary); --color-link-hover: var(--color-primary-dark); for semantic mapping." },
+    { "question": "How do you implement high-contrast mode tokens for accessibility?", "answer": "Use @media (prefers-contrast: high) { :root { --color-text: #000; --color-bg: #fff; } } to override tokens for high-contrast preferences." },
+    { "question": "How do you optimize design system CSS bundle size?", "answer": "Tree-shake unused tokens, use utility classes, purge unused component CSS, and split critical CSS for initial load." },
+    { "question": "How do you manage breaking changes in a distributed design system?", "answer": "Use major version bumps for breaking token changes, provide migration scripts, and maintain a codemod for automated upgrades." },
+    { "question": "How do design tokens work with runtime CSS-in-JS libraries?", "answer": "CSS-in-JS can import token objects and inject them as CSS custom properties or use them directly in styled components via JavaScript variables." },
+    { "question": "How do you test design tokens for consistency and accessibility?", "answer": "Write automated tests that verify color contrast ratios, spacing increments follow a scale, and typography hierarchy is maintained." },
+    { "question": "How do you create a token debugging overlay for development?", "answer": "Build a debug panel that displays current token values from computed styles, allowing developers to inspect active token values in real-time." },
+    { "question": "How do you handle responsive tokens in a design system without media queries in components?", "answer": "Define responsive tokens in media queries at the root level; components remain media-query-free and simply use var() tokens that respond automatically." }
+  ]
+}

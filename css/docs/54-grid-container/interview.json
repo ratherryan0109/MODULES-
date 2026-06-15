@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "How do you define a grid container in CSS?", "answer": "Set display:grid or display:inline-grid on a parent element to turn it into a grid container." },
+    { "question": "What is the difference between display:grid and display:inline-grid?", "answer": "display:grid creates a block-level grid container, while display:inline-grid creates an inline-level grid container that only takes the width of its content." },
+    { "question": "What does grid-template-columns do?", "answer": "It defines the number and size of columns in a grid layout by specifying track sizes separated by spaces." },
+    { "question": "What does grid-template-rows do?", "answer": "It defines the number and size of rows in a grid layout by specifying track sizes for each row." },
+    { "question": "What is the gap property in a grid container?", "answer": "The gap property sets the spacing between grid rows and columns, shorthand for row-gap and column-gap." },
+    { "question": "What is the main difference between Grid and Flexbox at a high level?", "answer": "Grid is two-dimensional (rows and columns simultaneously), while Flexbox is one-dimensional (either row or column at a time)." },
+    { "question": "What happens to children of a grid container by default?", "answer": "They become grid items and are placed automatically in the grid, filling rows from left to right and top to bottom." },
+    { "question": "Can a grid container have padding and margin like any other element?", "answer": "Yes, a grid container supports padding, margin, borders, and all other box model properties." },
+    { "question": "What is the grid-template shorthand property?", "answer": "grid-template is a shorthand for grid-template-rows, grid-template-columns, and grid-template-areas in a single declaration." },
+    { "question": "What value does grid-template-areas use?", "answer": "It uses string values where each string represents a row, and each name in the string represents a grid area for that column position." }
+  ],
+  "intermediate": [
+    { "question": "How does grid-template shorthand work with rows and columns?", "answer": "grid-template: rows / columns, e.g., grid-template: 100px 1fr / 1fr 1fr sets two rows and two columns." },
+    { "question": "What is the difference between the explicit grid and the implicit grid?", "answer": "The explicit grid is defined by grid-template-rows/columns, while the implicit grid is auto-generated tracks when items exceed the explicit grid." },
+    { "question": "Can you use percentage values in grid-template-rows and grid-template-columns?", "answer": "Yes, percentage values are relative to the grid container's width for columns and height for rows." },
+    { "question": "What happens when grid items are fewer than grid cells?", "answer": "Empty cells remain as empty space in the grid; they are not filled unless using auto-flow properties." },
+    { "question": "How does min-content and max-content work in grid track sizing?", "answer": "min-content sizes a track to the minimum size needed for content (e.g., longest word), while max-content sizes to the maximum intrinsic size (e.g., unwrapped text)." },
+    { "question": "What does grid-template: none do?", "answer": "It resets all grid-template properties to their defaults, meaning no explicit grid is defined and all tracks are generated implicitly." },
+    { "question": "Can you nest a Flexbox layout inside a grid item?", "answer": "Yes, a grid item can use display:flex, creating a Flexbox layout inside a grid cell for one-dimensional inner layouts." },
+    { "question": "How do you create equal-height columns with Grid vs Flexbox?", "answer": "In Grid, equal-height columns are automatic since grid items in the same row stretch to the row height. In Flexbox, you need align-items: stretch." },
+    { "question": "What is the auto value in grid-template-columns used for?", "answer": "auto sizes the column to fit its content's intrinsic size, similar to minmax(min-content, max-content)." },
+    { "question": "How does the grid container handle overflow when content exceeds defined tracks?", "answer": "The grid creates implicit tracks to accommodate overflow items, sized by grid-auto-rows or grid-auto-columns, and the container may overflow." }
+  ],
+  "advanced": [
+    { "question": "How does display:contents interact with a grid container?", "answer": "display:contents on a grid container removes the container from the accessibility tree and layout, making its children appear as direct children of the next parent." },
+    { "question": "How do grid container properties interact with CSS containment?", "answer": "contain:layout on a grid container isolates its internal layout, preventing changes inside from affecting the outer page layout and improving performance." },
+    { "question": "Explain how grid item margins work differently in a grid container vs a block container.", "answer": "Grid item margins do not collapse (unlike block elements) and are calculated within the grid area, respecting gap spacing between items." },
+    { "question": "How does the order property affect grid items in a container?", "answer": "The order property reorders grid items in the auto-placement algorithm; items with lower order values are placed before items with higher values." },
+    { "question": "What happens when you apply display:grid to a flex item?", "answer": "The flex item becomes a grid container, creating a nested grid inside a flex layout. Each layout system operates independently on its own axis." },
+    { "question": "How do absolute positioned elements behave inside a grid container?", "answer": "Absolutely positioned children of a grid container are removed from the grid flow and do not participate in grid placement; they position relative to the grid container's padding box." },
+    { "question": "What is the interaction between grid-template-areas and writing modes?", "answer": "Grid-template-areas respects writing mode, so in rtl languages the area strings are mirrored horizontally to maintain logical order." },
+    { "question": "How does the grid container handle baseline alignment for items across rows?", "answer": "Grid supports baseline alignment via align-items: baseline or justify-items: baseline, which aligns content baselines across grid cells in the same row." },
+    { "question": "What performance considerations exist for large grid containers with many tracks?", "answer": "Very large grids with hundreds of tracks can impact rendering performance. Strategies include avoiding excessive implicit tracks and using subgrid to limit nesting complexity." },
+    { "question": "How does grid-template interact with grid-auto-flow: dense in terms of item placement priority?", "answer": "When grid-auto-flow: dense is set, explicit track definitions still constrain sizes, but auto-placement becomes more aggressive at filling gaps created by spanning items." }
+  ]
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Viewport Meta Tag Examples</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f8f9fa; }
+  .example-box { background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; }
+  .example-box h2 { color: #6a1b9a; border-bottom: 2px solid #f3e5f5; padding-bottom: 8px; }
+  .output { background: #f1f3f4; border-radius: 4px; padding: 15px; margin: 10px 0; }
+  pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; }
+  .note { background: #f3e5f5; border: 1px solid #6a1b9a; border-radius: 4px; padding: 10px; margin: 10px 0; }
+  .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .bad { background: #ffebee; padding: 15px; border-radius: 8px; }
+  .good { background: #e8f5e9; padding: 15px; border-radius: 8px; }
+  @media (max-width: 600px) { .comparison { grid-template-columns: 1fr; } }
+</style></head>
+<body>
+<h1>Viewport Meta Tag Examples</h1>
+
+<div class="example-box">
+  <h2>1. The Standard Viewport Meta Tag</h2>
+  <p>This page already has the correct viewport meta tag in the head. Open DevTools and test device emulation to see how it works.</p>
+  <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+  <div class="note">
+    <strong>Effect:</strong> The layout viewport matches the device width, and initial zoom is set to 100%. This is why text on this page is readable without zooming on mobile.
+  </div>
+</div>
+
+<div class="example-box">
+  <h2>2. Correct vs. Incorrect Viewport Usage</h2>
+  <div class="comparison">
+    <div class="bad">
+      <h3>❌ Bad Practices</h3>
+      <pre><code>&lt;!-- Disables zoom (accessibility violation) --&gt;
+&lt;meta name="viewport" 
+      content="width=device-width, 
+               user-scalable=no"&gt;
+
+&lt;!-- Fixed width (doesn't adapt) --&gt;
+&lt;meta name="viewport" 
+      content="width=1024"&gt;
+
+&lt;!-- Maximum scale 1 (no zoom) --&gt;
+&lt;meta name="viewport" 
+      content="width=device-width, 
+               maximum-scale=1.0"&gt;</code></pre>
+    </div>
+    <div class="good">
+      <h3>✅ Best Practice</h3>
+      <pre><code>&lt;!-- Standard, accessible --&gt;
+&lt;meta name="viewport" 
+      content="width=device-width, 
+               initial-scale=1.0"&gt;
+
+&lt;!-- For notched devices --&gt;
+&lt;meta name="viewport" 
+      content="width=device-width, 
+               initial-scale=1.0, 
+               viewport-fit=cover"&gt;</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="example-box">
+  <h2>3. Safe Areas for Notched Devices</h2>
+  <p>Combine viewport-fit=cover with CSS environment variables:</p>
+  <pre><code>&lt;meta name="viewport" content="width=device-width, 
+      initial-scale=1.0, viewport-fit=cover"&gt;
+
+&lt;style&gt;
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+  }
+&lt;/style&gt;</code></pre>
+  <div class="output" style="background:#333; color:white;">
+    <div style="border:2px solid #6a1b9a; border-radius:12px; padding:15px;">
+      <p>Content inside safe area (simulated rounded corner device)</p>
+    </div>
+  </div>
+</div>
+
+<div class="example-box">
+  <h2>4. Without vs. With Viewport</h2>
+  <table style="width:100%; border-collapse:collapse;">
+    <tr><th style="text-align:left; border-bottom:2px solid #ddd;">Aspect</th><th style="text-align:left; border-bottom:2px solid #ddd;">Without Viewport</th><th style="text-align:left; border-bottom:2px solid #ddd;">With Viewport</th></tr>
+    <tr><td>Layout width</td><td>980px (default)</td><td>Device width (e.g., 375px)</td></tr>
+    <tr><td>Text size</td><td>Tiny, needs pinch-zoom</td><td>Readable, proper size</td></tr>
+    <tr><td>User experience</td><td>Poor, requires zooming</td><td>Good, native feel</td></tr>
+    <tr><td>Google ranking</td><td>Penalized (not mobile-friendly)</td><td>Boosted (mobile-friendly)</td></tr>
+  </table>
+</div>
+</body></html>

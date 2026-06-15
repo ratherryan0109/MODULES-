@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Combinators - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; background: #1a1a2e; color: #eee; }
+    .top-bar { background: #16213e; padding: 15px 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .top-bar h1 { font-size: 20px; }
+    .top-bar label { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+    .top-bar select { padding: 6px 12px; border-radius: 4px; border: none; font-size: 14px; }
+    .main { display: flex; flex: 1; }
+    .editor-panel { flex: 1; display: flex; flex-direction: column; }
+    .preview-panel { flex: 1; background: white; position: relative; overflow: hidden; }
+    .controls { background: #0f3460; padding: 10px 20px; display: flex; gap: 10px; }
+    .controls button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #e94560; color: white; font-weight: bold; }
+    .controls button:hover { background: #c73650; }
+    #code { flex: 1; background: #1e1e1e; color: #d4d4d4; border: none; padding: 20px; font-family: 'Consolas', monospace; font-size: 14px; resize: none; outline: none; tab-size: 2; }
+    #preview { width: 100%; height: 100%; border: none; }
+    .label { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>🔗 CSS Combinators Playground</h1>
+    <label>Combinator: <select id="comboSelect">
+      <option value="descendant">Descendant (space)</option>
+      <option value="child">Child (>)</option>
+      <option value="adjacent">Adjacent Sibling (+)</option>
+      <option value="general">General Sibling (~)</option>
+    </select></label>
+  </div>
+  <div class="main">
+    <div class="editor-panel">
+      <div class="controls">
+        <button onclick="applyCode()">▶ Run</button>
+        <button onclick="resetCode()">↺ Reset</button>
+        <label><input type="checkbox" id="autoUpdate" checked> Auto-run</label>
+      </div>
+      <textarea id="code">
+<style>
+  /* Edit this selector to test different combinators */
+  .parent p {
+    color: #e94560;
+    font-weight: bold;
+  }
+</style>
+<div class="parent">
+  <p>I'm a direct child paragraph.</p>
+  <div>
+    <p>I'm nested inside a div.</p>
+  </div>
+  <p>I'm another direct child.</p>
+</div>
+<div class="other">
+  <p>I'm outside .parent - not affected.</p>
+</div></textarea>
+    </div>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
+      <div class="label">Combinators Demo</div>
+    </div>
+  </div>
+
+  <script>
+    const codeEl = document.getElementById('code');
+    const preview = document.getElementById('preview');
+    const comboSelect = document.getElementById('comboSelect');
+
+    const patterns = {
+      descendant: '.parent p { color: #e94560; font-weight: bold; }',
+      child: '.parent > p { color: #4a90d9; font-weight: bold; }',
+      adjacent: '.parent p + p { color: #2ecc71; font-weight: bold; }',
+      general: '.parent p ~ p { color: #6c5ce7; font-weight: bold; }'
+    };
+
+    function applyCode() {
+      let html = codeEl.value;
+      const combo = comboSelect.value;
+      html = html.replace(/\.parent\s*[+>~]?\s*p\s*\{[^}]*\}/, patterns[combo]);
+      if (!html.includes('<html')) {
+        html = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>' + html + '</body></html>';
+      }
+      preview.srcdoc = html;
+    }
+
+    function resetCode() {
+      comboSelect.value = 'descendant';
+      applyCode();
+    }
+
+    comboSelect.addEventListener('change', applyCode);
+    codeEl.addEventListener('input', () => {
+      if (document.getElementById('autoUpdate').checked) {
+        clearTimeout(window._runTimer);
+        window._runTimer = setTimeout(applyCode, 300);
+      }
+    });
+    applyCode();
+  </script>
+</body>
+</html>

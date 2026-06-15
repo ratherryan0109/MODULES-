@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What are the different ways to specify colors in HTML?",
+      "answer": "Colors can be specified by name (red), hexadecimal code (#FF0000), RGB (rgb(255,0,0)), RGBA (rgba(255,0,0,0.5)), HSL (hsl(0,100%,50%)), and HSLA (hsla(0,100%,50%,0.5))."
+    },
+    {
+      "question": "What is a hexadecimal color code?",
+      "answer": "A hex code is a 6-digit code starting with # using digits 0-9 and letters A-F. It represents RGB values: #RRGGBB."
+    },
+    {
+      "question": "How do you use RGB colors in HTML?",
+      "answer": "Use rgb(red, green, blue) with values from 0 to 255. Example: rgb(255, 0, 0) is red."
+    },
+    {
+      "question": "What is the difference between RGB and RGBA?",
+      "answer": "RGBA adds an alpha channel for opacity. The fourth value ranges from 0 (transparent) to 1 (opaque). Example: rgba(255, 0, 0, 0.5)."
+    },
+    {
+      "question": "What does HSL stand for?",
+      "answer": "HSL stands for Hue (0-360 degrees on the color wheel), Saturation (0-100%), and Lightness (0-100%)."
+    },
+    {
+      "question": "How many predefined color names does HTML support?",
+      "answer": "HTML supports over 140 predefined color names, including basic colors like red, blue, and green, and extended names like coral and teal."
+    },
+    {
+      "question": "What is the hex code for white?",
+      "answer": "#FFFFFF is white — all color channels at maximum."
+    },
+    {
+      "question": "What is the hex code for black?",
+      "answer": "#000000 is black — all color channels at minimum."
+    },
+    {
+      "question": "What is a 3-digit hex code?",
+      "answer": "A 3-digit hex code is a shorthand for 6-digit codes where each digit is doubled. Example: #F00 = #FF0000 (red)."
+    },
+    {
+      "question": "What is currentColor in CSS?",
+      "answer": "currentColor is a CSS keyword that represents the current value of the color property, allowing other properties to inherit it."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What color contrast ratio does WCAG AA require for normal text?",
+      "answer": "WCAG AA requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text (18px+ bold or 24px+ regular)."
+    },
+    {
+      "question": "What is the difference between opacity and alpha in colors?",
+      "answer": "Opacity (CSS opacity property) affects an entire element and its children. Alpha (in RGBA/HSLA) affects only the specific color property and does not affect child elements."
+    },
+    {
+      "question": "How do you create a semi-transparent background without affecting text opacity?",
+      "answer": "Use RGBA or HSLA for the background color: background-color: rgba(255, 0, 0, 0.3). This makes only the background transparent, not the text."
+    },
+    {
+      "question": "What is the color wheel in HSL?",
+      "answer": "The HSL color wheel goes from 0° (red), 60° (yellow), 120° (green), 180° (cyan), 240° (blue), 300° (magenta), back to 360° (red)."
+    },
+    {
+      "question": "How do you ensure accessible color combinations?",
+      "answer": "Use tools like WebAIM Contrast Checker, aim for 4.5:1 ratio minimum, test in grayscale, avoid color-only indicators, and use sufficient font sizes."
+    },
+    {
+      "question": "What is the difference between hue and saturation?",
+      "answer": "Hue is the position on the color wheel (what color it is). Saturation is the intensity of that color (0% = gray, 100% = pure color)."
+    },
+    {
+      "question": "How do you apply color to text, background, and borders?",
+      "answer": "Use color for text color, background-color for backgrounds, and border-color (or the border shorthand) for borders."
+    },
+    {
+      "question": "What is the difference between light and dark color schemes?",
+      "answer": "Light schemes use light backgrounds with dark text. Dark schemes use dark backgrounds with light text. Choose based on user preference and ambient lighting."
+    },
+    {
+      "question": "What colors work best for form validation feedback?",
+      "answer": "Green for success (but add a checkmark), red for errors (but add an icon or label), yellow/orange for warnings, and blue for informational messages."
+    },
+    {
+      "question": "How can you test for color blindness?",
+      "answer": "Use Chrome DevTools Rendering tab to simulate various types of color blindness, use online contrast checkers, and view your site in grayscale mode."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the CSS color-mix() function work?",
+      "answer": "color-mix() blends two colors in a given color space. Example: color-mix(in srgb, red 50%, blue 50%) creates a purple blend."
+    },
+    {
+      "question": "What is the difference between the sRGB and display-p3 color spaces?",
+      "answer": "sRGB is the standard web color space with a limited gamut. display-p3 supports a wider range of colors (especially bright greens and reds) and is supported on modern Apple devices."
+    },
+    {
+      "question": "How do CSS custom properties (variables) improve color management?",
+      "answer": "Define colors as CSS variables: --primary: #3498db; --danger: #e74c3c;. Changing the variable value updates all usages, enabling easy theming and maintenance."
+    },
+    {
+      "question": "What is the difference between relative and absolute color syntax in CSS?",
+      "answer": "Relative colors (CSS Color 5) allow modifying a base color: hsl(from var(--blue) h s calc(l - 10%)). Absolute colors specify exact values directly."
+    },
+    {
+      "question": "How does the HWB color model work (Hue, Whiteness, Blackness)?",
+      "answer": "HWB is similar to HSL but uses whiteness and blackness instead of saturation and lightness. hwb(0 0% 0%) is red, hwb(0 100% 0%) is white."
+    },
+    {
+      "question": "How do you implement dark mode using CSS custom properties?",
+      "answer": "Define color variables in :root (light mode) and override in [data-theme='dark'] or @media (prefers-color-scheme: dark). Toggle by changing the data attribute."
+    },
+    {
+      "question": "What is the LAB color space and how does it differ from RGB?",
+      "answer": "LAB (CIE Lab) is a perceptual color space where equal changes in values produce equal changes in perceived color. It is device-independent and wider than sRGB."
+    },
+    {
+      "question": "How do you handle color in high-contrast mode (Windows High Contrast)?",
+      "answer": "Use the forced-colors media query and system color keywords (Canvas, ButtonText, etc.) to adapt to the user's high-contrast theme."
+    },
+    {
+      "question": "What is the OKLCH color space and why is it useful?",
+      "answer": "OKLCH is a perceptual color space designed for web use. It provides more intuitive lightness and chroma controls than HSL, producing more consistent visual results."
+    },
+    {
+      "question": "How does the @media (prefers-color-scheme) query interact with color choices?",
+      "answer": "The prefers-color-scheme media query detects if the user prefers light or dark mode. Use it to serve appropriate color schemes without JavaScript."
+    }
+  ]
+}

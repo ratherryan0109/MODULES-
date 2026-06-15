@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Padding - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .pad-box { background: #06b6d4; color: white; font-weight: 600; text-align: center; }
+    .outline-box { outline: 2px dashed #94a3b8; outline-offset: 2px; }
+    .compare-container { background: #f1f5f9; padding: 0.25rem; }
+    .compare-box-inner { background: #ef4444; color: white; text-align: center; font-weight: 600; }
+    .compare-box-outer { background: #22c55e; color: white; text-align: center; font-weight: 600; }
+    .sizing-demo { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .sizing-card { flex: 1; min-width: 180px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 1rem; text-align: center; }
+    .shorthand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+    @media (max-width: 640px) { .shorthand-grid { grid-template-columns: 1fr; } }
+    .shorthand-card { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 1rem; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>CSS Padding - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Equal Padding on All Sides</h2>
+    <p>A single value applies equal padding to all four sides inside the element.</p>
+    <div class="demo-output">
+      <div class="pad-box" style="padding:40px">padding: 40px on all sides</div>
+    </div>
+    <pre><code>.box { padding: 40px; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Uneven Padding (Two Values)</h2>
+    <p>Two values set: vertical (top/bottom) and horizontal (right/left).</p>
+    <div class="demo-output">
+      <div class="pad-box" style="padding:10px 50px">padding: 10px 50px (narrow top/bottom, wide sides)</div>
+      <div class="pad-box" style="padding:30px 15px;margin-top:0.5rem">padding: 30px 15px (tall, narrow sides)</div>
+    </div>
+    <pre><code>.wide { padding: 10px 50px; }  /* vert / horiz */
+.tall { padding: 30px 15px; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Padding Shorthand (1–4 Values)</h2>
+    <p>Like margin, padding uses the TRBL pattern.</p>
+    <div class="demo-output">
+      <div class="shorthand-grid">
+        <div class="shorthand-card"><strong>padding: 20px</strong><br>All sides: 20px</div>
+        <div class="shorthand-card"><strong>padding: 10px 30px</strong><br>Vertical: 10px, Horizontal: 30px</div>
+        <div class="shorthand-card"><strong>padding: 10px 15px 30px</strong><br>Top: 10px, Sides: 15px, Bottom: 30px</div>
+        <div class="shorthand-card"><strong>padding: 10px 15px 20px 25px</strong><br>Top Right Bottom Left</div>
+      </div>
+    </div>
+    <pre><code>/* 1 value */  padding: 20px;
+/* 2 values */ padding: 10px 30px;
+/* 3 values */ padding: 10px 15px 30px;
+/* 4 values */ padding: 10px 15px 20px 25px;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Individual Side Padding</h2>
+    <p>Use <code>padding-top</code>, <code>padding-right</code>, <code>padding-bottom</code>, <code>padding-left</code> for fine-grained control.</p>
+    <div class="demo-output">
+      <div class="pad-box" style="padding-top:30px;padding-left:50px;padding-bottom:10px;padding-right:10px">top:30px left:50px bottom:10px right:10px</div>
+    </div>
+    <pre><code>.custom {
+  padding-top: 30px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Padding vs Margin Comparison</h2>
+    <p>Padding adds space <em>inside</em> the element (background visible). Margin adds space <em>outside</em>.</p>
+    <div class="demo-output">
+      <div class="compare-container">
+        <div class="compare-box-inner" style="padding:20px;margin:20px">
+          padding:20px (green area inside)<br>margin:20px (gap outside)
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;margin-top:0.75rem;font-size:0.875rem">
+        <div style="flex:1;padding:0.5rem;background:#f0fdf4;border-radius:4px"><strong>padding</strong> — space inside, background visible</div>
+        <div style="flex:1;padding:0.5rem;background:#fef2f2;border-radius:4px"><strong>margin</strong> — space outside, transparent</div>
+      </div>
+    </div>
+    <pre><code>.inner { padding: 20px; }  /* Inside — bg extends */
+.outer { margin: 20px; }    /* Outside — transparent */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Box-Sizing Effect on Padding</h2>
+    <p><code>box-sizing: border-box</code> includes padding in the element's total width; <code>content-box</code> adds it on top.</p>
+    <div class="demo-output">
+      <div class="sizing-demo">
+        <div class="sizing-card">
+          <strong>content-box</strong>
+          <div style="background:#06b6d4;color:white;padding:20px;width:200px;margin:0.5rem auto">200px + 40px</div>
+          <p style="font-size:0.8rem;color:#64748b">Total width: 240px</p>
+        </div>
+        <div class="sizing-card">
+          <strong>border-box</strong>
+          <div style="background:#22c55e;color:white;padding:20px;width:200px;margin:0.5rem auto;box-sizing:border-box">200px includes padding</div>
+          <p style="font-size:0.8rem;color:#64748b">Total width: 200px</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>.content-box {
+  width: 200px;
+  padding: 20px;   /* Total: 240px */
+}
+.border-box {
+  width: 200px;
+  padding: 20px;
+  box-sizing: border-box;  /* Total: 200px */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Padding Creating Visual Breathing Room</h2>
+    <p>Padding prevents content from touching the edges of its container, improving readability.</p>
+    <div class="demo-output">
+      <div style="background:#f1f5f9;border:1px solid #94a3b8">
+        <div style="background:#06b6d4;color:white;padding:0.5rem;font-weight:600">Header</div>
+        <div style="padding:1rem;background:white">
+          <p style="margin:0">Content with 1rem padding keeps text away from edges. This is much more readable than content that butts right up against the border.</p>
+        </div>
+        <div style="background:#f1f5f9;padding:0.5rem;text-align:center;color:#64748b;font-size:0.875rem">Footer</div>
+      </div>
+    </div>
+    <pre><code>.card {
+  border: 1px solid #94a3b8;
+  border-radius: 8px;
+}
+.card-body { padding: 1rem; }  /* Breathing room */</code></pre>
+  </div>
+
+</body>
+</html>

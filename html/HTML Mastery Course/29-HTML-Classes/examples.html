@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Classes Examples</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; background: #f5f7fa; color: #333; }
+    h1 { text-align: center; color: #2c3e50; }
+    h2 { color: #2980b9; border-bottom: 2px solid #2980b9; padding-bottom: 6px; margin: 40px 0 20px; }
+    .example-box { background: white; border-radius: 10px; padding: 25px; margin: 25px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .example-box h3 { margin: 0 0 15px; color: #e67e22; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; font-size: 14px; }
+
+    /* Single class examples */
+    .highlight { background: #fff3cd; padding: 4px 8px; border-radius: 4px; }
+    .box { background: #e8f4fd; border: 2px solid #2980b9; padding: 16px; border-radius: 8px; margin: 8px 0; }
+
+    /* Multiple classes */
+    .text-large { font-size: 24px; }
+    .text-bold { font-weight: bold; }
+    .text-center { text-align: center; }
+    .text-blue { color: #2980b9; }
+    .text-red { color: #e74c3c; }
+    .mt-2 { margin-top: 12px; }
+    .mb-2 { margin-bottom: 12px; }
+    .p-3 { padding: 16px; }
+
+    /* BEM-style card */
+    .card { background: white; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); max-width: 350px; }
+    .card__image { background: #3498db; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 40px; }
+    .card__content { padding: 20px; }
+    .card__title { font-size: 18px; margin: 0 0 8px; color: #2c3e50; }
+    .card__text { color: #666; font-size: 14px; line-height: 1.6; margin: 0; }
+    .card__footer { padding: 12px 20px; border-top: 1px solid #eee; display: flex; gap: 8px; }
+    .card__button { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
+    .card__button--primary { background: #3498db; color: white; }
+    .card__button--secondary { background: #ecf0f1; color: #333; }
+    .card--featured { border-color: #f39c12; box-shadow: 0 4px 15px rgba(243,156,18,0.3); }
+
+    /* State classes */
+    .btn { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; transition: all 0.2s; }
+    .btn--primary { background: #3498db; color: white; }
+    .btn--primary:hover { background: #2980b9; }
+    .btn--success { background: #27ae60; color: white; }
+    .btn--success:hover { background: #1e8449; }
+    .btn--disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+    .btn--small { padding: 6px 12px; font-size: 13px; }
+    .btn--large { padding: 16px 32px; font-size: 18px; }
+
+    /* Utility grid */
+    .grid { display: flex; gap: 16px; flex-wrap: wrap; }
+    .col-4 { flex: 1 1 calc(33.333% - 16px); min-width: 200px; }
+
+    /* JS demo */
+    .js-box { background: #f0f0f0; padding: 20px; border-radius: 8px; transition: all 0.3s; }
+    .js-box.active { background: #3498db; color: white; transform: scale(1.02); }
+    .js-box.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>HTML Classes Examples</h1>
+
+  <div class="example-box">
+    <h3>Example 1: Single Class</h3>
+    <p class="highlight">This paragraph has the "highlight" class applied.</p>
+    <div class="box">This div uses the "box" class.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 2: Multiple Classes</h3>
+    <p class="text-large text-bold text-center text-blue">Large, bold, centered, blue text.</p>
+    <p class="text-red text-bold mt-2 mb-2">Bold red text with margin classes.</p>
+    <p class="text-center p-3" style="background:#f9f9f9;border-radius:6px;">Centered with padding utility class.</p>
+    <div class="note">Each class handles one property. Combine them to compose styles.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 3: BEM Naming Convention</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card__image">📷</div>
+        <div class="card__content">
+          <h4 class="card__title">Standard Card</h4>
+          <p class="card__text">This card uses BEM classes: card, card__image, card__content, card__title, card__text.</p>
+        </div>
+        <div class="card__footer">
+          <button class="card__button card__button--primary">View</button>
+          <button class="card__button card__button--secondary">Edit</button>
+        </div>
+      </div>
+      <div class="card card--featured">
+        <div class="card__image">⭐</div>
+        <div class="card__content">
+          <h4 class="card__title">Featured Card</h4>
+          <p class="card__text">This card also has "card--featured" modifier class for the gold border.</p>
+        </div>
+        <div class="card__footer">
+          <button class="card__button card__button--primary">View</button>
+          <button class="card__button card__button--secondary">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 4: State Classes (Button Modifiers)</h3>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <button class="btn btn--primary">Primary</button>
+      <button class="btn btn--success">Success</button>
+      <button class="btn btn--primary btn--disabled">Disabled</button>
+      <button class="btn btn--primary btn--small">Small</button>
+      <button class="btn btn--primary btn--large">Large</button>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 5: JavaScript Class Manipulation</h3>
+    <div id="js-demo-box" class="js-box">
+      <p style="margin:0;">Click the buttons to manipulate my classes!</p>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn--primary btn--small" onclick="document.getElementById('js-demo-box').classList.add('active')">Add Active</button>
+      <button class="btn btn--success btn--small" onclick="document.getElementById('js-demo-box').classList.remove('active')">Remove Active</button>
+      <button class="btn btn--small" style="background:#f39c12;color:white;" onclick="document.getElementById('js-demo-box').classList.toggle('active')">Toggle Active</button>
+      <button class="btn btn--small" style="background:#e74c3c;color:white;" onclick="alert('Has active: ' + document.getElementById('js-demo-box').classList.contains('active'))">Check Active</button>
+      <button class="btn btn--small" style="background:#9b59b6;color:white;" onclick="document.getElementById('js-demo-box').classList.toggle('hidden')">Toggle Hidden</button>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 6: Utility Classes Pattern</h3>
+    <p class="text-center text-blue text-large">Centered blue heading (utility classes)</p>
+    <div class="grid">
+      <div class="col-4 p-3" style="background:#e8f4fd;border-radius:8px;">Column 1</div>
+      <div class="col-4 p-3" style="background:#d5f5e3;border-radius:8px;">Column 2</div>
+      <div class="col-4 p-3" style="background:#fce4e4;border-radius:8px;">Column 3</div>
+    </div>
+  </div>
+</body>
+</html>

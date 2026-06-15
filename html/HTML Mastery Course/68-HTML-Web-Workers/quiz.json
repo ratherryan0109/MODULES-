@@ -1,0 +1,122 @@
+[
+    {
+        "question": "What is the primary purpose of Web Workers?",
+        "options": ["To style web pages", "To run JavaScript in background threads", "To handle HTTP requests", "To manage database connections"],
+        "answer": "b",
+        "explanation": "Web Workers allow JavaScript to run in background threads separate from the main execution thread, enabling parallel processing without blocking the UI."
+    },
+    {
+        "question": "Which of the following CANNOT be accessed inside a Web Worker?",
+        "options": ["Fetch API", "setTimeout()", "The DOM", "XMLHttpRequest"],
+        "answer": "c",
+        "explanation": "Web Workers cannot access the DOM, window, document, or parent objects. They do have access to fetch(), setTimeout(), and XMLHttpRequest."
+    },
+    {
+        "question": "How do you send a message from the main thread to a worker?",
+        "options": ["worker.send()", "worker.postMessage()", "worker.emit()", "worker.transfer()"],
+        "answer": "b",
+        "explanation": "The postMessage() method is used to send messages to a worker. The worker receives it via the onmessage event handler."
+    },
+    {
+        "question": "What is the correct way to create a new Dedicated Worker?",
+        "options": ["new Worker()", "new WebWorker()", "Worker.create()", "new BackgroundTask()"],
+        "answer": "a",
+        "explanation": "A new Dedicated Worker is created with the Worker constructor: new Worker('script.js')."
+    },
+    {
+        "question": "How does a worker send data back to the main thread?",
+        "options": ["self.return()", "self.send()", "self.postMessage()", "self.emit()"],
+        "answer": "c",
+        "explanation": "Inside a worker, self.postMessage() sends data back to the main thread. The main thread receives it via the worker's onmessage handler."
+    },
+    {
+        "question": "What is the global scope inside a Dedicated Worker?",
+        "options": ["window", "globalThis (or self)", "worker", "global"],
+        "answer": "b",
+        "explanation": "Inside a worker, the global scope is 'self' (or globalThis). There is no window object available in workers."
+    },
+    {
+        "question": "How do you terminate a worker from the main thread?",
+        "options": ["worker.kill()", "worker.stop()", "worker.terminate()", "worker.close()"],
+        "answer": "c",
+        "explanation": "Worker.terminate() immediately stops the worker. Inside the worker, close() can be called to terminate itself."
+    },
+    {
+        "question": "What is a Transferable Object in Web Workers?",
+        "options": ["An object that can be cloned", "An object whose ownership can be transferred without copying", "A JSON-serializable object", "A function that can be passed to a worker"],
+        "answer": "b",
+        "explanation": "Transferable Objects (like ArrayBuffer) allow zero-copy data transfer. Ownership is transferred from one context to another, making the original buffer empty."
+    },
+    {
+        "question": "Which method is used to load external scripts inside a worker?",
+        "options": ["require()", "importScripts()", "loadScript()", "include()"],
+        "answer": "b",
+        "explanation": "importScripts() loads one or more external JavaScript files into the worker's scope. It is synchronous and blocks until all scripts are loaded."
+    },
+    {
+        "question": "What happens when you throw an unhandled error inside a worker?",
+        "options": ["The worker crashes silently", "The worker's onerror handler is called on the main thread", "The page crashes", "The error is logged to console only"],
+        "answer": "b",
+        "explanation": "Unhandled errors in a worker trigger the onerror event on the main thread's worker object, allowing the main script to handle the error."
+    },
+    {
+        "question": "Can a Web Worker access Local Storage?",
+        "options": ["Yes, it has full access", "No, it cannot access Local Storage", "Only in dedicated workers", "Only in service workers"],
+        "answer": "b",
+        "explanation": "Web Workers cannot access Local Storage, Session Storage, or any other window-specific storage. They can use IndexedDB as an alternative."
+    },
+    {
+        "question": "Which property tells you the number of logical CPU cores available?",
+        "options": ["navigator.cores", "navigator.hardwareConcurrency", "navigator.cpuCount", "window.cpuCores"],
+        "answer": "b",
+        "explanation": "navigator.hardwareConcurrency returns the number of logical processor cores available, useful for determining optimal worker count."
+    },
+    {
+        "question": "What type of worker can be shared across multiple browsing contexts (tabs/windows)?",
+        "options": ["Dedicated Worker", "Shared Worker", "Service Worker", "Web Worker"],
+        "answer": "b",
+        "explanation": "Shared Workers can be accessed by multiple scripts from different windows, iframes, or workers as long as they are same-origin."
+    },
+    {
+        "question": "How do you handle messages in a worker using addEventListener?",
+        "options": ["worker.addEventListener('message', handler)", "worker.addEventListener('data', handler)", "worker.addEventListener('post', handler)", "worker.addEventListener('receive', handler)"],
+        "answer": "a",
+        "explanation": "The 'message' event is used both in the main thread and in workers for receiving communications via addEventListener."
+    },
+    {
+        "question": "What is a key limitation of using workers for DOM manipulation?",
+        "options": ["Workers are too slow for DOM", "Workers cannot access the DOM at all", "Workers can only read DOM, not write", "DOM access requires a special flag"],
+        "answer": "b",
+        "explanation": "Workers operate in a separate thread with no access to the DOM, window, or document objects. They cannot directly manipulate page content."
+    },
+    {
+        "question": "Can Web Workers make network requests?",
+        "options": ["No", "Yes, using fetch() or XMLHttpRequest", "Only same-origin requests", "Only GET requests"],
+        "answer": "b",
+        "explanation": "Web Workers can make network requests using both the Fetch API and XMLHttpRequest, including cross-origin requests."
+    },
+    {
+        "question": "What is the purpose of the close() method inside a worker?",
+        "options": ["To close the main window", "To terminate the worker from within", "To close network connections", "To close IndexedDB connections"],
+        "answer": "b",
+        "explanation": "self.close() can be called inside a worker to terminate itself. This is equivalent to calling worker.terminate() from the main thread."
+    },
+    {
+        "question": "Which of the following is NOT a valid worker type?",
+        "options": ["Dedicated Worker", "Shared Worker", "Service Worker", "Background Worker"],
+        "answer": "d",
+        "explanation": "The three standard worker types are Dedicated Workers, Shared Workers, and Service Workers. 'Background Worker' is not a standard type."
+    },
+    {
+        "question": "What happens to a worker when the page is navigated away?",
+        "options": ["The worker continues running", "The worker is automatically terminated", "The worker pauses until the user returns", "The worker throws an error"],
+        "answer": "b",
+        "explanation": "Dedicated Workers are tied to the lifecycle of their creating document. When the page is navigated away, the worker is terminated automatically."
+    },
+    {
+        "question": "Can you pass functions to a Web Worker via postMessage()?",
+        "options": ["Yes, functions are serialized", "No, functions cannot be cloned/transferred", "Only arrow functions", "Only async functions"],
+        "answer": "b",
+        "explanation": "postMessage() uses the structured clone algorithm, which cannot serialize functions. Only data objects, arrays, primitives, and certain built-in types can be passed."
+    }
+]

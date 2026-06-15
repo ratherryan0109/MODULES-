@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Reader Support - Examples</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        .example { border: 2px solid #6a1b9a; border-radius: 8px; padding: 20px; margin: 20px 0; background: #f3e5f5; }
+        .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Cascadia Code', monospace; font-size: 14px; margin: 10px 0; }
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        .badge-good { background: #4caf50; color: white; }
+        .badge-bad { background: #f44336; color: white; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; text-align: left; border: 1px solid #ccc; }
+        th { background: #e1bee7; }
+        .focus-visible:focus-visible { outline: 3px solid #6a1b9a; outline-offset: 2px; }
+        [aria-live] { padding: 10px; background: white; border: 1px solid #ccc; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Screen Reader Support - Interactive Examples</h1>
+    <p>Test these examples with NVDA (Windows) or VoiceOver (Mac) to understand how screen readers interact with different HTML patterns.</p>
+
+    <div class="example">
+        <h2>1. Heading Structure</h2>
+        <p>Screen readers navigate by headings (H key). Notice the hierarchy:</p>
+        <h3 style="color:#6a1b9a;">Level 3 Heading</h3>
+        <p>Content under level 3.</p>
+        <h4 style="color:#7b1fa2;">Level 4 Heading</h4>
+        <p>Content under level 4.</p>
+        <h3 style="color:#6a1b9a;">Another Level 3</h3>
+        <p>Press H in NVDA/VoiceOver to jump between these headings.</p>
+        <div class="code">&lt;h1&gt;Main Title&lt;/h1&gt;  &lt;!-- Only one h1 per page --&gt;
+    &lt;h2&gt;Section Title&lt;/h2&gt;  &lt;!-- Major sections --&gt;
+        &lt;h3&gt;Sub-section&lt;/h3&gt;  &lt;!-- Sub-sections --&gt;
+            &lt;h4&gt;Detail&lt;/h4&gt;  &lt;!-- Details --&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>2. Link Text Comparison</h2>
+        <p>Listen to how screen readers announce these links:</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <p><span class="badge badge-bad">Bad</span> Click <a href="#" class="focus-visible">here</a> to read our guide.</p>
+            <p><span class="badge badge-good">Good</span> <a href="#" class="focus-visible">Read our accessibility guide (PDF, 2.4 MB)</a>.</p>
+            <p><span class="badge badge-good">Good</span> <a href="#" class="focus-visible" aria-label="View your account settings">
+                <span aria-hidden="true">⚙️</span>
+            </a></p>
+        </div>
+        <div class="code">&lt;!-- Bad --&gt;
+&lt;a href="#"&gt;here&lt;/a&gt;
+
+&lt;!-- Good --&gt;
+&lt;a href="#"&gt;Read our accessibility guide (PDF, 2.4 MB)&lt;/a&gt;
+
+&lt;!-- Icon link --&gt;
+&lt;a href="#" aria-label="Account settings"&gt;
+    &lt;span aria-hidden="true"&gt;&amp;#x2699;&lt;/span&gt;
+&lt;/a&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>3. Form Labels and Descriptions</h2>
+        <p>Test how screen readers announce form controls:</p>
+        <form>
+            <div style="margin-bottom:15px;">
+                <label for="name">Full Name <span aria-label="required">*</span></label>
+                <input type="text" id="name" required aria-required="true" class="focus-visible" style="width:100%; padding:8px; box-sizing:border-box;">
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" aria-describedby="email-tip" class="focus-visible" style="width:100%; padding:8px; box-sizing:border-box;">
+                <span id="email-tip" style="font-size:13px; color:#666;">We respect your privacy. No spam.</span>
+            </div>
+            <fieldset style="margin-bottom:15px; border:1px solid #ccc; padding:10px; border-radius:4px;">
+                <legend>Preferred Contact Method</legend>
+                <label><input type="radio" name="contact" value="email" class="focus-visible"> Email</label>
+                <label><input type="radio" name="contact" value="phone" class="focus-visible"> Phone</label>
+            </fieldset>
+            <button type="submit" class="focus-visible">Submit</button>
+        </form>
+        <div class="code">&lt;label for="name"&gt;Full Name &lt;span aria-label="required"&gt;*&lt;/span&gt;&lt;/label&gt;
+&lt;input type="text" id="name" required aria-required="true"&gt;
+
+&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input type="email" id="email" aria-describedby="email-tip"&gt;
+&lt;span id="email-tip"&gt;Privacy note...&lt;/span&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>4. Landmarks</h2>
+        <p>Press D (NVDA) or VO+U→Landmarks (VoiceOver) to navigate:</p>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="background:#e1bee7; padding:10px; border-radius:4px;" role="banner" aria-label="Site banner">
+                <strong>Header/Banner</strong> - role="banner" or &lt;header&gt;
+            </div>
+            <div style="background:#f3e5f5; padding:10px; border-radius:4px;" role="navigation" aria-label="Main navigation">
+                <strong>Navigation</strong> - role="navigation" or &lt;nav&gt;
+            </div>
+            <div style="background:#fce4ec; padding:10px; border-radius:4px;" role="main">
+                <strong>Main Content</strong> - role="main" or &lt;main&gt;
+            </div>
+            <div style="background:#e8f5e9; padding:10px; border-radius:4px;" role="complementary" aria-label="Related articles">
+                <strong>Complementary</strong> - role="complementary" or &lt;aside&gt;
+            </div>
+            <div style="background:#fff3e0; padding:10px; border-radius:4px;" role="contentinfo">
+                <strong>Content Info/Footer</strong> - role="contentinfo" or &lt;footer&gt;
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2>5. Accessible Data Table</h2>
+        <p>Press T to navigate to this table. Screen readers announce row/column positions:</p>
+        <table>
+            <caption>Q4 2024 Sales Performance</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Units Sold</th>
+                    <th scope="col">Revenue</th>
+                    <th scope="col">Growth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Widget Pro</th>
+                    <td>1,250</td>
+                    <td>$62,500</td>
+                    <td>+15%</td>
+                </tr>
+                <tr>
+                    <th scope="row">Widget Lite</th>
+                    <td>890</td>
+                    <td>$26,700</td>
+                    <td>-3%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="code">&lt;table&gt;
+    &lt;caption&gt;Q4 2024 Sales Performance&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Product&lt;/th&gt;
+            &lt;th scope="col"&gt;Units&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Widget Pro&lt;/th&gt;
+            &lt;td&gt;1,250&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>6. Live Regions</h2>
+        <p>Dynamic content announcements via aria-live:</p>
+        <div style="margin-bottom:10px;">
+            <button onclick="addNotification()" class="focus-visible">Add Notification</button>
+            <button onclick="addAlert()" class="focus-visible" style="margin-left:8px;">Trigger Alert</button>
+        </div>
+        <div aria-live="polite" id="notification-hub" style="background:white; border:1px solid #ccc; border-radius:4px; padding:10px; min-height:60px; margin-bottom:10px;">
+            <p>Notifications will appear here (polite).</p>
+        </div>
+        <div role="status" id="action-status" style="font-size:14px; color:#666;">
+            Ready
+        </div>
+        <div class="code">&lt;div aria-live="polite" id="notifications"&gt;
+    &lt;!-- Announced when idle --&gt;
+&lt;/div&gt;
+&lt;div role="alert"&gt;
+    &lt;!-- Announced immediately --&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>7. Image Alt Text Examples</h2>
+        <p>Screen readers announce alt text. Compare these:</p>
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <div>
+                <span class="badge badge-bad">Bad</span>
+                <div style="width:150px; height:100px; background:#ddd; display:flex; align-items:center; justify-content:center; border-radius:4px;">
+                    <span aria-hidden="true">📸</span>
+                </div>
+                <code>&lt;img src="photo.jpg"&gt;</code>
+            </div>
+            <div>
+                <span class="badge badge-good">Good</span>
+                <div style="width:150px; height:100px; background:#ddd; display:flex; align-items:center; justify-content:center; border-radius:4px;">
+                    <span aria-hidden="true">📸</span>
+                </div>
+                <code>&lt;img src="photo.jpg" alt="Team members celebrating product launch in conference room"&gt;</code>
+            </div>
+            <div>
+                <span class="badge badge-good">Decorative</span>
+                <div style="width:50px; height:50px; background:#ddd; display:flex; align-items:center; justify-content:center; border-radius:4px;">
+                    <span aria-hidden="true">➡️</span>
+                </div>
+                <code>&lt;img src="arrow.png" alt="" role="presentation"&gt;</code>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2>8. Focus Management Demo</h2>
+        <p>Demonstrates proper focus management for dynamic content:</p>
+        <div style="margin-bottom:10px;">
+            <button onclick="loadNewContent()" class="focus-visible">Load New Content</button>
+        </div>
+        <div id="dynamic-content" tabindex="-1" style="background:white; border:1px solid #ccc; border-radius:4px; padding:15px;">
+            <h3>Original Content</h3>
+            <p>This content will be replaced.</p>
+        </div>
+        <div class="code">function loadNewContent() {
+    const container = document.getElementById('dynamic-content');
+    container.innerHTML = '&lt;h3&gt;New Content Loaded&lt;/h3&gt;&lt;p&gt;Focus is here.&lt;/p&gt;';
+    container.focus();  // Move focus to new content
+}</div>
+    </div>
+
+    <div class="example">
+        <h2>9. Screen Reader-Only Text</h2>
+        <p>Content visible only to screen readers using CSS clipping:</p>
+        <div>
+            <button onclick="alert('Settings opened')" class="focus-visible">
+                <span aria-hidden="true">⚙️</span>
+                <span class="sr-only">Open Settings</span>
+            </button>
+            <span style="margin-left:10px; font-size:13px; color:#666;">The word "Settings" is visually hidden but screen reader accessible.</span>
+        </div>
+        <div class="code">.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}</div>
+    </div>
+
+    <div class="example">
+        <h2>10. Keyboard Navigation Test</h2>
+        <p>Test keyboard accessibility - all elements below are focusable:</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <button class="focus-visible">Button 1</button>
+            <button class="focus-visible">Button 2</button>
+            <a href="#" class="focus-visible">Link A</a>
+            <a href="#" class="focus-visible">Link B</a>
+            <select class="focus-visible" style="padding:4px;">
+                <option>Option 1</option>
+                <option>Option 2</option>
+            </select>
+            <input type="checkbox" id="chk1" class="focus-visible"> <label for="chk1">Check me</label>
+        </div>
+        <p style="margin-top:10px; font-size:14px;">Press Tab to navigate. Note: Tab only goes to focusable elements (links, buttons, inputs).</p>
+    </div>
+
+    <script>
+        let notifCount = 0;
+        function addNotification() {
+            notifCount++;
+            const hub = document.getElementById('notification-hub');
+            const p = document.createElement('p');
+            p.textContent = `Notification ${notifCount}: Item was updated.`;
+            hub.appendChild(p);
+            document.getElementById('action-status').textContent = `${notifCount} notification(s) shown`;
+        }
+
+        function addAlert() {
+            const alert = document.createElement('div');
+            alert.setAttribute('role', 'alert');
+            alert.style.cssText = 'color:#f44336; font-weight:bold; padding:8px; background:#ffebee; border-radius:4px; margin-top:8px;';
+            alert.textContent = '⚠️ Alert: Connection lost. Retrying...';
+            document.querySelector('.example:nth-child(7)').appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function loadNewContent() {
+            const container = document.getElementById('dynamic-content');
+            container.innerHTML = '<h3>New Content Loaded Successfully</h3><p>The page content has been dynamically updated. Focus has been moved to this section so screen readers can announce the change.</p><ul><li>Updated timestamp: ' + new Date().toLocaleTimeString() + '</li><li>Status: Complete</li></ul>';
+            container.focus();
+        }
+    </script>
+</body>
+</html>

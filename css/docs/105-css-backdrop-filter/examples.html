@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Backdrop Filter - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #1e1e2e; color: #cdd6f4; padding: 2rem; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .example-card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; position: relative; overflow: hidden; }
+    .pre { font-family: monospace; background: #181825; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; white-space: pre-wrap; border-left: 3px solid #89b4fa; }
+    code { background: #45475a; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+    .note { background: #45475a; padding: 0.5rem 1rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.9rem; border-left: 3px solid #f9e2af; }
+
+    .bg-pattern { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 40px; border-radius: 12px; position: relative; min-height: 200px; }
+    .bg-pattern-2 { background: linear-gradient(45deg, #f5576c, #4facfe, #43e97b); padding: 40px; border-radius: 12px; min-height: 200px; }
+
+    /* Example 1: Glass card */
+    .glass-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 32px; color: white; max-width: 400px; margin: 0 auto; }
+
+    /* Example 2: Navbar */
+    .navbar-demo { position: sticky; top: 0; padding: 16px 24px; background: rgba(30,30,46,0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; display: flex; justify-content: space-between; align-items: center; margin: -1rem -1rem 0; }
+
+    /* Example 3: Modal overlay */
+    .modal-demo { position: relative; margin: 20px 0; }
+    .modal-trigger { padding: 12px 24px; background: #89b4fa; color: #1e1e2e; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; }
+    .modal-overlay { display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border-radius: 12px; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: #313244; padding: 32px; border-radius: 12px; max-width: 300px; border: 1px solid #45475a; }
+
+    /* Example 4: Dark glass */
+    .dark-glass { background: rgba(0,0,0,0.3); backdrop-filter: blur(12px) brightness(0.8); -webkit-backdrop-filter: blur(12px) brightness(0.8); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; color: white; max-width: 400px; margin: 0 auto; }
+
+    /* Example 5: Hover reveal */
+    .hover-glass { padding: 40px; text-align: center; transition: all 0.3s; border-radius: 12px; }
+    .hover-glass:hover { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+    /* Example 6: Multi-filter */
+    .vibrant-glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(16px) saturate(1.8); -webkit-backdrop-filter: blur(16px) saturate(1.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px; color: white; max-width: 400px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <h1>CSS Backdrop Filter — Interactive Examples</h1>
+
+  <div class="example-card" style="padding-top:0;">
+    <nav class="navbar-demo">
+      <span style="font-weight:700;">🍷 Frosted Navbar</span>
+      <div style="display:flex;gap:16px;">
+        <a href="#" style="color:#cdd6f4;text-decoration:none;">Home</a>
+        <a href="#" style="color:#cdd6f4;text-decoration:none;">Products</a>
+        <a href="#" style="color:#cdd6f4;text-decoration:none;">About</a>
+      </div>
+    </nav>
+    <h2 style="margin-top:1rem;">0. Frosted Navigation Bar</h2>
+    <p>A fixed navbar with <code>backdrop-filter: blur(10px)</code>. Scroll the page to see the blur effect as content passes behind.</p>
+    <div class="pre">.navbar {\n  background: rgba(30, 30, 46, 0.7);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n}</div>
+  </div>
+
+  <div class="example-card bg-pattern">
+    <h2 style="color:white;">1. Glassmorphism Card</h2>
+    <p style="color:rgba(255,255,255,0.8);margin-bottom:1rem;">The classic glass effect with <code>backdrop-filter: blur(12px)</code> over a gradient background.</p>
+    <div class="glass-card">
+      <h3 style="margin-bottom:8px;">Glass Card</h3>
+      <p style="opacity:0.8;">This card has a frosted glass effect. The background behind it is blurred, creating depth and visual interest.</p>
+    </div>
+    <div class="pre" style="margin-top:1rem;">.glass-card {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(12px);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n}</div>
+  </div>
+
+  <div class="example-card bg-pattern-2">
+    <h2 style="color:white;">2. Dark Glass (Dark Mode)</h2>
+    <p style="color:rgba(255,255,255,0.8);margin-bottom:1rem;">Dark theme glass with <code>brightness(0.8)</code> added for extra depth.</p>
+    <div class="dark-glass">
+      <h3 style="margin-bottom:8px;">Dark Glass</h3>
+      <p style="opacity:0.8;">Perfect for dark mode interfaces. The brightness filter adds depth to the frosted effect.</p>
+    </div>
+    <div class="pre" style="margin-top:1rem;">.dark-glass {\n  background: rgba(0, 0, 0, 0.3);\n  backdrop-filter: blur(12px) brightness(0.8);\n}</div>
+  </div>
+
+  <div class="example-card bg-pattern">
+    <h2 style="color:white;">3. Modal Overlay with Blur</h2>
+    <p style="color:rgba(255,255,255,0.8);margin-bottom:1rem;">Click to show a modal with <code>backdrop-filter: blur(4px)</code> on the overlay.</p>
+    <div class="modal-demo" id="modalDemo">
+      <button class="modal-trigger" onclick="openModal()">Open Modal</button>
+      <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+          <h3 style="margin-bottom:8px;color:#a6e3a1;">Modal Dialog</h3>
+          <p style="margin-bottom:12px;color:#cdd6f4;">Background is blurred with backdrop-filter, maintaining context.</p>
+          <button class="modal-trigger" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+    <div class="pre">.modal-overlay {\n  background: rgba(0, 0, 0, 0.3);\n  backdrop-filter: blur(4px);\n}</div>
+  </div>
+
+  <div class="example-card bg-pattern-2">
+    <h2 style="color:white;">4. Vibrant Glass with Saturation</h2>
+    <p style="color:rgba(255,255,255,0.8);margin-bottom:1rem;">Extra vibrancy with <code>saturate(1.8)</code> combined with blur.</p>
+    <div class="vibrant-glass">
+      <h3 style="margin-bottom:8px;">Vibrant Glass</h3>
+      <p style="opacity:0.8;">The saturate filter makes background colors more vivid, creating a striking visual effect.</p>
+    </div>
+    <div class="pre">.vibrant-glass {\n  backdrop-filter: blur(16px) saturate(1.8);\n}</div>
+  </div>
+
+  <div class="example-card bg-pattern">
+    <h2 style="color:white;">5. Hover-Activated Glass</h2>
+    <p style="color:rgba(255,255,255,0.8);margin-bottom:1rem;">Hover over the box to activate the backdrop-filter with a smooth transition.</p>
+    <div class="hover-glass" style="color:white;border:1px solid rgba(255,255,255,0.1);">
+      <h3>Hover me</h3>
+      <p style="opacity:0.7;">The glass effect activates on hover. Note: animating backdrop-filter can be performance-intensive.</p>
+    </div>
+    <div class="pre">.glass {\n  transition: backdrop-filter 0.3s;\n}\n.glass:hover {\n  backdrop-filter: blur(8px);\n}</div>
+  </div>
+
+  <script>
+    function openModal() { document.getElementById('modalOverlay').classList.add('open'); }
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+  </script>
+</body>
+</html>

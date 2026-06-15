@@ -1,0 +1,247 @@
+{
+  "module": "14-css-fonts",
+  "title": "CSS Fonts",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the correct order in font shorthand?",
+      "options": [
+        "font: size family weight style",
+        "font: style weight size/line-height family",
+        "font: family size weight style",
+        "font: weight style family size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "font shorthand order: style weight size/line-height family. font: italic bold 16px/1.5 Arial;"
+    },
+    {
+      "id": 2,
+      "question": "What does font-weight: 700; correspond to?",
+      "options": [
+        "Normal",
+        "Light",
+        "Bold",
+        "Bolder"
+      ],
+      "correctAnswer": 2,
+      "explanation": "700 is the numeric value for bold. 400 = normal, 700 = bold."
+    },
+    {
+      "id": 3,
+      "question": "What is the difference between em and rem units?",
+      "options": [
+        "They are the same",
+        "em is relative to parent font-size; rem is relative to root font-size",
+        "rem is relative to parent; em is relative to root",
+        "em is for width; rem is for height"
+      ],
+      "correctAnswer": 1,
+      "explanation": "em is relative to the parent element's font-size. rem (root em) is relative to the html element's font-size."
+    },
+    {
+      "id": 4,
+      "question": "Which font-family value should always be listed last?",
+      "options": [
+        "The preferred font",
+        "A generic family keyword (serif, sans-serif, monospace, etc.)",
+        "A web font",
+        "A system font"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Always end font-family with a generic family keyword as a fallback in case all specified fonts fail to load."
+    },
+    {
+      "id": 5,
+      "question": "What does font-style: italic do?",
+      "options": [
+        "Makes text bold",
+        "Applies an italic or oblique style to the text",
+        "Changes font size",
+        "Adds underline"
+      ],
+      "correctAnswer": 1,
+      "explanation": "font-style: italic applies an italic version of the font. If italic isn't available, oblique is used as fallback."
+    },
+    {
+      "id": 6,
+      "question": "How do you use a web font with @font-face?",
+      "options": [
+        "@font-face { font: 'FontName'; }",
+        "@font-face { font-family: 'FontName'; src: url('font.woff2'); }",
+        "@font { name: 'FontName'; source: url('font.woff2'); }",
+        "@import-font: 'FontName';"
+      ],
+      "correctAnswer": 1,
+      "explanation": "@font-face requires font-family name and src pointing to the font file. Additional properties like font-weight can be added."
+    },
+    {
+      "id": 7,
+      "question": "What does font-size: 0 do?",
+      "options": [
+        "Makes text invisible while preserving space",
+        "Makes the font size 0, hiding the text",
+        "Sets font size to default",
+        "Creates an error"
+      ],
+      "correctAnswer": 1,
+      "explanation": "font-size: 0 hides text by making it have no size. It still exists in the DOM but is not visible."
+    },
+    {
+      "id": 8,
+      "question": "What is a 'web-safe' font?",
+      "options": [
+        "A font that's encrypted for security",
+        "A font pre-installed on most operating systems, ensuring reliable rendering",
+        "A font that only works in web browsers",
+        "A font with a safety license"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Web-safe fonts (like Arial, Times New Roman, Verdana) are pre-installed on most systems, so they render reliably."
+    },
+    {
+      "id": 9,
+      "question": "What does the font-display property control?",
+      "options": [
+        "How the font is displayed on screen",
+        "How a web font loads and renders — controlling FOIT/FOUT behavior",
+        "The font's color on different displays",
+        "Which characters are displayed"
+      ],
+      "correctAnswer": 1,
+      "explanation": "font-disport controls font loading behavior with values like swap, block, fallback, and optional to manage FOIT and FOUT."
+    },
+    {
+      "id": 10,
+      "question": "What is a variable font?",
+      "options": [
+        "A font that changes size dynamically",
+        "A single font file that contains multiple weight, width, or style variations",
+        "A font that works on any device",
+        "A font created with CSS variables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Variable fonts contain multiple variations (weight, width, slant, etc.) in one file, reducing HTTP requests."
+    },
+    {
+      "id": 11,
+      "question": "What is the default font-weight value for most elements?",
+      "options": [
+        "bold (700)",
+        "normal (400)",
+        "light (300)",
+        "medium (500)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default font-weight for most elements is normal (400)."
+    },
+    {
+      "id": 12,
+      "question": "How do you specify a font stack with fallbacks?",
+      "options": [
+        "font-family: 'Open Sans', Arial, sans-serif;",
+        "font: ['Open Sans', 'Arial'];",
+        "font-family: 'Open Sans' or Arial or sans-serif;",
+        "font-stack: 'Open Sans', Arial;"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A font stack lists fonts in preference order, separated by commas. The browser uses the first available font."
+    },
+    {
+      "id": 13,
+      "question": "What does font-variant: small-caps do?",
+      "options": [
+        "Makes text smaller",
+        "Displays text in small capital letters",
+        "Converts text to lowercase",
+        "Creates a smaller font variant"
+      ],
+      "correctAnswer": 1,
+      "explanation": "font-variant: small-caps displays lowercase letters as smaller versions of uppercase letters."
+    },
+    {
+      "id": 14,
+      "question": "What is the advantage of using system font stacks?",
+      "options": [
+        "They look more decorative",
+        "They eliminate web font loading, improving performance",
+        "They support more characters",
+        "They are always italic"
+      ],
+      "correctAnswer": 1,
+      "explanation": "System font stacks use fonts already on the device, eliminating font file downloads and improving page load performance."
+    },
+    {
+      "id": 15,
+      "question": "How can you create responsive typography with CSS?",
+      "options": [
+        "Use a single font-size for all devices",
+        "Use clamp() with viewport units, e.g., font-size: clamp(1rem, 2.5vw, 2rem)",
+        "Set font-size in pixels only",
+        "Use media queries for every element"
+      ],
+      "correctAnswer": 1,
+      "explanation": "clamp() creates fluid typography that scales between minimum and maximum values based on viewport width."
+    },
+    {
+      "id": 16,
+      "question": "What font formats are recommended for modern websites?",
+      "options": [
+        "Only TTF",
+        "WOFF2 with WOFF fallback",
+        "Only EOT",
+        "SVG fonts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WOFF2 offers the best compression for modern browsers, with WOFF as a widely-supported fallback."
+    },
+    {
+      "id": 17,
+      "question": "What does line-height: 1.5 mean?",
+      "options": [
+        "1.5 pixels between lines",
+        "1.5 times the font size",
+        "1.5 em between lines",
+        "1.5 percent of the element width"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A unitless line-height value (like 1.5) is multiplied by the element's font-size to calculate line spacing."
+    },
+    {
+      "id": 18,
+      "question": "Which Google Fonts parameter loads multiple weights efficiently?",
+      "options": [
+        "family=Roboto:400,700",
+        "family=Roboto&weights=all",
+        "family=Roboto:all",
+        "family=Roboto?variant=bold"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Google Fonts uses colon-separated weight values: family=Roboto:400,700 loads two weights in one request."
+    },
+    {
+      "id": 19,
+      "question": "What is a serif font?",
+      "options": [
+        "A font without decorative strokes",
+        "A font with small decorative lines at the ends of characters",
+        "A monospaced font",
+        "A handwritten-style font"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Serif fonts have small decorative strokes (serifs) at the end of character strokes, like Times New Roman."
+    },
+    {
+      "id": 20,
+      "question": "What is the best practice for font-size units on the web?",
+      "options": [
+        "Always use px for precision",
+        "Use rem for general text to respect user preferences",
+        "Always use em",
+        "Use pt like in print"
+      ],
+      "correctAnswer": 1,
+      "explanation": "rem is preferred because it respects the user's default font-size setting while providing consistent relative sizing."
+    }
+  ]
+}

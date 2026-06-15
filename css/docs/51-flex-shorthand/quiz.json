@@ -1,0 +1,147 @@
+{
+  "module": "51-flex-shorthand",
+  "title": "Flex Shorthand",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is `flex: 1` equivalent to?",
+      "options": ["flex: 1 1 0", "flex: 1 0 auto", "flex: 0 1 auto", "flex: 1 1 auto"],
+      "correctAnswer": 0,
+      "explanation": "`flex: 1` expands to `flex-grow: 1, flex-shrink: 1, flex-basis: 0`."
+    },
+    {
+      "id": 2,
+      "question": "What does `flex: none` mean?",
+      "options": ["flex: 0 0 auto — no flexibility", "flex: 1 1 auto — fully flexible", "Display: none", "No flex properties applied"],
+      "correctAnswer": 0,
+      "explanation": "`flex: none` sets flex-grow: 0, flex-shrink: 0, flex-basis: auto — the item is inflexible."
+    },
+    {
+      "id": 3,
+      "question": "What's the difference between `flex: initial` and `flex: auto`?",
+      "options": ["initial can't grow; auto can grow", "initial can shrink; auto can't", "initial has basis 0; auto has basis auto", "They're identical"],
+      "correctAnswer": 0,
+      "explanation": "`flex: initial` is `0 1 auto` (no grow), while `flex: auto` is `1 1 auto` (can grow)."
+    },
+    {
+      "id": 4,
+      "question": "Which flex value should you use for fixed-size elements?",
+      "options": ["flex: none", "flex: 1", "flex: auto", "flex: initial"],
+      "correctAnswer": 0,
+      "explanation": "`flex: none` prevents both growing and shrinking, keeping the item at its content size."
+    },
+    {
+      "id": 5,
+      "question": "What does `flex: 2 1 0` mean?",
+      "options": ["grow: 2, shrink: 1, basis: 0", "grow: 1, shrink: 2, basis: 0", "grow: 2, shrink: 0, basis: 1", "grow: 0, shrink: 2, basis: 1"],
+      "correctAnswer": 0,
+      "explanation": "The three values are flex-grow, flex-shrink, and flex-basis in that order."
+    },
+    {
+      "id": 6,
+      "question": "When using the two-value flex shorthand (e.g., flex: 1 200px), what is the third value (flex-basis) set to?",
+      "options": ["The second value becomes flex-basis (flex: grow basis)", "flex-basis defaults to 0", "flex-basis defaults to auto", "It's invalid syntax"],
+      "correctAnswer": 0,
+      "explanation": "With two values, the first is flex-grow and the second is flex-basis. flex-shrink defaults to 1."
+    },
+    {
+      "id": 7,
+      "question": "What does the single-value `flex: 200px` mean?",
+      "options": ["flex: 1 1 200px (basis = 200px)", "flex: 0 1 200px (no grow, basis = 200px)", "flex: 200px 0 1 (invalid)", "flex: 0 0 200px"],
+      "correctAnswer": 0,
+      "explanation": "When a single length value is given to flex, it sets flex-basis. The shorthand becomes flex: 1 1 200px."
+    },
+    {
+      "id": 8,
+      "question": "Which flex value creates items that grow, shrink, and respect their content size?",
+      "options": ["flex: auto", "flex: 1", "flex: none", "flex: initial"],
+      "correctAnswer": 0,
+      "explanation": "flex: auto (1 1 auto) lets items grow, shrink, and start from their content size."
+    },
+    {
+      "id": 9,
+      "question": "What does `flex: 0 1 auto` (flex: initial) mean for an item?",
+      "options": ["Item can shrink but not grow — stays at content size", "Item can grow but not shrink", "Item can both grow and shrink", "Item has no flexibility"],
+      "correctAnswer": 0,
+      "explanation": "flex: initial (0 1 auto) means the item can shrink if needed but won't grow beyond its content size."
+    },
+    {
+      "id": 10,
+      "question": "What is the CSS default value of the flex shorthand?",
+      "options": ["0 1 auto (initial)", "1 1 0", "0 0 auto", "auto"],
+      "correctAnswer": 0,
+      "explanation": "The initial/default value of the flex shorthand is `0 1 auto` (also called flex: initial)."
+    },
+    {
+      "id": 11,
+      "question": "If you write `flex: 1 0`, what is flex-basis?",
+      "options": ["0 (the second value in a two-value syntax is always flex-basis)", "auto", "1", "Undefined"],
+      "correctAnswer": 0,
+      "explanation": "With two unitless values, the first is flex-grow (1) and the second is flex-shrink (0). flex-basis defaults to 0."
+    },
+    {
+      "id": 12,
+      "question": "What is the best flex value for a sidebar that should stay at 250px without shrinking?",
+      "options": ["flex: 0 0 250px", "flex: 1 1 250px", "flex: 250px", "flex: auto"],
+      "correctAnswer": 0,
+      "explanation": "flex: 0 0 250px means no grow, no shrink, fixed at 250px — perfect for a fixed sidebar."
+    },
+    {
+      "id": 13,
+      "question": "What does `flex: 1 1 auto` (flex: auto) enable?",
+      "options": ["Items can both grow from and shrink to their content size", "Items stay at content size", "Items grow from zero", "Items don't flex at all"],
+      "correctAnswer": 0,
+      "explanation": "flex: auto allows items to both grow into extra space and shrink when needed, starting from their content size."
+    },
+    {
+      "id": 14,
+      "question": "How does `flex: 1` differ from `flex: auto`?",
+      "options": ["flex: 1 uses basis 0 (equal columns); flex: auto uses basis auto (content-sized)", "flex: auto uses basis 0; flex: 1 uses basis auto", "They are identical", "flex: auto only works in Grid"],
+      "correctAnswer": 0,
+      "explanation": "flex: 1 (1 1 0) ignores content size for equal distribution; flex: auto (1 1 auto) respects content size."
+    },
+    {
+      "id": 15,
+      "question": "When writing `flex: 1 0 auto`, what happens if there's extra space?",
+      "options": ["Items can grow from their content size but won't shrink", "Items can shrink but not grow", "Items both grow and shrink equally", "Items stay at content size"],
+      "correctAnswer": 0,
+      "explanation": "flex: 1 0 auto means flex-grow: 1 (can grow), flex-shrink: 0 (won't shrink), flex-basis: auto (content-sized)."
+    },
+    {
+      "id": 16,
+      "question": "Which keyword flex value is equivalent to `0 0 auto`?",
+      "options": ["flex: none", "flex: initial", "flex: auto", "flex: 0"],
+      "correctAnswer": 0,
+      "explanation": "flex: none expands to 0 0 auto — the item is fully inflexible."
+    },
+    {
+      "id": 17,
+      "question": "What is the correct syntax for flex shorthand?",
+      "options": ["flex: grow shrink basis", "flex: basis grow shrink", "flex: shrink grow basis", "flex: basis shrink grow"],
+      "correctAnswer": 0,
+      "explanation": "The three values in flex shorthand are always: flex-grow, flex-shrink, flex-basis."
+    },
+    {
+      "id": 18,
+      "question": "If you write `flex: 2`, what are the three values?",
+      "options": ["grow: 2, shrink: 1, basis: 0", "grow: 2, shrink: 0, basis: auto", "grow: 1, shrink: 2, basis: 0", "grow: 2, shrink: 2, basis: 2"],
+      "correctAnswer": 0,
+      "explanation": "A single number sets flex-grow. flex-shrink becomes 1 and flex-basis becomes 0."
+    },
+    {
+      "id": 19,
+      "question": "What is the result of `flex: 0 1 50%`?",
+      "options": ["Item starts at 50% of container, can shrink but not grow", "Item is 50% width and fully flexible", "Item takes 50% of remaining space", "Item is fixed at 50%"],
+      "correctAnswer": 0,
+      "explanation": "flex-basis: 50% means the item starts at half the container width. flex-grow: 0 means no growth; flex-shrink: 1 means it can shrink."
+    },
+    {
+      "id": 20,
+      "question": "Which flex shorthand value should you memorize for equal-width responsive columns?",
+      "options": ["flex: 1", "flex: auto", "flex: none", "flex: initial"],
+      "correctAnswer": 0,
+      "explanation": "flex: 1 (1 1 0) is the standard for equal-width columns, as it distributes space equally from zero."
+    }
+  ]
+}

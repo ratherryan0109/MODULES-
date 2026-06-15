@@ -1,0 +1,95 @@
+{
+  "module": "CSS Pseudo-classes",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Striped Table with Hover",
+      "description": "Create a table with alternating row colors and a hover effect that highlights the row under the cursor.",
+      "requirements": [
+        "Table with 5 rows of data",
+        "Alternating row colors using :nth-child(even)",
+        "Row hover effect using :hover",
+        "First row styled as header with different background",
+        "Last row has a bottom border"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; padding: 40px; }\n  table { width: 100%; max-width: 500px; margin: 0 auto; border-collapse: collapse; }\n  th, td { padding: 12px 15px; text-align: left; border: 1px solid #ddd; }\n  tr:first-child { background: #1a1a2e; color: white; }\n  tr:nth-child(even) { background: #f5f5f5; }\n  tr:hover { background: #e8f0fe; }\n  tr:first-child:hover { background: #1a1a2e; }\n  tr:last-child td { border-bottom: 3px solid #1a1a2e; }\n</style>\n</head>\n<body>\n  <table>\n    <tr><th>Name</th><th>Score</th></tr>\n    <tr><td>John</td><td>85</td></tr>\n    <tr><td>Jane</td><td>92</td></tr>\n    <tr><td>Bob</td><td>78</td></tr>\n    <tr><td>Alice</td><td>95</td></tr>\n  </table>\n</body>\n</html>",
+        "explanation": "Uses :first-child for header styling, :nth-child(even) for alternating colors, :hover for row highlight, and :last-child for bottom border."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Styled Link States",
+      "description": "Create styled links that demonstrate all four link states with distinct visual styles.",
+      "requirements": [
+        "Unvisited links: blue, no underline",
+        "Visited links: purple, no underline",
+        "Hover: underline, dark blue background with white text",
+        "Active: red background",
+        "Focus: visible outline"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; padding: 40px; }\n  a { padding: 8px 16px; text-decoration: none; border-radius: 4px; margin: 5px; display: inline-block; }\n  a:link { color: #4a90d9; background: #f0f0f0; }\n  a:visited { color: #6c5ce7; background: #f0f0f0; }\n  a:hover { color: white; background: #357abd; text-decoration: underline; }\n  a:active { color: white; background: #e94560; }\n  a:focus { outline: 3px solid #4a90d9; outline-offset: 2px; }\n</style>\n</head>\n<body>\n  <a href=\"https://example.com\">Unvisited Link</a>\n  <a href=\"#visited\">Visited Link</a>\n  <a href=\"#hover\">Hover Over Me</a>\n  <a href=\"#focus\">Focus Me (Tab)</a>\n</body>\n</html>",
+        "explanation": "Implements LVHA order: link, visited, hover, active. Each state has distinct visual styling. Focus is added for keyboard accessibility."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Form with Live Validation",
+      "description": "Create a registration form that provides real-time visual feedback using form state pseudo-classes.",
+      "requirements": [
+        "Fields: name (required), email (type=email), password (minlength=8), age (1-120)",
+        "Valid fields: green border",
+        "Invalid fields: red border (only when not empty)",
+        "Required fields: left border indicator",
+        "Disabled submit button if form is invalid",
+        "Focus states with box-shadow"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; padding: 40px; background: #f5f5f5; }\n  form { max-width: 400px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n  label { display: block; margin: 15px 0 5px; font-weight: bold; }\n  input { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px; }\n  input:focus { outline: none; border-color: #4a90d9; box-shadow: 0 0 5px rgba(74,144,217,0.3); }\n  input:valid { border-color: #2ecc71; }\n  input:invalid:not(:placeholder-shown) { border-color: #e94560; }\n  input:required { border-left: 3px solid #f39c12; }\n  input:disabled { background: #f0f0f0; cursor: not-allowed; }\n  button { width: 100%; padding: 12px; background: #4a90d9; color: white; border: none; border-radius: 4px; font-size: 16px; margin-top: 20px; cursor: pointer; }\n  button:hover { background: #357abd; }\n  button:active { background: #2a5f8a; }\n</style>\n</head>\n<body>\n  <form>\n    <label>Full Name *</label>\n    <input type=\"text\" required placeholder=\"Enter your name\">\n    <label>Email *</label>\n    <input type=\"email\" required placeholder=\"email@example.com\">\n    <label>Password * (min 8 chars)</label>\n    <input type=\"password\" required minlength=\"8\" placeholder=\"********\">\n    <label>Age</label>\n    <input type=\"number\" min=\"1\" max=\"120\" placeholder=\"Enter age\">\n    <button type=\"submit\">Register</button>\n  </form>\n</body>\n</html>",
+        "explanation": "Uses :valid, :invalid, :required, :focus, :disabled, :hover, :active pseudo-classes for comprehensive form state styling."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Pagination with nth-child",
+      "description": "Create a pagination component using :nth-child for styling specific page numbers differently (current page, first, last, disabled).",
+      "requirements": [
+        "Pagination with 7 page links",
+        "Current page: highlighted, different color",
+        "First and last pages: different border radius",
+        "Disabled prev button: grayed out",
+        "Hover effects on enabled links"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; padding: 40px; }\n  .pagination { text-align: center; }\n  .pagination a {\n    display: inline-block;\n    padding: 10px 16px;\n    margin: 0 2px;\n    text-decoration: none;\n    border: 1px solid #ddd;\n    color: #4a90d9;\n    border-radius: 4px;\n  }\n  .pagination a:first-child { border-radius: 8px 0 0 8px; }\n  .pagination a:last-child { border-radius: 0 8px 8px 0; }\n  .pagination a:hover:not(.disabled):not(.active) { background: #e8f0fe; }\n  .pagination .active { background: #4a90d9; color: white; border-color: #4a90d9; }\n  .pagination .disabled { color: #ccc; cursor: not-allowed; background: #f9f9f9; }\n  .pagination a:nth-child(4) { font-weight: bold; }\n</style>\n</head>\n<body>\n  <div class=\"pagination\">\n    <a href=\"#\" class=\"disabled\">Prev</a>\n    <a href=\"#\">1</a>\n    <a href=\"#\">2</a>\n    <a href=\"#\" class=\"active\">3</a>\n    <a href=\"#\">4</a>\n    <a href=\"#\">5</a>\n    <a href=\"#\">Next</a>\n  </div>\n</body>\n</html>",
+        "explanation": "Uses :first-child/:last-child for border radius, :hover:not() for hover effects excluding active/disabled, :nth-child for highlighting, and class-based states."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Interactive Data Table with All Pseudo-class Techniques",
+      "description": "Build a complex interactive data table that uses multiple pseudo-classes for sorting indicators, alternating rows, hover effects, form states in editable cells, and responsive behavior.",
+      "requirements": [
+        "Table with 10 rows of data",
+        "Striped rows using :nth-child(even)",
+        "Row hover effect with color change",
+        "First column highlighted (first-child)",
+        "Last column: editable input with :valid/:invalid",
+        "Checkbox column with :checked styling",
+        "Empty state message using :empty",
+        "Sortable header with :hover indicator",
+        "Selected rows using :has(:checked) (if supported)"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; padding: 40px; background: #f5f5f5; }\n  .table-container { max-width: 800px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n  table { width: 100%; border-collapse: collapse; }\n  th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }\n  thead th { background: #1a1a2e; color: white; cursor: pointer; }\n  thead th:hover { background: #16213e; }\n  thead th:first-child { border-radius: 0; }\n  tbody tr:nth-child(even) { background: #f8f9fa; }\n  tbody tr:hover { background: #e8f0fe; }\n  tbody td:first-child { font-weight: bold; color: #4a90d9; }\n  tbody tr:last-child td { border-bottom: none; }\n  /* Editable input in last column */\n  .editable { width: 100%; padding: 5px; border: 2px solid #ddd; border-radius: 3px; font-size: 13px; }\n  .editable:valid { border-color: #2ecc71; }\n  .editable:invalid { border-color: #e94560; }\n  .editable:focus { outline: none; border-color: #4a90d9; }\n  /* Checkbox styling */\n  input[type=\"checkbox\"]:checked + label { font-weight: bold; color: #4a90d9; }\n  /* Status indicator */\n  .status { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }\n  tr:has(.status.active) { border-left: 3px solid #2ecc71; }\n  .status.active { background: #2ecc71; }\n  .status.inactive { background: #e94560; }\n</style>\n</head>\n<body>\n  <div class=\"table-container\">\n    <table>\n      <thead>\n        <tr><th>Name</th><th>Role</th><th>Score</th><th>Status</th><th>Edit</th></tr>\n      </thead>\n      <tbody>\n        <tr><td>John</td><td>Admin</td><td>95</td><td><span class=\"status active\"></span></td><td><input class=\"editable\" type=\"text\" value=\"OK\"></td></tr>\n        <tr><td>Jane</td><td>User</td><td>87</td><td><span class=\"status active\"></span></td><td><input class=\"editable\" type=\"text\" value=\"Good\"></td></tr>\n        <tr><td>Bob</td><td>Editor</td><td>72</td><td><span class=\"status inactive\"></span></td><td><input class=\"editable\" type=\"text\" value=\"Pending\"></td></tr>\n        <tr><td>Alice</td><td>Admin</td><td>91</td><td><span class=\"status active\"></span></td><td><input class=\"editable\" type=\"text\" value=\"Great\"></td></tr>\n        <tr><td>Charlie</td><td>User</td><td>65</td><td><span class=\"status inactive\"></span></td><td><input class=\"editable\" type=\"email\" value=\"email\"></td></tr>\n      </tbody>\n    </table>\n  </div>\n</body>\n</html>",
+        "explanation": "Uses: :nth-child(even) for striping, :hover for row and header effects, :first-child for name column, :last-child for bottom border, :valid/:invalid on editable inputs, :focus on inputs, :has() for status-based row border, :checked for checkbox styling."
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "module": "CSS Backdrop Filter",
+  "description": "Practice building glassmorphism interfaces with backdrop-filter",
+  "challenges": [
+    {
+      "id": 1,
+      "title": "Frosted Navigation Bar",
+      "difficulty": "easy",
+      "description": "Build a fixed navigation bar with a frosted glass effect. The navbar should have: (1) position: fixed at the top, (2) semi-transparent background with rgba, (3) backdrop-filter: blur() for glass effect, (4) a subtle bottom border, (5) at least 3 navigation links inside.",
+      "hints": [
+        "Use position: fixed; top: 0; width: 100% for the sticky effect",
+        "backdrop-filter: blur(10px) is a good starting value",
+        "Background: rgba(255,255,255,0.1) for light theme or rgba(0,0,0,0.3) for dark",
+        "Make sure to add a border-bottom: 1px solid rgba(255,255,255,0.1)"
+      ],
+      "starterCode": "<nav class=\"frosted-nav\">\n  <div class=\"logo\">MyApp</div>\n  <div class=\"nav-links\">\n    <a href=\"#\">Home</a>\n    <a href=\"#\">About</a>\n    <a href=\"#\">Contact</a>\n  </div>\n</nav>",
+      "solution": "nav.frosted-nav { position: fixed; top: 0; width: 100%; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 100; } nav.frosted-nav .nav-links { display: flex; gap: 24px; } nav.frosted-nav a { color: #333; text-decoration: none; font-weight: 500; }"
+    },
+    {
+      "id": 2,
+      "title": "Glassmorphism Pricing Card",
+      "difficulty": "medium",
+      "description": "Create a pricing card with glassmorphism styling. Requirements: (1) a gradient background behind the card, (2) the card has backdrop-filter with blur and saturation, (3) a price, features list, and CTA button, (4) subtle border and rounded corners, (5) a hover effect that slightly changes the backdrop-filter.",
+      "hints": [
+        "Use a gradient background on the parent container",
+        "Combine blur() with saturate() for vibrant glass effect",
+        "Add a transition on backdrop-filter for smooth hover change",
+        "Use rgba(255,255,255,0.15) for the card background",
+        "border: 1px solid rgba(255,255,255,0.2) enhances the glass look"
+      ],
+      "starterCode": "<div class=\"pricing-bg\">\n  <div class=\"pricing-card\">\n    <h3>Pro Plan</h3>\n    <div class=\"price\">$29/mo</div>\n    <ul class=\"features\">\n      <li>10 Projects</li>\n      <li>100GB Storage</li>\n      <li>Priority Support</li>\n    </ul>\n    <button>Get Started</button>\n  </div>\n</div>",
+      "solution": ".pricing-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 400px; display: flex; align-items: center; justify-content: center; padding: 40px; } .pricing-card { background: rgba(255,255,255,0.12); backdrop-filter: blur(16px) saturate(1.5); -webkit-backdrop-filter: blur(16px) saturate(1.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 40px; text-align: center; color: white; max-width: 320px; transition: backdrop-filter 0.3s, transform 0.3s; } .pricing-card:hover { backdrop-filter: blur(20px) saturate(1.8); transform: translateY(-4px); } .pricing-card ul { list-style: none; padding: 0; margin: 24px 0; } .pricing-card li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); } .pricing-card button { background: white; color: #764ba2; border: none; padding: 12px 32px; border-radius: 8px; font-weight: 700; cursor: pointer; }"
+    },
+    {
+      "id": 3,
+      "title": "Safari-style Reader Modal",
+      "difficulty": "hard",
+      "description": "Build an article reader modal similar to Safari's reader mode using backdrop-filter. Requirements: (1) page with article content and images, (2) a 'Reader Mode' button that triggers a slide-in overlay, (3) the overlay uses backdrop-filter to blur the background content, (4) clean typography and comfortable reading experience, (5) smooth open/close animation, (6) proper scroll handling when modal is open.",
+      "hints": [
+        "Use position: fixed for the reader overlay with inset: 0",
+        "backdrop-filter: blur(8px) brightness(0.6) creates contrast",
+        "Use a CSS transition or animation for smooth open/close",
+        "Add overflow: hidden on body when modal is open to prevent background scroll",
+        "Consider using @supports to handle browsers without backdrop-filter"
+      ],
+      "starterCode": "<body>\n  <header>My Blog</header>\n  <main>\n    <article>\n      <h1>Article Title</h1>\n      <p>Long article content here...</p>\n      <img src=\"hero.jpg\" alt=\"Hero\">\n      <p>More content...</p>\n    </article>\n    <button id=\"readerBtn\">Reader Mode</button>\n  </main>\n  <div id=\"readerOverlay\" class=\"reader-overlay\">\n    <div class=\"reader-content\">\n      <button id=\"closeBtn\">Close</button>\n      <article>\n        <h1>Article Title</h1>\n        <p>Clean reading view content...</p>\n      </article>\n    </div>\n  </div>\n</body>",
+      "solution": "/* CSS */ .reader-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px) brightness(0.6); -webkit-backdrop-filter: blur(8px) brightness(0.6); z-index: 1000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; } .reader-overlay.active { display: flex; opacity: 1; } .reader-content { background: #fff; color: #333; max-width: 720px; width: 90%; max-height: 85vh; overflow-y: auto; padding: 40px; border-radius: 16px; transform: scale(0.95) translateY(20px); transition: transform 0.3s ease; } .reader-overlay.active .reader-content { transform: scale(1) translateY(0); } body.modal-open { overflow: hidden; } /* No backdrop-filter fallback */ @supports not (backdrop-filter: blur(1px)) { .reader-overlay { background: rgba(0,0,0,0.7); } } /* JS: document.getElementById('readerBtn').onclick = () => { document.getElementById('readerOverlay').classList.add('active'); document.body.classList.add('modal-open'); } */"
+    }
+  ]
+}

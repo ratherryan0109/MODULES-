@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Fix Layout with box-sizing",
+    "description": "A two-column layout is broken because padding adds to element width. Fix it by applying box-sizing: border-box so the columns sit side by side within the 400px container.",
+    "starterCode": "<div class=\"row\">\n  <div class=\"col\">Column 1</div>\n  <div class=\"col\">Column 2</div>\n</div>\n\n<style>\n.row { width: 400px; }\n.col {\n  width: 50%;\n  float: left;\n  padding: 20px;\n  background: #f0f4f8;\n  border: 2px solid #4299e1;\n}\n</style>",
+    "solution": "<div class=\"row\">\n  <div class=\"col\">Column 1</div>\n  <div class=\"col\">Column 2</div>\n</div>\n\n<style>\n.row { width: 400px; }\n.col {\n  width: 50%;\n  float: left;\n  padding: 20px;\n  background: #f0f4f8;\n  border: 2px solid #4299e1;\n  box-sizing: border-box;\n}\n</style>"
+  },
+  "medium": {
+    "title": "Calculate and Fix Total Element Width",
+    "description": "Given a content-box element with width, padding, border, and margin, calculate the total width it occupies. Then apply box-sizing: border-box and adjust the CSS so the element is exactly 300px total (content + padding + border) with the same visual appearance.",
+    "starterCode": "<div class=\"box\">\n  <p>This box has width: 300px with content-box. Padding and border add to its total size.</p>\n</div>\n\n<style>\n.box {\n  width: 300px;\n  padding: 25px;\n  border: 5px solid #4299e1;\n  margin: 20px auto;\n  background: #ebf8ff;\n  font-family: Arial;\n}\n</style>",
+    "solution": "<div class=\"box\">\n  <p>This box now uses border-box so 300px includes padding and border.</p>\n</div>\n\n<style>\n.box {\n  width: 300px;\n  padding: 25px;\n  border: 5px solid #4299e1;\n  margin: 20px auto;\n  background: #ebf8ff;\n  font-family: Arial;\n  box-sizing: border-box;\n}\n</style>"
+  },
+  "hard": {
+    "title": "Debug Box Model Issues in a Complex Layout",
+    "description": "A card grid layout has multiple box model issues: cards overflow their container, inline elements don't respect dimensions, and margins collapse unexpectedly. Fix all issues by applying the correct box model principles.",
+    "starterCode": "<div class=\"container\">\n  <div class=\"card\">\n    <span class=\"card-icon\">★</span>\n    <h3>Feature One</h3>\n    <p>Description text here.</p>\n  </div>\n  <div class=\"card\">\n    <span class=\"card-icon\">★</span>\n    <h3>Feature Two</h3>\n    <p>Description text here.</p>\n  </div>\n</div>\n\n<style>\n.container { width: 500px; background: #f7fafc; }\n.card {\n  width: 50%;\n  display: inline-block;\n  padding: 20px;\n  border: 2px solid #e2e8f0;\n  background: white;\n}\n.card-icon { width: 50px; height: 50px; }\n</style>",
+    "solution": "<div class=\"container\">\n  <div class=\"card\">\n    <span class=\"card-icon\">★</span>\n    <h3>Feature One</h3>\n    <p>Description text here.</p>\n  </div>\n  <div class=\"card\">\n    <span class=\"card-icon\">★</span>\n    <h3>Feature Two</h3>\n    <p>Description text here.</p>\n  </div>\n</div>\n\n<style>\n* { box-sizing: border-box; }\n.container {\n  width: 500px;\n  background: #f7fafc;\n  font-family: Arial;\n  padding: 10px;\n  display: flow-root;\n}\n.card {\n  width: calc(50% - 10px);\n  float: left;\n  padding: 20px;\n  border: 2px solid #e2e8f0;\n  background: white;\n  margin: 5px;\n}\n.card-icon {\n  display: inline-block;\n  width: 50px;\n  height: 50px;\n  line-height: 50px;\n  text-align: center;\n  background: #ebf8ff;\n  border-radius: 8px;\n  font-size: 24px;\n}\n</style>"
+  }
+}

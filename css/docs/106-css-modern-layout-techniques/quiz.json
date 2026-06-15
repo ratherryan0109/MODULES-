@@ -1,0 +1,222 @@
+{
+  "module": "106-css-modern-layout-techniques",
+  "title": "CSS Modern Layout Techniques",
+  "difficulty": "advanced",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the primary difference between Flexbox and CSS Grid?",
+      "options": [
+        "Flexbox is 1D (row or column), Grid is 2D (rows and columns simultaneously)",
+        "Flexbox is only for horizontal layouts, Grid is only for vertical",
+        "Grid is newer and replaces Flexbox entirely",
+        "Flexbox can only be used for navigation bars"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Flexbox works in one direction at a time (main axis). Grid handles both rows and columns simultaneously."
+    },
+    {
+      "id": 2,
+      "question": "What does `flex: 1` mean in shorthand?",
+      "options": [
+        "flex-grow: 1, flex-shrink: 1, flex-basis: 0%",
+        "flex-grow: 1, flex-shrink: 0, flex-basis: auto",
+        "flex-grow: 1, flex-shrink: 1, flex-basis: 100%",
+        "flex-grow: 0, flex-shrink: 1, flex-basis: 1px"
+      ],
+      "correctAnswer": 0,
+      "explanation": "flex: 1 expands to flex-grow: 1, flex-shrink: 1, flex-basis: 0% (flex-basis of 0% means it starts from 0 and grows proportionally)."
+    },
+    {
+      "id": 3,
+      "question": "What does `repeat(auto-fill, minmax(250px, 1fr))` do?",
+      "options": [
+        "Creates as many 250px minimum columns as fit, stretching them equally",
+        "Creates exactly 250px wide columns",
+        "Creates one column that is 250px minimum and 1fr maximum",
+        "Repeats columns until they fill 250px total"
+      ],
+      "correctAnswer": 0,
+      "explanation": "auto-fill creates as many tracks as fit in the container. Each track is at least 250px, and stretches equally (1fr) if there's extra space."
+    },
+    {
+      "id": 4,
+      "question": "What is the difference between `auto-fill` and `auto-fit`?",
+      "options": [
+        "auto-fill preserves empty tracks, auto-fit collapses them to 0",
+        "auto-fill is for rows, auto-fit is for columns",
+        "auto-fill works with flexbox, auto-fit works with grid",
+        "There is no difference — they are aliases"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Both create the same number of tracks, but auto-fit collapses empty tracks (allowing items to stretch)."
+    },
+    {
+      "id": 5,
+      "question": "Which property is used to create named regions in CSS Grid?",
+      "options": [
+        "grid-template-areas",
+        "grid-named-areas",
+        "grid-regions",
+        "grid-areas"
+      ],
+      "correctAnswer": 0,
+      "explanation": "grid-template-areas defines named regions in the grid. Each child then uses grid-area to reference its region."
+    },
+    {
+      "id": 6,
+      "question": "Why should you set `min-width: 0` on flex items?",
+      "options": [
+        "To prevent overflow from content larger than the flex item's basis",
+        "To allow items to shrink below their content size",
+        "To enable flex-wrap to work correctly",
+        "Both A and B"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Flex items default to min-width: auto, which prevents them from shrinking below their content's intrinsic width. min-width: 0 overrides this."
+    },
+    {
+      "id": 7,
+      "question": "What does `container-type: inline-size` do?",
+      "options": [
+        "Establishes a containment context for container queries",
+        "Sets the inline size of a container",
+        "Creates a flex container",
+        "Defines a grid container's inline size"
+      ],
+      "correctAnswer": 0,
+      "explanation": "container-type: inline-size creates a containment context so the element can be queried with @container() based on its inline size."
+    },
+    {
+      "id": 8,
+      "question": "What is `subgrid` used for?",
+      "options": [
+        "Allowing a child grid to inherit track sizes from its parent grid",
+        "Creating nested grids manually",
+        "A smaller version of CSS Grid for mobile",
+        "Creating sub-components within a grid layout"
+      ],
+      "correctAnswer": 0,
+      "explanation": "subgrid lets a grid item's tracks align with the parent grid's tracks, useful for aligned card layouts."
+    },
+    {
+      "id": 9,
+      "question": "Which is the correct way to center an element both horizontally and vertically?",
+      "options": [
+        "display: grid; place-items: center;",
+        "display: flex; align-items: center;",
+        "display: block; margin: auto;",
+        "position: absolute; top: 50%; left: 50%;"
+      ],
+      "correctAnswer": 0,
+      "explanation": "place-items: center on a grid is the simplest one-line solution for centering both axes."
+    },
+    {
+      "id": 10,
+      "question": "Which intrinsic sizing keyword makes an element as narrow as possible?",
+      "options": ["min-content", "max-content", "fit-content", "auto"],
+      "correctAnswer": 0,
+      "explanation": "min-content sizes the element to the smallest possible width (the widest unbreakable word or element)."
+    },
+    {
+      "id": 11,
+      "question": "What happens with `grid-template-rows: auto 1fr auto; min-height: 100vh;`?",
+      "options": [
+        "Creates a sticky footer — top/bottom auto-size, middle fills remaining viewport",
+        "Distributes height equally among three rows",
+        "Creates three equal-height rows that overflow",
+        "The middle row collapses to 0"
+      ],
+      "correctAnswer": 0,
+      "explanation": "This is the classic sticky footer pattern. auto rows size to content, 1fr takes remaining space."
+    },
+    {
+      "id": 12,
+      "question": "What does `place-items` shorthand combine?",
+      "options": ["align-items and justify-items", "align-content and justify-content", "align-self and justify-self", "align-items and align-content"],
+      "correctAnswer": 0,
+      "explanation": "place-items is shorthand for align-items (vertical) and justify-items (horizontal)."
+    },
+    {
+      "id": 13,
+      "question": "Which is the correct way to create a responsive grid without media queries?",
+      "options": [
+        "grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr))",
+        "grid-template-columns: repeat(3, 1fr)",
+        "display: responsive-grid",
+        "grid-template-columns: 1fr 1fr 1fr"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The auto-fill/minmax pattern creates responsive grids that automatically adjust column count based on available space."
+    },
+    {
+      "id": 14,
+      "question": "What is the default value of `flex-wrap`?",
+      "options": ["nowrap", "wrap", "wrap-reverse", "auto"],
+      "correctAnswer": 0,
+      "explanation": "Flex items default to nowrap, meaning they will overflow their container rather than wrap to a new line."
+    },
+    {
+      "id": 15,
+      "question": "Which of these is NOT a valid CSS Grid function?",
+      "options": ["subgrid()", "minmax()", "repeat()", "fit-content()"],
+      "correctAnswer": 0,
+      "explanation": "subgrid is a keyword value for grid-template-rows/columns, not a function like minmax() or repeat()."
+    },
+    {
+      "id": 16,
+      "question": "How does `gap` differ from using margins on grid/flex children?",
+      "options": [
+        "gap only applies between items (not at edges), margin applies around each item",
+        "gap is deprecated, margins are preferred",
+        "gap works slower than margins",
+        "gap cannot be used with flexbox"
+      ],
+      "correctAnswer": 0,
+      "explanation": "gap creates spacing BETWEEN items only, never at the container edges. Margins add space on all sides of each item."
+    },
+    {
+      "id": 17,
+      "question": "What is the minimum width of a flex item by default?",
+      "options": ["auto (content-based)", "0", "100%", "1px"],
+      "correctAnswer": 0,
+      "explanation": "Flex items default to min-width: auto (or min-height: auto), meaning they won't shrink below their content's intrinsic size."
+    },
+    {
+      "id": 18,
+      "question": "What does `grid-template-columns: repeat(4, 1fr)` create?",
+      "options": [
+        "4 equal-width columns",
+        "4 columns of varying width",
+        "4 rows of equal height",
+        "4 columns that repeat content"
+      ],
+      "correctAnswer": 0,
+      "explanation": "repeat(4, 1fr) creates four columns, each taking one fraction of the available space — resulting in equal-width columns."
+    },
+    {
+      "id": 19,
+      "question": "What is masonry layout?",
+      "options": [
+        "An experimental CSS Grid layout where items fill gaps in uneven columns",
+        "A type of brick wall pattern using CSS Grid",
+        "A flexbox-based layout for masonry walls",
+        "A deprecated CSS layout mode"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Masonry (CSS Grid Level 3) packs items into columns with optimal spacing, like Pinterest. Still experimental as of 2026."
+    },
+    {
+      "id": 20,
+      "question": "When should you use container queries instead of media queries?",
+      "options": [
+        "When a component should respond to its own container size, not the viewport",
+        "Always — container queries replace media queries",
+        "Only for print stylesheets",
+        "Only for mobile-first designs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Container queries let components adapt based on their container's size, making them truly reusable across different layouts."
+    }
+  ]
+}

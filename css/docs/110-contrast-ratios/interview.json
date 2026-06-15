@@ -1,0 +1,130 @@
+{
+  "module": "110-contrast-ratios",
+  "title": "Contrast Ratios",
+  "beginner": [
+    {
+      "question": "What is a contrast ratio in CSS accessibility?",
+      "answer": "A contrast ratio is a numerical value (ranging from 1:1 to 21:1) representing the difference in luminance between two colors — typically text and its background. Higher ratios mean better readability, especially for users with low vision."
+    },
+    {
+      "question": "What is the minimum contrast ratio for normal text under WCAG AA?",
+      "answer": "WCAG AA requires a minimum contrast ratio of 4.5:1 for normal text (under 18pt or 14pt bold). This applies to all body text, captions, and any text that isn't considered 'large'."
+    },
+    {
+      "question": "What is the contrast ratio requirement for large text under WCAG AA?",
+      "answer": "Large text (at least 18pt/24px bold or 14pt/18.667px regular) needs a contrast ratio of at least 3:1 under WCAG AA. Larger text is easier to read, so the requirement is relaxed."
+    },
+    {
+      "question": "What is the maximum possible contrast ratio?",
+      "answer": "The maximum contrast ratio is 21:1, achieved by comparing pure black (#000000) against pure white (#FFFFFF). Pure white on pure black also gives 21:1."
+    },
+    {
+      "question": "Why is a contrast ratio of 1:1 problematic?",
+      "answer": "A contrast ratio of 1:1 means the two colors have identical luminance — text would be invisible against its background. This occurs when foreground and background are the same color."
+    },
+    {
+      "question": "How does font weight affect contrast requirements?",
+      "answer": "Font weight directly affects whether text qualifies as 'large text'. Bold text at 14pt (18.667px) meets the large text threshold, requiring 3:1 instead of 4.5:1. Heavier weights generally improve readability at smaller sizes."
+    },
+    {
+      "question": "What is the easiest way to quickly check a contrast ratio?",
+      "answer": "Use an online contrast checker like WebAIM's Contrast Checker, or use Chrome DevTools by inspecting an element and checking the 'Color' section in the Styles panel, which shows the contrast ratio with a pass/fail indicator."
+    },
+    {
+      "question": "Do images of text have the same contrast requirements?",
+      "answer": "Yes, images of text must meet the same contrast requirements as regular text under WCAG SC 1.4.5 (unless the image is essential, a logo, or decorative). It's always better to use real text instead of images of text."
+    },
+    {
+      "question": "What is the contrast requirement for placeholder text?",
+      "answer": "Placeholder text is typically considered 'incidental' and can have lower contrast, but WCAG recommends meeting at least 3:1. However, the best practice is to use visible labels instead of relying on placeholders, which disappear on input."
+    },
+    {
+      "question": "What is the difference between 4.5:1 and 3:1 contrast ratios visually?",
+      "answer": "A 4.5:1 ratio provides clear, comfortable readability for most users including those with mild visual impairments. A 3:1 ratio is noticeable but may be difficult for users with moderate low vision — it's only acceptable for large text or UI components."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you calculate a contrast ratio mathematically?",
+      "answer": "Contrast ratio = (L1 + 0.05) / (L2 + 0.05), where L1 is the relative luminance of the lighter color and L2 is the relative luminance of the darker color. L1 must always be the brighter color so the ratio is >= 1:1."
+    },
+    {
+      "question": "What is relative luminance and how is it different from brightness?",
+      "answer": "Relative luminance quantifies the perceived brightness of a color normalized from 0 (black) to 1 (white), following the sRGB color space's perceptual curve. Brightness is subjective; luminance is a measurable physical quantity proportional to light intensity."
+    },
+    {
+      "question": "How do you handle contrast ratios on gradient backgrounds?",
+      "answer": "For gradient backgrounds, test the contrast ratio of the text against both the lightest and darkest points of the gradient. If the text must appear over the entire gradient, use the worst-case (lowest contrast) point as your baseline."
+    },
+    {
+      "question": "What is the WCAG requirement for text over background images?",
+      "answer": "Text over background images must maintain the required contrast ratio (4.5:1 for AA normal text). If the image varies, consider adding a semi-transparent overlay (e.g., `rgba(0,0,0,0.5)`) as a text background to ensure consistent contrast."
+    },
+    {
+      "question": "What is SC 1.4.3 and what are its exceptions?",
+      "answer": "SC 1.4.3 (Contrast Minimum) requires 4.5:1 for normal text and 3:1 for large text. Exceptions include: incidental text (part of an inactive UI component, decorative, invisible), logotypes, and text in captions/images of text that are essential."
+    },
+    {
+      "question": "How does the contrast ratio requirement differ for disabled form elements?",
+      "answer": "Disabled form elements are considered 'incidental' (SC 1.4.3 exception), so they are not required to meet contrast minimums. However, for usability, ensure disabled elements still have at least 3:1 contrast so users can perceive they exist."
+    },
+    {
+      "question": "What is 'SC 1.4.11 Non-text Contrast' and how does it differ from text contrast?",
+      "answer": "SC 1.4.11 (added in WCAG 2.1) requires a 3:1 contrast ratio for UI components (buttons, form inputs, focus indicators) and graphical objects (icons, charts) against adjacent colors. Text contrast uses 4.5:1 for normal text; non-text uses a flat 3:1."
+    },
+    {
+      "question": "How do fonts with thin strokes affect contrast perception?",
+      "answer": "Thin fonts (light/extra-light weight) reduce the effective contrast ratio because the strokes occupy less area. WCAG provides no special dispensation for thin fonts — they must meet the same 4.5:1 ratio. Consider using heavier weights for body text to ensure readability."
+    },
+    {
+      "question": "What does SC 1.4.6 (Contrast Enhanced) require for AAA conformance?",
+      "answer": "SC 1.4.6 requires 7:1 contrast ratio for normal text and 4.5:1 for large text. This significantly limits color choices and is considered an enhanced level, not required for most sites."
+    },
+    {
+      "question": "How do you measure contrast for transparent or semi-transparent colors?",
+      "answer": "Semi-transparent colors must be composited with their actual background to find the resulting opacity-adjusted color. For example, `rgba(0,0,0,0.5)` on white yields a medium gray. The composited color is then used for contrast calculations."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the APCA (Accessible Perceptual Contrast Algorithm) differ from the WCAG 2.x contrast ratio formula?",
+      "answer": "APCA uses a perceptually uniform color space (CIE Lab-based), accounts for font weight, font size, and spatial frequency, and produces a signed value (light-on-dark vs dark-on-light). Unlike WCAG 2.x's single 4.5:1 threshold, APCA provides context-dependent recommendations."
+    },
+    {
+      "question": "What is the minimum contrast ratio for 'enhanced' focus indicators under WCAG 2.2?",
+      "answer": "WCAG 2.2 SC 2.4.12 (Focus Appearance — Enhanced) requires the focus indicator to have a contrast ratio of at least 3:1 between focused and unfocused colors, AND the area must be at least 4 CSS pixels thick along the full perimeter."
+    },
+    {
+      "question": "How does contrast perception differ between high-DPI (Retina) and standard displays?",
+      "answer": "High-DPI displays render smaller details more smoothly, which can improve perceived contrast. However, the physical contrast ratio of the display (e.g., OLED vs LCD, glossy vs matte) has a greater impact than pixel density. OLED displays typically achieve higher contrast ratios due to true blacks."
+    },
+    {
+      "question": "What is the impact of ambient lighting on contrast ratio requirements?",
+      "answer": "High ambient light (outdoor sunlight) reduces perceived contrast significantly — a 4.5:1 ratio indoors may appear as 2:1 outdoors. For mobile designs, consider testing in outdoor conditions. The `light-level` media query (though not widely supported) addresses this."
+    },
+    {
+      "question": "How do you mathematically compute contrast for custom color spaces like Display P3?",
+      "answer": "For Display P3, first convert P3 color values to the sRGB gamut using a chromatic adaptation transform (Bradford or CAT02). Then apply the standard sRGB luminance formula to the in-gamut values. Some modern tools compute contrast directly in the P3 space."
+    },
+    {
+      "question": "What is 'contrast perception' versus 'contrast ratio' in the context of cataracts?",
+      "answer": "Users with cataracts experience reduced contrast sensitivity — the brain's ability to detect differences in luminance. A 4.5:1 ratio on a monitor may effectively appear as 2:1. This is why AAA (7:1) is recommended for aging populations and why APCA aims to model this better."
+    },
+    {
+      "question": "How do you handle contrast when text overlaps with CSS `mix-blend-mode`?",
+      "answer": "When using `mix-blend-mode`, the resulting blended color depends on the background content and is not easily predictable. Avoid critical text over blend-mode elements, or wrap text in a solid/high-contrast background container that's outside the blend context."
+    },
+    {
+      "question": "What is the 'sRGB specification' and why does WCAG 2.x tie contrast to sRGB?",
+      "answer": "sRGB (standard Red Green Blue) is a standardized color space co-developed by HP and Microsoft in 1996. WCAG 2.x contrast calculations assume sRGB because sRGB is the web's default color space. Colors outside sRGB (like P3) must be approximated to sRGB for contrast checks."
+    },
+    {
+      "question": "How does `prefers-contrast: more` interact with forced colors mode in Windows?",
+      "answer": "In Windows High Contrast Mode (a forced colors mode), the user's system theme overrides all CSS colors. The `prefers-contrast: more` media query detects this. You should test that your site remains usable and that any custom focus indicators still appear in forced colors mode."
+    },
+    {
+      "question": "What is the contrast ratio of common 'brand blue' (#007bff Bootstrap) on white (#fff) and does it pass?",
+      "answer": "#007bff on white has a contrast ratio of approximately 3.2:1, which fails WCAG AA for normal text (needs 4.5:1) but passes for large text (needs 3:1). This is why Bootstrap uses this blue primarily for interactive elements and large headings, not body text."
+    }
+  ]
+}

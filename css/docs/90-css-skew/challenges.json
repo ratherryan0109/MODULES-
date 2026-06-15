@@ -1,0 +1,25 @@
+{
+  "module": "CSS Skew",
+  "challenges": [
+    {
+      "id": 1, "difficulty": "easy", "title": "Simple Skew on Hover",
+      "description": "Create a box that skews 10deg on X-axis when hovered.", "hint": "Use :hover with transform: skewX(10deg).", "expected_outcome": "Box tilts on hover.", "solution": { "css": ".box { transition: transform 0.3s ease; } .box:hover { transform: skewX(10deg); }" }
+    },
+    {
+      "id": 2, "difficulty": "easy", "title": "Skew Direction Toggle",
+      "description": "Create an element that alternates skew direction on each click using classes.", "hint": "Toggle classes with different skewX values.", "expected_outcome": "Element skews left/right on click.", "solution": { "css": ".left { transform: skewX(15deg); } .right { transform: skewX(-15deg); }" }
+    },
+    {
+      "id": 3, "difficulty": "medium", "title": "Ribbon Banner with Counter-Skew",
+      "description": "Create a ribbon banner with skewed background and straight text.", "hint": "Skew parent, counter-skew child with opposite value.", "expected_outcome": "Angled ribbon with readable text.", "solution": { "css": ".ribbon { transform: skewX(-20deg); background: red; padding: 5px 20px; } .ribbon span { display: inline-block; transform: skewX(20deg); }" }
+    },
+    {
+      "id": 4, "difficulty": "medium", "title": "Parallax Panel Effect",
+      "description": "Create panels with different skew and scale values to simulate 3D depth.", "hint": "Combine skewY with scaleY for perspective effect.", "expected_outcome": "Panels appear at different depths.", "solution": { "css": ".panel1 { transform: skewY(5deg) scaleY(0.9); } .panel2 { transform: skewY(-3deg) scaleY(0.95); } .panel3 { transform: skewY(2deg); }" }
+    },
+    {
+      "id": 5, "difficulty": "hard", "title": "3D Cuboid with Skew",
+      "description": "Create a 3D cuboid/box using skew on all faces.", "hint": "Use skewX and skewY to create each face of a 3D box, positioned with absolute.", "expected_outcome": "A 3D-looking box rendered with 2D skew transforms.", "solution": { "css": ".face-front { transform: skewX(0deg) skewY(0deg); } .face-top { transform: skewX(-30deg) skewY(10deg); } .face-side { transform: skewX(30deg) skewY(-10deg); }" }
+    }
+  ]
+}

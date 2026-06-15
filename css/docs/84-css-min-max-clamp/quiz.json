@@ -1,0 +1,147 @@
+{
+  "module": "84-css-min-max-clamp",
+  "title": "CSS min(), max(), and clamp() Functions",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does min(100%, 1200px) do?",
+      "options": ["Always 1200px wide", "Fills container but never exceeds 1200px", "Always 100% wide", "Takes the larger value"],
+      "correctAnswer": 1,
+      "explanation": "min() selects the smaller value, so the element fills its container but caps at 1200px."
+    },
+    {
+      "id": 2,
+      "question": "What does max(300px, 50%) do?",
+      "options": ["Always 50% wide", "At least 300px, grows with container", "Never exceeds 300px", "Takes the smaller value"],
+      "correctAnswer": 1,
+      "explanation": "max() selects the larger value, so the element is at least 300px but grows with its container."
+    },
+    {
+      "id": 3,
+      "question": "What are the three arguments of clamp()?",
+      "options": ["max, preferred, min", "min, preferred, max", "preferred, min, max", "min, max, preferred"],
+      "correctAnswer": 1,
+      "explanation": "clamp() takes (MIN, PREFERRED, MAX) in that order."
+    },
+    {
+      "id": 4,
+      "question": "Which function is best for fluid typography?",
+      "options": ["min()", "max()", "clamp()", "calc()"],
+      "correctAnswer": 2,
+      "explanation": "clamp() is ideal for fluid typography as it sets a preferred size with min and max bounds."
+    },
+    {
+      "id": 5,
+      "question": "How do you create a responsive container with min()?",
+      "options": ["width: min(90%, 1200px)", "width: max(90%, 1200px)", "width: clamp(90%, 1200px)", "width: calc(90% - 1200px)"],
+      "correctAnswer": 0,
+      "explanation": "width: min(90%, 1200px) fills 90% of the viewport but never exceeds 1200px."
+    },
+    {
+      "id": 6,
+      "question": "What happens when the preferred value in clamp() is between min and max?",
+      "options": ["The min is used", "The preferred value is used", "The max is used", "An error occurs"],
+      "correctAnswer": 1,
+      "explanation": "If the preferred value is within the min-max range, it is used as-is."
+    },
+    {
+      "id": 7,
+      "question": "What happens when the preferred value in clamp() is below the minimum?",
+      "options": ["The minimum is used", "The preferred is used", "The maximum is used", "Nothing is applied"],
+      "correctAnswer": 0,
+      "explanation": "If the preferred value falls below the minimum, the minimum value is used."
+    },
+    {
+      "id": 8,
+      "question": "Can min(), max(), and clamp() be nested inside calc()?",
+      "options": ["No", "Yes, they nest freely", "Only clamp() in calc()", "Only outside calc()"],
+      "correctAnswer": 1,
+      "explanation": "Comparison functions can be nested inside calc() and inside each other."
+    },
+    {
+      "id": 9,
+      "question": "What is the equivalent of max-width: 1200px using comparison functions?",
+      "options": ["width: max(100%, 1200px)", "width: min(100%, 1200px)", "width: clamp(100%, 1200px)", "width: calc(100%, 1200px)"],
+      "correctAnswer": 1,
+      "explanation": "width: min(100%, 1200px) is equivalent to width: 100%; max-width: 1200px;"
+    },
+    {
+      "id": 10,
+      "question": "What is the equivalent of min-width: 300px using comparison functions?",
+      "options": ["width: max(300px, 50%)", "width: min(300px, 50%)", "width: clamp(300px, 50%)", "width: calc(300px, 50%)"],
+      "correctAnswer": 0,
+      "explanation": "width: max(300px, 50%) is equivalent to width: 50%; min-width: 300px;"
+    },
+    {
+      "id": 11,
+      "question": "What does clamp(1rem, 2.5vw, 2rem) guarantee?",
+      "options": ["Font is always 1rem", "Font scales between 1rem and 2rem based on viewport", "Font is always 2rem", "Font is always 2.5vw"],
+      "correctAnswer": 1,
+      "explanation": "The font scales fluidly with viewport but stays within 1rem (min) and 2rem (max) bounds."
+    },
+    {
+      "id": 12,
+      "question": "Which comparison function would you use for a minimum padding guarantee?",
+      "options": ["min()", "max()", "clamp()", "calc()"],
+      "correctAnswer": 1,
+      "explanation": "max(1rem, 2vw) ensures padding is never below 1rem while scaling with viewport."
+    },
+    {
+      "id": 13,
+      "question": "How do comparison functions reduce the need for media queries?",
+      "options": ["They can't replace media queries", "They handle continuous sizing constraints that previously required breakpoints", "They disable responsiveness", "They only work on fonts"],
+      "correctAnswer": 1,
+      "explanation": "min(), max(), and clamp() handle many sizing constraints continuously without discrete breakpoints."
+    },
+    {
+      "id": 14,
+      "question": "What happens when min(50%, 400px) is evaluated on a 300px wide container?",
+      "options": ["400px", "150px", "300px", "200px"],
+      "correctAnswer": 1,
+      "explanation": "50% of 300px = 150px, which is smaller than 400px, so min() returns 150px."
+    },
+    {
+      "id": 15,
+      "question": "What is the purpose of clamp() for spacing (padding/margin)?",
+      "options": ["Always fixed spacing", "Fluid spacing that never goes below or above specified bounds", "Removes spacing on mobile", "Doubles spacing on desktop"],
+      "correctAnswer": 1,
+      "explanation": "clamp() for spacing creates fluid spacing that adapts to viewport while respecting minimum and maximum constraints."
+    },
+    {
+      "id": 16,
+      "question": "Can comparison functions accept more than two arguments?",
+      "options": ["No", "min() and max() accept any number of comma-separated values", "Only clamp() accepts 3", "Only outside calc()"],
+      "correctAnswer": 1,
+      "explanation": "min() and max() accept multiple comma-separated values: min(100%, 1200px, 90vw)."
+    },
+    {
+      "id": 17,
+      "question": "What is a limitation of min() and max() for responsive design?",
+      "options": ["Not widely supported", "They can't access viewport units inside some older syntax contexts", "They are slower than media queries", "They don't work with colors"],
+      "correctAnswer": 1,
+      "explanation": "In some older syntax contexts, viewport units inside min()/max() may not resolve as expected."
+    },
+    {
+      "id": 18,
+      "question": "Which browsers support min(), max(), and clamp()?",
+      "options": ["Only Chrome 79+", "All modern browsers (Chrome 79+, Firefox 75+, Safari 13.1+)", "Only Firefox", "None, still experimental"],
+      "correctAnswer": 1,
+      "explanation": "Comparison functions are supported in all major browsers since 2020."
+    },
+    {
+      "id": 19,
+      "question": "What is a key accessibility benefit of using clamp() for font-size?",
+      "options": ["Larger fonts on all screens", "Users can still zoom text because min/max are in rem/px", "Smaller fonts on mobile", "No benefit"],
+      "correctAnswer": 1,
+      "explanation": "Using rem or px for clamp() bounds ensures text remains zoomable and respects user font-size preferences."
+    },
+    {
+      "id": 20,
+      "question": "How would you create a hero section height that's 80vh but never more than 600px?",
+      "options": ["height: max(80vh, 600px)", "height: min(80vh, 600px)", "height: clamp(600px, 80vh)", "height: calc(80vh - 600px)"],
+      "correctAnswer": 1,
+      "explanation": "height: min(80vh, 600px) fills 80% of viewport height but caps at 600 pixels."
+    }
+  ]
+}

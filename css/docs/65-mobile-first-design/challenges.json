@@ -1,0 +1,29 @@
+{
+  "module": "65 - Mobile-First Design",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Mobile-First Article Page",
+      "description": "Create a blog article page that is readable on mobile and has enhanced layout on desktop.",
+      "instructions": "Build an article with title, author, body text, and sidebar. Mobile: single column. Desktop: two columns with sidebar.",
+      "hints": ["Base styles should have full-width text with comfortable line-height", "Add sidebar at tablet/desktop breakpoint", "Use padding that scales with viewport"],
+      "solution": "article { padding: 1rem; max-width: 100%; } article p { line-height: 1.7; font-size: 1rem; } @media (min-width: 768px) { article { max-width: 800px; margin: 0 auto; padding: 2rem; } .content-wrapper { display: grid; grid-template-columns: 1fr 250px; gap: 2rem; } }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Mobile-First Product Listing",
+      "description": "Build a product listing page that shows 1 product per row on mobile, 2 on tablet, 3-4 on desktop.",
+      "instructions": "Create product cards with images, titles, prices, and add-to-cart buttons. Use mobile-first with auto-fit grid.",
+      "hints": ["Use grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))", "Make add-to-cart button full-width on mobile, inline on desktop", "Product images should be responsive"],
+      "solution": ".products { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } .product { display: flex; flex-direction: column; } .product button { width: 100%; padding: 0.75rem; } @media (min-width: 768px) { .product button { width: auto; align-self: flex-start; } }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Full Mobile-First Dashboard with Data Viz",
+      "description": "Build a dashboard that shows key metrics on mobile and a full analytics dashboard on desktop.",
+      "instructions": "Mobile: show 2-3 key metrics in a column. Tablet: add charts in 2-column grid. Desktop: full layout with sidebar filters.",
+      "hints": ["Use CSS Grid with template areas that change at breakpoints", "Charts should be simplified on mobile (bars) and detailed on desktop (lines with legends)", "Sidebar filters become a horizontal toolbar on mobile"],
+      "solution": ".dashboard { display: grid; grid-template-areas: 'stats' 'chart'; grid-template-columns: 1fr; } .stats { display: grid; grid-template-columns: 1fr; gap: 0.5rem; } @media (min-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } } @media (min-width: 1024px) { .dashboard { grid-template-areas: 'sidebar stats' 'sidebar chart'; grid-template-columns: 250px 1fr; } .stats { grid-template-columns: repeat(3, 1fr); } }"
+    }
+  ]
+}

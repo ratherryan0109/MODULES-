@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selectors - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a202c; color: #e2e8f0; min-height: 100vh; display: flex; flex-direction: column; }
+    header { background: #2d3748; padding: 20px; border-bottom: 3px solid #4299e1; text-align: center; }
+    header h1 { color: #63b3ed; font-size: 1.6em; }
+    header p { color: #a0aec0; margin-top: 5px; font-size: 0.9em; }
+    .container { display: flex; flex: 1; }
+    .editor-panel { flex: 1; display: flex; flex-direction: column; border-right: 2px solid #2d3748; }
+    .preview-panel { flex: 1; display: flex; flex-direction: column; }
+    .panel-label { background: #2d3748; padding: 8px 15px; font-size: 0.8em; color: #a0aec0; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+    textarea { flex: 1; background: #1a202c; color: #e2e8f0; border: none; padding: 15px; font-family: 'Courier New', monospace; font-size: 14px; resize: none; outline: none; }
+    iframe { flex: 1; background: white; border: none; width: 100%; }
+    .controls { background: #2d3748; padding: 10px 15px; display: flex; gap: 10px; align-items: center; border-top: 1px solid #4a5568; }
+    button { background: #4299e1; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    button:hover { background: #3182ce; }
+    button.reset { background: #4a5568; }
+    button.reset:hover { background: #718096; }
+    .status { color: #68d391; font-size: 0.85em; margin-left: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎨 CSS Selectors Playground</h1>
+    <p>Practice different selector patterns — try targeting specific elements using selectors!</p>
+  </header>
+  <div class="container">
+    <div class="editor-panel">
+      <div class="panel-label">📝 CSS Selectors — Edit Me</div>
+      <textarea id="cssEditor" spellcheck="false">/* ===== CSS SELECTORS PLAYGROUND ===== */
+
+/* Try these challenges:
+   1. Make all list items blue (.target-list li)
+   2. Style only the FIRST list item bold (.target-list li:first-child)
+   3. Style every EVEN row gray (.target-list li:nth-child(even))
+   4. Style links that start with https (a[href^="https"])
+   5. Add "→ " before each link (a::before)
+*/
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+  background: #f0f4f8;
+  color: #333;
+}
+
+h1 {
+  color: #1a365d;
+  border-bottom: 2px solid #4299e1;
+  padding-bottom: 10px;
+}
+
+/* Add your selectors below */
+.card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 🔥 CHALLENGES (uncomment and complete):
+   .target-list li { ... }
+   .target-list li:first-child { ... }
+   .target-list li:nth-child(even) { ... }
+   .target-list li:last-child { ... }
+   a { ... }
+   a:hover { ... }
+   .demo-input:focus { ... }
+*/</textarea>
+      <div class="controls">
+        <button onclick="updatePreview()">▶ Run</button>
+        <button class="reset" onclick="resetCSS()">↺ Reset</button>
+        <span class="status" id="status">Ready</span>
+      </div>
+    </div>
+    <div class="preview-panel">
+      <div class="panel-label">🔍 Live Preview</div>
+      <iframe id="preview"></iframe>
+    </div>
+  </div>
+  <script>
+    const defaultCSS = document.getElementById('cssEditor').value;
+    function getHTML(css) {
+      return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Preview</title><style>${css}</style></head><body>
+  <h1>CSS Selectors Practice</h1>
+  <div class="card">
+    <h2>Target List</h2>
+    <ul class="target-list">
+      <li>First item</li>
+      <li>Second item</li>
+      <li>Third item</li>
+      <li>Fourth item</li>
+      <li>Fifth item</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Links</h2>
+    <p><a href="https://example.com">Secure Link (https)</a></p>
+    <p><a href="http://example.com">Regular Link (http)</a></p>
+    <p><a href="document.pdf">PDF Document</a></p>
+  </div>
+  <div class="card">
+    <h2>Form Elements</h2>
+    <p><input type="text" class="demo-input" placeholder="Focus me!"></p>
+    <p><input type="checkbox" id="check1"> <label for="check1">Check me</label></p>
+  </div>
+  <div class="card">
+    <h2>Nested Elements</h2>
+    <div class="parent">
+      <p>Direct child paragraph</p>
+      <div><p>Nested paragraph (grandchild)</p></div>
+    </div>
+  </div>
+</body></html>`; }
+    function updatePreview() {
+      const css = document.getElementById('cssEditor').value;
+      const preview = document.getElementById('preview');
+      preview.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(getHTML(css));
+      document.getElementById('status').textContent = '✓ Updated';
+      setTimeout(() => { document.getElementById('status').textContent = 'Ready'; }, 2000);
+    }
+    function resetCSS() {
+      document.getElementById('cssEditor').value = defaultCSS;
+      updatePreview();
+    }
+    window.addEventListener('load', updatePreview);
+    document.getElementById('cssEditor').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && e.ctrlKey) updatePreview();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+{
+    "module": "31-css-opacity",
+    "title": "CSS Opacity",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "What range of values does the opacity property accept?",
+            "options": ["0 to 1", "0 to 100", "-1 to 1", "0% to 100%"],
+            "correctAnswer": 0,
+            "explanation": "Opacity accepts values from 0 (fully transparent) to 1 (fully opaque). Values between create partial transparency."
+        },
+        {
+            "id": 2,
+            "question": "What happens to child elements when you set opacity: 0.5 on a parent?",
+            "options": ["Children remain fully opaque", "Children also become 50% transparent", "Children are hidden", "Children inherit the property but can override it"],
+            "correctAnswer": 1,
+            "explanation": "Opacity affects the entire element including all children. A child cannot be more opaque than its parent."
+        },
+        {
+            "id": 3,
+            "question": "How do you make only a background semi-transparent without affecting text?",
+            "options": ["Use opacity on the element", "Use rgba() or hsla() for the background color", "Use visibility: hidden", "Use a transparent image"],
+            "correctAnswer": 1,
+            "explanation": "rgba() or hsla() alpha channels only affect the specific property, allowing a semi-transparent background with fully opaque text."
+        },
+        {
+            "id": 4,
+            "question": "Which value makes an element completely invisible but still present in the layout?",
+            "options": ["opacity: 0", "opacity: 1", "display: none", "visibility: hidden"],
+            "correctAnswer": 0,
+            "explanation": "opacity: 0 makes the element invisible but it still takes up space in the layout. display: none removes it from layout entirely."
+        },
+        {
+            "id": 5,
+            "question": "What accessibility concern is associated with low opacity text?",
+            "options": ["Screen readers cannot read transparent text", "Low opacity may fail color contrast requirements", "Keyboard navigation stops working", "Animations become choppy"],
+            "correctAnswer": 1,
+            "explanation": "Transparency reduces the effective contrast ratio, which may fail WCAG AA requirements (4.5:1 for normal text)."
+        },
+        {
+            "id": 6,
+            "question": "What side effect does opacity below 1 have on stacking contexts?",
+            "options": ["It destroys existing stacking contexts", "It creates a new stacking context", "It has no effect on stacking", "It lowers the z-index automatically"],
+            "correctAnswer": 1,
+            "explanation": "Any opacity value below 1 creates a new stacking context, the same behavior caused by transform, filter, and positioned elements with z-index."
+        },
+        {
+            "id": 7,
+            "question": "What is the effective opacity of a child with opacity: 1 inside a parent with opacity: 0.5?",
+            "options": ["1", "0.5", "0", "0.25"],
+            "correctAnswer": 1,
+            "explanation": "Opacity is cumulative. The child's effective opacity is 0.5 × 1 = 0.5. A child cannot be more opaque than its parent."
+        },
+        {
+            "id": 8,
+            "question": "Which is the best approach to hide an element that should NOT be interactive or focusable?",
+            "options": ["opacity: 0", "visibility: hidden", "display: none", "Both visibility: hidden and display: none work"],
+            "correctAnswer": 2,
+            "explanation": "display: none removes the element from the layout and accessibility tree entirely. opacity: 0 keeps it interactive and focusable."
+        },
+        {
+            "id": 9,
+            "question": "When animating opacity, which CSS property can improve performance on large elements?",
+            "options": ["will-change: opacity", "transform: translateZ(0)", "backface-visibility: hidden", "All of the above"],
+            "correctAnswer": 0,
+            "explanation": "will-change: opacity promotes the element to a compositor layer before the animation starts, improving performance."
+        },
+        {
+            "id": 10,
+            "question": "Which modern CSS syntax is equivalent to rgba(255, 0, 0, 0.5)?",
+            "options": ["rgb(255 0 0 / 0.5)", "hsl(0 100% 50% / 0.5)", "color: red 50%", "None of the above"],
+            "correctAnswer": 0,
+            "explanation": "CSS Color Level 4 allows space-separated syntax: rgb(255 0 0 / 0.5) is equivalent to rgba(255, 0, 0, 0.5)."
+        },
+        {
+            "id": 11,
+            "question": "What is the key difference between opacity: 0 and visibility: hidden?",
+            "options": ["No difference", "opacity: 0 keeps element interactive; visibility: hidden removes interaction", "visibility: hidden animates better", "opacity: 0 removes from layout"],
+            "correctAnswer": 1,
+            "explanation": "opacity: 0 keeps the element interactive (clickable, focusable) while visibility: hidden removes it from the accessibility and interaction tree."
+        },
+        {
+            "id": 12,
+            "question": "Which property combination should you use with opacity: 0 to disable interaction on invisible elements?",
+            "options": ["pointer-events: none", "cursor: default", "user-select: none", "touch-action: none"],
+            "correctAnswer": 0,
+            "explanation": "pointer-events: none disables mouse and touch interaction on the element, preventing clicks on invisibly positioned elements."
+        },
+        {
+            "id": 13,
+            "question": "What ARIA attribute should you add when using opacity to visually hide content that should not be announced?",
+            "options": ["aria-hidden='true'", "role='presentation'", "aria-label='hidden'", "aria-disabled='true'"],
+            "correctAnswer": 0,
+            "explanation": "aria-hidden='true' tells screen readers to ignore the element and its content, even though it may still be visually present in the layout."
+        },
+        {
+            "id": 14,
+            "question": "Which media feature should opacity animations respect for accessibility?",
+            "options": ["prefers-color-scheme", "prefers-reduced-motion", "prefers-contrast", "prefers-transparency"],
+            "correctAnswer": 1,
+            "explanation": "prefers-reduced-motion allows users to disable non-essential animations. Opacity-based fade effects should be reduced or removed when this is active."
+        },
+        {
+            "id": 15,
+            "question": "What is the default value of the opacity property?",
+            "options": ["0", "0.5", "1", "inherit"],
+            "correctAnswer": 2,
+            "explanation": "The default value of opacity is 1, meaning the element is fully opaque."
+        },
+        {
+            "id": 16,
+            "question": "Which approach is best for creating a modal overlay effect?",
+            "options": ["opacity: 0.5 on the overlay element", "rgba() on the overlay background", "Both work, but rgba() is better to avoid affecting child content", "filter: alpha(opacity=50)"],
+            "correctAnswer": 2,
+            "explanation": "rgba() on the overlay background creates the dimming effect without making the overlay's child content (modal content) transparent."
+        },
+        {
+            "id": 17,
+            "question": "How does opacity animation rendering differ from animating top/left?",
+            "options": ["Both trigger the same rendering path", "Opacity is GPU-accelerated; top/left triggers layout", "Top/left is faster than opacity", "Opacity cannot be animated"],
+            "correctAnswer": 1,
+            "explanation": "Opacity animations use GPU compositing and don't trigger layout or paint. Animating top/left triggers layout recalculations."
+        },
+        {
+            "id": 18,
+            "question": "What happens when you combine opacity: 0.5 with transform on the same element?",
+            "options": ["The transform is ignored", "Both are applied; the element is composited on the GPU", "Opacity takes precedence", "The element becomes invisible"],
+            "correctAnswer": 1,
+            "explanation": "Opacity and transform together keep animations on the compositor thread, which is highly performant and doesn't trigger layout."
+        },
+        {
+            "id": 19,
+            "question": "What is a common use of opacity in disabled button styling?",
+            "options": ["opacity: 1 with gray background", "opacity: 0.5 or 0.6 to visually dim the button", "opacity: 0 to hide it", "opacity: inherit"],
+            "correctAnswer": 1,
+            "explanation": "Disabled buttons commonly use opacity: 0.5 or 0.6 to visually indicate they are non-interactive, combined with cursor: not-allowed."
+        },
+        {
+            "id": 20,
+            "question": "Which of the following does NOT create a new stacking context?",
+            "options": ["opacity: 0.99", "transform: scale(0.5)", "position: static", "filter: blur(5px)"],
+            "correctAnswer": 2,
+            "explanation": "position: static does not create a stacking context. Opacity below 1, transforms, and filters all create new stacking contexts."
+        }
+    ]
+}

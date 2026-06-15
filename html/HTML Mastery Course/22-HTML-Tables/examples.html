@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>22 - HTML Tables Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .example-box {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    }
+    .example-box h2 {
+      margin-top: 0;
+      color: #2563eb;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+
+    /* Table Styles */
+
+    /* Example 1: Basic Table */
+    .basic-table table { border-collapse: collapse; width: 100%; }
+    .basic-table th, .basic-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    .basic-table th { background-color: #4CAF50; color: white; }
+
+    /* Example 2: Striped Table */
+    .striped-table table { border-collapse: collapse; width: 100%; }
+    .striped-table th, .striped-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    .striped-table th { background-color: #2196F3; color: white; }
+    .striped-table tr:nth-child(even) { background-color: #f2f2f2; }
+    .striped-table tr:hover { background-color: #ddd; }
+
+    /* Example 3: Colspan-Rowspan */
+    .merged-table table { border-collapse: collapse; width: 100%; }
+    .merged-table th, .merged-table td { border: 2px solid #555; padding: 12px; text-align: center; }
+    .merged-table th { background-color: #ff9800; color: white; }
+
+    /* Example 4: Colgroup */
+    .colgroup-table table { border-collapse: collapse; width: 100%; }
+    .colgroup-table th, .colgroup-table td { border: 1px solid #999; padding: 10px; text-align: left; }
+
+    /* Example 5: Full Semantic Table */
+    .semantic-table table { border-collapse: collapse; width: 100%; }
+    .semantic-table th, .semantic-table td { border: 1px solid #bbb; padding: 10px; text-align: left; }
+    .semantic-table thead { background-color: #9c27b0; color: white; }
+    .semantic-table tbody tr:nth-child(even) { background-color: #f9f0ff; }
+    .semantic-table tfoot { background-color: #e1bee7; font-weight: bold; }
+
+    /* Example 6: Responsive Table */
+    .responsive-table table { border-collapse: collapse; width: 100%; min-width: 600px; }
+    .responsive-table th, .responsive-table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    .responsive-table th { background-color: #607d8b; color: white; }
+    .responsive-table-wrapper { overflow-x: auto; }
+
+    /* Example 7: Caption and Scope */
+    .caption-table table { border-collapse: collapse; width: 100%; }
+    .caption-table th, .caption-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    .caption-table th { background-color: #e91e63; color: white; }
+    .caption-table caption { font-size: 1.2em; font-weight: bold; margin-bottom: 8px; caption-side: top; }
+  </style>
+</head>
+<body>
+
+  <h1>📊 HTML Tables - Examples</h1>
+
+  <!-- Example 1: Basic Table -->
+  <div class="example-box basic-table">
+    <h2>Example 1: Basic Table</h2>
+    <p>A simple table with headers and data rows:</p>
+    <pre>
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Age&lt;/th&gt;
+    &lt;th&gt;City&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alice&lt;/td&gt;
+    &lt;td&gt;28&lt;/td&gt;
+    &lt;td&gt;New York&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Bob&lt;/td&gt;
+    &lt;td&gt;34&lt;/td&gt;
+    &lt;td&gt;London&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Charlie&lt;/td&gt;
+    &lt;td&gt;45&lt;/td&gt;
+    &lt;td&gt;Tokyo&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+    </pre>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+      <tr>
+        <td>Alice</td>
+        <td>28</td>
+        <td>New York</td>
+      </tr>
+      <tr>
+        <td>Bob</td>
+        <td>34</td>
+        <td>London</td>
+      </tr>
+      <tr>
+        <td>Charlie</td>
+        <td>45</td>
+        <td>Tokyo</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Example 2: Striped Table -->
+  <div class="example-box striped-table">
+    <h2>Example 2: Striped Table with Hover</h2>
+    <p>Alternating row colors and hover effect for readability:</p>
+    <pre>
+tr:nth-child(even) { background-color: #f2f2f2; }
+tr:hover { background-color: #ddd; }
+    </pre>
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Rating</th>
+      </tr>
+      <tr>
+        <td>Wireless Mouse</td>
+        <td>Electronics</td>
+        <td>$29.99</td>
+        <td>4.5</td>
+      </tr>
+      <tr>
+        <td>Desk Lamp</td>
+        <td>Furniture</td>
+        <td>$49.99</td>
+        <td>4.2</td>
+      </tr>
+      <tr>
+        <td>Notebook Set</td>
+        <td>Stationery</td>
+        <td>$12.99</td>
+        <td>4.8</td>
+      </tr>
+      <tr>
+        <td>Water Bottle</td>
+        <td>Sports</td>
+        <td>$19.99</td>
+        <td>4.6</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Example 3: Colspan and Rowspan -->
+  <div class="example-box merged-table">
+    <h2>Example 3: Colspan and Rowspan</h2>
+    <p>Merging cells with <code>colspan</code> and <code>rowspan</code>:</p>
+    <pre>
+&lt;tr&gt;
+  &lt;th&gt;Name&lt;/th&gt;
+  &lt;th colspan="2"&gt;Contact Information&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td rowspan="2"&gt;Alice&lt;/td&gt;
+  &lt;td&gt;Email&lt;/td&gt;
+  &lt;td&gt;alice@example.com&lt;/td&gt;
+&lt;/tr&gt;
+    </pre>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th colspan="2">Contact Information</th>
+      </tr>
+      <tr>
+        <td rowspan="2">Alice Johnson</td>
+        <td>Email</td>
+        <td>alice@example.com</td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>+1-555-0100</td>
+      </tr>
+      <tr>
+        <td rowspan="2">Bob Smith</td>
+        <td>Email</td>
+        <td>bob@example.com</td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>+1-555-0101</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Example 4: Colgroup -->
+  <div class="example-box colgroup-table">
+    <h2>Example 4: Column Groups</h2>
+    <p>Using <code>&lt;colgroup&gt;</code> and <code>&lt;col&gt;</code> to style columns:</p>
+    <pre>
+&lt;colgroup&gt;
+  &lt;col style="background: #e3f2fd"&gt;
+  &lt;col style="background: #fff3e0"&gt;
+  &lt;col span="2" style="background: #e8f5e9"&gt;
+&lt;/colgroup&gt;
+    </pre>
+    <table>
+      <colgroup>
+        <col style="background: #e3f2fd">
+        <col style="background: #fff3e0">
+        <col span="2" style="background: #e8f5e9">
+      </colgroup>
+      <tr>
+        <th>Item</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Stock</th>
+      </tr>
+      <tr>
+        <td>Laptop</td>
+        <td>Electronics</td>
+        <td>$999</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>Monitor</td>
+        <td>Electronics</td>
+        <td>$299</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Keyboard</td>
+        <td>Accessories</td>
+        <td>$79</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>Mouse</td>
+        <td>Accessories</td>
+        <td>$29</td>
+        <td>150</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Example 5: Full Semantic Structure -->
+  <div class="example-box semantic-table">
+    <h2>Example 5: Full Semantic Structure</h2>
+    <p>Using <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code>:</p>
+    <pre>
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;Department&lt;/th&gt;&lt;th&gt;Q1&lt;/th&gt;&lt;th&gt;Q2&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Sales&lt;/td&gt;&lt;td&gt;$50K&lt;/td&gt;&lt;td&gt;$65K&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;&lt;td&gt;Total&lt;/td&gt;&lt;td&gt;$150K&lt;/td&gt;&lt;td&gt;$185K&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;
+    </pre>
+    <table>
+      <caption>Quarterly Revenue Report (2025)</caption>
+      <thead>
+        <tr>
+          <th>Department</th>
+          <th>Q1</th>
+          <th>Q2</th>
+          <th>Q3</th>
+          <th>Q4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Sales</td><td>$50,000</td><td>$65,000</td><td>$72,000</td><td>$88,000</td></tr>
+        <tr><td>Marketing</td><td>$32,000</td><td>$41,000</td><td>$38,000</td><td>$55,000</td></tr>
+        <tr><td>Engineering</td><td>$45,000</td><td>$52,000</td><td>$61,000</td><td>$74,000</td></tr>
+        <tr><td>Support</td><td>$22,000</td><td>$28,000</td><td>$31,000</td><td>$36,000</td></tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td>$149,000</td>
+          <td>$186,000</td>
+          <td>$202,000</td>
+          <td>$253,000</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Example 6: Responsive Table -->
+  <div class="example-box responsive-table">
+    <h2>Example 6: Responsive Table</h2>
+    <p>Wrapped in a scrollable container for mobile:</p>
+    <pre>
+&lt;div style="overflow-x: auto;"&gt;
+  &lt;table&gt; ... &lt;/table&gt;
+&lt;/div&gt;
+    </pre>
+    <div class="responsive-table-wrapper">
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Role</th>
+          <th>Hire Date</th>
+          <th>Salary</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>001</td>
+          <td>Alice Johnson</td>
+          <td>alice@company.com</td>
+          <td>Engineering</td>
+          <td>Senior Developer</td>
+          <td>2022-03-15</td>
+          <td>$120,000</td>
+          <td>Active</td>
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>Bob Smith</td>
+          <td>bob@company.com</td>
+          <td>Design</td>
+          <td>UI Designer</td>
+          <td>2023-01-10</td>
+          <td>$95,000</td>
+          <td>Active</td>
+        </tr>
+        <tr>
+          <td>003</td>
+          <td>Carol Davis</td>
+          <td>carol@company.com</td>
+          <td>Marketing</td>
+          <td>Marketing Lead</td>
+          <td>2021-11-20</td>
+          <td>$105,000</td>
+          <td>Active</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Example 7: Caption and Scope -->
+  <div class="example-box caption-table">
+    <h2>Example 7: Caption and Scope Attributes</h2>
+    <p>Accessible table with caption and scope attributes:</p>
+    <pre>
+&lt;caption&gt;Student Grade Summary&lt;/caption&gt;
+&lt;th scope="col"&gt;Student&lt;/th&gt;
+&lt;th scope="col"&gt;Subject&lt;/th&gt;
+&lt;td scope="row"&gt;Math&lt;/td&gt;
+    </pre>
+    <table>
+      <caption>Student Grade Summary - Spring 2025</caption>
+      <tr>
+        <th scope="col">Student</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Score</th>
+        <th scope="col">Grade</th>
+      </tr>
+      <tr>
+        <th scope="row">Emma Wilson</th>
+        <td>Mathematics</td>
+        <td>95</td>
+        <td>A</td>
+      </tr>
+      <tr>
+        <th scope="row">James Brown</th>
+        <td>Mathematics</td>
+        <td>82</td>
+        <td>B</td>
+      </tr>
+      <tr>
+        <th scope="row">Sophia Lee</th>
+        <td>Mathematics</td>
+        <td>78</td>
+        <td>C</td>
+      </tr>
+      <tr>
+        <th scope="row">Liam Garcia</th>
+        <td>Mathematics</td>
+        <td>91</td>
+        <td>A</td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>

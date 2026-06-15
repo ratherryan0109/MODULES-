@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is animation-duration?", "answer": "animation-duration sets how long one cycle of an animation takes to complete, specified in seconds or milliseconds." },
+    { "question": "How does animation-timing-function work?", "answer": "animation-timing-function defines the speed curve of an animation, using keywords like ease, linear, or cubic-bezier values." },
+    { "question": "What does animation-delay do?", "answer": "animation-delay sets a waiting time before the animation starts, allowing you to stagger or delay animated elements." },
+    { "question": "What does animation-iteration-count control?", "answer": "animation-iteration-count sets how many times the animation should repeat, accepting numbers or the value 'infinite'." },
+    { "question": "What is animation-direction used for?", "answer": "animation-direction controls whether the animation plays forward (normal), reverse, alternates, or alternates in reverse." },
+    { "question": "What does animation-fill-mode do?", "answer": "animation-fill-mode determines what styles apply before the animation starts and after it ends, using none, forwards, backwards, or both." },
+    { "question": "What is the shorthand syntax for CSS animations?", "answer": "animation: name duration timing-function delay iteration-count direction fill-mode; e.g., animation: fadeIn 0.5s ease-in 0s 1 normal forwards;" },
+    { "question": "What is the default value of animation-iteration-count?", "answer": "The default is 1, meaning the animation plays once and stops." },
+    { "question": "What does animation: none do?", "answer": "animation: none overrides any previously applied animation, effectively disabling it on the element." },
+    { "question": "How do you pause an animation with CSS?", "answer": "Set animation-play-state: paused; to pause an animation, and animation-play-state: running; to resume it." }
+  ],
+  "intermediate": [
+    { "question": "What is the difference between animation-fill-mode: forwards and backwards?", "answer": "forwards retains the end keyframe styles after the animation ends; backwards applies the start keyframe styles before the animation begins." },
+    { "question": "How do you create an animation that plays forward then reverse?", "answer": "Set animation-direction: alternate; combined with animation-iteration-count: 2 or infinite to play forward then reverse on each cycle." },
+    { "question": "What does animation-play-state: paused do when combined with hover?", "answer": "On hover, the animation pauses, allowing users to inspect or interact with the animated content at a specific frame." },
+    { "question": "How do you animate multiple properties on the same element?", "answer": "Use the same animation with @keyframes defining multiple properties, or apply multiple animation shorthands separated by commas." },
+    { "question": "How does a negative animation-delay value affect playback?", "answer": "A negative delay starts the animation immediately, jumping to the point in the cycle as if it had been running for that duration." },
+    { "question": "What happens when animation-iteration-count is set to 0.5?", "answer": "The animation plays only halfway through its cycle, stopping at the 50% keyframe point." },
+    { "question": "How does animation-timing-function apply within keyframes?", "answer": "The timing function on the animation property controls the overall curve; individual keyframes can override it with their own timing functions." },
+    { "question": "What is the order of properties in the animation shorthand?", "answer": "The order is: name, duration, timing-function, delay, iteration-count, direction, fill-mode, play-state. Duration must come before delay." },
+    { "question": "Can you apply multiple animations to one element?", "answer": "Yes, separate them with commas: animation: slideIn 0.5s, fadeIn 1s 0.3s; each animation runs independently." },
+    { "question": "How do animation-fill-mode values interact with each other?", "answer": "backwards applies initial styles before start; forwards retains final styles after end; both does both; none applies only during active animation." }
+  ],
+  "advanced": [
+    { "question": "How does the animation shorthand's property ordering ambiguity get resolved?", "answer": "The first time value is always duration; the second time value is delay. The parser distinguishes them by position." },
+    { "question": "How do CSS animations interact with the Element.getAnimations() API?", "answer": "getAnimations() returns all active, paused, and finished animations on an element, allowing programmatic inspection and control." },
+    { "question": "How do you synchronize multiple animations across different elements?", "answer": "Use the same animation-duration and a shared timeline concept, or use JavaScript to align start times via animation-start events." },
+    { "question": "How does animation-composition work?", "answer": "animation-composition defines how multiple animations affecting the same property combine: replace (default), add, or accumulate values." },
+    { "question": "How do animations interact with CSS cascade and specificity?", "answer": "Animations override normal styles during their active period, but !important declarations override animation values." },
+    { "question": "How do you trigger a CSS animation with JavaScript?", "answer": "Add or remove a class containing the animation property, or remove/re-add the element to restart the animation." },
+    { "question": "How can animation-fill-mode cause memory issues in long-running animations?", "answer": "forwards fill can keep the animation state active indefinitely, but modern browsers clean up after the element is removed from the DOM." },
+    { "question": "How do you create a spring or elastic animation using timing functions?", "answer": "Use a custom cubic-bezier with overshoot values like cubic-bezier(0.68, -0.55, 0.27, 1.55) for spring-like bounce effects." },
+    { "question": "How do animations behave with display: none and visibility: hidden?", "answer": "Animations stop on display: none elements since they are not rendered; visibility: hidden continues the animation but the element is invisible." },
+    { "question": "How does animation-timeline (scroll-driven animations) extend traditional animation properties?", "answer": "animation-timeline binds the animation progress to scroll position instead of time, overriding the normal temporal behavior of other animation properties." }
+  ]
+}

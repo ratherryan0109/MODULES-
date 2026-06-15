@@ -1,0 +1,50 @@
+{
+  "module": "CSS Modern Layout Techniques",
+  "description": "Practice building responsive layouts with Flexbox, Grid, and modern CSS",
+  "challenges": [
+    {
+      "id": 1,
+      "title": "Holy Grail Blog Layout",
+      "difficulty": "easy",
+      "description": "Build the classic holy grail layout using CSS Grid with named template areas. Requirements: (1) header spanning full width, (2) left sidebar for navigation, (3) main content area, (4) right sidebar for ads/widgets, (5) footer spanning full width, (6) the middle section should fill remaining viewport height.",
+      "hints": [
+        "Use grid-template-areas with 3 columns and 3 rows",
+        "min-height: 100vh on the container",
+        "Use 1fr for the middle row and combine columns with repeated area names",
+        "Each child element needs grid-area set to the matching name"
+      ],
+      "starterCode": "<div class=\"blog-layout\">\n  <header>Blog Header</header>\n  <nav>Navigation</nav>\n  <main>Blog Content</main>\n  <aside>Widgets</aside>\n  <footer>Footer</footer>\n</div>",
+      "solution": ".blog-layout { display: grid; grid-template-areas: 'header header header' 'nav main aside' 'footer footer footer'; grid-template-columns: 200px 1fr 200px; grid-template-rows: auto 1fr auto; min-height: 100vh; gap: 4px; } header { grid-area: header; background: #333; color: white; padding: 20px; } nav { grid-area: nav; background: #444; padding: 20px; } main { grid-area: main; background: #555; padding: 20px; } aside { grid-area: aside; background: #444; padding: 20px; } footer { grid-area: footer; background: #333; color: white; padding: 20px; }"
+    },
+    {
+      "id": 2,
+      "title": "Responsive Card Gallery with Hybrid Layout",
+      "difficulty": "medium",
+      "description": "Build a responsive product card gallery combining CSS Grid and Flexbox. Requirements: (1) Grid-based card container with auto-fill/minmax for responsiveness, (2) each card uses Flexbox for internal layout (image, title, description, price, button), (3) cards must be equal height regardless of content length, (4) the button should stick to the bottom of each card, (5) smooth hover effect on cards, (6) no media queries should be used for the layout.",
+      "hints": [
+        "Use repeat(auto-fill, minmax(280px, 1fr)) for the grid",
+        "Card uses display: flex; flex-direction: column;",
+        "The content area uses flex: 1 to push the button down",
+        "margin-top: auto on the button element",
+        "Intrinsic sizing handles responsiveness without media queries"
+      ],
+      "starterCode": "<div class=\"product-grid\">\n  <div class=\"product-card\">\n    <div class=\"product-image\"></div>\n    <div class=\"product-info\">\n      <h3>Product Name</h3>\n      <p class=\"product-desc\">Description text here</p>\n      <span class=\"product-price\">$29.99</span>\n      <button>Add to Cart</button>\n    </div>\n  </div>\n  <!-- Repeat for more cards -->\n</div>",
+      "solution": ".product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; padding: 24px; } .product-card { display: flex; flex-direction: column; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s; } .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); } .product-image { height: 200px; background: linear-gradient(135deg, #667eea, #764ba2); } .product-info { display: flex; flex-direction: column; gap: 8px; padding: 16px; flex: 1; } .product-info p { flex: 1; } .product-info button { margin-top: auto; background: #667eea; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 700; } .product-price { font-size: 1.25rem; font-weight: 700; color: #333; }"
+    },
+    {
+      "id": 3,
+      "title": "Component Library with Container Queries",
+      "difficulty": "hard",
+      "description": "Build a reusable UI card component library that responds to its container size using container queries (not media queries). Requirements: (1) Create a card component with image, title, description, and action button, (2) define the card as a container with container-type: inline-size, (3) at narrow widths (< 400px): image on top, full-width, content below, (4) at wider widths (>= 400px): image on left, content on right (side-by-side), (5) create a demo page that shows the same card component in different-sized containers (narrow sidebar, medium content, full-width hero), (6) each card automatically adapts to its container without knowing the viewport size.",
+      "hints": [
+        "Set container-type: inline-size on each card wrapper",
+        "Use @container (min-width: 400px) query for the side-by-side layout",
+        "The img defaults to width: 100% in narrow mode",
+        "In wide mode, use flex or grid to put image + content side by side",
+        "Test by placing the same card in containers of different widths"
+      ],
+      "starterCode": "<div class=\"demo-page\">\n  <div class=\"sidebar-container\">\n    <div class=\"card-component\">\n      <img src=\"https://picsum.photos/200\" alt=\"Demo\">\n      <div class=\"card-content\">\n        <h3>Card Title</h3>\n        <p>This card adapts to its container's width using container queries.</p>\n        <button>Learn More</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"main-container\">\n    <!-- Same card component -->\n  </div>\n</div>",
+      "solution": ".card-component { container-type: inline-size; container-name: card; display: flex; flex-direction: column; gap: 16px; padding: 16px; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); } .card-component img { width: 100%; border-radius: 8px; object-fit: cover; } @container card (min-width: 400px) { .card-component { flex-direction: row; align-items: center; } .card-component img { width: 200px; height: 150px; } .card-content { flex: 1; } } @container card (max-width: 399px) { .card-component { flex-direction: column; } .card-component img { width: 100%; height: 200px; } } .sidebar-container { width: 280px; } .main-container { width: 600px; } .hero-container { width: 100%; max-width: 900px; }"
+    }
+  ]
+}

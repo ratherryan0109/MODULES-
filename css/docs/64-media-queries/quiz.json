@@ -1,0 +1,147 @@
+{
+  "module": "64-media-queries",
+  "title": "CSS Media Queries",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which at-rule is used for media queries in CSS?",
+      "options": ["@import", "@media", "@supports", "@viewport"],
+      "correctAnswer": 1,
+      "explanation": "The @media at-rule is used to specify styles based on media features."
+    },
+    {
+      "id": 2,
+      "question": "Which media type targets all devices?",
+      "options": ["screen", "print", "all", "speech"],
+      "correctAnswer": 2,
+      "explanation": "The 'all' media type matches all devices."
+    },
+    {
+      "id": 3,
+      "question": "What does the 'orientation' media feature check?",
+      "options": ["Screen brightness", "Device rotation", "Browser type", "Connection speed"],
+      "correctAnswer": 1,
+      "explanation": "orientation checks if the viewport is in portrait or landscape mode."
+    },
+    {
+      "id": 4,
+      "question": "Which operator returns true if either condition is true in a media query?",
+      "options": ["and", "not", "only", "comma (or)"],
+      "correctAnswer": 3,
+      "explanation": "Comma-separated media queries act as OR operator."
+    },
+    {
+      "id": 5,
+      "question": "Which media feature detects if the user prefers dark mode?",
+      "options": ["prefers-dark-mode", "prefers-color-scheme", "color-scheme", "dark-mode"],
+      "correctAnswer": 1,
+      "explanation": "prefers-color-scheme accepts values 'light' or 'dark'."
+    },
+    {
+      "id": 6,
+      "question": "What is the correct modern range syntax for widths between 768px and 1024px?",
+      "options": ["@media (width >= 768px) and (width <= 1024px)", "@media (768px <= width <= 1024px)", "@media (min-width: 768px) or (max-width: 1024px)", "@media width: 768px-1024px"],
+      "correctAnswer": 1,
+      "explanation": "Modern CSS supports the range syntax (768px <= width <= 1024px)."
+    },
+    {
+      "id": 7,
+      "question": "Which media feature should you use to respect user motion preferences?",
+      "options": ["prefers-motion", "prefers-reduced-motion", "motion-preference", "reduce-motion"],
+      "correctAnswer": 1,
+      "explanation": "prefers-reduced-motion detects if the user wants reduced animations."
+    },
+    {
+      "id": 8,
+      "question": "What value does @media print apply to print styles?",
+      "options": ["Only shows print dialog", "Applies styles when printing or in print preview", "Removes all colors", "Adds page breaks automatically"],
+      "correctAnswer": 1,
+      "explanation": "print media type applies when the page is printed or in print preview."
+    },
+    {
+      "id": 9,
+      "question": "Which of these is NOT a media feature?",
+      "options": ["width", "hover", "display-mode", "background-color"],
+      "correctAnswer": 3,
+      "explanation": "background-color is a CSS property, not a media feature."
+    },
+    {
+      "id": 10,
+      "question": "What does (hover: none) indicate about a device?",
+      "options": ["The device has no screen", "The device cannot hover (e.g., touchscreen)", "Hover effects are disabled", "The mouse is disconnected"],
+      "correctAnswer": 1,
+      "explanation": "hover: none means the primary input mechanism cannot hover, common on touchscreens."
+    },
+    {
+      "id": 11,
+      "question": "What is the default media type if none is specified?",
+      "options": ["screen", "print", "all", "speech"],
+      "correctAnswer": 2,
+      "explanation": "If no media type is specified, 'all' is implied."
+    },
+    {
+      "id": 12,
+      "question": "Which resolution unit is equivalent to 1 device pixel per CSS pixel?",
+      "options": ["1dpi", "1dpcm", "1dppx", "1ppi"],
+      "correctAnswer": 2,
+      "explanation": "1dppx equals 1 device pixel per CSS pixel. Retina is 2dppx."
+    },
+    {
+      "id": 13,
+      "question": "What does the 'only' keyword in a media query do?",
+      "options": ["Makes query apply to only one type", "Hides query from older browsers", "Makes query exclusive", "Optimizes rendering"],
+      "correctAnswer": 1,
+      "explanation": "The 'only' keyword prevents older browsers from applying styles."
+    },
+    {
+      "id": 14,
+      "question": "Which media feature detects the display mode of a PWA?",
+      "options": ["display", "display-mode", "pwa-mode", "mode"],
+      "correctAnswer": 1,
+      "explanation": "display-mode detects if the page is in browser tab, fullscreen, standalone, etc."
+    },
+    {
+      "id": 15,
+      "question": "What is the best practice for media query units regarding zoom?",
+      "options": ["Use px", "Use em/rem", "Use cm", "Use %"],
+      "correctAnswer": 1,
+      "explanation": "Using em/rem for media queries respects browser zoom settings."
+    },
+    {
+      "id": 16,
+      "question": "Which media query matches high-DPI (Retina) screens?",
+      "options": ["@media high-dpi", "@media (min-resolution: 2dppx)", "@media (retina: true)", "@media (pixel-density: 2)"],
+      "correctAnswer": 1,
+      "explanation": "min-resolution: 2dppx targets screens with at least 2 device pixels per CSS pixel."
+    },
+    {
+      "id": 17,
+      "question": "What does the 'forced-colors' media feature detect?",
+      "options": ["User forced dark mode", "Windows High Contrast Mode", "Inverted colors", "Grayscale mode"],
+      "correctAnswer": 1,
+      "explanation": "forced-colors detects if the OS is in forced colors mode (like Windows High Contrast)."
+    },
+    {
+      "id": 18,
+      "question": "Which media feature indicates pointer accuracy?",
+      "options": ["pointer", "any-pointer", "hover", "touch"],
+      "correctAnswer": 1,
+      "explanation": "any-pointer (coarse/fine/none) detects the presence and accuracy of any pointing device."
+    },
+    {
+      "id": 19,
+      "question": "What is a common mistake in media query syntax?",
+      "options": ["Using too many media queries", "Missing space before parentheses", "Using px units", "Using min-width and max-width"],
+      "correctAnswer": 1,
+      "explanation": "Missing space between 'and' and the opening parenthesis causes a syntax error."
+    },
+    {
+      "id": 20,
+      "question": "Which media feature is useful for serving different images based on screen density?",
+      "options": ["width", "resolution", "aspect-ratio", "orientation"],
+      "correctAnswer": 1,
+      "explanation": "resolution allows serving high-res images to high-DPI displays."
+    }
+  ]
+}

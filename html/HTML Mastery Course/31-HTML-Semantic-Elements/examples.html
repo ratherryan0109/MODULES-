@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic HTML Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; background: #f5f7fa; color: #333; }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    .example-box { background: white; border-radius: 10px; padding: 25px; margin: 25px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .example-box h2 { color: #e67e22; margin: 0 0 15px; border: none; padding: 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; font-size: 14px; }
+
+    /* Full semantic page layout */
+    .semantic-demo header { background: #2c3e50; color: white; padding: 30px; border-radius: 8px 8px 0 0; }
+    .semantic-demo nav { background: #34495e; padding: 12px 30px; display: flex; gap: 20px; }
+    .semantic-demo nav a { color: #1abc9c; text-decoration: none; }
+    .semantic-demo .content-area { display: flex; gap: 0; }
+    .semantic-demo main { flex: 2; background: white; padding: 30px; min-height: 300px; }
+    .semantic-demo main article { margin-bottom: 30px; }
+    .semantic-demo main section { background: #f8f9fa; padding: 16px; margin: 16px 0; border-left: 4px solid #3498db; }
+    .semantic-demo aside { flex: 1; background: #fef9e7; padding: 24px; border-left: 1px solid #f9e79f; }
+    .semantic-demo footer { background: #2c3e50; color: white; padding: 20px; border-radius: 0 0 8px 8px; text-align: center; }
+
+    /* Figure demo */
+    figure { background: #f0f0f0; padding: 20px; border-radius: 8px; text-align: center; margin: 16px 0; }
+    figcaption { font-style: italic; color: #666; margin-top: 8px; }
+
+    /* Blockquote */
+    blockquote { background: #f9f9f9; border-left: 5px solid #8e44ad; padding: 16px 20px; margin: 16px 0; font-style: italic; }
+    blockquote footer { background: transparent; color: #666; font-size: 14px; margin-top: 8px; padding: 0; border-radius: 0; }
+
+    /* Address */
+    address { background: #e8f4fd; padding: 16px; border-radius: 6px; font-style: normal; margin: 16px 0; }
+
+    /* Time */
+    time { font-weight: bold; color: #8e44ad; }
+
+    /* Tag labels */
+    .tag { display: inline-block; background: #3498db; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-right: 4px; }
+  </style>
+</head>
+<body>
+  <h1>HTML Semantic Elements Examples</h1>
+
+  <div class="example-box">
+    <h2>Example 1: Full Semantic Page Layout</h2>
+    <div class="semantic-demo" style="border:1px solid #ddd;border-radius:8px;overflow:hidden;">
+      <header>
+        <h1 style="color:white;border:none;margin:0;">My Semantic Site</h1>
+        <p style="opacity:0.8;">Building meaningful web pages</p>
+      </header>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Blog</a>
+        <a href="#">Tutorials</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="content-area">
+        <main>
+          <article>
+            <h2 style="color:#2c3e50;">Understanding Semantic HTML</h2>
+            <p>Published on <time datetime="2025-03-15">March 15, 2025</time> by <span style="font-weight:bold;">Alex Developer</span></p>
+            <section>
+              <h3>What Are Semantic Elements?</h3>
+              <p>Semantic elements clearly describe their meaning to browsers and developers. Examples include <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>, and <code>&lt;aside&gt;</code>.</p>
+            </section>
+            <section>
+              <h3>Why They Matter</h3>
+              <p>Semantic HTML improves accessibility, SEO, and code maintainability. Screen readers use landmarks to navigate pages efficiently.</p>
+            </section>
+          </article>
+          <article>
+            <h2 style="color:#2c3e50;">Best Practices for Semantics</h2>
+            <section>
+              <h3>Heading Hierarchy</h3>
+              <p>Use a single <code>&lt;h1&gt;</code> per page and maintain proper heading order (h1 → h2 → h3).</p>
+            </section>
+          </article>
+        </main>
+        <aside>
+          <h3 style="color:#e67e22;">Related Articles</h3>
+          <ul>
+            <li><a href="#">HTML5 Semantic Elements Guide</a></li>
+            <li><a href="#">Accessibility Best Practices</a></li>
+            <li><a href="#">SEO with Semantic HTML</a></li>
+            <li><a href="#">ARIA Landmarks Explained</a></li>
+          </ul>
+        </aside>
+      </div>
+      <footer>
+        <p>&copy; 2025 My Semantic Site. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 2: Figure with Figcaption</h2>
+    <figure>
+      <div style="font-size:64px;padding:20px;">📊</div>
+      <figcaption>Figure 1: Website traffic growth over the past 6 months showing steady increase in mobile users.</figcaption>
+    </figure>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 3: Blockquote with Citation</h2>
+    <blockquote cite="https://example.com">
+      "The best way to predict the future is to create it."
+      <footer>— <cite>Peter Drucker</cite>, Management Consultant</footer>
+    </blockquote>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 4: Address Element</h2>
+    <address>
+      <strong>Web Dev Academy</strong><br>
+      123 Learning Street<br>
+      San Francisco, CA 94102<br>
+      United States<br>
+      Email: <a href="mailto:info@webdevacademy.com">info@webdevacademy.com</a>
+    </address>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 5: Time Elements</h2>
+    <p>The conference starts on <time datetime="2025-09-15T09:00">September 15, 2025 at 9:00 AM</time>.</p>
+    <p>Early bird registration ends <time datetime="2025-06-30">June 30, 2025</time>.</p>
+    <p>The event lasts <time datetime="PT3D">3 days</time>.</p>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 6: Semantic vs Non-Semantic Comparison</h2>
+    <div style="display:flex;gap:20px;">
+      <div style="flex:1;">
+        <h3 style="color:#e74c3c;">Non-Semantic (Bad)</h3>
+        <div class="tag">div</div>
+        <div class="tag">div</div>
+        <div>
+          <div style="background:#f0f0f0;padding:12px;margin:8px 0;border-radius:4px;">
+            <div style="font-size:20px;font-weight:bold;">Title</div>
+            <div>Content text here.</div>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <h3 style="color:#27ae60;">Semantic (Good)</h3>
+        <span class="tag" style="background:#27ae60;">article</span>
+        <span class="tag" style="background:#27ae60;">header</span>
+        <article style="background:#d5f5e3;padding:12px;margin:8px 0;border-radius:4px;">
+          <header style="background:none;color:inherit;padding:0;">
+            <h2 style="font-size:20px;margin:0;border:none;">Title</h2>
+          </header>
+          <p style="margin:8px 0 0;">Content text here.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

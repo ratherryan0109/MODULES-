@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Which HTML attribute makes a form field mandatory?",
+    "options": ["mandatory", "required", "obligatory", "force"],
+    "answer": "b",
+    "explanation": "The required attribute is a boolean HTML attribute that makes a form field mandatory. The browser will prevent form submission if the field is empty."
+  },
+  {
+    "question": "What does the pattern attribute do on an input element?",
+    "options": ["Sets a color pattern", "Defines a regular expression the value must match", "Creates a pattern for auto-fill", "Sets the input width pattern"],
+    "answer": "b",
+    "explanation": "The pattern attribute takes a JavaScript regular expression and validates the input value against it. If the value doesn't match, the form won't submit."
+  },
+  {
+    "question": "Which CSS pseudo-class styles an input that fails validation?",
+    "options": [":error", ":invalid", ":fail", ":bad"],
+    "answer": "b",
+    "explanation": "The :invalid CSS pseudo-class targets form elements that fail validation. It can be used to style inputs with red borders or other error indicators."
+  },
+  {
+    "question": "What does the valid property of ValidityState indicate?",
+    "options": ["The field has a valid value", "The field is visible", "The field type is valid HTML", "The form is ready to submit"],
+    "answer": "a",
+    "explanation": "ValidityState.valid is true when all constraint validation rules pass. It's the aggregate of all other validity properties being false."
+  },
+  {
+    "question": "How do you set a custom validation message in JavaScript?",
+    "options": ["input.errorMessage = 'message'", "input.setCustomValidity('message')", "input.customError('message')", "input.validationMessage = 'message'"],
+    "answer": "b",
+    "explanation": "setCustomValidity('message') sets a custom error message on the input. Setting it to an empty string clears the custom error."
+  },
+  {
+    "question": "What event is fired on each invalid element when a form is validated?",
+    "options": ["error", "invalid", "fail", "validationerror"],
+    "answer": "b",
+    "explanation": "The invalid event fires on each form element that fails validation. It can be used to apply custom error display logic or track validation failures."
+  },
+  {
+    "question": "Which attribute on a form disables native HTML5 validation?",
+    "options": ["nocheck", "novalidate", "disablevalidation", "skipvalidation"],
+    "answer": "b",
+    "explanation": "The novalidate attribute on a <form> element disables all native HTML5 constraint validation, allowing custom JavaScript validation to take over."
+  },
+  {
+    "question": "What does the typeMismatch property of ValidityState check?",
+    "options": ["The input type is wrong", "The value doesn't match the expected input type", "The form method doesn't match", "The character encoding is wrong"],
+    "answer": "b",
+    "explanation": "typeMismatch is true when the input value doesn't match the expected format for the input type (e.g., a non-email string in an email field)."
+  },
+  {
+    "question": "Which attribute provides a hint about the expected format for pattern validation?",
+    "options": ["placeholder", "title", "hint", "format"],
+    "answer": "b",
+    "explanation": "The title attribute on pattern-validated inputs provides the error message shown when the pattern doesn't match. It describes the expected format."
+  },
+  {
+    "question": "What does input.checkValidity() return?",
+    "options": ["void", "true or false", "An error message string", "A ValidityState object"],
+    "answer": "b",
+    "explanation": "checkValidity() returns true if the element's value passes all validation constraints, and false if it fails. It also fires an invalid event on failure."
+  },
+  {
+    "question": "Which validation property indicates a value exceeds the max attribute?",
+    "options": ["tooLong", "tooHigh", "rangeOverflow", "maxExceeded"],
+    "answer": "c",
+    "explanation": "rangeOverflow is true when a numeric input's value is greater than the max attribute value. For example, a value of 101 with max='100'."
+  },
+  {
+    "question": "What is the difference between checkValidity() and reportValidity()?",
+    "options": ["There is no difference", "reportValidity() also shows the error message to the user", "checkValidity() is faster", "reportValidity() only works on forms"],
+    "answer": "b",
+    "explanation": "Both methods check validity and return true/false, but reportValidity() also displays the validation error message to the user in the browser's native UI."
+  },
+  {
+    "question": "Which attribute sets both a minimum and maximum length for text input?",
+    "options": ["min and max", "minlength and maxlength", "length", "size"],
+    "answer": "b",
+    "explanation": "minlength and maxlength attributes set the minimum and maximum number of characters allowed in a text input or textarea."
+  },
+  {
+    "question": "What happens when setCustomValidity() is called with an empty string?",
+    "options": ["It clears the custom error", "It hides the input", "It disables validation", "It throws an error"],
+    "answer": "a",
+    "explanation": "Calling setCustomValidity('') clears any custom error message that was previously set, making the element valid (if all other constraints pass)."
+  },
+  {
+    "question": "Which HTML input type automatically validates that the value is a properly formatted web address?",
+    "options": ["text", "url", "link", "address"],
+    "answer": "b",
+    "explanation": "The url input type automatically validates that the entered value is a properly formatted URL (e.g., https://example.com)."
+  },
+  {
+    "question": "What is the purpose of the step attribute on a number input?",
+    "options": ["Sets the increment between valid values", "Sets the animation speed", "Sets the number of digits", "Sets the input width"],
+    "answer": "a",
+    "explanation": "The step attribute specifies the increment between valid values. For example, step='5' on a number input with min='0' max='100' allows 0, 5, 10, etc."
+  },
+  {
+    "question": "How should error messages be associated with inputs for accessibility?",
+    "options": ["Using the for attribute", "Using aria-describedby", "Using class names", "Using data attributes"],
+    "answer": "b",
+    "explanation": "The aria-describedby attribute on the input links to the error message element's ID, telling screen readers to announce the error message."
+  },
+  {
+    "question": "What does the badInput property of ValidityState indicate?",
+    "options": ["The input has a virus", "The browser cannot parse the value", "The input is misspelled", "The input type is unknown"],
+    "answer": "b",
+    "explanation": "badInput is true when the browser cannot parse the input value as the expected type. For example, entering text in a number field."
+  },
+  {
+    "question": "Which HTML attribute can be used to prevent form submission when validation fails?",
+    "options": ["preventdefault", "validate", "There is no such attribute — validation is automatic", "blockinvalid"],
+    "answer": "c",
+    "explanation": "HTML5 constraint validation automatically prevents form submission when validation fails. The browser shows the first error message and blocks submission."
+  },
+  {
+    "question": "What is the correct way to validate a password confirmation field?",
+    "options": ["Use pattern='same'", "Use a custom JavaScript comparison with setCustomValidity()", "Use the match attribute", "Use two required fields with the same name"],
+    "answer": "b",
+    "explanation": "Password confirmation requires custom JavaScript validation. Compare both password values and call setCustomValidity('Passwords must match') on the confirm field when they don't match."
+  }
+]

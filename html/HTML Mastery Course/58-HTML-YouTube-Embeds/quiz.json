@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Which HTML element is used to embed a YouTube video?",
+    "options": ["<video>", "<embed>", "<iframe>", "<object>"],
+    "answer": "c",
+    "explanation": "YouTube videos are embedded using an <iframe> element. The src attribute points to the YouTube embed URL: https://www.youtube.com/embed/VIDEO_ID."
+  },
+  {
+    "question": "What is the correct URL format for embedding a YouTube video?",
+    "options": ["https://www.youtube.com/embed/VIDEO_ID", "https://www.youtube.com/watch?v=VIDEO_ID", "https://www.youtube.com/v/VIDEO_ID", "https://youtu.be/VIDEO_ID"],
+    "answer": "a",
+    "explanation": "The embed URL format is https://www.youtube.com/embed/VIDEO_ID. The watch?v= format is for the YouTube page, not embedding."
+  },
+  {
+    "question": "Which URL parameter autoplays a YouTube video?",
+    "options": ["autoplay=true", "auto=1", "autoplay=1", "play=1"],
+    "answer": "c",
+    "explanation": "The autoplay=1 parameter tells the player to start playing automatically. However, modern browsers require mute=1 alongside it for autoplay to work."
+  },
+  {
+    "question": "What domain should you use for privacy-enhanced YouTube embeds?",
+    "options": ["www.youtube-privacy.com", "www.youtube-nocookie.com", "www.youtubereview.com", "www.youtube-safe.com"],
+    "answer": "b",
+    "explanation": "www.youtube-nocookie.com is the privacy-enhanced domain for YouTube embeds. It prevents YouTube from storing cookies on user devices unless they interact with the video."
+  },
+  {
+    "question": "How do you make a YouTube embed responsive while maintaining 16:9 aspect ratio?",
+    "options": ["Set width and height to 100%", "Use a container with padding-bottom: 56.25%", "Use the responsive attribute", "Set aspect-ratio on the iframe"],
+    "answer": "b",
+    "explanation": "The standard technique uses a container with padding-bottom: 56.25% (9/16 * 100 = 56.25%) and positions the iframe absolutely inside. Modern CSS can also use aspect-ratio: 16/9."
+  },
+  {
+    "question": "Which parameter controls whether related videos are shown?",
+    "options": ["related", "suggested", "rel", "rec"],
+    "answer": "c",
+    "explanation": "The rel parameter: rel=0 shows related videos from the same channel, rel=1 shows videos from any channel. Note that rel=0 behavior has changed over YouTube's API versions."
+  },
+  {
+    "question": "What attribute is required on the iframe for fullscreen to work?",
+    "options": ["fullscreen", "allowfullscreen", "fs=1", "allow-full-screen"],
+    "answer": "b",
+    "explanation": "The allowfullscreen attribute is a boolean attribute that must be present on the iframe for the fullscreen button to function. Without it, the fullscreen button is disabled."
+  },
+  {
+    "question": "Which parameter reduces YouTube branding on the player?",
+    "options": ["nobranding", "modestbranding", "minimal", "simple"],
+    "answer": "b",
+    "explanation": "modestbranding=1 reduces the amount of YouTube branding in the player, though a small YouTube logo still appears when the user hovers over the player."
+  },
+  {
+    "question": "How do you loop a single YouTube video?",
+    "options": ["loop=1 only", "loop=1&playlist=VIDEO_ID", "loop=true", "repeat=1"],
+    "answer": "b",
+    "explanation": "To loop a single video, you must use both loop=1 AND playlist=VIDEO_ID. The playlist parameter is required because loop works by cycling through a playlist."
+  },
+  {
+    "question": "Which JavaScript function is called when the YouTube IFrame API is ready?",
+    "options": ["onYouTubeAPIReady()", "onYouTubeIframeAPIReady()", "onPlayerAPIReady()", "onIframeReady()"],
+    "answer": "b",
+    "explanation": "The global callback function onYouTubeIframeAPIReady() is automatically called by the API script when it has finished loading and is ready to create players."
+  },
+  {
+    "question": "What does the YT.PlayerState.PLAYING constant value equal?",
+    "options": ["0", "1", "2", "3"],
+    "answer": "b",
+    "explanation": "YT.PlayerState.PLAYING = 1. The states are: UNSTARTED(-1), ENDED(0), PLAYING(1), PAUSED(2), BUFFERING(3), CUED(5)."
+  },
+  {
+    "question": "How do you start a YouTube video at the 30-second mark?",
+    "options": ["time=30", "t=30", "start=30", "position=30"],
+    "answer": "c",
+    "explanation": "The start parameter specifies the time in seconds from the beginning of the video to start playback. Example: ?start=30 begins playing at 30 seconds."
+  },
+  {
+    "question": "Which method loads and immediately plays a new video in the IFrame Player API?",
+    "options": ["loadVideoById()", "cueVideoById()", "playVideoById()", "setVideo()"],
+    "answer": "a",
+    "explanation": "loadVideoById(videoId, startSeconds, suggestedQuality) loads the specified video and immediately begins playing it. cueVideoById() queues it without playing."
+  },
+  {
+    "question": "What is the allow attribute used for on YouTube iframes?",
+    "options": ["Restricts ad types", "Specifies which browser features to enable", "Limits video quality", "Controls comment display"],
+    "answer": "b",
+    "explanation": "The allow attribute specifies feature policies for the iframe, such as 'autoplay', 'encrypted-media' (for DRM), 'gyroscope' (for 360° videos), and 'picture-in-picture'."
+  },
+  {
+    "question": "How do you embed a YouTube playlist?",
+    "options": ["https://www.youtube.com/embed/playlist?list=PLAYLIST_ID", "https://www.youtube.com/embed/videoseries?list=PLAYLIST_ID", "https://www.youtube.com/playlist/embed/PLAYLIST_ID", "https://www.youtube.com/embed?list=PLAYLIST_ID"],
+    "answer": "b",
+    "explanation": "The correct format is https://www.youtube.com/embed/videoseries?list=PLAYLIST_ID for embedding the full playlist with playlist navigation controls."
+  },
+  {
+    "question": "Which parameter hides the video controls?",
+    "options": ["controls=0", "nocontrols", "controls=hidden", "hidecontrols"],
+    "answer": "a",
+    "explanation": "controls=0 hides the player controls. This is useful for background videos but prevents users from pausing, seeking, or adjusting volume."
+  },
+  {
+    "question": "What does the 'origin' parameter do in the IFrame Player API?",
+    "options": ["Sets the video language", "Provides security by specifying the embedding domain", "Sets the video quality", "Specifies the player theme"],
+    "answer": "b",
+    "explanation": "The origin parameter specifies the domain that is embedding the video. YouTube uses this as an extra security measure to prevent malicious sites from controlling the player via API."
+  },
+  {
+    "question": "How do you mute a YouTube embed via URL parameter?",
+    "options": ["sound=0", "mute=1", "volume=0", "silent=1"],
+    "answer": "b",
+    "explanation": "The mute=1 parameter starts the video in a muted state. This is also required alongside autoplay=1 for autoplay to work in modern browsers."
+  },
+  {
+    "question": "What is the purpose of the 'hl' parameter in YouTube embeds?",
+    "options": ["Sets video resolution", "Sets the player interface language", "Hides the logo", "Enables high-quality mode"],
+    "answer": "b",
+    "explanation": "The hl parameter sets the language of the player interface (e.g., hl=en for English, hl=es for Spanish). It accepts ISO 639-1 two-letter language codes."
+  },
+  {
+    "question": "Which event is fired when a YouTube player encounters an error?",
+    "options": ["onError", "onPlayerError", "error", "onFail"],
+    "answer": "a",
+    "explanation": "The onError event is fired when the player encounters an error. The event.data property contains the error code: 2=invalid parameter, 100=video not found, 101/150=embedding not allowed."
+  }
+]

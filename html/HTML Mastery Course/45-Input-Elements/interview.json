@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is an HTML input element and what is its purpose?",
+      "answer": "The HTML `<input>` element is a form control that allows users to enter data. It's a void (self-closing) element that can render as various control types (text fields, checkboxes, radio buttons, etc.) depending on its `type` attribute. It's the primary way users interact with web forms."
+    },
+    {
+      "question": "What is the default type of an `<input>` element?",
+      "answer": "The default type is `text`. If you write `<input>` without a `type` attribute, it renders as a single-line text input field."
+    },
+    {
+      "question": "Why is the `name` attribute important on input elements?",
+      "answer": "The `name` attribute specifies the key in the key-value pair sent to the server during form submission. Without a `name`, the input's value is not included in the submitted form data. It's also used to group radio buttons and reference inputs in JavaScript."
+    },
+    {
+      "question": "What is the difference between `placeholder` and `value`?",
+      "answer": "`placeholder` is hint text that appears inside the input when it's empty and disappears when the user starts typing. `value` is the actual data content of the input — it can be a pre-filled default and gets submitted with the form."
+    },
+    {
+      "question": "How do you make an input field mandatory to fill?",
+      "answer": "Add the `required` attribute: `<input type=\"text\" required>`. The browser will prevent form submission and show a validation message if the field is empty."
+    },
+    {
+      "question": "What does the `disabled` attribute do on an input?",
+      "answer": "It disables the input: the user cannot interact with it, it cannot receive focus, it appears grayed out, and its value is NOT submitted with the form."
+    },
+    {
+      "question": "What is the difference between `disabled` and `readonly`?",
+      "answer": "Both prevent editing, but `disabled` prevents form submission of the value and grays out the element. `readonly` allows the value to be submitted and doesn't change the visual appearance significantly."
+    },
+    {
+      "question": "How do you set a default value for an input?",
+      "answer": "Use the `value` attribute: `<input type=\"text\" value=\"Default text\">`. This pre-fills the input with the specified text."
+    },
+    {
+      "question": "What is the purpose of the `autofocus` attribute?",
+      "answer": "`autofocus` automatically gives focus to the input when the page loads, allowing the user to start typing immediately. Only one element per page should have this attribute."
+    },
+    {
+      "question": "What is the difference between `<input type=\"submit\">` and `<button type=\"submit\">`?",
+      "answer": "Both submit the form. `<input type=\"submit\">` is a self-closing element that displays text via its `value` attribute. `<button type=\"submit\">` can contain HTML content (images, icons, etc.) inside it and is more flexible for styling."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does browser validation work with input types like `email` and `url`?",
+      "answer": "Browsers automatically validate `type=\"email\"` (checking for @ and domain format) and `type=\"url\"` (checking for a valid URL scheme). Invalid values prevent form submission and show error messages. This can be controlled with the `novalidate` attribute on the form."
+    },
+    {
+      "question": "What is the `pattern` attribute and how does it work with input validation?",
+      "answer": "The `pattern` attribute accepts a regular expression that the input value must match for the form to submit. For example, `pattern=\"[A-Za-z]{3,10}\"` requires 3–10 alphabetic characters. If the value doesn't match, the browser shows a validation error."
+    },
+    {
+      "question": "How do you handle file uploads with `<input type=\"file\">`?",
+      "answer": "The form must have `enctype=\"multipart/form-data\"` and `method=\"POST\"`. The `accept` attribute filters file types. Files are accessed via the `files` property in JavaScript (a FileList object). Multiple files can be allowed with the `multiple` attribute."
+    },
+    {
+      "question": "Explain the `autocomplete` attribute and its common values.",
+      "answer": "`autocomplete` hints to the browser about the type of data expected, enabling autofill from stored browser data. Common values: `name`, `email`, `tel`, `address-line1`, `postal-code`, `country-name`, `username`, `current-password`, `new-password`, `cc-number`, `url`, and `on`/`off`."
+    },
+    {
+      "question": "How do radio buttons ensure only one selection in a group?",
+      "answer": "Radio buttons with the same `name` attribute value belong to the same group. Browsers enforce mutual exclusivity within a group — selecting one radio button automatically deselects any other selected radio button in the same group."
+    },
+    {
+      "question": "What is the difference between `type=\"checkbox\"` and `type=\"radio\"`?",
+      "answer": "Checkboxes allow multiple selections from a group and toggle between checked and unchecked states. Radio buttons allow only one selection within a same-named group. Checkboxes are used for boolean/preference options; radios for mutually exclusive choices."
+    },
+    {
+      "question": "How can you customize the appearance of file input elements?",
+      "answer": "File inputs are notoriously hard to style. Common approaches include: hiding the native input with `opacity:0` or `display:none`, then styling a label or button that triggers the file picker via JavaScript's `click()` method. The chosen file name can be displayed separately."
+    },
+    {
+      "question": "What is the `inputmode` attribute and when should you use it?",
+      "answer": "`inputmode` hints at the type of data for virtual keyboard optimization on mobile devices. Values include: `none`, `text`, `decimal`, `numeric`, `tel`, `search`, `email`, `url`. For example, `inputmode=\"numeric\"` shows a numeric keypad on phones."
+    },
+    {
+      "question": "How does the `<datalist>` element work with input fields?",
+      "answer": "`<datalist>` provides a list of predefined options that appear as autocomplete suggestions in an input. The input references the datalist via the `list` attribute matching the datalist's `id`. Unlike `<select>`, the user can still type custom values."
+    },
+    {
+      "question": "What CSS pseudo-classes are available for styling input states?",
+      "answer": "Key pseudo-classes: `:focus`, `:hover`, `:active`, `:disabled`, `:enabled`, `:read-only`, `:read-write`, `:required`, `:optional`, `:valid`, `:invalid`, `:in-range`, `:out-of-range`, `:checked`, `:indeterminate`, `:placeholder-shown`."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the complete form submission process including encoding types.",
+      "answer": "When a form is submitted, the browser constructs a request based on the `method` and `enctype` attributes. For `method=\"GET\"`, data is appended as query parameters. For `method=\"POST\"`, `enctype=\"application/x-www-form-urlencoded\"` (default) URL-encodes key-value pairs, `multipart/form-data` is required for file uploads and uses MIME boundaries, and `text/plain` sends raw data. The browser serializes form controls that have a `name` attribute and are not disabled."
+    },
+    {
+      "question": "How do shadow DOM and custom elements interact with form inputs?",
+      "answer": "Custom elements using shadow DOM need to participate in form submission via the `ElementInternals` API. They must call `attachInternals()` and use methods like `setFormValue()` to provide values. The `formAssociated` static property must be true. Without this, custom elements won't submit their values in forms."
+    },
+    {
+      "question": "What security considerations should you be aware of with hidden inputs?",
+      "answer": "Hidden inputs are not truly secure — their values are visible in the HTML source and can be modified by users via browser dev tools. Never trust hidden inputs for sensitive data. They should only be used for non-sensitive metadata like CSRF tokens (which should be validated server-side) or UI state flags."
+    },
+    {
+      "question": "How does the `valueAsNumber` and `valueAsDate` properties work on input elements?",
+      "answer": "These are HTMLInputElement properties that return the input value as a typed JavaScript value. `valueAsNumber` returns a Number for `type=\"number\"` and `type=\"range\"`. `valueAsDate` returns a Date object for date/time input types. They throw exceptions if the value is empty or invalid."
+    },
+    {
+      "question": "What is the Constraint Validation API and how do you use it?",
+      "answer": "The Constraint Validation API provides programmatic access to form validation. Key methods: `checkValidity()` returns whether the input is valid, `reportValidity()` shows validation messages, `setCustomValidity()` sets a custom error message (non-empty string marks the input invalid). Properties include `validity` (object with `valueMissing`, `typeMismatch`, `patternMismatch`, `tooLong`, `tooShort`, `rangeUnderflow`, `rangeOverflow`, `stepMismatch`, `badInput`, `valid`, `customError`)."
+    },
+    {
+      "question": "How does the `FormData` API work for capturing input values programmatically?",
+      "answer": "`new FormData(formElement)` creates an object representing the form's current data. It supports `append()`, `delete()`, `get()`, `getAll()`, `has()`, `set()`, and `keys()/values()/entries()`. It automatically captures all named, non-disabled form controls. It's commonly used with `fetch()` for AJAX form submission."
+    },
+    {
+      "question": "What is the difference between `value` property and `defaultValue` on an input element?",
+      "answer": "`value` reflects the current live value of the input (what the user has typed). `defaultValue` reflects the initial value set in the HTML `value` attribute. Changing `defaultValue` does not change the current `value` unless the form is reset via `<input type=\"reset\">` or `form.reset()`."
+    },
+    {
+      "question": "How do you properly handle internationalization (i18n) with input elements?",
+      "answer": "Key considerations: Use `lang` attribute for language-specific formatting, `type=\"tel\"` for phone numbers (format varies by locale), set `autocomplete` to appropriate values for different address formats, use `inputmode` for appropriate keyboards, avoid hardcoding currency symbols (use `Intl.NumberFormat`), and consider that date formats vary globally (ISO 8601: YYYY-MM-DD is the standard for `<input type=\"date\">`)."
+    },
+    {
+      "question": "Explain the interaction between `novalidate`, `formnovalidate`, and the Constraint Validation API.",
+      "answer": "The `novalidate` attribute on a `<form>` disables all browser-native validation for that form. `formnovalidate` on a submit button/input overrides `novalidate` for that specific submission trigger. Programmatically, `checkValidity()` and `reportValidity()` still work regardless of these attributes. This allows custom validation flows while using the native API."
+    },
+    {
+      "question": "What performance considerations exist with input event handlers?",
+      "answer": "The `input` event fires on every keystroke, which can be expensive. Debouncing (delaying handler execution until after a pause) or throttling (limiting execution rate) is recommended for operations like live search or validation. Use `requestAnimationFrame` for visual updates. For complex validation, consider using the `change` event (fires on blur) instead of `input`."
+    }
+  ]
+}

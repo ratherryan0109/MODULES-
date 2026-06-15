@@ -1,0 +1,147 @@
+{
+  "module": "99-css-layers",
+  "title": "CSS Layers (@layer)",
+  "difficulty": "advanced",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the purpose of @layer in CSS?",
+      "options": ["Define animation keyframes", "Control cascade order explicitly", "Create nested selectors", "Define color schemes"],
+      "correctAnswer": 1,
+      "explanation": "@layer gives explicit control over the cascade order, overriding specificity."
+    },
+    {
+      "id": 2,
+      "question": "If two layers have conflicting styles, which wins?",
+      "options": ["Earlier layer", "Later layer", "Higher specificity", "The one with !important"],
+      "correctAnswer": 1,
+      "explanation": "Later layers override earlier layers regardless of specificity."
+    },
+    {
+      "id": 3,
+      "question": "What priority do unlayered styles have?",
+      "options": ["Before all layers", "After all layers", "Same as first layer", "Same as last layer"],
+      "correctAnswer": 0,
+      "explanation": "Unlayered styles come before all layered styles (lower priority)."
+    },
+    {
+      "id": 4,
+      "question": "What happens to !important in layers?",
+      "options": ["Reverses layer order", "Stays the same", "Is ignored", "Only applies to last layer"],
+      "correctAnswer": 0,
+      "explanation": "!important reverses the layer order — earlier layers win over later ones."
+    },
+    {
+      "id": 5,
+      "question": "How do you layer an @import?",
+      "options": ["@import url(f.css) layer(name)", "@layer import url(f.css)", "@import layer(name) url(f.css)", "Not possible"],
+      "correctAnswer": 0,
+      "explanation": "Use @import url(...) layer(name) to import into a layer."
+    },
+    {
+      "id": 6,
+      "question": "Can you have nested layers?",
+      "options": ["Yes", "No", "Only in Sass", "Only 1 level"],
+      "correctAnswer": 0,
+      "explanation": "Layers can be nested: @layer framework { @layer theme { ... } }"
+    },
+    {
+      "id": 7,
+      "question": "What does @layer reset, base; do?",
+      "options": ["Creates two empty layers", "Declares layer order", "Deletes layers", "Combines layers"],
+      "correctAnswer": 1,
+      "explanation": "This declares the order of layers: reset first, base second."
+    },
+    {
+      "id": 8,
+      "question": "What is the correct way to add styles to an existing layer?",
+      "options": ["@layer name { /* styles */ }", "@add-layer name { }", "@extends name { }", "name { }"],
+      "correctAnswer": 0,
+      "explanation": "Use @layer name { ... } to add styles to a specific layer."
+    },
+    {
+      "id": 9,
+      "question": "How many layers are recommended for most projects?",
+      "options": ["1-2", "3-5", "7-10", "As many as needed"],
+      "correctAnswer": 1,
+      "explanation": "3-5 layers (e.g., reset, base, components, utilities) is usually sufficient."
+    },
+    {
+      "id": 10,
+      "question": "What is the browser support for @layer?",
+      "options": ["Chrome 120+ only", "Chrome 99+, Firefox 97+, Safari 15.4+", "All browsers", "Only Firefox"],
+      "correctAnswer": 1,
+      "explanation": "@layer is supported in Chrome 99+, Firefox 97+, Safari 15.4+, and Edge 99+."
+    },
+    {
+      "id": 11,
+      "question": "What is an anonymous layer in CSS?",
+      "options": ["A layer created without a name using @layer { ... }", "A layer that is hidden from DevTools", "A layer that automatically resets styles", "A layer that only applies to anonymous elements"],
+      "correctAnswer": 0,
+      "explanation": "Anonymous layers use @layer { ... } without a name and cannot be referenced later."
+    },
+    {
+      "id": 12,
+      "question": "When using @layer statement multiple times, what happens?",
+      "options": ["New layers are appended to the end, existing layers keep their position", "The layer order is fully reset", "An error is thrown", "Only the first declaration is used"],
+      "correctAnswer": 0,
+      "explanation": "Subsequent @layer statements add new layers to the end without changing existing layer positions."
+    },
+    {
+      "id": 13,
+      "question": "What does revert-layer do?",
+      "options": ["Resets a property to the previous layer's value", "Removes all layered styles", "Reverses the entire stylesheet", "Restores browser defaults"],
+      "correctAnswer": 0,
+      "explanation": "revert-layer cascades a property back to the value from the previous layer."
+    },
+    {
+      "id": 14,
+      "question": "Which has higher priority in the cascade: layered styles or animations?",
+      "options": ["Animations (keyframe animations)", "Layered styles", "They have equal priority", "Depends on specificity"],
+      "correctAnswer": 0,
+      "explanation": "Animations override normal declarations including layered styles."
+    },
+    {
+      "id": 15,
+      "question": "What is the main problem @layer solves?",
+      "options": ["Specificity wars between CSS sources", "Slow page load times", "Responsive design limitations", "Animation performance"],
+      "correctAnswer": 0,
+      "explanation": "@layer solves specificity conflicts by letting you control cascade order explicitly."
+    },
+    {
+      "id": 16,
+      "question": "Can you declare layer order before any styles are loaded?",
+      "options": ["Yes, using @layer statement at the top of the stylesheet", "No, layers must contain styles", "Only with JavaScript", "Only in HTML"],
+      "correctAnswer": 0,
+      "explanation": "The @layer statement (without a block) declares layer order before any styles are loaded."
+    },
+    {
+      "id": 17,
+      "question": "What is a common layer strategy for most projects?",
+      "options": ["reset, base, components, utilities, overrides", "Only one layer", "A layer per CSS property", "alphabetical layers"],
+      "correctAnswer": 0,
+      "explanation": "A 5-layer strategy (reset, base, components, utilities, overrides) provides good cascade control."
+    },
+    {
+      "id": 18,
+      "question": "How do you wrap third-party CSS in a layer?",
+      "options": ["@import url('library.css') layer(vendor)", "Wrap the file in @layer { } manually", "Use JavaScript to inject it", "This is not possible"],
+      "correctAnswer": 0,
+      "explanation": "Use @import with layer() to wrap third-party stylesheets in a specific layer."
+    },
+    {
+      "id": 19,
+      "question": "Do cascade layers have runtime performance cost?",
+      "options": ["Zero performance cost — resolved at parse time", "Minor runtime overhead", "Significant performance cost", "Only in Safari"],
+      "correctAnswer": 0,
+      "explanation": "Layers are resolved during the cascade step of style calculation with no runtime cost."
+    },
+    {
+      "id": 20,
+      "question": "What is the correct way to refer to a nested layer named 'theme' inside 'framework'?",
+      "options": ["framework.theme", "framework > theme", "framework__theme", "framework/theme"],
+      "correctAnswer": 0,
+      "explanation": "Nested layers use dot notation: framework.theme."
+    }
+  ]
+}

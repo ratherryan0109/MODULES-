@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Working with Directories - Playground</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #1e293b; color: #e2e8f0; height: 100vh; display: flex; flex-direction: column; }
+    .header { background: #0f172a; padding: 12px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #334155; }
+    .header h1 { font-size: 1.1em; color: #FFD43B; flex: 1; }
+    .header .status { font-size: 0.8em; color: #94a3b8; }
+    .header .status.loaded { color: #4ade80; }
+    .header button { background: #306998; color: white; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 0.85em; font-weight: 600; }
+    .header button:hover { background: #1e415e; }
+    .header button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .snippets { background: #0f172a; padding: 8px 20px; display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid #334155; }
+    .snippets button { background: #334155; color: #cbd5e1; border: 1px solid #475569; padding: 4px 14px; border-radius: 16px; cursor: pointer; font-size: 0.8em; }
+    .snippets button.active { background: #306998; color: white; border-color: #306998; }
+    .snippets button:hover { background: #475569; }
+    .main { display: flex; flex: 1; overflow: hidden; }
+    .editor-pane { flex: 1; display: flex; flex-direction: column; border-right: 1px solid #334155; }
+    .editor-pane textarea { flex: 1; background: #0f172a; color: #e2e8f0; border: none; padding: 16px; font-family: "JetBrains Mono", "Fira Code", monospace; font-size: 13px; line-height: 1.6; resize: none; outline: none; tab-size: 4; white-space: pre; overflow-wrap: normal; overflow-x: auto; }
+    .output-pane { flex: 1; display: flex; flex-direction: column; }
+    .output-pane .label { background: #0f172a; padding: 8px 16px; font-size: 0.8em; color: #94a3b8; border-bottom: 1px solid #334155; }
+    .output-pane .content { flex: 1; padding: 16px; font-family: "JetBrains Mono", "Fira Code", monospace; font-size: 13px; line-height: 1.6; overflow-y: auto; white-space: pre-wrap; }
+    .output-pane .content .error { color: #f87171; }
+    .output-pane .content .success { color: #4ade80; }
+    .loading-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 100; justify-content: center; align-items: center; flex-direction: column; gap: 16px; }
+    .loading-overlay.show { display: flex; }
+    .loading-overlay .spinner { width: 48px; height: 48px; border: 4px solid #334155; border-top-color: #FFD43B; border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 768px) { .main { flex-direction: column; } .editor-pane { border-right: none; border-bottom: 1px solid #334155; height: 50%; } }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div>Loading Python (Pyodide)...</div>
+  </div>
+  <div class="header">
+    <h1>🐍 Working with Directories — Python Playground</h1>
+    <span class="status" id="pyStatus">Pyodide: not loaded</span>
+    <button id="runBtn" onclick="runCode()" disabled>▶ Run</button>
+    <button onclick="resetCode()">↺ Reset</button>
+  </div>
+  <div class="snippets" id="snippetTabs">
+    <button class="active" onclick="loadSnippet(0)">os.listdir() and os.scandir()</button>
+    <button class="" onclick="loadSnippet(1)">pathlib.iterdir() and glob()</button>
+    <button class="" onclick="loadSnippet(2)">Creating directories (mkdir, makedirs)</button>
+    <button class="" onclick="loadSnippet(3)">Directory tree traversal (os.walk)</button>
+    <button class="" onclick="loadSnippet(4)">Filtering files by extension</button>
+  </div>
+  <div class="main">
+    <div class="editor-pane">
+      <textarea id="codeEditor" spellcheck="false"></textarea>
+    </div>
+    <div class="output-pane">
+      <div class="label">Output</div>
+      <div class="content" id="output"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+  <script>
+    const snippets = ["# os.listdir() and os.scandir()\n# Explore os.listdir() and os.scandir() interactively\n\ndef os_listdir_and_os_scandir_example():\n    \"\"\"Demonstrate os.listdir() and os.scandir().\"\"\"\n    print(\"=== os.listdir() and os.scandir() ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    os_listdir_and_os_scandir_example()","# pathlib.iterdir() and glob()\n# Explore pathlib.iterdir() and glob() interactively\n\ndef pathlib_iterdir_and_glob_example():\n    \"\"\"Demonstrate pathlib.iterdir() and glob().\"\"\"\n    print(\"=== pathlib.iterdir() and glob() ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    pathlib_iterdir_and_glob_example()","# Creating directories (mkdir, makedirs)\n# Explore creating directories (mkdir, makedirs) interactively\n\ndef creating_directories_mkdir_makedirs_example():\n    \"\"\"Demonstrate creating directories (mkdir, makedirs).\"\"\"\n    print(\"=== Creating directories (mkdir, makedirs) ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    creating_directories_mkdir_makedirs_example()","# Directory tree traversal (os.walk)\n# Explore directory tree traversal (os.walk) interactively\n\ndef directory_tree_traversal_os_walk_example():\n    \"\"\"Demonstrate directory tree traversal (os.walk).\"\"\"\n    print(\"=== Directory tree traversal (os.walk) ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    directory_tree_traversal_os_walk_example()","# Filtering files by extension\n# Explore filtering files by extension interactively\n\ndef filtering_files_by_extension_example():\n    \"\"\"Demonstrate filtering files by extension.\"\"\"\n    print(\"=== Filtering files by extension ===\")\n    # TODO: Add your code here\n    result = []\n    for i in range(5):\n        result.append(f\"Item {i}\")\n    print(f\"Result: {result}\")\n    return result\n\nif __name__ == \"__main__\":\n    filtering_files_by_extension_example()"];
+    let pyodide = null;
+    const editor = document.getElementById("codeEditor");
+    const output = document.getElementById("output");
+    const runBtn = document.getElementById("runBtn");
+    const status = document.getElementById("pyStatus");
+    const loadingEl = document.getElementById("loadingOverlay");
+
+    async function initPyodide() {
+      loadingEl.classList.add("show");
+      try {
+        pyodide = await loadPyodide();
+        status.textContent = "Pyodide: ready";
+        status.classList.add("loaded");
+        runBtn.disabled = false;
+        loadingEl.classList.remove("show");
+        loadSnippet(0);
+      } catch (e) {
+        output.innerHTML = `<span class="error">Failed to load Pyodide: ${e.message}</span>`;
+        loadingEl.classList.remove("show");
+      }
+    }
+
+    function runCode() {
+      if (!pyodide) { output.innerHTML = "Loading..."; return; }
+      const code = editor.value;
+      output.innerHTML = "";
+      try {
+        pyodide.runPython(`
+import sys
+from io import StringIO
+_old_stdout = sys.stdout
+sys.stdout = StringIO()
+        `);
+        pyodide.runPython(code);
+        const captured = pyodide.runPython("sys.stdout.getvalue()");
+        pyodide.runPython("sys.stdout = _old_stdout");
+        output.textContent = captured || "(no output)";
+      } catch (e) {
+        output.innerHTML = `<span class="error">${e.message}</span>`;
+      }
+    }
+
+    function loadSnippet(index) {
+      if (snippets[index]) {
+        editor.value = snippets[index];
+        document.querySelectorAll(".snippets button").forEach((b, i) => {
+          b.classList.toggle("active", i === index);
+        });
+        output.innerHTML = "";
+      }
+    }
+
+    function resetCode() {
+      loadSnippet(0);
+    }
+
+    editor.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        e.preventDefault();
+        const start = editor.selectionStart;
+        const end = editor.selectionEnd;
+        editor.value = editor.value.substring(0, start) + "    " + editor.value.substring(end);
+        editor.selectionStart = editor.selectionEnd = start + 4;
+      }
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { runCode(); }
+    });
+
+    initPyodide();
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does flex-direction determine?", "answer": "flex-direction determines the direction of the main axis, which controls how flex items are placed in the container." },
+    { "question": "What are the four values of flex-direction?", "answer": "The four values are row, row-reverse, column, and column-reverse." },
+    { "question": "What does flex-direction: row do?", "answer": "Items are placed horizontally from left to right (or right to left in RTL)." },
+    { "question": "What does flex-direction: row-reverse do?", "answer": "Items are placed horizontally in reverse order, from right to left (or left to right in RTL)." },
+    { "question": "What does flex-direction: column do?", "answer": "Items are placed vertically from top to bottom." },
+    { "question": "What does flex-direction: column-reverse do?", "answer": "Items are placed vertically in reverse order, from bottom to top." },
+    { "question": "What is the default value of flex-direction?", "answer": "The default value is row." },
+    { "question": "Does flex-direction affect the order of items visually?", "answer": "Yes, it reverses the visual order but does not change the HTML source order." },
+    { "question": "How does flex-direction affect the main axis?", "answer": "flex-direction defines the main axis; row makes the main axis horizontal, column makes it vertical." },
+    { "question": "How does flex-direction affect the cross axis?", "answer": "The cross axis is always perpendicular to the main axis; row gives a vertical cross axis, column gives a horizontal cross axis." }
+  ],
+  "intermediate": [
+    { "question": "How does flex-direction: row-reverse affect justify-content?", "answer": "justify-content: flex-start places items at the right edge (opposite of row) because the main axis starts from the right." },
+    { "question": "How does changing flex-direction affect align-items?", "answer": "align-items always works on the cross axis; in row it's vertical, in column it's horizontal." },
+    { "question": "How do you create a column layout with Flexbox?", "answer": "Set flex-direction: column on the flex container; items stack vertically." },
+    { "question": "What happens to width properties in flex-direction: column?", "answer": "Width is still respected as the cross-axis size (horizontal), while the main-axis size (vertical) can be controlled by height." },
+    { "question": "How does flex-wrap interact with flex-direction: column?", "answer": "flex-wrap: wrap with column direction causes items to wrap into new columns, not new rows." },
+    { "question": "How does writing mode (vertical-rl) affect flex-direction: row?", "answer": "In vertical writing mode, row follows the inline direction (vertical), changing the main axis to vertical." },
+    { "question": "What is the difference between row-reverse and order property for reversing?", "answer": "row-reverse reverses all items; the order property allows selective reordering of individual items." },
+    { "question": "How does margin: auto behave differently in row vs column direction?", "answer": "In row, margin: auto absorbs horizontal space; in column, it absorbs vertical space." },
+    { "question": "How do percentage values in flex-basis work with column direction?", "answer": "With column, flex-basis: 50% refers to 50% of the container's height (the main axis size)." },
+    { "question": "How does the gap property work in column direction?", "answer": "gap applies vertical spacing between items in column mode (instead of horizontal in row mode)." }
+  ],
+  "advanced": [
+    { "question": "How does the flex-direction property interact with CSS logical properties?", "answer": "flex-direction maps to logical directions: row maps to inline, column maps to block, adapting to writing mode." },
+    { "question": "How does flex-direction affect the interpretation of min-height in flex items?", "answer": "In column direction, min-height constrains the main-axis size; min-width constrains the cross-axis size." },
+    { "question": "What happens to absolutely positioned children when flex-direction changes?", "answer": "Absolutely positioned children are not flex items, but their offset parents include flex container, and direction affects positioning context." },
+    { "question": "How does flex-direction: column handle horizontal centering with margin: auto?", "answer": "margin-left: auto and margin-right: auto in column direction still center horizontally (cross-axis), not vertically." },
+    { "question": "How does flex-direction work with the align-content property?", "answer": "In row direction, align-content distributes rows vertically; in column direction, it distributes columns horizontally." },
+    { "question": "How does the multi-keyword flex property change meaning with flex-direction?", "answer": "flex: 1 always refers to the main-axis growth; in row it grows width, in column it grows height." },
+    { "question": "How do you create a horizontal scrolling container using flex-direction: row?", "answer": "Set overflow-x: auto; flex-wrap: nowrap; on the container, allowing horizontal scroll without wrapping." },
+    { "question": "How does the flex-flow shorthand simplify direction and wrap settings?", "answer": "flex-flow: column wrap sets both flex-direction: column and flex-wrap: wrap in one declaration." },
+    { "question": "How does changing flex-direction affect the order of tab navigation?", "answer": "Tab order follows source order, not visual order, so row-reverse does not affect keyboard tab flow." },
+    { "question": "How do you apply different flex-direction values at different breakpoints?", "answer": "Use media queries: .container { flex-direction: column; } @media (min-width: 768px) { .container { flex-direction: row; } }." }
+  ]
+}

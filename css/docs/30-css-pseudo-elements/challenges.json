@@ -1,0 +1,90 @@
+{
+  "module": "CSS Pseudo-elements",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Custom Tooltip with ::before",
+      "description": "Create a CSS-only tooltip that appears on hover using ::before pseudo-element.",
+      "requirements": [
+        "Button or span that acts as tooltip trigger",
+        "Tooltip appears above the element on hover",
+        "Tooltip has a background, text color, and border radius",
+        "Tooltip has a small arrow at the bottom (CSS triangle)",
+        "No JavaScript allowed"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; padding: 100px; }\n  .tooltip {\n    position: relative;\n    display: inline-block;\n    padding: 10px 20px;\n    background: #4a90d9;\n    color: white;\n    border-radius: 4px;\n    cursor: pointer;\n  }\n  .tooltip::before {\n    content: attr(data-tooltip);\n    position: absolute;\n    bottom: 130%;\n    left: 50%;\n    transform: translateX(-50%);\n    background: #333;\n    color: white;\n    padding: 8px 12px;\n    border-radius: 4px;\n    white-space: nowrap;\n    font-size: 14px;\n    display: none;\n  }\n  .tooltip::after {\n    content: '';\n    position: absolute;\n    bottom: calc(130% - 8px);\n    left: 50%;\n    transform: translateX(-50%);\n    border: 8px solid transparent;\n    border-top-color: #333;\n    display: none;\n  }\n  .tooltip:hover::before,\n  .tooltip:hover::after {\n    display: block;\n  }\n</style>\n</head>\n<body>\n  <div class=\"tooltip\" data-tooltip=\"Hello! I'm a tooltip\">\n    Hover over me\n  </div>\n</body>\n</html>",
+        "explanation": "Uses ::before for tooltip text content and ::after for the arrow (CSS triangle). Both are hidden by default and shown on :hover. The data-tooltip attribute provides the tooltip text."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Styled Blockquote with Decorative Quotes",
+      "description": "Create a styled blockquote with large decorative quotation marks using ::before and ::after.",
+      "requirements": [
+        "Blockquote with background and left border",
+        "Large opening quote before the text",
+        "Large closing quote after the text",
+        "Citation text below the quote",
+        "Quotes should be positioned absolutely"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: 'Georgia', serif; padding: 60px; background: #f5f5f5; }\n  blockquote {\n    position: relative;\n    max-width: 500px;\n    margin: 0 auto;\n    padding: 30px 40px;\n    background: white;\n    border-left: 4px solid #4a90d9;\n    border-radius: 0 8px 8px 0;\n    font-style: italic;\n    line-height: 1.6;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n  }\n  blockquote::before {\n    content: '\u201C';\n    position: absolute;\n    top: 10px;\n    left: 15px;\n    font-size: 4em;\n    color: #4a90d9;\n    line-height: 1;\n  }\n  blockquote::after {\n    content: '\u201D';\n    position: absolute;\n    bottom: -10px;\n    right: 20px;\n    font-size: 4em;\n    color: #4a90d9;\n    line-height: 1;\n  }\n  cite { display: block; margin-top: 15px; font-size: 0.9em; color: #999; }\n</style>\n</head>\n<body>\n  <blockquote>\n    <p>CSS pseudo-elements are incredibly powerful for adding decorative content without cluttering your HTML.</p>\n    <cite>- A CSS Developer</cite>\n  </blockquote>\n</body>\n</html>",
+        "explanation": "::before adds an opening quote character, ::after adds a closing quote. Both are absolutely positioned within the relative blockquote."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Article with Drop Cap and Styled First Line",
+      "description": "Create an article page that uses ::first-letter for a drop cap and ::first-line for the first line styling.",
+      "requirements": [
+        "Article with title and multiple paragraphs",
+        "First paragraph has a drop cap using ::first-letter",
+        "First paragraph's first line has different styling (::first-line)",
+        "Drop cap should be 3x the normal font size",
+        "Drop cap should have a different color"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: 'Georgia', serif; max-width: 650px; margin: 60px auto; padding: 0 20px; color: #333; }\n  h1 { font-size: 2.5em; margin-bottom: 30px; }\n  h2 { margin-top: 40px; }\n  p { line-height: 1.8; font-size: 18px; }\n  .article p:first-of-type::first-letter {\n    font-size: 4em;\n    float: left;\n    line-height: 0.8;\n    margin-right: 10px;\n    margin-top: 5px;\n    color: #e94560;\n    font-weight: bold;\n  }\n  .article p:first-of-type::first-line {\n    font-size: 1.1em;\n    font-weight: bold;\n    color: #4a90d9;\n  }\n</style>\n</head>\n<body>\n  <article class=\"article\">\n    <h1>The Art of Typography</h1>\n    <p>Typography is the art and technique of arranging type to make written language legible, readable, and visually appealing. The first letter of this paragraph is styled as a drop cap, a classic typographic technique that draws the reader's eye to the beginning of the content.</p>\n    <h2>The Details Matter</h2>\n    <p>This second paragraph doesn't have the special styling. Only the first paragraph gets the drop cap treatment and the styled first line, creating a visually interesting entry point into the article.</p>\n  </article>\n</body>\n</html>",
+        "explanation": "p:first-of-type::first-letter creates the drop cap on the first paragraph only. p:first-of-type::first-line styles the first line of the first paragraph. Both use the :first-of-type pseudo-class combined with pseudo-elements."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "CSS-Only Star Rating with ::before",
+      "description": "Create a star rating component using only CSS pseudo-elements and checkboxes. Stars should be filled based on hover/checked state.",
+      "requirements": [
+        "5 stars displayed inline",
+        "Stars change color on hover (filled state)",
+        "Checked stars stay filled",
+        "Use ::before with content: '★'",
+        "No JavaScript, no images"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; padding: 60px; background: #f5f5f5; }\n  .rating { display: flex; flex-direction: row-reverse; justify-content: center; }\n  .rating input { display: none; }\n  .rating label {\n    cursor: pointer;\n    font-size: 40px;\n    color: #ddd;\n    padding: 0 5px;\n  }\n  .rating label::before {\n    content: '\u2605';\n  }\n  .rating input:checked ~ label {\n    color: #ff9800;\n  }\n  .rating label:hover,\n  .rating label:hover ~ label {\n    color: #ff9800;\n  }\n</style>\n</head>\n<body>\n  <div class=\"rating\">\n    <input type=\"radio\" name=\"star\" id=\"star5\">\n    <label for=\"star5\"></label>\n    <input type=\"radio\" name=\"star\" id=\"star4\">\n    <label for=\"star4\"></label>\n    <input type=\"radio\" name=\"star\" id=\"star3\">\n    <label for=\"star3\"></label>\n    <input type=\"radio\" name=\"star\" id=\"star2\">\n    <label for=\"star2\"></label>\n    <input type=\"radio\" name=\"star\" id=\"star1\">\n    <label for=\"star1\"></label>\n  </div>\n  <p style=\"text-align:center;margin-top:20px;color:#999;\">Click to rate (CSS only)</p>\n</body>\n</html>",
+        "explanation": "Labels use ::before { content: '★' } to display stars. Flex-direction: row-reverse allows the ~ sibling combinator to work for hover/checked states going backwards."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Full Pseudo-element UI Components",
+      "description": "Build multiple UI components that rely entirely on pseudo-elements for their visual styling. Include a progress bar, notification badge, custom checkbox, image overlay, and breadcrumb navigation.",
+      "requirements": [
+        "Progress bar: filled state using ::before with width percentage",
+        "Notification badge: ::after on bell icon showing count",
+        "Custom checkbox: ::before for checkmark, ::after for box",
+        "Image overlay: ::before on image container for hover effect",
+        "Breadcrumb: ::after { content: '>' } between items (not on last)"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  body { font-family: sans-serif; padding: 40px; background: #f5f5f5; color: #333; }\n  h2 { margin: 30px 0 15px; }\n  .components { max-width: 600px; margin: 0 auto; }\n\n  /* Progress Bar */\n  .progress { height: 20px; background: #e0e0e0; border-radius: 10px; overflow: hidden; position: relative; }\n  .progress::before {\n    content: '';\n    position: absolute;\n    top: 0; left: 0;\n    width: 75%;\n    height: 100%;\n    background: linear-gradient(90deg, #4a90d9, #2ecc71);\n    border-radius: 10px;\n  }\n\n  /* Notification Badge */\n  .bell {\n    position: relative;\n    display: inline-block;\n    font-size: 36px;\n    cursor: pointer;\n    margin: 20px;\n  }\n  .bell::after {\n    content: attr(data-count);\n    position: absolute;\n    top: -5px;\n    right: -10px;\n    background: #e94560;\n    color: white;\n    font-size: 12px;\n    font-weight: bold;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n\n  /* Custom Checkbox */\n  .custom-checkbox { position: relative; padding-left: 35px; cursor: pointer; user-select: none; }\n  .custom-checkbox input { position: absolute; opacity: 0; }\n  .custom-checkbox::before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 22px;\n    height: 22px;\n    border: 2px solid #4a90d9;\n    border-radius: 4px;\n  }\n  .custom-checkbox input:checked ~ .custom-checkbox::after {\n    content: '\u2713';\n    position: absolute;\n    left: 4px;\n    top: 1px;\n    font-size: 16px;\n    color: #4a90d9;\n  }\n\n  /* Image Overlay */\n  .img-container {\n    position: relative;\n    width: 200px;\n    height: 150px;\n    background: #4a90d9;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n    overflow: hidden;\n  }\n  .img-container::before {\n    content: 'View Details';\n    position: absolute;\n    inset: 0;\n    background: rgba(0,0,0,0.6);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n    opacity: 0;\n    transition: opacity 0.3s;\n  }\n  .img-container:hover::before { opacity: 1; }\n\n  /* Breadcrumb */\n  .breadcrumb { margin: 20px 0; }\n  .breadcrumb a { text-decoration: none; color: #4a90d9; }\n  .breadcrumb a::after {\n    content: ' >';\n    color: #999;\n    margin: 0 5px;\n  }\n  .breadcrumb a:last-child::after { content: ''; }\n  .breadcrumb a:last-child { color: #999; cursor: default; }\n</style>\n</head>\n<body>\n  <div class=\"components\">\n    <h2>Progress Bar</h2>\n    <div class=\"progress\"></div>\n\n    <h2>Notification Badge</h2>\n    <div class=\"bell\" data-count=\"3\">\uD83D\uDD14</div>\n\n    <h2>Breadcrumb</h2>\n    <div class=\"breadcrumb\">\n      <a href=\"#\">Home</a>\n      <a href=\"#\">Products</a>\n      <a href=\"#\">Category</a>\n      <a href=\"#\">Current Page</a>\n    </div>\n\n    <h2>Image Overlay</h2>\n    <div class=\"img-container\">\n      Image Placeholder\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "Progress bar uses ::before for fill. Notification bell uses ::after for badge (content from data-count attribute). Breadcrumb uses ::after on all but last link. Image overlay uses ::before with hover transition."
+      }
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Attributes - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #8e44ad; border-bottom: 3px solid #8e44ad; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .highlight-box { background: #f0e6ff; border-left: 4px solid #8e44ad; padding: 15px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Module 5: HTML Attributes — Examples</h1>
+
+    <!-- Example 1: Global Attributes -->
+    <div class="example">
+        <h2>Example 1: Global Attributes (id, class, title, style)</h2>
+        <p>These attributes can be used on any HTML element.</p>
+        <pre>
+&lt;div id="main-content" class="container"&gt;
+    &lt;p title="This is a tooltip" style="color: blue;"&gt;
+        Hover over me to see the title!
+    &lt;/p&gt;
+    &lt;p class="highlight important"&gt;
+        This paragraph has two classes.
+    &lt;/p&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div id="main-content" class="container">
+                <p title="This is a tooltip" style="color: blue;">Hover over me to see the title!</p>
+                <p class="highlight important" style="background: #ffeb3b; padding: 5px;">This paragraph has two classes.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 2: Link Attributes -->
+    <div class="example">
+        <h2>Example 2: Anchor Tag Attributes</h2>
+        <pre>
+&lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;
+    Opens in new tab (safe)
+&lt;/a&gt;
+
+&lt;a href="mailto:hello@example.com"&gt;Send Email&lt;/a&gt;
+
+&lt;a href="#section2"&gt;Jump to Section 2&lt;/a&gt;
+
+&lt;a href="document.pdf" download="MyDocument.pdf"&gt;Download PDF&lt;/a&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer">Opens in new tab (safe)</a><br>
+            <a href="mailto:hello@example.com">Send Email</a><br>
+            <a href="#section2">Jump to Section 2</a><br>
+            <a href="document.pdf" download="MyDocument.pdf">Download PDF</a>
+        </div>
+    </div>
+
+    <!-- Example 3: Image Attributes -->
+    <div class="example">
+        <h2>Example 3: Image Attributes</h2>
+        <pre>
+&lt;img src="https://via.placeholder.com/300x200" 
+     alt="A placeholder image showing 300 by 200 pixels" 
+     width="300" 
+     height="200" 
+     loading="lazy" 
+     title="Sample Image"&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <img src="https://via.placeholder.com/300x200" alt="A placeholder image showing 300 by 200 pixels" width="300" height="200" loading="lazy" title="Sample Image">
+        </div>
+    </div>
+
+    <!-- Example 4: Boolean Attributes -->
+    <div class="example">
+        <h2>Example 4: Boolean Attributes</h2>
+        <p>Boolean attributes need no value — their presence means true.</p>
+        <pre>
+&lt;input type="text" placeholder="I am required" required&gt;
+&lt;input type="text" placeholder="I am disabled" disabled&gt;
+&lt;input type="text" value="Read only" readonly&gt;
+&lt;details open&gt;
+    &lt;summary&gt;Click to toggle&lt;/summary&gt;
+    &lt;p&gt;This is open by default.&lt;/p&gt;
+&lt;/details&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <input type="text" placeholder="I am required" required><br><br>
+            <input type="text" placeholder="I am disabled" disabled><br><br>
+            <input type="text" value="Read only" readonly><br><br>
+            <details open>
+                <summary>Click to toggle</summary>
+                <p>This is open by default.</p>
+            </details>
+        </div>
+    </div>
+
+    <!-- Example 5: data-* Attributes -->
+    <div class="example">
+        <h2>Example 5: Custom Data Attributes</h2>
+        <p>Use <code>data-*</code> to store custom information in elements.</p>
+        <pre>
+&lt;div data-product-id="101" 
+     data-category="electronics" 
+     data-price="299.99" 
+     data-in-stock="true"&gt;
+    &lt;h3&gt;Wireless Headphones&lt;/h3&gt;
+    &lt;p data-discount="0.15"&gt;Price: $299.99&lt;/p&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div data-product-id="101" data-category="electronics" data-price="299.99" data-in-stock="true">
+                <h3>Wireless Headphones</h3>
+                <p data-discount="0.15">Price: $299.99</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 6: ARIA Attributes -->
+    <div class="example">
+        <h2>Example 6: ARIA Accessibility Attributes</h2>
+        <pre>
+&lt;nav aria-label="Main navigation"&gt;
+    &lt;a href="#" aria-current="page"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;button aria-pressed="false" onclick="this.ariaPressed='true'"&gt;
+    Toggle Me
+&lt;/button&gt;
+
+&lt;div role="alert" aria-live="assertive"&gt;
+    Form submitted successfully!
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <nav aria-label="Main navigation">
+                <a href="#" aria-current="page">Home</a> |
+                <a href="#">About</a>
+            </nav><br>
+            <button aria-pressed="false">Toggle Me</button>
+            <div role="alert" aria-live="assertive" style="background: #d4edda; padding: 10px; margin-top: 10px;">Form submitted successfully!</div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Use <code>Ctrl+Shift+C</code> in browser DevTools to inspect any element's attributes on any website.
+    </div>
+</body>
+</html>

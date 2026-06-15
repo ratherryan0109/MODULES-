@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Layers - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    p { color: #475569; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-output { padding: 1.5rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    .layer-priority { display: flex; gap: 0; flex-wrap: wrap; margin: 1rem 0; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+    .layer-priority .item { flex: 1; padding: 16px; text-align: center; font-weight: 600; font-size: 0.85rem; min-width: 100px; }
+    .layer-priority .item-1 { background: #fee2e2; color: #991b1b; }
+    .layer-priority .item-2 { background: #fef3c7; color: #92400e; }
+    .layer-priority .item-3 { background: #dbeafe; color: #1e40af; }
+    .layer-priority .item-4 { background: #e0e7ff; color: #3730a3; }
+    .layer-priority .item-5 { background: #d1fae5; color: #065f46; }
+
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 8px; }
+    .card h4 { margin-bottom: 4px; }
+    .card p { font-size: 0.85rem; }
+
+    .demo-btn { display: inline-block; padding: 8px 20px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+    .demo-btn.primary { background: #3b82f6; color: white; }
+    .demo-btn.secondary { background: #8b5cf6; color: white; }
+
+    .layer-demo-box { padding: 12px 16px; margin: 4px 0; border-radius: 6px; font-size: 0.9rem; }
+    .layer-demo-box.reset { background: #fee2e2; border-left: 4px solid #ef4444; color: #991b1b; }
+    .layer-demo-box.base { background: #fef3c7; border-left: 4px solid #f59e0b; color: #92400e; }
+    .layer-demo-box.components { background: #dbeafe; border-left: 4px solid #3b82f6; color: #1e40af; }
+    .layer-demo-box.utilities { background: #e0e7ff; border-left: 4px solid #8b5cf6; color: #3730a3; }
+
+    .specificity-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .specificity-demo { grid-template-columns: 1fr; } }
+    .spec-column { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; }
+    .spec-column h4 { margin-bottom: 8px; font-size: 0.95rem; }
+    .spec-column code { font-size: 0.8rem; }
+
+    .important-demo { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; text-align: center; }
+    .important-demo p { color: #475569; }
+  </style>
+</head>
+<body>
+  <h1>CSS Layers (@layer)</h1>
+
+  <div class="demo-section">
+    <h2>1. Layer Priority Visualization</h2>
+    <p>Layers from lowest to highest priority. Later layers override earlier ones regardless of specificity.</p>
+    <div class="demo-output">
+      <div class="layer-priority">
+        <div class="item item-1">1. Reset<br><small>(lowest)</small></div>
+        <div class="item item-2">2. Base</div>
+        <div class="item item-3">3. Components</div>
+        <div class="item item-4">4. Utilities</div>
+        <div class="item item-5">5. Overrides<br><small>(highest)</small></div>
+      </div>
+    </div>
+    <pre><code>@layer reset, base, components, utilities, overrides;
+
+/* Styles in later layers win over earlier layers,
+   even if the earlier selector has higher specificity. */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>2. Layer Declaration &amp; Structure</h2>
+    <p>Define layer order once, then assign styles to each layer. The order of <code>@layer</code> statements doesn't matter — only the initial declaration order.</p>
+    <div class="demo-output">
+      <div class="layer-demo-box reset"><strong>@layer reset</strong> — Box-sizing, margin/padding reset</div>
+      <div class="layer-demo-box base"><strong>@layer base</strong> — Typography, colors, body defaults</div>
+      <div class="layer-demo-box components"><strong>@layer components</strong> — Buttons, cards, forms</div>
+      <div class="layer-demo-box utilities"><strong>@layer utilities</strong> — Spacing helpers, text alignment</div>
+    </div>
+    <pre><code>@layer reset, base, components, utilities;
+
+@layer reset {
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+}
+
+@layer base {
+  body { font-family: system-ui; color: #0f172a; background: #f8fafc; }
+  h1, h2, h3 { font-weight: 700; }
+}
+
+@layer components {
+  .btn { padding: 8px 20px; border-radius: 6px; font-weight: 600; }
+  .card { background: white; border: 1px solid #e2e8f0; border-radius: 8px; }
+}
+
+@layer utilities {
+  .mt-4 { margin-top: 16px; }
+  .text-center { text-align: center; }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>3. Layer vs Specificity</h2>
+    <p>Layers win over specificity. Notice how a low-specificity selector in a later layer overrides a high-specificity selector in an earlier layer.</p>
+    <div class="demo-output">
+      <div class="specificity-demo">
+        <div class="spec-column">
+          <h4 style="color:#ef4444;">Without Layers</h4>
+          <pre style="font-size:0.75rem;padding:0.5rem;"><code>/* High specificity */
+#sidebar .widget a { color: red; }
+
+/* Lower specificity — WON'T override */
+.widget-link { color: blue; }
+
+/* Result: red (high specificity wins) */</code></pre>
+        </div>
+        <div class="spec-column">
+          <h4 style="color:#10b981;">With Layers</h4>
+          <pre style="font-size:0.75rem;padding:0.5rem;"><code>@layer base, components;
+
+@layer base {
+  #sidebar .widget a { color: red; }
+  /* specificity: 0,1,0,2 */
+}
+
+@layer components {
+  .widget-link { color: blue; }
+  /* specificity: 0,0,1,0 BUT later layer! */
+}
+
+/* Result: blue (components layer wins) */</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>4. Unlayered Styles vs Layers</h2>
+    <p>Styles outside any <code>@layer</code> have <strong>lower</strong> priority than layered styles. This is the opposite of what many expect!</p>
+    <div class="demo-output">
+      <p style="background:#fee2e2;padding:12px;border-radius:8px;color:#991b1b;">
+        Unlayered styles have <strong>LOWER</strong> priority than layered styles.
+        To override a layer, place styles in a later layer — not outside any layer.
+      </p>
+    </div>
+    <pre><code>/* UNLAYERED — lowest priority */
+body { color: red; }
+
+@layer base {
+  body { color: #0f172a; } /* wins over unlayered */
+}
+
+/* To override layers, add a later layer: */
+@layer overrides {
+  body { color: green; } /* wins over base */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>5. !important Reverses Layer Order</h2>
+    <p>When <code>!important</code> is used, earlier layers win over later layers — the reverse of normal behavior.</p>
+    <div class="demo-output">
+      <div class="important-demo">
+        <p><strong>Normal:</strong> Later layer wins → <span style="color:#10b981;">Overrides &gt; Base</span></p>
+        <p><strong>With !important:</strong> Earlier layer wins → <span style="color:#ef4444;">Base &gt; Overrides</span></p>
+      </div>
+    </div>
+    <pre><code>@layer base {
+  .text { color: red !important; } /* this wins */
+}
+
+@layer overrides {
+  .text { color: blue !important; }
+}
+
+/* With !important, earlier layers beat later layers */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>6. Layered @import</h2>
+    <p>Third-party CSS can be imported directly into a layer, preventing it from overriding your styles.</p>
+    <pre><code>/* Third-party framework goes into 'framework' layer */
+@import url('bootstrap.css') layer(framework);
+
+/* Your components layer can override framework styles */
+@layer components {
+  .btn { background: #3b82f6; /* overrides bootstrap */ }
+}
+
+/* Multiple libraries in the same layer: */
+@import url('reset.css') layer(base);
+@import url('typography.css') layer(base);</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>7. Anonymous &amp; Nested Layers</h2>
+    <p>Layers can be anonymous or nested for fine-grained control over cascade ordering.</p>
+    <pre><code>/* Anonymous layer — no name */
+@layer {
+  * { box-sizing: border-box; }
+}
+
+/* Nested layers */
+@layer framework {
+  @layer base {
+    body { font-family: system-ui; }
+  }
+  @layer components {
+    .btn { padding: 8px 16px; }
+  }
+  /* Nested layers override each other by declaration order */
+}</code></pre>
+  </div>
+</body>
+</html>

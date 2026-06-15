@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Building Layouts Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b}.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px}
+.controls{flex:0 0 250px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:15px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group select{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px}
+#layout-preview{min-height:400px;background:#2d2d44;border-radius:8px;display:flex;transition:all .3s;overflow:hidden}
+header,footer{background:#6c5ce7;padding:15px;text-align:center}
+nav,aside{background:#ff6b6b;padding:15px;}
+main{background:#4ecdc4;padding:15px;}
+.middle{display:flex;flex:1}
+</style>
+</head>
+<body>
+<h1>🏗️ Layout Builder Playground</h1>
+<p class="subtitle">Build layouts by selecting patterns</p>
+<div class="layout">
+<div class="controls">
+<div class="group"><label>Layout Pattern</label><select id="pattern" onchange="applyPattern()">
+<option value="holy-grail">Holy Grail</option>
+<option value="sidebar">Sidebar + Content</option>
+<option value="cards">Card Grid</option>
+<option value="sticky-footer">Sticky Footer</option>
+</select></div>
+<div class="group"><label>Sidebar Position</label><select id="sidebar-pos"><option>left</option><option>right</option></select></div>
+<div class="group"><label>Sidebar Width</label><select id="sidebar-width"><option value="200px">200px</option><option value="250px">250px</option><option value="300px">300px</option></select></div>
+</div>
+<div class="preview">
+<div id="layout-preview"></div>
+<div id="code" style="margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf"></div>
+</div>
+</div>
+<script>
+const preview=document.getElementById('layout-preview'),code=document.getElementById('code');
+function applyPattern(){
+const p=document.getElementById('pattern').value;
+const sp=document.getElementById('sidebar-pos').value;
+const sw=document.getElementById('sidebar-width').value;
+let html='',css='';
+if(p==='holy-grail'){
+html=`<div style="display:flex;flex-direction:column;min-height:100%;width:100%"><header>Header</header><div class="middle"><nav>Nav</nav><main>Content</main><aside>Aside</aside></div><footer>Footer</footer></div>`;
+css=`display: flex; flex-direction: column; min-height: 100vh;\nheader/ nav/ main/ aside/ footer = flex regions`;
+}else if(p==='sidebar'){
+const first=sp==='left'?'<nav>Sidebar</nav><main>Content</main>':'<main>Content</main><aside>Sidebar</aside>';
+html=`<div style="display:flex;width:100%">${first}</div>`;
+css=`display: flex;\n${sp==='left'?'nav: 250px; main: 1fr':'main: 1fr; aside: 250px'}`;
+}else if(p==='cards'){
+let cards='';
+for(let i=0;i<6;i++)cards+=`<div style="flex:1 1 200px;background:#ff6b6b;padding:20px;border-radius:4px;text-align:center">Card ${i+1}</div>`;
+html=`<div style="display:flex;flex-wrap:wrap;gap:15px;width:100%">${cards}</div>`;
+css=`display: flex; flex-wrap: wrap; gap: 15px;\n.items { flex: 1 1 200px; }`;
+}else{
+html=`<div style="display:flex;flex-direction:column;min-height:100%;width:100%"><main style="flex:1">Content</main><footer>Footer</footer></div>`;
+css=`display: flex; flex-direction: column; min-height: 100vh;\nmain { flex: 1; }`;
+}
+preview.innerHTML=html;
+document.getElementById('sidebar-pos').style.display=p==='sidebar'?'block':'none';
+document.getElementById('sidebar-width').style.display=p==='sidebar'?'block':'none';
+code.textContent=css;
+}
+applyPattern();
+</script>
+</body>
+</html>

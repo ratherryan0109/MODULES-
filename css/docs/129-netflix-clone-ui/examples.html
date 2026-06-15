@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamBox - Watch Movies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#141414;--bg-card:#1a1a2e;--text:#ffffff;--text-muted:#b3b3b3;--accent:#e50914;--accent-hover:#f40612;--ff:'Inter',system-ui,sans-serif;--radius:4px;--transition:0.3s ease}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--ff);background:var(--bg);color:var(--text);overflow-x:hidden}
+    img{max-width:100%;display:block}
+    .skip-link{position:absolute;top:-100%;left:1rem;padding:.5rem 1rem;background:var(--accent);color:white;z-index:9999;border-radius:.25rem;font-weight:600}
+    .skip-link:focus{top:1rem}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;transition:background .3s;background:linear-gradient(to bottom,rgba(20,20,20,0.7) 0%,transparent 100%)}
+    .nav.scrolled{background:var(--bg)}
+    .nav-logo{font-size:1.75rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:2px}
+    .nav-links{display:flex;gap:1.5rem}
+    .nav-links a{color:var(--text-muted);font-weight:500;font-size:.9rem;transition:color var(--transition)}
+    .nav-links a:hover{color:var(--text)}
+    .nav-actions{display:flex;gap:1rem;align-items:center}
+    .nav-actions button{background:none;border:none;color:var(--text);cursor:pointer;font-size:1.25rem}
+    .avatar{width:32px;height:32px;border-radius:4px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem}
+
+    .hero{min-height:85vh;display:flex;align-items:flex-end;padding:6rem 4rem 4rem;position:relative;background:linear-gradient(to top,#141414 0%,transparent 50%,rgba(20,20,20,0.3) 100%),url(https://placehold.co/1200x700/e50914/ffffff?text=Featured+Show) center/cover no-repeat}
+    .hero-content{max-width:600px;position:relative;z-index:2}
+    .hero-content h1{font-size:clamp(2rem,5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
+    .hero-content p{color:var(--text-muted);font-size:1.1rem;margin-bottom:1.5rem;max-width:500px}
+    .hero-buttons{display:flex;gap:.75rem;flex-wrap:wrap}
+    .btn-play,.btn-info{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 2rem;border-radius:4px;font-weight:600;border:none;cursor:pointer;transition:all var(--transition);font-size:1rem}
+    .btn-play{background:var(--text);color:var(--bg)}
+    .btn-play:hover{opacity:.8}
+    .btn-info{background:rgba(109,109,110,0.7);color:var(--text)}
+    .btn-info:hover{background:rgba(109,109,110,0.4)}
+    .hero-fade{height:4rem;background:linear-gradient(to top,var(--bg) 0%,transparent 100%);position:absolute;bottom:0;left:0;right:0}
+
+    .browse-section{padding:2rem 4rem}
+    .browse-section h2{font-size:1.25rem;font-weight:600;margin-bottom:1rem}
+    .row{display:flex;gap:.5rem;overflow-x:auto;padding:.5rem 0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .row::-webkit-scrollbar{height:8px}
+    .row::-webkit-scrollbar-track{background:transparent}
+    .row::-webkit-scrollbar-thumb{background:#333;border-radius:4px}
+    .thumbnail{flex:0 0 200px;scroll-snap-align:start;position:relative;transition:transform .3s ease;border-radius:4px;overflow:hidden}
+    .thumbnail:hover{transform:scale(1.4);z-index:10;box-shadow:0 0 20px rgba(0,0,0,0.8)}
+    .thumbnail img{width:100%;height:auto;display:block;border-radius:4px}
+    .thumbnail-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 100%);padding:2rem .75rem .75rem;opacity:0;transition:opacity .3s}
+    .thumbnail:hover .thumbnail-overlay{opacity:1}
+    .thumbnail-overlay h3{font-size:.8rem;font-weight:600}
+    .thumbnail-overlay .meta{font-size:.7rem;color:var(--text-muted);margin-top:.25rem}
+
+    .footer{text-align:center;padding:3rem;color:var(--text-muted);font-size:.875rem;border-top:1px solid #333;margin-top:2rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .hero{padding:4rem 1.5rem 2rem;min-height:60vh}
+      .browse-section{padding:1.5rem}
+      .thumbnail{flex:0 0 140px}
+      .thumbnail:hover{transform:scale(1.2)}
+    }
+    @media(min-width:769px){.nav-links{display:flex!important}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav class="nav" id="nav" aria-label="Main navigation">
+  <div style="display:flex;align-items:center;gap:2rem">
+    <span class="nav-logo">StreamBox</span>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" aria-current="page">Home</a></li>
+      <li><a href="#">TV Shows</a></li>
+      <li><a href="#">Movies</a></li>
+      <li><a href="#">New & Popular</a></li>
+      <li><a href="#">My List</a></li>
+    </ul>
+  </div>
+  <div class="nav-actions">
+    <button aria-label="Search">&#128269;</button>
+    <button aria-label="Notifications">&#128276;</button>
+    <div class="avatar" aria-label="Profile">A</div>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="hero" aria-label="Featured content">
+    <div class="hero-content">
+      <h1>Stranger Worlds</h1>
+      <p>A young girl's disappearance unravels a town's dark secrets. The hit series returns.</p>
+      <div class="hero-buttons">
+        <button class="btn-play">&#9654; Play</button>
+        <button class="btn-info">&#9432; More Info</button>
+      </div>
+    </div>
+    <div class="hero-fade"></div>
+  </section>
+
+  <section class="browse-section" aria-label="Trending Now">
+    <h2>Trending Now</h2>
+    <div class="row" role="list">
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/e50914/ffffff?text=Show+1" alt="Show 1"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2026 · TV-MA</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/ff6b6b/ffffff?text=Show+2" alt="Show 2"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2026 · TV-14</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/4ecdc4/ffffff?text=Show+3" alt="Show 3"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2025 · R</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/45b7d1/ffffff?text=Show+4" alt="Show 4"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2026 · TV-MA</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/f39c12/ffffff?text=Show+5" alt="Show 5"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2024 · PG-13</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/9b59b6/ffffff?text=Show+6" alt="Show 6"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2026 · TV-MA</p></div></div>
+    </div>
+  </section>
+
+  <section class="browse-section" aria-label="Continue Watching">
+    <h2>Continue Watching</h2>
+    <div class="row" role="list">
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/1abc9c/ffffff?text=Continue+1" alt="Continue watching show 1"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">S2 E5</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/3498db/ffffff?text=Continue+2" alt="Continue watching show 2"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">S1 E8</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/e74c3c/ffffff?text=Continue+3" alt="Continue watching show 3"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">S3 E2</p></div></div>
+    </div>
+  </section>
+
+  <section class="browse-section" aria-label="Top Picks">
+    <h2>Top Picks For You</h2>
+    <div class="row" role="list">
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/2ecc71/ffffff?text=Pick+1" alt="Top pick 1"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2026 · TV-MA</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/e67e22/ffffff?text=Pick+2" alt="Top pick 2"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2025 · TV-14</p></div></div>
+      <div class="thumbnail" role="listitem" tabindex="0"><img src="https://placehold.co/200x300/16a085/ffffff?text=Pick+3" alt="Top pick 3"><div class="thumbnail-overlay"><h3>Show Title</h3><p class="meta">2026 · PG</p></div></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><p>&copy; 2026 StreamBox. This is a demo project.</p></footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>100)});
+</script>
+</body></html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind CSS Fundamentals - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    /* Simulated Tailwind utility scale */
+    .tw-bg-white { background-color: #fff; }
+    .tw-bg-cyan-500 { background-color: #06b6d4; }
+    .tw-bg-cyan-700 { background-color: #0891b2; }
+    .tw-bg-gray-50 { background-color: #f8fafc; }
+    .tw-bg-gray-100 { background-color: #f1f5f9; }
+    .tw-bg-gray-200 { background-color: #e2e8f0; }
+    .tw-text-white { color: #fff; }
+    .tw-text-gray-500 { color: #64748b; }
+    .tw-text-gray-700 { color: #334155; }
+    .tw-text-gray-900 { color: #0f172a; }
+    .tw-text-cyan-600 { color: #0891b2; }
+    .tw-rounded { border-radius: 0.375rem; }
+    .tw-rounded-lg { border-radius: 0.5rem; }
+    .tw-rounded-xl { border-radius: 0.75rem; }
+    .tw-shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .tw-shadow-md { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+    .tw-shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+    .tw-p-2 { padding: 0.5rem; }
+    .tw-p-4 { padding: 1rem; }
+    .tw-p-6 { padding: 1.5rem; }
+    .tw-p-8 { padding: 2rem; }
+    .tw-py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .tw-px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .tw-px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .tw-mt-2 { margin-top: 0.5rem; }
+    .tw-mt-4 { margin-top: 1rem; }
+    .tw-mb-6 { margin-bottom: 1.5rem; }
+    .tw-gap-2 { gap: 0.5rem; }
+    .tw-gap-4 { gap: 1rem; }
+    .tw-gap-6 { gap: 1.5rem; }
+    .tw-flex { display: flex; }
+    .tw-flex-col { flex-direction: column; }
+    .tw-flex-wrap { flex-wrap: wrap; }
+    .tw-items-center { align-items: center; }
+    .tw-items-start { align-items: flex-start; }
+    .tw-justify-center { justify-content: center; }
+    .tw-flex-1 { flex: 1; }
+    .tw-grid { display: grid; }
+    .tw-grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+    .tw-gap-6 { gap: 1.5rem; }
+    .tw-max-w-sm { max-width: 24rem; }
+    .tw-max-w-md { max-width: 28rem; }
+    .tw-max-w-lg { max-width: 32rem; }
+    .tw-w-full { width: 100%; }
+    .tw-text-sm { font-size: 0.875rem; }
+    .tw-text-base { font-size: 1rem; }
+    .tw-text-lg { font-size: 1.125rem; }
+    .tw-text-xl { font-size: 1.25rem; }
+    .tw-text-2xl { font-size: 1.5rem; }
+    .tw-text-3xl { font-size: 1.875rem; }
+    .tw-font-medium { font-weight: 500; }
+    .tw-font-semibold { font-weight: 600; }
+    .tw-font-bold { font-weight: 700; }
+    .tw-border { border: 1px solid #e2e8f0; }
+    .tw-border-cyan-500 { border-color: #06b6d4; }
+    .tw-border-transparent { border-color: transparent; }
+    .tw-cursor-pointer { cursor: pointer; }
+    .tw-transition { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .tw-hover\:bg-cyan-700:hover { background-color: #0891b2; }
+    .tw-hover\:bg-gray-200:hover { background-color: #e2e8f0; }
+    .tw-hover\:shadow-lg:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+    .tw-hover\:text-cyan-600:hover { color: #0891b2; }
+    .tw-focus\:ring-2:focus { box-shadow: 0 0 0 2px #06b6d4; }
+    .tw-focus\:outline-none:focus { outline: none; }
+
+    @media (min-width: 768px) {
+      .md\:tw-flex-row { flex-direction: row; }
+      .md\:tw-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+      .md\:tw-max-w-2xl { max-width: 42rem; }
+    }
+    @media (min-width: 1024px) {
+      .lg\:tw-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .tw-uppercase { text-transform: uppercase; }
+    .tw-tracking-wide { letter-spacing: 0.025em; }
+    .tw-leading-tight { line-height: 1.25; }
+    .tw-block { display: block; }
+    .tw-inline-block { display: inline-block; }
+    .tw-overflow-hidden { overflow: hidden; }
+  </style>
+</head>
+<body>
+  <h1>Tailwind CSS Fundamentals</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Responsive Card (Tailwind-style)</h2>
+    <p>This card uses Tailwind's utility pattern: spacing scale, color tokens, responsive prefixes, and hover states.</p>
+    <div class="demo-output">
+      <div class="tw-max-w-sm tw-bg-white tw-rounded-xl tw-shadow-md tw-overflow-hidden md:tw-max-w-2xl">
+        <div class="md:tw-flex">
+          <div class="tw-bg-cyan-500 tw-flex tw-items-center tw-justify-center tw-text-white tw-text-2xl tw-font-bold" style="min-height:192px;min-width:192px;">TW</div>
+          <div class="tw-p-8">
+            <p class="tw-uppercase tw-tracking-wide tw-text-sm tw-text-cyan-600 tw-font-semibold">Tailwind CSS</p>
+            <h3 class="tw-block tw-mt-2 tw-text-lg tw-leading-tight tw-font-medium tw-text-gray-900">Utility-First Workflow</h3>
+            <p class="tw-mt-2 tw-text-gray-500 tw-text-sm">Build custom designs by composing utility classes directly in your HTML.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>&lt;div class="max-w-sm bg-white rounded-xl shadow-md
+            md:max-w-2xl"&gt;
+  &lt;div class="md:flex"&gt;
+    &lt;div class="bg-cyan-500 text-white text-2xl
+                font-bold"&gt;TW&lt;/div&gt;
+    &lt;div class="p-8"&gt;
+      &lt;h3 class="text-lg font-medium text-gray-900"&gt;
+        Utility-First Workflow
+      &lt;/h3&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Responsive Grid</h2>
+    <p>Tailwind's responsive grid: 1 column on mobile, 2 on tablet, 3 on desktop.</p>
+    <div class="demo-output">
+      <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
+        <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow tw-hover:shadow-lg tw-transition">
+          <h4 class="tw-text-lg tw-font-semibold tw-text-gray-900">Responsive</h4>
+          <p class="tw-text-gray-500 tw-text-sm tw-mt-2">Adapts to every screen size automatically.</p>
+        </div>
+        <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow tw-hover:shadow-lg tw-transition">
+          <h4 class="tw-text-lg tw-font-semibold tw-text-gray-900">Composable</h4>
+          <p class="tw-text-gray-500 tw-text-sm tw-mt-2">Combine utilities for any design.</p>
+        </div>
+        <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow tw-hover:shadow-lg tw-transition">
+          <h4 class="tw-text-lg tw-font-semibold tw-text-gray-900">Consistent</h4>
+          <p class="tw-text-gray-500 tw-text-sm tw-mt-2">Design tokens keep everything aligned.</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>&lt;div class="grid grid-cols-1
+            md:grid-cols-2
+            lg:grid-cols-3 gap-6"&gt;
+  &lt;div class="bg-white p-6 rounded-lg shadow"&gt;
+    &lt;h3 class="text-lg font-semibold"&gt;Title&lt;/h3&gt;
+    &lt;p class="text-gray-500 text-sm"&gt;Content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Button Variants</h2>
+    <p>Primary, secondary, outline, and ghost buttons using Tailwind utility classes.</p>
+    <div class="demo-output">
+      <div class="tw-flex tw-flex-wrap tw-gap-4 tw-items-center">
+        <button class="tw-bg-cyan-500 tw-hover:bg-cyan-700 tw-text-white tw-font-bold tw-py-2 tw-px-6 tw-rounded-lg tw-transition tw-cursor-pointer" style="border:none;">Primary</button>
+        <button class="tw-bg-gray-100 tw-hover:bg-gray-200 tw-text-gray-700 tw-font-bold tw-py-2 tw-px-6 tw-rounded-lg tw-transition tw-cursor-pointer" style="border:none;">Secondary</button>
+        <button class="tw-bg-transparent tw-border tw-border-cyan-500 tw-text-cyan-600 tw-hover:bg-cyan-500 tw-hover:text-white tw-font-bold tw-py-2 tw-px-6 tw-rounded-lg tw-transition tw-cursor-pointer">Outline</button>
+        <button class="tw-bg-transparent tw-text-gray-500 tw-hover:text-cyan-600 tw-font-bold tw-py-2 tw-px-6 tw-rounded-lg tw-transition tw-cursor-pointer" style="border:none;">Ghost</button>
+      </div>
+    </div>
+    <pre><code>&lt;button class="bg-cyan-500 hover:bg-cyan-700
+             text-white font-bold py-2 px-6
+             rounded-lg transition"&gt;
+  Primary
+&lt;/button&gt;
+&lt;button class="bg-gray-100 hover:bg-gray-200
+             text-gray-700 font-bold py-2 px-6
+             rounded-lg transition"&gt;
+  Secondary
+&lt;/button&gt;</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Spacing and Sizing Scale</h2>
+    <p>Tailwind uses a 4px base scale: <code>p-1</code> = 4px, <code>p-2</code> = 8px, <code>p-4</code> = 16px, etc.</p>
+    <div class="demo-output">
+      <div class="tw-flex tw-gap-2 tw-items-end tw-flex-wrap">
+        <div class="tw-bg-cyan-500 tw-text-white tw-text-sm tw-rounded" style="padding:4px;">p-1</div>
+        <div class="tw-bg-cyan-500 tw-text-white tw-text-sm tw-rounded" style="padding:8px;">p-2</div>
+        <div class="tw-bg-cyan-500 tw-text-white tw-text-sm tw-rounded" style="padding:16px;">p-4</div>
+        <div class="tw-bg-cyan-500 tw-text-white tw-text-sm tw-rounded" style="padding:24px;">p-6</div>
+        <div class="tw-bg-cyan-500 tw-text-white tw-text-sm tw-rounded" style="padding:32px;">p-8</div>
+      </div>
+    </div>
+    <pre><code>.p-1 { padding: 0.25rem; }  /* 4px  */
+.p-2 { padding: 0.5rem; }   /* 8px  */
+.p-4 { padding: 1rem; }     /* 16px */
+.p-6 { padding: 1.5rem; }   /* 24px */
+.p-8 { padding: 2rem; }     /* 32px */</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Flex Layout</h2>
+    <p>Layout utilities like <code>flex</code>, <code>items-center</code>, <code>justify-center</code>, and <code>gap-*</code>.</p>
+    <div class="demo-output">
+      <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4 tw-items-center tw-bg-gray-50 tw-p-4 tw-rounded-lg">
+        <div class="tw-bg-cyan-500 tw-text-white tw-font-bold tw-rounded-full" style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;">TW</div>
+        <div class="tw-flex-1">
+          <p class="tw-font-semibold tw-text-gray-900">Flex Layout</p>
+          <p class="tw-text-sm tw-text-gray-500">Responsive with <code>flex-col</code> on mobile, <code>md:flex-row</code> on desktop.</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>&lt;div class="flex flex-col md:flex-row
+            gap-4 items-center"&gt;
+  &lt;div class="bg-cyan-500 text-white
+              font-bold rounded-full"&gt;TW&lt;/div&gt;
+  &lt;div class="flex-1"&gt;
+    &lt;p class="font-semibold text-gray-900"&gt;Title&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Typography Scale</h2>
+    <p>Consistent type scale from <code>text-xs</code> to <code>text-4xl</code>.</p>
+    <div class="demo-output">
+      <p class="tw-text-sm tw-text-gray-500">.text-sm — Tailwind CSS Fundamentals</p>
+      <p class="tw-text-base">.text-base — Tailwind CSS Fundamentals</p>
+      <p class="tw-text-lg tw-font-semibold">.text-lg — Tailwind CSS Fundamentals</p>
+      <p class="tw-text-xl tw-font-bold">.text-xl — Tailwind CSS Fundamentals</p>
+      <p class="tw-text-2xl tw-font-bold">.text-2xl — Tailwind CSS Fundamentals</p>
+    </div>
+    <pre><code>.text-sm  { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg   { font-size: 1.125rem; }
+.text-xl   { font-size: 1.25rem; }
+.text-2xl  { font-size: 1.5rem; }
+.text-3xl  { font-size: 1.875rem; }</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Focus and State Variants</h2>
+    <p>Tailwind uses <code>hover:</code>, <code>focus:</code>, <code>active:</code>, and <code>dark:</code> prefixes for state-based styles.</p>
+    <div class="demo-output">
+      <div class="tw-flex tw-gap-4 tw-items-center">
+        <input placeholder="Focus me" class="tw-border tw-rounded-lg tw-p-2 tw-text-sm tw-focus:ring-2 tw-focus:outline-none" style="border:2px solid #e2e8f0;padding:0.5rem;font-size:0.875rem;border-radius:0.5rem;">
+        <button class="tw-bg-cyan-500 tw-hover:bg-cyan-700 tw-text-white tw-font-bold tw-py-2 tw-px-4 tw-rounded-lg tw-transition tw-cursor-pointer" style="border:none;">Hover me</button>
+      </div>
+    </div>
+    <pre><code>&lt;input class="border rounded-lg p-2
+             focus:ring-2 focus:outline-none"&gt;
+&lt;button class="bg-cyan-500
+             hover:bg-cyan-700
+             focus:ring-2
+             transition"&gt;
+  Hover me
+&lt;/button&gt;</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: Configuration (tailwind.config)</h2>
+    <p>Tailwind is fully customizable through its config file where you define colors, fonts, breakpoints, and more.</p>
+    <div class="demo-output">
+      <pre style="background:#f1f5f9;color:#0f172a;font-size:0.85rem;">// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          500: '#06b6d4',
+          700: '#0891b2',
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      }
+    }
+  }
+}</pre>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Pseudo-elements - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; background: #1a1a2e; color: #eee; }
+    .top-bar { background: #16213e; padding: 15px 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .top-bar h1 { font-size: 20px; }
+    .top-bar label { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+    .top-bar select { padding: 6px 12px; border-radius: 4px; border: none; font-size: 14px; }
+    .main { display: flex; flex: 1; }
+    .editor-panel { flex: 1; display: flex; flex-direction: column; }
+    .preview-panel { flex: 1; background: white; position: relative; overflow: hidden; }
+    .controls { background: #0f3460; padding: 10px 20px; display: flex; gap: 10px; }
+    .controls button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #e94560; color: white; font-weight: bold; }
+    .controls button:hover { background: #c73650; }
+    #code { flex: 1; background: #1e1e1e; color: #d4d4d4; border: none; padding: 20px; font-family: 'Consolas', monospace; font-size: 14px; resize: none; outline: none; tab-size: 2; }
+    #preview { width: 100%; height: 100%; border: none; }
+    .label { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>✨ CSS Pseudo-elements Playground</h1>
+    <label>Demo: <select id="peSelect">
+      <option value="before">::before</option>
+      <option value="first-letter">::first-letter</option>
+      <option value="selection">::selection</option>
+      <option value="placeholder">::placeholder</option>
+      <option value="marker">::marker</option>
+    </select></label>
+  </div>
+  <div class="main">
+    <div class="editor-panel">
+      <div class="controls">
+        <button onclick="applyCode()">▶ Run</button>
+        <button onclick="resetCode()">↺ Reset</button>
+        <label><input type="checkbox" id="autoUpdate" checked> Auto-run</label>
+      </div>
+      <textarea id="code">
+<style>
+  .demo-text {
+    font-size: 18px;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .demo-text::before {
+    content: "→ ";
+    color: #e94560;
+    font-weight: bold;
+  }
+</style>
+<p class="demo-text">This paragraph has content added before it using ::before.</p></textarea>
+    </div>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
+      <div class="label">Pseudo-elements Demo</div>
+    </div>
+  </div>
+
+  <script>
+    const codeEl = document.getElementById('code');
+    const preview = document.getElementById('preview');
+    const peSelect = document.getElementById('peSelect');
+
+    const templates = {
+      before: `<style>\n  .demo-text::before {\n    content: "★ ";\n    color: #ff9800;\n    font-size: 1.2em;\n  }\n</style>\n<p class="demo-text">This text has a star inserted before it.</p>`,
+      'first-letter': `<style>\n  .demo-text::first-letter {\n    font-size: 3.5em;\n    float: left;\n    line-height: 0.8;\n    margin-right: 8px;\n    color: #e94560;\n    font-weight: bold;\n  }\n  .demo-text { font-size: 18px; line-height: 1.6; padding: 20px; }\n</style>\n<p class="demo-text">This paragraph has a decorative drop cap created with ::first-letter. The first letter is larger and styled differently from the rest of the text.</p>`,
+      selection: `<style>\n  ::selection {\n    background: #4a90d9;\n    color: white;\n  }\n  body { padding: 20px; font-size: 18px; line-height: 1.6; }\n</style>\n<p>Select (highlight) this text with your mouse to see the custom selection colors!</p><p>The background changes to blue and the text becomes white.</p>`,
+      placeholder: `<style>\n  input {\n    width: 100%;\n    max-width: 350px;\n    padding: 14px;\n    border: 2px solid #ddd;\n    border-radius: 8px;\n    font-size: 16px;\n    margin: 40px auto;\n    display: block;\n  }\n  input::placeholder {\n    color: #4a90d9;\n    font-style: italic;\n    font-size: 14px;\n    letter-spacing: 1px;\n  }\n</style>\n<input type="text" placeholder="Custom styled placeholder...">`,
+      marker: `<style>\n  li {\n    margin: 10px 0;\n    font-size: 18px;\n  }\n  li::marker {\n    color: #e94560;\n    font-weight: bold;\n    font-size: 1.3em;\n    content: "▶ ";\n  }\n</style>\n<ul>\n  <li>Custom marker with ::marker</li>\n  <li>Each bullet is styled individually</li>\n  <li>Different color and size</li>\n</ul>`
+    };
+
+    function applyCode() {
+      const val = peSelect.value;
+      const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>' + templates[val] + '</body></html>';
+      preview.srcdoc = html;
+    }
+
+    function resetCode() {
+      peSelect.value = 'before';
+      applyCode();
+    }
+
+    peSelect.addEventListener('change', applyCode);
+    codeEl.addEventListener('input', () => {
+      if (document.getElementById('autoUpdate').checked) {
+        clearTimeout(window._runTimer);
+        window._runTimer = setTimeout(applyCode, 300);
+      }
+    });
+    applyCode();
+  </script>
+</body>
+</html>

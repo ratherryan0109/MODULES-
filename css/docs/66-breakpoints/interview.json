@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a breakpoint in responsive web design?", "answer": "A breakpoint is a viewport width where the layout changes to accommodate different screen sizes, typically defined in CSS media queries." },
+    { "question": "What are common breakpoint values for responsive design?", "answer": "Common values include 576px (mobile landscape), 768px (tablets), 992px (small desktop), and 1200px (large desktop)." },
+    { "question": "What is the difference between content-based and device-based breakpoints?", "answer": "Content-based breakpoints are chosen based on where the layout naturally breaks; device-based breakpoints target specific device widths." },
+    { "question": "What is a fluid approach to breakpoints?", "answer": "A fluid approach uses relative units and CSS Grid/Flexbox to create layouts that adapt continuously, minimizing reliance on fixed breakpoints." },
+    { "question": "Why should breakpoints be content-based rather than device-based?", "answer": "Content-based breakpoints adapt to the design's needs rather than specific devices, making layouts more future-proof as new devices appear." },
+    { "question": "What is the problem with targeting specific device breakpoints?", "answer": "Device-specific breakpoints become outdated as new devices launch; content-based breakpoints work universally regardless of device." },
+    { "question": "How many breakpoints should a typical design have?", "answer": "There is no fixed number, but most designs use 2-4 breakpoints. Content-based breakpoints are added only where the design needs them." },
+    { "question": "What is a major breakpoint?", "answer": "A major breakpoint is where the layout undergoes significant structural changes, like switching from single-column to multi-column." },
+    { "question": "What is a minor breakpoint?", "answer": "A minor breakpoint adjusts smaller details like font size, padding, or margins without changing the overall layout structure." },
+    { "question": "What unit is typically used for breakpoint values?", "answer": "px is most commonly used, but em is also recommended because it respects user font-size preferences." }
+  ],
+  "intermediate": [
+    { "question": "How do you choose a content-based breakpoint?", "answer": "Resize the browser until the layout looks cramped or broken, then set the breakpoint just before that point." },
+    { "question": "What is the difference between using px and em for breakpoints?", "answer": "em breakpoints scale with font-size, so they respect user zoom settings. px breakpoints do not scale with text-only zoom." },
+    { "question": "What is the bootstrap breakpoint system?", "answer": "Bootstrap uses breakpoints at 576px (sm), 768px (md), 992px (lg), 1200px (xl), and 1400px (xxl) with a mobile-first approach." },
+    { "question": "How do you handle breakpoints in a mobile-first approach?", "answer": "Write base styles for mobile, then add @media (min-width: breakpoint) for larger screens, progressively enhancing the layout." },
+    { "question": "Can you use CSS custom properties with breakpoint values?", "answer": "Yes, you can define breakpoint values as custom properties but they cannot be used inside @media conditions. Use them for breakpoint-related styles." },
+    { "question": "What is a breakpoint range pattern?", "answer": "A range targets styles between two widths: @media (min-width: 768px) and (max-width: 991px) for tablet-specific styles." },
+    { "question": "How do you manage many breakpoints without CSS becoming messy?", "answer": "Use a structured approach like grouping related breakpoint styles together, using Sass/CSS nesting, or organizing by component." },
+    { "question": "What is the relationship between breakpoints and CSS Grid auto-fill?", "answer": "auto-fill with minmax() creates intrinsic breakpoints that respond to container width without explicit media query breakpoints." },
+    { "question": "How do breakpoints work with container queries?", "answer": "Container queries use @container (min-width: value) to respond to container size rather than viewport width, offering component-level breakpoints." },
+    { "question": "What are retina/high-DPI breakpoints?", "answer": "Media queries using min-resolution: 2dppx target high-DPI displays for serving higher resolution images or different styling." }
+  ],
+  "advanced": [
+    { "question": "How do you handle breakpoints in a component library or design system?", "answer": "Define breakpoint tokens in a design system and use them consistently across all components. Each component defines its own content-based breakpoints." },
+    { "question": "What is the interaction between breakpoints and CSS subgrid across nested components?", "answer": "Nested components with subgrid inherit parent grid tracks. Breakpoint changes in parent grids cascade to subgrids, maintaining alignment across nested levels." },
+    { "question": "How do you test breakpoints beyond popular device widths?", "answer": "Use responsive testing tools that cover a continuous range of widths, testing edge cases like foldables, ultra-wide monitors, and e-ink displays." },
+    { "question": "What is the fluid typography breakpoints approach using clamp()?", "answer": "Use clamp(minSize, preferredSize, maxSize) to create fluid typography that scales continuously between breakpoints without media queries." },
+    { "question": "How do breakpoints interact with CSS layer ordering for responsive overrides?", "answer": "@layer can organize responsive overrides by specificity level, ensuring that base, component, and utility layers each have their own responsive variants." },
+    { "question": "What is the problem with device-based breakpoints in an era of foldable and multi-screen devices?", "answer": "Foldables, dual-screen, and ultra-wide devices make device-based breakpoints unreliable. Content-based breakpoints and fluid layouts are more robust." },
+    { "question": "How do you handle breakpoints for print media?", "answer": "Print breakpoints are typically unnecessary; instead, use @media print to adjust layouts for paper dimensions (e.g., hiding nav, showing full content)." },
+    { "question": "What is the relationship between breakpoints and prefers-reduced-motion in responsive animation?", "answer": "Combine breakpoints with prefers-reduced-motion to serve appropriate animations at each screen size while respecting accessibility preferences." },
+    { "question": "How do you create a breakpoint strategy for a multilingual site?", "answer": "Different languages have different character lengths. Content-based breakpoints should be tested per language, as text length affects layout breakpoints." },
+    { "question": "What is the future of breakpoints with CSS Container Queries and View Transitions?", "answer": "Container queries shift breakpoints to the component level, and view transitions enable smooth animated transitions between breakpoints." }
+  ]
+}

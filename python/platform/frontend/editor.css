@@ -1,0 +1,402 @@
+.py-playground {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 500px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #e2e8f0;
+  --py-bg-dark: #1e293b;
+  --py-bg-darker: #0f172a;
+  --py-bg-card: #1e293b;
+  --py-border: #334155;
+  --py-primary: #306998;
+  --py-primary-light: #4a9eda;
+  --py-accent: #FFD43B;
+  --py-text: #e2e8f0;
+  --py-text-muted: #94a3b8;
+  --py-success: #4ade80;
+  --py-error: #f87171;
+  --py-warning: #fbbf24;
+}
+
+.py-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--py-bg-darker);
+  border-bottom: 1px solid var(--py-border);
+  border-radius: 8px 8px 0 0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.py-mode-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--py-bg-card);
+  border: 1px solid var(--py-border);
+  font-size: 0.78em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.py-mode-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.py-mode-dot.online { background: var(--py-success); box-shadow: 0 0 6px var(--py-success); }
+.py-mode-dot.offline { background: var(--py-warning); box-shadow: 0 0 6px var(--py-warning); }
+.py-mode-dot.error { background: var(--py-error); box-shadow: 0 0 6px var(--py-error); }
+.py-mode-dot.checking { background: var(--py-text-muted); animation: pyPulse 1s infinite; }
+
+@keyframes pyPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.py-mode-label {
+  color: var(--py-text);
+}
+
+.py-toolbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.py-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.py-btn-run {
+  background: var(--py-primary);
+  color: white;
+}
+
+.py-btn-run:hover {
+  background: #1e415e;
+  box-shadow: 0 2px 8px rgba(48,105,152,0.3);
+}
+
+.py-btn-run:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.py-btn-secondary {
+  background: var(--py-bg-card);
+  color: var(--py-text);
+  border: 1px solid var(--py-border);
+}
+
+.py-btn-secondary:hover {
+  background: #334155;
+}
+
+.py-snippets {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--py-bg-darker);
+  border-bottom: 1px solid var(--py-border);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.py-snippets-label {
+  font-size: 0.75em;
+  color: var(--py-text-muted);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.py-snippets-list {
+  display: flex;
+  gap: 6px;
+}
+
+.py-snippets-list button {
+  padding: 3px 12px;
+  border: 1px solid var(--py-border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--py-text-muted);
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.py-snippets-list button:hover {
+  background: var(--py-bg-card);
+  color: var(--py-text);
+}
+
+.py-snippets-list button.active {
+  background: var(--py-primary);
+  color: white;
+  border-color: var(--py-primary);
+}
+
+.py-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.py-editor-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--py-border);
+  min-width: 0;
+}
+
+.py-editor-pane #pyEditorContainer {
+  flex: 1;
+  overflow: auto;
+}
+
+.py-output-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.py-output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+  background: var(--py-bg-darker);
+  border-bottom: 1px solid var(--py-border);
+  font-size: 0.78em;
+  color: var(--py-text-muted);
+}
+
+.py-exec-time {
+  color: var(--py-text-muted);
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.9em;
+}
+
+.py-output-content {
+  flex: 1;
+  padding: 12px 16px;
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: #0a0e14;
+  color: #e6e1cf;
+}
+
+.py-output-content .py-stdout {
+  color: #e6e1cf;
+}
+
+.py-output-content .py-stderr {
+  color: var(--py-error);
+}
+
+.py-output-content .py-system {
+  color: var(--py-text-muted);
+  font-style: italic;
+}
+
+.py-output-content .py-success {
+  color: var(--py-success);
+}
+
+.py-offline-banner {
+  padding: 8px 16px;
+  background: rgba(251,191,36,0.1);
+  border-top: 1px solid rgba(251,191,36,0.3);
+  color: var(--py-warning);
+  font-size: 0.78em;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.py-offline-banner code {
+  background: rgba(0,0,0,0.3);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.py-install-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.py-install-modal {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 520px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.py-install-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--py-accent);
+}
+
+.py-install-list {
+  margin-bottom: 12px;
+}
+
+.py-install-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 0.85em;
+}
+
+.py-install-item .py-ii-status {
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.py-install-item .py-ii-name {
+  flex: 1;
+  color: var(--py-text);
+}
+
+.py-install-item .py-ii-bar {
+  width: 80px;
+  height: 6px;
+  background: #334155;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.py-install-item .py-ii-bar-fill {
+  height: 100%;
+  background: var(--py-primary-light);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.py-install-log {
+  background: #0a0e14;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75em;
+  color: var(--py-text-muted);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.py-install-done {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.py-input-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.py-input-modal {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.py-input-prompt {
+  font-size: 0.95em;
+  color: var(--py-text);
+  margin-bottom: 12px;
+  line-height: 1.5;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.py-input-field {
+  width: 100%;
+  padding: 10px 14px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: var(--py-text);
+  font-size: 0.95em;
+  font-family: "JetBrains Mono", monospace;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.py-input-field:focus {
+  border-color: var(--py-primary-light);
+}
+
+.py-input-actions {
+  margin-top: 12px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .py-main {
+    flex-direction: column;
+  }
+  .py-editor-pane {
+    border-right: none;
+    border-bottom: 1px solid var(--py-border);
+    height: 50%;
+  }
+  .py-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .py-mode-badge {
+    justify-content: center;
+  }
+  .py-toolbar-actions {
+    justify-content: center;
+  }
+}

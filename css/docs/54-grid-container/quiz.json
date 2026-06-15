@@ -1,0 +1,147 @@
+{
+  "module": "54-grid-container",
+  "title": "Grid Container",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `display: inline-grid` do?",
+      "options": ["Creates inline-level grid container", "Creates block-level grid container", "Creates flex container", "Creates table"],
+      "correctAnswer": 0,
+      "explanation": "`display: inline-grid` creates an inline-level grid container that only takes necessary width."
+    },
+    {
+      "id": 2,
+      "question": "Which function creates repetitive column patterns?",
+      "options": ["repeat()", "minmax()", "cycle()", "pattern()"],
+      "correctAnswer": 0,
+      "explanation": "`repeat(3, 1fr)` creates 3 equal columns. It's essential for grid layouts."
+    },
+    {
+      "id": 3,
+      "question": "What does `minmax(200px, 1fr)` do?",
+      "options": ["Sets minimum 200px, maximum 1fr", "Sets fixed 200px", "Sets minimum 1fr, maximum 200px", "Sets 200px exactly"],
+      "correctAnswer": 0,
+      "explanation": "`minmax(200px, 1fr)` sets a track to be at least 200px but can grow to 1fr."
+    },
+    {
+      "id": 4,
+      "question": "What's the difference between `auto-fill` and `auto-fit`?",
+      "options": ["auto-fill keeps empty tracks; auto-fit collapses them", "They're identical", "auto-fit is only for rows", "auto-fill was removed"],
+      "correctAnswer": 0,
+      "explanation": "`auto-fill` preserves empty track space; `auto-fit` collapses empty tracks to fill the container."
+    },
+    {
+      "id": 5,
+      "question": "What determines the size of implicit grid tracks?",
+      "options": ["grid-auto-rows / grid-auto-columns", "grid-template-rows", "grid-template-columns", "auto-size property"],
+      "correctAnswer": 0,
+      "explanation": "`grid-auto-rows` and `grid-auto-columns` control the size of implicitly created tracks."
+    },
+    {
+      "id": 6,
+      "question": "Which property sets the gap between rows in a grid?",
+      "options": ["row-gap", "column-gap", "gap", "grid-row-gap"],
+      "correctAnswer": 0,
+      "explanation": "`row-gap` specifically sets the gap between rows. `gap` is the shorthand for both row and column gaps."
+    },
+    {
+      "id": 7,
+      "question": "What does `grid-template-columns: repeat(4, 1fr)` create?",
+      "options": ["4 equal-width columns", "4 rows", "1 column with fr units", "A fixed layout"],
+      "correctAnswer": 0,
+      "explanation": "`repeat(4, 1fr)` creates 4 columns that each take 1/4 of the available space."
+    },
+    {
+      "id": 8,
+      "question": "How do you set both row-gap and column-gap with a single property?",
+      "options": ["gap: 1rem 2rem (row column)", "gap: 1rem sets both equally", "Both A and B", "grid-gap"],
+      "correctAnswer": 2,
+      "explanation": "`gap: 1rem 2rem` sets row-gap to 1rem and column-gap to 2rem. `gap: 1rem` sets both to 1rem."
+    },
+    {
+      "id": 9,
+      "question": "What does `grid-auto-flow: column` do?",
+      "options": ["Auto-places items in column direction instead of row direction", "Creates column tracks", "Sets column gap", "Makes the grid scroll horizontally"],
+      "correctAnswer": 0,
+      "explanation": "`grid-auto-flow: column` changes auto-placement to fill columns first rather than rows."
+    },
+    {
+      "id": 10,
+      "question": "What is the default value of grid-auto-flow?",
+      "options": ["row", "column", "dense", "auto"],
+      "correctAnswer": 0,
+      "explanation": "The default is `row`, which places items left to right, top to bottom."
+    },
+    {
+      "id": 11,
+      "question": "What does `grid-auto-flow: dense` do?",
+      "options": ["Fills gaps in the grid by reordering items", "Makes all items the same size", "Speeds up rendering", "Removes gaps from the grid"],
+      "correctAnswer": 0,
+      "explanation": "`dense` enables a dense packing algorithm that fills holes in the grid, but may change visual order."
+    },
+    {
+      "id": 12,
+      "question": "What is the difference between `display: grid` and `display: inline-grid`?",
+      "options": ["grid is block-level; inline-grid is inline-level", "grid is for rows; inline-grid is for columns", "grid is for large layouts; inline-grid is for small", "They are identical"],
+      "correctAnswer": 0,
+      "explanation": "`display: grid` makes the container a block-level element; `inline-grid` makes it inline-level."
+    },
+    {
+      "id": 13,
+      "question": "How do you create a grid with a 100px fixed column and a flexible column?",
+      "options": ["grid-template-columns: 100px 1fr", "grid-template-columns: 100px auto", "grid-template-columns: fixed 100px flexible 1fr", "grid-template-columns: 100px stretch"],
+      "correctAnswer": 0,
+      "explanation": "`grid-template-columns: 100px 1fr` creates a fixed 100px column and one that takes remaining space."
+    },
+    {
+      "id": 14,
+      "question": "What happens if you don't define grid-template-rows?",
+      "options": ["Rows are created implicitly based on content (auto-sized)", "No rows are created", "An error occurs", "Only one row is created"],
+      "correctAnswer": 0,
+      "explanation": "Without explicit row definitions, the browser creates implicit rows sized with grid-auto-rows (default: auto)."
+    },
+    {
+      "id": 15,
+      "question": "What does `grid-template-columns: 200px auto 200px` create?",
+      "options": ["Fixed 200px sidebars with a flexible center column", "Three equal columns", "A single 200px column", "A 600px column"],
+      "correctAnswer": 0,
+      "explanation": "The 'auto' value makes the center column take whatever space remains after the 200px fixed columns."
+    },
+    {
+      "id": 16,
+      "question": "What is the shorthand for grid-template-columns and grid-template-rows?",
+      "options": ["grid-template", "grid", "grid-column-row", "template"],
+      "correctAnswer": 0,
+      "explanation": "`grid-template` is the shorthand: `grid-template: rows / columns`."
+    },
+    {
+      "id": 17,
+      "question": "How do you create a grid with exactly 3 columns using the repeat function?",
+      "options": ["grid-template-columns: repeat(3, 1fr)", "grid-template-columns: 1fr repeat(3)", "grid-template-columns: repeat(1fr, 3)", "grid-template-columns: 3fr"],
+      "correctAnswer": 0,
+      "explanation": "`repeat(3, 1fr)` is the correct syntax for three equal columns using the repeat function."
+    },
+    {
+      "id": 18,
+      "question": "What is the initial value of gap on a grid container?",
+      "options": ["normal (effectively 0)", "1rem", "10px", "undefined"],
+      "correctAnswer": 0,
+      "explanation": "The initial value of gap is `normal`, which computes to 0 in grid layouts."
+    },
+    {
+      "id": 19,
+      "question": "What does `grid-template-columns: 1fr 2fr 1fr` create?",
+      "options": ["Three columns: center is twice as wide as the sides", "Two equal columns and one thin column", "Four columns", "One column divided into 3 parts"],
+      "correctAnswer": 0,
+      "explanation": "The total is 4fr. Each takes 1/4, 2/4, 1/4 respectively — the center column is twice as wide."
+    },
+    {
+      "id": 20,
+      "question": "Which property controls alignment of grid tracks within the container?",
+      "options": ["justify-content and align-content", "justify-items and align-items", "grid-template-areas", "place-items"],
+      "correctAnswer": 0,
+      "explanation": "`justify-content` and `align-content` align the entire grid (tracks) within the grid container."
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Inline-Block - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; padding: 30px; background: #f5f5f5; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { margin-bottom: 30px; color: #333; }
+    h2 { margin: 30px 0 15px; color: #555; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; font-family: 'Consolas', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+
+    /* Inline vs Block vs Inline-Block */
+    .inline-demo span { display: inline; width: 200px; height: 100px; margin: 20px; padding: 20px; background: #e3f2fd; border: 1px solid #1565c0; }
+    .block-demo div { display: block; width: 200px; height: 80px; margin: 10px; background: #c8e6c9; border: 1px solid #2e7d32; }
+    .inline-block-demo .ibox { display: inline-block; width: 180px; height: 100px; margin: 10px; padding: 10px; background: #fce4ec; border: 1px solid #c62828; vertical-align: top; }
+
+    /* Nav bar */
+    .nav { background: #333; padding: 0; }
+    .nav li { display: inline-block; }
+    .nav a { display: inline-block; padding: 15px 25px; color: white; text-decoration: none; }
+    .nav a:hover { background: #555; }
+
+    /* Button group */
+    .btn-group { font-size: 0; }
+    .btn-group .btn { display: inline-block; font-size: 14px; padding: 10px 20px; border: 1px solid #4a90d9; background: white; color: #4a90d9; cursor: pointer; }
+    .btn-group .btn:first-child { border-radius: 4px 0 0 4px; }
+    .btn-group .btn:last-child { border-radius: 0 4px 4px 0; }
+    .btn-group .btn.active { background: #4a90d9; color: white; }
+    .btn-group .btn:hover:not(.active) { background: #e8f0fe; }
+
+    /* Centered grid */
+    .centered-grid { text-align: center; }
+    .centered-grid .item { display: inline-block; width: 180px; margin: 10px; padding: 20px; background: #f0f0f0; border-radius: 8px; text-align: left; vertical-align: top; }
+
+    /* Whitespace gap demo */
+    .gap-demo { background: #f0f0f0; padding: 15px; }
+    .gap-demo .box { display: inline-block; width: 100px; height: 100px; background: #4a90d9; color: white; }
+    .gap-demo.fixed { font-size: 0; }
+    .gap-demo.fixed .box { font-size: 16px; }
+
+    /* Vertical align */
+    .valign { background: #f5f5f5; padding: 20px; }
+    .valign .box { display: inline-block; width: 120px; margin: 5px; border-radius: 4px; color: white; padding: 10px; }
+    .valign .box1 { height: 60px; background: #e94560; vertical-align: top; }
+    .valign .box2 { height: 120px; background: #4a90d9; vertical-align: middle; }
+    .valign .box3 { height: 80px; background: #2ecc71; vertical-align: bottom; }
+    .valign .box4 { height: 100px; background: #f39c12; vertical-align: baseline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS display: inline-block - Examples</h1>
+
+    <div class="example">
+      <h2>1. Inline vs Block vs Inline-Block</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+        <div>
+          <strong>inline</strong><br>
+          <span class="inline-demo"><span>Box 1</span><span>Box 2</span></span>
+          <div class="code" style="font-size:12px;">Width/height ignored</div>
+        </div>
+        <div>
+          <strong>block</strong>
+          <div class="block-demo"><div>Box 1</div><div>Box 2</div></div>
+          <div class="code" style="font-size:12px;">Each on new line</div>
+        </div>
+        <div>
+          <strong>inline-block</strong>
+          <div class="inline-block-demo"><div class="ibox">Box 1</div><div class="ibox">Box 2</div></div>
+          <div class="code" style="font-size:12px;">Width respected, same line</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>2. Horizontal Navigation Bar</h2>
+      <div class="code">li { display: inline-block; }<br>a { display: inline-block; padding: 15px 25px; }</div>
+      <ul class="nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="example">
+      <h2>3. Button Group (no whitespace gap)</h2>
+      <div class="code">.btn-group { font-size: 0; }<br>.btn { display: inline-block; font-size: 14px; }</div>
+      <div class="btn-group">
+        <button class="btn active">Day</button><button class="btn">Week</button><button class="btn">Month</button><button class="btn">Year</button>
+      </div>
+      <div class="note">font-size: 0 on parent removes whitespace gaps between buttons.</div>
+    </div>
+
+    <div class="example">
+      <h2>4. Centered Grid with text-align</h2>
+      <div class="code">.parent { text-align: center; }<br>.item { display: inline-block; text-align: left; }</div>
+      <div class="centered-grid">
+        <div class="item"><h3>Card 1</h3><p>Content here</p></div>
+        <div class="item"><h3>Card 2</h3><p>More content</p></div>
+        <div class="item"><h3>Card 3</h3><p>Even more</p></div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>5. Whitespace Gap Issue</h2>
+      <div class="code">/* Default - has gaps */</div>
+      <div class="gap-demo">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+      </div>
+      <div class="code" style="margin-top:10px;">/* font-size: 0 on parent - no gaps */</div>
+      <div class="gap-demo fixed">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>6. Vertical Alignment</h2>
+      <div class="code">.box { display: inline-block; vertical-align: top/middle/bottom/baseline; }</div>
+      <div class="valign">
+        <div class="box box1">top</div>
+        <div class="box box2">middle</div>
+        <div class="box box3">bottom</div>
+        <div class="box box4">baseline</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

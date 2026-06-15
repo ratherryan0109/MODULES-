@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selectors - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: 0 auto; padding: 30px; background: #f7fafc; color: #2d3748; }
+    h1 { color: #1a365d; text-align: center; border-bottom: 4px solid #4299e1; padding-bottom: 15px; }
+    h2 { color: #2b6cb0; margin-top: 40px; }
+    .demo-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 5px solid #4299e1; }
+    .code { background: #2d3748; color: #e2e8f0; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 14px; margin: 15px 0; }
+
+    /* Basic selectors demo */
+    .highlight-box { background: #fefcbf; padding: 10px; border-radius: 5px; }
+    #unique-box { background: #e9d8fd; padding: 15px; border: 2px solid #9f7aea; border-radius: 8px; }
+
+    /* Combinator demos */
+    .descendant-demo p { color: #e53e3e; }
+    .child-demo > p { background: #c6f6d5; padding: 5px; }
+    .sibling-demo h3 + p { font-weight: bold; color: #3182ce; }
+    .general-sibling h3 ~ p { font-style: italic; }
+
+    /* Attribute selector demo */
+    a[href^="https"] { color: #38a169; }
+    a[href$=".pdf"]::after { content: " 📄"; }
+    input[type="text"] { border: 2px solid #4299e1; padding: 8px; border-radius: 4px; }
+    input[type="submit"] { background: #4299e1; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+
+    /* Pseudo-class demo */
+    .pseudo-demo li:first-child { color: #e53e3e; font-weight: bold; }
+    .pseudo-demo li:last-child { color: #38a169; }
+    .pseudo-demo li:nth-child(even) { background: #edf2f7; }
+    .pseudo-demo tr:hover { background: #ebf8ff; }
+
+    /* Pseudo-element demo */
+    .pseudo-elem::before { content: "★ "; color: #ecc94b; }
+    .pseudo-elem::after { content: " ★"; color: #ecc94b; }
+    p::first-letter { font-size: 1.5em; font-weight: bold; color: #6b46c1; }
+
+    /* Table styling */
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th, td { padding: 12px; border: 1px solid #e2e8f0; text-align: left; }
+    th { background: #2d3748; color: white; }
+    tr:nth-child(even) { background: #f7fafc; }
+  </style>
+</head>
+<body>
+  <h1>CSS Selectors: Examples & Demonstrations</h1>
+
+  <div class="demo-box">
+    <h2>1. Basic Selectors</h2>
+    <h3>Element Selector</h3>
+    <p>All paragraphs are styled with <code>color: #2d3748</code> via the element selector.</p>
+
+    <h3>Class Selector</h3>
+    <div class="highlight-box">This box uses <code>.highlight-box</code> class selector.</div>
+    <div class="highlight-box" style="margin-top:10px;">Another box with the same class. Classes are reusable!</div>
+
+    <h3>ID Selector</h3>
+    <div id="unique-box">This box uses the <code>#unique-box</code> ID selector — only one per page.</div>
+
+    <div class="code">
+      /* Element */<br>
+      p { color: #2d3748; }<br><br>
+      /* Class */<br>
+      .highlight-box { background: #fefcbf; }<br><br>
+      /* ID */<br>
+      #unique-box { background: #e9d8fd; border: 2px solid #9f7aea; }
+    </div>
+  </div>
+
+  <div class="demo-box" style="border-left-color: #48bb78;">
+    <h2>2. Combinators</h2>
+
+    <div class="descendant-demo">
+      <h3>Descendant (space)</h3>
+      <div><p>I'm inside a div inside .descendant-demo — <strong>red</strong> via descendant selector.</p></div>
+    </div>
+
+    <div class="child-demo">
+      <h3>Child (>)</h3>
+      <p>I'm a direct child — green background.</p>
+      <div><p>I'm nested — NOT styled by child selector.</p></div>
+    </div>
+
+    <div class="sibling-demo">
+      <h3>Adjacent Sibling (+)</h3>
+      <p>I'm immediately after h3 — bold blue.</p>
+      <p>I'm second — not styled.</p>
+    </div>
+
+    <div class="general-sibling">
+      <h3>General Sibling (~)</h3>
+      <p>I'm first after h3 — italic.</p>
+      <p>I'm also after h3 — also italic.</p>
+    </div>
+
+    <div class="code">
+      .descendant-demo p { color: #e53e3e; }       /* All p descendants */<br>
+      .child-demo > p { background: #c6f6d5; }     /* Direct children only */<br>
+      h3 + p { font-weight: bold; }                 /* Immediately after h3 */<br>
+      h3 ~ p { font-style: italic; }                /* All after h3 */
+    </div>
+  </div>
+
+  <div class="demo-box" style="border-left-color: #ed8936;">
+    <h2>3. Attribute Selectors</h2>
+    <p>
+      <a href="https://example.com">Secure link (https)</a> |
+      <a href="http://example.com">Regular link (http)</a> |
+      <a href="file.pdf">PDF file</a>
+    </p>
+    <p>
+      <input type="text" placeholder="Text input">
+      <input type="submit" value="Submit">
+    </p>
+    <div class="code">
+      a[href^="https"] { color: #38a169; }     /* Starts with */<br>
+      a[href$=".pdf"]::after { content: " 📄"; }  /* Ends with */<br>
+      input[type="text"] { border: 2px solid #4299e1; }  /* Exact value */
+    </div>
+  </div>
+
+  <div class="demo-box" style="border-left-color: #9f7aea;">
+    <h2>4. Pseudo-Classes</h2>
+    <ul class="pseudo-demo">
+      <li>First child — red bold</li>
+      <li>Second child — even row</li>
+      <li>Third child — normal</li>
+      <li>Fourth child — even row</li>
+      <li>Last child — green</li>
+    </ul>
+    <table>
+      <tr><th>Hover over me</th><th>See the effect</th></tr>
+      <tr><td>Row 1</td><td>Hover highlights</td></tr>
+      <tr><td>Row 2</td><td>Even rows highlight</td></tr>
+      <tr><td>Row 3</td><td>Hover again</td></tr>
+    </table>
+    <div class="code">
+      li:first-child { color: #e53e3e; }<br>
+      li:last-child { color: #38a169; }<br>
+      li:nth-child(even) { background: #edf2f7; }<br>
+      tr:hover { background: #ebf8ff; }
+    </div>
+  </div>
+
+  <div class="demo-box" style="border-left-color: #ecc94b;">
+    <h2>5. Pseudo-Elements</h2>
+    <p class="pseudo-elem">This text has stars before and after via ::before and ::after.</p>
+    <p>This paragraph has a <strong>drop cap</strong> via ::first-letter — the first letter is larger and purple.</p>
+    <div class="code">
+      .pseudo-elem::before { content: "★ "; }<br>
+      .pseudo-elem::after { content: " ★"; }<br>
+      p::first-letter { font-size: 1.5em; color: #6b46c1; }
+    </div>
+  </div>
+
+  <div class="demo-box" style="border-left-color: #e53e3e;">
+    <h2>6. Selector Specificity Table</h2>
+    <table>
+      <thead>
+        <tr><th>Selector</th><th>Specificity</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Inline style</td><td>1-0-0-0</td><td><code>style="color: red"</code></td></tr>
+        <tr><td>ID</td><td>0-1-0-0</td><td><code>#header</code></td></tr>
+        <tr><td>Class</td><td>0-0-1-0</td><td><code>.nav-item</code></td></tr>
+        <tr><td>Attribute</td><td>0-0-1-0</td><td><code>[type="text"]</code></td></tr>
+        <tr><td>Pseudo-class</td><td>0-0-1-0</td><td><code>:hover</code></td></tr>
+        <tr><td>Element</td><td>0-0-0-1</td><td><code>div</code></td></tr>
+        <tr><td>Pseudo-element</td><td>0-0-0-1</td><td><code>::before</code></td></tr>
+        <tr><td>Universal</td><td>0-0-0-0</td><td><code>*</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

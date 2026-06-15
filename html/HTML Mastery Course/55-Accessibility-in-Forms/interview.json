@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "Why is form accessibility important?",
+      "answer": "Form accessibility ensures that people with disabilities can complete essential web tasks like registration, checkout, and data entry. It's required by law in many countries (ADA, Section 508, EN 301 549) and follows WCAG guidelines. Inaccessible forms exclude users with visual, motor, cognitive, and hearing disabilities from critical online services."
+    },
+    {
+      "question": "How do you properly label a form input?",
+      "answer": "Use the <label> element with the for attribute matching the input's id. Example: <label for='email'>Email</label> <input type='email' id='email'>. This programmatically associates the label with the input so screen readers announce the label when the input receives focus."
+    },
+    {
+      "question": "What is a fieldset and legend used for in forms?",
+      "answer": "<fieldset> groups related form controls into a semantic group. <legend> provides a caption for that group. This is required for radio button groups and recommended for checkbox groups. Screen readers announce the legend before each control in the group, providing essential context."
+    },
+    {
+      "question": "What is the purpose of aria-describedby?",
+      "answer": "aria-describedby associates one or more elements (by ID) as descriptive content for the current element. It's used to connect help text, hints, or error messages to form inputs. Screen readers announce the description after the label and value."
+    },
+    {
+      "question": "What does aria-invalid indicate?",
+      "answer": "aria-invalid='true' indicates that the input value is invalid or incorrect. It's set dynamically via JavaScript when validation fails. Screen readers announce this state, helping users know which fields need attention."
+    },
+    {
+      "question": "What is a visible focus indicator and why is it important?",
+      "answer": "A visible focus indicator is a visual outline or ring that appears around the currently focused element when navigating with keyboard (Tab key). It's essential for keyboard-only users and users with motor disabilities to track their position on the page."
+    },
+    {
+      "question": "What is the problem with placeholder text as labels?",
+      "answer": "Placeholder text disappears when the user starts typing, leaving the input without a visible label. It also typically has low color contrast. WCAG requires that labels be visible and persistent. Always use a <label> element alongside placeholder."
+    },
+    {
+      "question": "How do you make error messages accessible?",
+      "answer": "Associate errors with inputs using aria-describedby, set aria-invalid='true' on the invalid input, use role='alert' on the error message container, and ensure errors are announced by screen readers. On form submission failure, move focus to an error summary."
+    },
+    {
+      "question": "What autocomplete attributes should you use for common fields?",
+      "answer": "WCAG 1.3.5 recommends autocomplete values: 'name' for full name, 'email' for email, 'tel' for phone, 'street-address' for address, 'postal-code' for ZIP, 'country-name' for country, 'cc-number' for credit card, and 'new-password'/'current-password' for passwords."
+    },
+    {
+      "question": "What is the difference between aria-label and aria-labelledby?",
+      "answer": "aria-label sets the accessible name directly via a string value. aria-labelledby references the ID of another element that contains the label text. aria-labelledby takes precedence over aria-label, which takes precedence over the native label."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement an accessible error summary that receives focus on form validation failure?",
+      "answer": "Create a container div with role='alert', tabindex='-1' (so it can receive focus programmatically), and aria-labelledby or aria-label. On form submission failure, populate the summary with error links (each linking to the relevant input via #id), show it, and call summary.focus(). This allows screen reader users to hear all errors at once and navigate to them."
+    },
+    {
+      "question": "What is the difference between aria-live='polite' and 'assertive'?",
+      "answer": "aria-live='polite' tells screen readers to announce changes when the user is idle, queuing the announcement after current speech. 'assertive' interrupts the current announcement immediately. For form errors and character counts, 'polite' is appropriate. For critical alerts like 'Submission failed', 'assertive' may be used sparingly."
+    },
+    {
+      "question": "How do you create an accessible custom select dropdown?",
+      "answer": "Use role='combobox' on the container with aria-expanded and aria-haspopup='listbox'. The list itself gets role='listbox' and each option gets role='option' with aria-selected. Keyboard handlers: Enter/Space to toggle, Arrow keys to navigate, Escape to close. Use aria-activedescendant to track the focused option. Always provide a visible label via aria-labelledby."
+    },
+    {
+      "question": "How do you handle focus management in a multi-step form?",
+      "answer": "When moving to the next step: (1) Validate the current step, (2) Hide the current step (display:none removes from tab order), (3) Show the next step, (4) Move focus to the first focusable element or the step heading. Use aria-disabled (not disabled) on step indicators to make them focusable but indicate state. Use aria-current='step' on the active step."
+    },
+    {
+      "question": "What is the purpose of aria-atomic on live regions?",
+      "answer": "aria-atomic='true' tells screen readers to announce the entire content of the live region when any part changes, rather than just the changed element. This is useful for form error summaries where you want the full list of errors read out, not just the newly added ones."
+    },
+    {
+      "question": "How do you make a CAPTCHA accessible?",
+      "answer": "Avoid visual-only CAPTCHAs. Use hCaptcha or reCAPTCHA v3 (invisible). If a visual CAPTCHA is necessary: (1) Provide an audio alternative, (2) Allow users to request a new challenge, (3) Use clear instructions, (4) Consider alternative methods like email verification. Many accessibility advocates recommend against CAPTCHAs entirely."
+    },
+    {
+      "question": "What are the accessibility requirements for form instructions?",
+      "answer": "Instructions must be placed before the form or associated via aria-describedby. They should include: (1) Required field format (e.g., 'Fields marked with * are required'), (2) Specific format requirements (e.g., 'Password must be 8+ characters'), (3) Any constraints (e.g., 'File size limit: 5MB'). Instructions must be visible and programmatically associated."
+    },
+    {
+      "question": "How do you implement an accessible toggle switch?",
+      "answer": "Use a native checkbox with CSS to style it as a toggle switch. This preserves native accessibility. If building a custom toggle: role='switch', aria-checked='true/false', tabindex='0', keyboard handler for Space/Enter, visible text label, and a styled visual representation of the state."
+    },
+    {
+      "question": "What is the correct way to display required field indicators accessibly?",
+      "answer": "Use a visible asterisk (*) with aria-hidden='true' so screen readers don't announce it redundantly. Add text: 'Fields marked with * are required' at the top of the form. Use the required attribute and aria-required='true' on each required field. Screen readers announce 'required' based on these attributes."
+    },
+    {
+      "question": "How do you test form accessibility?",
+      "answer": "Use: (1) Keyboard-only testing — Tab through all fields, ensure focus is visible and order is logical, (2) Screen reader testing — NVDA (free, Windows), VoiceOver (built-in macOS/iOS), JAWS (paid), (3) Automated tools — axe DevTools, WAVE, Lighthouse accessibility audit, (4) Color contrast checkers, (5) User testing with people who have disabilities."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain how to implement an accessible autocomplete/combobox pattern following WAI-ARIA 1.2.",
+      "answer": "Use the ARIA combobox pattern: container div with role='combobox', aria-expanded, aria-haspopup='listbox', aria-controls. The input has aria-autocomplete='list' and aria-activedescendant for the currently highlighted option. The listbox has role='listbox' with options as role='option' and aria-selected. Keyboard: Typing filters options, Arrow keys navigate, Enter selects, Escape closes. Announce the number of results via aria-live='polite'."
+    },
+    {
+      "question": "How do you handle accessibility for a drag-and-drop file upload area?",
+      "answer": "Make the entire drop zone keyboard accessible: role='button' or <button>, tabindex='0', Enter/Space to open file dialog. Announce drag status via aria-live='polite': 'Drag file here' → 'File selected: resume.pdf'. Provide a fallback file input. Use aria-dropeffect on the zone. Show visual feedback on drag-over. Announce success/failure after upload."
+    },
+    {
+      "question": "What is the ElementInternals API and how does it improve custom form control accessibility?",
+      "answer": "ElementInternals allows custom elements to integrate with native form APIs. Call this.attachInternals() in the constructor. Use internals.setFormValue() to set the form value. Use internals.setValidity(flags, message) to participate in constraint validation. This exposes the custom element's value and validity to form.elements and form validation natively, without requiring ARIA workarounds."
+    },
+    {
+      "question": "How do you implement an accessible date picker that meets WCAG 2.2?",
+      "answer": "Use a native <input type='date'> with a label. If custom is required: role='dialog' on the popup, aria-modal='true', aria-labelledby by the month/year heading. Navigation: Arrow keys move between days, Page Up/Down changes month, Enter selects. Focus trap inside the dialog while open. Escape closes and returns focus to the input. Announce selected date via aria-live. Ensure all buttons have accessible names."
+    },
+    {
+      "question": "How do you create an accessible color picker?",
+      "answer": "Use <input type='color'> with a label when possible. For custom: Provide a text input for hex values with pattern validation. For visual swatches: role='radiogroup', each swatch is role='radio' with aria-label='Red: #FF0000'. Arrow keys navigate swatches. Selected swatch has aria-checked='true' and a visible focus indicator. Announce the selected color name and hex value."
+    },
+    {
+      "question": "What are the accessibility implications of using Shadow DOM for form components?",
+      "answer": "Shadow DOM encapsulates styles and DOM, which can break accessibility if not handled correctly. Form controls in Shadow DOM don't participate in parent form validation by default. Solutions: Use ElementInternals API to attach to a form. Ensure ARIA attributes are correctly reflected into the accessibility tree. Use ::part() pseudo-element for styling from outside. Test with multiple screen readers as behavior varies."
+    },
+    {
+      "question": "How do you implement accessible sorting and filtering in form tables?",
+      "answer": "Sort buttons in table headers: Use <button> with aria-label='Sort by Name ascending', aria-sort='ascending|descending|none'. Filter dropdowns: Use native <select> with labels. Announce changes via aria-live='polite': 'Table sorted by Name descending, 15 items shown'. Use role='columnheader' for sortable columns. Maintain focus position after sort/filter."
+    },
+    {
+      "question": "What are the requirements for non-interactive focusable elements in forms?",
+      "answer": "Elements that receive programmatic focus (like error summaries) need tabindex='-1' so they can receive focus via .focus() but are not in the natural tab order. They must have a visible focus indicator. They should not be interactive (no click/enter handlers unless appropriately role'd). Screen readers should understand why focus moved there."
+    },
+    {
+      "question": "How does the Accessibility Object Model (AOM) relate to form accessibility?",
+      "answer": "The AOM provides JavaScript APIs to directly interact with the browser's accessibility tree. It allows setting computed accessibility properties, responding to accessibility events, and creating virtual accessibility nodes. For forms, this means more precise control over how custom controls are presented to assistive technologies."
+    },
+    {
+      "question": "How do you handle accessibility for real-time collaborative forms (multi-user editing)?",
+      "answer": "Use aria-live='polite' on regions that display other users' changes. Announce: 'Alice is typing...' or 'Bob updated the email field'. Use aria-relevant='additions removals' to control what changes are announced. Implement field-level locking with visual indicators (padlock icon with text). Provide a 'Last edited by' timestamp. Allow users to disable live announcements if they find them distracting."
+    }
+  ]
+}

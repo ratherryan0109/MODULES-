@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 36: HTML Article Element - Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f8f9fa; color: #333; }
+    .example-box { background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .example-box h2 { margin-top: 0; color: #7b2d8e; border-bottom: 2px solid #f3e5f5; padding-bottom: 8px; }
+    .output { background: #f1f3f4; border-radius: 4px; padding: 15px; margin: 10px 0; }
+    .output article { border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; margin: 10px 0; background: white; }
+    code { background: #f3e5f5; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; }
+    pre code { background: none; padding: 0; color: inherit; }
+    .tag { color: #66d9ef; }
+    .attr { color: #a6e22e; }
+    .str { color: #e6db74; }
+    .comment { color: #75715e; }
+    .note { background: #f3e5f5; border: 1px solid #7b2d8e; border-radius: 4px; padding: 10px; margin: 10px 0; }
+    .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .product-card { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <h1>HTML <code>&lt;article&gt;</code> Element Examples</h1>
+
+  <!-- Example 1: Basic Article -->
+  <div class="example-box">
+    <h2>Example 1: Basic Blog Article</h2>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <article>
+        <header>
+          <h2>How to Master HTML5 Semantics</h2>
+          <p><small>By Jane Doe | <time datetime="2026-06-01">June 1, 2026</time></small></p>
+        </header>
+        <p>HTML5 introduced a set of semantic elements that give meaning to web content. Unlike generic <code>&lt;div&gt;</code> elements, semantic elements describe their purpose to both developers and browsers.</p>
+        <p>Using semantic HTML improves accessibility, SEO, and code maintainability. Screen readers can navigate landmarks, search engines understand content structure, and developers write cleaner code.</p>
+        <footer>
+          <p><small>Tags: <a href="#">HTML5</a>, <a href="#">Semantics</a>, <a href="#">Web Development</a></small></p>
+        </footer>
+      </article>
+    </div>
+    
+    <h3>HTML Code:</h3>
+    <pre><code><span class="tag">&lt;article&gt;</span>
+  <span class="tag">&lt;header&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>How to Master HTML5 Semantics<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>By Jane Doe | <span class="tag">&lt;time</span> <span class="attr">datetime</span>=<span class="str">"2026-06-01"</span><span class="tag">&gt;</span>June 1, 2026<span class="tag">&lt;/time&gt;&lt;/p&gt;</span>
+  <span class="tag">&lt;/header&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Content here...<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;footer&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Tags: <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>HTML5<span class="tag">&lt;/a&gt;&lt;/p&gt;</span>
+  <span class="tag">&lt;/footer&gt;</span>
+<span class="tag">&lt;/article&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 2: Nested Articles (Comments) -->
+  <div class="example-box">
+    <h2>Example 2: Blog Post with Nested Comment Articles</h2>
+    <p>The main <code>&lt;article&gt;</code> contains nested <code>&lt;article&gt;</code> elements for comments.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <article>
+        <h2>Understanding the Article Element</h2>
+        <p>The <code>&lt;article&gt;</code> element represents a self-contained composition. It should make sense on its own.</p>
+        
+        <h3>Comments</h3>
+        <article style="background:#f9f9f9; border-left:3px solid #7b2d8e;">
+          <p><strong>Sarah:</strong> Great explanation! This really helped me understand when to use article vs section.</p>
+          <footer><small><time datetime="2026-06-02">June 2, 2026</time></small></footer>
+        </article>
+        <article style="background:#f9f9f9; border-left:3px solid #7b2d8e; margin-top:10px;">
+          <p><strong>Mike:</strong> Could you add more examples of nested articles?</p>
+          <footer><small><time datetime="2026-06-03">June 3, 2026</time></small></footer>
+        </article>
+      </article>
+    </div>
+    
+    <h3>HTML Code:</h3>
+    <pre><code><span class="tag">&lt;article&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Understanding the Article Element<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Self-contained content...<span class="tag">&lt;/p&gt;</span>
+  
+  <span class="tag">&lt;h3&gt;</span>Comments<span class="tag">&lt;/h3&gt;</span>
+  
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="tag">&lt;strong&gt;</span>Sarah:<span class="tag">&lt;/strong&gt;</span> Great explanation!<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;footer&gt;</span><span class="tag">&lt;time</span> <span class="attr">datetime</span>=<span class="str">"2026-06-02"</span><span class="tag">&gt;</span>June 2, 2026<span class="tag">&lt;/time&gt;&lt;/footer&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+  
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="tag">&lt;strong&gt;</span>Mike:<span class="tag">&lt;/strong&gt;</span> Could you add more examples?<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;footer&gt;</span><span class="tag">&lt;time</span> <span class="attr">datetime</span>=<span class="str">"2026-06-03"</span><span class="tag">&gt;</span>June 3, 2026<span class="tag">&lt;/time&gt;&lt;/footer&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+<span class="tag">&lt;/article&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 3: Product Cards as Articles -->
+  <div class="example-box">
+    <h2>Example 3: Product Cards Using <code>&lt;article&gt;</code></h2>
+    <p>Each product is self-contained and independently usable.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <div class="product-grid">
+        <article class="product-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f3e5f5'/%3E%3Ctext x='50' y='55' text-anchor='middle' font-size='14'%3E🎧%3C/text%3E%3C/svg%3E" alt="Wireless Headphones" style="width:100px;">
+          <h3>Wireless Headphones</h3>
+          <p style="font-size:1.2em; color:#7b2d8e;">$79.99</p>
+          <p>High-quality wireless sound with noise cancellation technology.</p>
+          <button style="background:#7b2d8e; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Add to Cart</button>
+        </article>
+        <article class="product-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e8f5e9'/%3E%3Ctext x='50' y='55' text-anchor='middle' font-size='14'%3E⌚%3C/text%3E%3C/svg%3E" alt="Smart Watch" style="width:100px;">
+          <h3>Smart Watch Pro</h3>
+          <p style="font-size:1.2em; color:#7b2d8e;">$199.99</p>
+          <p>Track your fitness, receive notifications, and stay connected.</p>
+          <button style="background:#7b2d8e; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Add to Cart</button>
+        </article>
+      </div>
+    </div>
+    
+    <div class="note">
+      <strong>Why article?</strong> Each product card could be featured in a separate email, comparison tool, or wishlist. This makes them self-contained and suitable for <code>&lt;article&gt;</code>.
+    </div>
+  </div>
+
+  <!-- Example 4: Forum Post -->
+  <div class="example-box">
+    <h2>Example 4: Forum Post and Replies</h2>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <article>
+        <header>
+          <h2>Help with CSS Flexbox</h2>
+          <p>Posted by <strong>newdev123</strong> | <time datetime="2026-06-10T14:30:00">June 10, 2026 at 2:30 PM</time></p>
+        </header>
+        <p>I'm having trouble centering a div inside a flex container. I've tried justify-content and align-items but it's not working. Here's my code:</p>
+        <pre style="background:#f5f5f5; padding:10px; border-radius:4px;">display: flex;
+justify-content: center;
+align-items: center;</pre>
+        
+        <section>
+          <h3>Replies</h3>
+          
+          <article>
+            <p><strong>cssmaster:</strong> Make sure your flex container has a defined height. Without a height, align-items has no effect.</p>
+            <footer><time datetime="2026-06-10T15:00:00">June 10, 2026 at 3:00 PM</time></footer>
+          </article>
+          
+          <article>
+            <p><strong>newdev123:</strong> That worked! Thank you so much!</p>
+            <footer><time datetime="2026-06-10T15:15:00">June 10, 2026 at 3:15 PM</time></footer>
+          </article>
+        </section>
+      </article>
+    </div>
+  </div>
+
+</body>
+</html>

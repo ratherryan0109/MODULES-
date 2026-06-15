@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What are CSS logical properties?", "answer": "CSS logical properties provide equivalent physical properties (like left, right, top, bottom) that adapt to the writing mode and direction of the document." },
+    { "question": "What is inset-inline?", "answer": "inset-inline is the logical equivalent of left/right positioning, controlling start and end positions in the inline direction." },
+    { "question": "What is margin-block?", "answer": "margin-block is the logical equivalent of margin-top and margin-bottom, applying margins in the block direction (vertical in horizontal writing)." },
+    { "question": "What is border-inline?", "answer": "border-inline is the shorthand for border-inline-start and border-inline-end, applying borders along the inline axis (horizontal in LTR)." },
+    { "question": "What are writing modes in CSS?", "answer": "Writing modes (writing-mode property) define whether text flows horizontally (horizontal-tb) or vertically (vertical-rl, vertical-lr)." },
+    { "question": "How do logical properties map in a left-to-right layout?", "answer": "inline-start = left, inline-end = right, block-start = top, block-end = bottom in horizontal LTR writing mode." },
+    { "question": "What is the inline-start property?", "answer": "inline-start is the logical equivalent of left in LTR or right in RTL, depending on the direction and writing mode." },
+    { "question": "What does block-size mean?", "answer": "block-size is the logical equivalent of height; it changes with writing mode to maintain the block dimension regardless of text direction." },
+    { "question": "What does inline-size mean?", "answer": "inline-size is the logical equivalent of width; it represents the dimension along the inline axis which changes with writing mode." },
+    { "question": "Why use logical properties instead of physical ones?", "answer": "Logical properties create layouts that automatically adapt to different writing modes and directions, improving internationalization support." }
+  ],
+  "intermediate": [
+    { "question": "How do logical properties behave in a right-to-left (RTL) layout?", "answer": "inline-start maps to right and inline-end maps to left automatically, maintaining proper spacing when direction changes." },
+    { "question": "What is the difference between inset-inline and inset-block?", "answer": "inset-inline controls start/end along the inline axis (horizontal LTR); inset-block controls start/end along the block axis (vertical)." },
+    { "question": "How do you set padding on only the inline-start side using logical properties?", "answer": "Use padding-inline-start: value; which targets the start edge of the inline axis regardless of writing mode." },
+    { "question": "What is border-inline-start vs border-left?", "answer": "border-inline-start maps to the logical start edge; in LTR it equals border-left, but in RTL it equals border-right automatically." },
+    { "question": "How do logical properties work with vertical writing modes?", "answer": "In vertical writing, block becomes horizontal and inline becomes vertical; logical properties swap dimensions accordingly." },
+    { "question": "What are the logical properties for margin, padding, and border?", "answer": "Each has -inline, -block, -inline-start/end, -block-start/end variants, plus shorthands like margin-block, padding-inline." },
+    { "question": "How do you center an element using logical properties?", "answer": "Use margin-inline: auto; to center horizontally in any writing mode, or place-content center with logical grid/flex properties." },
+    { "question": "What is the text-align equivalent for logical direction?", "answer": "text-align: start and text-align: end are logical equivalents of left and right, respecting writing direction." },
+    { "question": "How do logical properties work in CSS Grid and Flexbox?", "answer": "Grid and Flexbox use logical properties by default (start, end, etc.); physical directions like left/right can override but may break in RTL." },
+    { "question": "Can you mix physical and logical properties in the same rule?", "answer": "Yes, but it can lead to unexpected results; mixing is generally discouraged for consistency." }
+  ],
+  "advanced": [
+    { "question": "How do logical properties interact with the position property?", "answer": "Use inset-inline and inset-block for absolute/fixed positioning instead of left/right/top/bottom for direction-aware positioning." },
+    { "question": "How do you set a logical border-radius corner?", "answer": "Use border-start-start-radius, border-start-end-radius, etc., which adapt to the writing direction." },
+    { "question": "How do logical properties affect CSS animations and transitions?", "answer": "Animate logical properties like margin-inline-start; the animation works correctly regardless of the document's writing direction." },
+    { "question": "How do you use logical properties with the contain property?", "answer": "contain: inline-size uses the logical inline dimension; it contains the element based on writing mode, not physical width." },
+    { "question": "How do logical properties interact with scroll-snap?", "answer": "Use scroll-snap-align: start and end which are logical; they adapt to writing direction automatically for consistent snapping." },
+    { "question": "What is the logical property for the overflow property?", "answer": "Use overflow-inline and overflow-block instead of overflow-x and overflow-y for direction-aware overflow control." },
+    { "question": "How do logical properties work with CSS transforms?", "answer": "Transform functions like translate are physical by default; use logical custom properties or calculate physical values from logical inputs." },
+    { "question": "How do logical properties affect web accessibility?", "answer": "Logical properties improve accessibility for international users by automatically adapting to their language's writing direction." },
+    { "question": "How do you create a direction-aware card component using logical properties?", "answer": "Use padding-inline, margin-block, border-inline-start, and inset-inline for all spacing; the card adapts to any writing mode automatically." },
+    { "question": "How do browser DevTools display logical properties?", "answer": "DevTools compute logical properties to physical equivalents in the computed styles panel, showing the resolved physical values." }
+  ]
+}

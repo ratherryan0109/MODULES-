@@ -1,0 +1,247 @@
+﻿{
+    "module":  "21-css-position",
+    "title":  "CSS Position",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "What is the default value of the CSS position property?",
+                          "options":  [
+                                          "relative",
+                                          "absolute",
+                                          "static",
+                                          "fixed"
+                                      ],
+                          "explanation":  "Every element has position: static by default. It follows the normal document flow.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  2,
+                          "question":  "Which position value removes an element from the normal document flow?",
+                          "options":  [
+                                          "relative",
+                                          "static",
+                                          "sticky",
+                                          "absolute"
+                                      ],
+                          "explanation":  "Absolute positioning removes the element from the normal document flow. It is positioned relative to its nearest positioned ancestor.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What does position: relative do to an element\u0027s original space in the layout?",
+                          "options":  [
+                                          "Removes it from flow",
+                                          "Preserves it",
+                                          "Collapses it",
+                                          "Doubles it"
+                                      ],
+                          "explanation":  "Relative positioning preserves the element\u0027s original space in the layout, even when the element is offset visually.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "Which of the following is NOT a valid value for the position property?",
+                          "options":  [
+                                          "sticky",
+                                          "absolute",
+                                          "floating",
+                                          "fixed"
+                                      ],
+                          "explanation":  "\u0027floating\u0027 is not a valid CSS position value. The valid values are static, relative, absolute, fixed, and sticky.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  5,
+                          "question":  "What does position: fixed position an element relative to?",
+                          "options":  [
+                                          "Parent element",
+                                          "Nearest positioned ancestor",
+                                          "The viewport",
+                                          "The document root"
+                                      ],
+                          "explanation":  "Fixed positioning positions an element relative to the browser viewport. It stays in place during scrolling.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  6,
+                          "question":  "When does position: sticky activate?",
+                          "options":  [
+                                          "Immediately on page load",
+                                          "When the element reaches a scroll threshold",
+                                          "Only on mobile devices",
+                                          "When the parent has overflow: hidden"
+                                      ],
+                          "explanation":  "Sticky positioning toggles between relative and fixed. It acts as relative until the scroll reaches the defined threshold (e.g., top: 0).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  7,
+                          "question":  "What offset property is required for position: sticky to work?",
+                          "options":  [
+                                          "None required",
+                                          "top or bottom",
+                                          "left or right",
+                                          "All four must be set"
+                                      ],
+                          "explanation":  "Sticky positioning requires at least one offset property (top, right, bottom, or left) to define the scroll threshold where it becomes fixed.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  8,
+                          "question":  "If no ancestor has a position value set, what does an absolutely positioned element reference?",
+                          "options":  [
+                                          "Its parent element",
+                                          "The viewport",
+                                          "The document body",
+                                          "The html element"
+                                      ],
+                          "explanation":  "If no ancestor has a position value other than static, an absolutely positioned element references the viewport as its containing block.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  9,
+                          "question":  "Which of these is a common use case for position: fixed?",
+                          "options":  [
+                                          "Dropdown menus",
+                                          "Sticky section headers",
+                                          "Navigation bars that stay at top",
+                                          "Image captions"
+                                      ],
+                          "explanation":  "Fixed positioning is commonly used for persistent navigation bars that remain visible during scrolling.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  10,
+                          "question":  "What happens to an element with position: absolute when its parent has overflow: hidden?",
+                          "options":  [
+                                          "It is clipped by the parent",
+                                          "It ignores the overflow property",
+                                          "It becomes visible always",
+                                          "It changes to position: relative"
+                                      ],
+                          "explanation":  "An absolutely positioned child is clipped if the parent has overflow: hidden, as it still respects the parent\u0027s overflow property.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  11,
+                          "question":  "Which property controls the stacking order of positioned elements?",
+                          "options":  [
+                                          "z-order",
+                                          "z-index",
+                                          "stack-index",
+                                          "layer"
+                                      ],
+                          "explanation":  "z-index controls the stacking order of positioned elements. Higher values appear on top.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  12,
+                          "question":  "What happens when you set position: relative without any offset properties?",
+                          "options":  [
+                                          "It behaves like static",
+                                          "It throws an error",
+                                          "The element disappears",
+                                          "It centers automatically"
+                                      ],
+                          "explanation":  "A relatively positioned element without offset properties appears exactly where it would in normal flow, just like static.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  13,
+                          "question":  "Which position value creates a new containing block for absolutely positioned descendants?",
+                          "options":  [
+                                          "static only",
+                                          "relative, absolute, fixed, or sticky",
+                                          "absolute only",
+                                          "fixed only"
+                                      ],
+                          "explanation":  "Any non-static position value (relative, absolute, fixed, or sticky) establishes a new containing block for absolutely positioned children.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  14,
+                          "question":  "How does position: sticky affect the element\u0027s original space?",
+                          "options":  [
+                                          "Removes it from flow when activated",
+                                          "Preserves it at all times",
+                                          "Collapses it gradually",
+                                          "Depends on the offset value"
+                                      ],
+                          "explanation":  "Sticky elements always preserve their original space in the layout; only their visual position changes when scrolled.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  15,
+                          "question":  "What is a common issue with fixed headers?",
+                          "options":  [
+                                          "They disappear on mobile",
+                                          "They overlap page content at the top",
+                                          "They cause horizontal scrollbars",
+                                          "They break print layouts"
+                                      ],
+                          "explanation":  "Fixed headers overlap the top of the page content. Usually solved by adding padding-top to the body equal to the header height.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  16,
+                          "question":  "Which is more performant for animations: changing top/left or using transform?",
+                          "options":  [
+                                          "top/left",
+                                          "transform",
+                                          "Both are equal",
+                                          "Neither is performant"
+                                      ],
+                          "explanation":  "Transform uses GPU compositing and doesn\u0027t trigger layout recalculations, making it more performant for animations than changing top/left.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  17,
+                          "question":  "What happens when two position: fixed elements overlap without z-index?",
+                          "options":  [
+                                          "Later in DOM appears on top",
+                                          "Earlier in DOM appears on top",
+                                          "They blend together",
+                                          "Both become hidden"
+                                      ],
+                          "explanation":  "Without z-index, positioned elements later in the DOM tree stack on top of earlier ones.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  18,
+                          "question":  "Can position: sticky be used inside a container with overflow: hidden?",
+                          "options":  [
+                                          "Yes, always",
+                                          "No, it won\u0027t stick",
+                                          "Only on Firefox",
+                                          "Only if position is also set on parent"
+                                      ],
+                          "explanation":  "Sticky positioning doesn\u0027t work inside containers with overflow: hidden, auto, or scroll because the container clips the element\u0027s scroll visibility.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "What does the inset property do?",
+                          "options":  [
+                                          "Sets all offset properties at once",
+                                          "Adds padding to elements",
+                                          "Creates inset shadows",
+                                          "Controls element visibility"
+                                      ],
+                          "explanation":  "The inset property is a shorthand for top, right, bottom, and left. E.g., inset: 10px is equivalent to top:10px; right:10px; bottom:10px; left:10px;",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  20,
+                          "question":  "Which of these is NOT a valid containing block for an absolutely positioned element?",
+                          "options":  [
+                                          "A positioned ancestor",
+                                          "The viewport",
+                                          "A floated element",
+                                          "The initial containing block (html)"
+                                      ],
+                          "explanation":  "Floated elements do not establish a containing block for absolutely positioned children. Only positioned (non-static) elements do.",
+                          "correctAnswer":  2
+                      }
+                  ]
+}

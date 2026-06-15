@@ -1,0 +1,130 @@
+{
+  "module": "128-ecommerce-store-ui",
+  "title": "E-Commerce Store UI",
+  "beginner": [
+    {
+      "question": "What is a 'product grid' in e-commerce?",
+      "answer": "A product grid displays catalog items in a responsive grid layout. Each item shows a product image, name, price, and often a quick-add button. Use CSS Grid: `grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))`."
+    },
+    {
+      "question": "What is a 'filter sidebar' in e-commerce?",
+      "answer": "A filter sidebar allows users to narrow products by category, price range, size, color, brand, etc. On desktop, it's a fixed sidebar (250-300px). On mobile, it's a slide-over panel or accordion at the top."
+    },
+    {
+      "question": "How do you design a responsive product card?",
+      "answer": "A product card has: product image (consistent aspect ratio, e.g., 1:1 or 4:3), title, price, rating, and add-to-cart button. Use `display: flex; flex-direction: column;` with the button at the bottom. Images use `object-fit: cover`."
+    },
+    {
+      "question": "What is a 'shopping cart' UI in e-commerce?",
+      "answer": "A shopping cart shows selected items with thumbnail, name, quantity selector, unit price, and line total. Desktop: table or list layout. Mobile: stacked cards with horizontal layout. Include subtotal, shipping estimate, and checkout button."
+    },
+    {
+      "question": "What is the 'checkout' flow UI?",
+      "answer": "Checkout typically has steps: Cart Review → Shipping Information → Payment → Order Confirmation. Each step is a form section. Desktop: multi-column or multi-step. Mobile: single-column, single-step-at-a-time with progress indicator."
+    },
+    {
+      "question": "How do you style a product image gallery?",
+      "answer": "Main large image with thumbnail strip below. Desktop: thumbnails as a vertical column on the left or horizontal row below. Mobile: swipeable horizontal thumbnails with a large main image. Use `object-fit: contain` for product images."
+    },
+    {
+      "question": "How do you display product ratings/stars in CSS?",
+      "answer": "Use `::before` and `::after` pseudo-elements with star characters (★, ☆), or SVG icons. Use CSS `background-clip: text` for partial fills, or a div with width percentage for star fill. Display rating number next to stars."
+    },
+    {
+      "question": "What is a 'quantity selector' UI element?",
+      "answer": "A quantity selector is a compact input with minus/plus buttons and the current number. Desktop: small inline group. Mobile: larger touch targets (min 44px). Use `<button>` elements (not `<div>`) for accessibility with `aria-label`."
+    },
+    {
+      "question": "How do you design a responsive 'breadcrumb' navigation?",
+      "answer": "Breadcrumbs show the current page location (Home > Category > Product). On desktop: full horizontal list. On mobile: abbreviate ('...' instead of intermediate items) or show only the parent and current page. Use `aria-label=\"Breadcrumb\"`."
+    },
+    {
+      "question": "What is a 'Call to Action' (CTA) button in e-commerce?",
+      "answer": "An e-commerce CTA is typically 'Add to Cart', 'Buy Now', or 'Checkout'. It should be prominent (high contrast, large), appear near product info, and be easily tappable on mobile. Use `min-height: 44px` for touch targets."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement a responsive 'filter sidebar' that works on mobile?",
+      "answer": "Desktop: fixed sidebar with `position: sticky`. Mobile: hidden off-screen, revealed by a 'Filters' button. Use `transform: translateX(-100%)` with transition for slide-in panel. Overlay backdrop with `position: fixed`. Close button top-right."
+    },
+    {
+      "question": "How do you design a 'color/variant selector' in a product card?",
+      "answer": "Show color swatches as small circles: `width: 24px; height: 24px; border-radius: 50%; background: var(--color);`. Selected state: `outline: 2px solid; outline-offset: 2px;`. Use `role=\"radio\"` and `aria-label` for accessibility."
+    },
+    {
+      "question": "How do you implement a 'price range filter' slider?",
+      "answer": "Use `<input type=\"range\">` with custom styling: `-webkit-appearance: none;` and pseudo-elements for track/thumb. Two sliders for min/max range. Display selected range text. On mobile, larger thumb targets (min 44px)."
+    },
+    {
+      "question": "How do you create a responsive 'related products' section?",
+      "answer": "A horizontal scrollable row on desktop (with overflow-x: auto and scroll-snap) or multi-row grid. On mobile: horizontal carousel with snap points. Show 4-5 items on desktop, 2 on tablet, 1.5 on mobile (partial reveal for scroll hint)."
+    },
+    {
+      "question": "How do you implement a 'wishlist/favorites' toggle on product cards?",
+      "answer": "Heart icon with `position: absolute; top: 8px; right: 8px;` on the image. Use `<button>` for accessibility. Toggle filled/outlined state. Use `aria-label=\"Add to wishlist\"` / `aria-label=\"Remove from wishlist\"`."
+    },
+    {
+      "question": "How do you design a responsive 'product comparison' table?",
+      "answer": "Desktop: horizontal table with products as columns. Mobile: convert to stacked product rows or horizontal scroll with sticky first column. Use `overflow-x: auto` as fallback. Highlight winning features with checkmarks."
+    },
+    {
+      "question": "How do you create a 'sticky add to cart' bar on mobile?",
+      "answer": "A fixed bar at the bottom of mobile viewports showing product title, price, and 'Add to Cart' button. Use `position: fixed; bottom: 0;`. Hide on desktop. Add safe-area-inset for notched devices. Transition: slide up on scroll."
+    },
+    {
+      "question": "How do you implement responsive product 'quick view' modals?",
+      "answer": "Desktop: centered modal overlay with product images and details. Mobile: full-screen slide-up panel. Close button, swipe down to dismiss on mobile. Trap focus inside modal. Return focus to trigger on close."
+    },
+    {
+      "question": "How do you handle responsive product size charts?",
+      "answer": "Size chart as a modal or expandable section. Desktop: table format (multiple columns). Mobile: stacked format or horizontal scroll. Use `aria-label` for the modal trigger. Ensure chart is zoom-friendly."
+    },
+    {
+      "question": "How do you design a responsive checkout progress indicator?",
+      "answer": "Desktop: horizontal steps (Cart → Shipping → Payment → Confirmation) with numbered circles and labels. Mobile: condensed steps with numbered circles only, or a simple 'Step 2 of 4' text with back/next buttons."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement 'infinite scroll' for product listing pages?",
+      "answer": "Use IntersectionObserver to detect near-end of page, fetch next page via AJAX, append products. Provide a 'Load More' button as fallback for screen reader users. Update URL with page parameter. Preserve scroll position on back navigation."
+    },
+    {
+      "question": "How do you implement a responsive 'mini cart' dropdown?",
+      "answer": "Desktop: dropdown panel from cart icon showing recent items, subtotal, and 'View Cart' link. Mobile: full-screen overlay or bottom sheet. Use `position: absolute;` for desktop dropdown. Update item count badge via CSS counter or text."
+    },
+    {
+      "question": "How do you create a responsive 'product configurator' (build-your-own) UI?",
+      "answer": "Desktop: sidebar with options (color, size, engraving) next to a live preview. Mobile: step-by-step wizard with 'Next' buttons. Each option updates CSS custom properties on the preview. Show real-time price updates."
+    },
+    {
+      "question": "How do you implement 'lazy loading' with placeholder shimmer effects for product images?",
+      "answer": "Use `loading=\"lazy\"` on product images. Show a CSS shimmer skeleton before image loads: `.product-image-placeholder { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200%; animation: shimmer 1.5s ease-in-out infinite; }`."
+    },
+    {
+      "question": "How do you handle responsive 'bundles/upsell' cross-sell sections?",
+      "answer": "Desktop: horizontal row of products with 'Add All to Cart' button. Mobile: vertical stack with individual checkboxes. Each item shows discount info. Total savings displayed prominently. Use `sticky` bottom bar for 'Add Bundle' CTA."
+    },
+    {
+      "question": "How do you implement responsive tiered pricing tables (bulk discounts)?",
+      "answer": "Table showing quantity ranges (1-10, 11-50, 51+) with price per unit and total. Desktop: multi-column table. Mobile: stacked rows with quantity and price columns. Highlight the 'best value' tier. Use `sticky` header for scroll."
+    },
+    {
+      "question": "How do you create a responsive 'store locator' with map and list?",
+      "answer": "Desktop: side-by-side (map 60%, list 40%) or overlay list on map. Mobile: full-screen map with a bottom sheet showing nearest stores. The list should be scrollable. Use `position: sticky` for map. Ensure touch-friendly markers."
+    },
+    {
+      "question": "How do you handle CSS for a 'multilingual' e-commerce store?",
+      "answer": "Use CSS custom properties for spacing that accommodates text expansion (German text is 30-40% longer than English). Set `word-break: break-word` on product names. Use `min-width` on buttons instead of fixed width. Test at 200% zoom."
+    },
+    {
+      "question": "How do you implement responsive 'wishlist sharing' UI?",
+      "answer": "Generate a unique URL for each wishlist. Desktop: modal with share options (copy link, email, social). Mobile: native share sheet via `navigator.share()`. Show wishlist items in a grid format. Ensure print-friendly layout."
+    },
+    {
+      "question": "How do you implement 'saved cart' and 'recently viewed' features with responsive UI?",
+      "answer": "Recently viewed: horizontal scrollable strip at bottom. Desktop: 5-6 thumbnail items. Mobile: 2-3 items with swipe. Saved cart: card layout with item count, total, and 'Restore' button. Use `localStorage` for persistence."
+    }
+  ]
+}

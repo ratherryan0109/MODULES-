@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is an HTML link and how do you create one?",
+      "answer": "An HTML link (hyperlink) is created using the <a> (anchor) element. The href attribute specifies the destination URL. Example: <a href='https://example.com'>Visit Example</a> creates a clickable link to that URL."
+    },
+    {
+      "question": "What is the difference between an absolute URL and a relative URL?",
+      "answer": "An absolute URL contains the full web address including protocol and domain (https://example.com/page.html). A relative URL specifies the path relative to the current page (page.html, ../folder/page.html). Use absolute URLs for external sites and relative URLs for internal navigation."
+    },
+    {
+      "question": "How do you open a link in a new browser tab?",
+      "answer": "Add target='_blank' to the anchor tag: <a href='https://example.com' target='_blank'>Link</a>. Always include rel='noopener noreferrer' for security."
+    },
+    {
+      "question": "What does the 'href' attribute stand for and what is its purpose?",
+      "answer": "href stands for Hypertext REFerence. It specifies the URL or path that the link points to, which can be a web page, file, email address, phone number, or anchor within the same page."
+    },
+    {
+      "question": "How do you create an email link in HTML?",
+      "answer": "Use the mailto: scheme in the href attribute: <a href='mailto:info@example.com'>Email Us</a>. You can also add subject and body parameters: <a href='mailto:info@example.com?subject=Hello'>."
+    },
+    {
+      "question": "What is an anchor link and how do you create one?",
+      "answer": "An anchor link navigates to a specific section within a page. Add an id attribute to the target element (<h2 id='section'>), then link to it with <a href='#section'>. For other pages: <a href='page.html#section'>."
+    },
+    {
+      "question": "How do you add a tooltip to a link?",
+      "answer": "Use the title attribute: <a href='url' title='Tooltip text'>Link</a>. The tooltip appears when the user hovers over the link."
+    },
+    {
+      "question": "What is the default target for a link if none is specified?",
+      "answer": "The default target is _self, which opens the linked document in the same tab or window as the current page."
+    },
+    {
+      "question": "How do you make an image clickable as a link?",
+      "answer": "Wrap the <img> tag inside an <a> tag: <a href='url'><img src='image.jpg' alt='description'></a>. The entire image becomes clickable."
+    },
+    {
+      "question": "What is the 'download' attribute used for?",
+      "answer": "The download attribute on an <a> tag tells the browser to download the linked resource rather than navigate to it: <a href='file.pdf' download>Download PDF</a>. You can optionally specify a filename: download='myfile.pdf'."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Why should you use rel='noopener noreferrer' with target='_blank'?",
+      "answer": "Without rel='noopener', the new page can access window.opener, allowing it to redirect the original page to a malicious site (tabnabbing attack). noreferrer prevents the Referer header from being sent, protecting user privacy."
+    },
+    {
+      "question": "Explain the four link states in CSS and the correct order to style them.",
+      "answer": "The four states are: :link (unvisited), :visited (visited), :hover (mouse over), :active (being clicked). The correct LVHA order is :link, :visited, :hover, :active. This ensures hover and active styles aren't overridden by visited."
+    },
+    {
+      "question": "How do you create a 'back to top' link on a long page?",
+      "answer": "Add id='top' to the <body> or a container element, then add <a href='#top'>Back to Top</a> at various points on the page. Alternatively, just use <a href='#'> which scrolls to the top."
+    },
+    {
+      "question": "What is the difference between the <a> element and the <link> element?",
+      "answer": "The <a> element creates clickable hyperlinks for user navigation. The <link> element is used in the <head> to link external resources like CSS stylesheets, favicons, and preload assets — it is not clickable by users."
+    },
+    {
+      "question": "How do you add query parameters to an email link?",
+      "answer": "Add a ? after the email address followed by parameters: mailto:user@example.com?subject=Subject&body=Body%20text. Multiple parameters are separated by &. Values must be URL-encoded."
+    },
+    {
+      "question": "What does rel='nofollow' do and when should you use it?",
+      "answer": "rel='nofollow' tells search engines not to pass link equity (ranking credit) to the linked page. Use it for user-generated content (comments), sponsored links, untrusted destinations, or paid links."
+    },
+    {
+      "question": "How can you use links to navigate within a single-page application pattern?",
+      "answer": "Use href='#section' links with JavaScript that listens for hashchange events to dynamically update content without page reload. This creates a single-page feel while maintaining bookmarkable URLs and browser history."
+    },
+    {
+      "question": "What is a root-relative URL and when would you use it?",
+      "answer": "A root-relative URL starts with / and is relative to the website root: /images/logo.png. It works from any page depth and is useful for shared navigation and header/footer links across a multi-level site."
+    },
+    {
+      "question": "How do you create a telephone link that works on mobile and desktop?",
+      "answer": "Use the tel: scheme: <a href='tel:+1234567890'>Call Us</a>. On mobile, it initiates a call. On desktop, it may open a VoIP app like Skype or FaceTime. Always include the country code with + prefix."
+    },
+    {
+      "question": "What accessibility considerations apply to links?",
+      "answer": "Use descriptive link text (not 'click here'), ensure links are visually distinct (underline/color), add aria-label for links without visible text, warn when opening in new tab, and ensure keyboard focus is visible."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "What is the security vulnerability known as 'tabnabbing' and how do rel='noopener' prevent it?",
+      "answer": "Tabnabbing occurs when a page opened via target='_blank' maliciously modifies window.opener.location to redirect the original page to a phishing site. rel='noopener' sets window.opener to null, preventing this. rel='noreferrer' also prevents the Referer header."
+    },
+    {
+      "question": "Explain how the HTML5 'download' attribute interacts with cross-origin restrictions.",
+      "answer": "The download attribute only works on same-origin URLs due to CORS restrictions. For cross-origin downloads, the browser will navigate to the resource instead of downloading it. This prevents unauthorized file downloads from third-party domains."
+    },
+    {
+      "question": "How does browser handling of the 'ping' attribute on links work?",
+      "answer": "The ping attribute specifies URLs to be notified when a link is clicked: <a href='url' ping='https://analytics.example.com/track'>. The browser sends a POST request to the ping URL with the link's data. It's used for analytics tracking but has privacy implications."
+    },
+    {
+      "question": "What is the difference between the 'referrerpolicy' attribute and the 'noreferrer' rel value?",
+      "answer": "referrerpolicy gives fine-grained control over how much referrer information is sent (no-referrer, same-origin, strict-origin, etc.) via an attribute. rel='noreferrer' is a simpler, boolean-style approach that completely removes the referrer header. referrerpolicy offers more options but less browser support."
+    },
+    {
+      "question": "How do progressive enhancement techniques apply to JavaScript-heavy link interactions?",
+      "answer": "Start with a real <a href='url'> that navigates normally (works without JS). Then use JavaScript to intercept clicks (event.preventDefault()), fetch content via AJAX, and update the page dynamically. This ensures the link works everywhere while enhancing the experience for JS-enabled users."
+    },
+    {
+      "question": "Explain the concept of 'link equity' (link juice) and how rel attributes affect it.",
+      "answer": "Link equity is the SEO value passed from one page to another via hyperlinks. rel='nofollow' prevents passing any equity. rel='sponsored' indicates paid links. rel='ugc' marks user-generated content. Proper use of these attributes helps search engines understand link relationships and prevents SEO penalties."
+    },
+    {
+      "question": "How does the 'hreflang' attribute on links help with international SEO?",
+      "answer": "hreflang specifies the language or regional variant of the linked page: <a href='url' hreflang='es'>Español</a>. It tells search engines that this link points to a version of the content in a different language, helping serve the correct language version to users in different regions."
+    },
+    {
+      "question": "What is the 'type' attribute on an <a> tag used for?",
+      "answer": "The type attribute hints at the MIME type of the linked resource: <a href='doc.pdf' type='application/pdf'>PDF</a>. While browsers don't heavily use it, it can help with download behavior and is useful for screen readers and search engines to understand what the link points to."
+    },
+    {
+      "question": "How should you handle links in Content Security Policy (CSP) restricted environments?",
+      "answer": "In CSP-restricted environments, anchor links (href) are not blocked by CSP (unlike navigation via window.location or fetch). However, inline event handlers like onclick are blocked if script-src doesn't include 'unsafe-inline'. Use addEventListener for link interactions instead of onclick attributes."
+    },
+    {
+      "question": "What are the performance implications of using too many external links on a page?",
+      "answer": "External links themselves don't directly impact page load performance. However, resource hints like dns-prefetch, preconnect, and prefetch for linked domains can improve performance. Overusing resource hints for linked domains can waste bandwidth and memory on resources users may never visit."
+    }
+  ]
+}

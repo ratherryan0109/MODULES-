@@ -1,0 +1,38 @@
+[
+  {
+    "id": "clip-avatar-grid",
+    "title": "Shape Avatar Gallery",
+    "difficulty": "beginner",
+    "description": "Create an avatar gallery where each profile image uses a different clip-path shape (circle, hexagon, diamond, triangle).",
+    "hint": "Apply different clip-path values to each avatar image.",
+    "criteria": ["Minimum 4 avatars with different shapes", "Uniform size for all avatars", "Shapes clearly visible"],
+    "starter": ".avatar-circle { clip-path: circle(50%); }\n.avatar-hexagon { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }\n/* Add more shapes */"
+  },
+  {
+    "id": "clip-hover-morph",
+    "title": "Hover Shape Morph Cards",
+    "difficulty": "intermediate",
+    "description": "Create a card grid where each card morphs from one shape to another on hover using clip-path transitions.",
+    "hint": "Set matching vertex counts for smooth morphing between shapes.",
+    "criteria": ["Smooth clip-path transition on hover", "All cards morph to the same hover shape", "Matching vertex counts"],
+    "starter": ".card {\n  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);\n  transition: clip-path 0.4s ease;\n}\n.card:hover {\n  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);\n}"
+  },
+  {
+    "id": "clip-section-dividers",
+    "title": "Creative Section Dividers",
+    "difficulty": "intermediate",
+    "description": "Build a multi-section page where each section divider uses a different clip-path shape for seamless transitions.",
+    "hint": "Use clip-path on section elements to create diagonal, curved, or wavy bottom edges.",
+    "criteria": ["3+ sections with different divider shapes", "Smooth visual transitions", "Content remains readable"],
+    "starter": ".section-1 { clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }\n.section-2 { clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 85%); }"
+  },
+  {
+    "id": "clip-animated-gallery",
+    "title": "Animated Shape Gallery",
+    "difficulty": "advanced",
+    "description": "Create a gallery where images cycle through different clip-path shapes in a continuous animation.",
+    "hint": "Use @keyframes with clip-path changes at different percentages, keeping vertex counts consistent.",
+    "criteria": ["Animation with 4+ shape keyframes", "Matching vertex counts throughout", "Infinite loop with easing"],
+    "starter": "@keyframes shapeShift {\n  0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }\n  25% { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }\n  /* More keyframes */\n}"
+  }
+]

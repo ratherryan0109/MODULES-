@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is grid-auto-flow in CSS Grid?", "answer": "grid-auto-flow controls how auto-placed grid items are placed in the grid, either by row, column, or dense packing." },
+    { "question": "What is the default value of grid-auto-flow?", "answer": "The default value is row, meaning items are placed filling each row from left to right before moving to the next row." },
+    { "question": "What does grid-auto-flow: column do?", "answer": "Items are placed filling each column from top to bottom before moving to the next column." },
+    { "question": "What does grid-auto-flow: dense do?", "answer": "dense enables a packing algorithm that fills gaps in the grid by moving later items earlier when space is available." },
+    { "question": "What is the implicit grid?", "answer": "The implicit grid consists of tracks auto-generated when items are placed outside the explicitly defined grid rows or columns." },
+    { "question": "How does grid-auto-flow differ from grid-template columns/rows?", "answer": "grid-template defines the explicit grid structure, while grid-auto-flow controls the placement direction of auto-placed items." },
+    { "question": "Can grid-auto-flow be used with both row and column keywords together?", "answer": "No, row and column are mutually exclusive. You cannot set both simultaneously." },
+    { "question": "What happens to items without explicit placement in a grid?", "answer": "They are auto-placed by the grid algorithm, filling rows (or columns) sequentially according to grid-auto-flow." },
+    { "question": "What is auto-placement in CSS Grid?", "answer": "Auto-placement is the automatic positioning of grid items that do not have explicit grid-row or grid-column properties." },
+    { "question": "Does grid-auto-flow affect items with explicit placement?", "answer": "No, items with explicit grid-row/grid-column are placed exactly where specified, regardless of grid-auto-flow." }
+  ],
+  "intermediate": [
+    { "question": "How does grid-auto-flow: dense change the visual order of items?", "answer": "dense fills gaps by moving later items into earlier empty cells, which changes visual order but not DOM order." },
+    { "question": "What is the difference between grid-auto-flow: row and grid-auto-flow: row dense?", "answer": "row places items sequentially row by row leaving gaps. row dense fills gaps aggressively to pack items tightly." },
+    { "question": "How does grid-auto-flow interact with grid-auto-rows and grid-auto-columns?", "answer": "grid-auto-flow controls placement direction, while grid-auto-rows and grid-auto-columns size the implicit tracks created during auto-placement." },
+    { "question": "What happens when grid-auto-flow: column is used with a fixed number of rows?", "answer": "Items fill down each column until all rows are filled, then move to the next column." },
+    { "question": "Can grid-auto-flow create new implicit columns?", "answer": "Yes, when grid-auto-flow: column is set and items exceed explicit columns, new implicit columns are created as needed." },
+    { "question": "How does dense packing affect accessibility?", "answer": "dense changes visual order from source order, which can confuse screen reader users who navigate by DOM order." },
+    { "question": "What is the visual impact of grid-auto-flow: row vs column on responsive layouts?", "answer": "row layout fills left-to-right first, making it natural for horizontal layouts. column fills top-to-bottom first, better for vertical lists." },
+    { "question": "Can you combine grid-auto-flow with grid-template-areas?", "answer": "Yes, named areas are placed first, then auto-flow fills remaining cells according to the auto-flow direction." },
+    { "question": "How does grid-auto-flow work with spanning items?", "answer": "Auto-flow respects spanning items but may leave gaps when a spanning item cannot fit, unless dense is specified." },
+    { "question": "What is the interaction between grid-auto-flow and the order property?", "answer": "Items with lower order values are placed earlier in the auto-placement algorithm, regardless of their position in the DOM." }
+  ],
+  "advanced": [
+    { "question": "How does grid-auto-flow: dense affect the grid placement algorithm's runtime complexity?", "answer": "Dense packing requires a more complex placement algorithm that backfills gaps, which can be O(n^2) in worst case for large grids." },
+    { "question": "What happens when grid-auto-flow is set on a subgrid?", "answer": "Subgrid inherits the parent grid's auto-flow behavior but can override it. Placement within the subgrid follows its own auto-flow rules." },
+    { "question": "How does grid-auto-flow interact with masonry layout mode?", "answer": "When grid-template-rows: masonry is set, grid-auto-flow controls the direction items stack within the masonry layout." },
+    { "question": "What is the behavior of grid-auto-flow when all items have explicit placement?", "answer": "grid-auto-flow has no effect because there are no items requiring auto-placement. It only affects items without explicit row/column." },
+    { "question": "How does grid-auto-flow work with CSS Grid's spanning algorithm for items that span beyond explicit tracks?", "answer": "When an item spans beyond explicit tracks, implicit tracks are created. The auto-flow algorithm creates these tracks in the direction specified by grid-auto-flow." },
+    { "question": "Can grid-auto-flow be animated or transitioned?", "answer": "No, grid-auto-flow is not animatable since discrete keyword changes do not support smooth interpolation." },
+    { "question": "What is the interaction between grid-auto-flow and grid placement with named line references?", "answer": "Named lines from the explicit grid are not available in implicit tracks. Auto-flow handles placement without named line references." },
+    { "question": "How does grid-auto-flow: dense handle items with different spanning sizes?", "answer": "The algorithm sorts items by span size and places larger-spanning items first, then fills remaining gaps with smaller items for optimal packing." },
+    { "question": "What is the difference between grid-auto-flow: dense and using any order on items?", "answer": "dense fills gaps with the next suitable item regardless of order. The order property changes the sequence in which items are placed, but gaps may still remain." },
+    { "question": "How does grid-auto-flow interact with the grid template shorthand when resets occur?", "answer": "The grid shorthand can reset grid-auto-flow to its initial value (row) if not explicitly specified, which can cause unexpected layout changes." }
+  ]
+}

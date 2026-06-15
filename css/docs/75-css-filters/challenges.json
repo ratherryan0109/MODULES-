@@ -1,0 +1,38 @@
+[
+  {
+    "id": "filter-grayscale",
+    "title": "Grayscale Hover Effect",
+    "difficulty": "beginner",
+    "description": "Create a gallery of images that are grayscale by default and transition to full color on hover.",
+    "hint": "Use filter: grayscale(1) on the default state and grayscale(0) on :hover, with a transition.",
+    "criteria": ["Images start grayscale", "Smooth transition to color on hover", "transition property used"],
+    "starter": ".gallery img {\n  filter: grayscale(1);\n  transition: filter 0.3s;\n}\n.gallery img:hover {\n  /* Your hover filter here */\n}"
+  },
+  {
+    "id": "filter-glassmorphism",
+    "title": "Glassmorphism Card",
+    "difficulty": "intermediate",
+    "description": "Create a glass-effect card using backdrop-filter with a colorful background behind it.",
+    "hint": "Use backdrop-filter: blur(10px) saturate(1.4) on a semi-transparent card over a gradient background.",
+    "criteria": ["backdrop-filter applied", "Semi-transparent background", "Colorful background behind card"],
+    "starter": ".card {\n  background: rgba(255,255,255,0.1);\n  border: 1px solid rgba(255,255,255,0.2);\n  /* Add backdrop-filter here */\n}"
+  },
+  {
+    "id": "filter-photo-editor",
+    "title": "Photo Filter Presets",
+    "difficulty": "advanced",
+    "description": "Build an interactive photo editor with preset filter buttons (vintage, noir, vibrant, etc.) that apply multiple combined filters.",
+    "hint": "Define preset objects with multiple filter values and apply them all at once to the image.",
+    "criteria": ["At least 4 presets", "Each preset uses 3+ combined filters", "Live preview updates"],
+    "starter": "const presets = {\n  vintage: { brightness: 0.9, contrast: 1.1, sepia: 0.5 },\n  // Add more presets\n};"
+  },
+  {
+    "id": "filter-animated",
+    "title": "Animated Filter Carousel",
+    "difficulty": "intermediate",
+    "description": "Create a CSS keyframe animation that cycles through different filter combinations on an image.",
+    "hint": "Use @keyframes with filter values at different percentages (0%, 25%, 50%, 75%, 100%).",
+    "criteria": ["Animation with at least 4 keyframe stops", "Cycles through different filters", "Easing function applied"],
+    "starter": "@keyframes filterCycle {\n  0% { filter: none; }\n  25% { filter: /* your filter */; }\n  /* Add more keyframes */\n}"
+  }
+]

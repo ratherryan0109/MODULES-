@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "title": "Add Animated Skill Bars",
+    "difficulty": "Easy",
+    "description": "Replace the skill tags with animated progress bars that animate to their percentage width on page load.",
+    "requirements": [
+      "Each skill has a proficiency percentage",
+      "Animate width from 0% to the target percentage",
+      "Use CSS transitions with a delay per bar",
+      "Ensure accessibility with aria-valuenow attributes"
+    ],
+    "hints": ["Use a container div with a colored inner div for the bar", "Set width via CSS or JS on page load", "Use aria-valuenow, aria-valuemin, aria-valuemax on the bar"],
+    "solution": "Create skill bars as <div class='skill-bar'><div class='skill-fill' style='width: 85%' role='progressbar' aria-valuenow='85' aria-valuemin='0' aria-valuemax='100'></div></div>. Animate with transition: width 1s ease."
+  },
+  {
+    "id": 2,
+    "title": "Implement a Lightbox for Project Images",
+    "difficulty": "Medium",
+    "description": "Add a modal lightbox that opens when clicking project images, with keyboard navigation and ARIA dialog roles.",
+    "requirements": [
+      "Click on project image opens a full-size overlay",
+      "Overlay has close button and ESC key support",
+      "Focus is trapped within the lightbox",
+      "ARIA role='dialog' and aria-modal='true'",
+      "Smooth open/close transition"
+    ],
+    "hints": ["Use position: fixed for the overlay", "Use :focus-visible for keyboard focus", "Use aria-hidden on the lightbox to toggle visibility"],
+    "solution": "Create a fixed overlay with a centered image. On click: set aria-hidden='false', populate image src. On ESC or close click: set aria-hidden='true'. Use CSS opacity/transform for transition."
+  },
+  {
+    "id": 3,
+    "title": "Add Scroll-Based Active Navigation Highlighting",
+    "difficulty": "Hard",
+    "description": "Highlight the current section in the navigation as the user scrolls through the page using IntersectionObserver.",
+    "requirements": [
+      "Each section has an id matching the nav link href",
+      "IntersectionObserver tracks visible sections",
+      "Active nav link gets a visual indicator (underline/color)",
+      "Handle multiple visible sections by choosing the most relevant",
+      "Smooth scroll on nav click (native scroll-behavior)"
+    ],
+    "hints": ["Use IntersectionObserver with threshold: 0.3", "Map section IDs to nav links with querySelector", "Add/remove an 'active' class on nav items"],
+    "solution": "Observe all sections. When a section intersects at 30% visibility, add 'active' class to the corresponding nav link. Remove from others. CSS: .nav-menu a.active { color: var(--accent); border-bottom: 2px solid var(--accent); }"
+  }
+]

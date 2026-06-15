@@ -1,0 +1,247 @@
+﻿{
+    "module":  "23-css-overflow",
+    "title":  "CSS Overflow",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "What is the default value of the CSS overflow property?",
+                          "options":  [
+                                          "hidden",
+                                          "scroll",
+                                          "visible",
+                                          "auto"
+                                      ],
+                          "explanation":  "The default value of overflow is visible, meaning content that overflows the box will be rendered outside the element\u0027s boundaries.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  2,
+                          "question":  "Which overflow value always shows scrollbars regardless of content size?",
+                          "options":  [
+                                          "auto",
+                                          "scroll",
+                                          "visible",
+                                          "hidden"
+                                      ],
+                          "explanation":  "overflow: scroll always displays scrollbars, even if the content fits within the container.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What does overflow: hidden do?",
+                          "options":  [
+                                          "Hides the element completely",
+                                          "Clips overflow content without scrollbars",
+                                          "Hides scrollbars but keeps scrolling functional",
+                                          "Makes the element invisible"
+                                      ],
+                          "explanation":  "overflow: hidden clips any content that overflows the box and does not provide scrollbars to access the clipped content.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "Which overflow value only shows scrollbars when content overflows?",
+                          "options":  [
+                                          "scroll",
+                                          "visible",
+                                          "auto",
+                                          "hidden"
+                                      ],
+                          "explanation":  "overflow: auto shows scrollbars only when the content exceeds the container dimensions, keeping the interface clean when content fits.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  5,
+                          "question":  "What three CSS properties are needed to create a text ellipsis?",
+                          "options":  [
+                                          "overflow, text-overflow, font-size",
+                                          "white-space, overflow, text-overflow",
+                                          "overflow, text-align, text-overflow",
+                                          "width, overflow, text-indent"
+                                      ],
+                          "explanation":  "Creating a text ellipsis requires: white-space: nowrap (prevents wrapping), overflow: hidden (clips excess), and text-overflow: ellipsis (adds ...).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  6,
+                          "question":  "What is the difference between overflow: hidden and overflow: clip?",
+                          "options":  [
+                                          "There is no difference",
+                                          "Clip prevents programmatic scrolling, hidden doesn\u0027t",
+                                          "Hidden prevents programmatic scrolling, clip doesn\u0027t",
+                                          "Clip only works on block elements"
+                                      ],
+                          "explanation":  "Both clip content visually, but clip also prevents programmatic scrolling (e.g., via JavaScript scrollTop).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  7,
+                          "question":  "Which property can be used to prevent scroll chaining in nested scrollable areas?",
+                          "options":  [
+                                          "overflow-anchor",
+                                          "overscroll-behavior",
+                                          "scroll-behavior",
+                                          "scroll-snap-type"
+                                      ],
+                          "explanation":  "overscroll-behavior: contain prevents scroll chaining, where scrolling past the boundary of one element scrolls the parent element.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  8,
+                          "question":  "What happens when overflow-x is set to scroll and overflow-y is set to visible?",
+                          "options":  [
+                                          "Both become scroll",
+                                          "overflow-y is forced to auto",
+                                          "The declaration is invalid",
+                                          "overflow-y is forced to scroll or auto"
+                                      ],
+                          "explanation":  "If one axis is set to visible and the other to a non-visible value, the visible value is forced to auto/scroll to avoid negative margin collapsing issues.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  9,
+                          "question":  "Which property helps with breaking long words that cause overflow?",
+                          "options":  [
+                                          "word-spacing",
+                                          "overflow-wrap",
+                                          "text-indent",
+                                          "line-break"
+                                      ],
+                          "explanation":  "overflow-wrap: break-word (or anywhere) allows long words to break and wrap to the next line, preventing horizontal overflow.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  10,
+                          "question":  "How can you make an image responsive and prevent overflow?",
+                          "options":  [
+                                          "height: auto",
+                                          "width: 100%",
+                                          "max-width: 100%",
+                                          "overflow: hidden on image"
+                                      ],
+                          "explanation":  "max-width: 100% ensures the image never exceeds its container width while maintaining aspect ratio when combined with height: auto.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  11,
+                          "question":  "What does scrollbar-gutter property do?",
+                          "options":  [
+                                          "Changes scrollbar color",
+                                          "Reserves space for scrollbar to prevent layout shift",
+                                          "Hides scrollbars",
+                                          "Changes scrollbar width"
+                                      ],
+                          "explanation":  "scrollbar-gutter reserves space for the scrollbar even when it\u0027s not visible, preventing content from shifting when scrollbars appear/disappear.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  12,
+                          "question":  "Why might position: sticky not work inside an overflow: hidden container?",
+                          "options":  [
+                                          "Sticky doesn\u0027t work with hidden overflow",
+                                          "The container clips the sticky behavior",
+                                          "Sticky requires overflow: visible",
+                                          "Sticky is disabled by hidden"
+                                      ],
+                          "explanation":  "Sticky positioning doesn\u0027t work inside containers with overflow: hidden, auto, or scroll because the overflow creates a new scroll container.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  13,
+                          "question":  "Which CSS property controls whether scroll behavior is smooth or instant?",
+                          "options":  [
+                                          "scroll-behavior",
+                                          "overflow-behavior",
+                                          "smooth-scroll",
+                                          "scroll-smooth"
+                                      ],
+                          "explanation":  "scroll-behavior: smooth enables smooth scrolling for anchor links and scroll operations, while auto provides instant jumping.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  14,
+                          "question":  "What is a common cause of unexpected horizontal scrollbars on web pages?",
+                          "options":  [
+                                          "font-size too large",
+                                          "An element with fixed width exceeding viewport",
+                                          "Paragraph text wrapping",
+                                          "Image height too large"
+                                      ],
+                          "explanation":  "Fixed-width elements that are wider than the viewport cause horizontal scrollbars. Using max-width instead of width prevents this.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  15,
+                          "question":  "How do you create a scrollable container that is keyboard accessible?",
+                          "options":  [
+                                          "Set tabindex=\"0\" on the container",
+                                          "Add a button to scroll",
+                                          "Use JavaScript scroll methods",
+                                          "Set role=\"button\""
+                                      ],
+                          "explanation":  "Adding tabindex=\"0\" makes a scrollable div focusable via keyboard, allowing users to use arrow keys to scroll within it.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  16,
+                          "question":  "What does the contain property with value paint do for overflow?",
+                          "options":  [
+                                          "Improves paint performance by clipping overflow",
+                                          "Adds paint to the element",
+                                          "Creates a paint effect on overflow",
+                                          "Removes paint from overflow"
+                                      ],
+                          "explanation":  "contain: paint acts similarly to overflow: hidden but is a performance optimization that tells the browser the element\u0027s children won\u0027t paint outside its bounds.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  17,
+                          "question":  "Which value of overflow-wrap allows breaking in the middle of a word?",
+                          "options":  [
+                                          "break-word",
+                                          "anywhere",
+                                          "normal",
+                                          "break-all"
+                                      ],
+                          "explanation":  "overflow-wrap: anywhere allows the browser to break a word at any point if needed. break-word only breaks if the entire word doesn\u0027t fit.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  18,
+                          "question":  "What happens to margin collapse with overflow: auto or hidden?",
+                          "options":  [
+                                          "Margins collapse normally",
+                                          "Margin collapse is prevented",
+                                          "Only top margins collapse",
+                                          "Margins double"
+                                      ],
+                          "explanation":  "Setting overflow to anything other than visible (e.g., auto or hidden) on an element prevents its margins from collapsing with its children.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "Which is the most performant overflow value for paint?",
+                          "options":  [
+                                          "visible",
+                                          "auto",
+                                          "hidden",
+                                          "scroll"
+                                      ],
+                          "explanation":  "overflow: hidden can improve performance by reducing the area the browser needs to paint, as it knows content won\u0027t paint outside the box.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  20,
+                          "question":  "What is the recommended ARIA role for a scrollable container?",
+                          "options":  [
+                                          "scrollbar",
+                                          "region",
+                                          "navigation",
+                                          "main"
+                                      ],
+                          "explanation":  "role=\"region\" with an aria-label helps screen reader users identify and navigate to scrollable areas on the page.",
+                          "correctAnswer":  1
+                      }
+                  ]
+}

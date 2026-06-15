@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"question":"What is an ordered list and when should you use it?","answer":"An ordered list (<ol>) displays items in a numbered sequence. Use it when the order of items matters, like step-by-step instructions, rankings, or timelines."},
+    {"question":"How do you create a basic ordered list?","answer":"Use <ol> with <li> children: <ol><li>First</li><li>Second</li></ol>. The browser automatically numbers items starting at 1."},
+    {"question":"What are the five numbering types available for ordered lists?","answer":"1 (decimal), A (uppercase letters), a (lowercase letters), I (uppercase Roman numerals), i (lowercase Roman numerals)."},
+    {"question":"How do you start an ordered list at a specific number?","answer":"Use the start attribute: <ol start='5'> begins numbering at 5."},
+    {"question":"What does the reversed attribute do?","answer":"The reversed attribute (boolean) displays items in descending order. A list of 3 items shows 3, 2, 1."},
+    {"question":"How do you override the number of a specific list item?","answer":"Use the value attribute on <li>: <li value='10'> sets that item to 10 and subsequent items continue from 11."},
+    {"question":"Can you nest ordered lists?","answer":"Yes, place a new <ol> inside an <li> element to create nested ordered lists for sub-steps."},
+    {"question":"What is the default marker style for ordered lists?","answer":"The default is 'decimal' — standard Arabic numerals (1, 2, 3...)."},
+    {"question":"How do you use letters instead of numbers?","answer":"Set type='A' for uppercase letters (A, B, C) or type='a' for lowercase letters (a, b, c)."},
+    {"question":"What is the difference between <ol> and <ul>?","answer":"<ol> (ordered) uses numbers for sequential items where order matters. <ul> (unordered) uses bullets for items where order doesn't matter."}
+  ],
+  "intermediate": [
+    {"question":"How does the value attribute affect subsequent list items?","answer":"Setting value='10' on an <li> changes that item's number to 10, and every following item continues from 11, 12, etc. The counter is permanently changed for the remainder of the list."},
+    {"question":"What happens with type='A' and start='27'?","answer":"Roman/letter types wrap or extend. 'A' with start=27 produces 'AA' (27th letter sequence). Different browsers may handle this differently."},
+    {"question":"How do you create legal-style nested numbering (1, 1.1, 1.2) with CSS?","answer":"Use CSS counters: counter-reset on ol, counter-increment on li, and content: counters(section, '.') in ::before to generate multi-level decimal numbering."},
+    {"question":"Can you mix ordered and unordered lists?","answer":"Yes. Nest a <ul> inside an <ol> <li> or vice versa. This is useful for steps that have bullet-point sub-items."},
+    {"question":"How does the reversed attribute determine the starting number?","answer":"The browser counts the total number of <li> elements in the list and uses that as the starting number, counting down from there."},
+    {"question":"What is the difference between list-style-type on <ol> vs the type attribute?","answer":"Both control the numbering style. The type attribute is HTML and semantic. list-style-type is CSS and overrides type when specified. type is a presentational attribute."},
+    {"question":"How do you style the number portion of list items differently from the text?","answer":"Use the ::marker pseudo-element: li::marker { color: red; font-weight: bold; }. This targets only the number/bullet."},
+    {"question":"How do screen readers handle nested ordered lists?","answer":"Screen readers announce each nesting level, e.g., 'Level 1, item 1 of 2, Level 2, item 1 of 3'. This can be verbose with deep nesting."},
+    {"question":"What is the 'compact' attribute on <ol> (deprecated)?","answer":"The compact attribute (deprecated in HTML4, obsolete in HTML5) was used to reduce spacing. It should not be used — use CSS margin/padding instead."},
+    {"question":"How does the start attribute interact with reversed?","answer":"When both are used, the list starts at the start value and counts down. <ol start='10' reversed> shows 10, 9, 8... (assuming 3 items)."}
+  ],
+  "advanced": [
+    {"question":"How does the HTML list numbering algorithm work in the browser?","answer":"The browser maintains a counter per list level. Each <ol> creates a new counter context. The counter increments per <li>. The value attribute overrides the counter. reversed initializes the counter to the number of items and decrements. Nested lists create sub-counters."},
+    {"question":"What is the CSS 'counter-set' property and how does it differ from 'counter-reset'?","answer":"counter-set sets a counter to a specific value regardless of its previous state. counter-reset creates a new counter starting at a value. counter-set is useful for overriding counters without creating new scopes."},
+    {"question":"How do you implement a 'skip' in numbering using HTML/CSS without the value attribute?","answer":"You cannot skip numbering in HTML without the value attribute. Using CSS, you could hide certain items (display: none) but they'd still be counted. JavaScript would be needed for true visual skipping with hidden items."},
+    {"question":"How does the 'display: list-item' CSS property interact with ordered lists?","answer":"Setting display: list-item on any element makes it generate a marker box, similar to <li>. Combined with list-style-type, you can turn any element into a simulated list item, but it won't participate in the browser's list counter."},
+    {"question":"What is the Shadow DOM behavior for ordered list counters?","answer":"Each Shadow DOM root has its own counter scope. Ordered lists inside Shadow DOM do not share counters with the light DOM. This prevents counter conflicts in custom elements."},
+    {"question":"How do you create an ordered list with leading zeros (01, 02, 03)?","answer":"HTML has no built-in leading zero format. Use CSS counters with padding: ol li::before { content: counter(num, decimal-leading-zero) '. '; } or JavaScript to pad numbers."},
+    {"question":"What accessibility concerns exist with CSS-only custom numbering?","answer":"CSS counters with display: none on the actual <ol> list-style can hide the semantic numbering from screen readers. Always keep the underlying <ol> accessible or use aria-describedby to provide numbering context."},
+    {"question":"How do browser extensions and user stylesheets affect ordered list rendering?","answer":"User stylesheets can override list-style-type, margins, and padding. Some accessibility extensions force list markers to be more visible. Ad blockers might hide entire lists if they match certain patterns."},
+    {"question":"What is the interaction between ordered lists and the CSS 'content-visibility' property?","answer":"content-visibility: auto can lazy-render off-screen list items. This may cause incorrect counter values if the browser doesn't count items that aren't rendered, though modern browsers handle this correctly."},
+    {"question":"How does 'column-count' on ordered lists interact with numbering across columns?","answer":"Numbering continues sequentially across CSS multi-column layouts. Column 1 has items 1-3, column 2 has items 4-6. There's no built-in way to restart or customize numbering per column."}
+  ]
+}

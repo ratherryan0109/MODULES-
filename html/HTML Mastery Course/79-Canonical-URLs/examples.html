@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 79: Canonical URL Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h2 { color: #2c3e50; border-bottom: 2px solid #e74c3c; padding-bottom: 8px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    code { font-family: 'Courier New', monospace; }
+    .output { background: #f0f8ff; padding: 15px; border-left: 4px solid #3498db; margin: 10px 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; }
+    .warning { background: #f8d7da; border-left: 4px solid #dc3545; padding: 10px 15px; margin: 10px 0; }
+    .scenario { border: 1px solid #e0e0e0; padding: 15px; border-radius: 5px; margin: 10px 0; background: #fafafa; }
+    .url-demo { background: #e8f0fe; padding: 8px 12px; border-radius: 4px; font-family: monospace; margin: 5px 0; }
+    .tag-demo { background: #e8f5e9; padding: 8px 12px; border-radius: 4px; margin: 5px 0; }
+  </style>
+</head>
+<body>
+
+<h1>Canonical URL Examples</h1>
+<p>Each example below shows a real-world scenario where canonical URLs are essential.</p>
+
+<!-- Example 1: Basic Self-Referencing Canonical -->
+<div class="example">
+  <h2>Example 1: Self-Referencing Canonical</h2>
+  <p>Every page should include a canonical tag pointing to itself. This is the baseline implementation.</p>
+
+  <div class="scenario">
+    <p><strong>Current page URL:</strong></p>
+    <div class="url-demo">https://example.com/blog/canonical-urls</div>
+    <p><strong>Canonical tag in &lt;head&gt;:</strong></p>
+    <div class="tag-demo">&lt;link rel="canonical" href="https://example.com/blog/canonical-urls" /&gt;</div>
+  </div>
+
+  <pre>&lt;head&gt;
+  &lt;title&gt;Canonical URLs Guide&lt;/title&gt;
+  &lt;link rel="canonical" href="https://example.com/blog/canonical-urls" /&gt;
+&lt;/head&gt;</pre>
+
+  <div class="note">
+    <strong>Why it matters:</strong> Self-referencing canonicals prevent dilution from tracking parameters (e.g., ?utm_source=twitter) and ensure search engines always know which URL is the authoritative version.
+  </div>
+</div>
+
+<!-- Example 2: WWW vs Non-WWW -->
+<div class="example">
+  <h2>Example 2: WWW vs. Non-WWW Canonicalization</h2>
+  <p>Choose one domain version (www or non-www) and consistently canonicalize to it.</p>
+
+  <div class="scenario">
+    <p><strong>Scenario:</strong> The site is accessible via both:</p>
+    <div class="url-demo">https://www.example.com/page</div>
+    <div class="url-demo">https://example.com/page</div>
+    <p><strong>Preferred (with canonical tag on www version):</strong></p>
+    <div class="tag-demo">&lt;link rel="canonical" href="https://example.com/page" /&gt;</div>
+  </div>
+
+  <pre>&lt;!-- On https://www.example.com/page --&gt;
+&lt;link rel="canonical" href="https://example.com/page" /&gt;
+
+&lt;!-- On https://example.com/page (self-referencing) --&gt;
+&lt;link rel="canonical" href="https://example.com/page" /&gt;</pre>
+
+  <div class="note">
+    <strong>Best Practice:</strong> Also implement a 301 redirect from www to non-www (or vice versa) at the server level. The canonical tag serves as a backup signal, while the redirect provides the definitive user experience.
+  </div>
+</div>
+
+<!-- Example 3: URL Parameters -->
+<div class="example">
+  <h2>Example 3: Filtering and Sorting Parameters</h2>
+  <p>E-commerce and listing pages often have multiple URLs for the same content due to filters and sorting.</p>
+
+  <div class="scenario">
+    <p><strong>Multiple URLs for the same product listing:</strong></p>
+    <div class="url-demo">https://example.com/shoes</div>
+    <div class="url-demo">https://example.com/shoes?color=black</div>
+    <div class="url-demo">https://example.com/shoes?sort=price</div>
+    <div class="url-demo">https://example.com/shoes?page=2</div>
+    <p><strong>Each filtered page should canonical to the master category page:</strong></p>
+    <div class="tag-demo">&lt;link rel="canonical" href="https://example.com/shoes" /&gt;</div>
+  </div>
+
+  <pre>&lt;!-- On https://example.com/shoes?color=black --&gt;
+&lt;link rel="canonical" href="https://example.com/shoes" /&gt;
+
+&lt;!-- On https://example.com/shoes?sort=price --&gt;
+&lt;link rel="canonical" href="https://example.com/shoes" /&gt;</pre>
+
+  <div class="warning">
+    <strong>Important:</strong> For paginated content (page=2, page=3), consider using rel="next" and rel="prev" in addition to canonical. Some SEO experts recommend canonicalizing each paginated page to itself to preserve their individual value.
+  </div>
+</div>
+
+<!-- Example 4: HTTP vs HTTPS -->
+<div class="example">
+  <h2>Example 4: HTTP vs. HTTPS Canonicalization</h2>
+  <p>Always canonicalize to the HTTPS version for security and SEO best practices.</p>
+
+  <div class="scenario">
+    <p><strong>If both HTTP and HTTPS are accessible (shouldn't happen, but legacy sites):</strong></p>
+    <div class="url-demo">http://example.com/page</div>
+    <div class="url-demo">https://example.com/page</div>
+    <p><strong>Canonical to HTTPS:</strong></p>
+    <div class="tag-demo">&lt;link rel="canonical" href="https://example.com/page" /&gt;</div>
+  </div>
+
+  <pre>&lt;!-- On http://example.com/page --&gt;
+&lt;link rel="canonical" href="https://example.com/page" /&gt;
+
+&lt;!-- On https://example.com/page --&gt;
+&lt;link rel="canonical" href="https://example.com/page" /&gt;</pre>
+
+  <div class="note">
+    <strong>Note:</strong> In practice, you should implement HSTS (HTTP Strict Transport Security) and 301 redirect all HTTP traffic to HTTPS. The canonical tag is an additional safety measure.
+  </div>
+</div>
+
+<!-- Example 5: Trailing Slash -->
+<div class="example">
+  <h2>Example 5: Trailing Slash Consistency</h2>
+  <p>Choose whether your URLs end with a trailing slash or not, and canonicalize accordingly.</p>
+
+  <div class="scenario">
+    <p><strong>Both may be accessible depending on server configuration:</strong></p>
+    <div class="url-demo">https://example.com/about</div>
+    <div class="url-demo">https://example.com/about/</div>
+    <p><strong>Pick one and canonicalize:</strong></p>
+    <div class="tag-demo">&lt;link rel="canonical" href="https://example.com/about/" /&gt;</div>
+  </div>
+
+  <pre>&lt;!-- On https://example.com/about (no trailing slash) --&gt;
+&lt;link rel="canonical" href="https://example.com/about/" /&gt;
+
+&lt;!-- On https://example.com/about/ (with trailing slash) --&gt;
+&lt;link rel="canonical" href="https://example.com/about/" /&gt;</pre>
+</div>
+
+<!-- Example 6: Cross-Domain Canonical -->
+<div class="example">
+  <h2>Example 6: Cross-Domain Canonical for Syndicated Content</h2>
+  <p>When content is republished on another site, use cross-domain canonicals to credit the original source.</p>
+
+  <div class="scenario">
+    <p><strong>Original article on Site A:</strong></p>
+    <div class="url-demo">https://original-site.com/original-article</div>
+    <p><strong>Syndicated copy on Site B:</strong></p>
+    <div class="url-demo">https://syndicator-site.com/blog/original-article</div>
+    <p><strong>Site B's canonical points to Site A:</strong></p>
+    <div class="tag-demo">&lt;link rel="canonical" href="https://original-site.com/original-article" /&gt;</div>
+  </div>
+
+  <pre>&lt;!-- On syndicated copy at https://syndicator-site.com/blog/original-article --&gt;
+&lt;link rel="canonical" href="https://original-site.com/original-article" /&gt;</pre>
+
+  <div class="note">
+    <strong>Why:</strong> Cross-domain canonicals ensure that the original publisher receives the SEO credit for the content, even though it appears on other sites. This is standard practice for guest posts and syndicated content.
+  </div>
+</div>
+
+<!-- Example 7: Session IDs in URLs -->
+<div class="example">
+  <h2>Example 7: Session ID Parameters</h2>
+  <p>E-commerce and membership sites often append session IDs to URLs, creating many duplicate URLs.</p>
+
+  <div class="scenario">
+    <p><strong>Each user visit generates a unique URL:</strong></p>
+    <div class="url-demo">https://example.com/products?sid=a1b2c3</div>
+    <div class="url-demo">https://example.com/products?sid=d4e5f6</div>
+    <div class="url-demo">https://example.com/products?sid=g7h8i9</div>
+    <p><strong>All canonicalize to the base URL:</strong></p>
+    <div class="tag-demo">&lt;link rel="canonical" href="https://example.com/products" /&gt;</div>
+  </div>
+
+  <pre>&lt;!-- On https://example.com/products?sid=a1b2c3 --&gt;
+&lt;link rel="canonical" href="https://example.com/products" /&gt;
+
+&lt;!-- On https://example.com/products?sid=d4e5f6 --&gt;
+&lt;link rel="canonical" href="https://example.com/products" /&gt;</pre>
+
+  <div class="warning">
+    <strong>Best Practice:</strong> Avoid session IDs in URLs altogether. Use cookies or server-side sessions instead. If you must use URL-based sessions, always include a self-referencing canonical without the session ID.
+  </div>
+</div>
+
+<!-- Example 8: Printer-Friendly Pages -->
+<div class="example">
+  <h2>Example 8: Printer-Friendly Versions</h2>
+  <p>Printer-friendly versions of pages should canonicalize to the standard version to avoid duplicate content.</p>
+
+  <div class="scenario">
+    <p><strong>Standard and print versions:</strong></p>
+    <div class="url-demo">https://example.com/article</div>
+    <div class="url-demo">https://example.com/article?print=1</div>
+    <p><strong>Print version canonicals to standard:</strong></p>
+    <div class="tag-demo">&lt;link rel="canonical" href="https://example.com/article" /&gt;</div>
+  </div>
+
+  <pre>&lt;!-- On https://example.com/article?print=1 --&gt;
+&lt;link rel="canonical" href="https://example.com/article" /&gt;
+
+&lt;!-- On https://example.com/article --&gt;
+&lt;link rel="canonical" href="https://example.com/article" /&gt;</pre>
+
+  <div class="note">
+    <strong>Better approach:</strong> Use CSS @media print for printer-friendly styling instead of creating a separate URL. This eliminates the duplicate content issue entirely.
+  </div>
+</div>
+
+<!-- Example 9: Canonical in HTTP Headers -->
+<div class="example">
+  <h2>Example 9: HTTP Header Canonical for PDFs</h2>
+  <p>For non-HTML resources like PDFs, use HTTP response headers to specify the canonical URL.</p>
+
+  <div class="scenario">
+    <p><strong>PDF served at multiple URLs:</strong></p>
+    <div class="url-demo">https://example.com/downloads/report.pdf</div>
+    <div class="url-demo">https://example.com/report.pdf?version=2</div>
+    <p><strong>HTTP Response Header:</strong></p>
+    <div class="tag-demo">Link: &lt;https://example.com/downloads/report.pdf&gt;; rel="canonical"</div>
+  </div>
+
+  <pre>HTTP/1.1 200 OK
+Content-Type: application/pdf
+Link: &lt;https://example.com/downloads/report.pdf&gt;; rel="canonical"</pre>
+
+  <div class="note">
+    <strong>Implementation:</strong> Configure this at the server level (Apache .htaccess, Nginx config, or in your application framework's response handling).
+  </div>
+</div>
+
+<!-- Example 10: Canonical Validation Flow -->
+<div class="example">
+  <h2>Example 10: Canonical Validation Checklist</h2>
+  <p>Use this checklist to verify your canonical implementation:</p>
+
+  <div class="scenario">
+    <ol>
+      <li><strong>Check for single canonical tag</strong> - Only one &lt;link rel="canonical"&gt; per page</li>
+      <li><strong>Verify absolute URL</strong> - Must include protocol and domain (https://example.com/page)</li>
+      <li><strong>Test URL resolves</strong> - Canonical URL must return 200 (not 404 or redirect)</li>
+      <li><strong>Match content</strong> - Canonical page content should be identical or very similar</li>
+      <li><strong>No canonical chain</strong> - A &rarr; B &rarr; C is invalid; should be A &rarr; C, B &rarr; C</li>
+      <li><strong>Consistent protocol</strong> - Use HTTPS consistently</li>
+      <li><strong>No conflicting signals</strong> - Noindex + canonical sends mixed signals</li>
+    </ol>
+  </div>
+
+  <pre>&lt;!-- VALID canonical implementation --&gt;
+&lt;link rel="canonical" href="https://example.com/preferred-page" /&gt;
+
+&lt;!-- INVALID: relative URL --&gt;
+&lt;link rel="canonical" href="/preferred-page" /&gt;
+
+&lt;!-- INVALID: trailing slash mismatch without redirect --&gt;
+&lt;link rel="canonical" href="https://example.com/preferred-page" /&gt;
+&lt;!-- ...but this URL redirects to https://example.com/preferred-page/ --&gt;
+
+&lt;!-- INVALID: chain --&gt;
+&lt;!-- Page A canonical points to Page B --&gt;
+&lt;!-- Page B canonical points to Page C --&gt;</pre>
+</div>
+
+</body>
+</html>

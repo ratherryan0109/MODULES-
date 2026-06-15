@@ -1,0 +1,248 @@
+﻿{
+    "module":  "30-css-pseudo-elements",
+    "title":  "CSS Pseudo-elements",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "What is the correct syntax for pseudo-elements?",
+                          "options":  [
+                                          "Single colon (:before)",
+                                          "Double colon (::before)",
+                                          "Dollar sign ($before)",
+                                          "Ampersand (\u0026before)"
+                                      ],
+                          "explanation":  "Pseudo-elements should use double colon syntax (::before, ::after). Single colon is for pseudo-classes.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  2,
+                          "question":  "Which property is required for ::before and ::after to work?",
+                          "options":  [
+                                          "display",
+                                          "content",
+                                          "position",
+                                          "width"
+                                      ],
+                          "explanation":  "The content property is required for ::before and ::after pseudo-elements. Without it, they won\u0027t appear.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What does ::first-letter do?",
+                          "options":  [
+                                          "Styles the first word",
+                                          "Styles the first letter of a block element",
+                                          "Styles the first line",
+                                          "Creates a first-letter drop cap automatically"
+                                      ],
+                          "explanation":  "::first-letter applies styles to the first letter of a block-level element\u0027s text content.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "Can ::before and ::after be used on void elements like \u003cimg\u003e?",
+                          "options":  [
+                                          "Yes, always",
+                                          "No, they don\u0027t work on void elements",
+                                          "Only on some browsers",
+                                          "Only if content is empty"
+                                      ],
+                          "explanation":  "Pseudo-elements don\u0027t work on void elements (img, input, br, hr, etc.) because they have no content or closing tag.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  5,
+                          "question":  "What is used to add quotation marks around a blockquote using pseudo-elements?",
+                          "options":  [
+                                          "content: \u0027â€œ\u0027 and content: \u0027â€\u0027",
+                                          "quote-before and quote-after",
+                                          "text-decoration",
+                                          "font-style"
+                                      ],
+                          "correctAnswer": 0,
+                          "explanation":  "Use ::before { content: \u0027“\u0027; } and ::after { content: \u0027”\u0027; } to add decorative quotation marks."
+                      },
+                      {
+                          "id":  6,
+                          "question":  "What does ::selection allow you to style?",
+                          "options":  [
+                                          "The selected/highlighted text",
+                                          "The selected option in a dropdown",
+                                          "The select element itself",
+                                          "CSS rule selection"
+                                      ],
+                          "explanation":  "::selection styles the portion of text that a user has highlighted or selected with their mouse or keyboard.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  7,
+                          "question":  "What properties can be styled with ::first-letter?",
+                          "options":  [
+                                          "Only font properties",
+                                          "Font, color, margin, padding, border, and background",
+                                          "Only color and size",
+                                          "All CSS properties"
+                                      ],
+                          "explanation":  "::first-letter supports font properties, color, margin, padding, border, background, and a few others. Not all CSS properties are supported.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  8,
+                          "question":  "Which pseudo-element styles the bullet or number of a list item?",
+                          "options":  [
+                                          "::bullet",
+                                          "::marker",
+                                          "::list-item",
+                                          "::number"
+                                      ],
+                          "explanation":  "::marker styles the marker box of a list item, which contains the bullet (ul) or number (ol).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  9,
+                          "question":  "Is content inserted via ::before read by screen readers?",
+                          "options":  [
+                                          "No",
+                                          "Yes, content added via CSS is read",
+                                          "Only in some browsers",
+                                          "Only if role=\u0027text\u0027 is added"
+                                      ],
+                          "explanation":  "Content generated by the content property on ::before and ::after IS announced by screen readers.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  10,
+                          "question":  "What is the difference between ::first-letter and ::first-line?",
+                          "options":  [
+                                          "They are the same",
+                                          "::first-letter styles the first character; ::first-line styles the first line",
+                                          "::first-line is for paragraphs only",
+                                          "::first-letter is deprecated"
+                                      ],
+                          "explanation":  "::first-letter targets only the first character, while ::first-line targets all text on the first line (which changes with viewport width).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  11,
+                          "question":  "What value should content have for purely decorative pseudo-elements?",
+                          "options":  [
+                                          "content: none",
+                                          "content: \u0027\u0027",
+                                          "content: \u0027 \u0027",
+                                          "content: auto"
+                                      ],
+                          "explanation":  "For decorative elements that don\u0027t add text, use an empty string: content: \u0027\u0027. This creates the element visually without adding readable content.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  12,
+                          "question":  "Can pseudo-elements be combined with pseudo-classes?",
+                          "options":  [
+                                          "No",
+                                          "Yes, e.g., .element:hover::after",
+                                          "Only ::before and ::after",
+                                          "Only on form elements"
+                                      ],
+                          "explanation":  "Pseudo-elements and pseudo-classes can be combined: .element:hover::after applies the pseudo-element only when the element is hovered.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  13,
+                          "question":  "What does ::placeholder allow you to style?",
+                          "options":  [
+                                          "The placeholder text in an input",
+                                          "The input field itself",
+                                          "A placeholder element",
+                                          "The form wrapper"
+                                      ],
+                          "explanation":  "::placeholder targets the placeholder text inside input and textarea elements.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  14,
+                          "question":  "Which pseudo-element can be used to create a tooltip?",
+                          "options":  [
+                                          "::tooltip",
+                                          "::before with content and positioning",
+                                          "::tip",
+                                          "::note"
+                                      ],
+                          "explanation":  "::before or ::after combined with positioning (absolute/relative) is commonly used to create CSS-only tooltips.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  15,
+                          "question":  "How can you create a clearfix using pseudo-elements?",
+                          "options":  [
+                                          ".cf::after { content: \u0027\u0027; display: table; clear: both; }",
+                                          ".cf::before { clear: both; }",
+                                          ".cf::after { overflow: hidden; }",
+                                          "Pseudo-elements can\u0027t be used for clearfix"
+                                      ],
+                          "explanation":  "The standard clearfix technique uses ::after with content, display: table, and clear: both to contain floated children.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  16,
+                          "question":  "What happens when you set content: attr(data-tooltip) on a pseudo-element?",
+                          "options":  [
+                                          "It copies the data-tooltip attribute value",
+                                          "It shows an error",
+                                          "It creates a tooltip automatically",
+                                          "It removes the attribute"
+                                      ],
+                          "explanation":  "The attr() function in content retrieves the value of an HTML attribute, allowing dynamic content in pseudo-elements.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  17,
+                          "question":  "Can ::first-letter be used on inline elements?",
+                          "options":  [
+                                          "Yes, always",
+                                          "No, only on block or inline-block elements",
+                                          "Only on headings",
+                                          "Only on paragraphs"
+                                      ],
+                          "explanation":  "::first-letter only works on block-level or inline-block elements. It doesn\u0027t work on pure inline elements like \u003cspan\u003e.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  18,
+                          "question":  "What does ::backdrop pseudo-element style?",
+                          "options":  [
+                                          "The background of a full-screen element",
+                                          "The back of a card",
+                                          "The backdrop of a modal",
+                                          "The body background"
+                                      ],
+                          "explanation":  "::backdrop styles the background of elements shown in full-screen mode (e.g., dialog:fullscreen, video:fullscreen).",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  19,
+                          "question":  "Which is a valid way to prevent pseudo-element content from being read by screen readers?",
+                          "options":  [
+                                          "aria-hidden=\u0027true\u0027 on the element",
+                                          "content: \u0027 \u0027 (space) instead of text",
+                                          "role=\u0027presentation\u0027 on the pseudo-element",
+                                          "It can\u0027t be prevented"
+                                      ],
+                          "explanation":  "Adding aria-hidden=\u0027true\u0027 to the parent element (not the pseudo-element) tells screen readers to ignore the element and its generated content.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  20,
+                          "question":  "What does ::slotted() do in CSS?",
+                          "options":  [
+                                          "Creates a slot in the layout",
+                                          "Styles content inserted into a Shadow DOM slot",
+                                          "Removes an element from the DOM",
+                                          "Creates a placeholder for content"
+                                      ],
+                          "explanation":  "::slotted() is used in Shadow DOM to select content that is inserted into a \u003cslot\u003e element.",
+                          "correctAnswer":  1
+                      }
+                  ]
+}
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Parallax - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;padding:30px;background:#0f0f1a;color:#e0e0e0}
+.container{max-width:800px;margin:0 auto}
+h1{color:#ffd700}.subtitle{color:#aaa;margin-bottom:16px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.panel{background:#1a1a2e;border-radius:10px;padding:16px;border:1px solid #2a2a4a}
+.panel h2{color:#00d4ff;font-size:1rem;margin-bottom:8px}
+.ctrl{margin-bottom:10px}
+.ctrl label{display:block;color:#ccc;margin-bottom:2px;font-size:0.8rem}
+.ctrl input{width:100%;padding:5px 8px;border:1px solid #333;border-radius:5px;background:#0a0a1a;color:#e0e0e0}
+.ctrl input[type=range]{padding:0}
+.preview{position:relative;height:400px;overflow-y:auto;perspective:var(--persp);border-radius:8px;background:#12122a}
+.bg-layer{position:absolute;top:0;left:0;right:0;height:200%;background:linear-gradient(180deg,#1a1a2e,#3b82f6,#8b5cf6);transform:translateZ(var(--bgZ)) scale(var(--bgScale));pointer-events:none}
+.mid-layer{position:absolute;top:50px;left:10%;width:80px;height:80px;background:#f59e0b;border-radius:50%;transform:translateZ(var(--midZ)) scale(var(--midScale));opacity:0.5}
+.fg-content{position:relative;padding:60px 20px;transform:translateZ(0);background:rgba(15,15,26,0.85);margin:150px 20px 200px;border-radius:12px;text-align:center;color:white;min-height:300px}
+.code{background:#0a0a1a;padding:12px;border-radius:8px;margin-top:12px;font-family:'Fira Code',monospace;font-size:0.8rem;color:#a8e6cf}
+</style>
+</head>
+<body>
+<div class=container>
+<h1>Parallax Playground</h1>
+<p class=subtitle>Adjust perspective and layer Z values.</p>
+<div class=controls>
+<div class=panel><h2>Main Settings</h2>
+<div class=ctrl><label>Perspective: <span id=perspV>2px</span></label><input type=range id=persp min=1 max=10 step=0.5 value=2></div>
+<div class=ctrl><label>BG Z: <span id=bgZV>-2px</span></label><input type=range id=bgZ min=-5 max=0 step=0.5 value=-2></div>
+</div>
+<div class=panel><h2>Layer Settings</h2>
+<div class=ctrl><label>Mid Z: <span id=midZV>-1px</span></label><input type=range id=midZ min=-5 max=0 step=0.5 value=-1></div>
+<div class=ctrl><label>Scale Compensation: auto</label></div>
+</div>
+</div>
+<div class=preview id=preview>
+<div class=bg-layer id=bgLayer></div>
+<div class=mid-layer id=midLayer></div>
+<div class=fg-content><h2>Parallax Demo</h2><p>Scroll to see layers move at different speeds.</p><div style="height:400px"></div></div>
+</div>
+<div class=code id=codeOut>Settings applied.</div>
+</div>
+<script>
+const preview=document.getElementById('preview'),bgLayer=document.getElementById('bgLayer'),midLayer=document.getElementById('midLayer'),persp=document.getElementById('persp'),bgZ=document.getElementById('bgZ'),midZ=document.getElementById('midZ');
+function update(){
+const p=persp.value+'px',bz=bgZ.value+'px',bs=1-Math.abs(parseFloat(bgZ.value||-2))/2+1,mz=midZ.value+'px',ms=1-Math.abs(parseFloat(midZ.value||-1))/2+1;
+document.getElementById('perspV').textContent=p;document.getElementById('bgZV').textContent=bz;document.getElementById('midZV').textContent=mz;
+preview.style.setProperty('--persp',p);
+bgLayer.style.setProperty('--bgZ',bz);bgLayer.style.setProperty('--bgScale',bs);
+midLayer.style.setProperty('--midZ',mz);midLayer.style.setProperty('--midScale',ms);
+document.getElementById('codeOut').textContent=`perspective: ${p};\nbg: translateZ(${bz}) scale(${bs.toFixed(2)})\nmid: translateZ(${mz}) scale(${ms.toFixed(2)})`;
+}
+[persp,bgZ,midZ].forEach(el=>el.addEventListener('input',update));update();
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <div> element in HTML?",
+      "answer": "<div> is a generic block-level container element with no semantic meaning. It is used to group content for styling or layout purposes."
+    },
+    {
+      "question": "What is the default display of a div?",
+      "answer": "The default display value of a div is 'block'. It starts on a new line and takes up the full available width."
+    },
+    {
+      "question": "What is the difference between a div and a span?",
+      "answer": "A div is a block-level element (starts new line, full width). A span is an inline element (flows within text, content-based width)."
+    },
+    {
+      "question": "What is 'div soup'?",
+      "answer": "Div soup is HTML with excessive, deeply nested div elements that make the code hard to read and maintain. It lacks semantic structure."
+    },
+    {
+      "question": "Can a div contain other elements?",
+      "answer": "Yes, a div can contain any other HTML elements, including other divs, paragraphs, headings, lists, images, forms, etc."
+    },
+    {
+      "question": "How do you center a div horizontally?",
+      "answer": "Set a width (or max-width) on the div and use margin: 0 auto. Example: div { max-width: 800px; margin: 0 auto; }"
+    },
+    {
+      "question": "What is a wrapper div?",
+      "answer": "A wrapper div is a container that wraps all page content, typically with max-width and margin: 0 auto to center and constrain the layout."
+    },
+    {
+      "question": "Is there a semantic replacement for <div>?",
+      "answer": "Yes. HTML5 provides semantic elements like <header>, <nav>, <main>, <section>, <article>, <aside>, and <footer>."
+    },
+    {
+      "question": "Should you use IDs or classes to style divs?",
+      "answer": "Classes should be used for styling. IDs should be used for unique identification (JavaScript hooks, anchor targets)."
+    },
+    {
+      "question": "Can you style a div with CSS?",
+      "answer": "Yes, divs can be fully styled with CSS including width, height, margin, padding, borders, backgrounds, shadows, and more."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "When would you use a div instead of a semantic element?",
+      "answer": "Use a div when no appropriate semantic element exists, such as for layout wrappers, flex/grid containers, card components, or JavaScript-driven widgets."
+    },
+    {
+      "question": "How do you create a two-column layout with divs?",
+      "answer": "Use a parent div with display: flex (or grid) and two child divs with flex: 1 (or grid columns). Use gap for spacing."
+    },
+    {
+      "question": "What is the role attribute and how does it apply to divs?",
+      "answer": "The role attribute defines the purpose of an element for assistive technologies. Add roles like role='navigation', role='banner' to divs when they replace semantic elements."
+    },
+    {
+      "question": "How do you make a div clickable with keyboard support?",
+      "answer": "Add tabindex='0' for keyboard focus, role='button' for screen readers, and handle both click and keydown events (Enter/Space)."
+    },
+    {
+      "question": "What is the difference between display: flex and display: grid when applied to a div?",
+      "answer": "Flexbox is one-dimensional (row or column). Grid is two-dimensional (rows and columns simultaneously). Both make child divs flexible layout items."
+    },
+    {
+      "question": "How do you create equal-height columns with divs?",
+      "answer": "Use display: flex on the parent div. Child divs automatically stretch to equal height. Alternatively, use CSS Grid with auto rows."
+    },
+    {
+      "question": "What is BEM naming and how does it apply to div classes?",
+      "answer": "BEM (Block Element Modifier) is a naming convention: .block__element--modifier. Example: .card__header--highlighted. It keeps div class names organized."
+    },
+    {
+      "question": "How can you make a div responsive?",
+      "answer": "Use percentage widths, max-width, media queries, and relative units (rem, em, vw). Combine with flexbox or grid for adaptive layouts."
+    },
+    {
+      "question": "What is the problem with using divs for clickable elements?",
+      "answer": "Divs are not keyboard-focusable, do not trigger on Enter/Space, and are not announced as interactive by screen readers without proper ARIA attributes."
+    },
+    {
+      "question": "How do you create a card component with divs?",
+      "answer": "Use a parent div.card with child divs for .card-header, .card-body, and .card-footer. Style each section with background, padding, and borders."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the CSS contain property affect div rendering?",
+      "answer": "contain: layout on a div creates a new formatting context, isolating its layout. contain: size requires explicit dimensions. contain: paint clips overflow. contain: strict applies all."
+    },
+    {
+      "question": "What happens to divs in a CSS Grid when grid-auto-flow is set to dense?",
+      "answer": "With grid-auto-flow: dense, divs are placed to fill gaps in the grid, potentially reordering them visually from their DOM order. This can affect accessibility."
+    },
+    {
+      "question": "How do you implement a div-based dropdown menu with accessibility?",
+      "answer": "Use button + div with role='menu', role='menuitem', aria-expanded, aria-haspopup. Handle keyboard navigation (arrow keys, Escape). Manage focus trapping."
+    },
+    {
+      "question": "Explain the performance implications of deeply nested divs.",
+      "answer": "Deeply nested divs increase DOM size, memory usage, and style recalculation time. Each level adds to the CSS specificity chain and can slow down rendering."
+    },
+    {
+      "question": "How does the div element interact with the CSS content-visibility property?",
+      "answer": "content-visibility: auto on a div skips rendering of off-screen children, improving initial load performance. Content is rendered on demand when scrolled near the viewport."
+    },
+    {
+      "question": "What is the Shadow DOM and how does it affect div styling?",
+      "answer": "Shadow DOM encapsulates a div and its children within a shadow root, isolating CSS styles from the main document. This prevents style leaks in both directions."
+    },
+    {
+      "question": "How do you create a div-based modal dialog that is accessible?",
+      "answer": "Use role='dialog' and aria-modal='true'. Trap focus within the modal. Close on Escape key. Return focus to the trigger element on close. Use aria-labelledby for the title."
+    },
+    {
+      "question": "What is the interaction between div elements and the CSS all property?",
+      "answer": "all: initial resets all properties. all: unset resets inherited and non-inherited properties. all: revert reverts to browser defaults. Useful for isolating div styles."
+    },
+    {
+      "question": "How does contain: paint on a div differ from overflow: hidden?",
+      "answer": "Both clip overflow, but contain: paint also creates a new stacking context and new formatting context. It tells the browser that this div's paint is independent, enabling optimization."
+    },
+    {
+      "question": "Explain how the CSS display: contents affects a div's layout behavior.",
+      "answer": "display: contents removes the div from the rendering tree entirely. Its children are rendered as if the div did not exist. The div's box, background, and borders disappear."
+    }
+  ]
+}

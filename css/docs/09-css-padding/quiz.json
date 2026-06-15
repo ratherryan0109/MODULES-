@@ -1,0 +1,247 @@
+{
+  "module": "09-css-padding",
+  "title": "CSS Padding",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the difference between padding and margin?",
+      "options": [
+        "Padding is outside border, margin is inside",
+        "Padding is inside border, margin is outside",
+        "They are the same thing",
+        "Padding is for inline elements only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Padding is space inside the border (between content and border); margin is space outside the border."
+    },
+    {
+      "id": 2,
+      "question": "What does padding: 15px 30px; mean?",
+      "options": [
+        "All sides 15px then 30px",
+        "Top/bottom 15px, left/right 30px",
+        "Top:15px, Right:30px",
+        "Bottom:15px, Top:30px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "With 2 values in padding shorthand: first = top/bottom, second = left/right."
+    },
+    {
+      "id": 3,
+      "question": "What happens to total width when you add padding to an element with width: 200px?",
+      "options": [
+        "Total width stays 200px",
+        "Total width increases by padding on both sides",
+        "Total width decreases",
+        "Padding is ignored"
+      ],
+      "correctAnswer": 1,
+      "explanation": "With default box-sizing: content-box, padding adds to the element's total width."
+    },
+    {
+      "id": 4,
+      "question": "How do you set padding on all four sides individually using shorthand?",
+      "options": [
+        "padding: top right bottom left",
+        "padding: left right top bottom",
+        "padding: top bottom left right",
+        "padding: all 10px"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The 4-value padding shorthand follows clockwise order: top, right, bottom, left."
+    },
+    {
+      "id": 5,
+      "question": "Does padding show the element's background color?",
+      "options": [
+        "Yes, padding area always shows the element's background",
+        "No, padding is always transparent",
+        "Only if background-clip is set to padding-box",
+        "Only for block elements"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The padding area is part of the element and displays its background color, unlike margins which are transparent."
+    },
+    {
+      "id": 6,
+      "question": "What is padding: 10px; equivalent to?",
+      "options": [
+        "padding: 10px 0 0 0",
+        "padding: 10px 10px 10px 10px",
+        "padding: 10px 0",
+        "padding: 0 10px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A single value applies equally to all four sides: top, right, bottom, and left."
+    },
+    {
+      "id": 7,
+      "question": "Can padding be negative like margins?",
+      "options": [
+        "Yes, always",
+        "No, padding cannot be negative",
+        "Only top and bottom",
+        "Only left and right"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Unlike margins, padding cannot have negative values. It must always be zero or positive."
+    },
+    {
+      "id": 8,
+      "question": "How is percentage padding calculated?",
+      "options": [
+        "Relative to the element's height",
+        "Relative to the containing block's width",
+        "Relative to the element's font-size",
+        "Relative to the viewport width"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Percentage padding is always relative to the containing block's width, even for top and bottom padding."
+    },
+    {
+      "id": 9,
+      "question": "Which box-sizing value makes padding included in the specified width?",
+      "options": [
+        "content-box",
+        "border-box",
+        "padding-box",
+        "inherit-box"
+      ],
+      "correctAnswer": 1,
+      "explanation": "box-sizing: border-box includes padding (and border) in the specified width, so padding doesn't increase total size."
+    },
+    {
+      "id": 10,
+      "question": "How does padding affect inline elements?",
+      "options": [
+        "Padding is completely ignored on inline elements",
+        "All padding directions work, but may overlap with other content",
+        "Only horizontal padding works",
+        "Padding on inline elements is doubled"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Inline elements accept padding in all directions, but top/bottom padding may overlap with adjacent content since inline elements don't affect line height."
+    },
+    {
+      "id": 11,
+      "question": "What is padding shorthand for: top=5px, right=10px, bottom=15px, left=20px?",
+      "options": [
+        "padding: 5px 10px 15px 20px",
+        "padding: 20px 15px 10px 5px",
+        "padding: 5px 20px 15px 10px",
+        "padding: 10px 15px 20px 5px"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The 4-value padding shorthand follows clockwise TRBL order: top, right, bottom, left."
+    },
+    {
+      "id": 12,
+      "question": "What is a key accessibility benefit of adequate padding?",
+      "options": [
+        "It makes text invisible",
+        "It increases touch target size for better usability",
+        "It changes font color",
+        "It adds animation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adequate padding on interactive elements ensures touch targets meet the 44x44px accessibility recommendation."
+    },
+    {
+      "id": 13,
+      "question": "What does padding: 0 do?",
+      "options": [
+        "Removes all padding from the element",
+        "Sets padding to default browser value",
+        "Adds invisible padding",
+        "Has no effect"
+      ],
+      "correctAnswer": 0,
+      "explanation": "padding: 0 removes all padding, which is useful for resetting default padding on elements like lists."
+    },
+    {
+      "id": 14,
+      "question": "How does padding affect an element with box-sizing: border-box?",
+      "options": [
+        "Padding adds to total width",
+        "Padding reduces the content area but keeps total width the same",
+        "Padding is ignored",
+        "Padding doubles the content area"
+      ],
+      "correctAnswer": 1,
+      "explanation": "With border-box, total width stays fixed. Padding reduces the content area to accommodate the specified dimensions."
+    },
+    {
+      "id": 15,
+      "question": "What is the default padding value for most HTML elements?",
+      "options": [
+        "10px",
+        "0",
+        "5px",
+        "auto"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default padding in CSS is 0 for most elements, though some elements like lists and body have browser-default padding."
+    },
+    {
+      "id": 16,
+      "question": "Which elements typically have default padding from browsers?",
+      "options": [
+        "div and span",
+        "ul, ol, and body",
+        "img and input",
+        "p and h1"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Browsers typically apply default padding to the body, lists (ul/ol), and other specific elements."
+    },
+    {
+      "id": 17,
+      "question": "What does padding: 5px 10px 15px; mean?",
+      "options": [
+        "Top 5px, right/left 10px, bottom 15px",
+        "Top/bottom 5px, left/right 10px, extra 15px",
+        "All sides 5px, 10px, then 15px",
+        "Top 5px, right 10px, bottom 15px, left auto"
+      ],
+      "correctAnswer": 0,
+      "explanation": "With 3 values: top = 5px, left/right = 10px, bottom = 15px."
+    },
+    {
+      "id": 18,
+      "question": "How does padding affect an element's clickable area?",
+      "options": [
+        "It doesn't affect clickable area",
+        "It increases the clickable area",
+        "It decreases the clickable area",
+        "It only affects non-clickable elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Padding expands the element's box, increasing the clickable/tappable area for interactive elements."
+    },
+    {
+      "id": 19,
+      "question": "What is a common use of padding in button styling?",
+      "options": [
+        "Creating space between buttons",
+        "Creating comfortable internal spacing around the button text",
+        "Removing button borders",
+        "Centering the button on the page"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Padding in buttons creates comfortable space between the text and the button edge, improving appearance and touch target size."
+    },
+    {
+      "id": 20,
+      "question": "How do you set only left padding to 20px?",
+      "options": [
+        "left-padding: 20px",
+        "padding-left: 20px",
+        "padding: 20px left",
+        "padding-left: 20px !important"
+      ],
+      "correctAnswer": 1,
+      "explanation": "padding-left sets padding on only the left side. Individual side properties are padding-top, padding-right, padding-bottom, and padding-left."
+    }
+  ]
+}

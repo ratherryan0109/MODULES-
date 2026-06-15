@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utility-First Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; }
+    h1 { margin-bottom: 0.5rem; }
+
+    /* Utility generator */
+    .utils { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    textarea { width: 100%; height: 250px; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 14px; resize: vertical; }
+    .preview { border: 2px solid #ddd; border-radius: 8px; padding: 1.5rem; min-height: 150px; margin: 1rem 0; }
+    .utility-panel { background: #f5f5f5; padding: 1rem; border-radius: 8px; margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    .utility-btn { background: white; border: 1px solid #ddd; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-family: monospace; }
+    .utility-btn:hover { background: #0055CC; color: white; border-color: #0055CC; }
+    button { padding: 0.5rem 1rem; background: #0055CC; color: white; border: none; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Utility-First Playground</h1>
+  <p>Compose UIs with utility classes. Click utilities to apply them.</p>
+
+  <div class="utility-panel" id="utilityBar">
+    <span class="utility-btn" onclick="addUtil('flex')">flex</span>
+    <span class="utility-btn" onclick="addUtil('flex-col')">flex-col</span>
+    <span class="utility-btn" onclick="addUtil('items-center')">items-center</span>
+    <span class="utility-btn" onclick="addUtil('justify-between')">justify-between</span>
+    <span class="utility-btn" onclick="addUtil('gap-4')">gap-4</span>
+    <span class="utility-btn" onclick="addUtil('p-4')">p-4</span>
+    <span class="utility-btn" onclick="addUtil('p-6')">p-6</span>
+    <span class="utility-btn" onclick="addUtil('bg-white')">bg-white</span>
+    <span class="utility-btn" onclick="addUtil('bg-blue')">bg-blue</span>
+    <span class="utility-btn" onclick="addUtil('text-white')">text-white</span>
+    <span class="utility-btn" onclick="addUtil('rounded')">rounded</span>
+    <span class="utility-btn" onclick="addUtil('shadow')">shadow</span>
+    <span class="utility-btn" onclick="addUtil('text-lg')">text-lg</span>
+    <span class="utility-btn" onclick="addUtil('font-bold')">font-bold</span>
+  </div>
+
+  <div class="utils">
+    <div><label>HTML (add class="..."):</label><textarea id="htmlInput"><div class="flex items-center gap-4 p-6 bg-white rounded shadow">
+  <div class="bg-blue text-white rounded" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">U</div>
+  <div>
+    <h2 class="text-lg font-bold">Utility Card</h2>
+    <p style="color:#666;font-size:0.875rem;">Composed with utilities</p>
+  </div>
+</div></textarea></div>
+    <div><label>Preview:</label><div class="preview" id="preview"></div></div>
+  </div>
+
+  <div style="margin-top:0.5rem;">
+    <button onclick="updatePreview()">Update</button>
+    <button onclick="clearPreview()">Clear Preview</button>
+  </div>
+
+  <style>
+    .flex { display: flex; } .flex-col { flex-direction: column; } .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; } .gap-4 { gap: 1rem; }
+    .p-4 { padding: 1rem; } .p-6 { padding: 1.5rem; } .bg-white { background: white; }
+    .bg-blue { background: #0055CC; } .text-white { color: white; }
+    .rounded { border-radius: 8px; } .shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .text-lg { font-size: 1.125rem; } .font-bold { font-weight: 700; }
+  </style>
+
+  <script>
+    const htmlInput = document.getElementById('htmlInput');
+    const preview = document.getElementById('preview');
+
+    function updatePreview() {
+      preview.innerHTML = htmlInput.value;
+    }
+
+    function clearPreview() {
+      preview.innerHTML = '';
+    }
+
+    function addUtil(util) {
+      // Insert utility into the class attribute
+      const area = htmlInput;
+      const text = area.value;
+      const classMatch = text.match(/class="([^"]*)"/);
+      if (classMatch) {
+        const classes = classMatch[1].split(/\s+/).filter(Boolean);
+        if (!classes.includes(util)) classes.push(util);
+        const newText = text.replace(/class="([^"]*)"/, `class="${classes.join(' ')}"`);
+        area.value = newText;
+        updatePreview();
+      }
+    }
+
+    htmlInput.addEventListener('input', updatePreview);
+    updatePreview();
+  </script>
+</body>
+</html>

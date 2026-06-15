@@ -1,0 +1,207 @@
+{
+  "module": "107-css-architecture",
+  "title": "CSS Architecture",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does BEM stand for?",
+      "options": [
+        "Block, Element, Modifier",
+        "Base, Element, Module",
+        "Block, Event, Method",
+        "Basic, Extended, Modified"
+      ],
+      "correctAnswer": 0,
+      "explanation": "BEM stands for Block (the outer component), Element (a part of the block), and Modifier (a variation)."
+    },
+    {
+      "id": 2,
+      "question": "Which BEM class name is correct for a 'title' element inside a 'card' block?",
+      "options": [".card__title", ".card-title", ".card_title", ".card--title"],
+      "correctAnswer": 0,
+      "explanation": "BEM uses double underscore for elements: .block__element. .card__title means 'the title element of the card block'."
+    },
+    {
+      "id": 3,
+      "question": "What does the 'I' in ITCSS stand for?",
+      "options": ["Inverted", "Integrated", "Important", "Internal"],
+      "correctAnswer": 0,
+      "explanation": "ITCSS = Inverted Triangle CSS. The triangle represents specificity and reach — broad at the top, specific at the bottom."
+    },
+    {
+      "id": 4,
+      "question": "Which CSS feature lets you explicitly control cascade layer order?",
+      "options": ["@layer", "@cascade", "@import", "@scope"],
+      "correctAnswer": 0,
+      "explanation": "@layer lets you define the order of cascade layers. Rules in earlier layers are overridden by later layers."
+    },
+    {
+      "id": 5,
+      "question": "What is the specificity of a single class selector like .card?",
+      "options": ["0,0,1,0", "0,0,0,1", "0,1,0,0", "1,0,0,0"],
+      "correctAnswer": 0,
+      "explanation": "A class selector has specificity 0,0,1,0. The four positions are: inline styles, IDs, classes/attributes/pseudo-classes, elements/pseudo-elements."
+    },
+    {
+      "id": 6,
+      "question": "Which OOCSS principle means a component's styles should not depend on where it is placed in the HTML?",
+      "options": [
+        "Separate container from content",
+        "Separate structure from skin",
+        "DRY (Don't Repeat Yourself)",
+        "Single Responsibility"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Separate container from content means a component should look the same regardless of where it's placed — no .sidebar .card styles."
+    },
+    {
+      "id": 7,
+      "question": "What is a design token?",
+      "options": [
+        "A named CSS custom property representing a design decision (color, spacing, etc.)",
+        "A design pattern for CSS components",
+        "A naming convention for CSS classes",
+        "A token used in CSS preprocessors"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Design tokens are atomic design values stored as CSS custom properties — the single source of truth for colors, spacing, typography, etc."
+    },
+    {
+      "id": 8,
+      "question": "What is the recommended maximum specificity for maintainable CSS?",
+      "options": [
+        "0,0,1,0 (one class selector)",
+        "0,0,0,1 (one element selector)",
+        "0,1,0,0 (one ID selector)",
+        "0,0,2,0 (two class selectors)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "For maintainable CSS, aim for 0,0,1,0 — a single class selector. This keeps specificity flat and easy to override."
+    },
+    {
+      "id": 9,
+      "question": "Which SMACSS prefix indicates a state class?",
+      "options": [".is-", ".l-", ".u-", ".m-"],
+      "correctAnswer": 0,
+      "explanation": "SMACSS uses the .is- prefix for state classes like .is-active, .is-hidden, .is-disabled."
+    },
+    {
+      "id": 10,
+      "question": "What problem does CSS @layer solve?",
+      "options": [
+        "It prevents specificity wars by explicitly defining the cascade order",
+        "It improves CSS performance by loading layers separately",
+        "It replaces the need for CSS preprocessors",
+        "It creates visual layers like Photoshop"
+      ],
+      "correctAnswer": 0,
+      "explanation": "@layer solves the cascade/specificity problem by letting developers explicitly define which layer of styles takes priority."
+    },
+    {
+      "id": 11,
+      "question": "What is the ITCSS layer that comes first (lowest specificity)?",
+      "options": ["Settings", "Generic", "Utilities", "Tools"],
+      "correctAnswer": 0,
+      "explanation": "Settings (variables/design tokens) comes first in ITCSS. These produce no actual CSS output but define the values used everywhere else."
+    },
+    {
+      "id": 12,
+      "question": "What is the ITCSS layer that comes last (highest specificity)?",
+      "options": ["Utilities", "Components", "Objects", "Elements"],
+      "correctAnswer": 0,
+      "explanation": "Utilities (overrides) come last in ITCSS. They have the highest specificity and override any component styles."
+    },
+    {
+      "id": 13,
+      "question": "Why should you avoid IDs in CSS selectors?",
+      "options": [
+        "IDs have very high specificity (0,1,0,0) making them hard to override",
+        "IDs are slower for the browser to match",
+        "IDs are not valid CSS selectors in some browsers",
+        "IDs can only be used once per page, making them non-reusable"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ID selectors have 0,1,0,0 specificity — much higher than classes. Overriding them requires even more specific selectors or !important."
+    },
+    {
+      "id": 14,
+      "question": "What advantage does `:where(.card)` have over `.card`?",
+      "options": [
+        ":where() has zero specificity, making it trivially easy to override",
+        ":where() is faster for the browser to parse",
+        ":where() works only on class selectors",
+        ":where() has higher specificity than .card"
+      ],
+      "correctAnswer": 0,
+      "explanation": ":where() nullifies the specificity of its contents. `:where(.card)` has 0,0,0,0 specificity — the lowest possible."
+    },
+    {
+      "id": 15,
+      "question": "What does the SMACSS 'Layout' category typically use as a prefix?",
+      "options": [".l-", ".ly-", ".layout-", ".lo-"],
+      "correctAnswer": 0,
+      "explanation": "SMACSS uses .l- prefix for layout modules like .l-header, .l-sidebar, .l-main, .l-footer."
+    },
+    {
+      "id": 16,
+      "question": "In BEM, how do you write a modifier that applies to an element?",
+      "options": [
+        ".block__element--modifier",
+        ".block--modifier__element",
+        ".block__element__modifier",
+        ".block__modifier--element"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Element modifiers use the pattern .block__element--modifier. For example: .card__title--large."
+    },
+    {
+      "id": 17,
+      "question": "What is the purpose of a CSS reset?",
+      "options": [
+        "To normalize browser default styles for consistent cross-browser rendering",
+        "To remove all CSS from a page",
+        "To reset CSS animations",
+        "To clear browser cache for stylesheets"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS resets (like normalize.css) remove or normalize inconsistent browser default styles so your CSS starts from a clean baseline."
+    },
+    {
+      "id": 18,
+      "question": "What is a benefit of using CSS custom properties over preprocessor variables?",
+      "options": [
+        "Custom properties can be changed at runtime (media queries, JavaScript, themes)",
+        "Custom properties are faster to compile",
+        "Custom properties support nesting",
+        "Custom properties are supported in older browsers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Unlike Sass/Less variables, CSS custom properties are live — they can be changed by media queries, JavaScript, or theme toggles at runtime."
+    },
+    {
+      "id": 19,
+      "question": "What is the correct @layer declaration order for lowest-to-highest priority?",
+      "options": [
+        "@layer base, components, utilities;",
+        "@layer utilities, components, base;",
+        "@layer components, base, utilities;",
+        "@layer utilities, base, components;"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Layers are ordered lowest priority first. base is overridden by components, which is overridden by utilities."
+    },
+    {
+      "id": 20,
+      "question": "Which principle means 'separate structure from skin' in OOCSS?",
+      "options": [
+        "Keep layout/position separate from visual design like colors and borders",
+        "Separate CSS files by component",
+        "Use different classes for different screen sizes",
+        "Don't use IDs in CSS selectors"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Structure (layout, positioning) should be separate from skin (colors, fonts, borders) so you can reuse the same layout with different visuals."
+    }
+  ]
+}

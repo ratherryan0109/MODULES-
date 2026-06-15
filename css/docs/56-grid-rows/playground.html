@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Rows - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b;margin-bottom:5px}
+.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px;flex-wrap:wrap}
+.controls{flex:0 0 280px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;min-width:400px;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:15px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group input,.group select{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px;font-family:monospace}
+.group input[type="range"]{padding:0;height:6px;cursor:pointer}
+.group .range-value{color:#ffd93d;font-size:12px;text-align:right;margin-top:2px}
+#grid-container{display:grid;background:#2d2d44;border-radius:8px;padding:10px;transition:all .3s;height:400px}
+.grid-item{background:#ff6b6b;padding:15px;border-radius:4px;text-align:center;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold}
+.grid-item:nth-child(2n){background:#4ecdc4;color:#1a1a2e}
+.grid-item:nth-child(3n){background:#45b7d1}
+.grid-item:nth-child(5n){background:#a29bfe}
+#css-code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf;white-space:pre;overflow-x:auto}
+.btn{background:#6c5ce7;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:13px;margin-top:5px}
+.btn-reset{background:#ff6b6b}
+</style>
+</head>
+<body>
+<h1>Grid Rows Playground</h1>
+<p class="subtitle">Adjust row heights and see the result in real time</p>
+<div class="layout">
+<div class="controls">
+<div class="group">
+<label>Row Definition Preset</label>
+<select id="preset">
+<option value="auto 1fr auto">Classic: auto 1fr auto</option>
+<option value="80px 1fr 60px">Fixed + 1fr + Fixed</option>
+<option value="repeat(3, 1fr)">3 equal rows (1fr each)</option>
+<option value="minmax(60px, 1fr) 1fr minmax(60px, 1fr)">Mobile: minmax rows</option>
+<option value="auto auto auto">All auto (content-sized)</option>
+<option value="100px 200px">Two fixed rows</option>
+<option value="1fr 2fr 1fr">Ratio rows 1:2:1</option>
+<option value="custom">Custom...</option>
+</select>
+</div>
+<div class="group">
+<label>Custom Row Value</label>
+<input type="text" id="custom-rows" value="auto 1fr auto" disabled>
+</div>
+<div class="group">
+<label>Number of Items per Row</label>
+<input type="range" id="cols" min="1" max="4" value="1">
+<div class="range-value" id="cols-val">1 column</div>
+</div>
+<div class="group">
+<label>Total Container Height</label>
+<input type="range" id="container-h" min="200" max="600" value="400">
+<div class="range-value" id="container-h-val">400px</div>
+</div>
+<div class="group">
+<label>Row Gap</label>
+<input type="range" id="gap" min="0" max="30" value="8">
+<div class="range-value" id="gap-val">8px</div>
+</div>
+<div class="group">
+<label>Item 1 grid-row span</label>
+<input type="range" id="span" min="1" max="6" value="1">
+<div class="range-value" id="span-val">1 (no span)</div>
+</div>
+<button class="btn btn-reset" onclick="resetPlayground()">Reset</button>
+</div>
+<div class="preview">
+<div id="grid-container"></div>
+<div id="css-code">/* Row CSS will appear here */</div>
+</div>
+</div>
+<script>
+const gridEl = document.getElementById('grid-container');
+const cssCode = document.getElementById('css-code');
+const preset = document.getElementById('preset');
+const customRows = document.getElementById('custom-rows');
+const cols = document.getElementById('cols');
+const containerH = document.getElementById('container-h');
+const gap = document.getElementById('gap');
+const span = document.getElementById('span');
+const colsVal = document.getElementById('cols-val');
+const containerHVal = document.getElementById('container-h-val');
+const gapVal = document.getElementById('gap-val');
+const spanVal = document.getElementById('span-val');
+
+function update() {
+const rows = preset.value === 'custom' ? customRows.value : preset.value;
+const c = parseInt(cols.value);
+const h = parseInt(containerH.value);
+const g = parseInt(gap.value);
+const s = parseInt(span.value);
+
+gridEl.style.gridTemplateRows = rows;
+gridEl.style.gridTemplateColumns = `repeat(${c}, 1fr)`;
+gridEl.style.height = h + 'px';
+gridEl.style.gap = g + 'px';
+
+gridEl.innerHTML = '';
+const rowCount = rows.split(' ').length;
+const totalSlots = rowCount * c;
+for(let i = 1; i <= totalSlots; i++) {
+const d = document.createElement('div');
+d.className = 'grid-item';
+if(i === 1 && s > 1) {
+d.textContent = `Item 1 (span ${s})`;
+d.style.gridRow = `span ${s}`;
+} else {
+d.textContent = `Item ${i}`;
+d.style.gridRow = '';
+}
+gridEl.appendChild(d);
+}
+
+colsVal.textContent = c + ' column' + (c > 1 ? 's' : '');
+containerHVal.textContent = h + 'px';
+gapVal.textContent = g + 'px';
+spanVal.textContent = s > 1 ? `span ${s}` : '1 (no span)';
+
+cssCode.textContent = `.container {\n  display: grid;\n  grid-template-rows: ${rows};\n  grid-template-columns: repeat(${c}, 1fr);\n  gap: ${g}px;\n  height: ${h}px;\n}`;
+}
+
+customRows.addEventListener('input', function() { preset.value = 'custom'; update(); });
+preset.addEventListener('change', function() {
+customRows.disabled = this.value !== 'custom';
+if(this.value !== 'custom') update();
+});
+document.querySelectorAll('.controls input').forEach(el => el.addEventListener('input', update));
+
+function resetPlayground() {
+preset.value = 'auto 1fr auto';
+customRows.value = 'auto 1fr auto';
+customRows.disabled = true;
+cols.value = 1;
+containerH.value = 400;
+gap.value = 8;
+span.value = 1;
+update();
+}
+update();
+</script>
+</body>
+</html>

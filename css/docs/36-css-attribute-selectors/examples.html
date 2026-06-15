@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Attribute Selectors - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .tag { display:inline-block; background:#e2e8f0; padding:0.2rem 0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem; }
+  </style>
+  <style>
+    a[href^="http"]::after { content: " ↗"; font-size: 0.85em; }
+    a[href$=".pdf"] { color: #dc2626; font-weight: bold; }
+    a[href$=".pdf"]::after { content: " (PDF)"; font-size: 0.8em; color: #dc2626; }
+    a[href$=".docx"] { color: #2563eb; }
+    a[href$=".docx"]::after { content: " (DOC)"; font-size: 0.8em; color: #2563eb; }
+    a[href*="github"] { color: #0f172a; }
+    a[href*="github"]::after { content: " (GitHub)"; font-size: 0.8em; }
+
+    input[required] { border-left: 3px solid #dc2626 !important; }
+    input[type="email"] { border-color: #2563eb !important; }
+    input[type="password"] { border-color: #7c3aed !important; }
+    input[type="submit"] { background: #06b6d4 !important; color: white !important; border: none !important; padding: 0.75rem 1.5rem !important; cursor: pointer; border-radius: 6px; font-weight: 600; }
+
+    [data-status] { padding: 0.75rem 1rem; border-radius: 6px; color: white; margin: 0.5rem 0; font-weight: 600; }
+    [data-status="active"] { background: #10b981; }
+    [data-status="inactive"] { background: #94a3b8; }
+    [data-status="pending"] { background: #f59e0b; }
+    [data-status="error"] { background: #ef4444; }
+
+    [lang|="en"] { border-left: 4px solid #2563eb; padding-left: 0.75rem; background: #eff6ff; }
+    [lang|="fr"] { border-left: 4px solid #dc2626; padding-left: 0.75rem; background: #fef2f2; }
+    [lang|="de"] { border-left: 4px solid #f59e0b; padding-left: 0.75rem; background: #fffbeb; }
+
+    [title] { cursor: help; border-bottom: 1px dashed #94a3b8; }
+
+    [class~="highlight"] { background: #fef9c3; padding: 0.25rem 0.5rem; border-radius: 4px; }
+    [class~="important"] { font-weight: bold; color: #dc2626; }
+  </style>
+</head>
+<body>
+  <h1>CSS Attribute Selectors - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: [attr] — Has Attribute</h2>
+    <p>Selects elements that have a specific attribute (regardless of value).</p>
+    <div class="demo-output">
+      <p><span title="This has a tooltip">Hover over me</span> — styled with <code>[title]</code></p>
+      <p><span>No title attribute</span> — not styled</p>
+    </div>
+    <pre><code>[title] {
+  cursor: help;
+  border-bottom: 1px dashed gray;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: [attr="value"] — Exact Match</h2>
+    <p>Selects elements with an exact attribute value.</p>
+    <div class="demo-output">
+      <div data-status="active">Active — green</div>
+      <div data-status="inactive">Inactive — gray</div>
+      <div data-status="pending">Pending — yellow</div>
+      <div data-status="error">Error — red</div>
+    </div>
+    <pre><code>[data-status="active"] { background: #10b981; }
+[data-status="inactive"] { background: #94a3b8; }
+[data-status="pending"] { background: #f59e0b; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: [attr^="value"] — Starts With</h2>
+    <p>Targets external links (<code>^="http"</code>) and specific file types.</p>
+    <div class="demo-output">
+      <ul>
+        <li><a href="https://example.com">External link</a></li>
+        <li><a href="/about">Internal link</a></li>
+        <li><a href="https://github.com/user/repo">GitHub repo</a></li>
+      </ul>
+    </div>
+    <pre><code>a[href^="http"]::after { content: " ↗"; }
+a[href*="github"] { color: #333; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: [attr$="value"] — Ends With</h2>
+    <p>Target files by extension — perfect for download links.</p>
+    <div class="demo-output">
+      <ul>
+        <li><a href="/files/report.pdf">Download Report (PDF)</a></li>
+        <li><a href="/files/document.docx">Download Document (DOCX)</a></li>
+        <li><a href="/files/sheet.xlsx">Download Sheet (XLSX)</a></li>
+      </ul>
+    </div>
+    <pre><code>a[href$=".pdf"] { color: red; font-weight: bold; }
+a[href$=".docx"] { color: blue; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: [attr*="value"] — Contains Substring</h2>
+    <p>Matches attributes containing a substring anywhere in the value.</p>
+    <div class="demo-output">
+      <ul>
+        <li><a href="https://github.com/opencode">opencode on GitHub</a></li>
+        <li><a href="https://github.com/user/project">Project on GitHub</a></li>
+        <li><a href="https://gitlab.com/user/project">Project on GitLab</a></li>
+      </ul>
+    </div>
+    <pre><code>a[href*="github"] { color: #333; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: [attr|="value"] — Hyphen-Separated</h2>
+    <p>Matches language codes — <code>en</code> matches <code>en-US</code> and <code>en-GB</code>.</p>
+    <div class="demo-output">
+      <p lang="en-US">Hello! This is American English.</p>
+      <p lang="en-GB">Cheers! This is British English.</p>
+      <p lang="fr-FR">Bonjour ! Ceci est du français.</p>
+      <p lang="de-DE">Guten Tag! Das ist Deutsch.</p>
+    </div>
+    <pre><code>[lang|="en"] { border-left: 4px solid blue; }
+[lang|="fr"] { border-left: 4px solid red; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: [attr~="value"] — Space-Separated</h2>
+    <p>Matches a whole word within a space-separated list (like classes).</p>
+    <div class="demo-output">
+      <p class="highlight">This text is highlighted.</p>
+      <p class="important">This is marked as important.</p>
+      <p class="highlight important">This is both highlighted AND important.</p>
+    </div>
+    <pre><code>[class~="highlight"] { background: yellow; }
+[class~="important"] { font-weight: bold; color: red; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: Form Input Styling</h2>
+    <p>Attribute selectors make form styling a breeze.</p>
+    <div class="demo-output">
+      <form onsubmit="return false" style="display:flex; flex-direction:column; gap:0.75rem; max-width:350px;">
+        <input type="text" placeholder="Name (no special styling)">
+        <input type="email" placeholder="Email (blue border)" required>
+        <input type="password" placeholder="Password (purple border)" required>
+        <input type="submit" value="Submit Form">
+      </form>
+    </div>
+    <pre><code>input[required] { border-left: 3px solid red; }
+input[type="email"] { border-color: blue; }
+input[type="submit"] { background: cyan; color: white; }</code></pre>
+  </div>
+</body>
+</html>

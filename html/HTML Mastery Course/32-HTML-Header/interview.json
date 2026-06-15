@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <header> element in HTML5?",
+      "answer": "The <header> element is a semantic HTML5 element that represents introductory content for its nearest ancestor sectioning element."
+    },
+    {
+      "question": "What kind of content goes inside a <header>?",
+      "answer": "Headings (<h1>-<h6>), logos, navigation, search forms, taglines, author information, and other introductory content."
+    },
+    {
+      "question": "Can you have more than one <header> on a page?",
+      "answer": "Yes. A page can have a page-level header and additional headers inside articles, sections, and asides."
+    },
+    {
+      "question": "Is <header> a block-level or inline element?",
+      "answer": "<header> is a block-level element. It takes up the full width available and starts on a new line."
+    },
+    {
+      "question": "What is the difference between <header> and <head>?",
+      "answer": "<head> contains meta-information about the document (title, scripts, styles) and is not displayed. <header> is a visible content element displayed at the top of a page or section."
+    },
+    {
+      "question": "Write a simple page header with a title and tagline.",
+      "answer": "<header><h1>My Site</h1><p>Welcome to my website.</p></header>"
+    },
+    {
+      "question": "Where should the page-level <header> be placed?",
+      "answer": "The page-level <header> should be placed directly inside <body>, before the <main> element."
+    },
+    {
+      "question": "Can a <header> contain a <nav>?",
+      "answer": "Yes, it is common and recommended to place primary navigation (<nav>) inside the <header>."
+    },
+    {
+      "question": "What is the default styling of <header>?",
+      "answer": "The <header> element has no default styling beyond being a block-level element. It appears as a generic container."
+    },
+    {
+      "question": "Can <header> contain images?",
+      "answer": "Yes, <header> can contain images, commonly used for logos or branding visuals."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the implicit ARIA role of <header> and when does it apply?",
+      "answer": "When <header> is a direct child of <body>, it has an implicit ARIA role of 'banner'. Inside <article>, <section>, or <aside>, it has no implicit role."
+    },
+    {
+      "question": "What elements cannot be placed inside a <header>?",
+      "answer": "<header> cannot contain another <header>, a <footer>, or an <address> element."
+    },
+    {
+      "question": "How does the <header> relate to the document outline?",
+      "answer": "<header> does NOT create a new section in the document outline. It is purely a container for introductory content."
+    },
+    {
+      "question": "Show how to create an article with a header containing title, author, and date.",
+      "answer": "<article><header><h2>Article Title</h2><p>By Author | <time datetime='2025-01-01'>Jan 1, 2025</time></p></header><p>Content...</p></article>"
+    },
+    {
+      "question": "Can you use <header> inside <aside>?",
+      "answer": "Yes, <aside> can contain a <header> to introduce the aside content, such as a widget heading."
+    },
+    {
+      "question": "How do you make a sticky header that stays at the top when scrolling?",
+      "answer": "Use CSS: header { position: sticky; top: 0; z-index: 100; background: white; }"
+    },
+    {
+      "question": "What is the 'skip to content' link and why is it placed in the header?",
+      "answer": "A 'skip to content' link is an accessibility feature placed at the top of the header that allows keyboard users to jump directly to the main content, bypassing navigation."
+    },
+    {
+      "question": "Can a <header> contain a full-width background image?",
+      "answer": "Yes, you can apply a background image and cover it using CSS: header { background: url('hero.jpg') center/cover; height: 400px; }"
+    },
+    {
+      "question": "Should you put the site name in an <h1> inside the <header>?",
+      "answer": "Yes, it is common and semantically correct to put the site name in an <h1> inside the page-level header."
+    },
+    {
+      "question": "How many HTML elements have an implicit 'banner' role?",
+      "answer": "Only the page-level <header> (direct child of <body>) has the implicit 'banner' role. No other element has this role by default."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "What happens to the 'banner' role if <header> is not a direct child of <body>?",
+      "answer": "If <header> is nested inside <article>, <section>, <aside>, or <main>, it loses the 'banner' role and becomes a generic landmark."
+    },
+    {
+      "question": "How does the <header> element interact with the Accessibility Tree in different contexts?",
+      "answer": "As a page-level banner, <header> is exposed as a landmark in the accessibility tree. Section-level headers are not landmarks, so assistive technology may not navigate to them directly."
+    },
+    {
+      "question": "What is the proper way to handle multiple navigations inside a single <header>?",
+      "answer": "Use multiple <nav> elements with distinct aria-label attributes (e.g., 'Main navigation', 'Language selector') inside the <header>."
+    },
+    {
+      "question": "How would you implement a 'collapsing header' that shrinks on scroll?",
+      "answer": "Use JavaScript to detect scroll position and toggle CSS classes: header { transition: padding 0.3s; } .header-scrolled { padding: 5px 20px; font-size: 0.9em; }"
+    },
+    {
+      "question": "What are the SEO implications of the <header> element?",
+      "answer": "Search engines use <header> to understand page structure. The headings within <header> contribute to the page's content hierarchy and relevance signals."
+    },
+    {
+      "question": "Can you put <main> inside a <header>?",
+      "answer": "No. <main> should not be inside <header>. <main> comes after the page-level header and contains the primary content of the page."
+    },
+    {
+      "question": "How does the <header> element differ from the CSS 'header' selector when multiple headers exist?",
+      "answer": "The CSS selector 'header' matches ALL <header> elements on the page. You need to use contextual selectors (e.g., 'body > header', 'article > header') to target specific headers."
+    },
+    {
+      "question": "What is the correct way to declare the page header in a way that maximizes accessibility?",
+      "answer": "<body><header role='banner'><a href='#main' class='skip-link'>Skip to content</a><h1>Site Name</h1><nav aria-label='Main'>...</nav></header><main id='main'>...</main></body>"
+    },
+    {
+      "question": "How would you handle internationalization (i18n) content inside a <header>?",
+      "answer": "Use the lang attribute on elements within the header if switching languages, or use data attributes with JavaScript for dynamic language switching."
+    },
+    {
+      "question": "What happens to <header> when printed? How would you style it for print?",
+      "answer": "By default, <header> prints as it appears on screen. For print, you may want to hide navigation and CTAs: @media print { header nav, header .cta { display: none; } }"
+    }
+  ]
+}

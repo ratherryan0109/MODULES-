@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML SEO Basics - Interactive Examples</title>
+    <meta name="description" content="Interactive examples demonstrating HTML SEO best practices: title tags, meta descriptions, heading hierarchy, semantic structure, image optimization, and schema.org markup.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://example.com/html-seo-guide">
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        .example { border: 2px solid #e65100; border-radius: 8px; padding: 20px; margin: 20px 0; background: #fff3e0; }
+        .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Cascadia Code', monospace; font-size: 14px; margin: 10px 0; }
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-right: 5px; }
+        .badge-good { background: #4caf50; color: white; }
+        .badge-bad { background: #f44336; color: white; }
+        .serp-preview { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 12px 16px; max-width: 600px; }
+        .serp-title { color: #1a0dab; font-size: 18px; margin: 0 0 4px; cursor: pointer; }
+        .serp-url { color: #006621; font-size: 14px; margin: 0; }
+        .serp-desc { color: #545454; font-size: 14px; margin: 6px 0 0; }
+        .schema-output { background: #f5f5f5; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 13px; white-space: pre-wrap; word-break: break-all; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; border: 1px solid #ffe0b2; text-align: left; }
+        th { background: #ffe0b2; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HTML SEO Basics - Interactive Examples</h1>
+        <nav aria-label="Page navigation">
+            <ul>
+                <li><a href="#title">Title Tags</a></li>
+                <li><a href="#description">Meta Descriptions</a></li>
+                <li><a href="#structure">Content Structure</a></li>
+                <li><a href="#schema">Structured Data</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="title" class="example">
+            <h2>1. Title Tag (SERP Preview)</h2>
+            <p>The title tag appears as the clickable headline in search results. Edit the title below to see the preview update:</p>
+            <div style="margin-bottom:15px;">
+                <label for="title-input"><strong>Edit title:</strong></label>
+                <input type="text" id="title-input" value="HTML SEO Guide - Complete Best Practices for 2024 | SiteName" style="width:100%; padding:10px; font-size:16px; box-sizing:border-box;" maxlength="70">
+                <span id="title-count" style="font-size:13px; color:#666;">0 chars</span>
+            </div>
+            <div class="serp-preview">
+                <p class="serp-url">https://example.com &rsaquo; html-seo-guide</p>
+                <p class="serp-title" id="serp-title">HTML SEO Guide - Complete Best Practices for 2024 | SiteName</p>
+                <p class="serp-desc">Learn HTML SEO best practices: title tags, meta descriptions, heading structure, semantic HTML, and schema markup. Complete guide with examples.</p>
+            </div>
+            <div class="code">&lt;title&gt;Primary Keyword - Secondary Keyword | Brand Name&lt;/title&gt;
+&lt;!-- 50-60 characters recommended --&gt;
+&lt;!-- Include primary keyword near the beginning --&gt;
+&lt;!-- Unique title per page --&gt;</div>
+        </section>
+
+        <section id="description" class="example">
+            <h2>2. Meta Description Preview</h2>
+            <p>The meta description shows below the title in search results. Edit and see the preview:</p>
+            <div style="margin-bottom:15px;">
+                <label for="desc-input"><strong>Edit meta description:</strong></label>
+                <textarea id="desc-input" rows="3" style="width:100%; padding:10px; font-size:14px; box-sizing:border-box;">Complete HTML SEO guide covering title tags, meta descriptions, heading hierarchy, semantic HTML, image optimization, and structured data. Includes interactive examples and best practices for 2024 search engine optimization.</textarea>
+                <span id="desc-count" style="font-size:13px; color:#666;">0 chars</span>
+            </div>
+            <div class="serp-preview">
+                <p class="serp-url">https://example.com &rsaquo; html-seo-guide</p>
+                <p class="serp-title">HTML SEO Guide - Complete Best Practices for 2024 | SiteName</p>
+                <p class="serp-desc" id="serp-desc">Complete HTML SEO guide covering title tags, meta descriptions, heading hierarchy, semantic HTML, image optimization, and structured data.</p>
+            </div>
+            <div class="code">&lt;meta name="description" content="150-160 character description with keywords and call-to-action"&gt;</div>
+        </section>
+
+        <section class="example">
+            <h2>3. Heading Structure Comparison</h2>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:280px;">
+                    <span class="badge badge-bad">Poor SEO</span>
+                    <div style="background:#ffcdd2; padding:10px; border-radius:4px;">
+                        <div style="font-size:24px; font-weight:bold;">Welcome</div>
+                        <div style="font-size:20px; font-weight:bold;">Services</div>
+                        <div>Our services include...</div>
+                        <div style="font-size:16px; font-weight:bold;">Web Design</div>
+                        <div>We design websites...</div>
+                    </div>
+                </div>
+                <div style="flex:1; min-width:280px;">
+                    <span class="badge badge-good">Good SEO</span>
+                    <div style="background:#c8e6c9; padding:10px; border-radius:4px;">
+                        <h1 style="font-size:24px; margin:0;">Web Design Services</h1>
+                        <h2 style="font-size:20px; margin:10px 0 0;">Our Services</h2>
+                        <p>Professional web design, development, and SEO services.</p>
+                        <h3 style="font-size:16px; margin:10px 0 0;">Web Design</h3>
+                        <p>Custom responsive websites built with modern technologies.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code">&lt;!-- Poor --&gt;
+&lt;div style="font-size:24px;font-weight:bold;"&gt;Welcome&lt;/div&gt;
+&lt;!-- Search engines see no heading structure --&gt;
+
+&lt;!-- Good --&gt;
+&lt;h1&gt;Web Design Services&lt;/h1&gt;
+&lt;h2&gt;Our Services&lt;/h2&gt;
+&lt;h3&gt;Web Design&lt;/h3&gt;
+&lt;!-- Clear hierarchy for search engines --&gt;</div>
+        </section>
+
+        <section class="example">
+            <h2>4. Image SEO Comparison</h2>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:250px;">
+                    <span class="badge badge-bad">Poor</span>
+                    <div style="width:200px; height:150px; background:#ddd; display:flex; align-items:center; justify-content:center;">
+                        <span>📸 IMG_001.jpg</span>
+                    </div>
+                    <code style="display:block; margin-top:5px;">&lt;img src="IMG_001.jpg"&gt;</code>
+                </div>
+                <div style="flex:1; min-width:250px;">
+                    <span class="badge badge-good">Good</span>
+                    <div style="width:200px; height:150px; background:#ddd; display:flex; align-items:center; justify-content:center;">
+                        <span>📸 red-widget-product.jpg</span>
+                    </div>
+                    <code style="display:block; margin-top:5px;">&lt;img src="red-widget-product.jpg" alt="Red widget with ergonomic design features" loading="lazy"&gt;</code>
+                </div>
+            </div>
+            <p style="margin-top:10px;">
+                <strong>Rules:</strong> Descriptive filename, keyword-rich alt text (not stuffing), compress images, use WebP format, add lazy loading for below-fold images.
+            </p>
+        </section>
+
+        <section class="example">
+            <h2>5. Internal Link Structure</h2>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:250px;">
+                    <span class="badge badge-bad">Bad</span>
+                    <ul>
+                        <li><a href="#">Click here</a> for SEO services</li>
+                        <li><a href="#">Read more</a> about web design</li>
+                        <li><a href="#">Learn more</a></li>
+                    </ul>
+                </div>
+                <div style="flex:1; min-width:250px;">
+                    <span class="badge badge-good">Good</span>
+                    <ul>
+                        <li><a href="#">Professional SEO Services</a></li>
+                        <li><a href="#">Web Design Portfolio</a></li>
+                        <li><a href="#">HTML SEO Best Practices Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="code">&lt;!-- Bad --&gt;
+&lt;a href="#"&gt;Click here&lt;/a&gt;
+&lt;!-- No keyword context --&gt;
+
+&lt;!-- Good --&gt;
+&lt;a href="#"&gt;Professional SEO Services Guide&lt;/a&gt;
+&lt;!-- Descriptive anchor text with keywords --&gt;</div>
+        </section>
+
+        <section class="example">
+            <h2>6. URL Structure</h2>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1: min-width:300px;">
+                    <span class="badge badge-bad">Bad</span>
+                    <code>example.com/p=123?cat=5&ref=abc</code><br>
+                    <code>example.com/2024/11/15/post-title</code><br>
+                    <code>example.com/Product_Page_New</code>
+                </div>
+                <div style="flex:1; min-width:300px;">
+                    <span class="badge badge-good">Good</span>
+                    <code>example.com/services/seo-optimization</code><br>
+                    <code>example.com/guides/html-seo-basics</code><br>
+                    <code>example.com/products/web-design</code>
+                </div>
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>7. Structured Data (Schema.org)</h2>
+            <p>Structured data helps search engines understand content context and enables rich snippets.</p>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:280px;">
+                    <h3>Article Schema</h3>
+                    <div class="schema-output" id="article-schema"></div>
+                </div>
+                <div style="flex:1; min-width:280px;">
+                    <h3>Breadcrumb Schema</h3>
+                    <div class="schema-output" id="breadcrumb-schema"></div>
+                </div>
+            </div>
+            <div class="code">&lt;script type="application/ld+json"&gt;
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "HTML SEO Basics Guide",
+    "description": "Complete guide...",
+    "author": {"@type": "Person", "name": "Author Name"},
+    "datePublished": "2024-11-15"
+}
+&lt;/script&gt;</div>
+        </section>
+
+        <section class="example">
+            <h2>8. Robots Meta Tags</h2>
+            <p>Control how search engines interact with your page:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Meta Tag</th>
+                        <th>Effect</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>index, follow</code></td><td>Index page, follow links</td><td>Default for public pages</td></tr>
+                    <tr><td><code>noindex</code></td><td>Don't show in search results</td><td>Thank you pages, admin pages</td></tr>
+                    <tr><td><code>nofollow</code></td><td>Don't crawl links on this page</td><td>Untrusted content, login pages</td></tr>
+                    <tr><td><code>noindex, nofollow</code></td><td>Don't index or follow</td><td>Privacy pages, staging sites</td></tr>
+                    <tr><td><code>nosnippet</code></td><td>Don't show description in results</td><td>Confidential content</td></tr>
+                </tbody>
+            </table>
+            <div class="code">&lt;meta name="robots" content="index, follow"&gt;
+&lt;meta name="googlebot" content="noindex"&gt;
+&lt;meta name="bingbot" content="index, follow"&gt;</div>
+        </section>
+
+        <section class="example">
+            <h2>9. Canonical URL</h2>
+            <p>Prevents duplicate content issues by specifying the preferred URL:</p>
+            <div class="code">&lt;link rel="canonical" href="https://example.com/preferred-page-url"&gt;</div>
+            <p><strong>Use when:</strong> Same content accessible via multiple URLs, printer-friendly versions, AMP pages, or URL parameters create duplicates.</p>
+        </section>
+
+        <section class="example">
+            <h2>10. Complete SEO HTML Template</h2>
+            <div class="code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Primary Keyword - Secondary Keyword | Brand&lt;/title&gt;
+    &lt;meta name="description" content="Compelling description with keywords and CTA, 150-160 characters."&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
+    &lt;link rel="canonical" href="https://example.com/page"&gt;
+    &lt;meta property="og:title" content="..."&gt;
+    &lt;meta property="og:description" content="..."&gt;
+    &lt;meta property="og:image" content="..."&gt;
+    &lt;script type="application/ld+json"&gt;{...}&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Primary Keyword Topic&lt;/h1&gt;
+        &lt;nav aria-label="Main"&gt;
+            &lt;ul&gt;&lt;li&gt;&lt;a href="#"&gt;Descriptive Link&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;img src="descriptive-filename.jpg" alt="Keyword-rich description" loading="lazy"&gt;
+        &lt;h2&gt;Section with Keywords&lt;/h2&gt;
+        &lt;p&gt;Content with natural keyword usage...&lt;/p&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &lt;address&gt;Company Name, Address&lt;/address&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        </section>
+    </main>
+
+    <script>
+        const titleInput = document.getElementById('title-input');
+        const descInput = document.getElementById('desc-input');
+        const serpTitle = document.getElementById('serp-title');
+        const serpDesc = document.getElementById('serp-desc');
+        const titleCount = document.getElementById('title-count');
+        const descCount = document.getElementById('desc-count');
+
+        function updateTitle() {
+            const val = titleInput.value || '(no title)';
+            serpTitle.textContent = val;
+            titleCount.textContent = `${val.length} chars`;
+        }
+        function updateDesc() {
+            const val = descInput.value || '(no description)';
+            serpDesc.textContent = val.length > 160 ? val.substring(0, 157) + '...' : val;
+            descCount.textContent = `${val.length} chars (${val.length > 160 ? 'truncated' : 'ok'})`;
+        }
+
+        titleInput.addEventListener('input', updateTitle);
+        descInput.addEventListener('input', updateDesc);
+        updateTitle();
+        updateDesc();
+
+        document.getElementById('article-schema').textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "HTML SEO Basics Guide",
+            "description": "Complete guide to HTML SEO best practices including title tags, meta descriptions, heading structure, and semantic HTML.",
+            "author": {"@type": "Person", "name": "Author Name"},
+            "datePublished": "2024-11-15",
+            "image": "https://example.com/images/html-seo-guide.jpg",
+            "publisher": {"@type": "Organization", "name": "SiteName"}
+        }, null, 2);
+
+        document.getElementById('breadcrumb-schema').textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com"},
+                {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://example.com/guides"},
+                {"@type": "ListItem", "position": 3, "name": "HTML SEO Basics", "item": "https://example.com/guides/html-seo"}
+            ]
+        }, null, 2);
+    </script>
+</body>
+</html>

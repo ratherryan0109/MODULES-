@@ -1,0 +1,130 @@
+{
+  "module": "130-youtube-clone-ui",
+  "title": "YouTube Clone UI",
+  "beginner": [
+    {
+      "question": "What is the typical layout of a YouTube clone?",
+      "answer": "Three main sections: Header (top bar with logo, search, user menu), Sidebar (navigation channels, subscriptions, library), and Main content area (video grid). On mobile, the sidebar becomes a bottom navigation bar or slide-out menu."
+    },
+    {
+      "question": "What is a 'video card' in a YouTube clone?",
+      "answer": "A video card shows: video thumbnail (16:9 aspect ratio), video title, channel name, view count, and upload date. Cards are arranged in a responsive grid using CSS Grid or Flexbox."
+    },
+    {
+      "question": "How do you build a responsive 'video grid'?",
+      "answer": "Use CSS Grid: `grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))`. This creates a fluid grid that adjusts columns based on available space. Gap between cards should be consistent. Use `16:9 aspect-ratio` for thumbnails."
+    },
+    {
+      "question": "What is the sidebar in a YouTube clone?",
+      "answer": "The sidebar contains navigation links: Home, Explore, Shorts, Subscriptions, Library, and user-created playlists. On desktop (expanded), it's 240px wide. On tablet, it collapses to icons-only (72px). On mobile, it becomes a bottom nav or drawer."
+    },
+    {
+      "question": "What goes in a YouTube clone header?",
+      "answer": "Logo (left), search bar with microphone (center), and user controls (right): Upload button, notifications bell, and user avatar. The header is fixed at the top (`position: fixed; z-index: 1000;`). Height ~56px."
+    },
+    {
+      "question": "How do you style a responsive search bar?",
+      "answer": "Desktop: long search input with search button. Mobile: search icon that expands into full-width input on tap. Use `flex-grow: 1` on the search container. Input uses `flex: 1`. The microphone icon sits to the right of the search bar."
+    },
+    {
+      "question": "What is the 'video metadata' displayed below a thumbnail?",
+      "answer": "Channel avatar (36px circle), video title (bold, max 2 lines), channel name (link), view count, and upload date (e.g., '1.2M views · 2 days ago'). Title is truncated with `-webkit-line-clamp: 2`."
+    },
+    {
+      "question": "How do you handle responsive video thumbnail durations?",
+      "answer": "Video duration badge is an absolute-positioned overlay at the bottom-right of the thumbnail. Use `position: absolute; bottom: 4px; right: 4px; background: rgba(0,0,0,0.8); color: white; padding: 1px 4px; border-radius: 2px; font-size: 0.75rem;`."
+    },
+    {
+      "question": "How do you make the YouTube sidebar responsive?",
+      "answer": "Desktop (expanded): 240px, full link texts + icons. Tablet (collapsed): 72px, icons only. Mobile: hidden or slide-out drawer menu. Use media queries to toggle between states. Use CSS classes `.sidebar--expanded`, `.sidebar--collapsed`."
+    },
+    {
+      "question": "What is the 'chip/channel bar' in YouTube?",
+      "answer": "A horizontal scrollable row of category/filter chips below the header (All, Music, Gaming, News, etc.). On mobile, it scrolls horizontally with `overflow-x: auto; white-space: nowrap;`. Active chip is highlighted."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement a 'fixed header' with shadow on scroll for YouTube clone?",
+      "answer": "`position: fixed; top: 0; width: 100%; z-index: 1000;`. Add `box-shadow: 0 1px 0 rgba(0,0,0,0.1)` by default. On scroll, add class `.scrolled` with stronger shadow. Use `transition: box-shadow 0.2s`."
+    },
+    {
+      "question": "How do you create a responsive video card grid with consistent heights?",
+      "answer": "Use CSS Grid with `grid-template-rows: masonry` or use `display: flex; flex-wrap: wrap;` with fixed-width items. For consistent heights, ensure all elements in each card are constrained. The thumbnail has `aspect-ratio: 16/9`."
+    },
+    {
+      "question": "How do you implement the YouTube 'shorts' carousel section?",
+      "answer": "A horizontal scrollable row with vertical (portrait) video cards (aspect-ratio 9:16). Use `overflow-x: auto; scroll-snap-type: x mandatory;` with `scroll-snap-align: start`. Card width: `minmax(120px, 200px)`."
+    },
+    {
+      "question": "How do you handle the YouTube 'notification bell' badge?",
+      "answer": "An absolute-positioned badge over the bell icon showing notification count. Use `position: absolute; top: -2px; right: -2px; background: red; color: white; font-size: 0.625rem; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;`."
+    },
+    {
+      "question": "How do you implement a dark mode toggle for a YouTube clone?",
+      "answer": "Use CSS custom properties: `:root { --bg: #fff; --text: #0f0f0f; }`. Dark: `[data-theme=\"dark\"] { --bg: #0f0f0f; --text: #f1f1f1; }`. Apply `background: var(--bg); color: var(--text);` throughout. Toggle via JavaScript."
+    },
+    {
+      "question": "How do you create a responsive 'video detail' page layout?",
+      "answer": "Video player (left, ~70% width) and suggested videos sidebar (right, ~30%). On mobile: video player full-width, suggested videos stack below. Use `grid-template-columns: 1fr 400px` on desktop, `1fr` on mobile."
+    },
+    {
+      "question": "How do you implement the 'subscription feed' section?",
+      "answer": "A vertical list in the sidebar showing subscribed channels with avatar and name. Desktop: full list. Mobile: horizontal scrollable row of channel avatars. Active/visited indicator on channels with new uploads."
+    },
+    {
+      "question": "How do you style video action buttons (like, dislike, share, save)?",
+      "answer": "Use `display: inline-flex; align-items: center; gap: 4px;` with SVG icons. Desktop: buttons with text labels. Mobile: icon-only buttons. The like/dislike buttons are grouped together. Use `aria-label` for accessibility."
+    },
+    {
+      "question": "How do you implement the YouTube 'autoplay toggle' on watch page?",
+      "answer": "A custom toggle switch next to 'Autoplay' label. Use a hidden checkbox `<input type=\"checkbox\">` with a styled `<label>`. The track and thumb are styled with CSS. On toggle, update the `::after` position."
+    },
+    {
+      "question": "How do you handle responsive 'chips bar' scrolling?",
+      "answer": "Use `overflow-x: auto; scrollbar-width: none;` on the container. Chips use `white-space: nowrap; display: inline-flex; gap: 8px;`. Each chip is `padding: 6px 12px; border-radius: 8px; background: #f2f2f2;`. Active chip has dark background."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a 'virtualized' video grid for performance?",
+      "answer": "Only render video cards in the visible viewport + buffer zone. Use IntersectionObserver to know which items are visible. React: `react-window` or `react-virtuoso`. Vanilla JS: calculate visible range based on scroll position and item height."
+    },
+    {
+      "question": "How do you implement keyboard shortcuts for video playback?",
+      "answer": "Space: play/pause, F: fullscreen, M: mute, Left/Right: seek, Up/Down: volume, J/L: back/forward 10s. Use `keydown` event listener on the document. Use `aria-keyshortcuts` for screen reader announcement."
+    },
+    {
+      "question": "How do you implement 'infinite scroll' for video search results?",
+      "answer": "Use IntersectionObserver on a sentinel element at bottom of results. On threshold, fetch next page of results. Append to the video grid. Update URL with page parameter. Preserve scroll position on back navigation."
+    },
+    {
+      "question": "How do you create a responsive 'video player' with custom controls?",
+      "answer": "Use `<video>` element with controls overlaid using `position: absolute; bottom: 0;`. Custom controls: play/pause, progress bar, volume, fullscreen, settings, picture-in-picture. Controls hide on idle (no mouse movement for 3s)."
+    },
+    {
+      "question": "How do you implement 'playlist' navigation (queue) for videos?",
+      "answer": "A sidebar or bottom sheet showing playlist videos with current video highlighted. Desktop: right sidebar on watch page. Mobile: bottom drawer. Each item has thumbnail, title, duration, and drag handle for reordering."
+    },
+    {
+      "question": "How do you implement 'picture-in-picture' mode for a YouTube clone?",
+      "answer": "Use the native Picture-in-Picture API: `video.requestPictureInPicture()`. Provide a button in controls. Fallback: a fixed mini-player at bottom-right when scrolling away from the video on mobile."
+    },
+    {
+      "question": "How do you implement 'comments section' with nested threads?",
+      "answer": "Each comment thread has top-level comment and replies. Desktop: indented replies. Mobile: threaded with visual connector lines. Sort by Top/New. Use `display: flex; gap: 12px;` for comment layout with avatar and content."
+    },
+    {
+      "question": "How do you create a responsive 'search results' page with filters?",
+      "answer": "Search results grid similar to the home page but with filter buttons above (Video, Channels, Playlists). Desktop: sidebar for advanced filters (upload date, duration, quality). Mobile: filter chips below search bar."
+    },
+    {
+      "question": "How do you implement 'video playback speed' selector?",
+      "answer": "A dropdown/overlay with speed options (0.25x to 2x). Desktop: dropdown from settings button. Mobile: bottom sheet. Apply `playbackRate` property on the `<video>` element. Highlight current selection."
+    },
+    {
+      "question": "How do you implement 'live streaming' indicators in thumbnails?",
+      "answer": "For live streams, show a red 'LIVE' badge: `position: absolute; top: 8px; left: 8px; background: red; color: white; padding: 2px 6px; border-radius: 2px; font-weight: bold;`. Add a pulsing animation: `animation: pulse 2s infinite;`."
+    }
+  ]
+}

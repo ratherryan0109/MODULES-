@@ -1,0 +1,25 @@
+{
+  "module": "CSS 3D Transformations",
+  "challenges": [
+    {
+      "id": 1, "difficulty": "easy", "title": "3D Hover Tilt",
+      "description": "Create a card that tilts on hover using rotateX and rotateY.", "hint": "Use rotateX(10deg) rotateY(10deg) with perspective on parent.", "expected_outcome": "Card tilts in 3D on hover.", "solution": { "css": ".scene { perspective: 800px; } .card { transition: transform 0.3s; } .scene:hover .card { transform: rotateX(10deg) rotateY(10deg); }" }
+    },
+    {
+      "id": 2, "difficulty": "easy", "title": "Depth Hover",
+      "description": "Create an element that moves toward the viewer on hover using translateZ.", "hint": "Use transform: translateZ(80px) with perspective.", "expected_outcome": "Element appears closer on hover.", "solution": { "css": ".scene { perspective: 600px; } .card { transition: transform 0.3s; } .card:hover { transform: translateZ(80px); }" }
+    },
+    {
+      "id": 3, "difficulty": "medium", "title": "3D Card Flip",
+      "description": "Create a full card flip effect with front and back faces.", "hint": "Use rotateY, preserve-3d, and backface-visibility.", "expected_outcome": "Card flips to show back on hover.", "solution": { "css": ".scene { perspective: 800px; } .card { position: relative; transform-style: preserve-3d; transition: transform 0.6s; } .card:hover { transform: rotateY(180deg); } .front, .back { position: absolute; backface-visibility: hidden; } .back { transform: rotateY(180deg); }" }
+    },
+    {
+      "id": 4, "difficulty": "medium", "title": "Perspective Comparison Grid",
+      "description": "Create a grid of identical elements with different perspective values to show the effect.", "hint": "Use same rotation but vary perspective from 200px to 2000px.", "expected_outcome": "Shows how perspective value changes the 3D appearance.", "solution": { "css": ".box { transform: rotateY(45deg); } .p200 { perspective: 200px; } .p500 { perspective: 500px; } .p1000 { perspective: 1000px; } .p2000 { perspective: 2000px; }" }
+    },
+    {
+      "id": 5, "difficulty": "hard", "title": "3D Rotating Cube",
+      "description": "Create a 3D cube with six faces that rotates continuously.", "hint": "Use 6 faces positioned with translateZ, preserve-3d on cube, and @keyframes for rotation.", "expected_outcome": "A fully 3D rotating cube.", "solution": { "css": ".cube { transform-style: preserve-3d; animation: spin 5s linear infinite; } @keyframes spin { 0% { transform: rotateX(0) rotateY(0); } 100% { transform: rotateX(360deg) rotateY(360deg); } } .face { position: absolute; width: 200px; height: 200px; } .front { transform: translateZ(100px); } .back { transform: rotateY(180deg) translateZ(100px); } .right { transform: rotateY(90deg) translateZ(100px); } .left { transform: rotateY(-90deg) translateZ(100px); } .top { transform: rotateX(90deg) translateZ(100px); } .bottom { transform: rotateX(-90deg) translateZ(100px); }" }
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Text - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .text-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+    @media (max-width: 640px) { .text-grid { grid-template-columns: 1fr; } }
+    .demo-card { padding: 1rem; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; }
+    .truncate-box { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px; padding: 0.75rem; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; }
+    .shadow-glow { text-shadow: 0 0 8px rgba(6,182,212,0.6), 0 0 20px rgba(6,182,212,0.3); }
+    .shadow-3d { text-shadow: 2px 2px 0 #94a3b8, 4px 4px 0 #64748b; }
+    .space-demo { white-space: pre; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-family: 'Consolas', monospace; }
+    .indent-demo { text-indent: 2rem; margin: 0.5rem 0; }
+    .letter-demo { letter-spacing: 4px; }
+    .word-demo { word-spacing: 8px; }
+  </style>
+</head>
+<body>
+  <h1>CSS Text - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Text Alignment</h2>
+    <p><code>text-align</code> controls horizontal alignment of inline content within a block.</p>
+    <div class="demo-output">
+      <div class="demo-card" style="text-align:left">Left-aligned text is the default.</div>
+      <div class="demo-card" style="text-align:center">Center-aligned for headings and short blocks.</div>
+      <div class="demo-card" style="text-align:right">Right-aligned for subtle notes or dates.</div>
+      <div class="demo-card" style="text-align:justify">Justified text stretches each line so both edges are straight. This is common in print but can create uneven spacing on the web when lines are short.</div>
+    </div>
+    <pre><code>.left    { text-align: left; }
+.center  { text-align: center; }
+.right   { text-align: right; }
+.justify { text-align: justify; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Text Decoration</h2>
+    <p><code>text-decoration</code> adds lines and effects to text. Shorthand: line, style, color.</p>
+    <div class="demo-output">
+      <div class="text-grid">
+        <div class="demo-card" style="text-decoration:underline">underline</div>
+        <div class="demo-card" style="text-decoration:overline">overline</div>
+        <div class="demo-card" style="text-decoration:line-through">line-through</div>
+        <div class="demo-card" style="text-decoration:underline wavy #06b6d4">wavy blue underline</div>
+      </div>
+    </div>
+    <pre><code>.u       { text-decoration: underline; }
+.strike  { text-decoration: line-through; }
+.fancy   { text-decoration: underline wavy #06b6d4; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Text Transform</h2>
+    <p><code>text-transform</code> changes the capitalization of text without altering the HTML content.</p>
+    <div class="demo-output">
+      <div class="text-grid">
+        <div class="demo-card" style="text-transform:uppercase"><strong>uppercase</strong><br>hello world → HELLO WORLD</div>
+        <div class="demo-card" style="text-transform:lowercase"><strong>lowercase</strong><br>HELLO WORLD → hello world</div>
+        <div class="demo-card" style="text-transform:capitalize"><strong>capitalize</strong><br>hello world → Hello World</div>
+        <div class="demo-card" style="text-transform:none"><strong>none (default)</strong><br>Original text preserved</div>
+      </div>
+    </div>
+    <pre><code>.upper     { text-transform: uppercase; }
+.lower     { text-transform: lowercase; }
+.capital   { text-transform: capitalize; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Text Shadow</h2>
+    <p><code>text-shadow</code> adds depth with offset-x, offset-y, blur-radius, and color. Multiple shadows are comma-separated.</p>
+    <div class="demo-output">
+      <div class="text-grid">
+        <div class="demo-card" style="text-shadow:2px 2px 4px rgba(0,0,0,0.3);font-size:1.5rem;text-align:center"><strong>Basic Shadow</strong></div>
+        <div class="demo-card shadow-glow" style="font-size:1.5rem;text-align:center;color:#06b6d4"><strong>Glow Effect</strong></div>
+      </div>
+    </div>
+    <pre><code>.shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+.glow   { text-shadow: 0 0 8px rgba(6,182,212,0.6); }
+.multi  { text-shadow: 1px 1px 0 #000, 2px 2px 0 #333; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Text Overflow (Ellipsis)</h2>
+    <p>Truncate overflowing text with an ellipsis. Requires three properties working together.</p>
+    <div class="demo-output">
+      <div class="truncate-box">This is a very long text that will be truncated with an ellipsis when it overflows the container.</div>
+    </div>
+    <pre><code>.truncate {
+  white-space: nowrap;      /* Prevent wrapping */
+  overflow: hidden;         /* Hide overflow */
+  text-overflow: ellipsis;  /* Show "..." */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Text Indent, Letter Spacing, Word Spacing</h2>
+    <p>Fine-grained spacing controls for typography.</p>
+    <div class="demo-output">
+      <div class="demo-card indent-demo"><strong>text-indent: 2rem</strong> — First line is indented, subsequent lines wrap normally. This mimics traditional paragraph styling in print.</div>
+      <div class="demo-card letter-demo" style="margin-top:0.5rem"><strong>letter-spacing: 4px</strong> — spread out for headings</div>
+      <div class="demo-card word-demo" style="margin-top:0.5rem"><strong>word-spacing: 8px</strong> —  extra space between words</div>
+    </div>
+    <pre><code>.indent  { text-indent: 2rem; }
+.letters { letter-spacing: 4px; }
+.words   { word-spacing: 8px; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Line Height and Vertical Alignment</h2>
+    <p><code>line-height</code> controls spacing between lines. <code>vertical-align</code> aligns inline elements vertically.</p>
+    <div class="demo-output">
+      <div class="demo-card" style="line-height:1.2"><strong>line-height: 1.2</strong> — Tight spacing, good for headings.<br>Second line here shows the tightness.</div>
+      <div class="demo-card" style="line-height:2;margin-top:0.5rem"><strong>line-height: 2</strong> — Loose spacing, good for readability.<br>Second line here shows the spacious feel.</div>
+    </div>
+    <pre><code>.tight  { line-height: 1.2; }  /* Compact */
+.readable { line-height: 1.8; }  /* Airy, readable */</code></pre>
+  </div>
+
+</body>
+</html>

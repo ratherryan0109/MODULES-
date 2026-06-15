@@ -1,0 +1,42 @@
+[
+  {
+    "id": "151-challenge-1",
+    "title": "Basic JavaScript File Uploader",
+    "description": "Write a function that demonstrates the core concepts of JavaScript File Uploader. Focus on implementing Drag and drop upload correctly.",
+    "difficulty": "easy",
+    "starterCode": "function basic_151() {\n  // Implement drag and drop upload\n  // Return a meaningful result\n  return \"Implement JavaScript File Uploader\";\n}",
+    "solution": "function basic_151() {\n  const concepts = [\"Drag and drop upload\", \"File validation (type, size)\", \"Upload progress bar\"];\n  return concepts.map(c => c.toUpperCase());\n}"
+  },
+  {
+    "id": "151-challenge-2",
+    "title": "Intermediate JavaScript File Uploader",
+    "description": "Create a function that uses Drag and drop upload and File validation (type, size) together. Handle edge cases and validate inputs.",
+    "difficulty": "medium",
+    "starterCode": "function intermediate_151(input) {\n  // Process input using drag and drop upload\n  // and file validation (type, size)\n  // Handle edge cases\n  if (!input) return [];\n  return input;\n}",
+    "solution": "function intermediate_151(input) {\n  if (!Array.isArray(input)) return [];\n  return input\n    .filter(item => item != null)\n    .map(item => ({ original: item, processed: String(item).toUpperCase() }));\n}"
+  },
+  {
+    "id": "151-challenge-3",
+    "title": "Advanced JavaScript File Uploader Project",
+    "description": "Build a small application that applies Drag and drop upload, File validation (type, size), Upload progress bar in a real-world scenario. Include error handling and input validation.",
+    "difficulty": "hard",
+    "starterCode": "class JavaScriptFileUploader {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    // Add item with validation\n  }\n  \n  process() {\n    // Process stored data using drag and drop upload\n  }\n}",
+    "solution": "class JavaScriptFileUploader {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    if (item == null) throw new Error('Invalid item');\n    this.data.push(item);\n  }\n  \n  process() {\n    return this.data\n      .filter(d => d != null)\n      .map(d => ({ value: d, timestamp: Date.now() }));\n  }\n  \n  clear() {\n    this.data = [];\n  }\n}"
+  },
+  {
+    "id": "151-challenge-4",
+    "title": "Debugging JavaScript File Uploader",
+    "description": "The following code has bugs related to Drag and drop upload. Find and fix them.",
+    "difficulty": "medium",
+    "starterCode": "// Fix the bugs in this code\nfunction processData151(items) {\n  let result = [];\n  for (var i = 0; i < items.length; i++); {\n    result.push(items[i].toUpperCase());\n  }\n  return result;\n}\n\nconsole.log(processData151([\"a\", \"b\", \"c\"]));",
+    "solution": "function processData151(items) {\n  return items.map(item => item.toUpperCase());\n}\n\nconsole.log(processData151([\"a\", \"b\", \"c\"]));\n// Expected: [\"A\", \"B\", \"C\"]"
+  },
+  {
+    "id": "151-challenge-5",
+    "title": "Refactoring JavaScript File Uploader",
+    "description": "Refactor the following code to use modern JavaScript patterns with Drag and drop upload and File validation (type, size).",
+    "difficulty": "hard",
+    "starterCode": "// Refactor this code\nfunction oldWay151(arr) {\n  var temp = [];\n  for (var i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) {\n      temp.push(arr[i] * 2);\n    }\n  }\n  var sum = 0;\n  for (var j = 0; j < temp.length; j++) {\n    sum += temp[j];\n  }\n  return sum;\n}",
+    "solution": "function refactored151(arr) {\n  return arr\n    .filter(n => n % 2 === 0)\n    .map(n => n * 2)\n    .reduce((sum, n) => sum + n, 0);\n}"
+  }
+]

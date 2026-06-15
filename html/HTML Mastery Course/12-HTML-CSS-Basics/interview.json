@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is CSS and why is it used with HTML?",
+      "answer": "CSS (Cascading Style Sheets) is a stylesheet language used to control the visual presentation of HTML elements. It handles colors, fonts, spacing, layout, animations, and responsive design, separating content (HTML) from presentation."
+    },
+    {
+      "question": "What are the three ways to apply CSS to an HTML document?",
+      "answer": "The three methods are: (1) Inline CSS using the style attribute on HTML elements, (2) Internal CSS using a <style> tag in the <head> section, and (3) External CSS using a separate .css file linked via <link rel='stylesheet' href='...'>."
+    },
+    {
+      "question": "What is a CSS selector? Name five types.",
+      "answer": "A CSS selector targets HTML elements to apply styles. Types include: element selector (p), class selector (.classname), ID selector (#idname), universal selector (*), grouping selector (h1, h2, h3), descendant selector (div p), and attribute selector ([type='text'])."
+    },
+    {
+      "question": "What is the difference between class and ID selectors?",
+      "answer": "Classes (.) can be reused on multiple elements and are for styling groups. IDs (#) must be unique per page and are typically used for identifying a single element. IDs have higher CSS specificity than classes."
+    },
+    {
+      "question": "How do you link an external CSS file in HTML?",
+      "answer": "Use the <link> element in the <head> section: <link rel='stylesheet' href='styles.css'>. The rel='stylesheet' attribute is required for the browser to recognize it as CSS."
+    },
+    {
+      "question": "What is the difference between margin and padding?",
+      "answer": "Margin is the space outside an element's border, pushing other elements away. Padding is the space inside the border, between the border and the content. Margin is transparent, while padding takes the element's background color."
+    },
+    {
+      "question": "How do you change the font size and color in CSS?",
+      "answer": "Use the 'font-size' property to set text size (e.g., font-size: 16px) and the 'color' property to set text color (e.g., color: #333 or color: red)."
+    },
+    {
+      "question": "What is the difference between 'display: block', 'display: inline', and 'display: inline-block'?",
+      "answer": "Block elements take full width and start on a new line. Inline elements only take needed width, flow inline, and ignore width/height. Inline-block flows inline like inline but respects width, height, margin, and padding like block."
+    },
+    {
+      "question": "How do you add rounded corners to a box in CSS?",
+      "answer": "Use the border-radius property. For example: border-radius: 10px gives slightly rounded corners, and border-radius: 50% creates a perfect circle if the element has equal width and height."
+    },
+    {
+      "question": "What are CSS comments and how are they written?",
+      "answer": "CSS comments are used to explain code and are ignored by browsers. They are written between /* and */. For example: /* This is a CSS comment */."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Explain the CSS cascade and how it resolves conflicting styles.",
+      "answer": "The cascade determines which CSS rule applies when multiple rules target the same element. It considers three factors in order: importance (!important declarations), specificity (ID > class > element), and source order (later declarations override earlier ones with equal specificity)."
+    },
+    {
+      "question": "What is CSS specificity and how is it calculated?",
+      "answer": "Specificity is a weight system that determines which CSS rule takes precedence. It is calculated as a four-part value: inline styles (1,0,0,0), IDs (0,1,0,0), classes/attributes/pseudo-classes (0,0,1,0), and elements/pseudo-elements (0,0,0,1). The selector with the highest total wins."
+    },
+    {
+      "question": "What is the CSS Box Model and what layers does it include?",
+      "answer": "The CSS Box Model describes how every element is rendered as a rectangular box with four layers: content (innermost), padding (space around content), border (wraps padding), and margin (outermost space). The total element size depends on which box-sizing model is used."
+    },
+    {
+      "question": "What is the difference between 'box-sizing: content-box' and 'box-sizing: border-box'?",
+      "answer": "content-box (default) includes only content in the width/height; padding and border are added outside. border-box includes content, padding, and border in the declared width/height, making sizing more intuitive and easier to calculate."
+    },
+    {
+      "question": "How does CSS inheritance work? Which properties are inherited?",
+      "answer": "Inheritance passes certain CSS property values from parent elements to their children. Text-related properties like color, font-family, font-size, line-height, and text-align are inherited. Box-model properties like margin, padding, border, width, and height are not inherited."
+    },
+    {
+      "question": "What is the difference between 'em' and 'rem' units in CSS?",
+      "answer": "em is relative to the font-size of the parent element, which can cause compounding issues with nested elements. rem (root em) is relative to the root (html) element's font-size, typically 16px by default, and does not compound, making it more predictable."
+    },
+    {
+      "question": "How do you center a block-level element horizontally?",
+      "answer": "Set a fixed width on the element and use margin: 0 auto. The browser automatically distributes the remaining horizontal space equally on both sides. For flexbox, you can also use display: flex; justify-content: center on the parent."
+    },
+    {
+      "question": "What are CSS pseudo-classes? Give three examples.",
+      "answer": "Pseudo-classes define a special state of an element. They start with a colon. Examples: :hover (when mouse is over an element), :focus (when element has keyboard focus), :first-child (first child of its parent), :nth-child(n) (nth child), and :not(selector) (negation)."
+    },
+    {
+      "question": "How do you override a CSS style without using !important?",
+      "answer": "To override without !important, you can: (1) increase specificity by using a more specific selector (e.g., add parent element or use ID), (2) place the overriding rule later in the source order, or (3) add the same selector with additional specificity through class/element combinations."
+    },
+    {
+      "question": "What is the 'rem' unit and how is it different from 'px'?",
+      "answer": "rem (root em) is a relative unit based on the root (html) element's font-size, typically 16px. px is an absolute unit representing one physical pixel on the screen. rem units respect user's browser font-size settings and are better for accessibility and responsive design."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does CSS specificity interact with the cascade in complex stylesheets?",
+      "answer": "In complex stylesheets, the cascade resolves conflicts through a four-step process: (1) relevance — filter rules that target the element, (2) importance and origin — browser styles < user styles < author styles < !important author < !important user < !important browser, (3) specificity — compare four-part selector weight, (4) source order — later declarations win if everything else is equal."
+    },
+    {
+      "question": "Explain the performance implications of different CSS selectors.",
+      "answer": "CSS selectors are parsed right-to-left by browsers. Universal selectors (*) and descendant selectors (div p) are slower because the browser must check all elements. ID selectors are fastest since they use efficient hash lookups. Class selectors are also fast. Overly specific or deeply nested selectors decrease performance, especially on large DOMs."
+    },
+    {
+      "question": "What is the 'contain' CSS property and when would you use it?",
+      "answer": "The contain property tells the browser that an element and its contents are independent from the rest of the page. Values include: layout (reflows don't affect outside), paint (element's painting is clipped), size (element's size can be computed without children), and style (no style changes affect outside). It's used for performance optimization in complex UIs."
+    },
+    {
+      "question": "How do CSS custom properties (variables) work and what are their advantages?",
+      "answer": "CSS custom properties (--varname) store reusable values and respect the cascade. Defined with --prefix and accessed with var(). Advantages include: dynamic updates via JavaScript, theme switching without preprocessors, inheritance through the DOM tree, and fallback values with var(--name, fallback). They can be scoped to specific selectors."
+    },
+    {
+      "question": "Explain the difference between 'revert', 'initial', 'unset', and 'inherit' keywords in CSS.",
+      "answer": "initial sets property to its browser default value. inherit forces inheritance even for non-inherited properties. unset acts as inherit for inherited properties and initial for non-inherited ones. revert rolls back to the browser's default stylesheet, ignoring author styles but keeping user/browser styles."
+    },
+    {
+      "question": "How does the 'isolation' property work with CSS stacking contexts?",
+      "answer": "The isolation property creates a new stacking context without needing z-index. When set to 'isolate' on an element, that element becomes a new stacking context root, isolating its z-index layering from parent contexts. This is useful for mix-blend-mode and preventing unintended z-index interference."
+    },
+    {
+      "question": "What are CSS containment and 'content-visibility' and how do they improve performance?",
+      "answer": "CSS containment (with contain property) limits browser layout/recalc scope. content-visibility is a newer property that skips rendering of off-screen elements. Setting content-visibility: auto on long sections defers their layout, paint, and compositing until the user scrolls near them, dramatically improving initial page load performance."
+    },
+    {
+      "question": "Explain the 'clip-path' property and its use cases beyond simple clipping.",
+      "answer": "clip-path creates a clipping region that determines which parts of an element are visible. It accepts basic shapes (circle(), ellipse(), polygon(), inset()) and SVG path references. Beyond clipping images, it's used for creative layouts, animated reveals, custom-shaped containers, and even as a performance trick to limit paint area."
+    },
+    {
+      "question": "How does 'will-change' work and what are its best practices?",
+      "answer": "will-change is a hint to browsers that an element will change (transform, opacity, etc.). This lets browsers optimize ahead of time. Best practices: apply it shortly before changes and remove it when done (not on every element), don't overuse (causes memory bloat), prefer specific property names (will-change: transform, opacity) rather than generic."
+    },
+    {
+      "question": "What is the CSS 'all' shorthand property and how does it interact with specificity?",
+      "answer": "The 'all' shorthand resets all properties except unicode-bidi and direction. It accepts initial, inherit, unset, and revert. For example, 'all: unset' resets every property to its natural state (inherited properties inherit, non-inherited go to initial). 'all: revert' is useful for isolating embedded widgets from parent page styles. It overrides the cascade for all properties at once."
+    }
+  ]
+}

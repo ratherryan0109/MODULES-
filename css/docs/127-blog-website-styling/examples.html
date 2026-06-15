@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Design Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --clr-bg: #fafaf9;
+      --clr-surface: #ffffff;
+      --clr-text: #1c1917;
+      --clr-text-light: #78716c;
+      --clr-accent: #d97706;
+      --clr-accent-hover: #b45309;
+      --clr-border: #e7e5e4;
+      --clr-tag-bg: #fef3c7;
+      --clr-tag-text: #92400e;
+      --ff-serif: 'Merriweather', Georgia, serif;
+      --ff-sans: 'Inter', system-ui, sans-serif;
+      --fs-base: 1rem;
+      --fs-h1: clamp(2rem, 5vw, 3.5rem);
+      --fs-h2: clamp(1.5rem, 3vw, 2.25rem);
+      --fs-h3: clamp(1.25rem, 2vw, 1.5rem);
+      --fs-body: 1.0625rem;
+      --fs-small: 0.875rem;
+      --max-width: 1120px;
+      --content-width: 720px;
+      --radius: 0.75rem;
+      --transition: 0.3s ease;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-sans);
+      font-size: var(--fs-base);
+      line-height: 1.7;
+      color: var(--clr-text);
+      background: var(--clr-bg);
+    }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .skip-link { position: absolute; top: -100%; left: 1rem; padding: 0.5rem 1rem; background: var(--clr-accent); color: white; z-index: 9999; border-radius: 0.5rem; }
+    .skip-link:focus { top: 1rem; }
+
+    .header {
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+    .logo { font-size: 1.5rem; font-weight: 800; color: var(--clr-accent); }
+    .nav-menu { display: flex; gap: 1.5rem; }
+    .nav-menu a { font-weight: 500; color: var(--clr-text-light); transition: color var(--transition); }
+    .nav-menu a:hover, .nav-menu a:focus-visible { color: var(--clr-text); }
+    .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--clr-text); }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu { display: none; flex-direction: column; position: absolute; top: 4rem; left: 0; right: 0; background: var(--clr-surface); border-bottom: 1px solid var(--clr-border); padding: 1rem; gap: 0.5rem; }
+      .nav-menu.active { display: flex; }
+    }
+
+    .hero {
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+    .hero h1 { font-family: var(--ff-serif); font-size: var(--fs-h1); font-weight: 700; margin-bottom: 1rem; }
+    .hero p { font-size: 1.125rem; color: var(--clr-text-light); max-width: 600px; margin: 0 auto; }
+
+    .blog-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; padding-bottom: 4rem; }
+    @media (min-width: 768px) { .blog-layout { grid-template-columns: 2fr 1fr; } }
+
+    .featured-post {
+      background: var(--clr-surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--clr-border);
+      margin-bottom: 2rem;
+      transition: box-shadow var(--transition);
+    }
+    .featured-post:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .featured-post .post-image { aspect-ratio: 2/1; overflow: hidden; }
+    .featured-post .post-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .featured-post:hover .post-image img { transform: scale(1.03); }
+    .featured-post .post-body { padding: 2rem; }
+    .featured-post h2 { font-family: var(--ff-serif); font-size: var(--fs-h2); margin-bottom: 0.75rem; }
+    .featured-post h2 a { color: var(--clr-text); }
+    .featured-post h2 a:hover { color: var(--clr-accent); }
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 500px) { .post-grid { grid-template-columns: 1fr 1fr; } }
+
+    .post-card {
+      background: var(--clr-surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--clr-border);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .post-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+    .post-card .post-image { aspect-ratio: 16/10; overflow: hidden; }
+    .post-card .post-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .post-card:hover .post-image img { transform: scale(1.05); }
+    .post-card .post-body { padding: 1.5rem; }
+    .post-card h3 { font-family: var(--ff-serif); font-size: var(--fs-h3); margin-bottom: 0.5rem; }
+    .post-card h3 a { color: var(--clr-text); }
+    .post-card h3 a:hover { color: var(--clr-accent); }
+
+    .post-meta {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: var(--fs-small); color: var(--clr-text-light);
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .post-meta .author-avatar {
+      width: 28px; height: 28px; border-radius: 50%; object-fit: cover;
+    }
+    .post-meta time { font-style: italic; }
+    .post-excerpt { color: var(--clr-text-light); line-height: 1.7; margin-bottom: 1rem; }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .post-tags a {
+      background: var(--clr-tag-bg); color: var(--clr-tag-text);
+      padding: 0.2rem 0.75rem; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 500;
+      transition: opacity var(--transition);
+    }
+    .post-tags a:hover { opacity: 0.8; }
+
+    /* Sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 2rem; }
+    .sidebar-widget {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .sidebar-widget h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--clr-accent);
+    }
+    .sidebar-widget ul li { margin-bottom: 0.5rem; }
+    .sidebar-widget ul li a {
+      color: var(--clr-text-light);
+      transition: color var(--transition);
+      display: flex; justify-content: space-between;
+    }
+    .sidebar-widget ul li a:hover { color: var(--clr-accent); }
+    .sidebar-widget ul li .count { color: var(--clr-text-light); font-size: 0.875rem; }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag-cloud a {
+      background: var(--clr-tag-bg); color: var(--clr-tag-text);
+      padding: 0.35rem 0.85rem; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 500;
+      transition: opacity var(--transition);
+    }
+    .tag-cloud a:hover { opacity: 0.8; }
+
+    /* Article Page */
+    .article-page { max-width: var(--content-width); margin: 0 auto; padding: 3rem 1.5rem; }
+    .article-page h1 {
+      font-family: var(--ff-serif);
+      font-size: var(--fs-h1);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .article-page .post-meta { margin-bottom: 2rem; }
+    .article-page .featured-image {
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    .article-content { font-family: var(--ff-serif); font-size: var(--fs-body); line-height: 1.8; color: var(--clr-text); }
+    .article-content p { margin-bottom: 1.5rem; max-width: 65ch; }
+    .article-content h2 { font-family: var(--ff-sans); font-size: var(--fs-h2); margin: 2rem 0 1rem; }
+    .article-content h3 { font-family: var(--ff-sans); font-size: var(--fs-h3); margin: 1.5rem 0 0.75rem; }
+    .article-content blockquote {
+      border-left: 4px solid var(--clr-accent);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      background: var(--clr-tag-bg);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .article-content blockquote p { margin-bottom: 0; font-style: italic; }
+    .article-content pre {
+      background: #1c1917;
+      color: #fafaf9;
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 1.5rem 0;
+    }
+    .article-content code {
+      background: #fef3c7;
+      padding: 0 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .article-content pre code { background: none; padding: 0; color: inherit; }
+
+    /* Footer */
+    .footer {
+      background: var(--clr-surface);
+      border-top: 1px solid var(--clr-border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--clr-text-light);
+      font-size: var(--fs-small);
+    }
+
+    :focus-visible { outline: 2px solid var(--clr-accent); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="#" class="logo">DesignBlog</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle">&#9776;</button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#">Articles</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <h1>Stories &amp; Ideas</h1>
+        <p>A blog about design, technology, and creative thinking.</p>
+      </div>
+    </section>
+
+    <div class="container blog-layout">
+      <div>
+        <article class="featured-post" aria-labelledby="featured-title">
+          <div class="post-image">
+            <img src="https://placehold.co/800x400/d97706/ffffff?text=Featured+Article" alt="Featured article cover" loading="lazy">
+          </div>
+          <div class="post-body">
+            <div class="post-meta">
+              <img src="https://placehold.co/28x28/d97706/ffffff?text=SM" alt="" class="author-avatar" aria-hidden="true">
+              <span>Sarah Miller</span>
+              <span aria-hidden="true">·</span>
+              <time datetime="2026-06-01">June 1, 2026</time>
+            </div>
+            <h2 id="featured-title"><a href="#">The Art of Minimalist Design: Less is More</a></h2>
+            <p class="post-excerpt">Discover how embracing simplicity can transform your design work. A deep dive into minimalist principles that stand the test of time.</p>
+            <div class="post-tags">
+              <a href="#">Design</a>
+              <a href="#">Minimalism</a>
+            </div>
+          </div>
+        </article>
+
+        <div class="post-grid">
+          <article class="post-card">
+            <div class="post-image"><img src="https://placehold.co/400x250/78716c/ffffff?text=CSS+Grid" alt="CSS Grid tutorial" loading="lazy"></div>
+            <div class="post-body">
+              <div class="post-meta">
+                <time datetime="2026-05-28">May 28, 2026</time>
+              </div>
+              <h3><a href="#">Mastering CSS Grid for Complex Layouts</a></h3>
+              <p class="post-excerpt">Learn advanced CSS Grid patterns for building responsive, complex layouts.</p>
+              <div class="post-tags"><a href="#">CSS</a><a href="#">Grid</a></div>
+            </div>
+          </article>
+          <article class="post-card">
+            <div class="post-image"><img src="https://placehold.co/400x250/d97706/ffffff?text=Typography" alt="Typography guide" loading="lazy"></div>
+            <div class="post-body">
+              <div class="post-meta">
+                <time datetime="2026-05-25">May 25, 2026</time>
+              </div>
+              <h3><a href="#">A Practical Guide to Web Typography</a></h3>
+              <p class="post-excerpt">Everything you need to know about choosing and pairing web fonts.</p>
+              <div class="post-tags"><a href="#">Typography</a><a href="#">Design</a></div>
+            </div>
+          </article>
+          <article class="post-card">
+            <div class="post-image"><img src="https://placehold.co/400x250/78716c/ffffff?text=Flexbox" alt="Flexbox guide" loading="lazy"></div>
+            <div class="post-body">
+              <div class="post-meta">
+                <time datetime="2026-05-20">May 20, 2026</time>
+              </div>
+              <h3><a href="#">Flexbox vs Grid: When to Use What</a></h3>
+              <p class="post-excerpt">Understanding the strengths of each layout method with real examples.</p>
+              <div class="post-tags"><a href="#">CSS</a><a href="#">Flexbox</a></div>
+            </div>
+          </article>
+          <article class="post-card">
+            <div class="post-image"><img src="https://placehold.co/400x250/d97706/ffffff?text=Accessibility" alt="Accessibility article" loading="lazy"></div>
+            <div class="post-body">
+              <div class="post-meta">
+                <time datetime="2026-05-15">May 15, 2026</time>
+              </div>
+              <h3><a href="#">Building for Everyone: Web Accessibility</a></h3>
+              <p class="post-excerpt">Why accessibility matters and how to implement it in your projects.</p>
+              <div class="post-tags"><a href="#">Accessibility</a><a href="#">Best Practices</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="sidebar" aria-label="Blog sidebar">
+        <div class="sidebar-widget">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">Design <span class="count">(12)</span></a></li>
+            <li><a href="#">CSS <span class="count">(8)</span></a></li>
+            <li><a href="#">JavaScript <span class="count">(6)</span></a></li>
+            <li><a href="#">Performance <span class="count">(4)</span></a></li>
+            <li><a href="#">Career <span class="count">(5)</span></a></li>
+          </ul>
+        </div>
+        <div class="sidebar-widget">
+          <h3>Tags</h3>
+          <div class="tag-cloud">
+            <a href="#">CSS Grid</a>
+            <a href="#">Flexbox</a>
+            <a href="#">Animations</a>
+            <a href="#">Responsive</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Typography</a>
+            <a href="#">Performance</a>
+            <a href="#">React</a>
+          </div>
+        </div>
+        <div class="sidebar-widget">
+          <h3>Recent Posts</h3>
+          <ul>
+            <li><a href="#">The Art of Minimalist Design</a></li>
+            <li><a href="#">Mastering CSS Grid</a></li>
+            <li><a href="#">Web Typography Guide</a></li>
+            <li><a href="#">Flexbox vs Grid</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <article class="article-page" aria-label="Full article example">
+      <h1>How to Style a Blog with Modern CSS</h1>
+      <div class="post-meta">
+        <img src="https://placehold.co/28x28/d97706/ffffff?text=SM" alt="" class="author-avatar" aria-hidden="true">
+        <span>Sarah Miller</span>
+        <span aria-hidden="true">·</span>
+        <time datetime="2026-06-05">June 5, 2026</time>
+        <span aria-hidden="true">·</span>
+        <span>8 min read</span>
+      </div>
+      <img src="https://placehold.co/720x360/d97706/ffffff?text=Article+Cover" alt="Article cover image showing code on screen" class="featured-image" loading="lazy">
+      <div class="article-content">
+        <p>Modern CSS gives us incredible tools for styling blogs. From CSS Grid for layouts to custom properties for theming, we can create beautiful reading experiences with minimal code.</p>
+        <h2>Starting with Typography</h2>
+        <p>Typography is the foundation of any blog. The right font choices can make reading effortless and enjoyable. For body text, serif fonts like Merriweather or Georgia provide excellent readability at longer lengths.</p>
+        <blockquote>
+          <p>"Typography is the craft of endowing human language with a durable visual form." — Robert Bringhurst</p>
+        </blockquote>
+        <p>Aim for a line length between 45 and 75 characters per line. Use the `ch` unit to set a comfortable max-width on your article container.</p>
+        <h2>Working with Code Blocks</h2>
+        <p>Blogs about code need well-styled code blocks. Here's an example:</p>
+        <pre><code>:root {
+  --ff-serif: 'Merriweather', Georgia, serif;
+  --ff-sans: 'Inter', system-ui, sans-serif;
+  --fs-body: 1.0625rem;
+  --content-width: 65ch;
+}
+
+.article-content {
+  font-family: var(--ff-serif);
+  max-width: var(--content-width);
+  line-height: 1.8;
+}</code></pre>
+        <p>Always ensure your code blocks have sufficient contrast against the background and include a monospace font stack.</p>
+        <h3>Responsive Images</h3>
+        <p>Blogs often include images. Make sure they are responsive and optimized. Use the <code>loading="lazy"</code> attribute for images below the fold.</p>
+        <p>Modern CSS makes blog styling enjoyable. Combine a solid typographic system with a consistent color palette, and you'll create a blog readers love.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 DesignBlog. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true' ? false : true;
+      toggle.setAttribute('aria-expanded', expanded);
+      menu.classList.toggle('active');
+      toggle.innerHTML = expanded ? '&times;' : '&#9776;';
+    });
+  </script>
+</body>
+</html>

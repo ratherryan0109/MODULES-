@@ -1,0 +1,222 @@
+[
+  {
+    "question": "Which attribute makes an HTML element draggable?",
+    "options": [
+      "draggable",
+      "drag",
+      "drag-enabled",
+      "movable"
+    ],
+    "answer": "a",
+    "explanation": "The draggable attribute with value 'true' makes an element draggable. Images and links are draggable by default."
+  },
+  {
+    "question": "Which event is fired when a drag operation starts on the dragged element?",
+    "options": [
+      "dragbegin",
+      "dragstart",
+      "draginit",
+      "startdrag"
+    ],
+    "answer": "b",
+    "explanation": "The dragstart event is fired on the dragged element when the user starts dragging."
+  },
+  {
+    "question": "What must you call on the dragover event to allow a drop to happen?",
+    "options": [
+      "event.allowDrop()",
+      "event.preventDefault()",
+      "event.stopPropagation()",
+      "event.enableDrop()"
+    ],
+    "answer": "b",
+    "explanation": "Calling event.preventDefault() on the dragover event indicates that the element is a valid drop target and allows the drop event to fire."
+  },
+  {
+    "question": "Which method sets data on the DataTransfer object?",
+    "options": [
+      "dataTransfer.putData()",
+      "dataTransfer.setData()",
+      "dataTransfer.addData()",
+      "dataTransfer.writeData()"
+    ],
+    "answer": "b",
+    "explanation": "dataTransfer.setData(format, data) stores data in the specified format for the drag operation."
+  },
+  {
+    "question": "When can you safely call getData() on the DataTransfer object?",
+    "options": [
+      "In dragstart",
+      "In drag",
+      "In drop and dragend",
+      "In dragover"
+    ],
+    "answer": "c",
+    "explanation": "getData() is only available in the drop and dragend event handlers. In other events, the data may not be accessible."
+  },
+  {
+    "question": "What property of DataTransfer contains the list of dropped files?",
+    "options": [
+      "dataTransfer.files",
+      "dataTransfer.fileList",
+      "dataTransfer.items",
+      "dataTransfer.data"
+    ],
+    "answer": "a",
+    "explanation": "dataTransfer.files returns a FileList of files dropped during a drag operation."
+  },
+  {
+    "question": "Which property specifies the type of drag operation allowed on the source?",
+    "options": [
+      "dropEffect",
+      "effectAllowed",
+      "dragEffect",
+      "operationType"
+    ],
+    "answer": "b",
+    "explanation": "effectAllowed (set in dragstart) specifies which operations are allowed: 'none', 'copy', 'move', 'link', etc."
+  },
+  {
+    "question": "How do you set a custom drag image?",
+    "options": [
+      "dataTransfer.setDragImage()",
+      "dataTransfer.setImage()",
+      "dataTransfer.dragImage()",
+      "Drag images cannot be customized"
+    ],
+    "answer": "a",
+    "explanation": "setDragImage(img, xOffset, yOffset) sets a custom image to be displayed during the drag operation."
+  },
+  {
+    "question": "Which event fires when a draggable element leaves a valid drop target?",
+    "options": [
+      "dragleave",
+      "dragexit",
+      "dragout",
+      "dragend"
+    ],
+    "answer": "a",
+    "explanation": "dragleave fires on the drop target when the dragged element leaves its boundary."
+  },
+  {
+    "question": "What is the default value of the draggable attribute for an <img> element?",
+    "options": [
+      "true",
+      "false",
+      "auto",
+      "undefined"
+    ],
+    "answer": "a",
+    "explanation": "Images have draggable set to 'true' by default, allowing users to drag images from web pages."
+  },
+  {
+    "question": "Which event fires repeatedly during a drag operation on the dragged element?",
+    "options": [
+      "dragging",
+      "drag",
+      "dragmove",
+      "dragover"
+    ],
+    "answer": "b",
+    "explanation": "The drag event fires continuously on the source element while the drag operation is in progress."
+  },
+  {
+    "question": "What does dataTransfer.clearData() do?",
+    "options": [
+      "Removes all event listeners",
+      "Clears all data stored for the drag operation",
+      "Resets the drag operation",
+      "Hides the drag image"
+    ],
+    "answer": "b",
+    "explanation": "clearData() removes all data (or data of a specific format) from the DataTransfer object."
+  },
+  {
+    "question": "What is the correct way to specify the drop operation effect?",
+    "options": [
+      "dataTransfer.dropEffect = 'move'",
+      "dataTransfer.effectAllowed = 'move'",
+      "dataTransfer.operation = 'move'",
+      "dataTransfer.mode = 'move'"
+    ],
+    "answer": "a",
+    "explanation": "dropEffect (set in dragover/dragenter) specifies the cursor feedback: 'none', 'copy', 'move', or 'link'."
+  },
+  {
+    "question": "How do you get data from the DataTransfer object?",
+    "options": [
+      "dataTransfer.retrieveData()",
+      "dataTransfer.readData()",
+      "dataTransfer.getData()",
+      "dataTransfer.fetchData()"
+    ],
+    "answer": "c",
+    "explanation": "getData(format) returns the data stored for the given format (e.g., 'text/plain', 'text/html')."
+  },
+  {
+    "question": "Which event signals the end of a drag operation on the source element?",
+    "options": [
+      "dragstop",
+      "dragend",
+      "dropend",
+      "dragfinish"
+    ],
+    "answer": "b",
+    "explanation": "dragend fires on the source element when the drag operation ends, whether the item was dropped or the drag was cancelled."
+  },
+  {
+    "question": "What is the primary limitation of the native HTML Drag and Drop API?",
+    "options": [
+      "It only works with text data",
+      "It does not work on touch devices",
+      "It requires jQuery",
+      "It does not support file drops"
+    ],
+    "answer": "b",
+    "explanation": "The native Drag and Drop API does not work on touch devices. Touch events or polyfill libraries are needed for mobile support."
+  },
+  {
+    "question": "What does the types property of DataTransfer contain?",
+    "options": [
+      "The MIME types of stored data",
+      "The CSS classes of dragged element",
+      "The data type (string or file)",
+      "The drag operation type"
+    ],
+    "answer": "a",
+    "explanation": "dataTransfer.types returns an array of MIME type strings (e.g., 'text/plain', 'text/html') for the data being transferred."
+  },
+  {
+    "question": "When dragging files from the OS, what property contains the file data?",
+    "options": [
+      "dataTransfer.files",
+      "dataTransfer.data",
+      "dataTransfer.fileData",
+      "dataTransfer.items"
+    ],
+    "answer": "a",
+    "explanation": "For external file drops, dataTransfer.files contains a FileList of the dropped files from the operating system."
+  },
+  {
+    "question": "What happens if you do not call preventDefault() on the dragover event?",
+    "options": [
+      "The drop event fires but no data is transferred",
+      "The drop event never fires",
+      "The drag operation is cancelled immediately",
+      "The browser opens a new tab"
+    ],
+    "answer": "b",
+    "explanation": "Without preventDefault() on dragover, the drop target is not considered a valid target and the drop event will not fire."
+  },
+  {
+    "question": "Which DataTransferItem property distinguishes files from strings?",
+    "options": [
+      "item.type",
+      "item.kind",
+      "item.format",
+      "item.mode"
+    ],
+    "answer": "b",
+    "explanation": "item.kind is either 'string' (for text data) or 'file' (for file data). Item.type gives the MIME type."
+  }
+]

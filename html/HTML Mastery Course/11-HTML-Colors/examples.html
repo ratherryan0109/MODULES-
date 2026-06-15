@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Colors - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #e74c3c; border-bottom: 3px solid #e74c3c; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .color-box { display: inline-block; padding: 20px 30px; margin: 5px; border-radius: 5px; color: white; font-weight: bold; }
+        .color-table td { padding: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Module 11: HTML Colors — Examples</h1>
+
+    <!-- Example 1: Color Names -->
+    <div class="example">
+        <h2>Example 1: Named Colors</h2>
+        <p>HTML supports 140+ predefined color names.</p>
+        <pre>
+&lt;p style="color: red;"&gt;Red text&lt;/p&gt;
+&lt;p style="color: blue; background-color: yellow;"&gt;Blue on yellow&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div class="color-box" style="background: red;">Red</div>
+            <div class="color-box" style="background: blue;">Blue</div>
+            <div class="color-box" style="background: green;">Green</div>
+            <div class="color-box" style="background: orange;">Orange</div>
+            <div class="color-box" style="background: purple;">Purple</div>
+            <div class="color-box" style="background: teal;">Teal</div>
+            <div class="color-box" style="background: coral;">Coral</div>
+            <div class="color-box" style="background: crimson;">Crimson</div>
+        </div>
+    </div>
+
+    <!-- Example 2: Hex Codes -->
+    <div class="example">
+        <h2>Example 2: Hexadecimal Color Codes</h2>
+        <pre>
+&lt;p style="color: #FF5733;"&gt;Custom orange&lt;/p&gt;
+&lt;p style="color: #2ECC71;"&gt;Custom green&lt;/p&gt;
+&lt;p style="color: #3498DB;"&gt;Custom blue&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div class="color-box" style="background: #FF5733;">#FF5733</div>
+            <div class="color-box" style="background: #2ECC71;">#2ECC71</div>
+            <div class="color-box" style="background: #3498DB;">#3498DB</div>
+            <div class="color-box" style="background: #9B59B6;">#9B59B6</div>
+            <div class="color-box" style="background: #E74C3C;">#E74C3C</div>
+            <div class="color-box" style="background: #F39C12;">#F39C12</div>
+        </div>
+    </div>
+
+    <!-- Example 3: RGB and RGBA -->
+    <div class="example">
+        <h2>Example 3: RGB and RGBA Colors</h2>
+        <pre>
+&lt;p style="color: rgb(255, 0, 0);"&gt;Red via RGB&lt;/p&gt;
+&lt;p style="background-color: rgba(255, 0, 0, 0.3);"&gt;30% transparent red&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div class="color-box" style="background: rgb(255, 0, 0);">rgb(255,0,0)</div>
+            <div class="color-box" style="background: rgb(0, 255, 0);">rgb(0,255,0)</div>
+            <div class="color-box" style="background: rgb(0, 0, 255);">rgb(0,0,255)</div>
+            <div class="color-box" style="background: rgb(255, 255, 0); color: #333;">rgb(255,255,0)</div>
+            <div class="color-box" style="background: rgba(255, 0, 0, 0.3); color: #333;">rgba(red, 0.3)</div>
+            <div class="color-box" style="background: rgba(0, 0, 255, 0.5);">rgba(blue, 0.5)</div>
+        </div>
+    </div>
+
+    <!-- Example 4: HSL and HSLA -->
+    <div class="example">
+        <h2>Example 4: HSL and HSLA Colors</h2>
+        <pre>
+&lt;p style="color: hsl(0, 100%, 50%);"&gt;Red via HSL&lt;/p&gt;
+&lt;p style="color: hsla(240, 100%, 50%, 0.5);"&gt;50% transparent blue&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div class="color-box" style="background: hsl(0, 100%, 50%);">hsl(0,100%,50%)</div>
+            <div class="color-box" style="background: hsl(120, 100%, 50%);">hsl(120,100%,50%)</div>
+            <div class="color-box" style="background: hsl(240, 100%, 50%);">hsl(240,100%,50%)</div>
+            <div class="color-box" style="background: hsl(60, 100%, 50%); color: #333;">hsl(60,100%,50%)</div>
+            <div class="color-box" style="background: hsl(300, 100%, 50%);">hsl(300,100%,50%)</div>
+            <div class="color-box" style="background: hsla(0, 100%, 50%, 0.4); color: #333;">hsla(red, 0.4)</div>
+        </div>
+    </div>
+
+    <!-- Example 5: Color Applications -->
+    <div class="example">
+        <h2>Example 5: Color Applications (Text, Background, Borders)</h2>
+        <pre>
+&lt;p style="color: #e74c3c;"&gt;Colored text&lt;/p&gt;
+&lt;p style="background-color: #3498db; color: white;"&gt;Background color&lt;/p&gt;
+&lt;p style="border: 3px solid #2ecc71; padding: 10px;"&gt;Border color&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p style="color: #e74c3c;"><strong>This text is colored using <code>color: #e74c3c</code></strong></p>
+            <p style="background-color: #3498db; color: white; padding: 10px; border-radius: 5px;"><strong>This has a blue background with white text</strong></p>
+            <p style="border: 3px solid #2ecc71; padding: 10px; border-radius: 5px;"><strong>This has a green border</strong></p>
+        </div>
+    </div>
+
+    <!-- Example 6: Contrast Comparison -->
+    <div class="example">
+        <h2>Example 6: Good vs Poor Contrast</h2>
+        <pre>
+&lt;!-- Good contrast --&gt;
+&lt;p style="color: #333; background: #fff;"&gt;Dark text on white&lt;/p&gt;
+
+&lt;!-- Poor contrast --&gt;
+&lt;p style="color: #ccc; background: #fff;"&gt;Light text on white&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p style="color: #333; background: #fff; padding: 10px; border-radius: 3px;">✅ Good contrast: #333 on white</p>
+            <p style="color: #fff; background: #333; padding: 10px; border-radius: 3px;">✅ Good contrast: white on #333</p>
+            <p style="color: #ccc; background: #fff; padding: 10px; border-radius: 3px;">❌ Poor contrast: #ccc on white (hard to read)</p>
+            <p style="color: #999; background: #ddd; padding: 10px; border-radius: 3px;">❌ Poor contrast: #999 on #ddd</p>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Use tools like WebAIM Contrast Checker or Chrome DevTools to verify your color combinations meet WCAG accessibility standards (minimum 4.5:1 contrast ratio).
+    </div>
+</body>
+</html>

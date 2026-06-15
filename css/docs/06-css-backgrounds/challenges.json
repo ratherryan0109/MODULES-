@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Create Gradient Cards",
+    "description": "Create 3 cards with different gradient backgrounds: a linear gradient, a radial gradient, and a repeating gradient pattern.",
+    "starterCode": "<div class=\"card\">Card 1</div>\n<div class=\"card\">Card 2</div>\n<div class=\"card\">Card 3</div>\n\n<style>\n  /* Add gradient backgrounds to each card */\n</style>",
+    "solution": "<div class=\"card\">Card 1</div>\n<div class=\"card\">Card 2</div>\n<div class=\"card\">Card 3</div>\n\n<style>\nbody { display: flex; gap: 20px; padding: 40px; font-family: Arial; }\n.card { padding: 60px 40px; border-radius: 10px; color: white; font-size: 1.5em; font-weight: bold; text-align: center; flex: 1; }\n.card:nth-child(1) { background: linear-gradient(135deg, #667eea, #764ba2); }\n.card:nth-child(2) { background: radial-gradient(circle at center, #f093fb, #f5576c); }\n.card:nth-child(3) { background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px); }\n</style>"
+  },
+  "medium": {
+    "title": "Hero Section with Gradient Overlay",
+    "description": "Create a hero section with a background image, a semi-transparent color overlay on top, and centered text. Use multiple backgrounds to achieve the overlay effect.",
+    "starterCode": "<section class=\"hero\">\n  <h1>Welcome</h1>\n  <p>Hero section with overlay</p>\n</section>\n\n<style>\n  /* Style the hero with background image and overlay */\n</style>",
+    "solution": "<section class=\"hero\">\n  <h1>Welcome</h1>\n  <p>Hero section with overlay</p>\n</section>\n\n<style>\n.hero {\n  height: 60vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-family: Arial;\n  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x600') center/cover;\n}\n.hero h1 { font-size: 4em; margin: 0; }\n.hero p { font-size: 1.5em; }\n</style>"
+  },
+  "hard": {
+    "title": "Build a Layered Background Showcase",
+    "description": "Create a showcase page with 4 sections that demonstrate different background techniques: (1) a parallax-style fixed background, (2) a conic gradient pie chart, (3) a background-clip:text gradient heading, and (4) multiple layered background images.",
+    "starterCode": "<section class=\"section parallax\">\n  <h2>Fixed Background</h2>\n</section>\n<section class=\"section conic\">\n  <h2>Conic Gradient</h2>\n</section>\n<section class=\"section clip\">\n  <h2>Text Clip</h2>\n</section>\n<section class=\"section layered\">\n  <h2>Multiple Layers</h2>\n</section>\n\n<style>\n  /* Implement each background technique */\n</style>",
+    "solution": "<section class=\"section parallax\">\n  <h2>Fixed Background</h2>\n</section>\n<section class=\"section conic\">\n  <h2>Conic Gradient</h2>\n</section>\n<section class=\"section clip\">\n  <h2>Text Clip</h2>\n</section>\n<section class=\"section layered\">\n  <h2>Multiple Layers</h2>\n</section>\n\n<style>\n.section { height: 300px; display: flex; align-items: center; justify-content: center; font-family: Arial; color: white; margin-bottom: 10px; }\n.section h2 { font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }\n.parallax { background: url('https://via.placeholder.com/1200x400/2d3748/ffffff?text=Parallax') center/cover fixed; }\n.conic { background: conic-gradient(#e53e3e, #d69e2e, #38a169, #4299e1, #9f7aea, #e53e3e); }\n.clip { background: linear-gradient(45deg, #667eea, #764ba2); background-clip: text; -webkit-background-clip: text; color: transparent; }\n.clip h2 { text-shadow: none; }\n.layered { background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.1) 50%), linear-gradient(135deg, #667eea, #764ba2); }\n</style>"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS combinator?", "answer": "A CSS combinator defines the relationship between two or more selectors, determining how elements are selected based on their relationship in the DOM." },
+    { "question": "What does the descendant combinator (space) do?", "answer": "The descendant combinator (a space) selects elements that are descendants (children, grandchildren, etc.) of a specified element." },
+    { "question": "What does the child combinator (>) do?", "answer": "The child combinator (>) selects direct children only — elements that are immediate children of the specified parent." },
+    { "question": "What does the adjacent sibling combinator (+) do?", "answer": "The adjacent sibling combinator (+) selects an element that is immediately preceded by a specified sibling." },
+    { "question": "What does the general sibling combinator (~) do?", "answer": "The general sibling combinator (~) selects all elements that are preceded by a specified sibling, not just the immediate one." },
+    { "question": "What is the syntax for the descendant combinator?", "answer": "The syntax is ancestor descendant { ... }, e.g., div p selects all p elements inside a div." },
+    { "question": "What is the syntax for the child combinator?", "answer": "The syntax is parent > child { ... }, e.g., ul > li selects all li elements that are direct children of a ul." },
+    { "question": "Does the descendant combinator select grandchildren?", "answer": "Yes, the descendant combinator selects all nested elements at any depth, not just direct children." },
+    { "question": "Does the child combinator select grandchildren?", "answer": "No, the child combinator only selects direct children of the specified parent." },
+    { "question": "What is the difference between div p and div > p?", "answer": "div p selects all p elements inside div at any depth; div > p selects only p elements that are direct children of div." }
+  ],
+  "intermediate": [
+    { "question": "How does selector specificity work with combinators?", "answer": "Combinators themselves have no specificity value; specificity is determined by the combined selectors (IDs, classes, elements) they connect." },
+    { "question": "What does h2 + p select?", "answer": "h2 + p selects the first paragraph that immediately follows an h2 element (adjacent sibling)." },
+    { "question": "What does h2 ~ p select?", "answer": "h2 ~ p selects all paragraph elements that follow an h2 element and share the same parent." },
+    { "question": "Can you chain multiple combinators in one selector?", "answer": "Yes, you can chain combinators, e.g., div > ul > li + li selects the second li onward directly inside a ul that is a direct child of div." },
+    { "question": "What is the difference between adjacent and general sibling combinators?", "answer": "Adjacent (+) selects only the immediate next sibling; general (~) selects all subsequent siblings." },
+    { "question": "How do combinators affect CSS performance?", "answer": "Combinators affect how the browser parses selectors; deeply nested combinators can slow down style matching on large DOMs." },
+    { "question": "Can combinators be used with pseudo-classes?", "answer": "Yes, combinators work with pseudo-classes, e.g., div > p:first-child selects the first paragraph that is a direct child of a div." },
+    { "question": "What does ul li.active > a select?", "answer": "It selects anchor elements that are direct children of list items with class active that are descendants of a ul." },
+    { "question": "How do you select an element that follows another element with a specific class?", "answer": "Use .class + element or .class ~ element, e.g., .warning + p selects the paragraph immediately after an element with class warning." },
+    { "question": "What is the specificity of div > .class?", "answer": "div > .class has a specificity of (0,1,1) — 0 IDs, 1 class, 1 element." }
+  ],
+  "advanced": [
+    { "question": "How does the browser evaluate selectors with combinators from right to left?", "answer": "Browsers read selectors right-to-left, matching the key selector first, then filtering ancestors/siblings — improving performance by reducing candidate checks." },
+    { "question": "What are the limitations of the sibling combinators in terms of DOM traversal?", "answer": "Sibling combinators only select elements that come after the initial element; they cannot select preceding siblings." },
+    { "question": "How do combinators interact with the :has() pseudo-class?", "answer": ":has() allows parent and previous sibling selection (e.g., div:has(p) selects a div containing a p), extending combinator reach." },
+    { "question": "What is the difference between div :first-child and div:first-child?", "answer": "div :first-child (with space) selects any first-child inside a div; div:first-child selects a div that is itself a first child of its parent." },
+    { "question": "How does specificity interact with the :not() pseudo-class using combinators?", "answer": "The argument inside :not() has full specificity weight, but :not itself has none. Complex selectors inside :not() with combinators are now supported." },
+    { "question": "What happens when combinators are combined with compound selectors incorrectly?", "answer": "Incorrect combination (e.g., div>.class without spaces) can still work but is brittle; missing spaces change the meaning entirely." },
+    { "question": "How do logical combinator chains work with :is() and :where()?", "answer": ":is() and :where() accept selector lists including combinators, e.g., :is(div > p, span > p), but specificity is calculated from the most specific argument." },
+    { "question": "Can you nest combinators inside @scope for scoped styles?", "answer": "Yes, @scope uses a scoping root and lower bound, effectively creating dynamic combinator-like boundaries within a stylesheet." },
+    { "question": "How does the :nth-child() pseudo-class relate to combinator selection?", "answer": ":nth-child(an+b) selects by position among siblings; combined with combinators, you can target specific items in complex structures." },
+    { "question": "What is the performance impact of using the general sibling combinator with many elements?", "answer": "The general sibling selector can match many elements after the reference element, potentially slowing style calculation in large DOM trees." }
+  ]
+}

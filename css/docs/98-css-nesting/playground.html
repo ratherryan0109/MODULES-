@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>CSS Nesting - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;padding:30px;background:#0f0f1a;color:#e0e0e0}
+.container{max-width:900px;margin:0 auto}
+h1{color:#ffd700}.subtitle{color:#aaa;margin-bottom:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.panel{background:#1a1a2e;border-radius:10px;padding:16px;border:1px solid #2a2a4a}
+.panel h2{color:#00d4ff;font-size:1rem;margin-bottom:8px}
+.ctrl{margin-bottom:10px}
+.ctrl label{display:block;color:#ccc;margin-bottom:2px;font-size:0.8rem}
+.ctrl textarea{width:100%;padding:8px;border:1px solid #333;border-radius:6px;background:#0a0a1a;color:#a8e6cf;font-family:'Fira Code',monospace;font-size:0.8rem;min-height:200px}
+.preview{min-height:150px;background:#12122a;border-radius:8px;padding:24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.code{background:#0a0a1a;padding:12px;border-radius:8px;margin-top:12px;font-family:'Fira Code',monospace;font-size:0.8rem;color:#a8e6cf}
+</style>
+</head>
+<body>
+<div class=container>
+<h1>CSS Nesting Playground</h1>
+<p class=subtitle>Write nested CSS and see the flattened output.</p>
+<div class=row>
+<div class=panel><h2>Nested CSS (Input)</h2>
+<div class=ctrl><textarea id=nestedInput>.card {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+
+  .title {
+    color: #ffd700;
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
+}</textarea></div>
+<button onclick="compileNesting()" style="padding:6px 16px;background:#3b82f6;color:white;border:none;border-radius:6px;cursor:pointer">Show Flattened</button>
+</div>
+<div class=panel><h2>Flattened Output</h2>
+<div class=code id=flattenedOutput style="min-height:200px">Click "Show Flattened"</div>
+</div>
+</div>
+<div class=preview id=previewArea></div>
+<div class=code id=codeOut>Note: CSS Nesting is native in modern browsers (Chrome 120+, Firefox 117+).</div>
+</div>
+<script>
+function compileNesting(){
+const input=document.getElementById('nestedInput').value;
+let output='/* Flattened CSS */\n';
+let lines=input.split('\n');
+let indentStack=[''];
+for(let line of lines){
+const trimmed=line.trim();
+if(!trimmed||trimmed.startsWith('/*')||trimmed.startsWith('*')){output+=line+'\n';continue}
+if(trimmed.startsWith('}')){indentStack.pop();output+=line+'\n';continue}
+if(trimmed.endsWith('{')&&!trimmed.startsWith('@')){
+const selector=trimmed.slice(0,-1).trim();
+if(selector.startsWith('&')){
+const parent=indentStack[indentStack.length-1];
+const combined=parent?parent+selector.slice(1):selector;
+indentStack.push(combined);
+}else{
+indentStack.push(selector);
+}
+output+=line+'\n';
+}else{
+output+=line+'\n';
+}
+}
+document.getElementById('flattenedOutput').textContent=output;
+}
+</script>
+</body>
+</html>

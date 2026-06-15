@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the main difference between Grid and Flexbox?", "answer": "Grid is two-dimensional (rows and columns at the same time), while Flexbox is one-dimensional (either a row or a column at a time)." },
+    { "question": "When should you use Flexbox over Grid?", "answer": "Use Flexbox for one-dimensional layouts like navigation bars, toolbars, centering items, or distributing items along a single axis." },
+    { "question": "When should you use Grid over Flexbox?", "answer": "Use Grid for two-dimensional layouts like page-level structure, dashboards, card grids, or layouts requiring alignment in both axes simultaneously." },
+    { "question": "Can you combine Grid and Flexbox in the same layout?", "answer": "Yes, they are complementary. For example, use Grid for the overall page layout and Flexbox for alignment within each grid cell." },
+    { "question": "What is a one-dimensional layout?", "answer": "A layout that arranges items along a single axis, either horizontally (row) or vertically (column). Flexbox is designed for this." },
+    { "question": "What is a two-dimensional layout?", "answer": "A layout that controls items along both horizontal and vertical axes simultaneously. CSS Grid is designed for this." },
+    { "question": "Can Flexbox create equal-height columns?", "answer": "Yes, with align-items: stretch (the default), Flexbox creates equal-height columns in a row." },
+    { "question": "Can Grid create equal-height columns?", "answer": "Yes, Grid automatically creates equal-height columns within the same row because items stretch to fill the row height by default." },
+    { "question": "What happens to overflowing items in Flexbox vs Grid?", "answer": "In Flexbox, items shrink by default to fit the container. In Grid, items stay in their defined tracks and may cause overflow." },
+    { "question": "Which layout method is better for centering a single element?", "answer": "Flexbox is simpler for centering a single element: display:flex with justify-content:center and align-items:center." }
+  ],
+  "intermediate": [
+    { "question": "How does Flexbox handle wrapping differently from Grid?", "answer": "Flexbox wraps items one at a time when they overflow, while Grid defines tracks before placement and items snap to the grid structure." },
+    { "question": "Can you create a holy grail layout with Flexbox?", "answer": "Yes, but it requires more markup and CSS. Grid handles the holy grail layout more naturally with grid-template-areas." },
+    { "question": "How do gaps work in Flexbox vs Grid?", "answer": "Both support the gap property. In Flexbox, gap only applies between flex items along the main axis and cross axis. In Grid, gap applies between tracks." },
+    { "question": "What is the difference in how each handles content-based sizing?", "answer": "Flexbox items have flex-shrink and flex-grow to respond to content and available space. Grid uses fr units and minmax() for track-level sizing." },
+    { "question": "How do alignment properties differ between Flexbox and Grid?", "answer": "Flexbox uses justify-content on the main axis and align-items on the cross axis. Grid uses justify/align-items for cell alignment and justify/align-content for track alignment." },
+    { "question": "Which is better for a component-level layout like a button group?", "answer": "Flexbox is better for button groups because components are typically one-dimensional and need content-based sizing." },
+    { "question": "Which is better for page-level layout like header/sidebar/main/footer?", "answer": "Grid is better for page-level layout because it naturally handles the two-dimensional structure with named areas." },
+    { "question": "How does the order of items differ between Flexbox and Grid?", "answer": "Both support the order property to reorder items visually, but Flexbox reorder affects the wrapping algorithm more directly." },
+    { "question": "How do you create a responsive layout with Flexbox vs Grid without media queries?", "answer": "Flexbox uses flex-wrap with flex-basis; Grid uses repeat(auto-fill, minmax(...)). Both can create responsive layouts without media queries." },
+    { "question": "What are the performance considerations between Flexbox and Grid for complex layouts?", "answer": "Grid can be more efficient for complex 2D layouts because it calculates all tracks at once. Flexbox recalculates on each wrap, which can be slower for large item sets." }
+  ],
+  "advanced": [
+    { "question": "How do Grid and Flexbox handle aspect-ratio constraints differently?", "answer": "Grid items respect aspect-ratio within their defined cells, while Flexbox items with aspect-ratio interact with flex-grow/flex-shrink in more complex ways." },
+    { "question": "What is the Grid-only stacking feature that Flexbox cannot replicate?", "answer": "Grid allows items to overlap by placing multiple items in the same grid cell using the same grid-row/grid-column. Flexbox cannot naturally overlap items without negative margins or absolute positioning." },
+    { "question": "How does subgrid solve a problem that Flexbox cannot address?", "answer": "Subgrid allows nested grid items to align with parent grid tracks, something Flexbox cannot do because Flexbox does not have track-based alignment across nested levels." },
+    { "question": "How do margin: auto behaviors differ between Flexbox and Grid?", "answer": "In Flexbox, margin: auto on an item absorbs free space on that axis. In Grid, margin: auto works within the grid cell area." },
+    { "question": "What is the intrinsic sizing difference between Grid and Flexbox for images?", "answer": "Flexbox respects image intrinsic sizes more naturally with flex-basis: auto. In Grid, images may stretch by default unless object-fit is used." },
+    { "question": "How does CSS Grid handle baseline alignment across multiple rows compared to Flexbox?", "answer": "Grid supports baseline alignment across multiple rows via align-items: baseline, aligning baselines within each row. Flexbox baseline alignment only works within a single line." },
+    { "question": "How do Grid and Flexbox differ when handling items with span and grow simultaneously?", "answer": "Grid items can span fixed track counts, growing only within the fr distribution. Flexbox items grow proportionally along the main axis without spanning." },
+    { "question": "What is the auto-fit/auto-fill behavior that has no Flexbox equivalent?", "answer": "auto-fit and auto-fill in Grid can create and collapse empty tracks. Flexbox has no equivalent; it only wraps items without track concepts." },
+    { "question": "How do you decide between Grid and Flexbox for a dynamic content feed?", "answer": "Use Grid when items need to align in both axes (like a product grid). Use Flexbox when items stack in one direction with variable sizes (like a comment feed)." },
+    { "question": "What is the future convergence of Grid and Flexbox capabilities?", "answer": "The CSS spec is exploring masonry layout in Grid and two-dimensional Flexbox enhancements, potentially blurring the lines between them for certain use cases." }
+  ]
+}

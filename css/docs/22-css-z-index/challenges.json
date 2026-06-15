@@ -1,0 +1,88 @@
+{
+  "module": "CSS Z-index",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Three Overlapping Boxes",
+      "description": "Create three overlapping boxes with different colors. Use z-index to control which one appears on top. The middle box (in DOM order) should appear on top.",
+      "requirements": [
+        "Three overlapping boxes with absolute positioning",
+        "Each box should have a different background color",
+        "Use z-index to make the middle DOM box appear on top",
+        "Add labels showing the z-index value"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  .container { position: relative; height: 200px; margin: 50px; }\n  .box { position: absolute; width: 150px; height: 100px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border-radius: 8px; }\n  .box1 { background: #e94560; top: 0; left: 0; z-index: 1; }\n  .box2 { background: #4a90d9; top: 30px; left: 50px; z-index: 3; }\n  .box3 { background: #2ecc71; top: 60px; left: 100px; z-index: 2; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"box box1\">z-index: 1</div>\n    <div class=\"box box2\">z-index: 3</div>\n    <div class=\"box box3\">z-index: 2</div>\n  </div>\n</body>\n</html>",
+        "explanation": "Box 2 has the highest z-index (3) so it appears on top despite being in the middle of the DOM. Box 3 with z-index 2 appears in the middle, and Box 1 with z-index 1 appears at the bottom."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Simple Modal",
+      "description": "Create a basic modal dialog with an overlay using proper z-index layering.",
+      "requirements": [
+        "Overlay should cover full viewport with semi-transparent background",
+        "Modal content should appear on top of overlay",
+        "Use z-index for proper stacking",
+        "Include a title and close button"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; }\n  .overlay {\n    position: fixed; inset: 0;\n    background: rgba(0,0,0,0.5);\n    z-index: 100;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .modal {\n    position: relative;\n    background: white;\n    padding: 30px;\n    border-radius: 8px;\n    max-width: 400px;\n    z-index: 101;\n    box-shadow: 0 10px 30px rgba(0,0,0,0.3);\n  }\n  .close { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; background: none; border: none; }\n</style>\n</head>\n<body>\n  <div class=\"overlay\">\n    <div class=\"modal\">\n      <button class=\"close\">&times;</button>\n      <h2>Modal Title</h2>\n      <p>Modal content with proper z-index layering.</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "The overlay uses z-index: 100 and the modal uses z-index: 101, ensuring the modal appears above the semi-transparent overlay."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Dropdown Menu with Proper Stacking",
+      "description": "Create a navigation bar with a dropdown menu that appears above other page content using z-index.",
+      "requirements": [
+        "Navigation bar with at least 3 menu items",
+        "One menu item has a dropdown submenu",
+        "Dropdown must appear above surrounding content",
+        "Use z-index to ensure proper stacking"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: sans-serif; }\n  nav { background: #333; padding: 0 20px; position: relative; z-index: 10; }\n  nav ul { list-style: none; display: flex; }\n  nav li { position: relative; }\n  nav a { display: block; padding: 15px 20px; color: white; text-decoration: none; }\n  nav a:hover { background: #555; }\n  .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #444; min-width: 150px; z-index: 100; }\n  nav li:hover .dropdown-menu { display: block; }\n  .dropdown-menu a { padding: 10px 15px; }\n  .content { padding: 40px 20px; background: #f5f5f5; height: 300px; }\n  .content h2 { margin-bottom: 20px; }\n</style>\n</head>\n<body>\n  <nav>\n    <ul>\n      <li><a href=\"#\">Home</a></li>\n      <li>\n        <a href=\"#\">Services</a>\n        <div class=\"dropdown-menu\">\n          <a href=\"#\">Web Design</a>\n          <a href=\"#\">Development</a>\n          <a href=\"#\">SEO</a>\n        </div>\n      </li>\n      <li><a href=\"#\">About</a></li>\n      <li><a href=\"#\">Contact</a></li>\n    </ul>\n  </nav>\n  <div class=\"content\">\n    <h2>Page Content</h2>\n    <p>Hover over 'Services' to see the dropdown. The dropdown appears above this content thanks to z-index.</p>\n  </div>\n</body>\n</html>",
+        "explanation": "The dropdown menu uses position: absolute with z-index: 100 to appear above the content. The nav has z-index: 10 to create a stacking context."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Z-index Scale with CSS Variables",
+      "description": "Create a demo page that uses CSS custom properties for a z-index scale and demonstrates multiple layered components working together.",
+      "requirements": [
+        "Define at least 5 z-index levels using CSS variables",
+        "Include: header, sidebar, tooltip, modal, and a notification toast",
+        "Each component should use the appropriate z-index variable",
+        "Show that each component stacks correctly"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  :root {\n    --z-sticky: 100;\n    --z-dropdown: 200;\n    --z-fixed: 300;\n    --z-overlay: 400;\n    --z-modal: 500;\n    --z-toast: 600;\n    --z-tooltip: 700;\n  }\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: sans-serif; padding-top: 60px; }\n\n  .fixed-header {\n    position: fixed; top: 0; left: 0; width: 100%; height: 60px;\n    background: #333; color: white; display: flex; align-items: center; padding: 0 20px;\n    z-index: var(--z-fixed);\n  }\n  .sticky-header {\n    position: sticky; top: 60px;\n    background: #4a90d9; color: white; padding: 10px 20px;\n    z-index: var(--z-sticky);\n  }\n  .tooltip-trigger {\n    position: relative; display: inline-block; margin: 40px; padding: 10px 20px;\n    background: #666; color: white; border-radius: 4px; cursor: pointer;\n  }\n  .tooltip {\n    display: none; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);\n    background: #333; color: white; padding: 8px 12px; border-radius: 4px; white-space: nowrap;\n    z-index: var(--z-tooltip);\n  }\n  .tooltip-trigger:hover .tooltip { display: block; }\n  .toast {\n    position: fixed; bottom: 20px; right: 20px;\n    background: #2ecc71; color: white; padding: 15px 25px; border-radius: 8px;\n    z-index: var(--z-toast);\n  }\n  .content { padding: 40px 20px; }\n</style>\n</head>\n<body>\n  <header class=\"fixed-header\">Fixed Header (z-index: var(--z-fixed))</header>\n  <div class=\"sticky-header\">Sticky Section Header (z-index: var(--z-sticky))</div>\n  <div class=\"content\">\n    <div class=\"tooltip-trigger\">\n      Hover me\n      <div class=\"tooltip\">Tooltip (z-index: var(--z-tooltip))</div>\n    </div>\n  </div>\n  <div class=\"toast\">Toast Notification (z-index: var(--z-toast))</div>\n</body>\n</html>",
+        "explanation": "Using CSS variables for z-index values ensures consistent layering across components. Each component uses its appropriate level in the scale."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Multi-Layer UI with Stacking Context Isolation",
+      "description": "Build a complex UI with multiple nested stacking contexts. Include a sidebar, main content area with cards, a dropdown, a modal, and a notification system. Demonstrate how stacking context isolation works and how to fix z-index issues.",
+      "requirements": [
+        "Fixed sidebar and header using z-index scale",
+        "Content cards with overlapping absolute badges",
+        "A dropdown menu that appears above other content",
+        "A modal that appears on top of everything",
+        "A notification toast that stays above the modal",
+        "Use isolation: isolate on card containers to prevent badge z-index issues",
+        "Demonstrate a z-index bug scenario and its fix"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  :root {\n    --z-content: 1;\n    --z-sticky: 100;\n    --z-dropdown: 200;\n    --z-fixed: 300;\n    --z-overlay: 400;\n    --z-modal: 500;\n    --z-toast: 600;\n  }\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: sans-serif; display: flex; min-height: 100vh; padding-top: 60px; }\n\n  .header {\n    position: fixed; top: 0; left: 0; width: 100%; height: 60px;\n    background: #1a1a2e; color: white; display: flex; align-items: center; padding: 0 30px;\n    z-index: var(--z-fixed);\n  }\n  .sidebar {\n    position: fixed; top: 60px; left: 0; width: 220px; height: calc(100vh - 60px);\n    background: #16213e; color: white; padding: 20px;\n    z-index: var(--z-fixed);\n  }\n  .main {\n    margin-left: 220px; padding: 30px; flex: 1;\n  }\n  .cards { display: flex; gap: 20px; flex-wrap: wrap; }\n  .card {\n    position: relative; width: 220px; padding: 20px; background: white;\n    border: 1px solid #ddd; border-radius: 8px; isolation: isolate;\n  }\n  .badge {\n    position: absolute; top: -8px; right: -8px;\n    background: #e94560; color: white; padding: 4px 10px;\n    border-radius: 10px; font-size: 12px; font-weight: bold;\n    z-index: 10;\n  }\n  .dropdown { position: relative; display: inline-block; }\n  .dropdown-btn {\n    padding: 10px 20px; background: #6c5ce7; color: white;\n    border: none; border-radius: 4px; cursor: pointer;\n  }\n  .dropdown-menu {\n    display: none; position: absolute; top: 100%; left: 0;\n    background: white; border: 1px solid #ddd; border-radius: 4px;\n    min-width: 150px; z-index: var(--z-dropdown);\n    box-shadow: 0 4px 12px rgba(0,0,0,0.15);\n  }\n  .dropdown:hover .dropdown-menu { display: block; }\n  .toast {\n    position: fixed; top: 80px; right: 20px;\n    background: #2ecc71; color: white; padding: 15px 25px;\n    border-radius: 8px; z-index: var(--z-toast);\n    box-shadow: 0 4px 12px rgba(0,0,0,0.2);\n  }\n  /* Modal */\n  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: var(--z-overlay); justify-content: center; align-items: center; }\n  .overlay.show { display: flex; }\n  .modal { background: white; padding: 30px; border-radius: 8px; max-width: 400px; position: relative; z-index: var(--z-modal); }\n</style>\n</head>\n<body>\n  <header class=\"header\">\n    <span>Complex UI Demo</span>\n    <span style=\"margin-left: auto; font-size: 14px;\">z-index System with Isolation</span>\n  </header>\n  <aside class=\"sidebar\">\n    <h3>Sidebar</h3>\n    <p style=\"margin-top: 20px; color: #aaa;\">Fixed sidebar with z-index: var(--z-fixed)</p>\n  </aside>\n  <main class=\"main\">\n    <div class=\"card\">\n      <div class=\"badge\">New</div>\n      <h4>Card 1</h4>\n      <p>Card with absolute badge. isolation: isolate keeps badge contained.</p>\n    </div>\n    <div style=\"margin-top: 30px;\">\n      <div class=\"dropdown\">\n        <button class=\"dropdown-btn\">Dropdown Menu</button>\n        <div class=\"dropdown-menu\">\n          <div style=\"padding: 10px 15px;\">Option 1</div>\n          <div style=\"padding: 10px 15px;\">Option 2</div>\n          <div style=\"padding: 10px 15px;\">Option 3</div>\n        </div>\n      </div>\n    </div>\n  </main>\n  <div class=\"toast\">✅ Toast Notification</div>\n  <div class=\"overlay show\">\n    <div class=\"modal\">\n      <h3>Modal</h3>\n      <p>Modal appears above overlay. Toast stays above modal.</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "This complex UI demonstrates: fixed header and sidebar (z-fixed), card badges with isolation: isolate (prevents badge z-index leaking), dropdown (z-dropdown), modal (z-overlay + z-modal), and toast (z-toast) that stays on top of everything."
+      }
+    }
+  ]
+}

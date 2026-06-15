@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Modern Layout Techniques - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #1e1e2e; color: #cdd6f4; padding: 2rem; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    h3 { color: #f9e2af; margin-bottom: 0.5rem; }
+    .example-card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid #45475a; }
+    .pre { font-family: monospace; background: #181825; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; white-space: pre-wrap; border-left: 3px solid #89b4fa; }
+    code { background: #45475a; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+    .note { background: #45475a; padding: 0.5rem 1rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.9rem; border-left: 3px solid #f9e2af; }
+
+    /* Example 1: Holy Grail */
+    .holy-grail { display: grid; grid-template: "header header" 60px "nav main" 1fr "footer footer" 40px / 180px 1fr; min-height: 300px; border-radius: 8px; overflow: hidden; }
+    .hg-header { grid-area: header; background: #45475a; padding: 12px 16px; font-weight: 700; }
+    .hg-nav { grid-area: nav; background: #313244; padding: 12px; }
+    .hg-main { grid-area: main; background: #1e1e2e; padding: 12px; }
+    .hg-footer { grid-area: footer; background: #45475a; padding: 8px 16px; font-size: 0.85rem; text-align: center; }
+
+    /* Example 2: Flexbox nav */
+    .flex-nav { display: flex; justify-content: space-between; align-items: center; background: #181825; padding: 12px 16px; border-radius: 8px; }
+    .flex-nav .nav-links { display: flex; gap: 16px; }
+    .flex-nav a { color: #89b4fa; text-decoration: none; }
+
+    /* Example 3: Gallery */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+    .gallery-item { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 6px; height: 100px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+
+    /* Example 4: Card with flex+grid */
+    .card-deck { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+    .card { display: flex; flex-direction: column; background: #181825; border-radius: 10px; overflow: hidden; border: 1px solid #45475a; }
+    .card-img { height: 120px; background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .card-body { display: grid; gap: 8px; padding: 16px; flex: 1; align-content: start; }
+    .card-body h3 { color: #cdd6f4; } .card-body p { font-size: 0.85rem; color: #a6adc8; }
+    .card-btn { margin-top: auto; background: #89b4fa; color: #1e1e2e; border: none; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: 700; }
+
+    /* Example 5: Centering */
+    .center-demo { display: grid; place-items: center; height: 150px; background: #181825; border-radius: 8px; }
+    .center-box { background: #45475a; padding: 20px; border-radius: 8px; }
+
+    /* Example 6: Flexbox wrapping toolbar */
+    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; background: #181825; padding: 12px; border-radius: 8px; }
+    .toolbar-item { background: #45475a; padding: 6px 14px; border-radius: 4px; font-size: 0.85rem; cursor: pointer; }
+    .toolbar-item:hover { background: #585b70; }
+
+    /* Example 7: Sidebar layout */
+    .sidebar-layout { display: flex; gap: 16px; align-items: flex-start; }
+    .sidebar { flex: 0 0 200px; background: #181825; padding: 12px; border-radius: 8px; }
+    .content { flex: 1; background: #313244; padding: 12px; border-radius: 8px; min-width: 0; }
+  </style>
+</head>
+<body>
+  <h1>CSS Modern Layout Techniques — Interactive Examples</h1>
+
+  <div class="example-card">
+    <h2>1. Holy Grail Layout (CSS Grid)</h2>
+    <p>A classic page structure using <code>grid-template-areas</code> with header, nav, main, and footer.</p>
+    <div class="holy-grail" style="margin:1rem 0;">
+      <div class="hg-header">Header</div>
+      <div class="hg-nav">Navigation</div>
+      <div class="hg-main">Main Content — takes remaining space with <code>1fr</code></div>
+      <div class="hg-footer">Footer</div>
+    </div>
+    <div class="pre">.page {\n  display: grid;\n  grid-template:\n    "header header" auto\n    "nav    main"   1fr\n    "footer footer" auto\n    / 180px 1fr;\n  min-height: 100vh;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>2. Flexbox Navigation</h2>
+    <p>One-dimensional layout with <code>justify-content: space-between</code>.</p>
+    <nav class="flex-nav" style="margin:1rem 0;">
+      <span style="font-weight:700;">MySite</span>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+    <div class="pre">nav {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>3. Auto-fill Gallery</h2>
+    <p>Responsive grid without media queries using <code>repeat(auto-fill, minmax(120px, 1fr))</code>.</p>
+    <div class="gallery" style="margin:1rem 0;">
+      <div class="gallery-item">1</div>
+      <div class="gallery-item">2</div>
+      <div class="gallery-item">3</div>
+      <div class="gallery-item">4</div>
+      <div class="gallery-item">5</div>
+      <div class="gallery-item">6</div>
+      <div class="gallery-item">7</div>
+    </div>
+    <div class="pre">.gallery {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));\n  gap: 8px;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>4. Card Deck (Grid + Flexbox Hybrid)</h2>
+    <p>Grid for the card container, Flexbox inside each card for content layout. Equal height cards automatically.</p>
+    <div class="card-deck" style="margin:1rem 0;">
+      <div class="card">
+        <div class="card-img"></div>
+        <div class="card-body">
+          <h3>Card 1</h3>
+          <p>Short description.</p>
+          <button class="card-btn">Learn More</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img"></div>
+        <div class="card-body">
+          <h3>Card 2</h3>
+          <p>A much longer description that takes more vertical space. This shows how flex:1 on the body keeps cards aligned.</p>
+          <button class="card-btn">Learn More</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img"></div>
+        <div class="card-body">
+          <h3>Card 3</h3>
+          <p>Medium description here with some extra content.</p>
+          <button class="card-btn">Learn More</button>
+        </div>
+      </div>
+    </div>
+    <div class="pre">.card-deck { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }\n.card { display: flex; flex-direction: column; }\n.card-body { flex: 1; display: grid; gap: 8px; align-content: start; }</div>
+  </div>
+
+  <div class="example-card">
+    <h2>5. Centering with Grid</h2>
+    <p>The simplest way to center anything: <code>place-items: center</code>.</p>
+    <div class="center-demo" style="margin:1rem 0;">
+      <div class="center-box">Centered!</div>
+    </div>
+    <div class="pre">.container {\n  display: grid;\n  place-items: center;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>6. Flexbox Wrapping Toolbar</h2>
+    <p>Toolbar items that wrap naturally when space is tight. No media queries needed.</p>
+    <div class="toolbar" style="margin:1rem 0;">
+      <span class="toolbar-item">File</span>
+      <span class="toolbar-item">Edit</span>
+      <span class="toolbar-item">View</span>
+      <span class="toolbar-item">Insert</span>
+      <span class="toolbar-item">Format</span>
+      <span class="toolbar-item">Tools</span>
+      <span class="toolbar-item">Table</span>
+      <span class="toolbar-item">Help</span>
+    </div>
+    <div class="pre">.toolbar {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>7. Sidebar + Content (Flexbox)</h2>
+    <p>Fixed sidebar with fluid main content. Note <code>min-width: 0</code> on the content to prevent overflow.</p>
+    <div class="sidebar-layout" style="margin:1rem 0;">
+      <aside class="sidebar">Sidebar (200px fixed)</aside>
+      <main class="content">Main content fills remaining space with <code>flex: 1</code>.</main>
+    </div>
+    <div class="pre">.layout { display: flex; gap: 16px; align-items: flex-start; }\n.sidebar { flex: 0 0 200px; }\n.content { flex: 1; min-width: 0; }</div>
+  </div>
+
+  <div class="example-card">
+    <h2>8. Intrinsic Sizing Comparison</h2>
+    <p>Same content, different sizing keywords. Resize your browser to see how each behaves.</p>
+    <div style="margin:1rem 0; display: grid; gap: 8px;">
+      <div style="background:#45475a; padding:8px; border-radius:4px;">
+        <strong>min-content:</strong>
+        <div style="width:min-content; background:#585b70; padding:4px; margin-top:4px; border-radius:3px;">This is some content</div>
+      </div>
+      <div style="background:#45475a; padding:8px; border-radius:4px;">
+        <strong>max-content:</strong>
+        <div style="width:max-content; background:#585b70; padding:4px; margin-top:4px; border-radius:3px;">This is some content</div>
+      </div>
+      <div style="background:#45475a; padding:8px; border-radius:4px;">
+        <strong>fit-content (max 200px):</strong>
+        <div style="width:fit-content; max-width:200px; background:#585b70; padding:4px; margin-top:4px; border-radius:3px;">This is some content that might wrap</div>
+      </div>
+    </div>
+    <div class="pre">.min { width: min-content; }\n.max { width: max-content; }\n.fit { width: fit-content; max-width: 200px; }</div>
+  </div>
+</body>
+</html>

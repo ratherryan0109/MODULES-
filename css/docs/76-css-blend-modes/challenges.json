@@ -1,0 +1,38 @@
+[
+  {
+    "id": "blend-duotone",
+    "title": "Duotone Image Hero",
+    "difficulty": "beginner",
+    "description": "Create a hero section with a duotone effect using background-blend-mode with a gradient overlay on an image.",
+    "hint": "Use background with an image URL and a linear-gradient, then apply background-blend-mode: multiply.",
+    "criteria": ["Hero section with background image", "Gradient overlay using background-blend-mode", "Two-color duotone effect"],
+    "starter": ".hero {\n  height: 400px;\n  background: linear-gradient(135deg, #ff6b6b, #556270),\n              url('image.jpg') center/cover;\n  /* Add blend mode here */\n}"
+  },
+  {
+    "id": "blend-text-reveal",
+    "title": "Text Reveal with Difference",
+    "difficulty": "intermediate",
+    "description": "Create a heading that reveals a background image through its text using mix-blend-mode: difference on a dark background.",
+    "hint": "Set the heading text color to white on a dark background and apply mix-blend-mode: difference.",
+    "criteria": ["Heading with mix-blend-mode: difference", "Background visible through text", "Dark background behind the text"],
+    "starter": ".hero {\n  background: #111;\n}\n.hero h1 {\n  color: white;\n  font-size: 5rem;\n  /* Add mix-blend-mode here */\n}"
+  },
+  {
+    "id": "blend-hover-gallery",
+    "title": "Hover-Reveal Image Gallery",
+    "difficulty": "intermediate",
+    "description": "Build an image gallery where each card has a colored overlay using mix-blend-mode that desaturates or reveals on hover.",
+    "hint": "Use position: absolute overlay with a gradient and mix-blend-mode: multiply, then change opacity on hover.",
+    "criteria": ["Image cards with overlay", "Blend mode applied to overlay", "Hover changes overlay opacity or blend mode"],
+    "starter": ".card .overlay {\n  position: absolute;\n  inset: 0;\n  background: linear-gradient(to top, #000, transparent);\n  mix-blend-mode: multiply;\n  transition: opacity 0.3s;\n}\n.card:hover .overlay {\n  /* Change on hover */\n}"
+  },
+  {
+    "id": "blend-video-overlay",
+    "title": "Video Color Overlay",
+    "difficulty": "advanced",
+    "description": "Create a video background with a colored overlay using mix-blend-mode that changes color over time with CSS animation.",
+    "hint": "Overlay a div with a gradient on top of a video element and animate the background-position or colors.",
+    "criteria": ["Video background element", "Color overlay div on top", "Blend mode applied to overlay", "CSS animation changing overlay"],
+    "starter": ".video-container { position: relative; }\n.video-container video { width: 100%; }\n.video-container .overlay {\n  position: absolute; inset: 0;\n  background: linear-gradient(90deg, red, blue);\n  mix-blend-mode: multiply;\n  animation: shiftColors 4s linear infinite;\n}"
+  }
+]

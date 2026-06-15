@@ -1,0 +1,91 @@
+{
+  "module": "CSS Float",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Image with Text Wrap",
+      "description": "Create an article layout where an image is floated to the left and text wraps around it. Include a caption below the image.",
+      "requirements": [
+        "Image floated to the left",
+        "Text wraps around the image",
+        "Image has margin to separate from text",
+        "Caption below image (not floated)",
+        "Image should be 200px wide"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }\n  .article-img {\n    float: left;\n    width: 200px;\n    margin: 0 20px 10px 0;\n    border-radius: 8px;\n  }\n  .img-placeholder {\n    width: 200px;\n    height: 150px;\n    background: #4a90d9;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n  }\n  .caption {\n    font-size: 12px;\n    color: #666;\n    margin-top: 5px;\n    text-align: center;\n  }\n  p { line-height: 1.6; }\n</style>\n</head>\n<body>\n  <article>\n    <div class=\"article-img\">\n      <div class=\"img-placeholder\">Image</div>\n      <p class=\"caption\">This is an image caption</p>\n    </div>\n    <p>This text wraps around the floated image on the left side. The float property was originally designed for this purpose. Notice how the text flows naturally around the image, creating a layout similar to what you'd see in magazines and newspapers.</p>\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n  </article>\n</body>\n</html>",
+        "explanation": "The image container is floated left with 200px width. Margin-right and margin-bottom provide spacing. The caption is part of the floated container so it stays with the image."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Two-Column Float Layout",
+      "description": "Create a simple two-column layout using floats. Left column (sidebar) should be 30% width, right column (content) should be 70%.",
+      "requirements": [
+        "Left column floated left, 30% width",
+        "Right column floated left, 70% width",
+        "Both columns have a background color and padding",
+        "Parent uses clearfix"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; }\n  .clearfix::after { content: ''; display: table; clear: both; }\n  .container { max-width: 900px; margin: 40px auto; }\n  .sidebar {\n    float: left;\n    width: 30%;\n    background: #f0f0f0;\n    padding: 20px;\n    min-height: 300px;\n  }\n  .content {\n    float: left;\n    width: 70%;\n    background: white;\n    padding: 20px;\n    min-height: 300px;\n  }\n</style>\n</head>\n<body>\n  <div class=\"container clearfix\">\n    <aside class=\"sidebar\">\n      <h3>Sidebar</h3>\n      <p>This is the sidebar (30% width)</p>\n    </aside>\n    <main class=\"content\">\n      <h2>Main Content</h2>\n      <p>This is the main content area (70% width)</p>\n    </main>\n  </div>\n</body>\n</html>",
+        "explanation": "Both columns are floated left with percentage widths totaling 100%. The clearfix on the container prevents collapse."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Float Gallery with Clearfix",
+      "description": "Create a responsive image gallery using floats. Items should display in a 3-column grid with proper spacing and clearfix.",
+      "requirements": [
+        "3 columns of gallery items using float",
+        "Equal margins between items",
+        "Clearfix on the gallery container",
+        "Items should have consistent height",
+        "Responsive: 2 columns on medium screens, 1 on small"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; padding: 20px; }\n  .clearfix::after { content: ''; display: table; clear: both; }\n  .gallery { max-width: 960px; margin: 0 auto; }\n  .item {\n    float: left;\n    width: 31.33%;\n    margin: 1%;\n    height: 200px;\n    background: #4a90d9;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n    font-size: 24px;\n    font-weight: bold;\n  }\n  @media (max-width: 768px) {\n    .item { width: 48%; margin: 1%; }\n  }\n  @media (max-width: 480px) {\n    .item { width: 98%; margin: 1%; }\n  }\n</style>\n</head>\n<body>\n  <div class=\"gallery clearfix\">\n    <div class=\"item\">1</div>\n    <div class=\"item\">2</div>\n    <div class=\"item\">3</div>\n    <div class=\"item\">4</div>\n    <div class=\"item\">5</div>\n    <div class=\"item\">6</div>\n  </div>\n</body>\n</html>",
+        "explanation": "Items are floated left with width 31.33% + 2% margins = ~33.33% each. Media queries adjust columns for smaller screens. Clearfix prevents gallery collapse."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Article with Pull Quote and Image",
+      "description": "Create a full article page that uses floats for both an image and a pull quote, with text wrapping around both.",
+      "requirements": [
+        "Article with a title and multiple paragraphs",
+        "A floated image (left) in the first paragraph",
+        "A floated pull quote (right) in the middle of the article",
+        "Clearfix not needed on article",
+        "Pull quote should have a distinct style (border, background)"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: 'Georgia', serif; max-width: 700px; margin: 40px auto; padding: 0 20px; color: #333; }\n  h1 { font-size: 2em; margin-bottom: 20px; }\n  p { line-height: 1.8; margin-bottom: 20px; }\n  .float-img {\n    float: left;\n    width: 220px;\n    margin: 5px 20px 10px 0;\n    border-radius: 8px;\n  }\n  .img-placeholder {\n    width: 220px;\n    height: 160px;\n    background: #4a90d9;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n  }\n  .pull-quote {\n    float: right;\n    width: 250px;\n    margin: 10px 0 10px 20px;\n    padding: 15px 20px;\n    background: #f9f9f9;\n    border-left: 4px solid #e94560;\n    font-style: italic;\n    font-size: 1.2em;\n    color: #555;\n  }\n  .pull-quote::before { content: '\u201C'; font-size: 2em; color: #e94560; line-height: 0.5; }\n</style>\n</head>\n<body>\n  <article>\n    <h1>The Art of CSS Floats</h1>\n    <p>\n      <span class=\"float-img\"><span class=\"img-placeholder\">Featured Image</span></span>\n      CSS floats have been a fundamental tool in web design since the early days. Originally created to allow text to wrap around images, floats became the primary method for creating complex layouts before the advent of Flexbox and Grid.\n    </p>\n    <p>\n      The float property can take values of left, right, or none. When an element is floated, it is removed from the normal flow and shifted to the left or right edge of its container. Text and inline elements will then wrap around the floated element.\n    </p>\n    <div class=\"pull-quote\">Float is not dead - it's simply found its proper place in the CSS toolbox.</div>\n    <p>\n      While modern layout methods like Flexbox and CSS Grid have largely replaced floats for page layout, floats are still the best tool for specific use cases. Text wrapping around images, pull quotes, and drop caps are all excellent examples where floats remain the most practical solution.\n    </p>\n    <p>\n      Understanding floats is also essential for maintaining legacy codebases. Many older websites and frameworks still rely on float-based layouts. Knowing how floats work, how to clear them, and how to fix common issues is a valuable skill for any web developer.\n    </p>\n  </article>\n</body>\n</html>",
+        "explanation": "The image is floated left, and the pull quote is floated right. Text wraps around both naturally. The pull quote has a distinctive left border and larger italic font."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Float-Based Magazine Layout",
+      "description": "Create a magazine-style homepage that uses floats for multiple layout components including a featured article with image wrap, a two-column story list, a three-column gallery, and a footer. Use clearfixes appropriately.",
+      "requirements": [
+        "Header with magazine title and navigation",
+        "Featured article with floated image and wrapping text",
+        "Two-column story list (floated items)",
+        "Three-column photo gallery (floated items)",
+        "Footer with clearfix",
+        "Responsive: single column on mobile",
+        "All parents properly cleared"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  body { font-family: 'Georgia', serif; background: #f5f5f5; color: #333; }\n  .clearfix::after { content: ''; display: table; clear: both; }\n  .container { max-width: 960px; margin: 0 auto; padding: 20px; }\n\n  header { background: #1a1a2e; color: white; padding: 20px 0; text-align: center; margin-bottom: 30px; }\n  header h1 { font-size: 2.5em; letter-spacing: 2px; }\n  nav { margin-top: 10px; }\n  nav a { color: #ccc; margin: 0 15px; text-decoration: none; }\n  nav a:hover { color: white; }\n\n  .featured { background: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; }\n  .featured-img {\n    float: left;\n    width: 300px;\n    height: 200px;\n    background: #4a90d9;\n    margin: 0 20px 10px 0;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n    font-size: 1.2em;\n  }\n  .featured h2 { margin-bottom: 15px; }\n  .featured p { line-height: 1.6; }\n\n  .stories { float: left; width: 60%; padding-right: 20px; }\n  .story { background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; min-height: 80px; border-left: 4px solid #e94560; }\n\n  .sidebar { float: left; width: 40%; background: white; padding: 15px; border-radius: 8px; min-height: 200px; }\n  .sidebar h3 { margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 5px; }\n\n  .gallery { clear: both; padding-top: 30px; }\n  .gallery h2 { margin-bottom: 15px; }\n  .gallery-item { float: left; width: 31.33%; margin: 1%; height: 150px; background: #6c5ce7; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; }\n\n  footer { clear: both; background: #1a1a2e; color: white; text-align: center; padding: 20px; margin-top: 30px; border-radius: 8px; }\n\n  @media (max-width: 768px) {\n    .featured-img { float: none; width: 100%; margin: 0 0 15px; }\n    .stories, .sidebar { float: none; width: 100%; padding: 0; }\n    .gallery-item { width: 48%; }\n  }\n  @media (max-width: 480px) {\n    .gallery-item { width: 98%; }\n  }\n</style>\n</head>\n<body>\n  <header>\n    <h1>Magazine</h1>\n    <nav>\n      <a href=\"#\">Home</a>\n      <a href=\"#\">Articles</a>\n      <a href=\"#\">Gallery</a>\n      <a href=\"#\">About</a>\n    </nav>\n  </header>\n\n  <div class=\"container\">\n    <div class=\"featured clearfix\">\n      <div class=\"featured-img\">Featured Image</div>\n      <h2>Featured Article Title</h2>\n      <p>This is the featured article with a floated image on the left. The text wraps around the image naturally. This is the classic float use case that remains relevant even with modern CSS.</p>\n    </div>\n\n    <div class=\"clearfix\">\n      <div class=\"stories\">\n        <div class=\"story\"><h3>Story 1</h3><p>Latest news and updates</p></div>\n        <div class=\"story\"><h3>Story 2</h3><p>In-depth analysis</p></div>\n        <div class=\"story\"><h3>Story 3</h3><p>Editor's picks</p></div>\n      </div>\n      <div class=\"sidebar\">\n        <h3>Sidebar</h3>\n        <p>Popular articles, tags, and more content here.</p>\n      </div>\n    </div>\n\n    <div class=\"gallery clearfix\">\n      <h2>Photo Gallery</h2>\n      <div class=\"gallery-item\">Photo 1</div>\n      <div class=\"gallery-item\">Photo 2</div>\n      <div class=\"gallery-item\">Photo 3</div>\n      <div class=\"gallery-item\">Photo 4</div>\n      <div class=\"gallery-item\">Photo 5</div>\n      <div class=\"gallery-item\">Photo 6</div>\n    </div>\n  </div>\n\n  <footer>&copy; 2026 Magazine. All rights reserved.</footer>\n</body>\n</html>",
+        "explanation": "This magazine layout demonstrates: featured article with floating image, two-column content (stories + sidebar) using floats, three-column gallery with floats, clearfix on all parents, responsive breakpoints, and a cleared footer."
+      }
+    }
+  ]
+}

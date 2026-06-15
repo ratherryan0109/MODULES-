@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What does LCP (Largest Contentful Paint) measure?",
+    "options": ["Time until the page is interactive", "Time when the largest visible element is rendered", "Time when the first byte is received", "Amount of layout shift during loading"],
+    "answer": "b",
+    "explanation": "LCP measures the time when the largest visible element (image, video, or text block) is rendered within the viewport. Google recommends LCP under 2.5 seconds."
+  },
+  {
+    "question": "Which attribute prevents layout shift (CLS) from images?",
+    "options": ["loading='lazy'", "alt='description'", "width and height attributes", "decoding='async'"],
+    "answer": "c",
+    "explanation": "Specifying width and height attributes on images allows the browser to reserve the correct amount of space before the image loads, preventing layout shifts."
+  },
+  {
+    "question": "What is the purpose of the defer attribute on a script tag?",
+    "options": ["Loads the script from a CDN", "Delays script execution until after HTML parsing", "Prevents the script from executing", "Downloads the script synchronously"],
+    "answer": "b",
+    "explanation": "The defer attribute downloads the script while HTML parsing continues, then executes it only after the HTML document has been fully parsed."
+  },
+  {
+    "question": "What is the difference between defer and async?",
+    "options": ["There is no difference", "defer preserves execution order, async does not", "async preserves execution order, defer does not", "defer works only for inline scripts"],
+    "answer": "b",
+    "explanation": "defer executes scripts in the order they appear after HTML parsing completes. async executes scripts as soon as they download, without waiting for other scripts or HTML parsing, so order is not guaranteed."
+  },
+  {
+    "question": "Which resource hint is used to establish early connections to a third-party origin?",
+    "options": ["preload", "prefetch", "preconnect", "dns-prefetch"],
+    "answer": "c",
+    "explanation": "preconnect tells the browser to initiate a connection (DNS lookup, TCP handshake, TLS negotiation) to an origin before the browser would normally do so."
+  },
+  {
+    "question": "What does font-display: swap do?",
+    "options": ["Prevents the font from loading", "Shows a fallback font immediately and swaps when the custom font loads", "Displays no text until the custom font loads", "Downloads the font synchronously"],
+    "answer": "b",
+    "explanation": "font-display: swap tells the browser to initially render text using a fallback font, then swap to the custom font when it finishes loading. This prevents invisible text (FOIT) during font loading."
+  },
+  {
+    "question": "What is the purpose of CSS inlining in the HTML head?",
+    "options": ["To make CSS validate", "To eliminate render-blocking external CSS requests", "To reduce file size", "To improve CSS specificity"],
+    "answer": "b",
+    "explanation": "Critical CSS inlining removes the need for render-blocking external CSS requests by embedding above-the-fold styles directly in the HTML, allowing the browser to render content immediately."
+  },
+  {
+    "question": "What is the recommended maximum number of DOM nodes for good performance?",
+    "options": ["5000", "1500", "500", "10000"],
+    "answer": "b",
+    "explanation": "Lighthouse recommends keeping the DOM tree under 1500 total nodes, with a maximum depth of 32 levels and no parent having more than 60 child nodes."
+  },
+  {
+    "question": "Which image attribute enables lazy loading (deferring offscreen images)?",
+    "options": ["defer", "async", "loading='lazy'", "lazy='true'"],
+    "answer": "c",
+    "explanation": "loading='lazy' tells the browser to defer loading offscreen images until the user scrolls near them. This improves initial page load time and saves bandwidth."
+  },
+  {
+    "question": "What does TTFB measure?",
+    "options": ["Time to fully load the page", "Time until the page is interactive", "Time from request to first byte of response", "Time to first meaningful paint"],
+    "answer": "c",
+    "explanation": "TTFB (Time to First Byte) measures the time from when the browser makes a request to when it receives the first byte of the response. Google recommends under 800ms."
+  },
+  {
+    "question": "What is the purpose of the rel='preload' resource hint?",
+    "options": ["To prefetch resources for the next page", "To establish early connections", "To load critical resources for the current page urgently", "To resolve DNS early"],
+    "answer": "c",
+    "explanation": "preload tells the browser to download a critical resource (image, font, script, stylesheet) as early as possible, before the normal discovery process would find it."
+  },
+  {
+    "question": "Which CSS loading pattern loads non-critical stylesheets without blocking rendering?",
+    "options": ["<link rel='stylesheet' href='styles.css'>", "<link rel='preload' href='styles.css' as='style' onload='this.rel='stylesheet''>", "<style>@import url('styles.css')</style>", "<link rel='prefetch' href='styles.css'>"],
+    "answer": "b",
+    "explanation": "Using preload with an onload handler that changes the rel to stylesheet loads CSS asynchronously without blocking rendering. A <noscript> fallback ensures support for users without JavaScript."
+  },
+  {
+    "question": "What is Brotli compression and why is it used?",
+    "options": ["A JavaScript minification tool", "A modern compression algorithm that typically achieves better ratios than Gzip", "A CSS optimization technique", "A caching strategy"],
+    "answer": "b",
+    "explanation": "Brotli is a modern compression algorithm that typically achieves 20-30% better compression ratios than Gzip for HTML and text-based resources."
+  },
+  {
+    "question": "What is a performance budget?",
+    "options": ["The cost of hosting optimized content", "A set of performance thresholds to maintain during development", "A budget for purchasing CDN services", "The limit on JavaScript execution time"],
+    "answer": "b",
+    "explanation": "A performance budget is a set of agreed-upon limits (e.g., LCP < 2.5s, page size < 500KB) that the team must not exceed during development, ensuring performance stays within acceptable targets."
+  },
+  {
+    "question": "How do you specify responsive images that serve different file sizes?",
+    "options": ["Using the <picture> element only", "Using the srcset and sizes attributes on <img>", "Using CSS media queries", "Using JavaScript image loading"],
+    "answer": "b",
+    "explanation": "The srcset attribute provides a list of image files with their widths, and the sizes attribute tells the browser how much space the image will take. The browser selects the best image."
+  },
+  {
+    "question": "What is the impact of synchronous JavaScript (no defer/async) in the <head>?",
+    "options": ["It improves page load speed", "It blocks HTML parsing and delays page rendering", "It has no impact on performance", "It improves SEO"],
+    "answer": "b",
+    "explanation": "Synchronous scripts in the <head> block HTML parsing entirely - the browser must download and execute the script before continuing to parse the rest of the document."
+  },
+  {
+    "question": "What is the primary purpose of the as attribute in a preload tag (e.g., <link rel='preload' href='...' as='image'>)?",
+    "options": ["To specify the file format", "To tell the browser what type of resource is being preloaded, affecting priority and headers", "To define an alternate source", "To specify the image alt text"],
+    "answer": "b",
+    "explanation": "The as attribute tells the browser what type of resource is being preloaded, which affects its loading priority and whether appropriate request headers (like CORS) are sent."
+  },
+  {
+    "question": "What is the difference between prefetch and preload?",
+    "options": ["They are the same", "preload is for current page critical resources; prefetch is for future page resources loaded during idle time", "prefetch has higher priority than preload", "preload only works for images"],
+    "answer": "b",
+    "explanation": "preload loads critical resources needed by the current page, with high priority. prefetch loads resources likely needed for future navigation, with low priority during idle browser time."
+  },
+  {
+    "question": "What is the Total Blocking Time (TBT) metric measuring?",
+    "options": ["Total time to load all resources", "Sum of all time periods where the main thread is blocked for more than 50ms", "Time until first user interaction is possible", "Total time spent in layout calculations"],
+    "answer": "b",
+    "explanation": "TBT measures the sum of all time periods between FCP and TTI where the main thread was blocked for long enough (over 50ms) to prevent user input responsiveness."
+  },
+  {
+    "question": "Which HTTP caching header tells the browser to revalidate cached content before using it?",
+    "options": ["Cache-Control: no-cache", "Cache-Control: no-store", "Cache-Control: private", "Cache-Control: max-age=3600"],
+    "answer": "a",
+    "explanation": "Cache-Control: no-cache tells the browser to revalidate the cached response with the server before using it. It doesn't prevent caching - it requires validation. no-store prevents caching entirely."
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a parallax effect in web design?", "answer": "A parallax effect creates an illusion of depth by moving background and foreground elements at different speeds as the user scrolls." },
+    { "question": "How do you create a fixed background parallax effect?", "answer": "Use background-attachment: fixed; on a section's background so the content scrolls over a stationary background image." },
+    { "question": "What does background-attachment: fixed do?", "answer": "background-attachment: fixed keeps the background image fixed relative to the viewport while the content scrolls over it." },
+    { "question": "Can you create parallax effects with only CSS?", "answer": "Yes, using background-attachment: fixed or 3D transform with perspective and translateZ for pure CSS parallax." },
+    { "question": "What is the simplest CSS parallax technique?", "answer": "The simplest is setting background-attachment: fixed on background images to create scroll-over effect without JavaScript." },
+    { "question": "How do you apply parallax to a hero section background?", "answer": "Set background-attachment: fixed on the hero section with a large background image behind scrolling content." },
+    { "question": "Does background-attachment: fixed work on mobile?", "answer": "Many mobile browsers do not support background-attachment: fixed; it may fall back to scroll behavior on iOS and some Android browsers." },
+    { "question": "What is the 3D CSS parallax technique?", "answer": "Use perspective on a wrapper, transform-style: preserve-3d, and different translateZ values on layers with scale compensation." },
+    { "question": "How do scroll-driven techniques differ from fixed background parallax?", "answer": "Scroll-driven techniques use the new animation-timeline property to tie animations directly to scroll position for precise control." },
+    { "question": "Should parallax effects be used on all devices?", "answer": "No, parallax should degrade gracefully or be disabled on mobile due to performance issues and limited support." }
+  ],
+  "intermediate": [
+    { "question": "How does the 3D CSS parallax technique use scale() compensation?", "answer": "Elements with translateZ move closer/farther; scale() compensates for perspective size changes so elements appear at their original size while moving at different speeds." },
+    { "question": "What is the structure of a 3D parallax setup with perspective?", "answer": "A parallax wrapper has perspective and overflow-y: auto; children have transform-style: preserve-3d and different translateZ values scaled to maintain original size." },
+    { "question": "How do you handle parallax performance on long pages?", "answer": "Use will-change: transform on layers, avoid painting oversized layers, limit the number of parallax layers, and consider using contain." },
+    { "question": "What is the scroll-driven animation parallax approach?", "answer": "Use animation-timeline: scroll() on elements to drive animation progress from scroll position, moving elements at different rates." },
+    { "question": "How do you create a multi-layer parallax scene?", "answer": "Create multiple background layers at different Z depths using translateZ (3D technique) or different scroll rates (JavaScript technique)." },
+    { "question": "How does perspective-origin affect parallax appearance?", "answer": "perspective-origin determines the vanishing point; changing it alters how layers scale and move relative to scroll position." },
+    { "question": "How do you debug parallax scrolling issues?", "answer": "Check for overflow issues, ensure correct perspective setup, verify transform-style, and use DevTools to inspect composited layers." },
+    { "question": "How do you create a parallax effect with multiple fixed backgrounds?", "answer": "Stack multiple sections with different background-attachment: fixed backgrounds and background-size: cover for full-viewport layers." },
+    { "question": "What happens to parallax in print or when printing?", "answer": "Parallax effects do not translate to print; fixed backgrounds appear as scroll and 3D transforms flatten, potentially causing layout issues." },
+    { "question": "How do you create a parallax effect that works alongside sticky positioning?", "answer": "Sticky elements within a parallax container may behave unexpectedly; use position: sticky on elements outside the parallax wrapper." }
+  ],
+  "advanced": [
+    { "question": "How does the parallax scale compensation formula work?", "answer": "scale = 1 + (translateZ * -1) / perspective; this keeps elements at their original visual size while they move at different scroll speeds." },
+    { "question": "How do you implement parallax that respects prefers-reduced-motion?", "answer": "Set all parallax translateZ to 0 or disable scroll-driven animations when prefers-reduced-motion: reduce is active." },
+    { "question": "How does the browser handle compositing for 3D parallax layers?", "answer": "Each layer with a different translateZ becomes a separate compositor layer, which can be memory-intensive on pages with many layers." },
+    { "question": "How do you create a parallax effect with SVG backgrounds?", "answer": "SVG backgrounds with background-attachment: fixed work similarly to images; for layered SVG, use inline SVG with CSS transforms in the parallax wrapper." },
+    { "question": "How do you create a direction-aware parallax (mouse parallax)?", "answer": "Mouse-controlled parallax requires JavaScript to track cursor position and apply transforms; pure CSS cannot achieve directional mouse parallax." },
+    { "question": "How does content-visibility: auto interact with parallax?", "answer": "content-visibility: auto can cause parallax layers to not render until scrolled near, potentially breaking the smooth scroll effect." },
+    { "question": "How can you create a parallax effect using CSS custom properties and scroll-driven animations?", "answer": "Bind animation-timeline to scroll, then use @keyframes to update CSS custom properties like --parallax-offset which drive transform values." },
+    { "question": "How do you handle parallax in virtual scrolling or infinite scroll contexts?", "answer": "Virtual scrolling reuses DOM elements, making fixed parallax calculations unreliable; recalculate parallax offsets when new content is loaded." },
+    { "question": "How does the ScrollTimeline API extend CSS parallax capabilities?", "answer": "ScrollTimeline provides programmatic control over scroll-driven animations, enabling dynamic range adjustment and multiple timeline references." },
+    { "question": "How do you create a parallax effect between two overlapping sections?", "answer": "Use relative positioning with different z-index values, and apply different scroll speeds using translateZ (3D) or different background-attachment values." }
+  ]
+}

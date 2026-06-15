@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Accessibility - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    *:focus-visible { outline: 3px solid #06b6d4; outline-offset: 2px; }
+    .fluid-text { font-size: clamp(1rem, 3vw, 1.5rem); }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: 1rem; }
+    .card { background: #f1f5f9; border-radius: 8px; padding: 1.5rem; min-height: 44px; }
+    .card h3 { margin-top: 0; }
+    .nav-bar { display: flex; gap: 1rem; align-items: center; background: #0f172a; padding: 0.75rem 1rem; border-radius: 8px; flex-wrap: wrap; }
+    .nav-bar a { color: #94a3b8; text-decoration: none; padding: 0.5rem 1rem; border-radius: 4px; min-height: 44px; display: flex; align-items: center; }
+    .nav-bar a[aria-current] { color: #fff; background: #06b6d4; }
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; margin-bottom: 0.25rem; font-weight: 600; }
+    .field input { width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 1rem; min-height: 44px; box-sizing: border-box; }
+    .field input:focus-visible { outline: none; border-color: #06b6d4; box-shadow: 0 0 0 3px #06b6d440; }
+    .resp-table { width: 100%; border-collapse: collapse; overflow-x: auto; display: block; }
+    .resp-table th, .resp-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+    .resp-table th { background: #f1f5f9; font-weight: 600; }
+    @media (max-width: 600px) {
+      .nav-bar a { flex: 1; justify-content: center; }
+      .hide-mobile { display: none; }
+    }
+    .touch-target { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0.75rem 1.5rem; background: #06b6d4; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+    .zoom-demo { resize: both; overflow: auto; min-width: 200px; max-width: 600px; padding: 1rem; border: 2px dashed #06b6d4; border-radius: 8px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <h1>Responsive Accessibility</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Fluid Typography with clamp()</h2>
+    <p>Text scales between 1rem and 1.5rem based on viewport width, keeping readability at all sizes.</p>
+    <div class="demo-output">
+      <p class="fluid-text">This heading text scales fluidly between 16px and 24px depending on your viewport width. Resize the browser to see it change.</p>
+      <p style="font-size:1rem;">Normal body text at a fixed size for comparison.</p>
+    </div>
+    <pre><code>h2 {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Responsive Card Grid with Touch Targets</h2>
+    <p>Cards reflow into fewer columns on narrow screens. Each card and link has minimum 44&times;44px touch targets.</p>
+    <div class="demo-output">
+      <div class="card-grid">
+        <div class="card"><h3>Dashboard</h3><p>Monitor your stats at a glance.</p></div>
+        <div class="card"><h3>Settings</h3><p>Adjust your preferences.</p></div>
+        <div class="card"><h3>Profile</h3><p>View and edit your profile.</p></div>
+        <div class="card"><h3>Reports</h3><p>Download usage reports.</p></div>
+      </div>
+    </div>
+    <pre><code>.card-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(200px, 100%), 1fr)
+  );
+  gap: 1rem;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Accessible Responsive Navigation</h2>
+    <p>On wide screens links are in a row. On narrow screens they wrap and each becomes full-width for easy tapping.</p>
+    <div class="demo-output">
+      <nav class="nav-bar" aria-label="Main navigation">
+        <a href="#" aria-current="page">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Services</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+    <pre><code>nav a {
+  padding: 0.5rem 1rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 600px) {
+  nav a { flex: 1; justify-content: center; }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Mobile-first Form with Adequate Touch Targets</h2>
+    <p>All form controls have <code>min-height: 44px</code> and large tap areas. Labels are always visible above inputs.</p>
+    <div class="demo-output">
+      <form>
+        <div class="field"><label for="ra-name">Full Name</label><input id="ra-name" placeholder="Enter your name"></div>
+        <div class="field"><label for="ra-email">Email Address</label><input id="ra-email" type="email" placeholder="Enter your email"></div>
+        <div class="field"><label for="ra-msg">Message</label><input id="ra-msg" placeholder="Type your message"></div>
+        <button class="touch-target">Submit</button>
+      </form>
+    </div>
+    <pre><code>input, button {
+  min-height: 44px;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+button {
+  min-width: 44px;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Horizontally Scrollable Table</h2>
+    <p>Wide tables scroll horizontally on small screens instead of breaking layout. Table headers stay readable.</p>
+    <div class="demo-output">
+      <table class="resp-table">
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Department</th><th>Location</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Alice Johnson</td><td>alice@example.com</td><td>Designer</td><td>Product</td><td>New York</td><td>Active</td></tr>
+          <tr><td>Bob Smith</td><td>bob@example.com</td><td>Developer</td><td>Engineering</td><td>London</td><td>Active</td></tr>
+          <tr><td>Carol Lee</td><td>carol@example.com</td><td>Manager</td><td>Marketing</td><td>Tokyo</td><td>On Leave</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <pre><code>table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  padding: 0.75rem;
+  white-space: nowrap;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Zoom-safe Layout with Relative Units</h2>
+    <p>Using <code>rem</code>/<code>em</code> units ensures the layout scales when the user zooms the page.</p>
+    <div class="demo-output">
+      <div class="zoom-demo">
+        <p style="font-size:1.25rem;font-weight:600;">Zoom in (Ctrl/Cmd +)</p>
+        <p style="font-size:1rem;">This container uses <code>rem</code>-based padding and font sizes. Everything scales proportionally when you zoom.</p>
+        <button class="touch-target" style="font-size:1rem;">Zoom-friendly button</button>
+      </div>
+    </div>
+    <pre><code>.container {
+  padding: 2rem;
+  max-width: 40rem;
+}
+p { font-size: 1rem; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Screen Reader Only Text for Responsive Context</h2>
+    <p>Extra text for screen readers can clarify context that changes visually at different breakpoints.</p>
+    <div class="demo-output">
+      <p>Status: <span style="color:#16a34a;">&#9679;</span> <span class="sr-only">Online - </span>Connected</p>
+      <p style="margin-top:0.5rem;font-size:0.875rem;color:#64748b;">Screen readers hear "Online - Connected" while visual users see the green dot and "Connected".</p>
+    </div>
+    <pre><code>.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}</code></pre>
+  </div>
+
+</body>
+</html>

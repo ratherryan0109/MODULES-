@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Logical Properties - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    h3 { color: #f9e2af; margin: 0.75rem 0 0.25rem; }
+    .example-card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; }
+    .pre { font-family: monospace; background: #181825; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; white-space: pre-wrap; border-left: 3px solid #89b4fa; }
+    .flex-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
+    .btn-primary { background: #89b4fa; color: #1e1e2e; }
+    .btn-primary:hover { background: #b4d0fb; }
+    .note { background: #45475a; padding: 0.5rem 1rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.9rem; border-left: 3px solid #f9e2af; }
+    .lang-toggle { margin: 1rem 0; display: flex; gap: 0.5rem; align-items: center; }
+    .lang-toggle button { padding: 6px 14px; border: 2px solid #45475a; border-radius: 6px; cursor: pointer; background: #181825; color: #cdd6f4; font-weight: 600; }
+    .lang-toggle button.active { border-color: #89b4fa; background: #89b4fa; color: #1e1e2e; }
+
+    /* Example 1: Margin/Padding Demo */
+    .ex1-card { margin-inline: auto; margin-block: 20px; padding-inline: 24px; padding-block: 16px; background: #45475a; border-radius: 8px; border-inline-start: 4px solid #89b4fa; width: 300px; }
+
+    /* Example 2: Border radius */
+    .ex2-box { inline-size: 120px; block-size: 120px; background: #a6e3a1; display: flex; align-items: center; justify-content: center; border-start-start-radius: 20px; border-end-end-radius: 20px; margin: 8px; }
+
+    /* Example 3: Inline size */
+    .ex3-container { background: #45475a; padding: 16px; border-radius: 8px; }
+    .ex3-item { background: #89b4fa; inline-size: 100%; block-size: 40px; border-radius: 4px; margin-block: 8px; display: flex; align-items: center; justify-content: center; color: #1e1e2e; font-weight: 600; }
+    .ex3-item.half { inline-size: 50%; }
+    .ex3-item.third { inline-size: 33.33%; }
+
+    /* Example 4: Text alignment */
+    .ex4-box { background: #45475a; padding: 16px; border-radius: 8px; margin: 8px 0; }
+    .ex4-box p { padding: 4px 0; }
+
+    /* Example 5: Positioning with inset */
+    .ex5-container { position: relative; background: #45475a; border-radius: 8px; height: 150px; margin: 8px 0; }
+    .ex5-badge { position: absolute; inset-inline-end: 8px; inset-block-start: 8px; background: #f38ba8; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 700; color: #1e1e2e; }
+    .ex5-label { position: absolute; inset-inline: 0; inset-block-end: 8px; text-align: center; font-size: 0.85rem; color: #a6e3a1; }
+
+    /* Example 6: Grid + Logical */
+    .ex6-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ex6-item { background: #cba6f7; padding: 20px; border-radius: 8px; color: #1e1e2e; font-weight: 600; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>CSS Logical Properties — Interactive Examples</h1>
+
+  <div class="lang-toggle">
+    <span>Language direction:</span>
+    <button id="ltrBtn" class="btn active" onclick="setDir('ltr')">LTR (English)</button>
+    <button id="rtlBtn" class="btn" onclick="setDir('rtl')">RTL (Arabic)</button>
+  </div>
+
+  <div id="examplesRoot">
+    <div class="example-card">
+      <h2>1. Margin and Padding with Logical Properties</h2>
+      <p>The card below uses <code>margin-inline: auto</code> for centering and <code>padding-inline</code>/<code>padding-block</code> for spacing. The left accent border uses <code>border-inline-start</code> — it automatically moves to the right side in RTL!</p>
+      <div class="ex1-card">
+        <h3>Logical Card</h3>
+        <p>This card is centered with <code>margin-inline: auto</code> and has <code>padding-inline: 24px</code>. The accent border is on <code>border-inline-start</code>.</p>
+      </div>
+      <div class="pre">.card {
+  margin-inline: auto;
+  margin-block: 20px;
+  padding-inline: 24px;
+  padding-block: 16px;
+  border-inline-start: 4px solid #89b4fa;
+}</div>
+    </div>
+
+    <div class="example-card">
+      <h2>2. Logical Border Radius</h2>
+      <p><code>border-start-start-radius</code> targets the corner at the start of both axes. In LTR it's top-left; in RTL it's top-right.</p>
+      <div class="flex-row">
+        <div class="ex2-box">start-start</div>
+      </div>
+      <div class="pre">.box {
+  border-start-start-radius: 20px;
+  border-end-end-radius: 20px;
+}</div>
+    </div>
+
+    <div class="example-card">
+      <h2>3. Inline and Block Sizing</h2>
+      <p><code>inline-size</code> replaces <code>width</code>, <code>block-size</code> replaces <code>height</code>. They adapt to the writing mode.</p>
+      <div class="ex3-container">
+        <div class="ex3-item">inline-size: 100%</div>
+        <div class="ex3-item half">inline-size: 50%</div>
+        <div class="ex3-item third">inline-size: 33.33%</div>
+      </div>
+      <div class="pre">.item { inline-size: 100%; block-size: 40px; }
+.item.half { inline-size: 50%; }</div>
+    </div>
+
+    <div class="example-card">
+      <h2>4. Text Alignment with Start/End</h2>
+      <p><code>text-align: start</code> aligns to the left in LTR and to the right in RTL without any additional overrides.</p>
+      <div class="ex4-box">
+        <p style="text-align: start;"><strong>text-align: start</strong> — ← in LTR, → in RTL</p>
+        <p style="text-align: end;"><strong>text-align: end</strong> — → in LTR, ← in RTL</p>
+        <p style="text-align: center;"><strong>text-align: center</strong> — always centered</p>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <h2>5. Absolute Positioning with Inset</h2>
+      <p>The badge uses <code>inset-inline-end</code> and <code>inset-block-start</code> to position in the top-right (LTR) or top-left (RTL).</p>
+      <div class="ex5-container">
+        <div class="ex5-badge">NEW</div>
+        <div style="padding: 20px; font-weight: 600;">Content Area</div>
+        <div class="ex5-label">Label at block-end, centered with inset-inline: 0</div>
+      </div>
+      <div class="pre">.badge {
+  position: absolute;
+  inset-inline-end: 8px;    /* right in LTR, left in RTL */
+  inset-block-start: 8px;   /* top (same in both) */
+}</div>
+    </div>
+
+    <div class="example-card">
+      <h2>6. Logical Properties in CSS Grid</h2>
+      <p>Grid items naturally respect writing direction. The first item is at <code>inline-start</code> — left in LTR, right in RTL.</p>
+      <div class="ex6-grid">
+        <div class="ex6-item">Item 1 (start)</div>
+        <div class="ex6-item">Item 2 (end)</div>
+        <div class="ex6-item">Item 3</div>
+        <div class="ex6-item">Item 4</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function setDir(dir) {
+      document.getElementById('examplesRoot').setAttribute('dir', dir);
+      document.getElementById('ltrBtn').classList.toggle('active', dir === 'ltr');
+      document.getElementById('rtlBtn').classList.toggle('active', dir === 'rtl');
+    }
+  </script>
+</body>
+</html>

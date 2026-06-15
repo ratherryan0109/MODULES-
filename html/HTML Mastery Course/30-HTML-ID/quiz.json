@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the primary rule of the id attribute?",
+    "options": ["It can be used multiple times per page", "It must be unique per page", "It is deprecated in HTML5", "It must start with a number"],
+    "answer": "It must be unique per page",
+    "explanation": "Each id value must be unique within the document. No two elements can share the same id."
+  },
+  {
+    "question": "What CSS selector targets an element by its ID?",
+    "options": [".idname", "#idname", "*idname", "idname"],
+    "answer": "#idname",
+    "explanation": "The hash (#) prefix selects an element by its id attribute in CSS."
+  },
+  {
+    "question": "What is the CSS specificity of an ID selector?",
+    "options": ["0,0,0,1", "0,0,1,0", "0,1,0,0", "1,0,0,0"],
+    "answer": "0,1,0,0",
+    "explanation": "An ID selector has specificity of 0,1,0,0 — higher than classes (0,0,1,0) and elements (0,0,0,1)."
+  },
+  {
+    "question": "Which JavaScript method is the fastest for selecting an element?",
+    "options": ["querySelector", "getElementById", "getElementsByClassName", "getElementsByTagName"],
+    "answer": "getElementById",
+    "explanation": "getElementById is the fastest DOM selection method because it directly accesses the internal ID index."
+  },
+  {
+    "question": "What is the purpose of the for attribute on a label?",
+    "options": ["To loop through inputs", "To associate the label with an input by the input's ID", "To style the label", "To submit the form"],
+    "answer": "To associate the label with an input by the input's ID",
+    "explanation": "The for attribute on a <label> matches the id of the associated <input>, creating an accessibility link."
+  },
+  {
+    "question": "What does adding #section to a URL do?",
+    "options": ["Opens a new page", "Scrolls to the element with id='section' on the page", "Reloads the page", "Opens a new tab"],
+    "answer": "Scrolls to the element with id='section' on the page",
+    "explanation": "A URL fragment (#) scrolls to the element with the matching id on the page."
+  },
+  {
+    "question": "Why should IDs be avoided for CSS styling?",
+    "options": ["They are deprecated", "They cannot be overridden", "They have high specificity making overrides difficult", "They only work with JavaScript"],
+    "answer": "They have high specificity making overrides difficult",
+    "explanation": "ID selectors have very high specificity, making them hard to override. Classes are preferred for styling."
+  },
+  {
+    "question": "What is a valid ID value?",
+    "options": ["main content", "main-content", "123main", "main content!"],
+    "answer": "main-content",
+    "explanation": "IDs cannot contain spaces. They must start with a letter. 'main-content' is valid."
+  },
+  {
+    "question": "How do you smooth-scroll to an ID target?",
+    "options": ["Use JavaScript only", "Set scroll-behavior: smooth on html", "Use the smooth attribute", "It happens automatically"],
+    "answer": "Set scroll-behavior: smooth on html",
+    "explanation": "CSS scroll-behavior: smooth on the html element enables smooth scrolling for anchor navigation."
+  },
+  {
+    "question": "What CSS property prevents fixed headers from covering anchor targets?",
+    "options": ["scroll-padding", "scroll-margin-top", "anchor-offset", "margin-top"],
+    "answer": "scroll-margin-top",
+    "explanation": "scroll-margin-top on the target element offsets the scroll position to account for fixed headers."
+  },
+  {
+    "question": "Can an element have both an ID and a class?",
+    "options": ["Yes", "No", "Only in HTML5", "Only if the ID is not used for styling"],
+    "answer": "Yes",
+    "explanation": "Elements can have both id and class attributes for different purposes."
+  },
+  {
+    "question": "What happens if two elements have the same ID?",
+    "options": ["The page crashes", "The HTML is invalid and JavaScript may behave unexpectedly", "The second ID is ignored", "Both IDs work fine"],
+    "answer": "The HTML is invalid and JavaScript may behave unexpectedly",
+    "explanation": "Duplicate IDs are invalid HTML. getElementById will return only the first element with that ID."
+  },
+  {
+    "question": "What is the purpose of using an ID on a section element?",
+    "options": ["To style all sections", "To create a navigable anchor point", "To group sections", "To hide the section"],
+    "answer": "To create a navigable anchor point",
+    "explanation": "IDs on sections create anchor points for URL fragment navigation and smooth scrolling."
+  },
+  {
+    "question": "Which is the correct way to select an element by ID in CSS?",
+    "options": [".main-content", "#main-content", "/main-content", "|main-content|"],
+    "answer": "#main-content",
+    "explanation": "The hash character (#) is the CSS selector for IDs."
+  },
+  {
+    "question": "How do you check if an element with a specific ID exists?",
+    "options": ["document.exists('#id')", "document.getElementById('id') !== null", "document.hasId('id')", "element.exists('id')"],
+    "answer": "document.getElementById('id') !== null",
+    "explanation": "getElementById returns null if no element with that ID exists."
+  },
+  {
+    "question": "What is the best practice for using IDs in CSS?",
+    "options": ["Use them for all styling", "Avoid them for styling; use classes instead", "Only use them for colors", "Use them instead of classes"],
+    "answer": "Avoid them for styling; use classes instead",
+    "explanation": "Classes are preferred for styling due to lower specificity and reusability."
+  },
+  {
+    "question": "What does the hash in a URL like page.html#faq do?",
+    "options": ["Opens the FAQ page", "Scrolls to the element with id='faq' on page.html", "Opens a popup", "Reloads the page"],
+    "answer": "Scrolls to the element with id='faq' on page.html",
+    "explanation": "The fragment identifier (#faq) tells the browser to scroll to the element with id='faq'."
+  },
+  {
+    "question": "What is an appropriate use of an ID?",
+    "options": ["Styling a button", "Creating an anchor target for a URL", "Creating reusable components", "Styling all paragraphs"],
+    "answer": "Creating an anchor target for a URL",
+    "explanation": "IDs are ideal for anchor targets, JavaScript hooks, and label associations."
+  },
+  {
+    "question": "What is the relationship between <label for=\"email\"> and <input id=\"email\">?",
+    "options": ["They are unrelated", "The label's for attribute matches the input's id, linking them", "The input automatically gets the label's text", "The for attribute copies the id value"],
+    "answer": "The label's for attribute matches the input's id, linking them",
+    "explanation": "When for matches id, clicking the label focuses/activates the input. This improves accessibility."
+  },
+  {
+    "question": "Can you use querySelector with an ID?",
+    "options": ["Yes", "No", "Only in modern browsers", "Only with classes"],
+    "answer": "Yes",
+    "explanation": "document.querySelector('#myId') works, but getElementById is faster."
+  }
+]

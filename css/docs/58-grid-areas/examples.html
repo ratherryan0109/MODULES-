@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Grid Areas - Examples</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:#ff6b6b;font-size:28px}h2{color:#4ecdc4;margin:30px 0 10px;border-bottom:1px solid #333;padding-bottom:5px}
+h3{color:#ffd93d;margin:15px 0 8px;font-size:16px}
+code{background:#2d2d44;padding:2px 6px;border-radius:3px;color:#ffd93d}
+pre{background:#2d2d44;padding:15px;border-radius:6px;margin:10px 0;overflow-x:auto}
+.demo-box{background:#16213e;padding:15px;border-radius:8px;margin:15px 0}
+.demo-box p{color:#aaa;font-size:14px;margin-bottom:8px}
+.note{background:#2d2d44;border-left:4px solid #ffd93d;padding:10px 15px;margin:10px 0;border-radius:0 6px 6px 0;font-size:14px;color:#ccc}
+.grid{display:grid;gap:6px;padding:6px;background:#2d2d44;border-radius:8px;margin:8px 0}
+.el{display:flex;align-items:center;justify-content:center;padding:15px;border-radius:4px;font-weight:bold;font-size:14px;text-align:center;overflow:hidden}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Grid Areas Examples</h1>
+<p style="color:#aaa;margin-bottom:20px">Visual layouts using <code>grid-template-areas</code> and <code>grid-area</code></p>
+
+<div class="demo-box">
+<h2>1. Basic Page Layout</h2>
+<p>Classic header, nav, main, aside, footer with named areas.</p>
+<div class="grid" style="grid-template-columns:150px 1fr 150px;grid-template-rows:auto 1fr auto;grid-template-areas:'header header header' 'nav main aside' 'footer footer footer';min-height:250px">
+<div class="el" style="grid-area:header;background:#6c5ce7;">Header</div>
+<div class="el" style="grid-area:nav;background:#ff6b6b;">Nav</div>
+<div class="el" style="grid-area:main;background:#4ecdc4;color:#1a1a2e;">Main</div>
+<div class="el" style="grid-area:aside;background:#45b7d1;">Aside</div>
+<div class="el" style="grid-area:footer;background:#a29bfe;">Footer</div>
+</div>
+<pre><code>.page {
+    grid-template-columns: 150px 1fr 150px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header header"
+        "nav    main   aside"
+        "footer footer footer";
+}
+header { grid-area: header; }
+nav    { grid-area: nav; }
+main   { grid-area: main; }
+aside  { grid-area: aside; }
+footer { grid-area: footer; }</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>2. 2-Column Blog Layout</h2>
+<p>Simpler layout with content area and sidebar.</p>
+<div class="grid" style="grid-template-columns:1fr 250px;grid-template-rows:auto 1fr auto;grid-template-areas:'header header' 'content sidebar' 'footer footer';min-height:250px">
+<div class="el" style="grid-area:header;background:#6c5ce7;">Header</div>
+<div class="el" style="grid-area:content;background:#4ecdc4;color:#1a1a2e;padding:30px;">Content Area</div>
+<div class="el" style="grid-area:sidebar;background:#ff6b6b;">Sidebar</div>
+<div class="el" style="grid-area:footer;background:#a29bfe;">Footer</div>
+</div>
+<pre><code>.blog {
+    grid-template-columns: 1fr 250px;
+    grid-template-areas:
+        "header  header"
+        "content sidebar"
+        "footer  footer";
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>3. Empty Cells with Dots</h2>
+<p>Using <code>.</code> for empty cells creates intentional whitespace.</p>
+<div class="grid" style="grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto auto;grid-template-areas:'title title .' '. . content' '. footer footer';min-height:200px">
+<div class="el" style="grid-area:title;background:#6c5ce7;">Title</div>
+<div class="el" style="grid-area:content;background:#4ecdc4;color:#1a1a2e;padding:30px;">Content</div>
+<div class="el" style="grid-area:footer;background:#a29bfe;">Footer</div>
+</div>
+<pre><code>.layout {
+    grid-template-areas:
+        "title  title  ."
+        ".      .      content"
+        ".      footer footer";
+}
+/* Dots (.) create intentionally empty cells */</code></pre>
+<div class="note">Notice how the empty cells leave gaps in the layout. The total grid is always a rectangle.</div>
+</div>
+
+<div class="demo-box">
+<h2>4. Dashboard with Nested Areas</h2>
+<p>Complex dashboard: stats across top, main content with nested sections.</p>
+<div class="grid" style="grid-template-columns:1fr 1fr 200px;grid-template-rows:auto 1fr auto;grid-template-areas:'stats stats stats' 'chart table sidebar' 'footer footer footer';min-height:250px">
+<div class="el" style="grid-area:stats;background:#6c5ce7;padding:12px;">Stats Bar (spans full width)</div>
+<div class="el" style="grid-area:chart;background:#4ecdc4;color:#1a1a2e;padding:30px;">Chart</div>
+<div class="el" style="grid-area:table;background:#45b7d1;padding:30px;">Data Table</div>
+<div class="el" style="grid-area:sidebar;background:#ff6b6b;">Sidebar</div>
+<div class="el" style="grid-area:footer;background:#a29bfe;">Footer</div>
+</div>
+<pre><code>.dashboard {
+    grid-template-columns: 1fr 1fr 200px;
+    grid-template-areas:
+        "stats  stats  stats"
+        "chart  table  sidebar"
+        "footer footer footer";
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>5. Responsive Areas (Desktop Preview)</h2>
+<p>This layout redefines areas at different breakpoints. Resize to see!</p>
+<style>
+.responsive-page {
+    display: grid;
+    gap: 8px; padding: 8px; background: #2d2d44; border-radius: 8px; margin: 8px 0;
+    grid-template-columns: 1fr; grid-template-rows: auto;
+    grid-template-areas: 'header' 'nav' 'main' 'aside' 'footer';
+}
+.responsive-page .el{padding:15px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:bold}
+@media(min-width:600px){
+.responsive-page{grid-template-columns:150px 1fr;grid-template-areas:'header header' 'nav main' 'aside aside' 'footer footer'}
+}
+@media(min-width:900px){
+.responsive-page{grid-template-columns:150px 1fr 150px;grid-template-areas:'header header header' 'nav main aside' 'footer footer footer'}
+}
+</style>
+<div class="responsive-page" style="min-height:250px">
+<div class="el" style="grid-area:header;background:#6c5ce7;">Header</div>
+<div class="el" style="grid-area:nav;background:#ff6b6b;">Nav</div>
+<div class="el" style="grid-area:main;background:#4ecdc4;color:#1a1a2e;padding:30px;">Main Content</div>
+<div class="el" style="grid-area:aside;background:#45b7d1;">Aside</div>
+<div class="el" style="grid-area:footer;background:#a29bfe;">Footer</div>
+</div>
+<pre><code>/* Mobile: single column */
+.container { grid-template-areas: 'header' 'nav' 'main' 'aside' 'footer'; }
+
+/* Tablet: 2 columns */
+@media(min-width:600px) {
+    .container { grid-template-areas: 'header header' 'nav main' 'aside aside' 'footer footer'; }
+}
+
+/* Desktop: 3 columns */
+@media(min-width:900px) {
+    .container { grid-template-areas: 'header header header' 'nav main aside' 'footer footer footer'; }
+}</code></pre>
+<div class="note">💡 Resize this page to see the layout adapt from 1 column (mobile) to 2 columns (tablet) to 3 columns (desktop). The HTML never changes!</div>
+</div>
+
+</div>
+</body>
+</html>

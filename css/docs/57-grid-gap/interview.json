@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the gap property do in CSS Grid?", "answer": "The gap property sets the spacing between grid rows and columns, creating gutters between grid items." },
+    { "question": "What is the difference between gap and margin on grid items?", "answer": "gap is defined on the grid container and creates consistent spacing between all items, while margin is on individual items and can create uneven spacing." },
+    { "question": "How do you set only horizontal spacing in a grid?", "answer": "Use column-gap to set only the spacing between columns (horizontal gutters)." },
+    { "question": "How do you set only vertical spacing in a grid?", "answer": "Use row-gap to set only the spacing between rows (vertical gutters)." },
+    { "question": "What is the syntax of the gap shorthand?", "answer": "gap: <row-gap> <column-gap>. If only one value is provided, it applies to both row and column gaps." },
+    { "question": "Can gap values be negative?", "answer": "No, gap values must be non-negative lengths or percentages. Negative values are invalid." },
+    { "question": "What is the default value of gap in CSS Grid?", "answer": "The default value of gap is 0 (normal), meaning no spacing between grid items." },
+    { "question": "Can you use percentage values for gap?", "answer": "Yes, percentage values for gap are relative to the grid container's dimensions." },
+    { "question": "What was the original name for gap in CSS Grid?", "answer": "The original name was grid-gap, but it has been deprecated in favor of gap for broader compatibility." },
+    { "question": "Does gap add space within the grid container or around it?", "answer": "gap adds space only between grid items, not around the edges of the grid container." }
+  ],
+  "intermediate": [
+    { "question": "How does gap interact with the grid container's padding?", "answer": "Padding is outside the grid area, so gap spacing is between items inside the padded area. Padding and gap are additive." },
+    { "question": "What is the difference between grid-gap and gap?", "answer": "gap is the standardized property that replaced grid-gap. Both work but gap is recommended for modern browsers." },
+    { "question": "Can you use different units for row-gap and column-gap?", "answer": "Yes, row-gap and column-gap can use different units independently, e.g., row-gap: 20px; column-gap: 5%." },
+    { "question": "How do you set gap inside a flex container?", "answer": "The gap property also works in Flexbox containers to create consistent spacing between flex items." },
+    { "question": "Does gap affect the total width of a grid container?", "answer": "Yes, the total width includes columns plus gaps. With fr units, gaps are subtracted before distributing remaining space." },
+    { "question": "What happens when gap is larger than the container space?", "answer": "If gaps exceed available space, items may be pushed out of the container or forced into a single column/row." },
+    { "question": "How does gap work with grid items that span multiple tracks?", "answer": "Gap only creates spacing between tracks themselves; spanning items cross over the gap area naturally." },
+    { "question": "Can gap be animated with CSS transitions?", "answer": "Yes, gap is animatable in modern browsers, allowing smooth transitions of spacing." },
+    { "question": "What is the behavior of gap with auto-fill and auto-fit?", "answer": "Gap is included in the track size calculations for auto-fill and auto-fit, so the number of tracks adjusts to include gap spacing." },
+    { "question": "How do you simulate gap on browsers that don't support it?", "answer": "Use margin on grid items combined with negative margin on the container to simulate gap as a fallback." }
+  ],
+  "advanced": [
+    { "question": "How does gap interact with minmax tracks that use the auto-fill keyword?", "answer": "Gap is added to each track's minimum size when auto-fill calculates how many tracks fit, so larger gaps reduce the number of tracks." },
+    { "question": "What is the behavior of gap in a subgrid context?", "answer": "In a subgrid, gap applies independently within the subgrid and does not inherit from the parent grid's gap." },
+    { "question": "How does gap resolve with css-content and intrinsic sizing?", "answer": "Gap sizes are resolved after intrinsic sizing, so gap does not affect the intrinsic size of grid items but affects total container size." },
+    { "question": "Can gap be specified in the grid shorthand and how?", "answer": "The grid shorthand does not include gap. You must set gap as a separate property." },
+    { "question": "How does gap affect grid items with negative margins?", "answer": "Negative margins on items can overlap the gap space, potentially causing items to collide across gaps." },
+    { "question": "What happens to gap when using grid-auto-flow: dense and items span tracks?", "answer": "Gap is still respected between tracks; dense packing works around gaps by placing items in available cells." },
+    { "question": "How does gap interact with writing modes and logical properties?", "answer": "When using logical properties, row-gap maps to the block axis and column-gap to the inline axis, adapting to the writing direction." },
+    { "question": "What is the relationship between gap and the align/justify-content properties for distributing space?", "answer": "gap creates fixed spacing, while align/justify-content distribute extra space. Both can be used together; content distribution happens after gap is allocated." },
+    { "question": "How does the gap property work inside a grid with fixed-size tracks?", "answer": "Fixed-size tracks with gap: the tracks fill their fixed sizes and gap is added between them. If fixed tracks plus gaps exceed the container, overflow occurs." },
+    { "question": "What was the CSS spec change from grid-row-gap to row-gap and how does backward compatibility work?", "answer": "grid-row-gap was renamed to row-gap as part of the Box Alignment spec. Browsers still support the old names, but row-gap is the standard property." }
+  ]
+}

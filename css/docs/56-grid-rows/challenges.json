@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Fixed Header and Footer Layout",
+    "difficulty": "easy",
+    "description": "Create a grid with 3 rows: a 100px header, a flexible main content area (1fr), and a 80px footer. Use `min-height: 100vh` on the container so the layout fills the viewport.",
+    "starterCode": {
+      "html": "<div class=\"page\">\n  <header>Header (100px)</header>\n  <main>Main Content (flexible)</main>\n  <footer>Footer (80px)</footer>\n</div>",
+      "css": ".page {\n  display: grid;\n  /* Define the rows */\n  min-height: 100vh;\n  margin: 0;\n}\n\nheader { background: #3498db; padding: 20px; }\nmain { background: #ecf0f1; padding: 20px; color: #333; }\nfooter { background: #2c3e50; padding: 20px; }"
+    },
+    "hint": "Use `grid-template-rows: 100px 1fr 80px`. The `1fr` middle row will fill all remaining vertical space after the fixed rows are accounted for.",
+    "solution": {
+      "css": ".page {\n  display: grid;\n  grid-template-rows: 100px 1fr 80px;\n  min-height: 100vh;\n  margin: 0;\n}"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Mixed Content Grid with Row Spanning",
+    "difficulty": "medium",
+    "description": "Create a 3-column × 3-row grid where item 1 spans all 3 rows on the left, items 2-3 span the top row on the right, and items 4-8 fill the remaining cells. Use `grid-template-rows` with appropriate row heights and `grid-row` for spanning.",
+    "starterCode": {
+      "html": "<div class=\"dashboard\">\n  <div class=\"cell sidebar\">Sidebar (span 3 rows)</div>\n  <div class=\"cell top-right\">Top Right</div>\n  <div class=\"cell top-right\">Top Right</div>\n  <div class=\"cell\">Cell 4</div>\n  <div class=\"cell\">Cell 5</div>\n  <div class=\"cell\">Cell 6</div>\n  <div class=\"cell\">Cell 7</div>\n  <div class=\"cell\">Cell 8</div>\n</div>",
+      "css": ".dashboard {\n  display: grid;\n  grid-template-columns: 200px repeat(2, 1fr);\n  grid-template-rows: repeat(3, 100px);\n  gap: 8px;\n  max-width: 700px;\n}\n\n.cell {\n  background: #e0e0e0; padding: 15px;\n  border-radius: 4px; text-align: center;\n  display: flex; align-items: center; justify-content: center;\n}\n\n.sidebar {\n  /* Add spanning */\n  background: #6c5ce7; color: white;\n}"
+    },
+    "hint": "For the sidebar to span all 3 rows, use `grid-row: span 3` or `grid-row: 1 / 4`. The column definition is already provided — just focus on the row spanning.",
+    "solution": {
+      "css": ".dashboard {\n  display: grid;\n  grid-template-columns: 200px repeat(2, 1fr);\n  grid-template-rows: repeat(3, 100px);\n  gap: 8px;\n  max-width: 700px;\n}\n\n.cell {\n  background: #e0e0e0; padding: 15px;\n  border-radius: 4px; text-align: center;\n  display: flex; align-items: center; justify-content: center;\n}\n\n.sidebar {\n  grid-row: span 3;\n  background: #6c5ce7; color: white;\n}"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Dynamic Blog with Auto-Rows and Spanning",
+    "difficulty": "hard",
+    "description": "Build a blog listing page that uses `grid-auto-rows` for variable-height posts. Create a 2-column layout where some posts span 2 columns (featured) and others vary in height. Use explicit rows for the first 2 rows (200px each) and implicit rows for subsequent posts (150px). Make the featured post span across 2 columns.",
+    "starterCode": {
+      "html": "<div class=\"blog\">\n  <article class=\"post featured\">Featured Post<br>(spans 2 cols)</article>\n  <article class=\"post tall\">Tall Post</article>\n  <article class=\"post\">Regular Post</article>\n  <article class=\"post\">Regular Post</article>\n  <article class=\"post featured\">Another Featured<br>(spans 2 cols)</article>\n  <article class=\"post\">Regular Post</article>\n  <article class=\"post tall\">Tall Post</article>\n  <article class=\"post\">Regular Post</article>\n</div>",
+      "css": ".blog {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  /* Define: 2 explicit rows at 200px, then auto-rows at 150px */\n  gap: 16px;\n  max-width: 800px;\n  margin: 0 auto;\n}\n\n.post {\n  background: #f0f0f0; padding: 20px;\n  border-radius: 8px; min-height: 100px;\n}\n\n.featured {\n  /* Span 2 columns */\n  background: #ffd700;\n}\n\n.tall {\n  min-height: 200px;\n  background: #87ceeb;\n}"
+    },
+    "hint": "1. Use `grid-template-rows: repeat(2, 200px)` for the first 2 rows. 2. Use `grid-auto-rows: 150px` for implicit rows. 3. Featured posts use `grid-column: span 2`. 4. Without `grid-auto-flow: dense`, featured posts will create gaps — try adding it.",
+    "solution": {
+      "css": ".blog {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  grid-template-rows: repeat(2, 200px);\n  grid-auto-rows: 150px;\n  gap: 16px;\n  max-width: 800px;\n  margin: 0 auto;\n}\n\n.post {\n  background: #f0f0f0; padding: 20px;\n  border-radius: 8px; min-height: 100px;\n}\n\n.featured {\n  grid-column: span 2;\n  background: #ffd700;\n}\n\n.tall {\n  min-height: 200px;\n  background: #87ceeb;\n}"
+    }
+  }
+]

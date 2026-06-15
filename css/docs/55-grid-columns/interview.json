@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does grid-template-columns do?", "answer": "It defines the number and width of columns in a CSS Grid layout by specifying a space-separated list of track sizes." },
+    { "question": "What is the fr unit in grid-template-columns?", "answer": "The fr unit represents a fraction of the available space in the grid container. For example, 1fr 1fr creates two equal-width columns." },
+    { "question": "What does the repeat() function do in grid-template-columns?", "answer": "repeat() creates a repeated pattern of track sizes, e.g., repeat(3, 1fr) creates three equal-width columns." },
+    { "question": "What is minmax() in grid-template-columns?", "answer": "minmax(min, max) defines a size range for a column, where the column must be at least min and at most max. It enables responsive tracks." },
+    { "question": "How do you create a two-column layout with CSS Grid?", "answer": "Set grid-template-columns: 1fr 1fr or grid-template-columns: repeat(2, 1fr) on the grid container." },
+    { "question": "Can you use pixel values in grid-template-columns?", "answer": "Yes, you can use px, em, rem, %, and other CSS units alongside fr and keywords in grid-template-columns." },
+    { "question": "What is the auto keyword in grid-template-columns?", "answer": "auto sizes the column based on the content's intrinsic size, allowing it to expand or shrink to fit the content." },
+    { "question": "How do you create a fixed sidebar and flexible main content layout?", "answer": "Use grid-template-columns: 250px 1fr for a 250px fixed sidebar and a flexible main area." },
+    { "question": "What happens if you define more column tracks than grid items?", "answer": "Empty columns are created and remain as empty space in the grid layout." },
+    { "question": "What does a single value in grid-template-columns do?", "answer": "It creates a single column with that width, and items stack vertically within it." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a 12-column grid system with CSS Grid?", "answer": "Use grid-template-columns: repeat(12, 1fr) or repeat(12, minmax(0, 1fr)) for equal 12 columns." },
+    { "question": "What is the difference between repeat(3, 1fr) and 1fr 1fr 1fr?", "answer": "They produce the same result—three equal columns. repeat() is just a more concise and maintainable syntax, especially for many columns." },
+    { "question": "How does minmax(200px, 1fr) behave in a responsive grid?", "answer": "Each column is at least 200px wide and can grow up to 1fr. When space is limited, columns stay at 200px and may wrap to new rows if combined with auto-fill." },
+    { "question": "Can you use negative values in grid-template-columns?", "answer": "No, track sizes in grid-template-columns must be non-negative. Negative values are invalid." },
+    { "question": "What happens when you mix fr units with fixed units in grid-template-columns?", "answer": "Fixed units are allocated first, then fr units distribute the remaining available space proportionally." },
+    { "question": "How do you create columns with different widths like 2:1 ratio?", "answer": "Use grid-template-columns: 2fr 1fr to create two columns where the first is twice as wide as the second." },
+    { "question": "Can grid-template-columns use calc() inside repeat()?", "answer": "Yes, calc() can be used inside repeat() and minmax(), e.g., repeat(3, calc(100% / 3))." },
+    { "question": "What does grid-template-columns: 1fr auto 1fr do?", "answer": "It creates three columns where the outer columns are flexible and equal, and the middle column sizes to its content." },
+    { "question": "How do you create a full-width header with a centered content area using columns?", "answer": "Use grid-template-columns: 1fr minmax(600px, 1200px) 1fr, placing header content in the middle column." },
+    { "question": "What is the difference between minmax(auto, 1fr) and minmax(0, 1fr)?", "answer": "minmax(auto, 1fr) allows columns to grow from their minimum content size, while minmax(0, 1fr) allows them to shrink to zero, enabling truly equal columns regardless of content." }
+  ],
+  "advanced": [
+    { "question": "How does minmax() interact with intrinsic sizing keywords like min-content and max-content?", "answer": "minmax(min-content, max-content) creates a track that sizes between the smallest content width and the largest unwrapped width. It's useful for content-aware sizing." },
+    { "question": "What happens when repeat() is used with auto-fill and a fixed minimum inside minmax()?", "answer": "auto-fill generates as many tracks as possible that fit the container, and if minmax has a fixed minimum (e.g., minmax(250px, 1fr)), columns wrap responsively without media queries." },
+    { "question": "How does the grid column placement algorithm handle items with explicit column positioning conflicting with implicit columns?", "answer": "Explicit positioning takes priority. If an item is placed beyond the explicit grid, implicit columns are created with sizes defined by grid-auto-columns." },
+    { "question": "What is the interaction between grid-template-columns and column-gap in total width calculation?", "answer": "The total width of columns plus gaps must fit the grid container. fr units distribute remaining space after subtracting fixed tracks and gaps." },
+    { "question": "How do you create a non-uniform repeating pattern like A B B C with repeat()?", "answer": "repeat() only supports a single homogeneous pattern. For patterns like A B B C, list them explicitly: grid-template-columns: 1fr 2fr 2fr 1fr." },
+    { "question": "What is the actual grid line numbering when using named lines in grid-template-columns?", "answer": "Each named line counts as a line number. Named lines add aliases but do not change numeric indexing. You can reference them by name or number." },
+    { "question": "How do subgrid columns inherit from a parent grid-template-columns?", "answer": "Subgrid uses grid-template-columns: subgrid to inherit the parent's column track definitions, sharing line names and sizes across nested levels." },
+    { "question": "How does grid-template-columns: masonry work and where is it supported?", "answer": "grid-template-columns: masonry enables masonry-style column layouts where items stack in the most compact arrangement. It is experimental and only supported in Firefox behind a flag." },
+    { "question": "What happens to column tracks when the grid container has padding in addition to gap?", "answer": "Padding is subtracted from the container's inner size before track sizing and gap calculations, so tracks fit within the content-box area." },
+    { "question": "How does the grid column sizing interact with min-height on the container when using fr units?", "answer": "fr units resolve based on the available space. If the container has min-height but no fixed height, fr rows may collapse to zero unless min-height distributes extra space." }
+  ]
+}

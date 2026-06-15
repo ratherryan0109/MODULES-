@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"question":"What is responsive web design?","answer":"RWD is an approach that ensures web pages render well on all devices by using fluid grids, flexible images, and media queries."},
+    {"question":"What are the three core principles of RWD?","answer":"Fluid grids (relative units), flexible images (max-width: 100%), and CSS media queries."},
+    {"question":"What is a fluid grid?","answer":"A layout system that uses relative units like % or fr instead of fixed pixel widths so columns resize with the viewport."},
+    {"question":"How do you make images responsive?","answer":"Set max-width: 100% and height: auto on images so they scale within their container without overflowing."},
+    {"question":"What is a media query?","answer":"A CSS feature that applies styles conditionally based on device characteristics like width, height, orientation, or resolution."},
+    {"question":"What does mobile-first mean?","answer":"Designing for mobile screens first (base CSS) then adding complexity with min-width media queries for larger screens."},
+    {"question":"What is the viewport meta tag?","answer":"<meta name='viewport' content='width=device-width, initial-scale=1.0'> that controls mobile browser layout."},
+    {"question":"What are common responsive breakpoints?","answer":"576px (mobile landscape), 768px (tablet), 992px (desktop), 1200px (large desktop)."},
+    {"question":"What is clamp() in CSS?","answer":"A CSS function that provides fluid sizing with a minimum, preferred, and maximum value. E.g., font-size: clamp(1rem, 2vw, 2rem)."},
+    {"question":"What is the difference between em and rem units?","answer":"rem is relative to root font size (16px default). em is relative to the parent element's font size."}
+  ],
+  "intermediate": [
+    {"question":"What is the purpose of the srcset attribute?","answer":"srcset provides multiple image files with different resolutions or sizes. The browser selects the best image based on viewport and device capabilities."},
+    {"question":"How does the picture element enable art direction?","answer":"<picture> allows different image crops or formats for different viewports using <source> elements with media queries."},
+    {"question":"What is the difference between min-width and max-width media queries?","answer":"min-width is used in mobile-first design (add styles above a breakpoint). max-width is used in desktop-first (remove styles below a breakpoint)."},
+    {"question":"How do you create a responsive grid without media queries?","answer":"Use grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)). Items automatically wrap as container width changes."},
+    {"question":"What is the function of the sizes attribute on responsive images?","answer":"sizes tells the browser how wide the image will be displayed at different viewport widths, helping it select the right source from srcset."},
+    {"question":"How do you handle responsive typography?","answer":"Use clamp() for fluid font sizes: font-size: clamp(1rem, 2.5vw, 1.5rem). Or use calc() with viewport units."},
+    {"question":"What are Core Web Vitals and how do they relate to RWD?","answer":"Core Web Vitals (LCP, FID, CLS) measure user experience. Responsive design impacts CLS (layout shifts) and LCP (loading performance on mobile)."},
+    {"question":"How do you test responsive designs?","answer":"Use Chrome DevTools device emulation, resize the browser window, test on real devices, and use tools like BrowserStack."},
+    {"question":"What is the difference between responsive and adaptive design?","answer":"Responsive design uses fluid grids and media queries to flow smoothly. Adaptive design uses fixed layouts at specific breakpoints that snap between versions."},
+    {"question":"How do you handle responsive tables?","answer":"Options: horizontal scroll (overflow-x: auto), stack rows as cards on mobile, use data-* attributes for cell labels, or show a simplified table."}
+  ],
+  "advanced": [
+    {"question":"What are container queries and how do they differ from media queries?","answer":"Container queries (@container) respond to a parent container's size, not the viewport. This enables truly reusable components that adapt to their available space."},
+    {"question":"How do you implement responsive images for art direction and resolution switching simultaneously?","answer":"Use <picture> with <source> elements containing media attributes for art direction, and srcset/sizes on the <img> for resolution switching."},
+    {"question":"What is the intrinsic web design concept?","answer":"Coined by Jen Simmons, intrinsic web design combines four elements: fluid/percentage-based columns, intrinsic sizing (min-content/max-content), Flexbox/Grid, and media queries."},
+    {"question":"How does the CSS content-visibility property improve responsive performance?","answer":"content-visibility: auto defers rendering of off-screen elements, improving initial load performance. Combined with contain-intrinsic-size, it prevents scroll jank."},
+    {"question":"How do you create a responsive layout using CSS Grid named areas?","answer":"Define grid-template-areas for desktop. Use media queries to reassign areas for tablet and mobile: grid-template-areas: 'h' 'n' 'm' 'a' 'f'."},
+    {"question":"What is the difference between resolution switching and art direction in responsive images?","answer":"Resolution switching serves the same image at different sizes (srcset with same aspect ratio). Art direction serves different crops or compositions (<picture> with different source media)."},
+    {"question":"How does the prefers-reduced-data media query optimize responsive performance?","answer":"prefers-reduced-data detects users on data-saving modes, allowing you to serve lower-resolution images, fewer fonts, or simplified layouts."},
+    {"question":"What is the significance of env(safe-area-inset-*) in responsive design?","answer":"These CSS environment variables account for device notches, rounded corners, and status bars. They ensure content stays within the safe visible area."},
+    {"question":"How do you implement responsive loading strategies (lazy loading, priority hints)?","answer":"Use loading='lazy' for below-fold images, fetchpriority='high' for LCP images, and <link rel='preload'> for critical resources."},
+    {"question":"What is the relationship between responsive design and progressive web apps (PWAs)?","answer":"PWAs must be responsive to qualify. Google requires PWAs to work on all screen sizes. Responsive design is a core PWA checklist requirement."}
+  ]
+}

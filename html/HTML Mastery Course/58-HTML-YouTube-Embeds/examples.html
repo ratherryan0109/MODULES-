@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 58: YouTube Embed Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #fafafa; color: #222; }
+    h1 { border-bottom: 3px solid #FF0000; padding-bottom: 10px; }
+    h2 { color: #FF0000; margin-top: 30px; }
+    .example-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; margin: 10px 0; }
+    .output { margin: 10px 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 8px; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px; }
+    .lazy-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #2a2a2a; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; border-radius: 8px; }
+    .lazy-placeholder:hover { background: #3a3a3a; }
+    .api-controls { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+    .api-controls button { background: #FF0000; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: 0.2s; }
+    .api-controls button:hover { opacity: 0.8; }
+    .api-controls input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+    #player-status { font-size: 14px; color: #666; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+<h1>YouTube Embed — Interactive Examples</h1>
+<p>Demo videos use a public domain test video. Replace VIDEO_ID with your own content.</p>
+
+<!-- Example 1: Basic Embed -->
+<h2>1. Basic YouTube Embed</h2>
+<div class="example-box">
+  <p>Standard iframe embed with required attributes.</p>
+  <div class="code-block">
+    &lt;iframe width="560" height="315"<br>
+    &nbsp;&nbsp;src="https://www.youtube.com/embed/dQw4w9WgXcQ"<br>
+    &nbsp;&nbsp;title="YouTube video player"<br>
+    &nbsp;&nbsp;allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"<br>
+    &nbsp;&nbsp;allowfullscreen&gt;<br>
+    &lt;/iframe&gt;
+  </div>
+  <div class="output">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 2: Custom Parameters -->
+<h2>2. Custom Player Parameters</h2>
+<div class="example-box">
+  <p>Using URL parameters: muted autoplay, no controls, modest branding, start at 30s.</p>
+  <div class="code-block">
+    &lt;iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&amp;mute=1&amp;controls=0&amp;modestbranding=1&amp;start=30"&gt;
+  </div>
+  <div class="note">Autoplay with mute is required by modern browser policies.</div>
+  <div class="output">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&start=30" 
+        title="YouTube video with custom params"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 3: Privacy Enhanced -->
+<h2>3. Privacy-Enhanced Mode (No Cookies)</h2>
+<div class="example-box">
+  <p>Using <code>www.youtube-nocookie.com</code> prevents YouTube from storing cookies on user devices.</p>
+  <div class="code-block">
+    &lt;iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"&gt;
+  </div>
+  <div class="output">
+    <div class="video-container">
+      <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" 
+        title="YouTube video (privacy enhanced)"
+        allow="encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 4: Looping a Video -->
+<h2>4. Looping a Video</h2>
+<div class="example-box">
+  <p>To loop a single video, you must include the <code>loop=1</code> and <code>playlist=VIDEO_ID</code> parameters.</p>
+  <div class="code-block">
+    &lt;iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?loop=1&amp;playlist=dQw4w9WgXcQ"&gt;
+  </div>
+  <div class="output">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?loop=1&playlist=dQw4w9WgXcQ" 
+        title="Looping video"
+        allow="encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 5: Start and End Times -->
+<h2>5. Start and End Times</h2>
+<div class="example-box">
+  <p>Use <code>start</code> and <code>end</code> parameters to play a specific segment.</p>
+  <div class="code-block">
+    &lt;iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?start=10&amp;end=30"&gt;
+  </div>
+  <div class="output">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?start=10&end=30" 
+        title="Video with start/end"
+        allow="encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 6: YouTube IFrame Player API -->
+<h2>6. IFrame Player API — Programmatic Control</h2>
+<div class="example-box">
+  <p>Control the player with JavaScript: play, pause, seek, volume, and get info.</p>
+  
+  <div id="api-player"></div>
+  <div class="api-controls">
+    <button onclick="player.playVideo()">▶ Play</button>
+    <button onclick="player.pauseVideo()">⏸ Pause</button>
+    <button onclick="player.stopVideo()">⏹ Stop</button>
+    <button onclick="player.seekTo(30, true)">⏩ Seek 30s</button>
+    <button onclick="player.mute()">🔇 Mute</button>
+    <button onclick="player.unMute()">🔊 Unmute</button>
+    <button onclick="player.setVolume(50)">50% Vol</button>
+    <button onclick="alert('Time: ' + player.getCurrentTime().toFixed(1) + 's\nDuration: ' + player.getDuration().toFixed(1) + 's')">ℹ Info</button>
+    <button onclick="player.setPlaybackRate(2)">2x Speed</button>
+    <button onclick="player.setPlaybackRate(1)">1x Speed</button>
+  </div>
+  <p id="player-status">Player state: --</p>
+
+  <script>
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('api-player', {
+        height: '315',
+        width: '100%',
+        videoId: 'dQw4w9WgXcQ',
+        playerVars: { 'rel': 0, 'modestbranding': 1 },
+        events: {
+          'onReady': () => document.getElementById('player-status').textContent = 'Player ready',
+          'onStateChange': (e) => {
+            const states = ['-1: Unstarted', '0: Ended', '1: Playing', '2: Paused', '3: Buffering', '4: Unknown', '5: Cued'];
+            document.getElementById('player-status').textContent = 'State: ' + (states[e.data] || e.data);
+          },
+          'onError': (e) => document.getElementById('player-status').textContent = 'Error: ' + e.data
+        }
+      });
+    }
+  </script>
+</div>
+
+<!-- Example 7: Responsive Grid of Videos -->
+<h2>7. Responsive Video Grid</h2>
+<div class="example-box">
+  <p>Multiple videos in a responsive grid layout.</p>
+  <div class="output">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video 1" allow="encrypted-media" allowfullscreen></iframe>
+      </div>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?start=15" title="Video 2" allow="encrypted-media" allowfullscreen></iframe>
+      </div>
+      <div class="video-container">
+        <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="Video 3" allow="encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Example 8: Lazy Loading -->
+<h2>8. Lazy Loaded YouTube Embed</h2>
+<div class="example-box">
+  <p>Videos below load only when scrolled into view. Scroll down to see.</p>
+  <div style="height:400px;display:flex;align-items:center;justify-content:center;background:#f0f0f0;border-radius:8px;margin-bottom:20px;">
+    <span style="color:#999;">↓ Scroll down to see lazy-loaded video ↓</span>
+  </div>
+  <div class="video-container">
+    <div class="lazy-placeholder" id="lazyPlaceholder">
+      <span style="font-size:48px;">▶</span>
+    </div>
+    <iframe id="lazyFrame" 
+      data-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      title="Lazy loaded video"
+      allow="encrypted-media"
+      allowfullscreen
+      style="display:none;">
+    </iframe>
+  </div>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const frame = document.getElementById('lazyFrame');
+          frame.src = frame.dataset.src;
+          frame.style.display = '';
+          document.getElementById('lazyPlaceholder').style.display = 'none';
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+    observer.observe(document.querySelector('.video-container:last-of-type'));
+  </script>
+</div>
+
+<!-- Example 9: Playlist Embed -->
+<h2>9. YouTube Playlist Embed</h2>
+<div class="example-box">
+  <p>Embed an entire playlist using the playlist URL format.</p>
+  <div class="output">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/videoseries?list=PLWKjhJtqVAbnklGhRr7INoJ1K9MxOa8jD" 
+        title="YouTube playlist"
+        allow="encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 10: Controlled List with API -->
+<h2>10. Video Playlist with API Control</h2>
+<div class="example-box">
+  <p>Click video titles to load them in the player above.</p>
+  <div class="output">
+    <div style="display:flex;gap:20px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;">
+        <div id="playlist-player" style="aspect-ratio:16/9;background:#000;border-radius:8px;"></div>
+      </div>
+      <div style="flex:0 0 200px;">
+        <div id="playlist-videos">
+          <div onclick="loadVideo('dQw4w9WgXcQ')" style="padding:8px 12px;cursor:pointer;border-radius:4px;transition:0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background=''">🎬 Video 1</div>
+          <div onclick="loadVideo('jNQXAC9IVRw')" style="padding:8px 12px;cursor:pointer;border-radius:4px;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background=''">🎬 Video 2</div>
+          <div onclick="loadVideo('9bZkp7q19f0')" style="padding:8px 12px;cursor:pointer;border-radius:4px;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background=''">🎬 Video 3</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var playlistPlayer;
+      function onYouTubeIframeAPIReady2() {
+        // The API only needs one ready function
+      }
+      function loadVideo(id) {
+        if (!playlistPlayer) {
+          playlistPlayer = new YT.Player('playlist-player', {
+            width: '100%',
+            height: '100%',
+            videoId: id,
+            playerVars: { 'rel': 0 }
+          });
+        } else {
+          playlistPlayer.loadVideoById(id);
+        }
+      }
+    </script>
+  </div>
+</div>
+
+<!-- API Script -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>

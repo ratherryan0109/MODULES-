@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Which HTML element should be used for the dominant content of a document?",
+    "options": ["<body>", "<main>", "<article>", "<section>"],
+    "answer": "b",
+    "explanation": "The <main> element represents the dominant content of the document. There should be only one <main> element per page, and it should not be nested within <article>, <aside>, <footer>, <header>, or <nav>."
+  },
+  {
+    "question": "How many <h1> elements should a page typically have?",
+    "options": ["As many as needed", "One per section", "Exactly one", "Zero"],
+    "answer": "c",
+    "explanation": "A page should have exactly one <h1> element that describes the overall page content. Multiple <h1> elements dilute the document outline and create accessibility issues."
+  },
+  {
+    "question": "What attribute is required on all <img> elements for accessibility?",
+    "options": ["title", "alt", "role", "aria-label"],
+    "answer": "b",
+    "explanation": "The alt attribute provides alternative text for images and is required for accessibility. For decorative images, use alt='' to indicate the image should be ignored by screen readers."
+  },
+  {
+    "question": "Why should you avoid using <br> elements for creating spacing between elements?",
+    "options": ["<br> is deprecated", "It violates separation of concerns - spacing should be done with CSS", "It creates invalid HTML", "It causes accessibility issues"],
+    "answer": "b",
+    "explanation": "Using <br> for spacing mixes presentation with structure. Spacing should be handled with CSS (margin, padding), keeping HTML focused on content structure."
+  },
+  {
+    "question": "What is the purpose of the rel='noopener' attribute on external links with target='_blank'?",
+    "options": ["Improves SEO", "Prevents the new page from accessing the original page via window.opener", "Makes links open faster", "Adds accessibility labels"],
+    "answer": "b",
+    "explanation": "rel='noopener' prevents the opened page from accessing the original page's window object via window.opener, which is a security and performance best practice."
+  },
+  {
+    "question": "Which element should be used for tangentially related content, such as sidebar information?",
+    "options": ["<section>", "<aside>", "<nav>", "<div>"],
+    "answer": "b",
+    "explanation": "The <aside> element represents content tangentially related to the main content, such as sidebars, pull quotes, or advertising. It should be related but not essential to the main content."
+  },
+  {
+    "question": "What does the defer attribute do on a <script> tag?",
+    "options": ["Loads the script immediately", "Delays script execution until after the HTML is parsed", "Loads the script from a CDN", "Prevents the script from running"],
+    "answer": "b",
+    "explanation": "The defer attribute tells the browser to download the script in parallel while parsing the HTML, then execute it only after the HTML document has been fully parsed."
+  },
+  {
+    "question": "Which element is used to group related form controls with a common purpose?",
+    "options": ["<group>", "<section>", "<fieldset>", "<form-group>"],
+    "answer": "c",
+    "explanation": "The <fieldset> element groups related form controls together, and the <legend> element provides a caption for the group. This improves form accessibility for screen readers."
+  },
+  {
+    "question": "What is the correct way to make a clickable area accessible as a button without using the <button> element?",
+    "options": ["<div onclick='...'>", "<a href='#' role='button' onclick='...'>", "<span onclick='...'>", "<div role='button' tabindex='0' onkeydown='...' onclick='...'>"],
+    "answer": "d",
+    "explanation": "When using a non-button element as a button, you must add role='button', tabindex='0' for keyboard focus, and handle both click and keyboard events (Enter/Space) for accessibility."
+  },
+  {
+    "question": "What is the correct nesting order of semantic elements?",
+    "options": ["<body> > <main> > <article> > <section>", "<body> > <article> > <main> > <section>", "<body> > <section> > <main> > <article>", "<main> > <body> > <article> > <section>"],
+    "answer": "a",
+    "explanation": "The correct nesting order is <body> containing <main> containing <article> containing <section>. <main> is a direct child of <body>, and <article> and <section> are content subdivisions."
+  },
+  {
+    "question": "Which attribute is used to provide additional descriptive text for a form input that is displayed as a tooltip?",
+    "options": ["placeholder", "title", "aria-describedby", "help"],
+    "answer": "c",
+    "explanation": "aria-describedby associates descriptive text with an input by referencing the ID of an element containing the description. Screen readers read this additional context."
+  },
+  {
+    "question": "Why should JavaScript <script> tags be placed at the end of the <body> element?",
+    "options": ["JavaScript only works at the end of the body", "It prevents JavaScript from blocking HTML rendering", "It improves JavaScript performance", "It is required by the HTML specification"],
+    "answer": "b",
+    "explanation": "Placing scripts at the end of <body> ensures HTML content renders before JavaScript executes, preventing JavaScript from blocking page rendering. Using the defer attribute is an alternative."
+  },
+  {
+    "question": "What is the purpose of the <figcaption> element?",
+    "options": ["It creates a caption for any element", "It provides a caption for a <figure> element", "It styles figure elements", "It replaces the alt attribute for images"],
+    "answer": "b",
+    "explanation": "The <figcaption> element provides a caption or legend for content within a <figure> element. It should be the first or last child of the <figure>."
+  },
+  {
+    "question": "Which meta tag is essential for responsive web design?",
+    "options": ["<meta charset='UTF-8'>", "<meta name='viewport' content='width=device-width, initial-scale=1.0'>", "<meta name='description' content='...'>", "<meta name='robots' content='index,follow'>"],
+    "answer": "b",
+    "explanation": "The viewport meta tag with width=device-width and initial-scale=1.0 is essential for responsive design, ensuring proper rendering on mobile devices."
+  },
+  {
+    "question": "What is wrong with skipping heading levels (e.g., <h1> directly to <h3>)?",
+    "options": ["It causes visual styling issues", "It creates accessibility problems for screen reader users navigating by heading level", "It is invalid HTML", "It causes JavaScript errors"],
+    "answer": "b",
+    "explanation": "Skipping heading levels creates accessibility issues because screen reader users navigate pages by heading hierarchy. Skipping levels implies missing content structure."
+  },
+  {
+    "question": "What does the loading='lazy' attribute do on images?",
+    "options": ["Loads the image with lower quality", "Defers loading off-screen images until near the viewport", "Loads the image from a CDN", "Caches the image for faster future loading"],
+    "answer": "b",
+    "explanation": "loading='lazy' defers the loading of images that are not immediately visible in the viewport. Images load when the user scrolls near them, reducing initial page load time and bandwidth."
+  },
+  {
+    "question": "Which element should be used for navigational links?",
+    "options": ["<ul>", "<nav>", "<menu>", "<links>"],
+    "answer": "b",
+    "explanation": "The <nav> element is used for navigation links. While <nav> typically contains <ul> or <ol> lists of links, the <nav> element itself provides the semantic meaning."
+  },
+  {
+    "question": "What is the purpose of the lang attribute on the <html> element?",
+    "options": ["Sets the page language for translation tools", "Improves accessibility for screen readers which use it for pronunciation", "Helps search engines understand the content language", "All of the above"],
+    "answer": "d",
+    "explanation": "The lang attribute on <html> serves multiple purposes: it helps search engines determine language, screen readers use it for correct pronunciation, and browsers use it for translation features."
+  },
+  {
+    "question": "Which approach is correct for providing a fallback font stack in CSS?",
+    "options": ["font-family: Arial, sans-serif;", "font-family: 'Arial';", "font-family: Arial;", "font: Arial;"],
+    "answer": "a",
+    "explanation": "A font stack with multiple font choices separated by commas ensures fallback fonts are used if the primary font is unavailable. Generic families (serif, sans-serif) should be last."
+  },
+  {
+    "question": "What should you use instead of deprecated HTML elements like <center>, <font>, and <big>?",
+    "options": ["They are still valid HTML5 elements", "Use CSS equivalents (text-align, font properties)", "Use inline styles instead", "Use <div> with special attributes"],
+    "answer": "b",
+    "explanation": "Deprecated presentational elements should be replaced with CSS. <center> becomes text-align: center, <font> becomes font properties, and <big> becomes font-size in CSS."
+  }
+]

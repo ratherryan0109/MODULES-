@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Container Queries - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    p { color: #475569; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-output { padding: 1.5rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    .card-wrap { container-type: inline-size; container-name: card; resize: horizontal; overflow: auto; padding: 12px; background: #f1f5f9; border: 2px dashed #cbd5e1; border-radius: 8px; min-width: 180px; }
+    .card-wrap:focus-within { border-color: #3b82f6; }
+
+    .cq-card { display: grid; gap: 12px; grid-template-columns: 1fr; background: white; border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .cq-card .thumb { height: 100px; background: linear-gradient(135deg, #3b82f6, #06b6d4); border-radius: 8px; }
+    .cq-card .content h3 { font-size: 1rem; color: #0f172a; margin-bottom: 4px; }
+    .cq-card .content p { font-size: 0.85rem; color: #64748b; }
+    .cq-card .content .tag { display: inline-block; background: #dbeafe; color: #1e40af; padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-top: 8px; }
+
+    @container card (min-width: 360px) {
+      .cq-card { grid-template-columns: 140px 1fr; }
+      .cq-card .thumb { height: auto; }
+      .cq-card .content h3 { font-size: 1.15rem; }
+    }
+
+    @container card (min-width: 520px) {
+      .cq-card { grid-template-columns: 180px 1fr; }
+      .cq-card .thumb { height: auto; }
+      .cq-card .content h3 { font-size: 1.3rem; }
+      .cq-card .content p { font-size: 0.95rem; }
+    }
+
+    .cq-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .cq-row .card-wrap { flex: 1; min-width: 0; }
+
+    .cq-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .cq-gallery .card-wrap { resize: none; }
+    .cq-gallery .cq-card { text-align: center; }
+    .cq-gallery .cq-card .thumb { height: 80px; }
+
+    .cq-units-demo .cq-card .content h3 { font-size: clamp(1rem, 6cqi, 2rem); }
+    .cq-units-demo .cq-card .content p { font-size: clamp(0.8rem, 3cqi, 1rem); }
+
+    .cq-sidebar-demo { display: flex; gap: 16px; align-items: flex-start; }
+    .cq-sidebar-demo .sidebar { flex: 0 0 200px; }
+    .cq-sidebar-demo .main { flex: 1; min-width: 0; }
+    .cq-sidebar-demo .sidebar, .cq-sidebar-demo .main { container-type: inline-size; }
+
+    .cq-style-card { display: flex; flex-direction: column; align-items: center; gap: 8px; background: white; border-radius: 10px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center; }
+    .cq-style-card .icon { font-size: 2rem; }
+    .cq-style-card h3 { font-size: 0.9rem; color: #0f172a; }
+    @container (min-width: 250px) {
+      .cq-style-card { flex-direction: row; text-align: left; }
+    }
+
+    .note { background: #f1f5f9; padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; color: #475569; border-left: 3px solid #06b6d4; margin: 0.5rem 0; }
+  </style>
+</head>
+<body>
+  <h1>CSS Container Queries</h1>
+
+  <div class="demo-section">
+    <h2>1. Responsive Card with Container Query</h2>
+    <p>Drag the bottom-right corner of the dashed container to resize it. The card layout switches from stacked to side-by-side when the container is wide enough.</p>
+    <div class="demo-output">
+      <div class="card-wrap">
+        <div class="cq-card">
+          <div class="thumb"></div>
+          <div class="content">
+            <h3>Container Query Card</h3>
+            <p>This card adapts to its container width, not the viewport! Resize the dashed container to see the layout change.</p>
+            <span class="tag">CSS Container Queries</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.card-wrap {
+  container-type: inline-size;
+  container-name: card;
+}
+
+@container card (min-width: 360px) {
+  .cq-card {
+    grid-template-columns: 140px 1fr;
+  }
+}
+
+@container card (min-width: 520px) {
+  .cq-card {
+    grid-template-columns: 180px 1fr;
+  }
+  .cq-card .content h3 { font-size: 1.3rem; }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>2. Side-by-Side Comparison</h2>
+    <p>Two cards using the exact same component CSS. Each container has a different width, resulting in different layouts without any viewport media query.</p>
+    <div class="demo-output">
+      <div class="cq-row">
+        <div class="card-wrap" style="max-width:300px;">
+          <div class="cq-card">
+            <div class="thumb"></div>
+            <div class="content">
+              <h3>Narrow</h3>
+              <p>Below 360px — stacked layout.</p>
+              <span class="tag">Compact</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-wrap" style="max-width:600px;">
+          <div class="cq-card">
+            <div class="thumb"></div>
+            <div class="content">
+              <h3>Wide</h3>
+              <p>Above 360px — side-by-side layout with larger text.</p>
+              <span class="tag">Expanded</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* One component definition */
+.cq-card { display: grid; grid-template-columns: 1fr; }
+
+@container card (min-width: 360px) {
+  .cq-card { grid-template-columns: 140px 1fr; }
+}
+
+/* Two different containers get different layouts
+   based on their own width, not the viewport! */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>3. Container Query Units (cqi)</h2>
+    <p>Using <code>cqi</code> (container inline-size unit) for responsive typography that scales with the container. Resize to see the text grow and shrink.</p>
+    <div class="demo-output">
+      <div class="card-wrap cq-units-demo" style="max-width:500px;">
+        <div class="cq-card">
+          <div class="thumb"></div>
+          <div class="content">
+            <h3>Responsive Typography</h3>
+            <p>This text uses clamp() with cqi units: font-size scales smoothly from 1rem to 2rem based on container width.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.card .title {
+  font-size: clamp(1rem, 6cqi, 2rem);
+  /* 6cqi = 6% of the container's inline-size */
+}
+
+.card .body {
+  font-size: clamp(0.8rem, 3cqi, 1rem);
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>4. Sidebar + Main with Container Queries</h2>
+    <p>Both the sidebar and main content areas are container query contexts. Each adapts independently to its own width.</p>
+    <div class="demo-output">
+      <div class="cq-sidebar-demo">
+        <div class="sidebar">
+          <div class="cq-card" style="text-align:center;">
+            <div class="thumb" style="height:60px;"></div>
+            <div class="content">
+              <h3>Sidebar</h3>
+              <p style="font-size:0.8rem;">Narrow container — stays stacked.</p>
+            </div>
+          </div>
+        </div>
+        <div class="main">
+          <div class="cq-card">
+            <div class="thumb"></div>
+            <div class="content">
+              <h3>Main Content</h3>
+              <p>Wider container — switches to side-by-side layout automatically.</p>
+              <span class="tag">Container Query</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.sidebar { container-type: inline-size; }
+.main { container-type: inline-size; }
+/* Each container independently responds to its width */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>5. Container Query Style &amp; Layout Toggle</h2>
+    <p>A card that switches from vertical (centered) to horizontal (left-aligned) layout based on the container width — no media queries needed.</p>
+    <div class="demo-output">
+      <div class="card-wrap" style="max-width:320px;">
+        <div class="cq-style-card">
+          <div class="icon">&#x1f4e6;</div>
+          <div>
+            <h3>Product Card</h3>
+            <p style="font-size:0.8rem;color:#64748b;">Resize container to see layout flip.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>@container (min-width: 250px) {
+  .cq-style-card {
+    flex-direction: row; /* switches from column */
+    text-align: left;
+  }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>6. Gallery Grid with Container Queries</h2>
+    <p>Each gallery item is independently queried. When a column is wide enough, the card switches to a horizontal layout.</p>
+    <div class="demo-output">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+        <div class="card-wrap" style="resize:none;border-color:transparent;background:transparent;">
+          <div class="cq-card" style="text-align:center;">
+            <div class="thumb" style="height:80px;"></div>
+            <div class="content"><h3>Item 1</h3><p style="font-size:0.8rem;">Gallery item</p></div>
+          </div>
+        </div>
+        <div class="card-wrap" style="resize:none;border-color:transparent;background:transparent;">
+          <div class="cq-card" style="text-align:center;">
+            <div class="thumb" style="height:80px;background:linear-gradient(135deg,#8b5cf6,#ec4899);"></div>
+            <div class="content"><h3>Item 2</h3><p style="font-size:0.8rem;">Gallery item</p></div>
+          </div>
+        </div>
+        <div class="card-wrap" style="resize:none;border-color:transparent;background:transparent;">
+          <div class="cq-card" style="text-align:center;">
+            <div class="thumb" style="height:80px;background:linear-gradient(135deg,#10b981,#06b6d4);"></div>
+            <div class="content"><h3>Item 3</h3><p style="font-size:0.8rem;">Gallery item</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.gallery { display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.gallery-item { container-type: inline-size; }
+
+/* Each item independently responds to
+   its column width */</code></pre>
+  </div>
+
+  <div class="note">
+    <strong>Browser support:</strong> CSS Container Queries are supported in Chrome 105+, Firefox 110+, and Safari 16+. Use <code>container-type: inline-size</code> to enable querying on the inline axis.
+  </div>
+</body>
+</html>

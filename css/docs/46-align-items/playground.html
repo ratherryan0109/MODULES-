@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Align Items - Playground</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; padding: 2rem; background: #1a1a2e; color: #eee; }
+  h1 { margin-bottom: 1rem; color: #e94560; }
+  .layout { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .editor { flex: 1; min-width: 400px; }
+  .preview { flex: 1; min-width: 400px; }
+  textarea { width: 100%; height: 300px; background: #16213e; color: #eee; padding: 1rem; font-family: 'Cascadia Code','Fira Code',monospace; font-size: 14px; border: 1px solid #e94560; border-radius: 4px; resize: vertical; }
+  iframe { width: 100%; height: 350px; border: 1px solid #e94560; border-radius: 4px; background: white; }
+  button { background: #e94560; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; margin-top: 1rem; }
+  button:hover { background: #c73656; }
+  .controls { margin-top: 1rem; }
+  label { color: #aaa; }
+  select { background: #16213e; color: #eee; padding: 0.5rem; border: 1px solid #e94560; border-radius: 4px; }
+</style></head>
+<body>
+  <h1>🎨 Align Items - Playground</h1>
+  <div class="layout">
+    <div class="editor">
+      <h2>CSS Editor</h2>
+      <textarea id="cssInput">.container {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  background: #e3f2fd;
+  padding: 1rem;
+  min-height: 150px;
+}
+.item {
+  color: white;
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+}</textarea><br>
+      <button onclick="updatePreview()">Run ▶</button>
+    </div>
+    <div class="preview">
+      <h2>Preview</h2>
+      <iframe id="preview"></iframe>
+      <div class="controls">
+        <label>align-items:
+          <select id="aiSelect" onchange="updatePreview()">
+            <option value="stretch">stretch</option>
+            <option value="flex-start">flex-start</option>
+            <option value="center">center</option>
+            <option value="flex-end">flex-end</option>
+            <option value="baseline">baseline</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </div>
+  <script>
+    function updatePreview() {
+      const css = document.getElementById('cssInput').value;
+      const ai = document.getElementById('aiSelect').value;
+      const finalCss = css.replace(/align-items:\s*\w+-?\w*;/, `align-items: ${ai};`);
+      const doc = document.getElementById('preview').contentDocument;
+      doc.open();
+      doc.write(`<html><head><style>
+        body { margin: 0; padding: 1rem; font-family: system-ui, sans-serif; }
+        .container { ${finalCss} }
+        .item:nth-child(1) { background: #42a5f5; font-size: 1rem; }
+        .item:nth-child(2) { background: #ff9800; font-size: 1.5rem; padding: 1.5rem; }
+        .item:nth-child(3) { background: #4caf50; font-size: 0.8rem; padding: 0.5rem; }
+      </style></head><body>
+        <div class="container"><div class="item">Short</div><div class="item">Medium</div><div class="item">Tall</div></div>
+        <p style="margin-top:1rem;color:#666;">align-items: ${ai}</p>
+      </body></html>`);
+      doc.close();
+    }
+    updatePreview();
+  </script>
+</body>
+</html>

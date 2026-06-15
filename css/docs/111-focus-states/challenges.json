@@ -1,0 +1,30 @@
+{
+  "title": "Focus States Challenges",
+  "module": "111",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Implement Keyboard-Only Focus",
+      "description": "Add accessible focus styles to a navigation menu that only appear during keyboard navigation.",
+      "starterCode": "<nav>\n  <a href=\"#\">Home</a>\n  <a href=\"#\">About</a>\n  <a href=\"#\">Services</a>\n  <a href=\"#\">Contact</a>\n</nav>",
+      "hint": "Use :focus-visible. Don't set outline: none without a replacement.",
+      "solution": "nav a {\n  text-decoration: none;\n  padding: 0.5rem 1rem;\n  color: #333;\n  border-radius: 4px;\n}\nnav a:focus-visible {\n  outline: 2px solid #0066cc;\n  outline-offset: 2px;\n  background: #e8f0fe;\n}"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Focus Management for a Modal Dialog",
+      "description": "Build a modal dialog with proper focus management: trap focus inside, focus the first focusable element, close on Escape, and return focus to the trigger.",
+      "starterCode": "<button id=\"open-modal\">Open Modal</button>\n<div id=\"modal\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\" hidden>\n  <h2 id=\"modal-title\">Confirm</h2>\n  <p>Are you sure?</p>\n  <button id=\"confirm\">Yes</button>\n  <button id=\"cancel\">Cancel</button>\n</div>",
+      "hint": "On open, save the trigger element reference. On close, call trigger.focus().",
+      "solution": "const modal = document.getElementById('modal');\nconst openBtn = document.getElementById('open-modal');\nconst confirmBtn = document.getElementById('confirm');\nconst cancelBtn = document.getElementById('cancel');\nlet trigger = null;\n\nopenBtn.addEventListener('click', () => {\n  trigger = openBtn;\n  modal.hidden = false;\n  confirmBtn.focus();\n});\n\nfunction closeModal() {\n  modal.hidden = true;\n  if (trigger) trigger.focus();\n}\n\ncancelBtn.addEventListener('click', closeModal);\nconfirmBtn.addEventListener('click', closeModal);\n\ndocument.addEventListener('keydown', (e) => {\n  if (e.key === 'Escape' && !modal.hidden) closeModal();\n});\n\n// Focus trap\nmodal.addEventListener('keydown', (e) => {\n  if (e.key !== 'Tab') return;\n  const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])');\n  const first = focusable[0];\n  const last = focusable[focusable.length - 1];\n  if (e.shiftKey && document.activeElement === first) {\n    e.preventDefault();\n    last.focus();\n  } else if (!e.shiftKey && document.activeElement === last) {\n    e.preventDefault();\n    first.focus();\n  }\n});"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Custom Tabs Component with Roving Tabindex",
+      "description": "Build an accessible tabs component using the roving tabindex pattern: only the active tab is in tab order, arrow keys switch tabs, and focus moves appropriately.",
+      "starterCode": "<div class=\"tabs\" role=\"tablist\">\n  <button role=\"tab\" aria-selected=\"true\">Tab 1</button>\n  <button role=\"tab\" aria-selected=\"false\">Tab 2</button>\n  <button role=\"tab\" aria-selected=\"false\">Tab 3</button>\n</div>\n<div class=\"tabpanels\">\n  <div role=\"tabpanel\">Content 1</div>\n  <div role=\"tabpanel\" hidden>Content 2</div>\n  <div role=\"tabpanel\" hidden>Content 3</div>\n</div>",
+      "hint": "Set tabindex='0' on the active tab and tabindex='-1' on others. Use ArrowLeft/ArrowRight to switch. Use Home/End for first/last.",
+      "solution": "const tabs = document.querySelectorAll('[role=\"tab\"]');\nconst panels = document.querySelectorAll('[role=\"tabpanel\"]');\n\nfunction activateTab(index) {\n  tabs.forEach((t, i) => {\n    t.setAttribute('aria-selected', i === index);\n    t.tabIndex = i === index ? 0 : -1;\n    panels[i].hidden = i !== index;\n  });\n  tabs[index].focus();\n}\n\ntabs.forEach((tab, i) => {\n  tab.addEventListener('click', () => activateTab(i));\n  tab.addEventListener('keydown', (e) => {\n    const current = [...tabs].indexOf(document.activeElement);\n    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {\n      e.preventDefault();\n      const next = (current + 1) % tabs.length;\n      activateTab(next);\n    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {\n      e.preventDefault();\n      const prev = (current - 1 + tabs.length) % tabs.length;\n      activateTab(prev);\n    } else if (e.key === 'Home') {\n      e.preventDefault();\n      activateTab(0);\n    } else if (e.key === 'End') {\n      e.preventDefault();\n      activateTab(tabs.length - 1);\n    }\n  });\n});\n\nactivateTab(0);"
+    }
+  ]
+}

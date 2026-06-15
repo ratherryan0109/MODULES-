@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Object-Fit — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; padding: 2rem; color: #eee; }
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: #aaa; margin-bottom: 2rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .controls { background: #16213e; border-radius: 12px; padding: 1.5rem; }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group input[type="number"] { width: 80px; padding: 0.3rem; border-radius: 4px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .preview-area { background: #16213e; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 450px; }
+    .preview-wrapper { width: 100%; max-width: 500px; background: #0a0a1a; border-radius: 12px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; transition: width 0.3s, height 0.3s; }
+    .preview-wrapper img { width: 100%; height: 100%; transition: object-fit 0.2s, object-position 0.2s; }
+    .container-dim { color: #666; font-size: 0.8rem; margin-top: 0.5rem; }
+    .code-output { background: #0a0a1a; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #a8d8ea; white-space: pre-wrap; word-break: break-all; width: 100%; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .info-box { background: #0a0a1a; border-radius: 8px; padding: 0.8rem; text-align: center; }
+    .info-box .label { font-size: 0.7rem; color: #666; text-transform: uppercase; }
+    .info-box .val { font-size: 1.1rem; color: #a8d8ea; font-weight: bold; margin-top: 0.2rem; }
+    .preset-btn { padding: 0.3rem 0.6rem; border: 1px solid #333; border-radius: 4px; background: #0f3460; color: #aaa; cursor: pointer; font-size: 0.7rem; }
+    .preset-btn:hover { background: #e94560; color: white; }
+    .presets { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Object-Fit Playground</h1>
+  <p class="subtitle">Experiment with object-fit and object-position in real time</p>
+
+  <div class="container">
+    <div class="controls">
+      <h2>Controls</h2>
+      <div class="presets">
+        <button class="preset-btn" onclick="applyPreset('fill')">fill</button>
+        <button class="preset-btn" onclick="applyPreset('contain')">contain</button>
+        <button class="preset-btn" onclick="applyPreset('cover')">cover</button>
+        <button class="preset-btn" onclick="applyPreset('none')">none</button>
+        <button class="preset-btn" onclick="applyPreset('scale-down')">scale-down</button>
+      </div>
+
+      <div class="control-group">
+        <label>object-fit</label>
+        <select id="objectFit" onchange="updateAll()">
+          <option value="fill">fill</option>
+          <option value="contain">contain</option>
+          <option value="cover" selected>cover</option>
+          <option value="none">none</option>
+          <option value="scale-down">scale-down</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Container Width (px) <span class="value" id="valWidth">400</span></label>
+        <input type="range" id="contWidth" min="100" max="600" value="400" oninput="updateAll()">
+      </div>
+      <div class="control-group">
+        <label>Container Height (px) <span class="value" id="valHeight">300</span></label>
+        <input type="range" id="contHeight" min="100" max="500" value="300" oninput="updateAll()">
+      </div>
+      <div class="control-group">
+        <label>object-position X <span class="value" id="valPosX">50</span></label>
+        <input type="range" id="posX" min="0" max="100" value="50" oninput="updateAll()">
+      </div>
+      <div class="control-group">
+        <label>object-position Y <span class="value" id="valPosY">50</span></label>
+        <input type="range" id="posY" min="0" max="100" value="50" oninput="updateAll()">
+      </div>
+      <div class="control-group">
+        <label>Image Source</label>
+        <select id="imgSource" onchange="updateAll()">
+          <option value="400x300">400×300 (landscape)</option>
+          <option value="300x400">300×400 (portrait)</option>
+          <option value="300x300">300×300 (square)</option>
+          <option value="600x200">600×200 (panorama)</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <div class="preview-wrapper" id="previewWrapper">
+          <img id="previewImg" src="" alt="Preview">
+        </div>
+        <div class="container-dim" id="containerDim">Container: 400px × 300px</div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-box"><div class="label">object-fit</div><div class="val" id="infoFit">cover</div></div>
+        <div class="info-box"><div class="label">object-position</div><div class="val" id="infoPos">50% 50%</div></div>
+      </div>
+      <div class="code-output" id="codeOutput">object-fit: cover;</div>
+    </div>
+  </div>
+
+  <script>
+    function getImageUrl(type) {
+      const images = {
+        '400x300': 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23e74c3c"/%3E%3Ctext x="120" y="165" fill="white" font-size="32"%3E400x300%3C/text%3E%3C/svg%3E',
+        '300x400': 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="400"%3E%3Crect width="300" height="400" fill="%233498db"/%3E%3Ctext x="80" y="220" fill="white" font-size="24"%3E300x400%3C/text%3E%3C/svg%3E',
+        '300x300': 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect width="300" height="300" fill="%232ecc71"/%3E%3Ctext x="90" y="165" fill="white" font-size="28"%3E300x300%3C/text%3E%3C/svg%3E',
+        '600x200': 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="200"%3E%3Crect width="600" height="200" fill="%239b59b6"/%3E%3Ctext x="200" y="120" fill="white" font-size="28"%3E600x200%3C/text%3E%3C/svg%3E'
+      };
+      return images[type] || images['400x300'];
+    }
+
+    function updateAll() {
+      const fit = document.getElementById('objectFit').value;
+      const w = parseInt(document.getElementById('contWidth').value);
+      const h = parseInt(document.getElementById('contHeight').value);
+      const px = parseInt(document.getElementById('posX').value);
+      const py = parseInt(document.getElementById('posY').value);
+      const src = document.getElementById('imgSource').value;
+
+      document.getElementById('valWidth').textContent = w;
+      document.getElementById('valHeight').textContent = h;
+      document.getElementById('valPosX').textContent = px;
+      document.getElementById('valPosY').textContent = py;
+
+      const wrapper = document.getElementById('previewWrapper');
+      wrapper.style.width = w + 'px';
+      wrapper.style.height = h + 'px';
+
+      const img = document.getElementById('previewImg');
+      img.src = getImageUrl(src);
+      img.style.objectFit = fit;
+      img.style.objectPosition = px + '% ' + py + '%';
+
+      document.getElementById('containerDim').textContent = `Container: ${w}px × ${h}px`;
+      document.getElementById('infoFit').textContent = fit;
+      document.getElementById('infoPos').textContent = px + '% ' + py + '%';
+      document.getElementById('codeOutput').textContent =
+        `object-fit: ${fit};\nobject-position: ${px}% ${py}%;\nwidth: ${w}px;\nheight: ${h}px;`;
+    }
+
+    function applyPreset(name) {
+      document.getElementById('objectFit').value = name;
+      updateAll();
+    }
+
+    updateAll();
+  </script>
+</body>
+</html>

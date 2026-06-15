@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>NOVA Agency</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--dark:#0a0a0a;--gray-800:#1a1a1a;--gray-600:#666;--light:#fafafa;--accent:#ff3b30;--ff:'Inter',system-ui,sans-serif;--transition:0.4s cubic-bezier(0.22,1,0.36,1)}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--ff);color:var(--light);background:var(--dark);overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+  .header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 0;transition:background var(--transition)}
+  .header.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(10px)}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-size:1.5rem;font-weight:900;letter-spacing:-1px}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:2.5rem;align-items:center}
+  .nav-links a{font-weight:500;font-size:.9rem;position:relative;transition:color var(--transition)}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width var(--transition)}
+  .nav-links a:hover::after{width:100%}
+  .nav-toggle{display:none;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer}
+  @media(max-width:768px){.nav-toggle{display:block}.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--dark);padding:1.5rem;gap:1rem}.nav-links.active{display:flex}}
+
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:6rem 0}
+  .hero-bg{position:absolute;inset:0;z-index:-1}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(0.3)}
+  .hero-label{font-size:.8rem;text-transform:uppercase;letter-spacing:4px;color:var(--accent);margin-bottom:1rem}
+  .hero h1{font-size:clamp(3rem,10vw,8rem);font-weight:900;line-height:0.95;letter-spacing:-3px;margin-bottom:1.5rem}
+  .hero p{font-size:1.125rem;color:var(--gray-600);max-width:500px;margin-bottom:2rem}
+  .hero-cta{display:inline-flex;align-items:center;gap:1rem;color:var(--light);font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:.5rem;transition:gap var(--transition)}
+  .hero-cta:hover{gap:1.5rem}
+  .hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray-600);animation:bounce 2s infinite}
+  @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+
+  .section{padding:6rem 0}
+  .section-header{margin-bottom:4rem}
+  .section-header .label{font-size:.75rem;text-transform:uppercase;letter-spacing:4px;color:var(--accent);margin-bottom:.5rem}
+  .section-header h2{font-size:clamp(2rem,5vw,4rem);font-weight:900;letter-spacing:-2px;line-height:1.05}
+  .section-header p{color:var(--gray-600);max-width:500px;margin-top:1rem}
+
+  .services-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+  @media(min-width:768px){.services-grid{grid-template-columns:1fr 1fr 1fr}}
+  .service-card{padding:3rem 2rem;border:1px solid #222;transition:all var(--transition);cursor:default;position:relative;overflow:hidden}
+  .service-card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--accent);transition:transform var(--transition);z-index:0;transform:translateX(0)}
+  .service-card:hover::before{transform:translateX(100%)}
+  .service-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .service-card>*{position:relative;z-index:1}
+  .service-card .num{font-size:3rem;font-weight:900;color:#222;line-height:1;margin-bottom:1.5rem}
+  .service-card h3{font-size:1.25rem;font-weight:700;margin-bottom:.75rem}
+  .service-card p{color:var(--gray-600);font-size:.9rem;line-height:1.6}
+
+  .work-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+  @media(min-width:600px){.work-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:900px){.work-grid{grid-template-columns:1fr 1fr 1fr}}
+  .work-item{position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer}
+  .work-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .work-item:hover img{transform:scale(1.05)}
+  .work-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity var(--transition)}
+  .work-item:hover .work-overlay{opacity:1}
+  .work-overlay h3{font-size:1.125rem;font-weight:700}
+  .work-overlay span{font-size:.8rem;color:var(--gray-600)}
+
+  .about-grid{display:grid;grid-template-columns:1fr;gap:4rem;align-items:center}
+  @media(min-width:768px){.about-grid{grid-template-columns:1fr 1fr}}
+  .about-image img{width:100%;border-radius:4px;filter:grayscale(30%)}
+  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-top:2rem}
+  .stats dt{font-size:2.5rem;font-weight:900;color:var(--accent)}
+  .stats dd{font-size:.8rem;color:var(--gray-600);text-transform:uppercase;letter-spacing:1px}
+
+  .footer{border-top:1px solid #222;padding:3rem 0;text-align:center;color:var(--gray-600);font-size:.875rem}
+  .footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1rem}
+  .footer-links a{transition:color var(--transition)}
+  .footer-links a:hover{color:var(--light)}
+
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+
+<div class="header" id="header"><nav class="nav container"><a href="#" class="logo"><span>N</span>OVA</a><button class="nav-toggle" id="navToggle">&#9776;</button><ul class="nav-links" id="navLinks"><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#contact" style="color:var(--accent)">Contact</a></li></ul></nav></div>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg"><img src="https://placehold.co/1920x1080/1a1a1a/666666?text=Agency+Showcase" alt=""></div>
+    <div class="container">
+      <p class="hero-label">Creative Agency</p>
+      <h1>We build<br>digital<br>experiences</h1>
+      <p>We help brands stand out in the digital landscape through bold design and innovative technology.</p>
+      <a href="#work" class="hero-cta">View Our Work →</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <section class="section" id="services"><div class="container">
+    <div class="section-header"><p class="label">Services</p><h2>What we do</h2></div>
+    <div class="services-grid">
+      <div class="service-card"><div class="num">01</div><h3>Brand Identity</h3><p>Strategic branding that connects with your audience and stands the test of time.</p></div>
+      <div class="service-card"><div class="num">02</div><h3>Web Design</h3><p>Award-winning websites that combine stunning visuals with seamless functionality.</p></div>
+      <div class="service-card"><div class="num">03</div><h3>Digital Strategy</h3><p>Data-driven strategies that grow your online presence and drive measurable results.</p></div>
+    </div>
+  </div></section>
+
+  <section class="section" id="work" style="background:var(--gray-800)"><div class="container">
+    <div class="section-header"><p class="label">Portfolio</p><h2>Selected work</h2></div>
+    <div class="work-grid">
+      <div class="work-item"><img src="https://placehold.co/600x600/ff3b30/ffffff?text=Project+01" alt="Project 1"><div class="work-overlay"><h3>Project Alpha</h3><span>Brand Identity</span></div></div>
+      <div class="work-item"><img src="https://placehold.co/600x600/d93829/ffffff?text=Project+02" alt="Project 2"><div class="work-overlay"><h3>Project Beta</h3><span>Web Design</span></div></div>
+      <div class="work-item"><img src="https://placehold.co/600x600/bd281a/ffffff?text=Project+03" alt="Project 3"><div class="work-overlay"><h3>Project Gamma</h3><span>Digital Strategy</span></div></div>
+    </div>
+  </div></section>
+
+  <section class="section" id="about"><div class="container">
+    <div class="about-grid">
+      <div class="about-image"><img src="https://placehold.co/600x700/1a1a1a/666666?text=Team" alt="NOVA team"></div>
+      <div><div class="section-header" style="margin-bottom:1rem"><p class="label">About</p><h2>Creative minds,<br>bold solutions</h2></div>
+      <p style="color:var(--gray-600);line-height:1.8;margin-bottom:2rem">We are a team of designers, developers, and strategists passionate about creating impactful digital experiences. Since 2019, we've helped 50+ brands transform their digital presence.</p>
+      <div class="stats"><div><dt>50+</dt><dd>Projects</dd></div><div><dt>8</dt><dd>Team</dd></div><div><dt>4yr</dt><dd>Experience</dd></div></div></div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="footer"><div class="container"><div class="footer-links"><a href="#">Instagram</a><a href="#">Dribbble</a><a href="#">LinkedIn</a><a href="#">Twitter</a></div><p>&copy; 2026 NOVA Agency. All rights reserved.</p></div></footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('active')});
+  window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>100)});
+</script>
+</body></html>

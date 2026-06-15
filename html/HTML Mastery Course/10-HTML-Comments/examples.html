@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Comments - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #7f8c8d; border-bottom: 3px solid #7f8c8d; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .danger { background: #fce4e4; border-left: 4px solid #e74c3c; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .comment-demo { color: #27ae60; font-style: italic; background: #eafaf1; padding: 2px 8px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Module 10: HTML Comments — Examples</h1>
+
+    <!-- ============ SECTION: BASIC COMMENTS ============ -->
+
+    <!-- Example 1: Basic Comments -->
+    <div class="example">
+        <h2>Example 1: Basic Comment Syntax</h2>
+        <p>Comments are not displayed in the browser. Here is the code:</p>
+        <pre>
+&lt;!-- This is a basic HTML comment. It will not appear on the page. --&gt;
+&lt;p&gt;This text is visible.&lt;/p&gt;
+&lt;!-- &lt;p&gt;This paragraph is commented out and invisible.&lt;/p&gt; --&gt;
+&lt;p&gt;This is also visible.&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <!-- This is a basic HTML comment. It will not appear on the page. -->
+            <p>This text is visible.</p>
+            <!-- <p>This paragraph is commented out and invisible.</p> -->
+            <p>This is also visible.</p>
+            <p><span class="comment-demo">(Note: only 2 paragraphs appear — the middle one is commented out)</span></p>
+        </div>
+    </div>
+
+    <!-- Example 2: Multi-line Comments -->
+    <div class="example">
+        <h2>Example 2: Multi-Line Comments for Documentation</h2>
+        <pre>
+&lt;!--
+========================================
+  SECTION: PRODUCT GALLERY
+  Author: Jane Doe
+  Last Updated: 2026-06-12
+  Description: Displays featured products
+  in a responsive grid layout.
+========================================
+--&gt;
+&lt;section class="product-gallery"&gt;
+    &lt;p&gt;Featured products go here.&lt;/p&gt;
+&lt;/section&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <section class="product-gallery">
+                <p>Featured products go here.</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- Example 3: Debugging with Comments -->
+    <div class="example">
+        <h2>Example 3: Using Comments for Debugging</h2>
+        <pre>
+&lt;h2&gt;Dashboard&lt;/h2&gt;
+
+&lt;!-- DEBUG: Temporarily hiding chart until API is fixed
+&lt;div class="chart"&gt;
+    &lt;img src="chart.png" alt="Sales Chart"&gt;
+&lt;/div&gt;
+--&gt;
+
+&lt;p&gt;Chart will be restored soon.&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output (chart section is hidden):</div>
+        <div class="output">
+            <h2>Dashboard</h2>
+            <p>Chart will be restored soon.</p>
+        </div>
+    </div>
+
+    <!-- Example 4: Organization Comments -->
+    <div class="example">
+        <h2>Example 4: Using Comments for Organization</h2>
+        <pre>
+&lt;!-- ======= HEADER ======= --&gt;
+&lt;header&gt;
+    &lt;h1&gt;My Website&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;!-- ======= MAIN CONTENT ======= --&gt;
+&lt;main&gt;
+    &lt;!-- Hero Section --&gt;
+    &lt;section&gt;
+        &lt;h2&gt;Welcome&lt;/h2&gt;
+    &lt;/section&gt;
+    
+    &lt;!-- Features Section --&gt;
+    &lt;section&gt;
+        &lt;h2&gt;Features&lt;/h2&gt;
+    &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;!-- ======= FOOTER ======= --&gt;
+&lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2026&lt;/p&gt;
+&lt;/footer&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <header><h1>My Website</h1></header>
+            <main>
+                <section><h2>Welcome</h2></section>
+                <section><h2>Features</h2></section>
+            </main>
+            <footer><p>&copy; 2026</p></footer>
+        </div>
+    </div>
+
+    <!-- Example 5: TODO Comments -->
+    <div class="example">
+        <h2>Example 5: TODO and Future Work Comments</h2>
+        <pre>
+&lt;!-- TODO: Add responsive navigation menu --&gt;
+&lt;nav&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- FIXME: Image paths need to be updated for production --&gt;
+&lt;img src="temp.jpg" alt="Product"&gt;
+
+&lt;!-- HACK: Using table layout temporarily until CSS grid is implemented --&gt;
+&lt;table&gt;
+    &lt;tr&gt;&lt;td&gt;Content&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <nav><a href="#">Home</a> <a href="#">About</a></nav>
+            <img src="temp.jpg" alt="Product" style="max-width: 100px;">
+            <table><tr><td>Content</td></tr></table>
+        </div>
+    </div>
+
+    <!-- Example 6: What NOT to do -->
+    <div class="example">
+        <h2>Example 6: Security Warning — What NOT to Put in Comments</h2>
+        <div class="danger">
+            <strong>⚠ DANGER:</strong> Never put sensitive information in HTML comments. They are visible to anyone who views the page source (Ctrl+U).
+        </div>
+        <pre>
+&lt;!-- ❌ NEVER DO THIS --&gt;
+&lt;!-- Database password: SuperSecret123! --&gt;
+&lt;!-- API Key: sk-abcdef123456789 --&gt;
+&lt;!-- TODO: Remove debug code before launch --&gt;
+&lt;!-- Credit card: 4111-1111-1111-1111 --&gt;</pre>
+        <div class="output-label">How to view comments:</div>
+        <div class="output">
+            <p>Press <kbd>Ctrl+U</kbd> (Windows) or <kbd>Cmd+U</kbd> (Mac) to view the HTML source of any page. All comments are visible!</p>
+            <p><strong>Always review your comments before deploying to production.</strong></p>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> In VS Code, use <code>Ctrl+/</code> to quickly comment or uncomment a line of HTML.
+    </div>
+</body>
+</html>

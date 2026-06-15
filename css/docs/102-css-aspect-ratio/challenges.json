@@ -1,0 +1,53 @@
+{
+  "module": "CSS Aspect Ratio",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Responsive Video Embed",
+      "description": "Create a responsive video embed container using aspect-ratio. The video should fill its container's width and maintain a 16:9 aspect ratio. No wrapper elements or padding hacks allowed.",
+      "hint": "Set width: 100% and aspect-ratio: 16/9 directly on the video or iframe element.",
+      "starter_code": {
+        "html": "<div class=\"video-container\">\n  <iframe src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" title=\"Video\"></iframe>\n</div>",
+        "css": "/* Apply styles directly — no wrapper needed if you restructure */\n\niframe {\n  /* Your code here */\n}"
+      },
+      "solution": {
+        "html": "<div class=\"video-container\">\n  <iframe src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" title=\"Video\" style=\"width:100%;aspect-ratio:16/9;\"></iframe>\n</div>",
+        "css": "iframe {\n  width: 100%;\n  aspect-ratio: 16 / 9;\n  border: none;\n  border-radius: 8px;\n}"
+      },
+      "expected_outcome": "An iframe that fills the container width and maintains 16:9 proportion at any viewport size."
+    },
+    {
+      "id": 2,
+      "difficulty": "medium",
+      "title": "E-Commerce Product Grid",
+      "description": "Build a responsive product grid where all product images maintain a consistent 4:3 aspect ratio. Use CSS Grid, aspect-ratio, and object-fit to create a uniform grid regardless of the original image dimensions. The grid should have 3 columns on desktop and 2 on mobile.",
+      "hint": "Use grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) for responsive columns. Apply aspect-ratio: 4/3 and object-fit: cover on all images.",
+      "starter_code": {
+        "html": "<div class=\"product-grid\">\n  <div class=\"product-card\">\n    <div class=\"product-image\" style=\"background: linear-gradient(135deg, #f38ba8, #fab387);\">Product 1</div>\n    <h3>Product Name</h3>\n  </div>\n  <div class=\"product-card\">\n    <div class=\"product-image\" style=\"background: linear-gradient(135deg, #a6e3a1, #89dceb);\">Product 2</div>\n    <h3>Product Name</h3>\n  </div>\n  <!-- Add 4 more product cards -->\n</div>",
+        "css": ".product-grid {\n  display: grid;\n  gap: 16px;\n  /* Add responsive columns */\n}\n\n.product-image {\n  width: 100%;\n  /* Add aspect-ratio */\n  /* Add object-fit */\n  border-radius: 8px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-weight: 600;\n}"
+      },
+      "solution": {
+        "html": "<div class=\"product-grid\">\n  <div class=\"product-card\">\n    <div class=\"product-image\" style=\"background: linear-gradient(135deg, #f38ba8, #fab387);\">Product 1</div>\n    <h3>Premium Headphones</h3>\n  </div>\n  <div class=\"product-card\">\n    <div class=\"product-image\" style=\"background: linear-gradient(135deg, #a6e3a1, #89dceb);\">Product 2</div>\n    <h3>Wireless Mouse</h3>\n  </div>\n  <div class=\"product-card\">\n    <div class=\"product-image\" style=\"background: linear-gradient(135deg, #cba6f7, #f5c2e7);\">Product 3</div>\n    <h3>Mechanical Keyboard</h3>\n  </div>\n  <div class=\"product-card\">\n    <div class=\"product-image\" style=\"background: linear-gradient(135deg, #fab387, #f38ba8);\">Product 4</div>\n    <h3>USB-C Hub</h3>\n  </div>\n  <div class=\"product-card\">\n    <div class=\"product-image\" style=\"background: linear-gradient(135deg, #89dceb, #a6e3a1);\">Product 5</div>\n    <h3>Monitor Stand</h3>\n  </div>\n  <div class=\"product-card\">\n    <div class=\"product-image\" style=\"background: linear-gradient(135deg, #f5c2e7, #cba6f7);\">Product 6</div>\n    <h3>Desk Lamp</h3>\n  </div>\n</div>",
+        "css": ".product-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  gap: 16px;\n}\n\n.product-image {\n  width: 100%;\n  aspect-ratio: 4 / 3;\n  object-fit: cover;\n  border-radius: 8px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-weight: 600;\n  color: #1e1e2e;\n}\n\n.product-card h3 {\n  margin-top: 8px;\n  font-size: 1rem;\n}\n\n@media (max-width: 600px) {\n  .product-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}"
+      },
+      "expected_outcome": "A responsive product grid with 6 cards. All product image areas maintain consistent 4:3 ratio regardless of content, making the grid look uniform and professional."
+    },
+    {
+      "id": 3,
+      "difficulty": "hard",
+      "title": "Responsive Hero Section with Overlay Text",
+      "description": "Build a hero section that uses aspect-ratio to maintain a proportional background area. The hero should have a background image/gradient with a specific aspect ratio on desktop (21:9) that transitions to a different ratio on mobile (4:3). Overlay text should remain readable and positioned using logical properties. Include a fallback for browsers without aspect-ratio support.",
+      "hint": "Use aspect-ratio with media queries for different breakpoints. For the fallback, use @supports not (aspect-ratio: ...) with the padding-bottom hack. Use position: absolute for overlay text with inset-inline-start/end for logical positioning.",
+      "starter_code": {
+        "html": "<section class=\"hero\">\n  <div class=\"hero-bg\"></div>\n  <div class=\"hero-content\">\n    <h1>Welcome to Our Site</h1>\n    <p>Discover amazing things with us</p>\n    <a href=\"#\" class=\"cta\">Get Started</a>\n  </div>\n</section>",
+        "css": ".hero {\n  position: relative;\n  width: 100%;\n  overflow: hidden;\n}\n\n.hero-bg {\n  width: 100%;\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  /* Add aspect-ratio for desktop (21:9) */\n  /* Add aspect-ratio for mobile (4:3) */\n}\n\n.hero-content {\n  position: absolute;\n  /* Position over the hero background */\n  /* Use logical inset properties */\n  color: white;\n}\n\n.cta {\n  display: inline-block;\n  padding: 12px 24px;\n  background: white;\n  color: #667eea;\n  text-decoration: none;\n  border-radius: 8px;\n  font-weight: 600;\n}"
+      },
+      "solution": {
+        "html": "<section class=\"hero\">\n  <div class=\"hero-bg\"></div>\n  <div class=\"hero-content\">\n    <h1>Welcome to Our Site</h1>\n    <p>Discover amazing things with us today. Experience the future of web design.</p>\n    <a href=\"#\" class=\"cta\">Get Started</a>\n  </div>\n</section>",
+        "css": ".hero {\n  position: relative;\n  width: 100%;\n  overflow: hidden;\n  border-radius: 16px;\n}\n\n.hero-bg {\n  width: 100%;\n  aspect-ratio: 21 / 9;\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n}\n\n.hero-content {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  color: white;\n  padding: 24px;\n  background: rgba(0, 0, 0, 0.2);\n}\n\n.cta {\n  display: inline-block;\n  padding: 12px 24px;\n  background: white;\n  color: #667eea;\n  text-decoration: none;\n  border-radius: 8px;\n  font-weight: 600;\n  transition: transform 0.2s;\n}\n\n.cta:hover {\n  transform: scale(1.05);\n}\n\n/* Mobile: change aspect ratio */\n@media (max-width: 768px) {\n  .hero-bg {\n    aspect-ratio: 4 / 3;\n  }\n  .hero-content h1 {\n    font-size: 1.5rem;\n  }\n}\n\n/* Fallback for older browsers */\n@supports not (aspect-ratio: 21 / 9) {\n  .hero-bg {\n    height: 0;\n    padding-bottom: 42.85%; /* 9/21 * 100 = 42.85% */\n  }\n}\n\n@supports not (aspect-ratio: 4 / 3) {\n  @media (max-width: 768px) {\n    .hero-bg {\n      padding-bottom: 75%; /* 3/4 * 100 = 75% */\n    }\n  }\n}",
+        "expected_outcome": "A hero section that maintains 21:9 ratio on desktop (cinematic look) and switches to 4:3 on mobile. Overlay text is centered. Falls back gracefully in browsers without aspect-ratio support."
+      }
+    }
+  ]
+}

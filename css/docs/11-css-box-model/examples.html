@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Box Model - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .layers { display: flex; flex-direction: column; align-items: center; }
+    .layer { text-align: center; font-weight: 600; }
+    .margin-l { background: #fecaca; border: 2px dashed #ef4444; padding: 1.5rem; }
+    .border-l { background: #fed7aa; border: 3px solid #f97316; padding: 1.25rem; }
+    .padding-l { background: #bbf7d0; border: 2px dashed #22c55e; padding: 1.25rem; }
+    .content-l { background: #bae6fd; border: 2px solid #06b6d4; padding: 1rem 2rem; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+    @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card { border-radius: 8px; padding: 1rem; text-align: center; }
+    .compare-card p { font-size: 0.85rem; margin: 0.5rem 0 0; }
+    .dimension-row { display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.85rem; border-bottom: 1px solid #e2e8f0; }
+    .dimension-row:last-child { border-bottom: none; }
+    .box-visual { font-family: 'Consolas', monospace; font-size: 0.8rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <h1>CSS Box Model - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: The Four Layers of the Box Model</h2>
+    <p>Every element is a rectangular box with four layers: content → padding → border → margin.</p>
+    <div class="demo-output">
+      <div class="layers">
+        <div class="layer margin-l">
+          Margin (transparent space outside)
+          <div class="border-l">
+            Border (visible edge)
+            <div class="padding-l">
+              Padding (space inside)
+              <div class="content-l">Content (text/images)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.element {
+  margin:  1.5rem;  /* Layer 1: Outside */
+  border:  3px solid #f97316;  /* Layer 2: Edge */
+  padding: 1.25rem; /* Layer 3: Inside */
+  /* Layer 4: Content */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Box Model Calculation</h2>
+    <p>Total width = content + padding + border. Margins add extra space around the box.</p>
+    <div class="demo-output">
+      <div style="background:#f1f5f9;padding:1rem;border-radius:8px">
+        <div class="box-visual">
+          width: 200px<br>
+          padding: 20px (each side)<br>
+          border: 5px (each side)<br>
+          ─────────────────<br>
+          <strong>Total width: 200 + 40 + 10 = 250px</strong>
+        </div>
+        <div style="width:200px;padding:20px;border:5px solid #06b6d4;background:white;margin:1rem auto;text-align:center;font-weight:600">This box is 250px wide total</div>
+      </div>
+    </div>
+    <pre><code>.box {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid #06b6d4;
+  /* Total width: 200 + 40 + 10 = 250px */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Content-Box vs Border-Box</h2>
+    <p><code>box-sizing</code> changes how the total width is calculated.</p>
+    <div class="demo-output">
+      <div class="compare-grid">
+        <div class="compare-card" style="background:#fef2f2;border:2px solid #ef4444">
+          <strong style="color:#dc2626">content-box (default)</strong>
+          <div style="width:200px;padding:20px;border:5px solid #ef4444;background:white;margin:0.5rem auto;text-align:center;font-weight:600">Actual: 250px</div>
+          <div class="dimension-row"><span>width:</span><span>200px</span></div>
+          <div class="dimension-row"><span>padding:</span><span>+ 40px</span></div>
+          <div class="dimension-row"><span>border:</span><span>+ 10px</span></div>
+          <div class="dimension-row" style="font-weight:700;color:#dc2626"><span>total:</span><span>250px</span></div>
+        </div>
+        <div class="compare-card" style="background:#f0fdf4;border:2px solid #22c55e">
+          <strong style="color:#16a34a">border-box</strong>
+          <div style="width:200px;padding:20px;border:5px solid #22c55e;background:white;margin:0.5rem auto;text-align:center;font-weight:600;box-sizing:border-box">Actual: 200px</div>
+          <div class="dimension-row"><span>width:</span><span>200px (fixed)</span></div>
+          <div class="dimension-row"><span>padding:</span><span>shrinks content</span></div>
+          <div class="dimension-row"><span>border:</span><span>shrinks content</span></div>
+          <div class="dimension-row" style="font-weight:700;color:#16a34a"><span>total:</span><span>200px</span></div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.content-box { box-sizing: content-box; }  /* width = content only */
+.border-box  { box-sizing: border-box; }   /* width = content + padding + border */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Margin Collapsing</h2>
+    <p>Vertical margins between adjacent elements collapse into the larger value. Horizontal margins do not collapse.</p>
+    <div class="demo-output">
+      <div style="background:#f1f5f9;padding:0.25rem;border:1px dashed #94a3b8">
+        <div style="margin-bottom:30px;background:#ef4444;color:white;padding:0.5rem;text-align:center;font-weight:600">margin-bottom: 30px</div>
+        <div style="margin-top:20px;background:#ef4444;color:white;padding:0.5rem;text-align:center;font-weight:600">margin-top: 20px</div>
+      </div>
+      <p style="color:#64748b;font-size:0.875rem">The gap between them is <strong>30px</strong> (the larger value), not 50px.</p>
+    </div>
+    <pre><code>.first  { margin-bottom: 30px; }
+.second { margin-top: 20px; }
+/* Collapsed margin: 30px (the larger wins) */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Inline vs Block Box Behavior</h2>
+    <p>Block boxes fill their parent width and stack vertically. Inline boxes flow horizontally and ignore width/height.</p>
+    <div class="demo-output">
+      <div style="background:#f0f9ff;padding:1rem;border-radius:8px">
+        <div style="background:#06b6d4;color:white;padding:0.5rem;margin:0.25rem 0">Block: full width</div>
+        <div style="background:#06b6d4;color:white;padding:0.5rem;margin:0.25rem 0">Block: stacks below</div>
+        <p style="margin:0.5rem 0">
+          <span style="background:#f59e0b;color:white;padding:0.25rem 0.5rem">Inline</span>
+          <span style="background:#f59e0b;color:white;padding:0.25rem 0.5rem">Inline</span>
+          <span style="background:#f59e0b;color:white;padding:0.25rem 0.5rem">Inline (side by side)</span>
+        </p>
+      </div>
+    </div>
+    <pre><code>.block  { display: block; }   /* Full width, one per row */
+.inline { display: inline; } /* Side by side, no width/height */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Box Model Visualization Table</h2>
+    <p>Each property affects the box differently.</p>
+    <div class="demo-output">
+      <table style="width:100%;border-collapse:collapse;font-size:0.875rem">
+        <thead>
+          <tr style="background:#1e293b;color:white">
+            <th style="padding:0.5rem;text-align:left">Property</th>
+            <th style="padding:0.5rem;text-align:left">Location</th>
+            <th style="padding:0.5rem;text-align:left">Affects Total Size?</th>
+            <th style="padding:0.5rem;text-align:left">Background Visible?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:0.5rem"><code>width / height</code></td><td style="padding:0.5rem">Content area</td><td style="padding:0.5rem">✅ Yes</td><td style="padding:0.5rem">✅ Yes</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:0.5rem"><code>padding</code></td><td style="padding:0.5rem">Inside border</td><td style="padding:0.5rem">✅ Yes</td><td style="padding:0.5rem">✅ Yes</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:0.5rem"><code>border</code></td><td style="padding:0.5rem">Edge of padding</td><td style="padding:0.5rem">✅ Yes</td><td style="padding:0.5rem">❌ No</td></tr>
+          <tr><td style="padding:0.5rem"><code>margin</code></td><td style="padding:0.5rem">Outside border</td><td style="padding:0.5rem">❌ No</td><td style="padding:0.5rem">❌ No</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <pre><code>/* The box model from outside-in:
+   margin → border → padding → content */</code></pre>
+  </div>
+
+</body>
+</html>

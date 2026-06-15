@@ -1,0 +1,147 @@
+{
+  "module": "81-css-custom-properties",
+  "title": "CSS Custom Properties — Advanced",
+  "difficulty": "advanced",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does the @property rule do?",
+      "options": ["Declares a regular CSS variable", "Registers a custom property with a type", "Creates a new CSS property", "Imports a stylesheet"],
+      "correctAnswer": 1,
+      "explanation": "@property registers a custom property with a defined syntax type, inheritance, and initial value."
+    },
+    {
+      "id": 2,
+      "question": "What syntax type should a custom property be to animate colors?",
+      "options": ["<number>", "<color>", "<percentage>", "<angle>"],
+      "correctAnswer": 1,
+      "explanation": "Registering with syntax: '<color>' enables the browser to interpolate color values smoothly."
+    },
+    {
+      "id": 3,
+      "question": "What happens when you animate an unregistered custom property?",
+      "options": ["It animates smoothly", "It snaps instantly without interpolation", "It throws an error", "Nothing happens"],
+      "correctAnswer": 1,
+      "explanation": "Unregistered custom properties snap instantly because the browser doesn't know how to interpolate them."
+    },
+    {
+      "id": 4,
+      "question": "Which @property descriptor controls whether a value passes to child elements?",
+      "options": ["syntax", "inherits", "initial-value", "cascade"],
+      "correctAnswer": 1,
+      "explanation": "inherits: true allows the property to inherit to child elements; false scopes it."
+    },
+    {
+      "id": 5,
+      "question": "What is the default value of the syntax descriptor in @property?",
+      "options": ["<number>", "<length>", "*", "<color>"],
+      "correctAnswer": 2,
+      "explanation": "If no syntax is specified, the default is * (any valid CSS value)."
+    },
+    {
+      "id": 6,
+      "question": "Which descriptor specifies the starting value of a registered custom property?",
+      "options": ["syntax", "inherits", "initial-value", "initial"],
+      "correctAnswer": 2,
+      "explanation": "initial-value sets the starting value used when the property is not otherwise assigned."
+    },
+    {
+      "id": 7,
+      "question": "Can custom properties penetrate Shadow DOM boundaries?",
+      "options": ["No", "Yes, custom properties cross Shadow DOM boundaries", "Only with @property", "Only when inherits: true"],
+      "correctAnswer": 1,
+      "explanation": "CSS custom properties naturally cross Shadow DOM boundaries, making them ideal for Web Component theming."
+    },
+    {
+      "id": 8,
+      "question": "Which CSS feature detects custom property support?",
+      "options": ["@media", "@supports", "@import", "@document"],
+      "correctAnswer": 1,
+      "explanation": "@supports (--custom: property) { } detects whether the browser supports custom properties."
+    },
+    {
+      "id": 9,
+      "question": "What happens if @property has no initial-value but inherits: false?",
+      "options": ["Property defaults to transparent", "Property is 'guaranteed invalid' with no value", "Property inherits anyway", "An error is thrown"],
+      "correctAnswer": 1,
+      "explanation": "Without an initial-value, the custom property starts as 'guaranteed invalid' — it has no computed value."
+    },
+    {
+      "id": 10,
+      "question": "Which syntax type would you use to register a property that accepts both colors and numbers?",
+      "options": ["<color> | <number>", "<any>", "<mixed>", "<union>"],
+      "correctAnswer": 0,
+      "explanation": "The syntax descriptor accepts a union type using |: syntax: '<color> | <number>';"
+    },
+    {
+      "id": 11,
+      "question": "What is the purpose of registering custom properties with @property?",
+      "options": ["Faster rendering", "Type-safe animation and interpolation", "Better organization", "Smaller file size"],
+      "correctAnswer": 1,
+      "explanation": "Registered properties tell the browser the value type, enabling smooth interpolation in animations."
+    },
+    {
+      "id": 12,
+      "question": "Which CSS at-rule is used to register typed custom properties?",
+      "options": ["@register", "@property", "@custom-property", "@var"],
+      "correctAnswer": 1,
+      "explanation": "@property is the CSS at-rule for registering typed custom properties with type checking."
+    },
+    {
+      "id": 13,
+      "question": "How do you animate a custom property from 0 to 360 degrees?",
+      "options": ["It can't be done", "Register it with syntax: '<angle>' and animate it in a keyframe", "Use JavaScript", "Use calc() inside var()"],
+      "correctAnswer": 1,
+      "explanation": "Register with '<angle>' syntax, then use transition or @keyframes to animate between angle values."
+    },
+    {
+      "id": 14,
+      "question": "What happens when you set a registered custom property to an invalid type?",
+      "options": ["It's accepted anyway", "The property becomes 'guaranteed invalid' and uses initial-value", "A console warning appears", "The CSS is rejected"],
+      "correctAnswer": 1,
+      "explanation": "If an invalid type is assigned, the property falls back to its initial-value as 'guaranteed invalid' behavior."
+    },
+    {
+      "id": 15,
+      "question": "Can @property be used inside media queries or conditionally?",
+      "options": ["No, @property is not allowed inside conditional rules", "Yes, anywhere in CSS", "Only in @supports", "Only in @media"],
+      "correctAnswer": 0,
+      "explanation": "@property rule is not allowed inside @media, @supports, or other conditional at-rules."
+    },
+    {
+      "id": 16,
+      "question": "What is a key advantage of registered custom properties over unregistered ones for theming?",
+      "options": ["Faster than unregistered", "They can type-check values at runtime", "They use less memory", "They don't require var()"],
+      "correctAnswer": 1,
+      "explanation": "Registered custom properties provide type validation, ensuring only valid values are accepted."
+    },
+    {
+      "id": 17,
+      "question": "Which of these is NOT a valid @property syntax value?",
+      "options": ["<length>", "<color>", "<string>", "<css-value>"],
+      "correctAnswer": 3,
+      "explanation": "<css-value> is not a valid syntax type. Valid types include <length>, <color>, <number>, <angle>, etc."
+    },
+    {
+      "id": 18,
+      "question": "What happens to @property in browsers that don't support it?",
+      "options": ["Breaks the page", "It's ignored; unregistered properties behave as strings", "Falls back to Sass", "Polyfill is required"],
+      "correctAnswer": 1,
+      "explanation": "In unsupported browsers, @property is ignored and custom properties behave as unregistered (string-based)."
+    },
+    {
+      "id": 19,
+      "question": "What is the purpose of compositing custom properties in complex animations?",
+      "options": ["Combining multiple registered properties for coordinated animation effects", "Merging variables", "Optimizing performance", "Reducing code duplication"],
+      "correctAnswer": 0,
+      "explanation": "Multiple registered custom properties can be animated independently and composed for complex, coordinated effects."
+    },
+    {
+      "id": 20,
+      "question": "Can registered custom properties be used with container queries?",
+      "options": ["No", "Yes, registered custom properties work with container queries for container-aware animations", "Only with inline-size queries", "Only in Chrome"],
+      "correctAnswer": 1,
+      "explanation": "Registered custom properties can be used within container queries, enabling container-aware animated values."
+    }
+  ]
+}

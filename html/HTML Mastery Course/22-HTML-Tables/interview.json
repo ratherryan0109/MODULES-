@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is an HTML table and what is it used for?",
+      "answer": "An HTML table is a structured grid of rows and columns used to display tabular data like schedules, pricing, comparison charts, and reports."
+    },
+    {
+      "question": "What are the basic tags needed to create a table?",
+      "answer": "<table> (container), <tr> (row), <td> (data cell), and <th> (header cell) are the basic tags for creating a table."
+    },
+    {
+      "question": "What is the difference between <td> and <th>?",
+      "answer": "<td> (table data) is a standard data cell with normal text weight and left alignment. <th> (table header) is a header cell with bold text and center alignment by default."
+    },
+    {
+      "question": "How do you add a border to a table?",
+      "answer": "Use the CSS property border on <table>, <th>, and <td> elements, or use border-collapse: collapse for clean single borders."
+    },
+    {
+      "question": "How many columns does a table with three <td> elements per row have?",
+      "answer": "A table with three <td> elements in each row has 3 columns."
+    },
+    {
+      "question": "What is the <caption> element used for?",
+      "answer": "<caption> provides a title or summary for the table. It is placed as the first child of <table> and is displayed above the table by default."
+    },
+    {
+      "question": "How do you create a table with a header row?",
+      "answer": "Use <th> elements inside the first <tr> for headers. For example: <tr><th>Name</th><th>Age</th></tr>"
+    },
+    {
+      "question": "Write the basic HTML structure for a 2x2 table.",
+      "answer": "<table><tr><th>Name</th><th>Age</th></tr><tr><td>Alice</td><td>25</td></tr></table>"
+    },
+    {
+      "question": "What happens if different rows have different numbers of cells?",
+      "answer": "The browser creates the table based on the row with the most cells. Rows with fewer cells will have empty space unless colspan is used."
+    },
+    {
+      "question": "Is the border attribute on <table> still recommended?",
+      "answer": "No, the border attribute is deprecated in HTML5. CSS should be used for all table styling."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the purpose of <thead>, <tbody>, and <tfoot>?",
+      "answer": "These elements semantically group table rows: <thead> for header rows, <tbody> for data rows, and <tfoot> for footer/summary rows."
+    },
+    {
+      "question": "How does colspan work and when would you use it?",
+      "answer": "colspan merges multiple columns into one cell. Use it when a cell needs to span across columns, like a title row that covers all columns."
+    },
+    {
+      "question": "How does rowspan work and when would you use it?",
+      "answer": "rowspan merges multiple rows into one cell. Use it when a label cell needs to span multiple rows, like a category name covering several items."
+    },
+    {
+      "question": "What is <colgroup> and why would you use it?",
+      "answer": "<colgroup> defines column groups in a table. It allows you to apply styles or attributes to entire columns without adding classes to every cell."
+    },
+    {
+      "question": "How can you create alternating row colors in a table?",
+      "answer": "Use CSS: tr:nth-child(even) { background-color: #f2f2f2; } or tr:nth-child(odd) for the other rows."
+    },
+    {
+      "question": "What is the purpose of the scope attribute on <th>?",
+      "answer": "scope associates header cells with data cells. Values are 'col' (column header), 'row' (row header), 'colgroup', and 'rowgroup'."
+    },
+    {
+      "question": "How do you make a table responsive on mobile devices?",
+      "answer": "Wrap the table in a <div> with overflow-x: auto, or use CSS to stack cells vertically on small screens using display: block on td/tr."
+    },
+    {
+      "question": "What is the difference between border-collapse: collapse and border-collapse: separate?",
+      "answer": "collapse merges adjacent borders into one. separate keeps them separate, with optional border-spacing between cells."
+    },
+    {
+      "question": "Can you nest a table inside another table?",
+      "answer": "Yes, but it's not recommended as it creates complex layouts that are hard to read and maintain. Use CSS Grid or Flexbox instead."
+    },
+    {
+      "question": "How do you style only the first row of a table differently?",
+      "answer": "Use the :first-child pseudo-class: tr:first-child { background-color: #333; color: white; } or target <thead> directly."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do screen readers handle complex tables with merged cells?",
+      "answer": "Screen readers use the scope, headers, and id attributes to navigate merged cells. The headers attribute on <td> associates it with specific <th> elements by ID."
+    },
+    {
+      "question": "What is the headers attribute and how does it improve accessibility?",
+      "answer": "The headers attribute on <td> references the id of one or more <th> elements. It explicitly associates data cells with header cells for complex tables."
+    },
+    {
+      "question": "How would you create a table where rows are collapsed and expandable?",
+      "answer": "Use a combination of HTML (checkbox or button), CSS (display: none/table-row), and JavaScript to toggle row visibility for expandable table rows."
+    },
+    {
+      "question": "What are the ARIA roles associated with tables and how do they map?",
+      "answer": "<table> has role='table', <tr> has role='row', <th> has role='columnheader' or 'rowheader', <td> has role='cell' or 'gridcell'."
+    },
+    {
+      "question": "How can you implement a 'sticky' table header that remains visible while scrolling?",
+      "answer": "Use position: sticky on th elements: th { position: sticky; top: 0; z-index: 1; } with a defined background color."
+    },
+    {
+      "question": "How do search engines interpret HTML tables for SEO?",
+      "answer": "Search engines parse table content for relevance. Using <caption>, <th> with scope, and semantic sections helps search engines understand the table's context and data relationships."
+    },
+    {
+      "question": "What is the difference between using CSS Grid and HTML tables for displaying data?",
+      "answer": "HTML tables semantically represent tabular data with native row/column/cell relationships. CSS Grid is for layout and lacks the semantic cell-header associations needed for data tables."
+    },
+    {
+      "question": "How can you create a sortable table without JavaScript?",
+      "answer": "You cannot create a fully interactive sortable table without JavaScript. However, server-side sorting with query parameters can pre-sort table data before rendering HTML."
+    },
+    {
+      "question": "What is the purpose of the axis attribute on <td> (now deprecated)?",
+      "answer": "The axis attribute was used to categorize cells for screen readers. It is deprecated in HTML5; use scope, headers, and ARIA attributes instead."
+    },
+    {
+      "question": "How would you implement a table that allows single-cell editing?",
+      "answer": "Make each <td> contentEditable by setting contentEditable='true' on the <td> elements, and use JavaScript to save changes via blur or change events."
+    }
+  ]
+}

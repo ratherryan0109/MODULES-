@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Gradients - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .grad-box { height: 100px; border-radius: 8px; }
+    .note { background: #f0fdfa; border-left: 4px solid #06b6d4; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.875rem; color: #475569; }
+    .flex-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .flex-row > div { flex:1; min-width:180px; }
+  </style>
+</head>
+<body>
+  <h1>CSS Gradients</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Linear Gradients</h2>
+    <p>Colors transition along a straight line. Use an angle or direction keyword.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><p style="font-size:0.8rem;color:#64748b">to right</p><div class="grad-box" style="background:linear-gradient(to right,#06b6d4,#6366f1)"></div></div>
+        <div><p style="font-size:0.8rem;color:#64748b">135deg</p><div class="grad-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899)"></div></div>
+        <div><p style="font-size:0.8rem;color:#64748b">45deg</p><div class="grad-box" style="background:linear-gradient(45deg,#f59e0b,#ef4444)"></div></div>
+      </div>
+    </div>
+    <pre><code>.ex1 { background: linear-gradient(to right, #06b6d4, #6366f1); }
+.ex2 { background: linear-gradient(135deg, #06b6d4, #6366f1, #ec4899); }
+.ex3 { background: linear-gradient(45deg, #f59e0b, #ef4444); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Multiple Color Stops</h2>
+    <p>Add many stops for rainbow effects. Stops can have explicit positions.</p>
+    <div class="demo-output">
+      <div class="grad-box" style="background:linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet);margin-bottom:12px"></div>
+      <div class="grad-box" style="background:linear-gradient(90deg,#06b6d4 0%,#06b6d4 25%,#f59e0b 25%,#f59e0b 50%,#ef4444 50%,#ef4444 75%,#6366f1 75%,#6366f1 100%)"></div>
+    </div>
+    <pre><code>.rainbow {
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+}
+.stripes {
+    /* Hard color stops create sharp transitions — great for striped patterns */
+    background: linear-gradient(90deg,
+        #06b6d4 0%, #06b6d4 25%,
+        #f59e0b 25%, #f59e0b 50%,
+        #ef4444 50%, #ef4444 75%,
+        #6366f1 75%, #6366f1 100%
+    );
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Radial Gradients</h2>
+    <p>Colors radiate from a center point. Shapes can be circle or ellipse.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><p style="font-size:0.8rem;color:#64748b">Circle</p><div class="grad-box" style="background:radial-gradient(circle,#06b6d4,#0e7490)"></div></div>
+        <div><p style="font-size:0.8rem;color:#64748b">Ellipse</p><div class="grad-box" style="background:radial-gradient(ellipse,#ec4899,#be185d)"></div></div>
+        <div><p style="font-size:0.8rem;color:#64748b">Offset center</p><div class="grad-box" style="background:radial-gradient(circle at top left,#f59e0b,transparent);background-color:#0f172a"></div></div>
+      </div>
+    </div>
+    <pre><code>.circle  { background: radial-gradient(circle, #06b6d4, #0e7490); }
+.ellipse { background: radial-gradient(ellipse, #ec4899, #be185d); }
+.glow    { background: radial-gradient(circle at top left, #f59e0b, transparent); background-color: #0f172a; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Conic Gradients</h2>
+    <p>Colors rotate around a center point, like a color wheel or pie chart.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><p style="font-size:0.8rem;color:#64748b">Color wheel</p><div class="grad-box" style="border-radius:50%;background:conic-gradient(red,yellow,lime,aqua,blue,magenta,red)"></div></div>
+        <div><p style="font-size:0.8rem;color:#64748b">Pie chart</p><div class="grad-box" style="border-radius:50%;background:conic-gradient(#06b6d4 0% 25%,#f59e0b 25% 50%,#ef4444 50% 75%,#6366f1 75% 100%)"></div></div>
+      </div>
+    </div>
+    <pre><code>.wheel {
+    background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+}
+.pie {
+    background: conic-gradient(
+        #06b6d4 0% 25%, #f59e0b 25% 50%,
+        #ef4444 50% 75%, #6366f1 75% 100%
+    );
+    border-radius: 50%;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Repeating Gradients (Patterns)</h2>
+    <p>Gradient patterns that repeat automatically for striped or checkerboard effects.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><p style="font-size:0.8rem;color:#64748b">Diagonal stripes</p><div class="grad-box" style="background:repeating-linear-gradient(45deg,#06b6d4,#06b6d4 8px,#0e7490 8px,#0e7490 16px)"></div></div>
+        <div><p style="font-size:0.8rem;color:#64748b">Dots</p><div class="grad-box" style="background:repeating-radial-gradient(circle,#06b6d4,#06b6d4 6px,transparent 6px,transparent 12px);background-color:#1e293b"></div></div>
+        <div><p style="font-size:0.8rem;color:#64748b">Ruled lines</p><div class="grad-box" style="background:repeating-linear-gradient(0deg,transparent,transparent 14px,rgba(6,182,212,0.15) 14px,rgba(6,182,212,0.15) 15px)"></div></div>
+      </div>
+    </div>
+    <pre><code>.stripes { background: repeating-linear-gradient(45deg, #06b6d4, #06b6d4 8px, #0e7490 8px, #0e7490 16px); }
+.dots    { background: repeating-radial-gradient(circle, #06b6d4, #06b6d4 6px, transparent 6px, transparent 12px); }
+.lines   { background: repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(6,182,212,0.15) 14px, rgba(6,182,212,0.15) 15px); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Text Gradient (background-clip: text)</h2>
+    <p>Fill text with a gradient by clipping the background to the text shape.</p>
+    <div class="demo-output">
+      <p style="font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);-webkit-background-clip:text;background-clip:text;color:transparent;">Gradient Text</p>
+      <p style="font-size:1.5rem;font-weight:700;background:linear-gradient(90deg,#f59e0b,#ef4444,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent;">Multi-Color Heading</p>
+    </div>
+    <pre><code>.gradient-text {
+    background: linear-gradient(135deg, #06b6d4, #6366f1, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Gradient Overlay</h2>
+    <p>Layer a gradient over a background image or color for readability.</p>
+    <div class="demo-output">
+      <div class="grad-box" style="display:flex;align-items:center;justify-content:center;color:white;font-weight:700;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.8)),#06b6d4;">
+        Overlay Text
+      </div>
+    </div>
+    <pre><code>.overlay {
+    background:
+        linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.8)),
+        url('photo.jpg');
+    /* Gradient layers on top of the image */
+}</code></pre>
+    <div class="note">The gradient sits on top of the image. Used for hero banners and card captions.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: Animated Gradient</h2>
+    <p>Animating the background-position creates a moving gradient effect.</p>
+    <div class="demo-output">
+      <style>
+        @keyframes shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      </style>
+      <div class="grad-box" style="background:linear-gradient(-45deg,#06b6d4,#6366f1,#ec4899,#f59e0b);background-size:300% 300%;animation:shift 6s ease infinite;"></div>
+    </div>
+    <pre><code>.animated {
+    background: linear-gradient(-45deg, #06b6d4, #6366f1, #ec4899, #f59e0b);
+    background-size: 300% 300%;
+    animation: shift 6s ease infinite;
+}
+@keyframes shift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}</code></pre>
+    <div class="note">Consider prefers-reduced-motion for accessibility. Use @media (prefers-reduced-motion: reduce) to pause the animation.</div>
+  </div>
+</body>
+</html>

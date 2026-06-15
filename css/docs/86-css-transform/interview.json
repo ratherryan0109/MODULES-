@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the CSS transform property used for?", "answer": "It modifies the visual presentation of an element by applying translation, rotation, scaling, skewing, or matrix transformations." },
+    { "question": "What does translate() do in transforms?", "answer": "translate(x, y) moves an element horizontally by x and vertically by y from its current position." },
+    { "question": "How do you rotate an element with transform?", "answer": "Use rotate(angle) where angle is in degrees, radians, gradians, or turns, e.g., transform: rotate(45deg)." },
+    { "question": "What is the effect of scale()?", "answer": "scale(sx, sy) enlarges or shrinks an element by the specified factor in the x and y directions." },
+    { "question": "How do you skew an element using transform?", "answer": "skew(x-angle, y-angle) tilts an element along the X and Y axes by the specified angles." },
+    { "question": "What is the matrix() function in CSS transforms?", "answer": "matrix(a, b, c, d, tx, ty) combines all 2D transform functions into a single 2x3 affine transformation matrix." },
+    { "question": "Can you apply multiple transform functions to one element?", "answer": "Yes, list them space-separated: transform: translate(10px) rotate(45deg) scale(1.5); and they apply right to left." },
+    { "question": "What is the default value of the transform property?", "answer": "The default value is 'none', meaning no transformation is applied to the element." },
+    { "question": "Does transform affect the layout flow of other elements?", "answer": "No, transforms do not affect layout flow; the element occupies its original space in the document flow." },
+    { "question": "What units can be used for translation values in transforms?", "answer": "Any CSS length units: px, em, rem, %, vw, vh, and calc() expressions are all valid." }
+  ],
+  "intermediate": [
+    { "question": "How does the order of transform functions affect the result?", "answer": "Functions apply right to left; transform: translate(100px) rotate(45deg) first rotates, then translates along the rotated axes." },
+    { "question": "What is the difference between transform and position properties?", "answer": "Transform creates a new stacking context and compositing layer without affecting layout, while position moves elements within the document flow." },
+    { "question": "How does percentage in translate() behave?", "answer": "Percentages in translate() are relative to the element's own width and height, not the parent container." },
+    { "question": "What is transform-origin and how does it work?", "answer": "transform-origin sets the point around which transformations are applied, defaulting to the element's center (50% 50%)." },
+    { "question": "How do 2D transforms affect stacking context?", "answer": "Applying a transform with a value other than 'none' creates a new stacking context for the element." },
+    { "question": "What is the valid range for scale values?", "answer": "Any positive or negative number; 1 is identity, 0 collapses to nothing, values > 1 enlarge, 0-1 shrink, and negatives flip." },
+    { "question": "How do you flip an element horizontally using transform?", "answer": "Use transform: scaleX(-1); to mirror an element horizontally around its vertical axis." },
+    { "question": "Does transform work on inline elements?", "answer": "Transform does not work on pure inline elements; use inline-block, inline-flex, inline-grid, or block-level elements." },
+    { "question": "What happens when you combine skew and rotate in transforms?", "answer": "They compound visually; rotate rotates the element, then skew distorts along the rotated axes, creating complex deformations." },
+    { "question": "Can transform values be animated with CSS transitions?", "answer": "Yes, transform is fully animatable via transitions and animations, and GPU-accelerated for smooth performance." }
+  ],
+  "advanced": [
+    { "question": "How do you interpret the matrix(a, b, c, d, tx, ty) parameters?", "answer": "a and d control scale, b and c control skew, tx and ty control translation; the matrix is [a c tx; b d ty; 0 0 1] in affine form." },
+    { "question": "How do transforms interact with will-change for performance?", "answer": "will-change: transform hints the browser to promote the element to a compositor layer early, reducing jank during animations." },
+    { "question": "How can you compute the cumulative transform of nested elements?", "answer": "The final transform is the matrix multiplication of each element's individual transform matrix in document order." },
+    { "question": "How do transforms affect getBoundingClientRect() vs offsetWidth?", "answer": "getBoundingClientRect() returns the transformed visual dimensions; offsetWidth/offsetHeight return untransformed layout dimensions." },
+    { "question": "How does the CSS transform property relate to SVG transforms?", "answer": "CSS transforms on SVG elements use the element's own coordinate system; SVG attribute transforms use a different syntax without commas." },
+    { "question": "What edge cases exist with negative scale values in transforms?", "answer": "Negative scale flips content and reverses text direction; child elements are also mirrored, causing unexpected visual results." },
+    { "question": "How does calc() work inside transform functions?", "answer": "calc() can be used in translate values: transform: translate(calc(100% - 20px), 0); but some older browsers may not support it." },
+    { "question": "How do transforms behave with forced high-contrast modes?", "answer": "Most transforms preserve content visibility, but scale below 0.4 can make text unreadable; use prefers-reduced-motion to disable transform animations." },
+    { "question": "How do you animate transform with different values per breakpoint?", "answer": "Use media queries with different transform values; transitions animate between the breakpoint-specific values smoothly." },
+    { "question": "What is the relationship between transform and containment?", "answer": "contain: layout or contain: paint can limit the rendering area affected by transforms, potentially clipping transformed elements." }
+  ]
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Which structured data format does Google recommend as the preferred implementation method?",
+    "options": ["Microdata", "RDFa", "JSON-LD", "XML"],
+    "answer": "c",
+    "explanation": "Google explicitly recommends JSON-LD (JavaScript Object Notation for Linked Data) as the preferred format for structured data because it separates data from HTML content."
+  },
+  {
+    "question": "What is the standard vocabulary used for structured data on the web?",
+    "options": ["JSON-LD", "Microformats", "Schema.org", "Dublin Core"],
+    "answer": "c",
+    "explanation": "Schema.org is the de facto standard vocabulary for structured data on the web, supported by Google, Bing, Yahoo, and Yandex."
+  },
+  {
+    "question": "In JSON-LD, what does the '@context' property specify?",
+    "options": ["The type of data being described", "The vocabulary URL being used", "The encoding format", "The page URL"],
+    "answer": "b",
+    "explanation": "The '@context' property in JSON-LD specifies the vocabulary URL (typically https://schema.org) that defines the terms used in the structured data."
+  },
+  {
+    "question": "Which of the following is a required property for the Article schema type?",
+    "options": ["image", "author", "publisher", "wordCount"],
+    "answer": "b",
+    "explanation": "The Article schema requires headline, author, and datePublished as required properties according to Schema.org."
+  },
+  {
+    "question": "What does the Product schema's 'offers' property typically contain?",
+    "options": ["Discount codes", "Shipping information", "Pricing and availability details", "Customer reviews"],
+    "answer": "c",
+    "explanation": "The 'offers' property in Product schema contains an Offer object with pricing (price, priceCurrency) and availability (InStock, OutOfStock) information."
+  },
+  {
+    "question": "Which schema type should be used for a page containing questions and answers?",
+    "options": ["QAPage", "FAQPage", "Article", "WebPage"],
+    "answer": "b",
+    "explanation": "FAQPage schema is specifically designed for Frequently Asked Questions pages. It uses mainEntity, Question, and Answer types."
+  },
+  {
+    "question": "What is the purpose of the BreadcrumbList schema?",
+    "options": ["To list all pages on a website", "To show navigation hierarchy in search results", "To create sitemaps", "To track user navigation"],
+    "answer": "b",
+    "explanation": "BreadcrumbList schema enhances search results by displaying the page's position within the site hierarchy, showing the navigation path."
+  },
+  {
+    "question": "In Microdata, which attribute is used to specify the schema type?",
+    "options": ["itemtype", "itemscope", "itemprop", "typeof"],
+    "answer": "b",
+    "explanation": "The 'itemscope' attribute creates an item, and 'itemtype' specifies the schema URL. Itemscope is the attribute that declares the element contains structured data."
+  },
+  {
+    "question": "What happens if structured data does not match the visible content on a page?",
+    "options": ["Nothing, search engines ignore it", "The page gets a ranking boost", "It may be treated as spam and lead to manual action", "It automatically gets corrected"],
+    "answer": "c",
+    "explanation": "Google's guidelines require that structured data accurately reflects the visible page content. Mismatched content can be considered deceptive and may result in manual actions or penalties."
+  },
+  {
+    "question": "What does JSON-LD stand for?",
+    "options": ["JavaScript Object Notation for Language Data", "JavaScript Object Notation for Linked Data", "JSON Language Document", "JavaScript Online Notation for Linked Data"],
+    "answer": "b",
+    "explanation": "JSON-LD stands for JavaScript Object Notation for Linked Data. It is a method of encoding Linked Data using JSON."
+  },
+  {
+    "question": "Which Google tool is used to test structured data for search features?",
+    "options": ["Google Analytics", "Google Tag Manager", "Rich Results Test", "PageSpeed Insights"],
+    "answer": "c",
+    "explanation": "The Google Rich Results Test (search.google.com/test/rich-results) validates structured data and shows which rich result features can be generated."
+  },
+  {
+    "question": "What is the '@type': 'ListItem' used for in structured data?",
+    "options": ["Creating ordered lists in HTML", "Defining items in a BreadcrumbList", "Creating FAQ items", "Marking up product variants"],
+    "answer": "b",
+    "explanation": "ListItem is used in BreadcrumbList and similar structures to define each item in the list with a position, name, and URL."
+  },
+  {
+    "question": "How do you include multiple JSON-LD blocks on a single page?",
+    "options": ["Combine them into one JSON object", "Use separate script tags for each block", "Use an array in a single script tag", "Link to an external JSON file"],
+    "answer": "b",
+    "explanation": "Each JSON-LD block requires its own <script type='application/ld+json'> tag. You can have multiple independent blocks on the same page."
+  },
+  {
+    "question": "What does the '@type': 'Offer' represent in Product schema?",
+    "options": ["A discount or sale", "An opportunity to purchase the product", "A product comparison", "A warranty offer"],
+    "answer": "b",
+    "explanation": "The Offer type represents an offer to sell a product, including price, currency, availability, and seller information."
+  },
+  {
+    "question": "Which schema type is best for marking up an online tutorial with steps?",
+    "options": ["Article", "TechArticle", "HowTo", "Course"],
+    "answer": "c",
+    "explanation": "HowTo schema is specifically designed for tutorials with step-by-step instructions. It can display steps, tools needed, time required, and final result in search."
+  },
+  {
+    "question": "What does the 'sameAs' property in Person or Organization schema represent?",
+    "options": ["Duplicate listings", "Social media and external profile URLs", "Contact email addresses", "Office locations"],
+    "answer": "b",
+    "explanation": "The 'sameAs' property is used to specify URLs of social media profiles and other web properties that represent the same entity, like LinkedIn, Twitter, or Facebook."
+  },
+  {
+    "question": "What is the advantage of JSON-LD over Microdata?",
+    "options": ["JSON-LD is faster to load", "JSON-LD does not alter visible HTML", "JSON-LD supports more schema types", "JSON-LD is supported by all browsers"],
+    "answer": "b",
+    "explanation": "JSON-LD's main advantage is that it doesn't modify the visible HTML content. All structured data is placed in a separate script tag, keeping markup clean."
+  },
+  {
+    "question": "What does the 'duration' property in VideoObject use as its format?",
+    "options": ["HH:MM:SS format", "ISO 8601 duration format", "Unix timestamp", "Decimal minutes"],
+    "answer": "b",
+    "explanation": "Duration uses ISO 8601 format, such as PT30M15S (30 minutes, 15 seconds). P = period, T = time, followed by H/hours, M/minutes, S/seconds."
+  },
+  {
+    "question": "Which property in Event schema specifies the event venue?",
+    "options": ["location", "venue", "place", "address"],
+    "answer": "a",
+    "explanation": "The 'location' property in Event schema specifies where the event takes place, typically using a Place object with name and address."
+  },
+  {
+    "question": "What is the purpose of the 'mainEntity' property in FAQPage schema?",
+    "options": ["To specify the page's main content", "To list the questions in the FAQ", "To link to related pages", "To define the page's primary image"],
+    "answer": "b",
+    "explanation": "The 'mainEntity' property in FAQPage contains an array of Question objects, each with a name (question text) and acceptedAnswer (an Answer object)."
+  }
+]

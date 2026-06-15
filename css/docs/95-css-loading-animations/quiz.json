@@ -1,0 +1,147 @@
+{
+  "module": "95-css-loading-animations",
+  "title": "CSS Loading Animations",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What CSS technique creates a ring spinner effect?",
+      "options": ["Border with transparent side and rotation", "Background gradient rotation", "Box-shadow animation", "Opacity fade"],
+      "correctAnswer": 0,
+      "explanation": "A ring spinner uses a border with one solid-colored side and rotates the element."
+    },
+    {
+      "id": 2,
+      "question": "How do you create a shimmer effect on skeletons?",
+      "options": ["Animating opacity", "Animating background-position", "Animating width", "Animating color"],
+      "correctAnswer": 1,
+      "explanation": "Shimmer moves a gradient across the element using background-position animation."
+    },
+    {
+      "id": 3,
+      "question": "What role attribute should loading indicators have?",
+      "options": ["role=\"loader\"", "role=\"status\"", "role=\"progress\"", "role=\"alert\""],
+      "correctAnswer": 1,
+      "explanation": "role=\"status\" is appropriate for live loading indicators."
+    },
+    {
+      "id": 4,
+      "question": "How do you stagger dot animations for a typing effect?",
+      "options": ["Using nth-child with delays", "Using different durations", "Using different keyframes", "Using transform origins"],
+      "correctAnswer": 0,
+      "explanation": "Each dot gets a different animation-delay via nth-child selectors."
+    },
+    {
+      "id": 5,
+      "question": "Which property is best for animating a progress bar?",
+      "options": ["width", "transform: scaleX", "opacity", "height"],
+      "correctAnswer": 1,
+      "explanation": "scaleX is GPU accelerated; width triggers layout."
+    },
+    {
+      "id": 6,
+      "question": "What is the simplest CSS-only spinner?",
+      "options": ["Border with rotation", "Multiple divs with animation", "Canvas-based", "SVG animation"],
+      "correctAnswer": 0,
+      "explanation": "A single element with a border and rotation animation is the simplest spinner."
+    },
+    {
+      "id": 7,
+      "question": "How do you ensure loading animations don't cause performance issues?",
+      "options": ["Use transform/opacity only", "Use only div elements", "Use JavaScript", "Use images"],
+      "correctAnswer": 0,
+      "explanation": "GPU-accelerated properties (transform, opacity) ensure smooth performance."
+    },
+    {
+      "id": 8,
+      "question": "What does aria-label=\"Loading\" do?",
+      "options": ["Styles the loader", "Provides screen reader text", "Starts the animation", "Removes the loader"],
+      "correctAnswer": 1,
+      "explanation": "aria-label provides accessible text for screen readers."
+    },
+    {
+      "id": 9,
+      "question": "Which animation timing is best for a smooth spinner?",
+      "options": ["ease", "linear", "ease-in-out", "cubic-bezier"],
+      "correctAnswer": 1,
+      "explanation": "linear timing is best for spinners because constant speed looks most natural for rotation."
+    },
+    {
+      "id": 10,
+      "question": "How do you create a pulsing skeleton placeholder?",
+      "options": ["Animate opacity between 0.4 and 1", "Animate width", "Animate height", "Animate color"],
+      "correctAnswer": 0,
+      "explanation": "Pulsing skeletons animate opacity to create a breathing/loading effect."
+    },
+    {
+      "id": 11,
+      "question": "What is the difference between determinate and indeterminate progress?",
+      "options": ["Determinate shows completion %, indeterminate shows activity without known duration", "Determinate is for spinners, indeterminate is for bars", "Determinate uses CSS, indeterminate uses JS", "There is no difference"],
+      "correctAnswer": 0,
+      "explanation": "Determinate progress shows a known completion percentage; indeterminate indicates activity without known duration."
+    },
+    {
+      "id": 12,
+      "question": "What is a key advantage of skeleton screens over spinners?",
+      "options": ["Improved perceived performance by showing content layout", "Faster to implement", "Works in older browsers", "Smaller file size"],
+      "correctAnswer": 0,
+      "explanation": "Skeleton screens improve perceived performance by giving users a sense of progress and familiar layout."
+    },
+    {
+      "id": 13,
+      "question": "How do you create an accessible loading spinner?",
+      "options": ["Add role=\"status\" and sr-only text", "Use a bright color", "Make it spin fast", "Add a click handler"],
+      "correctAnswer": 0,
+      "explanation": "role=\"status\" and screen-reader-only text ensure accessibility."
+    },
+    {
+      "id": 14,
+      "question": "What is the recommended size for inline UI spinners?",
+      "options": ["Under 40px", "100px", "200px", "At least 50% of container"],
+      "correctAnswer": 0,
+      "explanation": "Keep spinners under 40px for inline UI elements to avoid visual distraction."
+    },
+    {
+      "id": 15,
+      "question": "Which is more GPU-intensive: shimmer or opacity pulse?",
+      "options": ["Shimmer (requires background-position animation)", "Opacity pulse", "Same cost", "Neither uses GPU"],
+      "correctAnswer": 0,
+      "explanation": "Shimmer triggers paint; opacity pulse is simpler and more performant."
+    },
+    {
+      "id": 16,
+      "question": "What is the keyframe for a ring spinner rotation?",
+      "options": ["from { transform: rotate(0deg); } to { transform: rotate(360deg); }", "0% { opacity: 0; } 100% { opacity: 1; }", "0% { scale: 1; } 100% { scale: 1.5; }", "0% { width: 0; } 100% { width: 100%; }"],
+      "correctAnswer": 0,
+      "explanation": "A spinner rotates from 0 to 360 degrees using transform: rotate()."
+    },
+    {
+      "id": 17,
+      "question": "Which aria attribute should a skeleton container have?",
+      "options": ["aria-busy=\"true\"", "aria-hidden=\"true\"", "aria-live=\"assertive\"", "aria-disabled=\"true\""],
+      "correctAnswer": 0,
+      "explanation": "aria-busy=\"true\" on the container indicates content is still loading."
+    },
+    {
+      "id": 18,
+      "question": "What should you animate for a dot-loader bounce effect?",
+      "options": ["transform: scale() or translateY()", "width and height", "background-color", "border-radius"],
+      "correctAnswer": 0,
+      "explanation": "Scale or translateY on dots creates the bounce effect without triggering layout."
+    },
+    {
+      "id": 19,
+      "question": "How do you create an indeterminate progress bar animation?",
+      "options": ["Animate translateX on a pseudo-element sliding back and forth", "Animate width from 0 to 100%", "Animate opacity of the bar", "Animate background-color"],
+      "correctAnswer": 0,
+      "explanation": "An indeterminate bar uses translateX to slide a bar back and forth endlessly."
+    },
+    {
+      "id": 20,
+      "question": "What should you do when content finishes loading?",
+      "options": ["Hide the loader with display:none or remove it from DOM", "Let it keep spinning", "Change its color", "Slow it down gradually"],
+      "correctAnswer": 0,
+      "explanation": "Always remove or hide loading indicators once content is ready."
+    }
+  ]
+}

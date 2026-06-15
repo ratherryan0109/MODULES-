@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Scroll Behavior - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #1e1e2e; color: #cdd6f4; padding: 1.5rem; }
+    h1 { color: #89b4fa; margin-bottom: 1rem; }
+    .layout { display: grid; grid-template-columns: 300px 1fr; gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+    .panel { background: #313244; border-radius: 12px; padding: 1.5rem; border: 1px solid #45475a; }
+
+    .control-group { margin-bottom: 0.75rem; }
+    .control-group label { display: block; color: #a6e3a1; font-weight: 700; margin-bottom: 0.25rem; font-size: 0.85rem; }
+    .control-group select, .control-group input[type="number"] { width: 100%; padding: 0.4rem; border-radius: 6px; border: 1px solid #45475a; background: #181825; color: #cdd6f4; font-family: monospace; }
+
+    #scrollContainer {
+      height: 400px;
+      overflow-y: auto;
+      background: #181825;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .scroll-item {
+      min-height: 400px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      scroll-margin-top: var(--scroll-margin, 0px);
+    }
+
+    .scroll-item:nth-child(1) { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .scroll-item:nth-child(2) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .scroll-item:nth-child(3) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .scroll-item:nth-child(4) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+    .scroll-item:nth-child(5) { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+    .code-output { background: #181825; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-family: monospace; font-size: 0.8rem; white-space: pre-wrap; border: 1px solid #45475a; max-height: 200px; overflow-y: auto; }
+
+    button { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
+
+    .nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .nav-btn { background: #45475a; color: #cdd6f4; flex: 1; }
+    .nav-btn:hover { background: #585b70; }
+    .nav-btn.active { background: #89b4fa; color: #1e1e2e; }
+
+    .status { font-size: 0.85rem; color: #a6e3a1; margin-top: 8px; }
+    .status span { color: #89b4fa; }
+
+    .fixed-header-sim {
+      position: sticky;
+      top: 0;
+      background: rgba(49, 50, 68, 0.95);
+      padding: 12px 16px;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid #45475a;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #a6e3a1;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Scroll Behavior Playground</h1>
+  <div class="layout">
+    <div class="panel">
+      <h2 style="color:#a6e3a1;margin-bottom:1rem;">Controls</h2>
+
+      <div class="control-group">
+        <label>Scroll Behavior</label>
+        <select id="behaviorSelect">
+          <option value="smooth">smooth</option>
+          <option value="auto">auto (instant)</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>scroll-margin-top (px)</label>
+        <select id="marginSelect">
+          <option value="0">0px (no offset)</option>
+          <option value="60" selected>60px (account for header)</option>
+          <option value="120">120px (large offset)</option>
+        </select>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="nav-btn" onclick="navigateTo(0)">Section 1</button>
+        <button class="nav-btn" onclick="navigateTo(1)">Section 2</button>
+        <button class="nav-btn" onclick="navigateTo(2)">Section 3</button>
+        <button class="nav-btn" onclick="navigateTo(3)">Section 4</button>
+        <button class="nav-btn" onclick="navigateTo(4)">Section 5</button>
+      </div>
+
+      <div class="control-group">
+        <label>Number of Sections</label>
+        <select id="sectionCount">
+          <option value="3">3</option>
+          <option value="5" selected>5</option>
+          <option value="8">8</option>
+        </select>
+      </div>
+
+      <div id="status" class="status">Scroll behavior: <span id="behaviorStatus">smooth</span> · scroll-margin: <span id="marginStatus">60px</span></div>
+
+      <button style="width:100%;margin-top:12px;background:#f38ba8;color:#1e1e2e;" onclick="scrollToTop()">⬆ Scroll to Top</button>
+    </div>
+    <div class="panel" style="padding:0;overflow:hidden;">
+      <div class="fixed-header-sim">
+        <span>📌 Fixed Header Bar</span>
+        <span style="font-size:0.75rem;">scroll-margin: <span id="marginOverlay">60px</span></span>
+      </div>
+      <div id="scrollContainer"></div>
+    </div>
+  </div>
+  <div class="code-output" id="codeOutput">/* CSS generated by controls */</div>
+
+  <script>
+    const container = document.getElementById('scrollContainer');
+    const behaviorSelect = document.getElementById('behaviorSelect');
+    const marginSelect = document.getElementById('marginSelect');
+    const sectionCount = document.getElementById('sectionCount');
+    const behaviorStatus = document.getElementById('behaviorStatus');
+    const marginStatus = document.getElementById('marginStatus');
+    const marginOverlay = document.getElementById('marginOverlay');
+    const codeOutput = document.getElementById('codeOutput');
+
+    const gradients = [
+      'linear-gradient(135deg, #667eea, #764ba2)',
+      'linear-gradient(135deg, #f093fb, #f5576c)',
+      'linear-gradient(135deg, #4facfe, #00f2fe)',
+      'linear-gradient(135deg, #43e97b, #38f9d7)',
+      'linear-gradient(135deg, #fa709a, #fee140)',
+      'linear-gradient(135deg, #a18cd1, #fbc2eb)',
+      'linear-gradient(135deg, #fccb90, #d57eeb)',
+      'linear-gradient(135deg, #e0c3fc, #8ec5fc)',
+    ];
+
+    function buildSections(count) {
+      container.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const item = document.createElement('div');
+        item.className = 'scroll-item';
+        item.id = 'section-' + i;
+        item.style.background = gradients[i % gradients.length];
+        item.innerHTML = `
+          <h2>Section ${i + 1}</h2>
+          <p style="font-size:1rem;font-weight:400;margin-top:8px;">Scroll behavior: ${behaviorSelect.value}</p>
+          <p style="font-size:0.85rem;font-weight:400;margin-top:4px;">scroll-margin-top: ${marginSelect.value}px</p>
+        `;
+        container.appendChild(item);
+      }
+    }
+
+    function update() {
+      const behavior = behaviorSelect.value;
+      const margin = parseInt(marginSelect.value);
+      const count = parseInt(sectionCount.value);
+
+      container.style.scrollBehavior = behavior;
+      container.style.setProperty('--scroll-margin', margin + 'px');
+
+      behaviorStatus.textContent = behavior;
+      marginStatus.textContent = margin + 'px';
+      marginOverlay.textContent = margin + 'px';
+
+      // Update scroll-margin on all items
+      document.querySelectorAll('.scroll-item').forEach(el => {
+        el.style.scrollMarginTop = margin + 'px';
+      });
+
+      const lines = [
+        `#scrollContainer {`,
+        `  overflow-y: auto;`,
+        `  scroll-behavior: ${behavior};`,
+        `}`,
+        ``,
+        `.scroll-item {`,
+        `  scroll-margin-top: ${margin}px;`,
+        `}`,
+        ``,
+        `/* Sections: ${count} · Behavior: ${behavior} */`
+      ];
+      codeOutput.textContent = lines.filter(l => l !== '').join('\n');
+    }
+
+    function navigateTo(index) {
+      const target = document.getElementById('section-' + index);
+      if (target) {
+        target.scrollIntoView({ behavior: container.style.scrollBehavior === 'smooth' ? 'smooth' : 'auto' });
+      }
+    }
+
+    function scrollToTop() {
+      container.scrollTo({ top: 0, behavior: container.style.scrollBehavior === 'smooth' ? 'smooth' : 'auto' });
+    }
+
+    [behaviorSelect, marginSelect, sectionCount].forEach(el => {
+      el.addEventListener('change', () => {
+        const count = parseInt(sectionCount.value);
+        const currentCount = container.children.length;
+        if (count !== currentCount) {
+          buildSections(count);
+        }
+        update();
+      });
+    });
+
+    // Initial build
+    buildSections(5);
+    update();
+  </script>
+</body>
+</html>

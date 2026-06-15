@@ -1,0 +1,147 @@
+{
+  "module": "56-grid-rows",
+  "title": "Grid Rows",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `grid-template-rows: auto 1fr auto` create when combined with `min-height: 100vh`?",
+      "options": ["A full-page layout with sized header/footer and flexible main content", "Three equal rows", "Auto-sized columns", "A grid with no rows"],
+      "correctAnswer": 0,
+      "explanation": "`auto 1fr auto` creates a header (auto → content-sized), a main area (1fr → fills remaining space), and a footer (auto → content-sized). With `min-height: 100vh`, the grid fills the viewport."
+    },
+    {
+      "id": 2,
+      "question": "Why might `grid-template-rows: 20% 60% 20%` NOT work as expected?",
+      "options": ["The container may not have an explicit height", "Percentages are not supported in rows", "The fr unit is required for rows", "CSS Grid does not support row percentages"],
+      "correctAnswer": 0,
+      "explanation": "Row percentages require the container to have an explicit height. Without one, percentage values default to `auto`, and the rows size to their content."
+    },
+    {
+      "id": 3,
+      "question": "How many rows does `grid-template-rows: repeat(3, 100px)` create?",
+      "options": ["3 rows of 100px each", "1 row of 300px", "100 rows of 3px", "3 rows of auto"],
+      "correctAnswer": 0,
+      "explanation": "`repeat(3, 100px)` creates 3 explicit rows, each exactly 100px tall."
+    },
+    {
+      "id": 4,
+      "question": "What does `grid-row: 2 / 4` do?",
+      "options": ["Spans from row line 2 to row line 4 (covers 2 rows)", "Spans 2 to 4 pixels", "Creates 2 rows", "Moves item to row 2, column 4"],
+      "correctAnswer": 0,
+      "explanation": "`grid-row: 2 / 4` places the item starting at line 2 and ending at line 4, spanning rows 2 and 3 (2 rows in total)."
+    },
+    {
+      "id": 5,
+      "question": "What is the purpose of `grid-auto-rows`?",
+      "options": ["Controls the height of implicitly created rows", "Automatically sizes rows to content", "Creates rows based on viewport height", "Prevents rows from overflowing"],
+      "correctAnswer": 0,
+      "explanation": "`grid-auto-rows` sets the height for rows that are created automatically when items exceed the explicit row definitions."
+    },
+    {
+      "id": 6,
+      "question": "In a grid with `grid-template-rows: repeat(2, 100px); grid-auto-rows: 80px` and 10 items in a 3-column layout, how tall is row 3?",
+      "options": ["80px", "100px", "auto", "0px"],
+      "correctAnswer": 0,
+      "explanation": "Rows 1 and 2 are explicit (100px). Row 3 is an implicit row, so it uses `grid-auto-rows: 80px`."
+    },
+    {
+      "id": 7,
+      "question": "What happens if a grid container has `grid-template-rows: 1fr` but no height or min-height set?",
+      "options": ["The row collapses because fr has no space to distribute", "The row fills the viewport", "The row uses auto sizing", "An error is thrown"],
+      "correctAnswer": 0,
+      "explanation": "`1fr` needs space to distribute. Without a container height or min-height, there's no reference point, so the row collapses to 0 or auto."
+    },
+    {
+      "id": 8,
+      "question": "What does `grid-row: span 3` do?",
+      "options": ["Makes the item span across 3 rows", "Creates 3 new rows", "Adds 3px to the row height", "Repeats the item 3 times"],
+      "correctAnswer": 0,
+      "explanation": "`grid-row: span 3` makes the item stretch across 3 row tracks from its starting position."
+    },
+    {
+      "id": 9,
+      "question": "Which is the correct syntax for named row lines?",
+      "options": ["`grid-template-rows: [header] auto [content] 1fr [footer] auto`", "`grid-template-rows: header=auto content=1fr`", "`grid-template-rows: auto 1fr auto #header #content #footer`", "`grid-template-rows: name(header, auto) name(content, 1fr)`"],
+      "correctAnswer": 0,
+      "explanation": "Named grid lines use square brackets: `[line-name] size [next-line-name]`. They sit between track sizes."
+    },
+    {
+      "id": 10,
+      "question": "What is the `grid-row` shorthand a combination of?",
+      "options": ["grid-row-start and grid-row-end", "grid-row-height and grid-row-width", "grid-row-span and grid-row-count", "grid-row-area and grid-row-position"],
+      "correctAnswer": 0,
+      "explanation": "`grid-row` is shorthand for `grid-row-start` and `grid-row-end`, separated by a forward slash: `grid-row: 1 / 3`."
+    },
+    {
+      "id": 11,
+      "question": "How does `grid-template-rows: 1fr 1fr` differ from `grid-template-rows: auto auto`?",
+      "options": ["1fr fills available space equally; auto sizes to content", "They are the same", "1fr is for columns only; auto is for rows only", "Auto always creates larger rows"],
+      "correctAnswer": 0,
+      "explanation": "`1fr` rows distribute available vertical space evenly. `auto` rows size to the height of their content, which may be smaller or larger."
+    },
+    {
+      "id": 12,
+      "question": "What is the minimum number of row lines for a grid with 3 explicit rows?",
+      "options": ["4 lines", "3 lines", "2 lines", "1 line"],
+      "correctAnswer": 0,
+      "explanation": "N rows create N+1 lines. Three rows have lines 1, 2, 3, and 4."
+    },
+    {
+      "id": 13,
+      "question": "Which of these creates a row that is at least 200px but can grow?",
+      "options": ["`minmax(200px, auto)`", "`maxmin(200px, auto)`", "`minmax(auto, 200px)`", "`minmax(200px, 200px)`"],
+      "correctAnswer": 0,
+      "explanation": "`minmax(200px, auto)` sets a minimum height of 200px and allows the row to grow (auto) as needed for content."
+    },
+    {
+      "id": 14,
+      "question": "Can `grid-auto-rows` accept multiple values to create repeating implicit row patterns?",
+      "options": ["Yes, e.g., `grid-auto-rows: 80px 120px` repeats the pattern", "No, it only accepts a single value", "Only in Firefox", "Only with the repeat() function"],
+      "correctAnswer": 0,
+      "explanation": "`grid-auto-rows` can accept multiple values that repeat in a cycle. `grid-auto-rows: 80px 120px` alternates between 80px and 120px for implicit rows."
+    },
+    {
+      "id": 15,
+      "question": "What happens if a grid item is placed at row line 5 but only 3 explicit rows exist?",
+      "options": ["Implicit rows are created to accommodate the placement", "The item is placed at the last available row", "The grid breaks and shows nothing", "The item is hidden"],
+      "correctAnswer": 0,
+      "explanation": "CSS Grid creates implicit rows to accommodate items placed beyond the explicit grid. The implicit row sizes come from `grid-auto-rows`."
+    },
+    {
+      "id": 16,
+      "question": "What does `grid-row: 1 / -1` do?",
+      "options": ["Spans from the first row line to the last row line", "Creates 1 row with -1 gap", "Is invalid syntax", "Spans 1 row from the end"],
+      "correctAnswer": 0,
+      "explanation": "`grid-row: 1 / -1` makes the item span from the first line (1) to the last line (-1), covering all rows."
+    },
+    {
+      "id": 17,
+      "question": "Why is `min-height: 100vh` commonly paired with `grid-template-rows: auto 1fr auto`?",
+      "options": ["To ensure the grid fills at least the viewport height", "To center the grid vertically", "To make auto rows 100vh tall", "To prevent scrolling"],
+      "correctAnswer": 0,
+      "explanation": "`min-height: 100vh` ensures the grid container is at least as tall as the viewport, giving the `1fr` row space to fill. If content is short, the footer still sticks to the bottom."
+    },
+    {
+      "id": 18,
+      "question": "Which property would you use to make all implicitly-created rows have the same height?",
+      "options": ["grid-auto-rows", "grid-template-rows", "grid-row", "grid-auto-flow"],
+      "correctAnswer": 0,
+      "explanation": "`grid-auto-rows` controls the height of all implicit rows. Setting it to a single value (e.g., `grid-auto-rows: 120px`) makes all implicit rows the same height."
+    },
+    {
+      "id": 19,
+      "question": "In a grid spanning full viewport, what is the effect of `grid-template-rows: 80px 1fr 80px; grid-template-columns: 1fr 300px;`?",
+      "options": ["Creates a layout with 80px header/footer, flexible main content, and a 300px sidebar", "Creates 2 columns and 3 rows", "All of these", "The layout has 6 grid cells total (2 columns × 3 rows)"],
+      "correctAnswer": 2,
+      "explanation": "This creates 3 rows (80px, 1fr, 80px) × 2 columns (1fr, 300px) = 6 cells. Header/footer span across by default, with a main content area and a 300px sidebar."
+    },
+    {
+      "id": 20,
+      "question": "What's the key difference between explicit and implicit rows?",
+      "options": ["Explicit rows are defined by `grid-template-rows`; implicit rows are created automatically", "Explicit rows are visible; implicit rows are hidden", "Explicit rows use fr; implicit rows use px", "There is no difference"],
+      "correctAnswer": 0,
+      "explanation": "Explicit rows are those you explicitly define with `grid-template-rows`. Implicit rows are created by the browser when grid items are placed beyond the explicit grid tracks."
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Attributes Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 30px 20px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { color: #1a1a2e; border-bottom: 3px solid #4a6cf7; padding-bottom: 12px; margin-bottom: 30px; }
+    h2 { color: #4a6cf7; margin: 30px 0 16px; }
+    .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .card label { display: block; margin-bottom: 4px; font-weight: 600; color: #333; font-size: 14px; }
+    .card input, .card select, .card textarea { width: 100%; padding: 10px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; transition: all 0.3s; margin-bottom: 12px; }
+    .card input:focus, .card select:focus { border-color: #4a6cf7; outline: none; box-shadow: 0 0 0 3px rgba(74,108,247,0.12); }
+    pre { background: #2d3748; color: #e2e8f0; padding: 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; margin-bottom: 12px; }
+    .flex-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .output { background: #1a1a2e; color: #2ecc71; padding: 10px 14px; border-radius: 6px; font-family: monospace; font-size: 14px; margin-top: 8px; }
+    button { background: #4a6cf7; color: white; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-size: 15px; }
+    button:hover { background: #3b5de7; }
+    .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-left: 6px; background: #e2e8f0; color: #4a5568; }
+    .error-msg { color: #e53e3e; font-size: 13px; display: none; margin: -8px 0 12px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Input Attributes — Interactive Examples</h1>
+
+  <div class="card">
+    <h2>1. Validation Attributes <span class="tag">required, min, max, step, pattern, minlength</span></h2>
+    <form onsubmit="event.preventDefault(); show('output1', 'Valid! Value: ' + this.field1.value)">
+      <pre>&lt;input required minlength="3" maxlength="10" pattern="[A-Za-z]+"&gt;</pre>
+      <label>Alphabetic Name (3-10 chars, required):</label>
+      <input type="text" name="field1" required minlength="3" maxlength="10" pattern="[A-Za-z]+" title="3-10 alphabetic characters" placeholder="e.g. John">
+      <div class="error-msg" id="err1">Please match the requested format.</div>
+      <button type="submit">Validate</button>
+      <div class="output" id="output1">Submit to validate...</div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>2. Number Constraints <span class="tag">min, max, step</span></h2>
+    <form onsubmit="event.preventDefault(); show('output2', 'Age: ' + this.age.value + ', Score: ' + this.score.value)">
+      <pre>&lt;input type="number" min="0" max="120" step="1"&gt;
+&lt;input type="number" min="0" max="100" step="5"&gt;</pre>
+      <div class="flex-row">
+        <div style="flex:1;"><label>Age (0-120):</label><input type="number" name="age" min="0" max="120" step="1" value="25"></div>
+        <div style="flex:1;"><label>Score (0-100, multiples of 5):</label><input type="number" name="score" min="0" max="100" step="5" value="50"></div>
+      </div>
+      <button type="submit">Submit</button>
+      <div class="output" id="output2">Submit to see values...</div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>3. disabled vs readonly <span class="tag">disabled, readonly</span></h2>
+    <form onsubmit="event.preventDefault(); show('output3', 'disabled: ' + this.df.value + ' | readonly: ' + this.rf.value + ' | normal: ' + this.nf.value)">
+      <pre>&lt;input disabled&gt;  &lt;input readonly&gt;  &lt;input&gt;</pre>
+      <div class="flex-row">
+        <div style="flex:1;"><label>Disabled:</label><input type="text" name="df" value="Not submitted" disabled></div>
+        <div style="flex:1;"><label>Readonly:</label><input type="text" name="rf" value="IS submitted" readonly></div>
+        <div style="flex:1;"><label>Normal:</label><input type="text" name="nf" value="Normal field"></div>
+      </div>
+      <button type="submit">Submit and Check Output</button>
+      <div class="output" id="output3">Submit to see which values are sent...</div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>4. Autocomplete Demo <span class="tag">autocomplete</span></h2>
+    <form onsubmit="event.preventDefault();">
+      <pre>&lt;input autocomplete="name"&gt; &lt;input autocomplete="email"&gt; &lt;input autocomplete="tel"&gt;</pre>
+      <div class="flex-row">
+        <div style="flex:1;"><label>Full Name:</label><input type="text" name="fullname" autocomplete="name" placeholder="Browser will suggest"></div>
+        <div style="flex:1;"><label>Email:</label><input type="email" name="email" autocomplete="email"></div>
+      </div>
+      <div class="flex-row">
+        <div style="flex:1;"><label>Phone:</label><input type="tel" name="phone" autocomplete="tel"></div>
+        <div style="flex:1;"><label>Address:</label><input type="text" name="address" autocomplete="street-address"></div>
+      </div>
+      <div class="flex-row">
+        <div style="flex:1;"><label>City:</label><input type="text" name="city" autocomplete="address-level2"></div>
+        <div style="flex:1;"><label>ZIP:</label><input type="text" name="zip" autocomplete="postal-code" pattern="[0-9]{5}"></div>
+      </div>
+      <button type="submit">Show Values</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>5. inputmode &amp; enterkeyhint <span class="tag">inputmode, enterkeyhint</span></h2>
+    <pre>&lt;input inputmode="numeric"&gt;  &lt;input inputmode="decimal"&gt;  &lt;input enterkeyhint="send"&gt;</pre>
+    <div class="flex-row">
+      <div style="flex:1;"><label>Numeric (ZIP):</label><input type="text" inputmode="numeric" pattern="[0-9]*" placeholder="12345"></div>
+      <div style="flex:1;"><label>Decimal (Price):</label><input type="text" inputmode="decimal" pattern="[0-9]*\.?[0-9]*" placeholder="19.99"></div>
+      <div style="flex:1;"><label>Search (enterkeyhint):</label><input type="search" enterkeyhint="search" placeholder="Search..."></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>6. Form Association Attributes <span class="tag">form, formaction, formmethod</span></h2>
+    <pre>&lt;input form="formId"&gt;  &lt;button formaction="/alt" formmethod="GET"&gt;</pre>
+    <form id="mainForm" action="#" method="POST" onsubmit="event.preventDefault(); show('output6', 'Main form submitted')">
+      <label for="outsideInput">This input is outside the form but associated via `form` attribute:</label>
+    </form>
+    <input type="text" id="outsideInput" name="external" form="mainForm" placeholder="I'm outside the form tag!" style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;margin-bottom:12px;">
+    <div class="flex-row">
+      <button type="submit" form="mainForm" style="background:#2ecc71;">Submit via Main Form</button>
+      <button type="submit" form="mainForm" formaction="/alternate" formmethod="GET" style="background:#f39c12;">Submit to Different URL</button>
+      <button type="submit" form="mainForm" formnovalidate style="background:#e74c3c;">Submit Without Validation</button>
+    </div>
+    <div class="output" id="output6">Buttons can override form behavior...</div>
+  </div>
+
+  <div class="card">
+    <h2>7. Checked &amp; Multiple <span class="tag">checked, multiple</span></h2>
+    <form onsubmit="event.preventDefault();">
+      <pre>&lt;input type="checkbox" checked&gt;  &lt;input type="file" multiple&gt;  &lt;input type="email" multiple&gt;</pre>
+      <div class="flex-row" style="margin-bottom:12px;">
+        <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="checkbox" name="agree" checked> I agree (pre-checked)</label>
+        <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="checkbox" name="newsletter"> Subscribe</label>
+      </div>
+      <label>Email multiple recipients (comma-separated):</label>
+      <input type="email" multiple placeholder="a@b.com, c@d.com">
+      <label>Upload multiple files:</label>
+      <input type="file" multiple>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>8. Pattern with Title <span class="tag">pattern, title</span></h2>
+    <form onsubmit="event.preventDefault(); show('output8', 'Valid!')">
+      <pre>&lt;input pattern="[A-Z]{2}[0-9]{4}" title="2 uppercase letters + 4 digits"&gt;</pre>
+      <label>Product Code (e.g., AB1234):</label>
+      <input type="text" name="code" pattern="[A-Z]{2}[0-9]{4}" title="Exactly 2 uppercase letters followed by 4 digits (e.g., AB1234)" placeholder="AB1234" required>
+      <button type="submit">Validate</button>
+      <div class="output" id="output8">Submit to validate format...</div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>9. autofocus &amp; placeholder <span class="tag">autofocus, placeholder</span></h2>
+    <pre>&lt;input autofocus&gt;  &lt;input placeholder="Type here..."&gt;</pre>
+    <div class="flex-row">
+      <div style="flex:1;"><label>Auto-focused field:</label><input type="text" autofocus placeholder="I'm focused!"></div>
+      <div style="flex:1;"><label>With placeholder:</label><input type="email" placeholder="you@example.com"></div>
+      <div style="flex:1;"><label>Without placeholder:</label><input type="text"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>10. ARIA Accessibility Attributes <span class="tag">aria-*</span></h2>
+    <form onsubmit="event.preventDefault();">
+      <pre>&lt;input aria-label="Search" aria-describedby="help" aria-required="true"&gt;</pre>
+      <label for="searchField">Search:</label>
+      <input type="search" id="searchField" aria-label="Search the documentation" aria-describedby="searchHelp" aria-required="true" placeholder="Search..." style="margin-bottom:4px;">
+      <small id="searchHelp" style="color:#718096;display:block;margin-bottom:12px;">Enter keywords to search. Minimum 2 characters.</small>
+      
+      <label for="errField">Email with error:</label>
+      <input type="email" id="errField" aria-invalid="true" aria-errormessage="emailError" value="invalid-email">
+      <div id="emailError" style="color:#e53e3e;font-size:13px;margin-top:-8px;margin-bottom:12px;">Please enter a valid email address.</div>
+    </form>
+  </div>
+</div>
+<script>
+function show(id, msg) { document.getElementById(id).textContent = '> ' + msg; }
+</script>
+</body>
+</html>

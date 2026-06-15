@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Introduction - Examples</title>
+  <style>
+    /* ===== INTERNAL CSS EXAMPLE ===== */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f0f4f8;
+      color: #2d3748;
+    }
+
+    h1 {
+      color: #1a365d;
+      text-align: center;
+      border-bottom: 4px solid #4299e1;
+      padding-bottom: 15px;
+      font-size: 2.2em;
+    }
+
+    h2 {
+      color: #2b6cb0;
+      margin-top: 40px;
+    }
+
+    /* ===== COMPARISON BOXES ===== */
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .method-box {
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      background: white;
+    }
+
+    .method-box h3 {
+      margin-top: 0;
+      color: #2d3748;
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .method-box.external { border-top: 5px solid #48bb78; }
+    .method-box.internal { border-top: 5px solid #ed8936; }
+    .method-box.inline { border-top: 5px solid #fc8181; }
+
+    /* ===== EXAMPLE CONTAINERS ===== */
+    .example-block {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 30px 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-left: 5px solid #4299e1;
+    }
+
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+
+    /* ===== CASCADE DEMO ===== */
+    .cascade-demo p { color: #e53e3e; }
+    .cascade-demo .special { color: #3182ce; }
+    .cascade-demo p { color: #38a169; }
+
+    /* ===== INHERITANCE DEMO ===== */
+    .inheritance-demo {
+      color: #6b46c1;
+      border: 2px dashed #a0aec0;
+      padding: 15px;
+    }
+
+    /* ===== SPECIFICITY WAR ===== */
+    #specific-id { color: #d53f8c; }
+    .specific-class { color: #dd6b20; }
+    div { color: #718096; }
+
+    /* ===== NOTE ===== */
+    .note {
+      background: #ebf8ff;
+      border-left: 4px solid #3182ce;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .note.important {
+      background: #fff5f5;
+      border-left-color: #e53e3e;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Introduction: Examples</h1>
+
+  <!-- ===== INLINE CSS EXAMPLE ===== -->
+  <div class="example-block">
+    <h2>1. Inline CSS Example</h2>
+    <p style="color: #e53e3e; font-weight: bold; font-size: 18px;">
+      This paragraph is styled with <strong>inline CSS</strong> — notice the style attribute directly on the HTML tag.
+    </p>
+    <p style="background-color: #fefcbf; padding: 10px; border-radius: 5px; border-left: 5px solid #d69e2e;">
+      Inline styles have the <strong>highest specificity</strong> (unless !important is used).
+    </p>
+    <div class="code-block">
+      &lt;p style="color: #e53e3e; font-weight: bold; font-size: 18px;"&gt;
+        This paragraph is styled with inline CSS...
+      &lt;/p&gt;
+    </div>
+  </div>
+
+  <!-- ===== INTERNAL CSS EXAMPLE ===== -->
+  <div class="example-block">
+    <h2>2. Internal CSS Example</h2>
+    <p>The styles on this page are applied via an <strong>internal stylesheet</strong> inside the &lt;style&gt; tag in the document head.</p>
+    <p>All the styling you see (fonts, colors, borders, layouts) is from the internal CSS block at the top of this HTML file.</p>
+    <div class="code-block">
+      &lt;head&gt;
+        &lt;style&gt;
+          body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #2d3748;
+          }
+          h1 { color: #1a365d; }
+        &lt;/style&gt;
+      &lt;/head&gt;
+    </div>
+  </div>
+
+  <!-- ===== EXTERNAL CSS LINKING DEMO ===== -->
+  <div class="example-block">
+    <h2>3. External CSS Reference</h2>
+    <p>In a real project, you would use a <strong>&lt;link&gt;</strong> tag in the HTML &lt;head&gt; to connect an external stylesheet:</p>
+    <div class="code-block">
+      &lt;head&gt;
+        &lt;link rel="stylesheet" href="styles.css"&gt;
+      &lt;/head&gt;
+    </div>
+    <p>The external approach is best for production because:</p>
+    <div class="comparison">
+      <div class="method-box external">
+        <h3>✅ External</h3>
+        <ul>
+          <li>Reusable across pages</li>
+          <li>Browser-cacheable</li>
+          <li>Clean separation</li>
+          <li>Easy maintenance</li>
+        </ul>
+      </div>
+      <div class="method-box internal">
+        <h3>⚠️ Internal</h3>
+        <ul>
+          <li>Single page only</li>
+          <li>No caching benefit</li>
+          <li>Mixes with HTML</li>
+          <li>Harder to maintain</li>
+        </ul>
+      </div>
+      <div class="method-box inline">
+        <h3>❌ Inline</h3>
+        <ul>
+          <li>Not reusable</li>
+          <li>Hard to maintain</li>
+          <li>Highest specificity</li>
+          <li>Use sparingly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CASCADE DEMONSTRATION ===== -->
+  <div class="example-block">
+    <h2>4. The Cascade in Action</h2>
+    <p>CSS rules are applied based on cascade rules. Here, three rules target the same paragraph:</p>
+    <div class="cascade-demo">
+      <p>This paragraph should be <strong>green</strong> because the last rule wins in the stylesheet.</p>
+      <p class="special">But this one is <strong>blue</strong> because the class selector has higher specificity.</p>
+    </div>
+    <p>The code below shows three conflicting rules. The cascade resolves them:</p>
+    <div class="code-block">
+      .cascade-demo p { color: #e53e3e; }  /* Red - overridden */
+      .cascade-demo .special { color: #3182ce; }  /* Blue - wins for .special */
+      .cascade-demo p { color: #38a169; }  /* Green - wins for plain p (last) */
+    </div>
+  </div>
+
+  <!-- ===== SPECIFICITY DEMONSTRATION ===== -->
+  <div class="example-block">
+    <h2>5. Specificity Demonstration</h2>
+    <p>Specificity determines which rule applies when selectors conflict:</p>
+    <div id="specific-id" class="specific-class">
+      What color am I? I have an ID (#specific-id), a class (.specific-class), and am also a &lt;div&gt;.
+    </div>
+    <p><strong>Answer:</strong> Pink (#d53f8c) — because ID selectors have the highest specificity (0-1-0-0).</p>
+    <div class="code-block">
+      #specific-id { color: #d53f8c; }     /* Specificity: 0-1-0-0 → WINS */
+      .specific-class { color: #dd6b20; }   /* Specificity: 0-0-1-0 */
+      div { color: #718096; }              /* Specificity: 0-0-0-1 */
+    </div>
+  </div>
+
+  <!-- ===== INHERITANCE DEMONSTRATION ===== -->
+  <div class="example-block">
+    <h2>6. Inheritance Demonstration</h2>
+    <p>Some CSS properties are <strong>inherited</strong> from parent to child elements.</p>
+    <div class="inheritance-demo">
+      <p>This paragraph is inside a div with <code>color: #6b46c1</code> (purple). The color property is inherited, so this text is also purple.</p>
+      <p>The <code>border</code> property, however, is NOT inherited — only the parent div has the dashed border.</p>
+      <ul>
+        <li>List items also inherit the purple color.</li>
+        <li>But they don't inherit the border.</li>
+      </ul>
+    </div>
+    <div class="code-block">
+      .inheritance-demo {
+        color: #6b46c1;  /* INHERITED by children */
+        border: 2px dashed #a0aec0;  /* NOT inherited */
+      }
+    </div>
+  </div>
+
+  <!-- ===== INHERITED VS NON-INHERITED ===== -->
+  <div class="example-block">
+    <h2>7. Inherited vs Non-Inherited Properties</h2>
+    <table style="width:100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background:#2d3748; color:white;">
+          <th style="padding:10px; text-align:left;">Inherited Properties</th>
+          <th style="padding:10px; text-align:left;">Non-Inherited Properties</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">color</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">margin</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">font-family</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">padding</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">font-size</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">border</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">font-weight</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">background</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">line-height</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">width / height</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">text-align</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">display</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">visibility</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">position</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== DEVTOOLS TIPS ===== -->
+  <div class="example-block">
+    <h2>8. Browser DevTools Tips</h2>
+    <p>Use your browser's Developer Tools to inspect and debug CSS:</p>
+    <table style="width:100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background:#2d3748; color:white;">
+          <th style="padding:10px; text-align:left;">Action</th>
+          <th style="padding:10px; text-align:left;">Windows/Linux</th>
+          <th style="padding:10px; text-align:left;">macOS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">Open DevTools</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">F12 or Ctrl+Shift+I</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">Cmd+Option+I</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">Inspect Element</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">Ctrl+Shift+C</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">Cmd+Shift+C</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #e2e8f0;">Toggle Device Mode</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">Ctrl+Shift+M</td>
+          <td style="padding:10px; border:1px solid #e2e8f0;">Cmd+Shift+M</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== IMPORTANT NOTES ===== -->
+  <div class="note important">
+    <strong>⚠️ Remember:</strong> CSS stands for <strong>C</strong>ascading <strong>S</strong>tyle <strong>S</strong>heets. The cascade is what makes CSS powerful and sometimes confusing. Always pay attention to specificity, inheritance, and source order when debugging styles.
+  </div>
+
+</body>
+</html>

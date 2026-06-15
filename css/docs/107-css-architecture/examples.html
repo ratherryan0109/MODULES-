@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Architecture - Examples</title>
+  <style>
+    /* ===== SETTINGS (Design Tokens) ===== */
+    :root {
+      --color-primary: #667eea;
+      --color-primary-hover: #5a6fd6;
+      --color-surface: #313244;
+      --color-surface-alt: #45475a;
+      --color-bg: #1e1e2e;
+      --color-text: #cdd6f4;
+      --color-text-muted: #a6adc8;
+      --color-border: #45475a;
+      --color-success: #a6e3a1;
+      --color-warning: #f9e2af;
+      --color-error: #f38ba8;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
+      --font-sans: system-ui, sans-serif;
+    }
+
+    /* ===== GENERIC (Reset) ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== ELEMENTS ===== */
+    body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); padding: 2rem; }
+    h1 { margin-bottom: 2rem; color: var(--color-primary); }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    code { background: var(--color-surface-alt); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+
+    /* ===== OBJECTS (Layout) ===== */
+    .o-container { max-width: 1200px; margin-inline: auto; }
+    .o-grid { display: grid; gap: var(--spacing-md); }
+    .o-grid--2 { grid-template-columns: repeat(2, 1fr); }
+    .o-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .o-flex { display: flex; gap: var(--spacing-md); align-items: center; }
+    .o-flex--wrap { flex-wrap: wrap; }
+
+    /* ===== COMPONENTS ===== */
+    .c-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-md);
+    }
+    .c-card__title { font-size: 1.25rem; font-weight: 700; margin-bottom: var(--spacing-sm); color: #cdd6f4; }
+    .c-card__body { color: var(--color-text-muted); margin-bottom: var(--spacing-md); }
+    .c-card--featured { border-color: var(--color-primary); border-width: 2px; }
+
+    .c-btn {
+      display: inline-flex; align-items: center; gap: var(--spacing-xs);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-md);
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: var(--font-sans);
+    }
+    .c-btn--primary { background: var(--color-primary); color: white; }
+    .c-btn--primary:hover { background: var(--color-primary-hover); }
+    .c-btn--outline { background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); }
+    .c-btn--outline:hover { background: var(--color-primary); color: white; }
+    .c-btn--small { padding: var(--spacing-xs) var(--spacing-sm); font-size: 0.85rem; }
+    .c-btn--large { padding: var(--spacing-md) var(--spacing-lg); font-size: 1.1rem; }
+
+    .c-badge {
+      display: inline-block; padding: 2px 10px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .c-badge--success { background: var(--color-success); color: #1e1e2e; }
+    .c-badge--warning { background: var(--color-warning); color: #1e1e2e; }
+    .c-badge--error { background: var(--color-error); color: #1e1e2e; }
+
+    /* ===== UTILITIES ===== */
+    .u-mt-lg { margin-top: var(--spacing-lg); }
+    .u-mb-md { margin-bottom: var(--spacing-md); }
+    .u-text-center { text-align: center; }
+    .u-flex-center { display: flex; align-items: center; justify-content: center; }
+    .u-gap-sm { gap: var(--spacing-sm); }
+
+    /* Example cards */
+    .example-card { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-lg); border: 1px solid var(--color-border); }
+    .pre { font-family: monospace; background: #181825; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; white-space: pre-wrap; border-left: 3px solid var(--color-primary); }
+  </style>
+</head>
+<body>
+  <div class="o-container">
+    <h1>CSS Architecture — Methodology Examples</h1>
+
+    <div class="example-card">
+      <h2>1. BEM Component: Card</h2>
+      <p>BEM naming: <code>.c-card</code> (Block), <code>.c-card__title</code> (Element), <code>.c-card--featured</code> (Modifier)</p>
+      <div class="o-flex o-flex--wrap u-mt-lg u-mb-md">
+        <div class="c-card" style="flex:1;">
+          <div class="c-card__title">Standard Card</div>
+          <div class="c-card__body">This is a regular BEM card. No modifier applied.</div>
+          <button class="c-btn c-btn--primary">Learn More</button>
+        </div>
+        <div class="c-card c-card--featured" style="flex:1;">
+          <div class="c-card__title">Featured Card</div>
+          <div class="c-card__body">This card uses the <code>--featured</code> modifier for emphasis.</div>
+          <button class="c-btn c-btn--primary">Learn More</button>
+        </div>
+      </div>
+      <div class="pre">.c-card { }\n.c-card__title { }\n.c-card__body { }\n.c-card--featured { }</div>
+    </div>
+
+    <div class="example-card">
+      <h2>2. BEM Component: Button</h2>
+      <p>Modular button system with BEM <code>--modifier</code> variants.</p>
+      <div class="o-flex o-flex--wrap u-mt-lg" style="gap:8px;">
+        <button class="c-btn c-btn--primary">Primary</button>
+        <button class="c-btn c-btn--outline">Outline</button>
+        <button class="c-btn c-btn--primary c-btn--small">Small</button>
+        <button class="c-btn c-btn--primary c-btn--large">Large</button>
+        <span class="c-badge c-badge--success">Success</span>
+        <span class="c-badge c-badge--warning">Warning</span>
+        <span class="c-badge c-badge--error">Error</span>
+      </div>
+      <div class="pre u-mt-lg">.c-btn { /* base button styles */ }\n.c-btn--primary { }\n.c-btn--outline { }\n.c-btn--small { }\n.c-btn--large { }</div>
+    </div>
+
+    <div class="example-card">
+      <h2>3. OOCSS: Separate Structure from Skin</h2>
+      <p>The same <code>.o-grid</code> object works with different visual themes.</p>
+      <div class="o-grid o-grid--3 u-mt-lg">
+        <div class="c-card" style="--color-surface: #313244;">Dark surface</div>
+        <div class="c-card" style="--color-surface: #45475a;">Alt surface</div>
+        <div class="c-card" style="--color-surface: #585b70;">Lighter surface</div>
+      </div>
+      <div class="pre u-mt-lg">/* Structure */\n.o-grid { display: grid; gap: 16px; }\n\n/* Skin */\n.theme-dark { background: #1e1e2e; color: #cdd6f4; }\n.theme-light { background: #fff; color: #333; }</div>
+    </div>
+
+    <div class="example-card">
+      <h2>4. SMACSS Categories</h2>
+      <p>Prefix conventions help identify each rule's purpose at a glance.</p>
+      <div class="pre">/* Layout */\n.l-header { }\n.l-sidebar { }\n.l-main { }\n\n/* State */\n.is-active { }\n.is-hidden { }\n.is-disabled { }\n\n/* Module */\n.modal { }\n.nav { }\n\n/* Theme */\n.theme-dark { }</div>
+    </div>
+
+    <div class="example-card">
+      <h2>5. Design Tokens in Action</h2>
+      <p>All components use CSS custom properties. Changing the tokens propagates everywhere.</p>
+      <div class="o-flex o-flex--wrap u-mt-lg" style="gap:8px;">
+        <button class="c-btn c-btn--primary">--color-primary</button>
+        <button class="c-btn c-btn--outline">Outline</button>
+        <span class="c-badge c-badge--success">--color-success</span>
+        <span class="c-badge c-badge--warning">--color-warning</span>
+      </div>
+      <div class="pre u-mt-lg">:root {\n  --color-primary: #667eea;\n  --color-success: #a6e3a1;\n  --color-warning: #f9e2af;\n  /* One change updates everything */\n}</div>
+    </div>
+
+    <div class="example-card">
+      <h2>6. Specificity Comparison</h2>
+      <div class="o-flex o-flex--wrap u-mt-lg" style="gap:16px;align-items:flex-start;">
+        <div style="flex:1;">
+          <strong style="color:var(--color-error);">❌ High specificity</strong>
+          <div class="pre u-mt-sm">#sidebar .widget ul li a {\n  color: red;\n}\n/* specificity: 0,1,0,4 */\n/* Hard to override */</div>
+        </div>
+        <div style="flex:1;">
+          <strong style="color:var(--color-success);">✅ Low specificity (flat)</strong>
+          <div class="pre u-mt-sm">.widget-link {\n  color: red;\n}\n/* specificity: 0,0,1,0 */\n/* Easy to override */</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

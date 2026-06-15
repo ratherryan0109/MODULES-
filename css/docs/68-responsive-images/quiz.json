@@ -1,0 +1,147 @@
+{
+  "module": "68-responsive-images",
+  "title": "Responsive Images",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What HTML attribute provides multiple image sources for resolution switching?",
+      "options": ["src", "srcset", "sizes", "media"],
+      "correctAnswer": 1,
+      "explanation": "srcset provides a list of image candidates with their widths or pixel densities."
+    },
+    {
+      "id": 2,
+      "question": "What does the w descriptor in srcset indicate?",
+      "options": ["Width in pixels", "Weight of image", "Width in characters", "Warnings"],
+      "correctAnswer": 0,
+      "explanation": "The 'w' descriptor indicates the actual width of the image in pixels (e.g., 400w)."
+    },
+    {
+      "id": 3,
+      "question": "Which HTML element allows art direction across breakpoints?",
+      "options": ["<img>", "<picture>", "<source>", "<figure>"],
+      "correctAnswer": 1,
+      "explanation": "The <picture> element allows different images at different breakpoints via <source> children."
+    },
+    {
+      "id": 4,
+      "question": "What does loading='lazy' do?",
+      "options": ["Loads image immediately", "Defers image loading until near viewport", "Prevents image loading", "Loads low-quality placeholder"],
+      "correctAnswer": 1,
+      "explanation": "loading='lazy' defers loading off-screen images until the user scrolls near them."
+    },
+    {
+      "id": 5,
+      "question": "Which CSS property controls how an image fills its container?",
+      "options": ["object-fit", "background-size", "overflow", "display"],
+      "correctAnswer": 0,
+      "explanation": "object-fit controls how replaced elements (like img) fill their container."
+    },
+    {
+      "id": 6,
+      "question": "What is the purpose of the sizes attribute in responsive images?",
+      "options": ["Sets image dimensions", "Tells browser the image display size", "Sets image quality", "Defines image format"],
+      "correctAnswer": 1,
+      "explanation": "sizes tells the browser how wide the image will be displayed, helping it choose the best srcset candidate."
+    },
+    {
+      "id": 7,
+      "question": "Which image format provides the best compression?",
+      "options": ["JPEG", "PNG", "WebP", "AVIF"],
+      "correctAnswer": 3,
+      "explanation": "AVIF typically provides 50% better compression than JPEG and 20% better than WebP."
+    },
+    {
+      "id": 8,
+      "question": "What should you always include as a fallback in <picture>?",
+      "options": ["<source> with type attribute", "<img> element", "<div> wrapper", "JavaScript"],
+      "correctAnswer": 1,
+      "explanation": "The <img> element inside <picture> serves as the fallback for unsupported browsers."
+    },
+    {
+      "id": 9,
+      "question": "What causes Cumulative Layout Shift (CLS) with images?",
+      "options": ["Large file size", "Missing width/height attributes", "Using srcset", "WebP format"],
+      "correctAnswer": 1,
+      "explanation": "Without explicit width/height, images cause layout shifts when they load."
+    },
+    {
+      "id": 10,
+      "question": "Which attribute prevents a hero image from being lazy loaded?",
+      "options": ["fetchpriority='high'", "priority='high'", "loading='eager'", "importance='high'"],
+      "correctAnswer": 2,
+      "explanation": "loading='eager' loads the image immediately (default). fetchpriority='high' also helps hero images."
+    },
+    {
+      "id": 11,
+      "question": "What does object-fit: cover do?",
+      "options": ["Stretches image to fit", "Crops to fill while maintaining aspect ratio", "Shows full image with letterboxing", "Repeats image"],
+      "correctAnswer": 1,
+      "explanation": "cover scales the image to fill the container, cropping excess to maintain aspect ratio."
+    },
+    {
+      "id": 12,
+      "question": "Which CSS function provides resolution-aware background images?",
+      "options": ["url()", "image-set()", "srcset()", "resolution()"],
+      "correctAnswer": 1,
+      "explanation": "image-set() in CSS provides resolution-aware background images similar to srcset."
+    },
+    {
+      "id": 13,
+      "question": "What is the default loading behavior for images?",
+      "options": ["lazy", "eager", "auto", "defer"],
+      "correctAnswer": 1,
+      "explanation": "Images default to loading='eager', meaning they load immediately."
+    },
+    {
+      "id": 14,
+      "question": "What should the alt attribute be for decorative images?",
+      "options": ["'Decorative image'", "'' (empty string)", "No alt attribute", "'Image'"],
+      "correctAnswer": 1,
+      "explanation": "Decorative images should have alt='' (empty) so screen readers ignore them."
+    },
+    {
+      "id": 15,
+      "question": "Which attribute pairs with srcset to tell the browser the display width?",
+      "options": ["width", "sizes", "media", "height"],
+      "correctAnswer": 1,
+      "explanation": "The sizes attribute tells the browser the image's display width at different breakpoints."
+    },
+    {
+      "id": 16,
+      "question": "What does the type attribute in <source> do?",
+      "options": ["Specifies MIME type", "Specifies element type", "Sets image size", "Defines media query"],
+      "correctAnswer": 0,
+      "explanation": "type specifies the MIME type (e.g., 'image/webp') for format selection."
+    },
+    {
+      "id": 17,
+      "question": "What is the recommended maximum number of srcset candidates?",
+      "options": ["1-2", "3-5", "10+", "No limit"],
+      "correctAnswer": 1,
+      "explanation": "3-5 candidates (e.g., 400w, 800w, 1200w, 1600w) is usually sufficient."
+    },
+    {
+      "id": 18,
+      "question": "Which tool optimizes images for web?",
+      "options": ["Photoshop", "Squoosh", "VS Code", "Chrome DevTools"],
+      "correctAnswer": 1,
+      "explanation": "Squoosh (by Google) is a free web tool for image optimization and format conversion."
+    },
+    {
+      "id": 19,
+      "question": "What is art direction in responsive images?",
+      "options": ["Serving different image crops at different viewports", "Adding CSS art to images", "Using different formats", "Changing image colors"],
+      "correctAnswer": 0,
+      "explanation": "Art direction means serving different image crops or compositions at different screen sizes."
+    },
+    {
+      "id": 20,
+      "question": "What is the purpose of aspect-ratio in CSS for images?",
+      "options": ["Sets image proportions", "Reserves space before image loads", "Crops the image", "Speeds up loading"],
+      "correctAnswer": 1,
+      "explanation": "aspect-ratio reserves the correct amount of space before the image loads, preventing layout shift."
+    }
+  ]
+}

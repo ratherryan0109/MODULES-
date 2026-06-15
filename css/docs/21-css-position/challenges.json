@@ -1,0 +1,86 @@
+{
+  "module": "CSS Position",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Fixed Header",
+      "description": "Create a fixed header that stays at the top of the page when scrolling. The header should be 60px tall, have a dark background with white text, and the page content should not be hidden behind it.",
+      "requirements": [
+        "Header must use position: fixed",
+        "Header should be full width",
+        "Content must not hide behind header",
+        "Header should have z-index to ensure it stays on top"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { margin: 0; padding-top: 60px; font-family: sans-serif; }\n  .header {\n    position: fixed;\n    top: 0; left: 0; width: 100%; height: 60px;\n    background: #333; color: white;\n    display: flex; align-items: center; padding: 0 20px;\n    z-index: 1000;\n  }\n  .content { padding: 20px; }\n</style>\n</head>\n<body>\n  <div class=\"header\">Fixed Header</div>\n  <div class=\"content\">\n    <p>Content goes here...</p>\n  </div>\n</body>\n</html>",
+        "explanation": "Padding-top on body prevents content from being hidden behind the fixed header."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Overlay a Badge on a Card",
+      "description": "Create a product card with a 'Sale' badge positioned at the top-right corner using absolute positioning.",
+      "requirements": [
+        "Card container must have position: relative",
+        "Badge must use position: absolute",
+        "Badge should be at top-right corner",
+        "Badge should have a distinct color"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  .card {\n    position: relative;\n    width: 250px; height: 300px;\n    border: 1px solid #ddd;\n    border-radius: 8px;\n    margin: 50px auto;\n    overflow: hidden;\n  }\n  .badge {\n    position: absolute;\n    top: 10px; right: 10px;\n    background: #e94560;\n    color: white;\n    padding: 5px 10px;\n    border-radius: 4px;\n    font-weight: bold;\n  }\n  .card-image {\n    height: 150px;\n    background: #f0f0f0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n</style>\n</head>\n<body>\n  <div class=\"card\">\n    <div class=\"card-image\">Product Image</div>\n    <div class=\"badge\">Sale!</div>\n  </div>\n</body>\n</html>",
+        "explanation": "The card has position: relative to act as a containing block. The badge uses position: absolute with top and right offsets to stick to the top-right corner."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Modal Dialog with Overlay",
+      "description": "Create a modal dialog that appears centered on screen with a semi-transparent overlay behind it. The modal should be closable.",
+      "requirements": [
+        "Overlay must cover entire viewport using fixed positioning",
+        "Modal content must be centered both vertically and horizontally",
+        "Include a close button positioned in the top-right of the modal",
+        "Modal should have a z-index higher than the overlay"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  .overlay {\n    position: fixed;\n    top: 0; left: 0; width: 100%; height: 100%;\n    background: rgba(0,0,0,0.5);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 1000;\n  }\n  .modal {\n    position: relative;\n    background: white;\n    padding: 30px;\n    border-radius: 8px;\n    max-width: 400px;\n    width: 90%;\n    z-index: 1001;\n  }\n  .close {\n    position: absolute;\n    top: 10px; right: 15px;\n    font-size: 24px;\n    cursor: pointer;\n    background: none;\n    border: none;\n  }\n</style>\n</head>\n<body>\n  <div class=\"overlay\" id=\"overlay\">\n    <div class=\"modal\">\n      <button class=\"close\" onclick=\"document.getElementById('overlay').style.display='none'\">&times;</button>\n      <h2>Modal Title</h2>\n      <p>This is a modal dialog example.</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "The overlay uses fixed positioning to cover the viewport. Flexbox centers the modal. The close button is absolutely positioned within the modal (which has position: relative)."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Sticky Section Headers",
+      "description": "Create a list with section headers that stick to the top when scrolling through content sections.",
+      "requirements": [
+        "Each section must have a sticky header",
+        "The header should stick when its section is scrolled into view",
+        "Create at least 3 sections with content",
+        "The container should have a fixed height with scroll"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  .list-container {\n    height: 400px;\n    overflow-y: auto;\n    border: 1px solid #ccc;\n    max-width: 500px;\n    margin: 50px auto;\n  }\n  .section-header {\n    position: sticky;\n    top: 0;\n    background: #4a90d9;\n    color: white;\n    padding: 10px 15px;\n    font-weight: bold;\n  }\n  .section-content {\n    padding: 15px;\n    min-height: 150px;\n    background: #f9f9f9;\n  }\n</style>\n</head>\n<body>\n  <div class=\"list-container\">\n    <div class=\"section-header\">Section A</div>\n    <div class=\"section-content\">Content A</div>\n    <div class=\"section-header\">Section B</div>\n    <div class=\"section-content\">Content B</div>\n    <div class=\"section-header\">Section C</div>\n    <div class=\"section-content\">Content C</div>\n  </div>\n</body>\n</html>",
+        "explanation": "Each section-header uses position: sticky with top: 0. When scrolling, the header sticks to the top of the container until its section is scrolled past."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Full Page Layout with All Position Types",
+      "description": "Create a full-page layout that demonstrates all five position types working together: static for content, relative for containers, absolute for badges/labels, fixed for navbar, and sticky for section headers.",
+      "requirements": [
+        "Fixed navigation bar at top",
+        "Hero section with relative container and absolutely positioned overlay text",
+        "Content sections with sticky sub-headers",
+        "Product cards with absolute badges",
+        "A fixed 'back to top' button"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  body { padding-top: 60px; font-family: sans-serif; }\n\n  /* Fixed Navbar */\n  .navbar {\n    position: fixed;\n    top: 0; left: 0; width: 100%; height: 60px;\n    background: #333; color: white;\n    display: flex; align-items: center; padding: 0 20px;\n    z-index: 1000;\n  }\n\n  /* Hero Section with Relative + Absolute */\n  .hero {\n    position: relative;\n    height: 300px;\n    background: #4a90d9;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n  }\n  .hero-overlay {\n    position: absolute;\n    bottom: 20px; right: 20px;\n    background: rgba(0,0,0,0.5);\n    padding: 10px;\n    border-radius: 4px;\n  }\n\n  /* Sticky Headers */\n  .sticky-header {\n    position: sticky;\n    top: 60px;\n    background: #e94560;\n    color: white;\n    padding: 10px 20px;\n    z-index: 500;\n  }\n\n  /* Product Cards */\n  .products { display: flex; gap: 20px; padding: 20px; flex-wrap: wrap; }\n  .card {\n    position: relative;\n    width: 200px; height: 250px;\n    border: 1px solid #ddd;\n    border-radius: 8px;\n    padding: 10px;\n  }\n  .badge {\n    position: absolute;\n    top: 5px; right: 5px;\n    background: #ff9800;\n    color: white;\n    padding: 3px 8px;\n    border-radius: 3px;\n    font-size: 12px;\n  }\n\n  /* Back to Top */\n  .back-to-top {\n    position: fixed;\n    bottom: 30px; right: 30px;\n    background: #333; color: white;\n    width: 50px; height: 50px;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    z-index: 1000;\n    text-decoration: none;\n  }\n</style>\n</head>\n<body>\n  <nav class=\"navbar\">Navbar (Fixed)</nav>\n\n  <section class=\"hero\">\n    <h1>Hero Section</h1>\n    <div class=\"hero-overlay\">Overlay (Absolute)</div>\n  </section>\n\n  <section>\n    <div class=\"sticky-header\">Products (Sticky Header)</div>\n    <div class=\"products\">\n      <div class=\"card\">\n        <div class=\"badge\">New</div>\n        Product 1\n      </div>\n      <div class=\"card\">\n        <div class=\"badge\">Sale</div>\n        Product 2\n      </div>\n      <div class=\"card\">\n        <div class=\"badge\">Hot</div>\n        Product 3\n      </div>\n    </div>\n  </section>\n\n  <a href=\"#\" class=\"back-to-top\">↑</a>\n</body>\n</html>",
+        "explanation": "This page combines all position types: fixed navbar and back-to-top button, relative hero with absolute overlay, sticky section header, and static default for body content with relative cards containing absolute badges."
+      }
+    }
+  ]
+}

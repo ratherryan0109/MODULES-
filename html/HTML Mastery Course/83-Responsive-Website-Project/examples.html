@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 83: Responsive Website Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    h1 { margin: 20px 0; color: #2c3e50; }
+    .demo-section { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h2 { color: #2c3e50; border-bottom: 2px solid #9b59b6; padding-bottom: 8px; margin-bottom: 15px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 0.9em; }
+    
+    /* Responsive Grid Demo */
+    .demo-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin: 15px 0; }
+    .demo-grid__item { background: #9b59b6; color: white; padding: 30px; text-align: center; border-radius: 4px; }
+    @media (min-width: 600px) { .demo-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .demo-grid { grid-template-columns: repeat(4, 1fr); } }
+    
+    /* Responsive Nav Demo */
+    .demo-nav { background: #2c3e50; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .demo-nav__list { display: none; list-style: none; gap: 1rem; }
+    .demo-nav__list--open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: #2c3e50; padding: 1rem; }
+    .demo-nav__list a { color: white; text-decoration: none; }
+    .demo-nav__toggle { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    @media (min-width: 768px) {
+      .demo-nav__toggle { display: none; }
+      .demo-nav__list { display: flex; flex-direction: row; position: static; padding: 0; }
+    }
+    
+    /* Responsive Card Demo */
+    .cards { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .card img { width: 100%; height: auto; }
+    .card__body { padding: 15px; }
+    .card__body h3 { margin-bottom: 8px; }
+    @media (min-width: 600px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+    
+    /* Fluid Layout Demo */
+    .fluid-demo { background: #e8f5e9; padding: 1rem; width: 90%; max-width: 600px; margin: 1rem auto; text-align: center; border-radius: 8px; }
+    
+    /* Responsive Table Demo */
+    .table-wrapper { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; white-space: nowrap; }
+    
+    .note { background: #e8f5e9; border-left: 4px solid #27ae60; padding: 10px 15px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Responsive Website Examples</h1>
+  <p>Resize your browser to see these components respond to different screen sizes.</p>
+
+  <div class="demo-section">
+    <h2>Example 1: Responsive Grid (CSS Grid + Media Queries)</h2>
+    <div class="demo-grid">
+      <div class="demo-grid__item">1</div>
+      <div class="demo-grid__item">2</div>
+      <div class="demo-grid__item">3</div>
+      <div class="demo-grid__item">4</div>
+    </div>
+    <pre>.demo-grid { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 600px) { .demo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .demo-grid { grid-template-columns: repeat(4, 1fr); } }</pre>
+    <div class="note">Resize to see 1 → 2 → 4 column grid</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Responsive Cards</h2>
+    <div class="cards">
+      <article class="card">
+        <img src="https://via.placeholder.com/400x250/3498db/ffffff?text=Card+1" alt="Card 1">
+        <div class="card__body"><h3>Card Title</h3><p>Responsive card component using CSS Grid.</p></div>
+      </article>
+      <article class="card">
+        <img src="https://via.placeholder.com/400x250/e74c3c/ffffff?text=Card+2" alt="Card 2">
+        <div class="card__body"><h3>Card Title</h3><p>Automatically adjusts to available space.</p></div>
+      </article>
+      <article class="card">
+        <img src="https://via.placeholder.com/400x250/2ecc71/ffffff?text=Card+3" alt="Card 3">
+        <div class="card__body"><h3>Card Title</h3><p>Images scale with max-width: 100%.</p></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Responsive Navigation</h2>
+    <div class="demo-nav">
+      <span style="color:white;font-weight:bold;">Logo</span>
+      <button class="demo-nav__toggle" onclick="toggleNav()">☰</button>
+      <ul class="demo-nav__list" id="nav-demo">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <script>function toggleNav(){document.getElementById('nav-demo').classList.toggle('demo-nav__list--open')}</script>
+    <pre>/* Mobile: hidden nav, show hamburger */
+.nav__list { display: none; }
+.nav__toggle { display: block; }
+
+/* Desktop: show nav, hide hamburger */
+@media (min-width: 768px) {
+  .nav__toggle { display: none; }
+  .nav__list { display: flex; }
+}</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Fluid Layout</h2>
+    <div class="fluid-demo">
+      <h3 style="margin-bottom:10px;">Fluid Container</h3>
+      <p>This box uses width: 90% and max-width: 600px. It scales with the viewport but never exceeds 600px.</p>
+      <code style="display:block;margin-top:10px;background:#c8e6c9;padding:5px;border-radius:4px;">.container { width: 90%; max-width: 600px; }</code>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Responsive Table (Horizontal Scroll)</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Department</th><th>Location</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>John Doe</td><td>john@example.com</td><td>555-0100</td><td>Engineering</td><td>New York</td><td>Active</td></tr>
+          <tr><td>Jane Smith</td><td>jane@example.com</td><td>555-0101</td><td>Design</td><td>San Francisco</td><td>Active</td></tr>
+          <tr><td>Bob Wilson</td><td>bob@example.com</td><td>555-0102</td><td>Marketing</td><td>Chicago</td><td>On Leave</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <pre>.table-wrapper { overflow-x: auto; }</pre>
+    <div class="note">Wrap wide tables in overflow-x: auto to enable horizontal scrolling on small screens</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Mobile-First Best Practices Checklist</h2>
+    <div style="padding:15px;">
+      <p>✅ <strong>Viewport meta tag</strong> - <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></p>
+      <p>✅ <strong>Relative units</strong> - Use rem, %, vw, vh instead of px for layout</p>
+      <p>✅ <strong>Flexible images</strong> - <code>img { max-width: 100%; height: auto; }</code></p>
+      <p>✅ <strong>Mobile-first CSS</strong> - Base styles for mobile, media queries for larger screens</p>
+      <p>✅ <strong>Touch targets</strong> - Minimum 44x44px tap targets</p>
+      <p>✅ <strong>Readable text</strong> - Base font size 16px minimum</p>
+      <p>✅ <strong>Responsive navigation</strong> - Hamburger menu on mobile, horizontal on desktop</p>
+      <p>✅ <strong>Adequate contrast</strong> - WCAG AA minimum contrast ratio of 4.5:1</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

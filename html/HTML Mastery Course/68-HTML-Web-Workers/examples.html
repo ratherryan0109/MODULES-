@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 68: HTML Web Workers - Examples</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f8f9fa; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #e67e22; padding-bottom: 10px; }
+        h2 { color: #d35400; margin-top: 30px; }
+        .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .example h3 { margin-top: 0; color: #e67e22; }
+        .controls { margin: 15px 0; }
+        button, input { padding: 8px 16px; margin: 5px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        button { background: #e67e22; color: white; border: none; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #d35400; }
+        button.danger { background: #e74c3c; }
+        button.danger:hover { background: #c0392b; }
+        button.success { background: #27ae60; }
+        button.success:hover { background: #229954; }
+        .output { background: #f1f1f1; padding: 10px; border-radius: 4px; font-family: monospace; min-height: 40px; margin: 10px 0; white-space: pre-wrap; word-break: break-all; max-height: 300px; overflow-y: auto; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.5; margin: 15px 0; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+        .flex { display: flex; gap: 20px; }
+        .flex > * { flex: 1; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; margin: 2px; }
+        .badge-warn { background: #fff3cd; color: #856404; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        .badge-success { background: #d4edda; color: #155724; }
+        .spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #e67e22; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        progress { width: 100%; height: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>HTML Web Workers - Interactive Examples</h1>
+<p>Web workers run JavaScript in background threads without blocking the UI.</p>
+
+<div class="note">
+    <strong>Note:</strong> Some examples require a local server or may not work when opened directly as a file (file:// protocol). Use VS Code Live Server or Python's http module.
+</div>
+
+<!-- EXAMPLE 1: Basic Worker Communication -->
+<div class="example" id="example1">
+    <h3>Example 1: Basic Worker Communication</h3>
+    <p>Create a simple worker that doubles numbers sent to it.</p>
+    
+    <div class="controls">
+        <input type="number" id="workerInput" value="42">
+        <button onclick="startBasicWorker()">🚀 Send to Worker</button>
+        <button class="danger" onclick="terminateWorker('basic')">⏹️ Terminate Worker</button>
+    </div>
+    <div class="output" id="basicWorkerOutput">Worker not started...</div>
+    
+    <div class="code-block">
+// Main script
+const worker = new Worker('js/basic-worker.js');
+worker.postMessage(42);
+worker.onmessage = (e) => console.log(e.data);
+
+// Worker script (basic-worker.js)
+self.onmessage = (e) => {
+    self.postMessage(e.data * 2);
+};
+    </div>
+</div>
+
+<!-- EXAMPLE 2: UI Blocking vs Worker -->
+<div class="example" id="example2">
+    <h3>Example 2: UI Blocking vs Worker</h3>
+    <p>Compare how a heavy computation affects UI responsiveness with and without workers.</p>
+    
+    <div class="flex">
+        <div>
+            <h4>❌ Without Worker (Freezes UI)</h4>
+            <button class="danger" onclick="runWithoutWorker()">Run Heavy Task (No Worker)</button>
+            <div class="output" id="noWorkerOutput">Click to run...</div>
+        </div>
+        <div>
+            <h4>✅ With Worker (No Freeze)</h4>
+            <button class="success" onclick="runWithWorker()">Run Heavy Task (Worker)</button>
+            <div class="output" id="withWorkerOutput">Click to run...</div>
+        </div>
+    </div>
+    <div>
+        <p>UI Responsiveness: <span id="uiStatus">✅ Responsive</span></p>
+        <button onclick="testUI()">🔄 Click to test UI</button>
+        <span id="uiCounter" style="font-weight:bold;margin-left:10px;">0</span>
+    </div>
+    
+    <div class="code-block">
+// ❌ Main thread (blocks UI)
+function heavyTask() {
+    let sum = 0;
+    for (let i = 0; i < 1000000000; i++) { sum += i; }
+    return sum;
+}
+
+// ✅ Worker (non-blocking)
+const worker = new Worker('js/heavy-worker.js');
+worker.postMessage(1000000000);
+worker.onmessage = (e) => { /* update UI */ };
+    </div>
+</div>
+
+<!-- EXAMPLE 3: Progress Reporting -->
+<div class="example" id="example3">
+    <h3>Example 3: Progress Reporting</h3>
+    <p>Worker sends progress updates back to the main thread.</p>
+    
+    <div class="controls">
+        <label>Array size: <input type="number" id="arraySize" value="10000000"></label>
+        <button onclick="startProgressTask()">▶️ Start Processing</button>
+        <button class="danger" onclick="cancelProgressTask()">⏹️ Cancel</button>
+    </div>
+    <div class="output" id="progressOutput">
+        <progress id="progressBar" value="0" max="100"></progress>
+        <div id="progressText">0% - Waiting to start...</div>
+    </div>
+    
+    <div class="code-block">
+// Worker sends periodic progress
+const total = data.length;
+const chunkSize = Math.floor(total / 100);
+for (let i = 0; i < total; i += chunkSize) {
+    // Process chunk...
+    self.postMessage({ 
+        type: 'progress', 
+        percent: Math.round(i / total * 100) 
+    });
+}
+self.postMessage({ type: 'complete', result: result });
+    </div>
+</div>
+
+<!-- EXAMPLE 4: Multiple Workers for Parallel Processing -->
+<div class="example" id="example4">
+    <h3>Example 4: Parallel Processing with Multiple Workers</h3>
+    <p>Distribute a large task across multiple CPU cores.</p>
+    
+    <div class="controls">
+        <label>Core count: <span id="coreCount">4</span></label>
+        <input type="range" id="coreSlider" min="1" max="8" value="4">
+        <label>Data points: <input type="number" id="dataPoints" value="10000000"></label>
+        <button onclick="runParallelProcessing()">⚡ Process in Parallel</button>
+    </div>
+    <div class="output" id="parallelOutput">Configure and click to run...</div>
+    
+    <div class="code-block">
+const numWorkers = navigator.hardwareConcurrency || 4;
+const workers = [];
+const chunkSize = Math.ceil(totalItems / numWorkers);
+
+for (let i = 0; i < numWorkers; i++) {
+    const worker = new Worker('worker.js');
+    worker.onmessage = handleResult;
+    workers.push(worker);
+    worker.postMessage({ 
+        start: i * chunkSize,
+        end: Math.min((i + 1) * chunkSize, totalItems)
+    });
+}
+    </div>
+</div>
+
+<!-- EXAMPLE 5: Image Processing (Simulated) -->
+<div class="example" id="example5">
+    <h3>Example 5: Data Processing Pipeline</h3>
+    <p>A multi-stage data processing pipeline using a worker: filter, transform, and aggregate.</p>
+    
+    <div class="controls">
+        <label>Generate <input type="number" id="dataCount" value="100000"> random numbers</label>
+        <button onclick="runDataPipeline()">🔧 Run Pipeline</button>
+    </div>
+    <div class="output" id="pipelineOutput">Configure and click to process...</div>
+    
+    <div class="code-block">
+// Pipeline stages in worker
+self.onmessage = (e) => {
+    let data = e.data;
+    // Stage 1: Filter positives
+    data = data.filter(n => n > 0);
+    // Stage 2: Transform
+    data = data.map(n => Math.sqrt(n));
+    // Stage 3: Aggregate
+    const result = {
+        sum: data.reduce((a, b) => a + b, 0),
+        avg: data.reduce((a, b) => a + b, 0) / data.length,
+        count: data.length
+    };
+    self.postMessage(result);
+};
+    </div>
+</div>
+
+<!-- EXAMPLE 6: Error Handling -->
+<div class="example" id="example6">
+    <h3>Example 6: Worker Error Handling</h3>
+    <p>Demonstrates how errors in workers are caught and handled.</p>
+    
+    <div class="controls">
+        <button onclick="runWorkerWithError()">⚠️ Trigger Worker Error</button>
+        <button onclick="runWorkerSafe()">✅ Run Safe Task</button>
+    </div>
+    <div class="output" id="errorOutput">Click a button to test error handling...</div>
+    
+    <div class="code-block">
+// Main script error handling
+worker.onerror = function(error) {
+    console.error('Worker error:', error.message);
+    error.preventDefault(); // Prevent default error dialog
+};
+
+// Worker throwing error
+self.onmessage = function(e) {
+    if (e.data === 'error') {
+        throw new Error('Intentional error!');
+    }
+    self.postMessage('Success!');
+};
+    </div>
+</div>
+
+<script>
+// ==========================================
+// EXAMPLE 1: Basic Worker Communication
+// ==========================================
+let basicWorker = null;
+
+function getWorkerUrl(code) {
+    const blob = new Blob([code], { type: 'application/javascript' });
+    const url = URL.createObjectURL(blob);
+    return url;
+}
+
+function startBasicWorker() {
+    const input = parseInt(document.getElementById('workerInput').value);
+    const output = document.getElementById('basicWorkerOutput');
+    
+    if (basicWorker) {
+        basicWorker.terminate();
+    }
+    
+    const workerCode = `
+        self.onmessage = function(e) {
+            const result = e.data * 2;
+            self.postMessage({ input: e.data, result: result, worker: 'BasicWorker' });
+        };
+    `;
+    
+    basicWorker = new Worker(getWorkerUrl(workerCode));
+    
+    basicWorker.onmessage = function(e) {
+        output.textContent = `✅ Worker received: ${e.data.input}\n🔢 Worker computed: ${e.data.input} × 2 = ${e.data.result}`;
+    };
+    
+    basicWorker.onerror = function(e) {
+        output.textContent = '❌ Worker error: ' + e.message;
+        e.preventDefault();
+    };
+    
+    basicWorker.postMessage(input);
+    output.textContent = `📤 Sent ${input} to worker...`;
+}
+
+function terminateWorker(type) {
+    if (type === 'basic' && basicWorker) {
+        basicWorker.terminate();
+        basicWorker = null;
+        document.getElementById('basicWorkerOutput').textContent = '⏹️ Worker terminated.';
+    }
+}
+
+// ==========================================
+// EXAMPLE 2: UI Blocking vs Worker
+// ==========================================
+let uiCounter = 0;
+
+function testUI() {
+    uiCounter++;
+    document.getElementById('uiCounter').textContent = uiCounter + ' clicks';
+    document.getElementById('uiStatus').textContent = '✅ Responsive';
+}
+
+function runWithoutWorker() {
+    const output = document.getElementById('noWorkerOutput');
+    output.textContent = '⏳ Computing... UI is frozen! Try clicking the test button.';
+    document.getElementById('uiStatus').textContent = '❌ Frozen!';
+    
+    // Heavy computation that blocks the UI
+    const start = Date.now();
+    let sum = 0;
+    for (let i = 0; i < 500000000; i++) {
+        sum += Math.sqrt(i);
+    }
+    const elapsed = Date.now() - start;
+    
+    output.textContent = `✅ Complete! Sum = ${sum.toFixed(2)}\n⏱️ Took ${elapsed}ms (UI was frozen!)`;
+    document.getElementById('uiStatus').textContent = '✅ Responsive (Task Complete)';
+}
+
+let heavyWorker = null;
+
+function runWithWorker() {
+    const output = document.getElementById('withWorkerOutput');
+    output.textContent = '⏳ Computing in worker... UI remains responsive! Try clicking the test button.';
+    document.getElementById('uiStatus').textContent = '✅ Responsive (Worker running)';
+    
+    if (heavyWorker) {
+        heavyWorker.terminate();
+    }
+    
+    const workerCode = `
+        self.onmessage = function(e) {
+            const iterations = e.data;
+            let sum = 0;
+            for (let i = 0; i < iterations; i++) {
+                sum += Math.sqrt(i);
+            }
+            self.postMessage({ sum: sum, iterations: iterations });
+        };
+    `;
+    
+    heavyWorker = new Worker(getWorkerUrl(workerCode));
+    
+    heavyWorker.onmessage = function(e) {
+        const elapsed = Date.now() - startTime;
+        output.textContent = `✅ Complete! Sum = ${e.data.sum.toFixed(2)}\n⏱️ Took ${elapsed}ms (UI was responsive!)`;
+        document.getElementById('uiStatus').textContent = '✅ Responsive (Task Complete)';
+    };
+    
+    heavyWorker.onerror = function(e) {
+        output.textContent = '❌ Worker error: ' + e.message;
+        e.preventDefault();
+    };
+    
+    const startTime = Date.now();
+    heavyWorker.postMessage(500000000);
+}
+
+// ==========================================
+// EXAMPLE 3: Progress Reporting
+// ==========================================
+let progressWorker = null;
+
+function startProgressTask() {
+    const size = parseInt(document.getElementById('arraySize').value) || 10000000;
+    const output = document.getElementById('progressOutput');
+    
+    if (progressWorker) {
+        progressWorker.terminate();
+    }
+    
+    const workerCode = `
+        self.onmessage = function(e) {
+            const size = e.data;
+            const chunkSize = Math.max(1, Math.floor(size / 100));
+            const results = [];
+            
+            for (let i = 0; i < size; i += chunkSize) {
+                // Simulate work
+                for (let j = 0; j < Math.min(chunkSize, 10000); j++) {
+                    results.push(Math.sqrt(i + j));
+                }
+                
+                const percent = Math.min(Math.round((i + chunkSize) / size * 100), 100);
+                self.postMessage({ type: 'progress', percent: percent });
+                
+                // Check if should cancel
+                // (In real scenario, check a flag)
+            }
+            
+            const sum = results.reduce((a, b) => a + b, 0);
+            self.postMessage({ 
+                type: 'complete', 
+                result: { sum: sum, count: results.length } 
+            });
+        };
+    `;
+    
+    progressWorker = new Worker(getWorkerUrl(workerCode));
+    
+    progressWorker.onmessage = function(e) {
+        const data = e.data;
+        if (data.type === 'progress') {
+            const bar = document.getElementById('progressBar');
+            bar.value = data.percent;
+            document.getElementById('progressText').textContent = data.percent + '% - Processing...';
+        } else if (data.type === 'complete') {
+            document.getElementById('progressBar').value = 100;
+            document.getElementById('progressText').textContent = 
+                `✅ Complete! Sum = ${data.result.sum.toFixed(2)}, Count = ${data.result.count.toLocaleString()}`;
+        }
+    };
+    
+    progressWorker.onerror = function(e) {
+        document.getElementById('progressText').textContent = '❌ Error: ' + e.message;
+        e.preventDefault();
+    };
+    
+    progressWorker.postMessage(size);
+    document.getElementById('progressText').textContent = '0% - Starting...';
+}
+
+function cancelProgressTask() {
+    if (progressWorker) {
+        progressWorker.terminate();
+        progressWorker = null;
+        document.getElementById('progressText').textContent = '⏹️ Cancelled by user.';
+        document.getElementById('progressBar').value = 0;
+    }
+}
+
+// ==========================================
+// EXAMPLE 4: Parallel Processing
+// ==========================================
+document.getElementById('coreSlider').addEventListener('input', function() {
+    document.getElementById('coreCount').textContent = this.value;
+});
+
+function runParallelProcessing() {
+    const numWorkers = parseInt(document.getElementById('coreSlider').value);
+    const totalPoints = parseInt(document.getElementById('dataPoints').value);
+    const output = document.getElementById('parallelOutput');
+    
+    output.textContent = `⚡ Starting ${numWorkers} workers to process ${totalPoints.toLocaleString()} data points...`;
+    
+    const workerCode = `
+        self.onmessage = function(e) {
+            const { start, end, id } = e.data;
+            let sum = 0;
+            for (let i = start; i < end; i++) {
+                sum += Math.sin(i) * Math.cos(i);
+            }
+            self.postMessage({ id: id, sum: sum, count: end - start });
+        };
+    `;
+    
+    const workers = [];
+    let completed = 0;
+    let totalSum = 0;
+    const startTime = Date.now();
+    
+    const chunkSize = Math.ceil(totalPoints / numWorkers);
+    
+    for (let i = 0; i < numWorkers; i++) {
+        const worker = new Worker(getWorkerUrl(workerCode));
+        const start = i * chunkSize;
+        const end = Math.min((i + 1) * chunkSize, totalPoints);
+        
+        worker.onmessage = function(e) {
+            completed++;
+            totalSum += e.data.sum;
+            output.textContent = `✅ Worker ${e.data.id + 1}/${numWorkers} complete (${e.data.count.toLocaleString()} items)\n` +
+                `📊 Progress: ${completed}/${numWorkers} workers done`;
+            
+            if (completed === numWorkers) {
+                const elapsed = Date.now() - startTime;
+                output.textContent = `🎉 All workers complete!\n📊 Total sum: ${totalSum.toFixed(4)}\n⏱️ Time: ${elapsed}ms\n⚡ Workers used: ${numWorkers}`;
+            }
+        };
+        
+        worker.onerror = function(e) {
+            output.textContent = '❌ Worker error: ' + e.message;
+            e.preventDefault();
+        };
+        
+        workers.push(worker);
+        worker.postMessage({ start, end, id: i });
+    }
+}
+
+// ==========================================
+// EXAMPLE 5: Data Pipeline
+// ==========================================
+function runDataPipeline() {
+    const count = parseInt(document.getElementById('dataCount').value) || 100000;
+    const output = document.getElementById('pipelineOutput');
+    
+    output.textContent = '⏳ Generating data and processing in worker...';
+    
+    const workerCode = `
+        self.onmessage = function(e) {
+            const data = e.data;
+            
+            // Stage 1: Filter - keep only numbers > 0.5
+            const filtered = data.filter(n => n > 0.5);
+            self.postMessage({ type: 'stage', stage: 1, count: filtered.length });
+            
+            // Stage 2: Transform - square root
+            const transformed = filtered.map(n => Math.sqrt(n));
+            self.postMessage({ type: 'stage', stage: 2, completed: true });
+            
+            // Stage 3: Aggregate
+            const sum = transformed.reduce((a, b) => a + b, 0);
+            const result = {
+                originalCount: data.length,
+                filteredCount: filtered.length,
+                sum: sum,
+                average: sum / transformed.length,
+                min: Math.min(...transformed),
+                max: Math.max(...transformed)
+            };
+            
+            self.postMessage({ type: 'complete', result: result });
+        };
+    `;
+    
+    const worker = new Worker(getWorkerUrl(workerCode));
+    
+    worker.onmessage = function(e) {
+        const data = e.data;
+        if (data.type === 'stage') {
+            if (data.stage === 1) {
+                output.textContent = `Stage 1: Filtered ${data.count.toLocaleString()} items > 0.5...`;
+            }
+        } else if (data.type === 'complete') {
+            const r = data.result;
+            output.textContent = 
+                `📊 Pipeline Complete\n` +
+                `├─ Original: ${r.originalCount.toLocaleString()} items\n` +
+                `├─ After filter: ${r.filteredCount.toLocaleString()} items\n` +
+                `├─ Sum: ${r.sum.toFixed(4)}\n` +
+                `├─ Average: ${r.average.toFixed(6)}\n` +
+                `├─ Min: ${r.min.toFixed(6)}\n` +
+                `└─ Max: ${r.max.toFixed(6)}`;
+        }
+    };
+    
+    worker.onerror = function(e) {
+        output.textContent = '❌ Worker error: ' + e.message;
+        e.preventDefault();
+    };
+    
+    // Generate random data
+    const data = Array.from({ length: count }, () => Math.random());
+    worker.postMessage(data);
+}
+
+// ==========================================
+// EXAMPLE 6: Error Handling
+// ==========================================
+let errorWorker = null;
+
+function createErrorWorker() {
+    const workerCode = `
+        self.onmessage = function(e) {
+            if (e.data === 'error') {
+                // This will throw an error
+                throw new Error('Intentional worker error at ' + new Date().toLocaleTimeString());
+            }
+            self.postMessage('✅ Task completed successfully at ' + new Date().toLocaleTimeString());
+        };
+    `;
+    return new Worker(getWorkerUrl(workerCode));
+}
+
+function runWorkerWithError() {
+    const output = document.getElementById('errorOutput');
+    
+    if (errorWorker) errorWorker.terminate();
+    errorWorker = createErrorWorker();
+    
+    errorWorker.onmessage = function(e) {
+        output.textContent = e.data;
+    };
+    
+    errorWorker.onerror = function(e) {
+        output.textContent = '⚠️ Caught worker error: ' + e.message + '\n📁 File: ' + e.filename + '\n📍 Line: ' + e.lineno + '\n✅ Error was handled gracefully!';
+        e.preventDefault();
+    };
+    
+    errorWorker.postMessage('error');
+}
+
+function runWorkerSafe() {
+    const output = document.getElementById('errorOutput');
+    
+    if (errorWorker) errorWorker.terminate();
+    errorWorker = createErrorWorker();
+    
+    errorWorker.onmessage = function(e) {
+        output.textContent = e.data;
+    };
+    
+    errorWorker.onerror = function(e) {
+        output.textContent = '❌ Error: ' + e.message;
+        e.preventDefault();
+    };
+    
+    errorWorker.postMessage('safe');
+}
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', function() {
+    if (basicWorker) basicWorker.terminate();
+    if (heavyWorker) heavyWorker.terminate();
+    if (progressWorker) progressWorker.terminate();
+    if (errorWorker) errorWorker.terminate();
+});
+</script>
+
+</body>
+</html>

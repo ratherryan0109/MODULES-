@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile-First Design Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; line-height: 1.6; color: #333; padding: 1rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { color: #2563eb; margin-bottom: 1rem; }
+    h2 { color: #1e40af; margin: 2rem 0 0.5rem; font-size: 1.25rem; }
+    .demo { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; background: #dbeafe; color: #1e40af; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem; }
+
+    /* Mobile-first: Base styles (mobile) */
+
+    /* Example 1: Grid */
+    .ex1-grid { display: grid; gap: 0.5rem; }
+    .ex1-grid > div { background: #3b82f6; color: white; padding: 1.5rem; text-align: center; border-radius: 6px; font-size: 0.9rem; }
+    @media (min-width: 600px) { .ex1-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
+    @media (min-width: 900px) { .ex1-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; } .ex1-grid > div { padding: 2rem; font-size: 1rem; } }
+
+    /* Example 2: Navigation */
+    .ex2-nav { background: #1e293b; border-radius: 8px; position: relative; }
+    .ex2-nav .hamburger { display: block; background: none; border: none; color: white; padding: 1rem; cursor: pointer; font-size: 1.5rem; }
+    .ex2-nav .links { display: none; list-style: none; }
+    .ex2-nav .links.active { display: block; }
+    .ex2-nav .links li { border-top: 1px solid #334155; }
+    .ex2-nav .links a { display: block; padding: 0.75rem 1rem; color: white; text-decoration: none; }
+    .ex2-nav .links a:hover { background: #334155; }
+    @media (min-width: 768px) {
+      .ex2-nav { display: flex; align-items: center; padding: 0 1rem; }
+      .ex2-nav .hamburger { display: none; }
+      .ex2-nav .links { display: flex !important; margin-left: auto; }
+      .ex2-nav .links li { border-top: none; }
+      .ex2-nav .links a { padding: 1rem; }
+    }
+
+    /* Example 3: Content prioritization */
+    .ex3-content { display: flex; flex-direction: column; gap: 0.5rem; }
+    .ex3-content .primary { background: #10b981; color: white; padding: 2rem; border-radius: 6px; font-weight: 600; text-align: center; }
+    .ex3-content .secondary { background: #f1f5f9; padding: 1rem; border-radius: 6px; font-size: 0.85rem; color: #64748b; text-align: center; }
+    .ex3-content .tertiary { background: #f8fafc; padding: 0.75rem; border-radius: 6px; font-size: 0.8rem; color: #94a3b8; text-align: center; }
+    @media (min-width: 600px) { .ex3-content { flex-direction: row; } .ex3-content .primary { flex: 2; } .ex3-content .secondary { flex: 1; } }
+
+    /* Example 4: Typography scaling */
+    .ex4-text h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .ex4-text p { font-size: 0.9rem; color: #64748b; }
+    @media (min-width: 768px) { .ex4-text h3 { font-size: 1.5rem; } .ex4-text p { font-size: 1rem; } }
+    @media (min-width: 1024px) { .ex4-text h3 { font-size: 1.75rem; } }
+
+    /* Example 5: Cards auto-fit */
+    .ex5-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .ex5-cards > div { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; }
+
+    /* Example 6: Touch-friendly buttons */
+    .ex6-buttons { display: flex; flex-direction: column; gap: 0.5rem; }
+    .ex6-buttons button { width: 100%; padding: 0.75rem; font-size: 1rem; border: none; border-radius: 6px; cursor: pointer; min-height: 44px; }
+    .ex6-buttons .primary { background: #3b82f6; color: white; }
+    .ex6-buttons .secondary { background: #e2e8f0; color: #333; }
+    @media (min-width: 600px) { .ex6-buttons { flex-direction: row; } .ex6-buttons button { width: auto; padding: 0.75rem 1.5rem; } }
+
+    /* Example 7: Mobile-first footer */
+    .ex7-footer { background: #1e293b; color: #94a3b8; padding: 1.5rem; border-radius: 8px; text-align: center; font-size: 0.85rem; }
+    .ex7-footer .links { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .ex7-footer a { color: #94a3b8; text-decoration: none; }
+    @media (min-width: 768px) { .ex7-footer .links { flex-direction: row; justify-content: center; gap: 1.5rem; } }
+
+    /* Example 8: Form */
+    .ex8-form { display: flex; flex-direction: column; gap: 0.75rem; }
+    .ex8-form label { font-size: 0.85rem; font-weight: 500; }
+    .ex8-form input { width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 16px; }
+    .ex8-form button { padding: 0.75rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; min-height: 44px; }
+    @media (min-width: 600px) { .ex8-form { max-width: 400px; } }
+
+    /* Toggle for hamburger demo */
+    .show-links .links { display: block !important; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mobile-First Design Examples</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Each example starts with mobile styles (base) and enhances for larger screens. Resize browser to see the progression.</p>
+
+    <div class="demo">
+      <span class="badge">Example 1</span>
+      <h2>Grid: Mobile 1 col → Tablet 2 col → Desktop 4 col</h2>
+      <div class="ex1-grid">
+        <div>Item 1</div><div>Item 2</div><div>Item 3</div><div>Item 4</div>
+        <div>Item 5</div><div>Item 6</div><div>Item 7</div><div>Item 8</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 2</span>
+      <h2>Navigation: Hamburger on mobile, horizontal on desktop</h2>
+      <nav class="ex2-nav" id="ex2nav">
+        <button class="hamburger" onclick="document.getElementById('ex2nav').classList.toggle('show-links')">☰</button>
+        <ul class="links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 3</span>
+      <h2>Content Prioritization: Primary first on mobile</h2>
+      <div class="ex3-content">
+        <div class="primary">Primary Content (shown first on mobile)</div>
+        <div class="secondary">Secondary Content</div>
+        <div class="tertiary">Tertiary Content</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 4</span>
+      <h2>Typography Scaling</h2>
+      <div class="ex4-text">
+        <h3>Heading scales with viewport</h3>
+        <p>Body text and headings increase in size on larger screens, improving readability on desktops while keeping mobile compact.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 5</span>
+      <h2>Auto-Fit Cards (no media query needed)</h2>
+      <div class="ex5-cards">
+        <div>Card 1 - Auto layout</div>
+        <div>Card 2 - With minmax</div>
+        <div>Card 3 - Responsive</div>
+        <div>Card 4 - Without media queries</div>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-top:0.5rem;">Using `grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))`</p>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 6</span>
+      <h2>Touch-Friendly: Full-width on mobile, inline on desktop</h2>
+      <div class="ex6-buttons">
+        <button class="primary">Primary Action</button>
+        <button class="secondary">Secondary</button>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-top:0.5rem;">Buttons are full-width (easy to tap) on mobile and inline on desktop. Minimum 44px height.</p>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 7</span>
+      <h2>Footer: Stacked on mobile, inline on desktop</h2>
+      <footer class="ex7-footer">
+        <div class="links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+        </div>
+        <p>&copy; 2026 Mobile-First Demo</p>
+      </footer>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 8</span>
+      <h2>Form: Full-width mobile, constrained desktop</h2>
+      <form class="ex8-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

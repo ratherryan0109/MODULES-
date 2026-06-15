@@ -1,0 +1,247 @@
+﻿{
+    "module":  "28-css-combinators",
+    "title":  "CSS Combinators",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "Which combinator selects all descendants at any nesting level?",
+                          "options":  [
+                                          "\u003e",
+                                          "+",
+                                          "~",
+                                          "space"
+                                      ],
+                          "explanation":  "The descendant combinator (a space) selects all elements that are descendants of the specified ancestor, at any depth.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  2,
+                          "question":  "What does the child combinator (\u003e) do?",
+                          "options":  [
+                                          "Selects all descendants",
+                                          "Selects only direct children",
+                                          "Selects adjacent siblings",
+                                          "Selects all siblings"
+                                      ],
+                          "explanation":  "The child combinator (\u003e) selects elements that are DIRECT children of the specified parent, not nested descendants.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What is the difference between + and ~ combinators?",
+                          "options":  [
+                                          "No difference",
+                                          "+ selects immediate sibling, ~ selects all following siblings",
+                                          "+ selects all siblings, ~ selects immediate",
+                                          "+ works with classes, ~ works with IDs"
+                                      ],
+                          "explanation":  "The adjacent sibling combinator (+) selects the immediately following sibling, while the general sibling combinator (~) selects all following siblings.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "Given the selector \u0027div \u003e p\u0027, what happens to a p inside a div that is inside another div?",
+                          "options":  [
+                                          "It\u0027s selected",
+                                          "It\u0027s NOT selected (not a direct child)",
+                                          "It depends on the class",
+                                          "It\u0027s selected with lower priority"
+                                      ],
+                          "explanation":  "The child combinator only selects direct children. A p nested deeper (div \u003e div \u003e p) is not a direct child and won\u0027t be selected.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  5,
+                          "question":  "What does the selector \u0027h2 + p\u0027 target?",
+                          "options":  [
+                                          "All p elements after h2",
+                                          "Only the first p after each h2",
+                                          "p elements before h2",
+                                          "All h2 and p elements"
+                                      ],
+                          "explanation":  "The adjacent sibling combinator (+) selects only the immediately following sibling. Only the first p after an h2 is selected.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  6,
+                          "question":  "How do browsers read CSS selectors?",
+                          "options":  [
+                                          "Left to right",
+                                          "Right to left",
+                                          "Top to bottom",
+                                          "Random access"
+                                      ],
+                          "explanation":  "Browsers read selectors right-to-left (inside-out). They first find the target element, then check if it matches the ancestor/sibling conditions.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  7,
+                          "question":  "What is the specificity of \u0027div \u003e p.highlight\u0027?",
+                          "options":  [
+                                          "0,0,2",
+                                          "0,1,1",
+                                          "0,1,2",
+                                          "0,2,0"
+                                      ],
+                          "explanation":  "The selector has one class (highlight) = 0,1,0 and two elements (div, p) = 0,0,2, totaling 0,1,1.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  8,
+                          "question":  "Which combinator would you use to select all li elements that are direct children of a ul?",
+                          "options":  [
+                                          "ul li",
+                                          "ul \u003e li",
+                                          "ul + li",
+                                          "ul ~ li"
+                                      ],
+                          "explanation":  "ul \u003e li uses the child combinator to select only li elements that are direct children of a ul, not nested within other lists.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  9,
+                          "question":  "What does the selector \u0027p ~ span\u0027 select?",
+                          "options":  [
+                                          "Span immediately after p",
+                                          "All spans that are siblings after any p",
+                                          "Span inside p",
+                                          "P inside span"
+                                      ],
+                          "explanation":  "The general sibling combinator (~) selects all spans that are siblings of and appear after any p in the same parent.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  10,
+                          "question":  "Can combinators be chained together?",
+                          "options":  [
+                                          "No, only one per selector",
+                                          "Yes, e.g., div \u003e ul \u003e li",
+                                          "Only + and ~ can be chained",
+                                          "Only space and \u003e can be chained"
+                                      ],
+                          "explanation":  "Combinators can be chained to create precise selection paths, e.g., div \u003e ul \u003e li selects li that are direct children of ul that are direct children of div.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  11,
+                          "question":  "What is the difference between \u0027.card .title\u0027 and \u0027.card \u003e .title\u0027?",
+                          "options":  [
+                                          "No difference",
+                                          "First selects any descendant, second only direct child",
+                                          "First selects direct child, second any descendant",
+                                          "Both select direct children"
+                                      ],
+                          "explanation":  ".card .title selects ANY .title inside .card (any depth), while .card \u003e .title selects only direct child .title elements.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  12,
+                          "question":  "Which selector would target a paragraph that comes immediately after an h3 inside an article?",
+                          "options":  [
+                                          "article h3 p",
+                                          "article h3 + p",
+                                          "article \u003e h3 + p",
+                                          "Both B and C"
+                                      ],
+                          "explanation":  "Both \u0027article h3 + p\u0027 and \u0027article \u003e h3 + p\u0027 would work. The first uses descendant, the second uses child, but both reach h3 and then use adjacent sibling.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  13,
+                          "question":  "What happens if no element matches a combinator selector?",
+                          "options":  [
+                                          "CSS error",
+                                          "Nothing - the style is ignored",
+                                          "The browser crashes",
+                                          "A warning is logged"
+                                      ],
+                          "explanation":  "If no element matches the selector, the styles are simply not applied. No error occurs.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  14,
+                          "question":  "Which is a performance concern with combinators?",
+                          "options":  [
+                                          "They always slow down CSS",
+                                          "Deep descendant selectors can be slower",
+                                          "They use more memory",
+                                          "They cause reflows"
+                                      ],
+                          "explanation":  "Very deep descendant selectors (e.g., div ul li a span) can be slower because the browser checks many elements right-to-left. Keep selectors shallow.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  15,
+                          "question":  "What is the recommended maximum depth for CSS selectors?",
+                          "options":  [
+                                          "1 level",
+                                          "3 levels",
+                                          "5 levels",
+                                          "No limit"
+                                      ],
+                          "explanation":  "Best practice recommends keeping selector depth to 3 levels or fewer for readability and performance.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  16,
+                          "question":  "The selector \u0027div p\u0027 uses which combinator?",
+                          "options":  [
+                                          "Child",
+                                          "Descendant",
+                                          "Adjacent sibling",
+                                          "General sibling"
+                                      ],
+                          "explanation":  "The space between div and p is the descendant combinator, selecting all p elements that are descendants of a div.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  17,
+                          "question":  "Can you use combinators with pseudo-classes?",
+                          "options":  [
+                                          "No",
+                                          "Yes, e.g., ul \u003e li:first-child",
+                                          "Only with :hover",
+                                          "Only with :nth-child"
+                                      ],
+                          "explanation":  "Combinators can be combined with pseudo-classes to create more specific selections, like ul \u003e li:first-child.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  18,
+                          "question":  "What does the selector \u0027nav a\u0027 select?",
+                          "options":  [
+                                          "Only direct children a of nav",
+                                          "All a elements inside nav at any depth",
+                                          "All nav elements that have a children",
+                                          "Only the first a inside nav"
+                                      ],
+                          "explanation":  "The descendant combinator (space) selects all a elements that are descendants of nav, regardless of nesting depth.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "What is an advantage of using combinators over adding more classes?",
+                          "options":  [
+                                          "Better performance always",
+                                          "Cleaner HTML with fewer classes",
+                                          "Higher specificity",
+                                          "Easier to override"
+                                      ],
+                          "explanation":  "Combinators allow you to target elements based on their position in the DOM, reducing the need for extra classes in the HTML.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  20,
+                          "question":  "Which combinator would you use to style a paragraph that follows an h2, but NOT paragraphs that come before it?",
+                          "options":  [
+                                          "h2 ~ p",
+                                          "h2 + p",
+                                          "p + h2",
+                                          "Both A and B would work"
+                                      ],
+                          "explanation":  "Both h2 + p (adjacent) and h2 ~ p (general sibling) select paragraphs that come AFTER h2. Neither selects paragraphs before h2.",
+                          "correctAnswer":  3
+                      }
+                  ]
+}

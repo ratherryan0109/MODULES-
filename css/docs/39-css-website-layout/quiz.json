@@ -1,0 +1,147 @@
+{
+    "module": "39-css-website-layout",
+    "title": "CSS Website Layout",
+    "difficulty": "advanced",
+    "questions": [
+        {
+            "id": 1,
+            "question": "Which CSS method is best for overall page layout structure?",
+            "options": ["CSS Grid", "Flexbox", "Float", "Inline-block"],
+            "correctAnswer": 0,
+            "explanation": "CSS Grid handles the two-dimensional page structure (rows and columns simultaneously), making it ideal for overall page layout."
+        },
+        {
+            "id": 2,
+            "question": "What property defines grid area placements in a template?",
+            "options": ["grid-template-areas", "grid-area", "grid-template-columns", "grid-column"],
+            "correctAnswer": 0,
+            "explanation": "grid-template-areas defines named grid areas using ASCII-art-like strings that map to HTML elements."
+        },
+        {
+            "id": 3,
+            "question": "What is the Holy Grail layout?",
+            "options": ["Header, nav, main, aside, and footer sections", "A 3-column grid with equal widths", "A single-column responsive layout", "A fixed-width centered layout"],
+            "correctAnswer": 0,
+            "explanation": "The Holy Grail layout consists of a full-width header, three columns (nav, main, aside), and a full-width footer."
+        },
+        {
+            "id": 4,
+            "question": "Which unit is best for flexible column sizing in a layout?",
+            "options": ["fr", "px", "%", "em"],
+            "correctAnswer": 0,
+            "explanation": "The fr (fraction) unit distributes available space proportionally in CSS Grid tracks, unlike percentages which include gaps."
+        },
+        {
+            "id": 5,
+            "question": "What CSS property ensures a layout fills the full viewport height?",
+            "options": ["min-height: 100vh", "height: 100%", "height: auto", "min-height: 100%"],
+            "correctAnswer": 0,
+            "explanation": "min-height: 100vh ensures the layout container is at least as tall as the viewport, enabling the sticky footer pattern."
+        },
+        {
+            "id": 6,
+            "question": "What is the recommended approach for combining Grid and Flexbox in a website layout?",
+            "options": ["Use Grid for page structure, Flexbox for components", "Use Flexbox for everything", "Use Grid for everything", "Use only one layout method"],
+            "correctAnswer": 0,
+            "explanation": "The macro/micro approach uses Grid for the page skeleton (macro) and Flexbox for component-level layouts (micro) like navigation and cards."
+        },
+        {
+            "id": 7,
+            "question": "How do you create a sticky footer with CSS Grid?",
+            "options": ["grid-template-rows: auto 1fr auto with min-height: 100vh", "position: sticky on footer", "height: 100vh on body", "margin-top: auto on footer"],
+            "correctAnswer": 0,
+            "explanation": "grid-template-rows: auto 1fr auto with min-height: 100vh makes the middle row expand to fill space, pushing the footer down."
+        },
+        {
+            "id": 8,
+            "question": "What is required for position: sticky to work on a sidebar?",
+            "options": ["An explicit top, bottom, left, or right value", "A higher z-index", "overflow: visible on parent", "position: relative on parent"],
+            "correctAnswer": 0,
+            "explanation": "position: sticky requires at least one offset property (top, bottom, left, right) to define the threshold where it becomes fixed."
+        },
+        {
+            "id": 9,
+            "question": "Which responsive grid pattern creates columns that adapt without media queries?",
+            "options": ["repeat(auto-fit, minmax(250px, 1fr))", "grid-template-columns: 1fr 1fr 1fr", "display: flex", "width: 33%"],
+            "correctAnswer": 0,
+            "explanation": "repeat(auto-fit, minmax(250px, 1fr)) creates as many columns as fit with a minimum of 250px, adapting automatically to viewport width."
+        },
+        {
+            "id": 10,
+            "question": "What is a common mistake when using Flexbox for page layout?",
+            "options": ["Flexbox cannot create equal-height columns", "Flexbox is one-dimensional and struggles with two-dimensional page structure", "Flexbox doesn't support wrapping", "Flexbox is deprecated"],
+            "correctAnswer": 1,
+            "explanation": "Flexbox is one-dimensional (row OR column). For page layouts with rows AND columns, CSS Grid is the better choice."
+        },
+        {
+            "id": 11,
+            "question": "What does the grid-template-areas value '.' (dot) represent?",
+            "options": ["An empty cell in the grid", "A grid line", "A named area called dot", "A border between columns"],
+            "correctAnswer": 0,
+            "explanation": "A dot (.) in grid-template-areas represents an empty cell where no element is placed."
+        },
+        {
+            "id": 12,
+            "question": "How can you ensure a main content area has a maximum width for readability?",
+            "options": ["max-width: 800px; margin: 0 auto", "width: 800px", "min-width: 800px", "padding: 0 800px"],
+            "correctAnswer": 0,
+            "explanation": "max-width with margin: 0 auto ensures the content is centered and doesn't exceed optimal line length for readability."
+        },
+        {
+            "id": 13,
+            "question": "Which semantic HTML elements should replace generic divs for layout regions?",
+            "options": ["header, nav, main, aside, footer", "section, article, div", "span, div, p", "All divs are fine"],
+            "correctAnswer": 0,
+            "explanation": "Semantic HTML5 elements provide landmarks for screen reader navigation and improve SEO. They describe the purpose of each region."
+        },
+        {
+            "id": 14,
+            "question": "What is the purpose of the contain: layout property in layout components?",
+            "options": ["Prevents layout recalculations from propagating outside the container", "Hides overflow", "Speeds up animations", "Creates a new stacking context"],
+            "correctAnswer": 0,
+            "explanation": "contain: layout isolates the component's layout so changes inside don't cause recalculations outside, improving performance."
+        },
+        {
+            "id": 15,
+            "question": "What does the auto-fill keyword in grid-template-columns do?",
+            "options": ["Creates as many tracks as fit, keeping empty tracks", "Creates as many tracks as fit, collapsing empty ones", "Fills columns automatically", "Adds auto-sized columns"],
+            "correctAnswer": 0,
+            "explanation": "auto-fill creates grid tracks even if there aren't enough items to fill them. auto-fit collapses empty tracks."
+        },
+        {
+            "id": 16,
+            "question": "How should layout regions be ordered for accessibility when using CSS Grid?",
+            "options": ["Visual order can differ from DOM order, but semantic reading order matters", "Visual order must match DOM order exactly", "Grid always matches DOM order", "DOM order doesn't matter"],
+            "correctAnswer": 0,
+            "explanation": "CSS Grid placement changes visual order but not DOM order. Screen readers follow DOM order, so maintain logical DOM order."
+        },
+        {
+            "id": 17,
+            "question": "What is a dashboard layout pattern in CSS Grid?",
+            "options": ["Sidebar + header + main content area", "Single column only", "Holy Grail layout", "Centered single column"],
+            "correctAnswer": 0,
+            "explanation": "A dashboard layout typically has a sidebar (often sticky) on the left, a top header, and a main content area, sometimes with a right panel."
+        },
+        {
+            "id": 18,
+            "question": "What does the clamp() function enable in responsive layouts?",
+            "options": ["Fluid typography that scales between min and max without media queries", "Clamping elements to grid cells", "Fixed font sizes", "Responsive images"],
+            "correctAnswer": 0,
+            "explanation": "clamp(min, preferred, max) enables fluid typography and sizing that scales between defined minimum and maximum values."
+        },
+        {
+            "id": 19,
+            "question": "What is the correct way to center a grid item within its cell?",
+            "options": ["place-items: center on the grid container", "margin: 0 auto on the item", "text-align: center", "align: center"],
+            "correctAnswer": 0,
+            "explanation": "place-items: center is shorthand for align-items: center and justify-items: center, centering items in their grid cells."
+        },
+        {
+            "id": 20,
+            "question": "Why should you use gap instead of margins for spacing in grid and flex layouts?",
+            "options": ["gap prevents margin collapsing and double spacing", "gap is faster", "margins don't work in grid", "gap is the only supported method"],
+            "correctAnswer": 0,
+            "explanation": "gap provides consistent spacing between items without margin collapsing issues or the need to remove margins from first/last items."
+        }
+    ]
+}

@@ -1,0 +1,122 @@
+[
+    {
+        "question": "What is the maximum storage capacity typically available for Local Storage in modern browsers?",
+        "options": ["1 MB", "5-10 MB", "100 MB", "Unlimited"],
+        "answer": "b",
+        "explanation": "Most browsers provide 5-10 MB of storage per origin for Local Storage, though this can vary slightly between browsers."
+    },
+    {
+        "question": "Which method is used to store a value in Local Storage?",
+        "options": ["localStorage.store('key', 'value')", "localStorage.setItem('key', 'value')", "localStorage.put('key', 'value')", "localStorage.add('key', 'value')"],
+        "answer": "b",
+        "explanation": "localStorage.setItem('key', 'value') is the standard method for storing key-value pairs in Local Storage."
+    },
+    {
+        "question": "What does localStorage.getItem('nonexistent') return if the key does not exist?",
+        "options": ["undefined", "null", "false", "An empty string"],
+        "answer": "b",
+        "explanation": "getItem returns null when the requested key is not found in Local Storage, not undefined or false."
+    },
+    {
+        "question": "How can you store a JavaScript object in Local Storage?",
+        "options": ["Directly assign the object", "Using JSON.stringify()", "Using toString()", "Objects cannot be stored"],
+        "answer": "b",
+        "explanation": "Local Storage stores only strings. Objects must be serialized using JSON.stringify() before storing and parsed with JSON.parse() when retrieving."
+    },
+    {
+        "question": "Which event fires when Local Storage changes in another tab?",
+        "options": ["change", "storage", "update", "localchange"],
+        "answer": "b",
+        "explanation": "The 'storage' event is fired on other windows/tabs when Local Storage is modified. It does not fire on the tab that made the change."
+    },
+    {
+        "question": "What is the key difference between Local Storage and Session Storage?",
+        "options": ["Local Storage is faster", "Session Storage data is cleared when the tab closes", "Local Storage has higher capacity", "Session Storage can store objects"],
+        "answer": "b",
+        "explanation": "Session Storage data persists only for the duration of the page session. It is cleared when the tab or window is closed, while Local Storage persists indefinitely."
+    },
+    {
+        "question": "Which error is thrown when Local Storage exceeds its quota?",
+        "options": ["TypeError", "QuotaExceededError", "RangeError", "StorageError"],
+        "answer": "b",
+        "explanation": "When the storage quota is exceeded, a QuotaExceededError (code 22) is thrown. This must be caught with try-catch."
+    },
+    {
+        "question": "How do you remove a specific item from Local Storage?",
+        "options": ["localStorage.deleteItem('key')", "localStorage.removeItem('key')", "localStorage.unset('key')", "localStorage.clear('key')"],
+        "answer": "b",
+        "explanation": "localStorage.removeItem('key') removes the specified key from storage. localStorage.clear() removes all items."
+    },
+    {
+        "question": "What does localStorage.length return?",
+        "options": ["The total byte size of all stored data", "The number of stored key-value pairs", "The length of the longest value string", "The number of keys with string values"],
+        "answer": "b",
+        "explanation": "localStorage.length returns the number of key-value pairs currently stored in Local Storage for the origin."
+    },
+    {
+        "question": "Is Local Storage data sent to the server with HTTP requests?",
+        "options": ["Yes, automatically", "No, it stays client-side only", "Only for POST requests", "Only when explicitly configured"],
+        "answer": "b",
+        "explanation": "Local Storage data is never automatically sent to the server. It remains entirely client-side, unlike cookies which are sent with HTTP requests."
+    },
+    {
+        "question": "What is the scope of Local Storage?",
+        "options": ["Per browser window", "Per origin (protocol + host + port)", "Per domain only", "Per user profile"],
+        "answer": "b",
+        "explanation": "Local Storage is scoped to the origin, meaning the combination of protocol (http/https), hostname, and port number."
+    },
+    {
+        "question": "Which of the following is NOT a valid way to access Local Storage?",
+        "options": ["localStorage.setItem('key', 'val')", "localStorage['key'] = 'val'", "localStorage.key = 'val'", "localStorage('key', 'val')"],
+        "answer": "d",
+        "explanation": "localStorage('key', 'val') is not valid. Local Storage is an object with setItem/getItem methods, and also supports bracket and dot notation."
+    },
+    {
+        "question": "What happens when you try to store a function in Local Storage?",
+        "options": ["It is stored correctly", "It throws an error", "It is converted to a string '[object Function]' or JSON omits it", "It is automatically serialized"],
+        "answer": "c",
+        "explanation": "Functions cannot be serialized by JSON.stringify. If you try, the function is either omitted from the resulting JSON or converted to the string '[object Function]'."
+    },
+    {
+        "question": "What does localStorage.key(0) return?",
+        "options": ["The first key in the storage", "The first character of the first value", "The length of the first key", "A boolean indicating if the first key exists"],
+        "answer": "a",
+        "explanation": "localStorage.key(index) returns the key name at the specified index, allowing iteration over all stored items."
+    },
+    {
+        "question": "In which HTML specification was Local Storage introduced?",
+        "options": ["HTML4", "HTML5", "HTML 5.1", "HTML Living Standard"],
+        "answer": "b",
+        "explanation": "Local Storage was introduced as part of the Web Storage API in the HTML5 specification."
+    },
+    {
+        "question": "How can you check if Local Storage is available in the browser?",
+        "options": ["if (localStorage)", "if (typeof Storage !== 'undefined')", "if (window.localStorage === true)", "if (navigator.storage)"],
+        "answer": "b",
+        "explanation": "The standard way to check for Local Storage support is to verify that the Storage object exists using typeof Storage !== 'undefined'."
+    },
+    {
+        "question": "What is the data type of values stored in Local Storage?",
+        "options": ["Any JavaScript type", "String only", "Object only", "Number only"],
+        "answer": "b",
+        "explanation": "Local Storage stores all values as strings. Other data types are automatically converted to their string representation."
+    },
+    {
+        "question": "Can private browsing or incognito mode affect Local Storage?",
+        "options": ["No, it works the same", "Yes, it may be disabled or cleared on exit", "Only session storage is affected", "Only cookies are affected in incognito"],
+        "answer": "b",
+        "explanation": "In private/incognito mode, Local Storage is often disabled or the data is cleared when the browser session ends. This is why try-catch error handling is important."
+    },
+    {
+        "question": "What is the purpose of the 'storage' event's 'url' property?",
+        "options": ["The URL of the storage API documentation", "The URL of the page that made the change", "The URL of the stored resource", "The origin URL for cross-domain storage"],
+        "answer": "b",
+        "explanation": "The storage event's url property contains the URL of the document whose storage item changed, helping identify which page triggered the change."
+    },
+    {
+        "question": "How does Local Storage differ from cookies in terms of server communication?",
+        "options": ["Both are sent to the server", "Neither is sent to the server", "Cookies are sent to the server, Local Storage is not", "Local Storage is sent to the server, cookies are not"],
+        "answer": "c",
+        "explanation": "Cookies are automatically sent to the server with every HTTP request via headers. Local Storage data remains entirely on the client side and is never transmitted to the server automatically."
+    }
+]

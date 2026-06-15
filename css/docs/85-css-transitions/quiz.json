@@ -1,0 +1,147 @@
+{
+  "module": "85-css-transitions",
+  "title": "CSS Transitions",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the default value of transition-duration?",
+      "options": ["0s", "0.3s", "1s", "none"],
+      "correctAnswer": 0,
+      "explanation": "The default is 0s, meaning no transition occurs unless a duration is explicitly set."
+    },
+    {
+      "id": 2,
+      "question": "Which timing function creates a slow start and slow end?",
+      "options": ["ease", "linear", "ease-in", "ease-out"],
+      "correctAnswer": 0,
+      "explanation": "ease creates a slow start, speeds up, then slows down at the end."
+    },
+    {
+      "id": 3,
+      "question": "Which CSS property CANNOT be transitioned?",
+      "options": ["opacity", "transform", "display", "background-color"],
+      "correctAnswer": 2,
+      "explanation": "display is not animatable because it's discrete (block/none) with no intermediate values."
+    },
+    {
+      "id": 4,
+      "question": "What does the shorthand 'transition: all 0.5s ease-in 0.2s' specify?",
+      "options": ["property duration timing delay", "property timing duration delay", "duration property timing delay", "all properties are animated with 0.5s ease-in and 0.2s delay"],
+      "correctAnswer": 3,
+      "explanation": "The shorthand order is: property | duration | timing-function | delay."
+    },
+    {
+      "id": 5,
+      "question": "Which of these is a valid cubic-bezier value?",
+      "options": ["cubic-bezier(0.4, 0, 0.2, 1)", "cubic-bezier(1, 2, 3, 4)", "cubic-bezier(ease)", "cubic-bezier(0.5)"],
+      "correctAnswer": 0,
+      "explanation": "cubic-bezier takes 4 numeric parameters (x1, y1, x2, y2), typically between 0 and 1."
+    },
+    {
+      "id": 6,
+      "question": "What is the performance-optimal property to animate?",
+      "options": ["width", "height", "transform", "margin"],
+      "correctAnswer": 2,
+      "explanation": "transform is GPU-composited and doesn't trigger layout or paint."
+    },
+    {
+      "id": 7,
+      "question": "How do you respect reduced motion preferences for transitions?",
+      "options": ["@media (prefers-reduced-motion: no-preference)", "@media (motion: reduce)", "@media (prefers-reduced-motion: reduce)", "transition: none"],
+      "correctAnswer": 0,
+      "explanation": "Use prefers-reduced-motion: no-preference to gate animations for users who prefer reduced motion."
+    },
+    {
+      "id": 8,
+      "question": "What happens if you omit transition-property?",
+      "options": ["Nothing transitions", "All animatable properties transition", "Only transform transitions", "An error occurs"],
+      "correctAnswer": 1,
+      "explanation": "The default value for transition-property is 'all', so all animatable properties will transition."
+    },
+    {
+      "id": 9,
+      "question": "Which timing function is best for elements appearing on screen?",
+      "options": ["ease-in", "ease-out", "linear", "steps()"],
+      "correctAnswer": 1,
+      "explanation": "ease-out starts fast and decelerates, which feels natural for elements appearing."
+    },
+    {
+      "id": 10,
+      "question": "What does transition-delay: -0.5s do with a 2s duration?",
+      "options": ["Starts immediately", "Starts 0.5s into the transition", "Waits 0.5s", "Cancels the transition"],
+      "correctAnswer": 1,
+      "explanation": "A negative delay starts the transition immediately, as if it had already been running for 0.5s."
+    },
+    {
+      "id": 11,
+      "question": "Which is NOT a valid transition-timing-function?",
+      "options": ["ease", "linear", "bounce", "steps(4)"],
+      "correctAnswer": 2,
+      "explanation": "'bounce' is not a predefined CSS timing function. Use cubic-bezier to create bounce effects."
+    },
+    {
+      "id": 12,
+      "question": "How do you specify different durations for multiple properties?",
+      "options": ["transition-duration: 0.3s, 0.5s", "transition-duration: 0.3s 0.5s", "transition-duration: [0.3s, 0.5s]", "Use multiple style blocks"],
+      "correctAnswer": 0,
+      "explanation": "Comma-separate values in transition-duration to match comma-separated properties."
+    },
+    {
+      "id": 13,
+      "question": "What triggers a CSS transition?",
+      "options": ["A change in computed property value", "Page load", "JavaScript event listener", "All of the above"],
+      "correctAnswer": 0,
+      "explanation": "Transitions occur when a property changes from one value to another, typically via state changes like :hover."
+    },
+    {
+      "id": 14,
+      "question": "Which property is NOT GPU-accelerated?",
+      "options": ["opacity", "transform", "filter", "width"],
+      "correctAnswer": 3,
+      "explanation": "width changes trigger layout recalculations and are not GPU-accelerated."
+    },
+    {
+      "id": 15,
+      "question": "What does the steps() function do?",
+      "options": ["Creates a stepped animation with discrete jumps", "Adds more intermediate states", "Slows down the animation", "Creates a bouncing effect"],
+      "correctAnswer": 0,
+      "explanation": "steps() divides the animation into discrete intervals for a frame-by-frame effect."
+    },
+    {
+      "id": 16,
+      "question": "Can you transition from display: block to display: none?",
+      "options": ["Yes, with any timing", "No, display is not animatable", "Yes, but only with ease-in-out", "Only with JavaScript"],
+      "correctAnswer": 1,
+      "explanation": "display is a discrete property with no intermediate values, so it cannot be transitioned."
+    },
+    {
+      "id": 17,
+      "question": "What is the transition shorthand order?",
+      "options": ["property duration delay timing", "duration property timing delay", "property duration timing delay", "delay duration timing property"],
+      "correctAnswer": 2,
+      "explanation": "The shorthand order is: transition: property | duration | timing-function | delay."
+    },
+    {
+      "id": 18,
+      "question": "What effect does transition: none have?",
+      "options": ["Removes all transitions", "Sets duration to 0", "Disables only the specified property", "Creates a flush transition"],
+      "correctAnswer": 0,
+      "explanation": "transition: none removes all transition effects from an element."
+    },
+    {
+      "id": 19,
+      "question": "Which event fires when a transition completes?",
+      "options": ["transitionstart", "transitionend", "transitioncancel", "transitionrun"],
+      "correctAnswer": 1,
+      "explanation": "The transitionend event fires when a CSS transition has completed."
+    },
+    {
+      "id": 20,
+      "question": "What does will-change: transform do?",
+      "options": ["Promotes the element to its own layer", "Changes the transform property", "Removes transition", "Disables animation"],
+      "correctAnswer": 0,
+      "explanation": "will-change hints the browser to create a compositor layer for smoother animations."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"question":"What is the difference between Flexbox and CSS Grid?","answer":"Flexbox is for one-dimensional layouts (row OR column). CSS Grid is for two-dimensional layouts (rows AND columns simultaneously)."},
+    {"question":"What does display: flex do?","answer":"It creates a flex container, enabling flexbox layout for its direct children."},
+    {"question":"What is the default flex-direction?","answer":"The default is 'row', which arranges children horizontally from left to right."},
+    {"question":"What is the difference between justify-content and align-items?","answer":"justify-content aligns items along the main axis (horizontal in row). align-items aligns items along the cross axis (vertical in row)."},
+    {"question":"What is a CSS Grid track?","answer":"A track is a row or column in a CSS Grid. grid-template-columns defines column tracks; grid-template-rows defines row tracks."},
+    {"question":"What is the fr unit in CSS Grid?","answer":"fr stands for 'fraction'. It distributes available space proportionally among grid tracks. 1fr = 1 fraction of the available space."},
+    {"question":"What is position: relative used for?","answer":"position: relative positions an element relative to its normal position and creates a positioning context for absolute children."},
+    {"question":"What is the z-index property for?","answer":"z-index controls the stacking order of positioned elements. Higher values appear on top of lower values."},
+    {"question":"What happens when you float an element?","answer":"The element is taken out of normal flow and pushed to the left or right, allowing text to wrap around it."},
+    {"question":"What is the clear property?","answer":"clear forces an element below any floated elements on the specified side (left, right, both)."}
+  ],
+  "intermediate": [
+    {"question":"How do you create a Holy Grail layout with CSS Grid?","answer":"Use grid-template-areas to define header, nav, main, aside, and footer areas. Set grid-template-columns to 200px 1fr 250px and grid-template-rows to auto 1fr auto."},
+    {"question":"What is the difference between auto-fit and auto-fill in Grid?","answer":"auto-fit collapses empty grid tracks to 0, while auto-fill preserves the track sizes even when empty. auto-fit is better for responsive layouts."},
+    {"question":"How do you center content both horizontally and vertically with Flexbox?","answer":"display: flex; justify-content: center; align-items: center; on the parent container. Also set a height for the container to see vertical centering."},
+    {"question":"What does flex: 1 mean?","answer":"flex: 1 is shorthand for flex-grow: 1, flex-shrink: 1, flex-basis: 0. The item can grow and shrink equally to fill available space."},
+    {"question":"What is the order property in Flexbox?","answer":"order controls the visual order of flex items. Lower values appear first. Items with the same order follow source order."},
+    {"question":"How does position: sticky work?","answer":"position: sticky acts like relative positioning until the element reaches a threshold (top, bottom), then becomes fixed. It stays within its parent container."},
+    {"question":"What is the gap property and how does it differ from margin?","answer":"gap creates spacing between grid/flex items without affecting outer edges. margin adds space around individual elements including outer edges."},
+    {"question":"How do you create a responsive grid without media queries?","answer":"Use grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)). Items automatically wrap to new rows as the container width changes."},
+    {"question":"What is the difference between align-content and align-items?","answer":"align-items aligns items within a single row. align-content distributes space between multiple rows when there's extra space on the cross axis."},
+    {"question":"What is the align-self property?","answer":"align-self overrides the align-items value for an individual flex or grid item, letting it have different alignment from its siblings."}
+  ],
+  "advanced": [
+    {"question":"How does CSS Grid auto-placement algorithm work?","answer":"Grid auto-placement places items in order, filling each row/column based on grid-auto-flow (row or column). Items with explicit positions are placed first, then auto-placed items fill the remaining cells."},
+    {"question":"What is the difference between min-content, max-content, and fit-content?","answer":"min-content uses the smallest possible size. max-content uses the largest possible size without wrapping. fit-content clamps to min() of max-content and the specified size."},
+    {"question":"How do you create a masonry layout with CSS Grid?","answer":"CSS Grid doesn't natively support masonry (that's a feature coming to CSS). Use the columns property, JavaScript libraries like Masonry, or CSS subgrid with varying row spans."},
+    {"question":"What is the contain property and how does it relate to layout?","answer":"contain: layout style paint creates a containment context, isolating the element's rendering. This improves performance by limiting style/layout recalculation scope."},
+    {"question":"How does subgrid work in CSS Grid?","answer":"subgrid (grid-template-columns: subgrid) allows nested grids to align their tracks with the parent grid, maintaining a uniform rhythm across nesting levels."},
+    {"question":"What are the performance implications of nested flex containers?","answer":"Deeply nested flex containers can cause layout thrashing and performance issues. Each flex container requires the browser to calculate sizes and positions, which grows exponentially with nesting depth."},
+    {"question":"How does the writing-mode property affect flex and grid layouts?","answer":"writing-mode changes the block/inline flow direction. Flexbox's main/cross axes and Grid's row/column axes adapt to the writing mode, which is important for international layouts."},
+    {"question":"What is intrinsic web design and how does it relate to layout techniques?","answer":"Intrinsic web design, coined by Jen Simmons, combines Flexbox, Grid, intrinsic sizing, and media queries. It moves beyond fixed-width designs to truly flexible, content-aware layouts."},
+    {"question":"How do CSS container queries differ from media queries?","answer":"Container queries (@container) respond to the parent container's size, not the viewport. This allows components to adapt to their available space regardless of the overall viewport size."},
+    {"question":"What are grid-auto-rows and how do they affect implicit grid tracks?","answer":"grid-auto-rows sets the size of implicitly created rows (when items are placed beyond explicit tracks). Combined with grid-auto-columns, it controls the sizing of auto-generated tracks."}
+  ]
+}

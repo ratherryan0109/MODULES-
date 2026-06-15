@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the CSS filter property?", "answer": "The filter property applies visual effects like blur, brightness, and contrast to an element before it renders." },
+    { "question": "What does the blur() filter do?", "answer": "blur(radius) applies a Gaussian blur to the element. Larger values create more blur, e.g., blur(5px)." },
+    { "question": "What does the brightness() filter do?", "answer": "brightness(amount) adjusts the brightness of the element. Values above 1 lighten it; below 1 darken it. 0 makes it black." },
+    { "question": "What does the contrast() filter do?", "answer": "contrast(amount) adjusts the contrast. Values above 1 increase contrast; below 1 decrease it. 1 is normal." },
+    { "question": "What does the saturate() filter do?", "answer": "saturate(amount) adjusts color saturation. Values above 1 increase saturation; 0 makes the element grayscale." },
+    { "question": "What does the sepia() filter do?", "answer": "sepia(amount) applies a sepia tone effect. 1 is full sepia, 0 is unchanged (no effect)." },
+    { "question": "What does the hue-rotate() filter do?", "answer": "hue-rotate(angle) shifts all colors by the specified hue angle, e.g., hue-rotate(90deg) shifts colors by 90 degrees." },
+    { "question": "What does the invert() filter do?", "answer": "invert(amount) inverts the colors. 1 fully inverts (like a photo negative); 0 leaves unchanged." },
+    { "question": "What does the grayscale() filter do?", "answer": "grayscale(amount) converts colors to shades of gray. 1 is fully grayscale; 0 is unchanged." },
+    { "question": "Can you combine multiple filter functions?", "answer": "Yes, separate with spaces: filter: brightness(1.2) contrast(1.1) saturate(1.3)." }
+  ],
+  "intermediate": [
+    { "question": "What does the opacity() filter do and how is it different from the opacity property?", "answer": "filter: opacity(50%) is similar to the opacity property but uses GPU acceleration. Both make the element transparent." },
+    { "question": "How do you create a hover effect with CSS filters?", "answer": "Use filter: brightness(0.8) on hover for a darkening effect, or filter: saturate(1.5) for enhanced color on hover." },
+    { "question": "How do you animate CSS filters?", "answer": "Use CSS transitions or @keyframes on the filter property to smoothly animate between filter states." },
+    { "question": "What is the drop-shadow() filter and how is it different from box-shadow?", "answer": "drop-shadow() shadows the actual visible content (including transparent pixels), while box-shadow shadows the element's rectangular box." },
+    { "question": "How do you create a grayscale-to-color hover effect?", "answer": "Set filter: grayscale(1) by default and filter: grayscale(0) on hover with a transition." },
+    { "question": "How do filters affect element performance?", "answer": "Filters are GPU-accelerated but creating a new stacking context can impact memory. Heavy filters on many elements can reduce frame rate." },
+    { "question": "Can filters be applied to backgrounds only?", "answer": "For backgrounds, use backdrop-filter on a sibling or child element, or apply filter to a pseudo-element with the background." },
+    { "question": "What is the difference between filter and backdrop-filter?", "answer": "filter affects the element itself; backdrop-filter affects the area behind the element (its background)." },
+    { "question": "How do you create a vintage photo effect with filters?", "answer": "Combine sepia(), saturate(), and contrast(): filter: sepia(0.5) saturate(0.8) contrast(1.1)." },
+    { "question": "How do filters interact with CSS transforms?", "answer": "Filters are applied after transforms in the rendering pipeline. Both create a new stacking context and can be combined." }
+  ],
+  "advanced": [
+    { "question": "How do CSS filters interact with SVG filter equivalents?", "answer": "CSS filters map to SVG filter primitives (feGaussianBlur, feColorMatrix, etc.). Some advanced SVG filters have no CSS equivalent." },
+    { "question": "How do you use the url() filter to reference an SVG filter?", "answer": "filter: url(#svg-filter-id) applies a custom SVG filter defined with <filter> elements in the HTML." },
+    { "question": "How does the contrast() filter interact with the brightness() filter when combined?", "answer": "The order matters: brightness then contrast preserves detail differently than contrast then brightness. Experiment for desired effects." },
+    { "question": "How do filters affect accessibility and readability?", "answer": "Filters can reduce text contrast and readability. Always ensure text remains readable and respect prefers-reduced-motion for animated filters." },
+    { "question": "How do you implement a frosted glass effect with backdrop-filter?", "answer": "Use backdrop-filter: blur(10px) on a semi-transparent overlay element to blur the content behind it." },
+    { "question": "How do CSS filters work with the will-change property?", "answer": "will-change: filter hints the browser to optimize filter rendering, but should be used sparingly to avoid excessive GPU memory usage." },
+    { "question": "How do you create a duotone effect with CSS filters?", "answer": "Combine grayscale(), contrast(), brightness(), and a background-blend-mode overlay to simulate duotone effects." },
+    { "question": "What is the interaction between CSS filters and 3D transforms?", "answer": "Filters and 3D transforms both create stacking contexts. Elements with filters may not render correctly in 3D perspective when nested." },
+    { "question": "How do you debug CSS filters that are not working as expected?", "answer": "Check for stacking context issues, verify the filter syntax, test in browser DevTools, and remember that filters affect child elements." },
+    { "question": "How do you create a color-blindness simulation using CSS filters?", "answer": "Use combinations of hue-rotate, saturate, and custom SVG filter matrices to simulate different types of color blindness." }
+  ]
+}

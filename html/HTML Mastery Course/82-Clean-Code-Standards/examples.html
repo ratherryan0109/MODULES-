@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 82: Clean Code Standards Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 0.9em; }
+    code { font-family: 'Courier New', monospace; }
+    .note { background: #e8f5e9; border-left: 4px solid #27ae60; padding: 10px 15px; margin: 10px 0; }
+    .bad { background: #ffebee; border-left: 4px solid #e53935; padding: 10px 15px; margin: 5px 0; }
+    .good { background: #e8f5e9; border-left: 4px solid #43a047; padding: 10px 15px; margin: 5px 0; }
+    .demo-box { border: 2px solid #e0e0e0; padding: 15px; border-radius: 5px; margin: 10px 0; }
+    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .comparison { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<h1>Clean Code Standards - Before & After Examples</h1>
+<p>Each example shows "bad" code alongside the clean, maintainable version.</p>
+
+<!-- Example 1: Indentation and Formatting -->
+<div class="example">
+  <h2>Example 1: Consistent Indentation</h2>
+  
+  <div class="comparison">
+    <div class="bad">
+      <strong>❌ Bad: Inconsistent indentation</strong>
+      <pre>&lt;ul&gt;
+  &lt;li&gt;Item 1
+  &lt;li&gt;Item 2
+      &lt;ul&gt;
+     &lt;li&gt;Sub-item A&lt;/li&gt;
+    &lt;li&gt;Sub-item B&lt;/li&gt;
+      &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;</pre>
+    </div>
+    <div class="good">
+      <strong>✅ Good: Consistent 2-space indentation</strong>
+      <pre>&lt;ul&gt;
+  &lt;li&gt;
+    Item 1
+  &lt;/li&gt;
+  &lt;li&gt;
+    Item 2
+    &lt;ul&gt;
+      &lt;li&gt;Sub-item A&lt;/li&gt;
+      &lt;li&gt;Sub-item B&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;</pre>
+    </div>
+  </div>
+  
+  <div class="note">
+    <strong>Rule:</strong> Use 2-space indentation consistently. Each nesting level adds one indentation level. Close tags at the same level as their opening tag.
+  </div>
+</div>
+
+<!-- Example 2: BEM Naming -->
+<div class="example">
+  <h2>Example 2: BEM Naming Convention</h2>
+  
+  <div class="comparison">
+    <div class="bad">
+      <strong>❌ Bad: Unclear class names</strong>
+      <pre>&lt;div class="box"&gt;
+  &lt;div class="title"&gt;My Card&lt;/div&gt;
+  &lt;div class="content"&gt;
+    &lt;p class="text"&gt;Description&lt;/p&gt;
+    &lt;a class="link" href="#"&gt;Read&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="box"&gt;
+  &lt;div class="title"&gt;Another Card&lt;/div&gt;
+  &lt;div class="content"&gt;
+    &lt;p class="text"&gt;More text&lt;/p&gt;
+    &lt;a class="link special" href="#"&gt;Buy&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    <div class="good">
+      <strong>✅ Good: BEM naming</strong>
+      <pre>&lt;article class="card"&gt;
+  &lt;header class="card__header"&gt;
+    &lt;h2 class="card__title"&gt;My Card&lt;/h2&gt;
+  &lt;/header&gt;
+  &lt;div class="card__body"&gt;
+    &lt;p class="card__text"&gt;Description&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;footer class="card__footer"&gt;
+    &lt;a href="#" class="card__link"&gt;Read&lt;/a&gt;
+  &lt;/footer&gt;
+&lt;/article&gt;
+
+&lt;article class="card"&gt;
+  &lt;header class="card__header"&gt;
+    &lt;h2 class="card__title"&gt;Another Card&lt;/h2&gt;
+  &lt;/header&gt;
+  &lt;div class="card__body"&gt;
+    &lt;p class="card__text"&gt;More text&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;footer class="card__footer"&gt;
+    &lt;a href="#" class="card__link card__link--primary"&gt;Buy&lt;/a&gt;
+  &lt;/footer&gt;
+&lt;/article&gt;</pre>
+    </div>
+  </div>
+  
+  <div class="note">
+    <strong>BEM structure:</strong> Block__Element--Modifier. Example: <code>card__button--primary</code> = block "card", element "button", modifier "primary".
+  </div>
+</div>
+
+<!-- Example 3: Separation of Concerns -->
+<div class="example">
+  <h2>Example 3: Separation of Concerns</h2>
+  
+  <div class="comparison">
+    <div class="bad">
+      <strong>❌ Bad: Mixed concerns</strong>
+      <pre>&lt;button style="background: blue; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;" 
+        onclick="submitForm(); return false;" 
+        onmouseover="this.style.background='darkblue'" 
+        onmouseout="this.style.background='blue'"&gt;
+  Submit
+&lt;/button&gt;</pre>
+      <div style="background: #ffebee; padding: 10px; border-radius: 4px;">
+        ❌ HTML + CSS + JS all mixed together. Hard to maintain, no reusability.
+      </div>
+    </div>
+    <div class="good">
+      <strong>✅ Good: Separated concerns</strong>
+      <pre>&lt;button class="btn btn--primary" type="submit"&gt;
+  Submit
+&lt;/button&gt;
+
+&lt;!-- CSS --&gt;
+&lt;style&gt;
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .btn--primary { background: #3498db; color: white; }
+  .btn--primary:hover { background: #2980b9; }
+&lt;/style&gt;
+
+&lt;!-- JavaScript --&gt;
+&lt;script&gt;
+  document.querySelector('.btn--primary')
+    .addEventListener('click', submitForm);
+&lt;/script&gt;</pre>
+      <button class="btn btn--primary" type="button" style="background: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">Submit</button>
+      <div style="background: #e8f5e9; padding: 10px; border-radius: 4px; margin-top: 5px;">
+        ✅ Clean separation: HTML (structure), CSS (style), JS (behavior).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Example 4: Semantic vs. Div Soup -->
+<div class="example">
+  <h2>Example 4: Semantic HTML (Avoid Div Soup)</h2>
+  
+  <div class="comparison">
+    <div class="bad">
+      <strong>❌ Bad: Div Soup</strong>
+      <pre>&lt;div class="header"&gt;
+  &lt;div class="logo"&gt;Site&lt;/div&gt;
+  &lt;div class="nav"&gt;
+    &lt;div class="nav-item"&gt;Home&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="main"&gt;
+  &lt;div class="article"&gt;
+    &lt;div class="title"&gt;Article&lt;/div&gt;
+    &lt;div class="content"&gt;Text...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;
+  &lt;div&gt;&amp;copy; 2026&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    <div class="good">
+      <strong>✅ Good: Semantic elements</strong>
+      <pre>&lt;header&gt;
+  &lt;a href="/" class="logo"&gt;Site&lt;/a&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h1&gt;Article Title&lt;/h1&gt;
+    &lt;p&gt;Article content...&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026&lt;/p&gt;
+&lt;/footer&gt;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- Example 5: Code Organization with Comments -->
+<div class="example">
+  <h2>Example 5: Organized Code with Comments</h2>
+  
+  <div class="good">
+    <strong>✅ Well-organized HTML structure:</strong>
+    <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Page Title - Site&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- ========================================
+     HEADER
+     ======================================== --&gt;
+&lt;header class="site-header"&gt;
+  &lt;a href="/" class="site-header__logo"&gt;
+    &lt;img src="logo.svg" alt="Site Name"&gt;
+  &lt;/a&gt;
+  
+  &lt;!-- Primary Navigation --&gt;
+  &lt;nav class="nav" aria-label="Main"&gt;
+    &lt;ul class="nav__list"&gt;
+      &lt;li class="nav__item"&gt;&lt;a href="/" class="nav__link"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li class="nav__item"&gt;&lt;a href="/about" class="nav__link"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;!-- /HEADER --&gt;
+
+&lt;!-- ========================================
+     MAIN CONTENT
+     ======================================== --&gt;
+&lt;main class="main-content"&gt;
+  &lt;article class="post"&gt;
+    &lt;h1 class="post__title"&gt;Article Title&lt;/h1&gt;
+    &lt;p class="post__meta"&gt;Published: &lt;time datetime="2026-06-12"&gt;June 12, 2026&lt;/time&gt;&lt;/p&gt;
+    &lt;div class="post__content"&gt;
+      &lt;p&gt;Article content...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;!-- ========================================
+     FOOTER
+     ======================================== --&gt;
+&lt;footer class="site-footer"&gt;
+  &lt;p&gt;&amp;copy; 2026 Site Name. All rights reserved.&lt;/p&gt;
+&lt;/footer&gt;
+&lt;!-- /FOOTER --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+  </div>
+  
+  <div class="note">
+    <strong>Commenting guidelines:</strong> Use section comments (===) to separate major sections. Use /SECTION to close. Avoid inline comments for obvious code. Comment WHY, not WHAT.
+  </div>
+</div>
+
+<!-- Example 6: Data Attributes -->
+<div class="example">
+  <h2>Example 6: Using Data Attributes Properly</h2>
+  
+  <div class="comparison">
+    <div class="bad">
+      <strong>❌ Bad: Inline event handlers and unclear state</strong>
+      <pre>&lt;div id="myModal" class="modal" style="display:none;"&gt;
+  &lt;div class="modal-content"&gt;
+    &lt;span onclick="closeModal()"&gt;&amp;times;&lt;/span&gt;
+    &lt;p&gt;Modal content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;button onclick="openModal()"&gt;Open&lt;/button&gt;</pre>
+    </div>
+    <div class="good">
+      <strong>✅ Good: Data attributes and event listeners</strong>
+      <pre>&lt;div id="modal" class="modal" 
+     data-modal="confirmation" 
+     data-visible="false"
+     aria-hidden="true"&gt;
+  &lt;div class="modal__content"&gt;
+    &lt;button class="modal__close" 
+            data-action="close-modal" 
+            aria-label="Close modal"&gt;
+      &amp;times;
+    &lt;/button&gt;
+    &lt;p&gt;Modal content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;button data-action="open-modal" 
+        data-modal-id="modal"&gt;
+  Open
+&lt;/button&gt;
+
+&lt;!-- JavaScript handles behavior --&gt;
+&lt;script&gt;
+  const modal = document.getElementById('modal');
+  document.querySelector('[data-action="open-modal"]')
+    .addEventListener('click', () =&gt; {
+      modal.dataset.visible = 'true';
+      modal.setAttribute('aria-hidden', 'false');
+    });
+&lt;/script&gt;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- Example 7: DRY Principle -->
+<div class="example">
+  <h2>Example 7: DRY (Don't Repeat Yourself)</h2>
+  
+  <div class="comparison">
+    <div class="bad">
+      <strong>❌ Bad: Repeated code</strong>
+      <pre>&lt;div class="product-card"&gt;
+  &lt;img src="product-1.jpg" alt="Product 1"&gt;
+  &lt;h3&gt;Product 1&lt;/h3&gt;
+  &lt;p class="price"&gt;$19.99&lt;/p&gt;
+  &lt;button&gt;Add to Cart&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="product-card"&gt;
+  &lt;img src="product-2.jpg" alt="Product 2"&gt;
+  &lt;h3&gt;Product 2&lt;/h3&gt;
+  &lt;p class="price"&gt;$29.99&lt;/p&gt;
+  &lt;button&gt;Add to Cart&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="product-card"&gt;
+  &lt;img src="product-3.jpg" alt="Product 3"&gt;
+  &lt;h3&gt;Product 3&lt;/h3&gt;
+  &lt;p class="price"&gt;$39.99&lt;/p&gt;
+  &lt;button&gt;Add to Cart&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </div>
+    <div class="good">
+      <strong>✅ Good: Use templating (server-side or JS)</strong>
+      <pre>&lt;!-- Using JavaScript template --&gt;
+&lt;script type="text/template" id="product-template"&gt;
+  &lt;article class="product-card"&gt;
+    &lt;img src="{{image}}" alt="{{name}}"&gt;
+    &lt;h3 class="product-card__name"&gt;{{name}}&lt;/h3&gt;
+    &lt;p class="product-card__price"&gt;\${{price}}&lt;/p&gt;
+    &lt;button class="product-card__add-btn"&gt;Add to Cart&lt;/button&gt;
+  &lt;/article&gt;
+&lt;/script&gt;
+
+&lt;div id="products-container"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  const products = [
+    { image: 'product-1.jpg', name: 'Product 1', price: '19.99' },
+    { image: 'product-2.jpg', name: 'Product 2', price: '29.99' },
+    { image: 'product-3.jpg', name: 'Product 3', price: '39.99' }
+  ];
+  
+  const template = document.getElementById('product-template').innerHTML;
+  const container = document.getElementById('products-container');
+  
+  products.forEach(product =&gt; {
+    container.innerHTML += template
+      .replace(/\{\{image\}\}/g, product.image)
+      .replace(/\{\{name\}\}/g, product.name)
+      .replace(/\{\{price\}\}/g, product.price);
+  });
+&lt;/script&gt;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- Example 8: EditorConfig -->
+<div class="example">
+  <h2>Example 8: EditorConfig Configuration</h2>
+  
+  <pre># .editorconfig - Place at project root
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.html]
+indent_size = 2
+
+[*.css]
+indent_size = 2
+
+[*.{json,yml,yaml}]
+indent_size = 2</pre>
+  
+  <div class="note">
+    <strong>Why EditorConfig:</strong> Automatically maintains consistent coding styles across different editors and IDEs. Works with VS Code, Sublime, WebStorm, and most editors via plugins.
+  </div>
+</div>
+
+</body>
+</html>

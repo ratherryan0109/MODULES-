@@ -1,0 +1,130 @@
+{
+  "module": "121-utility-first-css",
+  "title": "Utility-First CSS",
+  "beginner": [
+    {
+      "question": "What is utility-first CSS?",
+      "answer": "Utility-first CSS is an approach that uses small, single-purpose classes (utilities) to build designs directly in HTML. Instead of writing custom CSS, you compose styles by applying utility classes like `.text-center`, `.p-4`, `.bg-blue-500`."
+    },
+    {
+      "question": "How does utility-first CSS differ from semantic CSS?",
+      "answer": "Semantic CSS uses descriptive class names (`.card`, `.btn-primary`) that abstract the styling. Utility-first CSS uses presentational class names (`.bg-white`, `.text-lg`, `.rounded`) that directly describe the visual properties."
+    },
+    {
+      "question": "What is the main advantage of utility-first CSS?",
+      "answer": "The main advantage is rapid prototyping and consistency. You don't need to invent class names, switch between files, or worry about specificity. All styling happens in HTML, making it easy to see exactly what an element looks like."
+    },
+    {
+      "question": "What is a 'utility class' in CSS?",
+      "answer": "A utility class is a single-purpose CSS class that does one thing well. Examples: `.hidden { display: none; }`, `.text-center { text-align: center; }`, `.mt-4 { margin-top: 1rem; }`. Utilities are immutable and composable."
+    },
+    {
+      "question": "What is the biggest criticism of utility-first CSS?",
+      "answer": "The biggest criticism is HTML verbosity and readability. Elements can accumulate many classes (`.flex items-center justify-between p-4 bg-white shadow-md rounded-lg`), making HTML harder to read and maintain for some developers."
+    },
+    {
+      "question": "How does utility-first CSS handle the 'separation of concerns' principle?",
+      "answer": "Utility-first CSS argues that 'separation of concerns' is about keeping HTML (structure) separate from JavaScript (behavior), not HTML separate from CSS. Presentational classes in HTML are acceptable because they're just styling directives."
+    },
+    {
+      "question": "What is the 'consistency' argument for utility-first CSS?",
+      "answer": "With utility-first, you can't accidentally use a slightly different value (`margin: 18px` vs `margin: 20px`). Values come from a fixed set of utilities (e.g., spacing scale: 0.25rem, 0.5rem, 1rem, 2rem...). This enforces design consistency automatically."
+    },
+    {
+      "question": "How does utility-first CSS handle hover and focus states?",
+      "answer": "Utility-first frameworks provide variant prefixes: `hover:bg-blue-600`, `focus:outline-none`, `focus:ring-2`. These apply utilities conditionally based on the state. This eliminates the need for separate CSS blocks for interactions."
+    },
+    {
+      "question": "What is the 'naming fatigue' that utility-first CSS solves?",
+      "answer": "Naming fatigue is the mental overhead of inventing descriptive class names for every element (`.highlighted-feature-card-wrapper`, `.sidebar-nested-list-item`). Utility-first eliminates this by using presentational classes instead."
+    },
+    {
+      "question": "Is utility-first CSS the same as inline styles?",
+      "answer": "No. Inline styles use CSS property-value pairs directly. Utility classes are predefined, constrained (you can only use values from the framework's scale), support responsive variants, hover/focus states, and can reference media queries — none of which inline styles can do."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you handle reusable components like buttons in a utility-first approach?",
+      "answer": "Extract repeated utility class combinations into component classes using `@apply` in CSS: `.btn { @apply px-4 py-2 rounded font-semibold; }`. Or use your framework's component abstraction (e.g., React component, Blade component, Twig include)."
+    },
+    {
+      "question": "What is the 'extraction' pattern in utility-first CSS?",
+      "answer": "Extraction is the process of refactoring repeated utility patterns into named components. Start with utilities, identify repeated patterns after building, then extract them. This avoids premature abstraction and follows the 'don't repeat yourself' principle."
+    },
+    {
+      "question": "How do utility classes maintain consistent spacing and typography?",
+      "answer": "Utility frameworks use a predefined scale (e.g., `p-1` = 0.25rem, `p-2` = 0.5rem, `p-4` = 1rem). All spacing uses the same scale, ensuring visual rhythm. Typography utilities reference the same type scale throughout."
+    },
+    {
+      "question": "What is the 'JIT' (Just-In-Time) engine in utility-first frameworks?",
+      "answer": "JIT generates CSS on-demand as you write HTML, instead of shipping a massive pre-built CSS file. It scans your templates for utility class usage and generates only those classes. This results in very small CSS bundles (often < 10KB)."
+    },
+    {
+      "question": "How does utility-first CSS handle responsive design?",
+      "answer": "With responsive prefix variants: `sm:`, `md:`, `lg:`, `xl:`, `2xl:`. Example: `<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3\">`. Each breakpoint prefix is a media query that applies the utility at that viewport width and above."
+    },
+    {
+      "question": "How do you create custom design tokens in a utility-first framework?",
+      "answer": "Extend the framework's configuration: set custom colors, fonts, spacing, and breakpoints in the config file. The config generates custom utilities automatically. This keeps your design tokens in one place while using utility-first syntax."
+    },
+    {
+      "question": "What is the 'dark mode' variant in utility-first CSS?",
+      "answer": "Dark mode variants use a prefix: `dark:bg-gray-900 dark:text-white`. The prefix applies styles only when dark mode is active (based on `prefers-color-scheme` or a CSS class strategy). This eliminates duplicated dark mode CSS."
+    },
+    {
+      "question": "How does utility-first CSS reduce CSS file size?",
+      "answer": "You only include the CSS for utilities you actually use. Frameworks with PurgeCSS or JIT engines scan your HTML for used classes and remove unused ones. A typical utility-first production CSS file is 5-20KB vs 50-200KB+ for a traditional framework."
+    },
+    {
+      "question": "What is the role of `@layer` in utility-first CSS?",
+      "answer": "Utility classes are placed in the `utilities` layer (or equivalent highest-priority layer) to ensure they override component and base styles. This prevents the need for `!important` and makes the cascade predictable."
+    },
+    {
+      "question": "How do you handle third-party component integration with utility-first CSS?",
+      "answer": "Most utility-first frameworks allow arbitrary value overrides (e.g., `top-[37px]` in Tailwind) for one-off adjustments. For larger overrides, use `@layer components { ... }` to add custom component styles that reference your theme tokens."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does utility-first CSS affect HTML file size and what are the real-world implications?",
+      "answer": "Utility-first HTML is 10-30% larger due to many class names. However, gzip compresses repeated patterns extremely well (utility class names are repetitive). The total transfer size (CSS + HTML) is often smaller than traditional CSS because CSS files are dramatically smaller."
+    },
+    {
+      "question": "How do you implement a design system with utility-first CSS for non-developers (designers)?",
+      "answer": "Create a component library layer on top of utilities. Designers interact with semantic component names (`.card`, `.button`), while the implementation uses utilities. Design token values come from the design system, automatically generating both component and utility classes."
+    },
+    {
+      "question": "What is the 'utility-first vs. BEM' debate about performance?",
+      "answer": "Both approaches use single-class selectors (fast). BEM produces more CSS but less HTML. Utility-first produces less CSS but more HTML. The performance difference is negligible in practice. The real difference is in developer workflow and team preferences."
+    },
+    {
+      "question": "How does utility-first CSS handle CSS `@container` queries?",
+      "answer": "Modern utility-first frameworks support container query variants: `@sm:`, `@md:`, `@lg:` prefixes. Example: `<div class=\"grid-cols-1 @md:grid-cols-2\">`. This allows components to respond to their container size, not just the viewport."
+    },
+    {
+      "question": "What is the 'custom CSS escape hatch' when utility-first can't achieve something?",
+      "answer": "Every utility-first framework provides escape hatches: arbitrary values (`text-[#123456]`), inline `<style>` tags, CSS `@layer` directives, and plugin APIs to create custom utilities. These handle edge cases without abandoning the utility-first approach."
+    },
+    {
+      "question": "How do you optimize utility-first CSS for maximum runtime performance?",
+      "answer": "Utility classes are already highly optimized (single-class selectors). For critical performance: (1) inline critical utility CSS, (2) lazy-load non-critical utilities, (3) use the JIT engine so only used utilities are shipped, (4) avoid overly complex arbitrary values that generate many rules."
+    },
+    {
+      "question": "How does utility-first CSS interact with CSS Cascade Layers for library authors?",
+      "answer": "Library authors define layers: `@layer tailwind-base, my-lib, tailwind-utilities;`. The base layer has normalize/reset. The library's component styles sit in the middle. Tailwind utilities stay on top. This gives predictable cascade control."
+    },
+    {
+      "question": "What is the 'Tailwind vs. traditional CSS' bundle size comparison at scale?",
+      "answer": "For a 10-page site: traditional CSS averages 50-150KB (with framework). Tailwind with JIT averages 5-15KB total CSS. The trade-off is 20-40% larger HTML. Combined transfer size (CSS+HTML+gzip) is typically smaller with utility-first."
+    },
+    {
+      "question": "How do you handle accessibility in a utility-first workflow?",
+      "answer": "Utility-first frameworks provide focus ring utilities, reduced motion support, and screen-reader-only utilities. Accessibility concerns like contrast are addressed at the theme level (colors in config). Keyboard focus states use `focus-visible:ring-2`."
+    },
+    {
+      "question": "How does utility-first CSS affect developer onboarding and team scaling?",
+      "answer": "Utility-first reduces the CSS knowledge needed — developers learn class names instead of writing CSS. However, new team members must learn the framework's class naming conventions and scale. Onboarding is faster for those familiar with the framework."
+    }
+  ]
+}

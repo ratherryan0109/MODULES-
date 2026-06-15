@@ -1,0 +1,89 @@
+{
+  "module": "CSS Clear",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Clear After Floats",
+      "description": "Create a layout with two floated boxes followed by a paragraph. Use clear to make the paragraph appear below the floats.",
+      "requirements": [
+        "Two floated boxes (left)",
+        "A paragraph after the floats",
+        "Use clear: both on the paragraph",
+        "Paragraph should start below the floats"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; max-width: 500px; margin: 40px auto; }\n  .box { float: left; width: 150px; height: 100px; background: #4a90d9; color: white; margin: 10px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: bold; }\n  .cleared { clear: both; padding: 15px; background: #f0f0f0; border: 2px solid #333; border-radius: 4px; margin-top: 10px; }\n</style>\n</head>\n<body>\n  <div class=\"box\">Box 1</div>\n  <div class=\"box\">Box 2</div>\n  <p class=\"cleared\">This paragraph uses clear: both, so it appears below the floated boxes instead of wrapping around them.</p>\n</body>\n</html>",
+        "explanation": "The paragraph has clear: both, which pushes it below both preceding left-floated boxes."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Clearfix on a Parent Container",
+      "description": "Create a parent container with floated children. Use clearfix to make the parent properly contain its children (visible background/border).",
+      "requirements": [
+        "Parent with a background color and border",
+        "3 floated children inside",
+        "Apply clearfix to the parent",
+        "Parent must visibly wrap around children"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; padding: 40px; }\n  .clearfix::after { content: ''; display: table; clear: both; }\n  .parent {\n    background: #e3f2fd;\n    border: 3px solid #1565c0;\n    padding: 15px;\n    border-radius: 8px;\n  }\n  .child {\n    float: left;\n    width: 100px;\n    height: 100px;\n    background: #4a90d9;\n    color: white;\n    margin: 10px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 4px;\n  }\n</style>\n</head>\n<body>\n  <div class=\"parent clearfix\">\n    <div class=\"child\">1</div>\n    <div class=\"child\">2</div>\n    <div class=\"child\">3</div>\n  </div>\n  <p style=\"margin-top: 20px;\">The parent properly wraps around its children thanks to clearfix.</p>\n</body>\n</html>",
+        "explanation": "The clearfix on the parent (using ::after pseudo-element with clear: both) makes the parent expand to contain its floated children."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Multi-Row Float Gallery with Row Breaks",
+      "description": "Create a gallery layout with 3 columns. Use clear to create row breaks after every 3 items.",
+      "requirements": [
+        "6 gallery items floated left",
+        "Items in rows of 3",
+        "Use clear to create row breaks",
+        "Each item has equal width and margin"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }\n  .gallery {\n    background: #f5f5f5;\n    padding: 15px;\n    border-radius: 8px;\n  }\n  .gallery::after {\n    content: '';\n    display: table;\n    clear: both;\n  }\n  .item {\n    float: left;\n    width: 30%;\n    margin: 1.66%;\n    height: 120px;\n    background: #4a90d9;\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 8px;\n    font-weight: bold;\n    font-size: 1.2em;\n  }\n  .row-break {\n    clear: both;\n  }\n</style>\n</head>\n<body>\n  <div class=\"gallery\">\n    <div class=\"item\">1</div>\n    <div class=\"item\">2</div>\n    <div class=\"item\">3</div>\n    <div class=\"row-break\"></div>\n    <div class=\"item\">4</div>\n    <div class=\"item\">5</div>\n    <div class=\"item\">6</div>\n  </div>\n</body>\n</html>",
+        "explanation": "An empty div with clear: both is inserted after every 3 items to force a new row. The gallery itself also has clearfix."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Article with Sidebar and Clear Sections",
+      "description": "Create an article layout with a floated sidebar and main content. Use clear to separate article sections.",
+      "requirements": [
+        "Sidebar floated right (30% width)",
+        "Main content area (floated left, 65% width)",
+        "Article with multiple sections",
+        "Each section uses clear: both to start on a new line",
+        "Clearfix on the main wrapper"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }\n  .clearfix::after { content: ''; display: table; clear: both; }\n  .wrapper { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }\n  .sidebar {\n    float: right;\n    width: 30%;\n    background: #f8f9fa;\n    padding: 15px;\n    border-radius: 8px;\n    margin-left: 20px;\n  }\n  .content { float: left; width: 65%; }\n  .section { clear: both; margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 8px; }\n  .section h3 { margin-bottom: 10px; color: #333; }\n</style>\n</head>\n<body>\n  <div class=\"wrapper clearfix\">\n    <aside class=\"sidebar\">\n      <h3>Sidebar</h3>\n      <p>Related content and links.</p>\n    </aside>\n    <div class=\"content\">\n      <h2>Article Title</h2>\n      <p>Main article content here...</p>\n    </div>\n    <div class=\"section\">\n      <h3>Section 1</h3>\n      <p>This section starts below all floats.</p>\n    </div>\n    <div class=\"section\">\n      <h3>Section 2</h3>\n      <p>Also below floats, thanks to clear: both.</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "The sidebar is floated right, content floated left. Each section uses clear: both to start on a new line below the floats."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Complex Magazine Layout Using Float + Clear",
+      "description": "Build a complete magazine-style page that uses float and clear for layout. Include a header, featured article, three-column story grid, two-column content section, and footer. Use clears and clearfixes strategically.",
+      "requirements": [
+        "Header with navigation",
+        "Featured article with floated image and text wrap",
+        "3-column story grid (float left, clear after every 3rd)",
+        "2-column content + sidebar layout (float)",
+        "Footer with clear: both",
+        "All parents must have clearfix where needed",
+        "Responsive to single column on mobile"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  body { font-family: 'Georgia', serif; background: #f5f5f5; color: #333; }\n  .clearfix::after { content: ''; display: table; clear: both; }\n  .container { max-width: 960px; margin: 0 auto; padding: 20px; }\n\n  header { background: #1a1a2e; color: white; text-align: center; padding: 30px 0; margin-bottom: 30px; }\n  header h1 { font-size: 2.5em; }\n  nav { margin-top: 15px; }\n  nav a { color: #ccc; margin: 0 15px; text-decoration: none; }\n\n  .featured { background: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; }\n  .featured-img { float: left; width: 300px; height: 200px; background: #4a90d9; margin: 0 20px 10px 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; }\n\n  .story-grid { margin-bottom: 30px; }\n  .story {\n    float: left;\n    width: 31.33%;\n    margin: 1%;\n    background: white;\n    padding: 20px;\n    border-radius: 8px;\n    min-height: 150px;\n  }\n  .row-break { clear: both; }\n\n  .content-area { margin-bottom: 30px; }\n  .main-content { float: left; width: 65%; background: white; padding: 20px; border-radius: 8px; }\n  .side-content { float: right; width: 32%; background: white; padding: 20px; border-radius: 8px; }\n\n  footer { clear: both; background: #1a1a2e; color: white; text-align: center; padding: 20px; border-radius: 8px; }\n\n  @media (max-width: 768px) {\n    .featured-img { float: none; width: 100%; margin: 0 0 15px; }\n    .story { width: 48%; }\n    .main-content, .side-content { float: none; width: 100%; }\n  }\n  @media (max-width: 480px) {\n    .story { width: 98%; }\n  }\n</style>\n</head>\n<body>\n  <header>\n    <h1>Magazine</h1>\n    <nav><a href=\"#\">Home</a><a href=\"#\">Articles</a><a href=\"#\">Gallery</a><a href=\"#\">Contact</a></nav>\n  </header>\n\n  <div class=\"container\">\n    <div class=\"featured clearfix\">\n      <div class=\"featured-img\">Featured Image</div>\n      <h2>Featured Article Title</h2>\n      <p>This is the featured article with a floated image that text wraps around. Clearfix on the featured div keeps it contained.</p>\n    </div>\n\n    <div class=\"story-grid clearfix\">\n      <div class=\"story\"><h3>Story 1</h3><p>Latest news update.</p></div>\n      <div class=\"story\"><h3>Story 2</h3><p>In-depth analysis.</p></div>\n      <div class=\"story\"><h3>Story 3</h3><p>Editor's pick.</p></div>\n      <div class=\"row-break\"></div>\n      <div class=\"story\"><h3>Story 4</h3><p>Tech review.</p></div>\n      <div class=\"story\"><h3>Story 5</h3><p>Opinion piece.</p></div>\n      <div class=\"story\"><h3>Story 6</h3><p>Interview.</p></div>\n    </div>\n\n    <div class=\"content-area clearfix\">\n      <div class=\"main-content\">\n        <h3>Main Article</h3>\n        <p>This is the main content area. It's floated left alongside the sidebar.</p>\n      </div>\n      <div class=\"side-content\">\n        <h3>Sidebar</h3>\n        <p>Related links and ads.</p>\n      </div>\n    </div>\n  </div>\n\n  <footer>&copy; 2026 Magazine - clear: both keeps me below all floats</footer>\n</body>\n</html>",
+        "explanation": "This magazine page demonstrates: clearfix on floated parent containers, clear: both on row breaks for the story grid, clear: both on the footer, responsive breakpoints that switch from float to block layout."
+      }
+    }
+  ]
+}

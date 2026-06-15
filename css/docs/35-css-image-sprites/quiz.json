@@ -1,0 +1,147 @@
+{
+    "module": "35-css-image-sprites",
+    "title": "CSS Image Sprites",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "What is the main benefit of using CSS image sprites?",
+            "options": ["Reduced HTTP requests", "Smaller file sizes", "Better image quality", "Easier to code"],
+            "correctAnswer": 0,
+            "explanation": "Image sprites combine multiple images into one file, reducing the number of HTTP requests needed to load a page."
+        },
+        {
+            "id": 2,
+            "question": "Which CSS property is used to display the correct portion of a sprite?",
+            "options": ["background-position", "background-size", "background-repeat", "object-position"],
+            "correctAnswer": 0,
+            "explanation": "background-position with negative values shifts the visible portion of the sprite background to reveal the desired icon."
+        },
+        {
+            "id": 3,
+            "question": "How do you specify a sprite icon that is the third item in a row of 50px icons?",
+            "options": ["background-position: -100px 0", "background-position: 100px 0", "background-position: -150px 0", "background-position: 0 -100px"],
+            "correctAnswer": 0,
+            "explanation": "The third icon (index 2) starts at position: -(2 × 50px) = -100px. The first icon is at 0, second at -50px, third at -100px."
+        },
+        {
+            "id": 4,
+            "question": "What should you set background-repeat to when using sprites?",
+            "options": ["no-repeat", "repeat", "repeat-x", "repeat-y"],
+            "correctAnswer": 0,
+            "explanation": "background-repeat: no-repeat prevents the sprite from tiling and showing multiple icons within the element."
+        },
+        {
+            "id": 5,
+            "question": "Which modern CSS technique has reduced the need for image sprites?",
+            "options": ["Icon fonts and SVGs", "CSS gradients", "Inline images", "All of the above"],
+            "correctAnswer": 3,
+            "explanation": "Icon fonts, inline SVGs, SVG sprites, and CSS gradients have all reduced the need for traditional image sprites in modern development."
+        },
+        {
+            "id": 6,
+            "question": "What must you set on an element to use a sprite as a background?",
+            "options": ["Explicit width and height", "display: block", "position: relative", "overflow: hidden"],
+            "correctAnswer": 0,
+            "explanation": "The element must have explicit width and height matching one icon in the sprite. Without these, the sprite won't display correctly."
+        },
+        {
+            "id": 7,
+            "question": "For a sprite with 50x50px icons on a 2x Retina display, what background-size should you use?",
+            "options": ["background-size: 100px", "background-size: 50%", "background-size: 200px", "background-size: auto"],
+            "correctAnswer": 1,
+            "explanation": "For Retina displays, use a double-resolution sprite with background-size: 50% so each icon maps to the correct physical pixel dimensions."
+        },
+        {
+            "id": 8,
+            "question": "How do you create a sprite sheet animation in CSS?",
+            "options": ["Using background-position with steps() timing", "Using multiple background images", "Using transform: translate()", "Using CSS filters"],
+            "correctAnswer": 0,
+            "explanation": "Sprite animations use @keyframes to animate background-position with steps() timing, jumping between frames for a flip-book effect."
+        },
+        {
+            "id": 9,
+            "question": "What is a key advantage of SVG sprites over image sprites?",
+            "options": ["SVGs are smaller", "SVGs scale seamlessly at any resolution", "SVGs don't need HTTP requests", "SVGs support more colors"],
+            "correctAnswer": 1,
+            "explanation": "SVG sprites scale perfectly at any resolution and DPI, while image sprites need separate Retina versions."
+        },
+        {
+            "id": 10,
+            "question": "What happens if the single sprite image fails to load?",
+            "options": ["All icons using that sprite become invisible", "Only one icon fails", "The page shows an error", "The icons appear with alt text"],
+            "correctAnswer": 0,
+            "explanation": "Since all icons depend on the same sprite file, if it fails to load, every icon using that sprite becomes invisible — a single point of failure."
+        },
+        {
+            "id": 11,
+            "question": "What does the background-position value 0 -50px do in a sprite?",
+            "options": ["Shows the icon in the second row, first column", "Shows the icon at 50px from the top", "Shows the second icon in the first row", "Hides the sprite"],
+            "correctAnswer": 0,
+            "explanation": "background-position: 0 -50px shifts the sprite up by 50px, revealing the icon in the second row (y-offset of one icon height) at the first column."
+        },
+        {
+            "id": 12,
+            "question": "In HTTP/2 environments, why might sprites be less necessary?",
+            "options": ["HTTP/2 supports multiplexing over a single connection", "HTTP/2 doesn't support sprites", "HTTP/2 caches images differently", "HTTP/2 compresses all images"],
+            "correctAnswer": 0,
+            "explanation": "HTTP/2 multiplexing allows multiple requests over a single connection, reducing the overhead that made sprites critical for HTTP/1.1 performance."
+        },
+        {
+            "id": 13,
+            "question": "How do you include hover states in a sprite sheet?",
+            "options": ["Use a separate sprite for hover", "Include hover states in the same sprite, in a second row", "Hover states cannot use sprites", "Use JavaScript to swap sprites"],
+            "correctAnswer": 1,
+            "explanation": "Hover states are typically placed in the second row of the sprite. The :hover pseudo-class changes background-position to the hover row."
+        },
+        {
+            "id": 14,
+            "question": "What is the recommended minimum number of images to justify using a sprite?",
+            "options": ["2 or more", "5 or more", "10 or more", "Any number"],
+            "correctAnswer": 1,
+            "explanation": "Sprites are most beneficial when combining 5+ small images. For just 2-3 images, the overhead of sprite creation may not be worthwhile."
+        },
+        {
+            "id": 15,
+            "question": "What calculation determines the background-position for a 32x32px icon at row 3, column 4?",
+            "options": ["background-position: -96px -64px", "background-position: -128px -96px", "background-position: 96px 64px", "background-position: -64px -96px"],
+            "correctAnswer": 0,
+            "explanation": "Column 4 (index 3): -(3 × 32px) = -96px. Row 3 (index 2): -(2 × 32px) = -64px. So background-position: -96px -64px."
+        },
+        {
+            "id": 16,
+            "question": "How can you use sprites with ::before pseudo-elements for icon buttons?",
+            "options": ["Set the sprite as background-image on ::before with explicit dimensions", "Sprites don't work on pseudo-elements", "Use content: url() instead", "Use background on the element itself"],
+            "correctAnswer": 0,
+            "explanation": "::before pseudo-elements can display sprite icons by setting width, height, background-image, and background-position on the pseudo-element."
+        },
+        {
+            "id": 17,
+            "question": "What setting on a sprite animation @keyframes ensures smooth frame-by-frame playback?",
+            "options": ["linear timing", "steps(8) timing", "ease-in-out timing", "cubic-bezier timing"],
+            "correctAnswer": 1,
+            "explanation": "steps() timing function creates a frame-by-frame animation by jumping between discrete values, perfect for sprite sheet frame sequences."
+        },
+        {
+            "id": 18,
+            "question": "What accessibility concern applies to sprite-based icon buttons?",
+            "options": ["Sprites lack alt text", "They need aria-label or screen-reader-only text to describe the action", "Sprites can't be read by screen readers", "Sprite buttons are not keyboard accessible"],
+            "correctAnswer": 1,
+            "explanation": "Since sprites are background-images (decorative), interactive elements using sprites need aria-label or visually hidden text to convey their purpose."
+        },
+        {
+            "id": 19,
+            "question": "What file format is recommended for sprite sheet animations?",
+            "options": ["JPEG", "PNG", "WebP", "GIF"],
+            "correctAnswer": 2,
+            "explanation": "WebP offers good compression for sprite animations while supporting transparency. PNG is also common but produces larger files."
+        },
+        {
+            "id": 20,
+            "question": "What tool is commonly used for automated sprite generation?",
+            "options": ["webpack with sprite plugin", "Compass/SCSS", "Gulp/Grunt sprite plugins", "All of the above"],
+            "correctAnswer": 3,
+            "explanation": "Multiple build tools can automate sprite generation: webpack sprite plugins, Compass SCSS sprite mixins, and Gulp/Grunt plugins all handle sprite creation."
+        }
+    ]
+}

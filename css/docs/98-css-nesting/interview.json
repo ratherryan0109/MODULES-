@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is CSS nesting?", "answer": "CSS nesting allows you to write nested selectors inside parent style rules, mirroring the HTML structure for more readable stylesheets." },
+    { "question": "What is the & nesting selector in CSS?", "answer": "The & nesting selector represents the parent selector, allowing you to reference the current element when writing nested rules." },
+    { "question": "How do you nest a pseudo-class like :hover using CSS nesting?", "answer": "Use &:hover inside the parent rule: .btn { &:hover { background: blue; } }" },
+    { "question": "Can you nest media queries inside selectors with CSS nesting?", "answer": "Yes, @media rules can be nested directly inside style rules, scoping them to the parent selector context." },
+    { "question": "What is the syntax for nesting a child selector?", "answer": "Direct nesting without &: .card { .title { font-size: 1.5rem; } } nests .title inside .card." },
+    { "question": "How does CSS nesting differ from SCSS nesting?", "answer": "CSS nesting is the native browser feature with similar syntax; SCSS requires compilation while CSS nesting works directly in browsers." },
+    { "question": "Can you nest multiple levels in CSS nesting?", "answer": "Yes, you can nest selectors several levels deep, but deep nesting is discouraged for maintainability." },
+    { "question": "How do you use the & selector with a class or ID?", "answer": "Use &.active, &.highlight to append classes to the parent: .btn { &.active { background: green; } }" },
+    { "question": "Does CSS nesting work with all selectors?", "answer": "Yes, nesting works with class, ID, element, attribute, pseudo-class, and pseudo-element selectors." },
+    { "question": "What browsers support native CSS nesting?", "answer": "All modern browsers support CSS nesting as of 2024-2025, including Chrome 120+, Firefox 117+, Safari 17.2+." }
+  ],
+  "intermediate": [
+    { "question": "How do you select a parent element from a nested child using CSS nesting?", "answer": "You cannot select a parent from a child; the & selector only refers to the current nesting parent, not ancestors." },
+    { "question": "How do you use the & selector with a combinator like > or +?", "answer": "Use & > .child for direct children, & + .sibling for adjacent siblings, or & ~ .general for general siblings." },
+    { "question": "How do you nest at-rules like @supports or @layer inside selectors?", "answer": "Nest them directly without &: .card { @supports (display: grid) { display: grid; } }" },
+    { "question": "What happens when you omit the & in nested selectors?", "answer": "Omitting & adds a space before the nested selector, creating a descendant selector: .card { .title {} } compiles to .card .title {}" },
+    { "question": "How do you create compound selectors with CSS nesting?", "answer": "Use & without spaces: &#foo creates #foo, &.active creates .active.active, &:is(.special) creates compound conditions." },
+    { "question": "Can CSS nesting be used inside @keyframes?", "answer": "No, @keyframes cannot contain nested rules; nesting inside keyframes is not supported." },
+    { "question": "How does CSS nesting affect specificity?", "answer": "Nesting does not change specificity calculations; each nested rule's specificity is computed from the fully expanded selector." },
+    { "question": "How do you nest naming conventions like BEM with CSS nesting?", "answer": "Use &__title for BEM elements and &--modifier for BEM modifiers: .block { &__title {} &--active {} }" },
+    { "question": "How do you use & with multiple selectors for grouping?", "answer": "Use &.class1, &.class2 inside the parent to group multiple variations: .btn { &.primary {} &.secondary {} }" },
+    { "question": "How do you nest deep selector patterns without excessive specificity?", "answer": "Limit nesting depth to 2-3 levels and use &:is() or &:where() to manage specificity when nesting deeply." }
+  ],
+  "advanced": [
+    { "question": "How does CSS nesting interact with the :is() and :where() pseudo-classes?", "answer": "Nesting uses :is() internally for complex selectors; &:hover, &:focus becomes :is(.parent):hover:focus, maintaining correct specificity." },
+    { "question": "How do you nest media queries with different selector contexts?", "answer": ".responsive { @media (width > 768px) { &.wide { ... } } } targets .responsive.wide only when the media query matches." },
+    { "question": "What happens when you nest selectors inside @media that are already inside another selector?", "answer": "This creates deeply scoped media queries which remain valid; each level of nesting adds specificity to the final compiled selector." },
+    { "question": "How does CSS nesting handle the @scope at-rule?", "answer": "@scope can be nested inside selectors, allowing scoped styles within a nesting context without creating new cascade layers." },
+    { "question": "Can you use the & selector inside calc() or custom properties?", "answer": "No, & only works in selector contexts, not within property values. Use custom properties with different values instead." },
+    { "question": "How do you debug CSS nesting in browser DevTools?", "answer": "DevTools shows the computed/expanded selector in the Styles panel; the Sources panel shows the original nested source." },
+    { "question": "How do you combine CSS nesting with container queries?", "answer": "Nest @container inside selectors: .card { @container (width > 400px) { .title { font-size: 2rem; } } }" },
+    { "question": "How does CSS nesting handle the case where & is used with a pseudo-element?", "answer": "Use &::before and &::after directly: .card { &::before { content: ''; } } for pseudo-elements within the nesting context." },
+    { "question": "How do you use CSS nesting with @starting-style for entry animations?", "answer": "Nest @starting-style: .dialog { @starting-style { opacity: 0; } opacity: 1; } for smooth entry animations triggered on element addition." },
+    { "question": "How does CSS nesting interact with Shadow DOM style scoping?", "answer": "Inside Shadow DOM, nesting works normally; the & selector scopes to the shadow host, maintaining the shadow boundary encapsulation." }
+  ]
+}

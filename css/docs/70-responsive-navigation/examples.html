@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navigation Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f8fafc; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    h1 { color: #2563eb; margin-bottom: 2rem; }
+
+    .demo-section { margin-bottom: 4rem; }
+    .demo-section h2 { color: #1e40af; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+    .badge { background: #dbeafe; color: #1e40af; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; }
+
+    nav { font-family: system-ui, sans-serif; }
+
+    /* === 1. Simple Horizontal Nav === */
+    .nav-horizontal { background: #1e293b; border-radius: 8px; display: flex; align-items: center; padding: 0 1rem; }
+    .nav-horizontal .logo { color: white; font-weight: bold; margin-right: auto; }
+    .nav-horizontal ul { display: flex; list-style: none; gap: 0; }
+    .nav-horizontal a { display: block; padding: 1rem; color: #94a3b8; text-decoration: none; }
+    .nav-horizontal a:hover, .nav-horizontal a.active { color: white; background: #334155; }
+
+    /* === 2. CSS-Only Hamburger === */
+    .nav-hamburger { background: #1e293b; border-radius: 8px; }
+    .nav-toggle { display: none; }
+    .nav-toggle-label { display: none; cursor: pointer; color: white; padding: 1rem; font-size: 1.5rem; user-select: none; }
+    .nav-hamburger ul { list-style: none; display: flex; }
+    .nav-hamburger a { display: block; padding: 1rem; color: #94a3b8; text-decoration: none; }
+    .nav-hamburger a:hover { color: white; background: #334155; }
+    @media (max-width: 767px) {
+      .nav-toggle-label { display: block; }
+      .nav-hamburger ul { display: none; flex-direction: column; }
+      .nav-toggle:checked ~ ul { display: flex; }
+      .nav-hamburger a { border-top: 1px solid #334155; }
+    }
+
+    /* === 3. Sticky Nav === */
+    .nav-sticky { position: sticky; top: 0; z-index: 100; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; align-items: center; padding: 0 1rem; }
+    .nav-sticky ul { display: flex; list-style: none; margin-left: auto; }
+    .nav-sticky a { display: block; padding: 1rem; color: #333; text-decoration: none; }
+    .nav-sticky a:hover { color: #3b82f6; }
+
+    /* === 4. Dropdown === */
+    .nav-dropdown { background: #1e293b; border-radius: 8px; display: flex; align-items: center; padding: 0 1rem; }
+    .nav-dropdown ul { display: flex; list-style: none; }
+    .nav-dropdown a { display: block; padding: 1rem; color: #94a3b8; text-decoration: none; }
+    .nav-dropdown a:hover { color: white; }
+    .nav-dropdown .dropdown { position: relative; }
+    .nav-dropdown .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 0 0 8px 8px; min-width: 150px; }
+    .nav-dropdown .dropdown-menu a { color: #333; white-space: nowrap; }
+    .nav-dropdown .dropdown-menu a:hover { background: #f1f5f9; }
+    .nav-dropdown .dropdown:hover .dropdown-menu, .nav-dropdown .dropdown:focus-within .dropdown-menu { display: block; }
+    @media (max-width: 767px) { .nav-dropdown { flex-direction: column; } .nav-dropdown ul { flex-direction: column; width: 100%; } .nav-dropdown .dropdown-menu { position: static; box-shadow: none; } }
+
+    /* === 5. Bottom Nav === */
+    .nav-bottom { position: fixed; bottom: 0; left: 0; right: 0; display: flex; background: white; border-top: 1px solid #e2e8f0; z-index: 100; }
+    .nav-bottom a { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 0.5rem; font-size: 0.7rem; color: #64748b; text-decoration: none; min-height: 56px; justify-content: center; gap: 2px; }
+    .nav-bottom a.active { color: #3b82f6; }
+    .nav-bottom .icon { font-size: 1.25rem; }
+    @media (min-width: 768px) { .nav-bottom { display: none; } }
+
+    /* === 6. Breadcrumb === */
+    .breadcrumb { display: flex; list-style: none; gap: 0.5rem; padding: 1rem 0; }
+    .breadcrumb li:not(:last-child)::after { content: '/'; margin-left: 0.5rem; color: #94a3b8; }
+    .breadcrumb a { color: #3b82f6; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Spacer for bottom nav */
+    .bottom-spacer { height: 80px; }
+  </style>
+</head>
+<body>
+  <div class="nav-horizontal" style="margin-bottom:1rem;">
+    <div class="logo">Example 1: Horizontal Nav</div>
+    <ul>
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <h1>Responsive Navigation Examples</h1>
+
+    <div class="demo-section">
+      <h2>2. CSS-Only Hamburger Menu <span class="badge">Resize to see</span></h2>
+      <nav class="nav-hamburger">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">☰</label>
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="demo-section">
+      <h2>3. Sticky Navigation <span class="badge">Scroll down</span></h2>
+      <nav class="nav-sticky" id="stickyNav">
+        <strong>Sticky Nav</strong>
+        <ul>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Docs</a></li>
+        </ul>
+      </nav>
+      <div style="background:#f1f5f9;padding:2rem;border-radius:8px;margin-top:1rem;min-height:400px;">
+        <p>Scroll down to see the sticky nav stick to the top. Content below demonstrates scrolling behavior.</p>
+        <p style="margin-top:1rem;">More content to enable scrolling...</p>
+        <div style="height:800px;"></div>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>4. Multi-Level Dropdown</h2>
+      <nav class="nav-dropdown">
+        <strong style="color:white;margin-right:auto;">Dropdown Nav</strong>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li class="dropdown">
+            <a href="#">Products ▾</a>
+            <div class="dropdown-menu">
+              <a href="#">Product A</a>
+              <a href="#">Product B</a>
+              <a href="#">Product C</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="#">Services ▾</a>
+            <div class="dropdown-menu">
+              <a href="#">Consulting</a>
+              <a href="#">Development</a>
+              <a href="#">Design</a>
+            </div>
+          </li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="demo-section">
+      <h2>5. Breadcrumb Navigation</h2>
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Electronics</a></li>
+          <li aria-current="page">Smartphones</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="demo-section">
+      <h2>6. Accessible Skip Link</h2>
+      <p><a href="#main-content" style="position:absolute;left:-9999px;top:-9999px; &:focus { position:fixed; top:0; left:0; background:white; padding:1rem; z-index:9999; }">Skip to main content</a></p>
+      <p>Skip link is hidden by default, visible on keyboard focus (Tab).</p>
+    </div>
+  </div>
+
+  <!-- Bottom Nav (mobile only) -->
+  <nav class="nav-bottom">
+    <a href="#" class="active"><span class="icon">🏠</span> Home</a>
+    <a href="#"><span class="icon">🔍</span> Search</a>
+    <a href="#"><span class="icon">❤️</span> Favorites</a>
+    <a href="#"><span class="icon">👤</span> Profile</a>
+  </nav>
+  <div class="bottom-spacer"></div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <main> element in HTML?",
+      "answer": "The <main> element is a semantic HTML5 element that represents the dominant content of the <body> of a document. It should contain content that is directly related to the central topic or functionality of the page."
+    },
+    {
+      "question": "How is <main> different from a <div> with id='main'?",
+      "answer": "Unlike a <div>, the <main> element provides semantic meaning. Browsers, screen readers, and search engines understand that <main> contains the primary content. A <div> has no semantic meaning and is purely a generic container."
+    },
+    {
+      "question": "Can I have multiple <main> elements on one page?",
+      "answer": "Only one visible <main> element is allowed per document. However, you can have additional <main> elements if they have the hidden attribute, which makes them invisible."
+    },
+    {
+      "question": "Is the <main> element required in an HTML5 document?",
+      "answer": "No, it is not required but it is strongly recommended for accessibility and semantic structure. Without it, screen reader users have a harder time navigating to the primary content."
+    },
+    {
+      "question": "What is the default display property of <main>?",
+      "answer": "The <main> element is a block-level element by default, similar to <div>, <p>, and <section>."
+    },
+    {
+      "question": "Can <main> contain a <header> or <footer>?",
+      "answer": "Yes, <main> can contain <header> and <footer> elements when they represent the header or footer of a subsection within the main content. They should not be the page-level header/footer."
+    },
+    {
+      "question": "What is a skip-navigation link?",
+      "answer": "A skip-navigation link is an internal anchor link that targets the <main> element, allowing keyboard and screen reader users to bypass repetitive navigation links and jump directly to the primary content."
+    },
+    {
+      "question": "Does the <main> element support global attributes?",
+      "answer": "Yes, the <main> element supports all global HTML attributes such as id, class, style, hidden, data-*, aria-*, and more."
+    },
+    {
+      "question": "What is the purpose of the hidden attribute on <main>?",
+      "answer": "The hidden attribute hides the <main> element from rendering. It is used when you need multiple <main> elements in the same document, such as showing different content based on user interaction."
+    },
+    {
+      "question": "Can I put a sidebar inside <main>?",
+      "answer": "While technically allowed, it's semantically better to keep sidebars (<aside> elements) outside of <main> since they contain content that is tangentially related rather than primary content."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What are the nesting restrictions for the <main> element?",
+      "answer": "The <main> element must not be a descendant of <article>, <aside>, <footer>, <header>, or <nav>. It should be a direct child of <body> or nested only in elements that represent document root structure."
+    },
+    {
+      "question": "How does the <main> element interact with the accessibility tree?",
+      "answer": "The <main> element has an implicit ARIA role of 'main', making it a landmark region. Screen readers allow users to jump to the main landmark using keyboard shortcuts (e.g., 'D' key in NVDA, Rotor menu in VoiceOver)."
+    },
+    {
+      "question": "Should I add role='main' to my <main> element for older browsers?",
+      "answer": "Adding role='main' is safe and helps older browsers that don't recognize HTML5 elements. However, it's unnecessary in modern browsers since <main> already has an implicit role of 'main'."
+    },
+    {
+      "question": "How do you handle dynamic content changes in <main> for accessibility in SPAs?",
+      "answer": "Use aria-live='polite' on <main> to announce content changes. After updating content, focus management is important — programmatically focus the new heading or content. Consider using aria-atomic='true' to announce the full region."
+    },
+    {
+      "question": "What CSS selector can target the <main> element?",
+      "answer": "The element selector 'main' or type selector 'main {}'. You can also use attribute selectors like 'main[hidden]' or class-based selectors like 'main.class-name'."
+    },
+    {
+      "question": "How does the <main> element relate to the HTML5 outline algorithm?",
+      "answer": "The <main> element does not contribute to the document outline. While it is a sectioning root, it does not create a new section in the outline. Headings within <main> are part of the document's overall outline."
+    },
+    {
+      "question": "Can <main> contain itself?",
+      "answer": "No, <main> cannot contain another <main> element. This would be invalid nesting and violates the one-main-per-document rule."
+    },
+    {
+      "question": "What is the impact of omitting <main> on SEO?",
+      "answer": "While not a direct ranking factor, using <main> helps search engines understand the primary content structure, which can indirectly improve SEO. Google's algorithms recognize semantic elements for better content extraction."
+    },
+    {
+      "question": "How does <main> work with the HTML5 shiv for legacy browser support?",
+      "answer": "The HTML5 shiv (or shim) is a JavaScript workaround that enables HTML5 elements in older versions of IE. It creates the <main> element in the DOM, allowing it to be styled with CSS."
+    },
+    {
+      "question": "What is the difference between <main> and <section>?",
+      "answer": "<main> represents the entire primary content area of the page and can contain multiple <section> elements. <section> represents a thematic grouping within a document but doesn't indicate that it's the primary content."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the <main> element behave in the CSS containment model?",
+      "answer": "The <main> element can serve as a containment box. Using 'contain: content' or 'contain: layout style paint' on <main> can improve performance by limiting the scope of styles, layout, and painting calculations."
+    },
+    {
+      "question": "What accessibility issues arise from dynamically updating <main> content without proper focus management?",
+      "answer": "Without focus management, screen readers may not announce content changes after navigation in SPAs. Users remain focused on the old position. The solution involves updating content, then calling focus() on the new heading with tabindex='-1'."
+    },
+    {
+      "question": "Explain how you would implement a proper skip-navigation pattern with the <main> element. What are the critical CSS and HTML requirements?",
+      "answer": "HTML: Place a skip link as the first focusable element with href='#main-content'. Give <main> id='main-content' and tabindex='-1'. CSS: Position the skip link off-screen (top: -40px) but bring it into view on :focus. Ensure it has sufficient color contrast and is the first element in tab order."
+    },
+    {
+      "question": "What happens when you have a <main> element inside a Shadow DOM?",
+      "answer": "Each Shadow DOM root can have its own <main> element. The one-per-document rule applies to the light DOM, but shadow boundaries create separate contexts. Each shadow host can contain its own <main> for its internal structure."
+    },
+    {
+      "question": "How do frameworks like React, Vue, or Angular handle the <main> element in component-based architecture?",
+      "answer": "In component-based frameworks, <main> is typically placed in the root layout component. Client-side routing updates the <main> content without full page reloads. Developers must handle focus management and accessible route announcements manually."
+    },
+    {
+      "question": "What is the interaction between <main> and the CSS 'content-visibility' property?",
+      "answer": "The content-visibility property can be applied to <main> to optimize rendering. Setting 'content-visibility: auto' on sections within <main> allows the browser to skip rendering off-screen content, improving initial load performance."
+    },
+    {
+      "question": "How does the <main> element relate to the HTML5 Document Outline in the context of ARIA landmarks?",
+      "answer": "The <main> element creates a 'main' landmark. ARIA landmarks help screen reader users navigate pages. The HTML5 Document Outline algorithm is separate from landmarks — <main> is a sectioning root but not a sectioning element for outline purposes."
+    },
+    {
+      "question": "What are the implications of using <main> with the inert attribute for performance?",
+      "answer": "Adding the inert attribute to <main> makes it non-interactive and invisible to assistive technology. This is typically used for modals or side panels where the main content should be temporarily ignorable, not for normal page structure."
+    },
+    {
+      "question": "How would you implement an accessible tabbed interface where each tab panel contains a <main> element?",
+      "answer": "You should NOT have multiple visible <main> elements in tab panels. Instead, have a single <main> that contains all tab panels, and hide inactive panels using the hidden attribute. Only one tab panel should be visible at a time within the single <main>."
+    },
+    {
+      "question": "Explain the technical reasons why <main> cannot be a descendant of <article>, <aside>, or <nav>.",
+      "answer": "The HTML specification defines the content model of <main> as flow content where it is a child of the <body> or of a sectioning root. <article>, <aside>, and <nav> are sectioning elements with their own content models. Allowing <main> inside them would create ambiguous semantics about which content is truly 'primary' and could confuse assistive technology landmark navigation."
+    }
+  ]
+}

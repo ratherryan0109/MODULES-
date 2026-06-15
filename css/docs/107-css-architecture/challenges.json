@@ -1,0 +1,52 @@
+{
+  "module": "CSS Architecture",
+  "description": "Practice implementing CSS architecture methodologies",
+  "challenges": [
+    {
+      "id": 1,
+      "title": "Implement BEM on a Component",
+      "difficulty": "easy",
+      "description": "Take the given unstyled HTML and apply BEM naming to create a well-architected product card component. Requirements: (1) use proper BEM block/element/modifier naming, (2) create at least one modifier variant (e.g., featured, compact), (3) write CSS with flat selectors (no nesting beyond BEM structure), (4) include: product image, title, description, price, rating stars, add-to-cart button.",
+      "hints": [
+        "The block is the outer container: .product-card",
+        "Elements: .product-card__image, .product-card__title, etc.",
+        "Modifiers use --: .product-card--featured",
+        "Use BEM even for nested blocks (e.g., a button inside the card is still .btn, not .product-card__btn)",
+        "Keep specificity at 0,0,1,0 maximum"
+      ],
+      "starterCode": "<div class=\"product-card\">\n  <img src=\"product.jpg\" alt=\"Product\" class=\"product-card__image\">\n  <div class=\"product-card__body\">\n    <h3 class=\"product-card__title\">Wireless Headphones</h3>\n    <div class=\"product-card__rating\">★★★★☆</div>\n    <p class=\"product-card__desc\">Premium wireless headphones with noise cancellation.</p>\n    <span class=\"product-card__price\">$79.99</span>\n    <button class=\"product-card__btn\">Add to Cart</button>\n  </div>\n</div>",
+      "solution": "/* Block */ .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); } /* Elements */ .product-card__image { width: 100%; height: 200px; object-fit: cover; } .product-card__body { padding: 16px; display: grid; gap: 8px; } .product-card__title { font-size: 1.25rem; font-weight: 700; } .product-card__rating { color: #f5b342; font-size: 0.9rem; } .product-card__desc { color: #666; font-size: 0.9rem; } .product-card__price { font-size: 1.5rem; font-weight: 700; color: #333; } .product-card__btn { background: #667eea; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 700; } /* Modifiers */ .product-card--featured { border: 2px solid #667eea; } .product-card--sale .product-card__price::after { content: ' SALE!'; color: #e74c3c; font-size: 0.8rem; }"
+    },
+    {
+      "id": 2,
+      "title": "Design Token Migration",
+      "difficulty": "medium",
+      "description": "You have been given a stylesheet with hard-coded values everywhere. Refactor it to use CSS custom properties (design tokens). Requirements: (1) identify all hard-coded color, spacing, typography, and border-radius values, (2) define them as :root custom properties, (3) replace all hard-coded values with var() references, (4) create a dark theme variant using [data-theme='dark'], (5) ensure the theme switching works when the data-theme attribute changes, (6) document the token naming convention.",
+      "hints": [
+        "Use semantic names: --color-primary, not --color-blue",
+        "Group tokens by category: --color-*, --spacing-*, --font-*, --radius-*",
+        "For dark theme, only override the tokens that change",
+        "Tokens like --color-surface, --color-text, --color-border are theme-dependent",
+        "Use a consistent spacing scale: --spacing-xs (4px), --spacing-sm (8px), --spacing-md (16px), --spacing-lg (24px), --spacing-xl (32px)"
+      ],
+      "starterCode": ":root {\n  /* TODO: Define design tokens here */\n}\n\n.card {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n  color: #333333;\n}\n\n.card h2 {\n  font-size: 24px;\n  margin-bottom: 16px;\n}\n\n.btn {\n  background: #667eea;\n  color: white;\n  padding: 12px 24px;\n  border-radius: 8px;\n  border: none;\n  font-family: 'Inter', sans-serif;\n}\n\n[data-theme='dark'] .card {\n  background: #1e1e2e;\n  color: #cdd6f4;\n}\n\n[data-theme='dark'] .btn {\n  background: #89b4fa;\n}",
+      "solution": ":root { /* Colors */ --color-primary: #667eea; --color-surface: #ffffff; --color-text: #333333; --color-text-inverse: #ffffff; /* Spacing */ --spacing-md: 16px; --spacing-lg: 24px; --spacing-xl: 32px; /* Typography */ --font-sans: 'Inter', system-ui, sans-serif; --text-heading: 1.5rem; /* Borders */ --radius-md: 8px; --radius-lg: 12px; --shadow-card: 0 2px 8px rgba(0,0,0,0.1); } [data-theme='dark'] { --color-primary: #89b4fa; --color-surface: #1e1e2e; --color-text: #cdd6f4; --shadow-card: 0 2px 8px rgba(0,0,0,0.4); } .card { background: var(--color-surface); color: var(--color-text); padding: var(--spacing-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); } .card h2 { font-size: var(--text-heading); margin-bottom: var(--spacing-md); } .btn { background: var(--color-primary); color: var(--color-text-inverse); padding: var(--spacing-md) var(--spacing-lg); border-radius: var(--radius-md); border: none; font-family: var(--font-sans); }"
+    },
+    {
+      "id": 3,
+      "title": "Architect a Full Component Library with Layers",
+      "difficulty": "hard",
+      "description": "Design and implement a small component library using ITCSS layers and BEM naming. Requirements: (1) Define @layer order: settings, generic, elements, objects, components, utilities, (2) Create at least 3 different components (button, card, modal), (3) Use BEM naming for all components, (4) Create 2 layout objects (grid and flex container), (5) Create utility classes for margin, padding, text alignment, (6) Use CSS custom properties for all design tokens, (7) Each component has at least 2 modifier variants, (8) The modal component should include an overlay with backdrop-filter, (9) Test that utilities override components (via layer order).",
+      "hints": [
+        "Layer order matters: @layer settings, generic, elements, objects, components, utilities",
+        "Unlayered styles beat all layers — put utilities in a layer to keep them controllable",
+        "Objects use .o- prefix (e.g., .o-grid, .o-container)",
+        "Components use .c- prefix (e.g., .c-btn, .c-card, .c-modal)",
+        "Utilities use .u- prefix (e.g., .u-mt-md, .u-text-center)",
+        "The modal overlay is a good use case for backdrop-filter"
+      ],
+      "starterCode": "/* === SETTINGS === */\n@layer settings {\n  :root {\n    --color-primary: #667eea;\n    --color-surface: #ffffff;\n    --color-text: #333333;\n    --spacing-md: 16px;\n    --spacing-lg: 24px;\n    --radius-md: 8px;\n    --radius-lg: 12px;\n    --font-sans: system-ui, sans-serif;\n  }\n}\n\n/* === GENERIC === */\n@layer generic {\n  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\n  body { font-family: var(--font-sans); background: #f5f5f5; color: var(--color-text); }\n}\n\n/* === ELEMENTS === */\n@layer elements {\n  h1 { font-size: 2rem; }\n  a { color: var(--color-primary); }\n}\n\n/* === OBJECTS === */\n@layer objects {\n  .o-container { max-width: 1200px; margin-inline: auto; padding: 0 var(--spacing-md); }\n  .o-grid { display: grid; gap: var(--spacing-md); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }\n  .o-flex { display: flex; gap: var(--spacing-md); flex-wrap: wrap; }\n}\n\n/* === COMPONENTS === */\n@layer components {\n  .c-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius-md); border: none; cursor: pointer; font-weight: 700; }\n  .c-btn--primary { background: var(--color-primary); color: white; }\n  .c-btn--outline { background: transparent; border: 2px solid var(--color-primary); color: var(--color-primary); }\n  \n  .c-card { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--spacing-lg); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }\n  .c-card__title { font-size: 1.25rem; margin-bottom: 8px; }\n  .c-card--compact { padding: var(--spacing-md); }\n  \n  .c-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); align-items: center; justify-content: center; }\n  .c-modal-overlay.is-open { display: flex; }\n  .c-modal { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--spacing-lg); max-width: 500px; width: 90%; }\n}\n\n/* === UTILITIES === */\n@layer utilities {\n  .u-mt-md { margin-top: var(--spacing-md); }\n  .u-text-center { text-align: center; }\n}\n\n/* === PAGE === */\n<main class=\"o-container\">\n  <div class=\"o-grid u-mt-md\">\n    <div class=\"c-card\">\n      <h2 class=\"c-card__title\">Card 1</h2>\n      <p>Example content</p>\n      <div class=\"o-flex u-mt-md\">\n        <button class=\"c-btn c-btn--primary\">Primary</button>\n        <button class=\"c-btn c-btn--outline\">Outline</button>\n      </div>\n    </div>\n  </div>\n</main>",
+      "solution": "The @layer structure above IS the solution. Key points: (1) Layers are declared in order, (2) Utilities come last so they override components, (3) .o- prefix for layouts, .c- prefix for components, .u- prefix for utilities, (4) Modal uses is-open state class (SMACSS pattern), (5) Custom properties centralize all design values."
+    }
+  ]
+}

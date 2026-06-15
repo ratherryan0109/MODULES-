@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Display - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .block-box { background: #06b6d4; color: white; padding: 0.8rem; margin: 0.3rem 0; text-align: center; font-weight: 600; }
+    .inline-container { background: #f1f5f9; padding: 0.5rem; border-radius: 6px; }
+    .inline-item { background: #ef4444; color: white; padding: 0.3rem 0.6rem; margin: 0.2rem; }
+    .ib-item { display: inline-block; background: #22c55e; color: white; padding: 0.8rem; margin: 0.3rem; width: 100px; height: 60px; text-align: center; vertical-align: top; font-weight: 600; }
+    .none-vs-hidden { display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap; }
+    .none-box { display: none; background: #8b5cf6; color: white; padding: 1rem; }
+    .hidden-box { visibility: hidden; background: #f59e0b; color: white; padding: 1rem; }
+    .flex-demo { display: flex; gap: 0.5rem; background: #f0f9ff; padding: 0.75rem; border-radius: 6px; }
+    .flex-demo div { background: #06b6d4; color: white; padding: 1rem; text-align: center; flex: 1; font-weight: 600; border-radius: 4px; }
+    .grid-demo { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; background: #f0f9ff; padding: 0.75rem; border-radius: 6px; }
+    .grid-demo div { background: #8b5cf6; color: white; padding: 1rem; text-align: center; font-weight: 600; border-radius: 4px; }
+    .inline-flex-demo { display: inline-flex; gap: 0.3rem; background: #fef3c7; padding: 0.5rem; border-radius: 6px; }
+    .inline-flex-demo span { background: #f59e0b; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.85rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.75rem 0; }
+    @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>CSS Display - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Block Elements</h2>
+    <p>Block elements take up the full width available and stack vertically. They respect <code>width</code> and <code>height</code>.</p>
+    <div class="demo-output">
+      <div class="block-box">Block 1 — takes full width</div>
+      <div class="block-box">Block 2 — stacks below</div>
+      <div class="block-box" style="width:60%;margin:0.3rem auto">Block 3 — with width: 60%</div>
+    </div>
+    <pre><code>.block {
+  display: block;  /* Default for div, p, h1-h6 */
+  width: 100%;     /* Fills parent width */
+  /* height is respected */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Inline Elements</h2>
+    <p>Inline elements flow horizontally like text. They <strong>ignore</strong> <code>width</code> and <code>height</code>.</p>
+    <div class="demo-output">
+      <div class="inline-container">
+        <span class="inline-item">Inline 1</span>
+        <span class="inline-item">Inline 2</span>
+        <span class="inline-item">Inline 3</span>
+        <span class="inline-item">Inline 4</span>
+      </div>
+      <p style="color:#64748b;font-size:0.85rem;margin-top:0.5rem">Notice: width and height settings are ignored — they wrap naturally.</p>
+    </div>
+    <pre><code>.inline {
+  display: inline;   /* Default for span, a, strong */
+  /* width and height are IGNORED */
+  /* padding/margin only work horizontally */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Inline-Block</h2>
+    <p>Inline-block combines the best of both — flows inline but respects <code>width</code> and <code>height</code>.</p>
+    <div class="demo-output">
+      <div style="background:#f1f5f9;padding:0.5rem;border-radius:6px">
+        <div class="ib-item">IB 1</div>
+        <div class="ib-item">IB 2</div>
+        <div class="ib-item">IB 3</div>
+      </div>
+    </div>
+    <pre><code>.ib {
+  display: inline-block;
+  width: 100px;    /* Works! */
+  height: 60px;    /* Works! */
+  /* Sits inline with text */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Display: None vs Visibility: Hidden</h2>
+    <p><code>display: none</code> removes the element completely. <code>visibility: hidden</code> hides it visually but keeps its space.</p>
+    <div class="demo-output">
+      <div class="none-vs-hidden">
+        <div style="flex:1;padding:0.5rem;background:#fef2f2;border-radius:6px">
+          <strong>display: none</strong>
+          <p>You can't see me <span class="none-box">invisible</span> — I'm removed from the flow.</p>
+        </div>
+        <div style="flex:1;padding:0.5rem;background:#fffbeb;border-radius:6px">
+          <strong>visibility: hidden</strong>
+          <p>You can't see me <span class="hidden-box">invisible</span> — but my space is preserved (see the gap).</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>.gone  { display: none; }         /* Removed from flow */
+.hidden { visibility: hidden; }    /* Invisible but takes space */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Flexbox</h2>
+    <p><code>display: flex</code> creates a flexible layout container. Children align in a row by default, with powerful alignment options.</p>
+    <div class="demo-output">
+      <div class="flex-demo">
+        <div>Flex 1</div>
+        <div>Flex 2</div>
+        <div>Flex 3</div>
+      </div>
+    </div>
+    <pre><code>.flex-container {
+  display: flex;
+  gap: 0.5rem;
+}
+.flex-container div {
+  flex: 1;  /* Equal distribution */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: CSS Grid</h2>
+    <p><code>display: grid</code> creates a two-dimensional layout with rows and columns.</p>
+    <div class="demo-output">
+      <div class="grid-demo">
+        <div>Grid 1</div>
+        <div>Grid 2</div>
+        <div>Grid 3</div>
+      </div>
+    </div>
+    <pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Inline-Flex</h2>
+    <p><code>display: inline-flex</code> creates a flex container that behaves like an inline element.</p>
+    <div class="demo-output">
+      <p>This text has <span class="inline-flex-demo"><span>tags</span><span>inline</span><span>flex</span></span> embedded inline-flex.</p>
+    </div>
+    <pre><code>.inline-flex {
+  display: inline-flex;
+  gap: 0.3rem;
+}
+/* Flex behavior, but inline sizing */</code></pre>
+  </div>
+
+</body>
+</html>

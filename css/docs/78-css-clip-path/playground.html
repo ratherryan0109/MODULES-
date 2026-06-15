@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Clip Path — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; padding: 2rem; color: #eee; }
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: #aaa; margin-bottom: 2rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .controls { background: #16213e; border-radius: 12px; padding: 1.5rem; }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .preview-area { background: #16213e; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; }
+    .preview-box { width: 300px; height: 300px; background: linear-gradient(135deg, #e74c3c, #f39c12, #2ecc71, #3498db, #9b59b6); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold; transition: clip-path 0.2s; }
+    .code-output { background: #0a0a1a; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #a8d8ea; white-space: pre-wrap; word-break: break-all; width: 100%; }
+    .preset-btn { padding: 0.3rem 0.6rem; border: 1px solid #333; border-radius: 4px; background: #0f3460; color: #aaa; cursor: pointer; font-size: 0.7rem; }
+    .preset-btn:hover { background: #e94560; color: white; }
+    .presets { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Clip-Path Playground</h1>
+  <p class="subtitle">Experiment with CSS clip-path shapes in real time</p>
+
+  <div class="container">
+    <div class="controls">
+      <h2>Controls</h2>
+      <div class="presets">
+        <button class="preset-btn" onclick="applyPreset('circle')">Circle</button>
+        <button class="preset-btn" onclick="applyPreset('triangle')">Triangle</button>
+        <button class="preset-btn" onclick="applyPreset('hexagon')">Hexagon</button>
+        <button class="preset-btn" onclick="applyPreset('star')">Star</button>
+        <button class="preset-btn" onclick="applyPreset('diamond')">Diamond</button>
+        <button class="preset-btn" onclick="applyPreset('inset')">Inset</button>
+        <button class="preset-btn" onclick="applyPreset('ellipse')">Ellipse</button>
+      </div>
+
+      <div class="control-group">
+        <label>Shape Type</label>
+        <select id="shapeType" onchange="updateClipPath()">
+          <option value="circle">circle()</option>
+          <option value="ellipse">ellipse()</option>
+          <option value="inset">inset()</option>
+          <option value="polygon">polygon()</option>
+          <option value="path">path()</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Size / Radius <span class="value" id="valSize">50</span></label>
+        <input type="range" id="size" min="10" max="100" value="50" oninput="updateClipPath()">
+      </div>
+      <div class="control-group">
+        <label>Position X <span class="value" id="valPosX">50</span></label>
+        <input type="range" id="posX" min="0" max="100" value="50" oninput="updateClipPath()">
+      </div>
+      <div class="control-group">
+        <label>Position Y <span class="value" id="valPosY">50</span></label>
+        <input type="range" id="posY" min="0" max="100" value="50" oninput="updateClipPath()">
+      </div>
+      <div class="control-group">
+        <label>Rotation Sides <span class="value" id="valSides">5</span></label>
+        <input type="range" id="sides" min="3" max="12" value="5" oninput="updateClipPath()">
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <div class="preview-box" id="previewBox">Clip</div>
+      </div>
+      <div class="code-output" id="codeOutput">clip-path: circle(50%);</div>
+    </div>
+  </div>
+
+  <script>
+    function updateClipPath() {
+      const type = document.getElementById('shapeType').value;
+      const size = parseInt(document.getElementById('size').value);
+      const posX = parseInt(document.getElementById('posX').value);
+      const posY = parseInt(document.getElementById('posY').value);
+      const sides = parseInt(document.getElementById('sides').value);
+
+      document.getElementById('valSize').textContent = size;
+      document.getElementById('valPosX').textContent = posX;
+      document.getElementById('valPosY').textContent = posY;
+      document.getElementById('valSides').textContent = sides;
+
+      let clipPath;
+      switch (type) {
+        case 'circle':
+          clipPath = `circle(${size}% at ${posX}% ${posY}%)`;
+          break;
+        case 'ellipse':
+          clipPath = `ellipse(${size}% ${Math.max(20, size * 0.6)}% at ${posX}% ${posY}%)`;
+          break;
+        case 'inset':
+          const insetVal = Math.max(1, 100 - size) / 2;
+          clipPath = `inset(${insetVal}% ${insetVal}% round ${size * 0.3}px)`;
+          break;
+        case 'polygon': {
+          const pts = [];
+          for (let i = 0; i < sides; i++) {
+            const angle = (i / sides) * 360 - 90;
+            const rad = (angle * Math.PI) / 180;
+            const x = 50 + (size / 2) * Math.cos(rad);
+            const y = 50 + (size / 2) * Math.sin(rad);
+            pts.push(`${x}% ${y}%`);
+          }
+          clipPath = `polygon(${pts.join(', ')})`;
+          break;
+        }
+        case 'path':
+          clipPath = `path('M${posX},${posY - size} Q${posX + size},${posY} ${posX},${posY + size} Q${posX - size},${posY} ${posX},${posY - size}Z')`;
+          break;
+      }
+
+      document.getElementById('previewBox').style.clipPath = clipPath;
+      document.getElementById('codeOutput').textContent = `clip-path: ${clipPath};`;
+    }
+
+    function applyPreset(name) {
+      const presets = {
+        circle: ['circle', 50, 50, 50, 5],
+        triangle: ['polygon', 50, 50, 50, 3],
+        hexagon: ['polygon', 50, 50, 50, 6],
+        star: ['polygon', 50, 50, 50, 5],
+        diamond: ['polygon', 50, 50, 50, 4],
+        inset: ['inset', 50, 50, 50, 5],
+        ellipse: ['ellipse', 50, 50, 50, 5]
+      };
+      const p = presets[name];
+      if (!p) return;
+      document.getElementById('shapeType').value = p[0];
+      document.getElementById('size').value = p[1];
+      document.getElementById('posX').value = p[2];
+      document.getElementById('posY').value = p[3];
+      document.getElementById('sides').value = p[4];
+      updateClipPath();
+    }
+
+    updateClipPath();
+  </script>
+</body>
+</html>

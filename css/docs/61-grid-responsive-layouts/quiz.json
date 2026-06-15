@@ -1,0 +1,147 @@
+{
+  "module": "61-grid-responsive-layouts",
+  "title": "CSS Grid Responsive Layouts",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `minmax(200px, 1fr)` mean?",
+      "options": ["Each column is at least 200px and at most 1fr (equal share of remaining space)", "Each column is exactly 200px or exactly 1fr", "Each column can be 200px or larger but never smaller than 1fr", "Each column is 200px on mobile and 1fr on desktop"],
+      "correctAnswer": 0,
+      "explanation": "`minmax(200px, 1fr)` means the track has a minimum size of 200px and a maximum size of 1fr (fraction of remaining space)."
+    },
+    {
+      "id": 2,
+      "question": "What does `auto-fill` do in `repeat(auto-fill, minmax(200px, 1fr))`?",
+      "options": ["Creates as many column tracks as will fit, preserving empty space for future items", "Creates exactly the number of columns needed, collapsing empty space", "Automatically fills the grid with placeholder items", "Creates one column that fills the available width"],
+      "correctAnswer": 0,
+      "explanation": "`auto-fill` creates as many tracks as fit in the container. Empty tracks remain, preserving their space — useful for placeholder slots."
+    },
+    {
+      "id": 3,
+      "question": "What is the key difference between `auto-fill` and `auto-fit`?",
+      "options": ["auto-fit collapses empty tracks to zero; auto-fill preserves them", "auto-fill collapses empty tracks; auto-fit preserves them", "auto-fill works with rows; auto-fit works with columns", "There is no difference"],
+      "correctAnswer": 0,
+      "explanation": "`auto-fit` collapses empty tracks to 0 width so items expand to fill space. `auto-fill` keeps empty tracks at their minimum size."
+    },
+    {
+      "id": 4,
+      "question": "Which is better for a card grid where cards should stretch to fill the container?",
+      "options": ["auto-fit", "auto-fill", "minmax() without auto-fit", "repeat(3, 1fr)"],
+      "correctAnswer": 0,
+      "explanation": "`auto-fit` collapses empty tracks, allowing cards to expand and fill available space. This is ideal for most card layouts."
+    },
+    {
+      "id": 5,
+      "question": "When would you use `auto-fill` instead of `auto-fit`?",
+      "options": ["When you want to reserve space for items that may be added later (e.g., loading placeholders)", "When you always have exactly the right number of items", "When you want items to overflow", "When using fixed pixel widths"],
+      "correctAnswer": 0,
+      "explanation": "`auto-fill` keeps empty tracks visible, which is useful for placeholder slots in loading states or template areas where content will be injected dynamically."
+    },
+    {
+      "id": 6,
+      "question": "What is the output of `repeat(auto-fit, minmax(250px, 1fr))` on a 1200px container with 3 items?",
+      "options": ["4 columns (items expand to ~300px each)", "3 columns at 250px each", "3 columns at 400px each", "5 columns at 240px each"],
+      "correctAnswer": 0,
+      "explanation": "1200/250 = 4.8, so the browser creates 4 columns. With auto-fit, the 4th column (empty) collapses, and the 3 items expand to share the full width (~400px each)."
+    },
+    {
+      "id": 7,
+      "question": "What happens with `repeat(auto-fill, minmax(250px, 1fr))` on a 1200px container with 3 items?",
+      "options": ["4 columns (3 filled, 1 empty placeholder)", "3 columns", "5 columns", "The items overflow"],
+      "correctAnswer": 0,
+      "explanation": "1200/250 = 4.8, so 4 columns fit. With auto-fill, all 4 columns exist — 3 with items, 1 empty placeholder."
+    },
+    {
+      "id": 8,
+      "question": "Why might you use `minmax(0, 1fr)` instead of `1fr`?",
+      "options": ["To prevent overflow from long content that doesn't fit the grid cell", "To make items smaller", "To create more columns", "To increase performance"],
+      "correctAnswer": 0,
+      "explanation": "`minmax(0, 1fr)` allows the column to shrink to 0 if content is too large, preventing overflow. Plain `1fr` has an implicit min of `auto`, which can cause overflow."
+    },
+    {
+      "id": 9,
+      "question": "True or False: The `repeat(auto-fit, minmax(250px, 1fr))` pattern eliminates the need for media queries for column changes.",
+      "options": ["True — the grid automatically adjusts column count", "False — you still need media queries for most layouts", "Only in Chrome", "Only with grid areas"],
+      "correctAnswer": 0,
+      "explanation": "This pattern handles column-count changes automatically based on available space. You may still need media queries for layout structure changes (e.g., sidebar to stack), but not for column count."
+    },
+    {
+      "id": 10,
+      "question": "What value keyword creates tracks that are sized to their content?",
+      "options": ["auto", "1fr", "min-content", "fit-content"],
+      "correctAnswer": 0,
+      "explanation": "`auto` sizes the track based on the content's intrinsic size. In the `repeat()` function it behaves like `minmax(auto, 1fr)`."
+    },
+    {
+      "id": 11,
+      "question": "What is the minimum value in `minmax(200px, 1fr)` when 3 items exist in a 500px container?",
+      "options": ["200px per column overflows horizontally because only 2 columns fit", "166.67px per column (500px ÷ 3)", "200px per column", "The columns overflow"],
+      "correctAnswer": 0,
+      "explanation": "At 500px with 3 columns at min 200px each, at least 600px is needed. Since only 2 columns fit (2 × 200px = 400px), the container would overflow unless overflow handling is applied."
+    },
+    {
+      "id": 12,
+      "question": "Which property controls implicit row heights in a responsive auto-fill grid?",
+      "options": ["grid-auto-rows", "grid-template-rows", "grid-auto-flow", "row-gap"],
+      "correctAnswer": 0,
+      "explanation": "`grid-auto-rows` sets the height of any rows created implicitly by auto-placement in a responsive grid."
+    },
+    {
+      "id": 13,
+      "question": "For a sidebar layout where the sidebar should be between 200px and 300px, and content fills the rest, which declaration is correct?",
+      "options": ["grid-template-columns: minmax(200px, 300px) 1fr", "grid-template-columns: 1fr minmax(200px, 300px)", "grid-template-columns: 200px minmax(300px, 1fr)", "grid-template-columns: minmax(200px, 1fr)"],
+      "correctAnswer": 0,
+      "explanation": "The first column (sidebar) has minmax(200px, 300px) — at least 200px, up to 300px. The second column (content) takes the remaining space with 1fr."
+    },
+    {
+      "id": 14,
+      "question": "What happens if you use `repeat(auto-fit, minmax(150px, 1fr))` on a 400px container with 2 items?",
+      "options": ["2 columns at 200px each (400px/2 = 200px)", "2 columns at 150px each with 100px gap", "3 columns at 133px each", "1 column at 400px"],
+      "correctAnswer": 0,
+      "explanation": "400/150 = 2.66, so 2 columns fit. Each gets 1fr = 200px (400px ÷ 2). The third possible column would need at least 150px, which exceeds the remaining space."
+    },
+    {
+      "id": 15,
+      "question": "How does `auto-fit` handle empty tracks at the end of a row?",
+      "options": ["They are collapsed to 0 width so items expand to fill", "They remain as empty spaces", "They are removed from the grid", "They become invisible but maintain their width"],
+      "correctAnswer": 0,
+      "explanation": "`auto-fit` collapses empty tracks at the end of a row or column to 0 width, allowing the remaining items to expand and fill the container."
+    },
+    {
+      "id": 16,
+      "question": "Can you use `minmax()` with grid-row or grid-column?",
+      "options": ["No — minmax is only for grid-template-columns and grid-template-rows", "Yes — minmax() works everywhere", "Only in Grid Level 2", "Only in Firefox"],
+      "correctAnswer": 0,
+      "explanation": "`minmax()` is specifically for track sizing in `grid-template-columns` and `grid-template-rows`. For item placement, use `span` or track numbers."
+    },
+    {
+      "id": 17,
+      "question": "What does `grid-template-columns: repeat(auto-fit, minmax(min-content, 1fr))` do?",
+      "options": ["Columns size to fit their content minimum, can expand to fill space", "Columns are as small as possible", "Columns fill the container with fixed sizes", "Only one column is created"],
+      "correctAnswer": 0,
+      "explanation": "`min-content` ensures each column is at least wide enough to fit its content without breaking words. `1fr` allows it to expand to fill space."
+    },
+    {
+      "id": 18,
+      "question": "What happens with `repeat(auto-fit, minmax(300px, 1fr))` on a 600px viewport with 2 items?",
+      "options": ["2 columns at 300px each", "1 column at 600px", "2 columns at 200px each with overflow", "2 columns at 300px with 0 gap"],
+      "correctAnswer": 0,
+      "explanation": "600px / 300px = 2 columns. Each 1fr = 300px. Perfect fit."
+    },
+    {
+      "id": 19,
+      "question": "Which of these is NOT a valid use of `minmax()`?",
+      "options": ["minmax(1fr, 200px) — min cannot be 1fr", "minmax(100px, 200px)", "minmax(0, 1fr)", "minmax(200px, 1fr)"],
+      "correctAnswer": 0,
+      "explanation": "The minimum value in minmax() cannot be a flex value (`fr`). `minmax(1fr, 200px)` is invalid. The max value can be `fr`, but the min must be a length, percentage, or content keyword."
+    },
+    {
+      "id": 20,
+      "question": "What is the most common real-world use for `auto-fit` with `minmax()`?",
+      "options": ["Card grids and gallery layouts that adapt to any screen size", "Fixed-width sidebar layouts", "Header navigation bars", "Single-column article layouts"],
+      "correctAnswer": 0,
+      "explanation": "Auto-fit with minmax() is the foundation for modern responsive card grids across the web — dashboards, product listings, portfolios, and news feeds."
+    }
+  ]
+}

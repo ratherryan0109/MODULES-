@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"question":"What makes a website mobile-friendly?","answer":"Proper viewport configuration, readable text without zooming, adequate touch target sizes (48px+), responsive layout, fast loading, and accessible forms."},
+    {"question":"What is the minimum touch target size?","answer":"Google recommends at least 48x48 CSS pixels for all interactive elements."},
+    {"question":"Why is font-size: 16px important on mobile forms?","answer":"iOS Safari zooms into inputs with font-size less than 16px. Setting 16px prevents unintended zoom behavior."},
+    {"question":"What is the autocomplete attribute?","answer":"It helps browsers autofill form fields with saved user data like name, email, address, and credit card info."},
+    {"question":"What is lazy loading?","answer":"An optimization that defers loading off-screen images and iframes until they're about to enter the viewport."},
+    {"question":"What is Google's mobile-first indexing?","answer":"Google primarily uses the mobile version of pages for indexing and ranking content in search results."},
+    {"question":"What is a hamburger menu?","answer":"A navigation pattern where links are hidden behind a toggle button (☰), commonly used on mobile to save space."},
+    {"question":"What does touch-action: manipulation do?","answer":"It removes the 300ms tap delay and prevents double-tap zoom on buttons and links."},
+    {"question":"How do you prevent horizontal scrolling on mobile?","answer":"Use max-width: 100% on images and media, avoid fixed-width elements, and use overflow-x: hidden on body if needed."},
+    {"question":"What is a mobile-friendly test?","answer":"A tool (like Google's) that checks if a page meets mobile usability standards including viewport, font size, and tap targets."}
+  ],
+  "intermediate": [
+    {"question":"How do you detect touch devices with CSS?","answer":"Use @media (hover: none) and (pointer: coarse) to target touch-only devices, or @media (hover: hover) for devices with hover capability."},
+    {"question":"What inputmode values are available for mobile keyboards?","answer":"Inputmode values include: none, text, decimal, numeric, tel, search, email, url. They control which virtual keyboard appears."},
+    {"question":"How do you create a mobile-friendly table?","answer":"Wrap the table in a container with overflow-x: auto, or use a responsive approach that restructures rows into cards on mobile using CSS."},
+    {"question":"What is the purpose of the picture element?","answer":"<picture> enables art direction, allowing different image crops or formats based on viewport size, device pixel ratio, or supported formats."},
+    {"question":"How do you optimize fonts for mobile?","answer":"Use font-display: swap to prevent invisible text during loading, limit custom font weights, and use variable fonts for smaller file sizes."},
+    {"question":"What is Core Web Vitals' CLS and how does it affect mobile?","answer":"CLS (Cumulative Layout Shift) measures unexpected layout shifts. Set explicit dimensions on images/ads to prevent shifts that frustrate mobile users."},
+    {"question":"How do you handle hover states on touch devices?","answer":"Use @media (hover: hover) to apply hover effects only on devices that support hover. For touch, use :active or JavaScript click events."},
+    {"question":"What is the enterkeyhint attribute?","answer":"It hints at the action label on the mobile keyboard's enter key (enter, done, go, next, search, send)."},
+    {"question":"How do you prevent iOS from auto-adjusting text size?","answer":"Set -webkit-text-size-adjust: 100% on the html element. This prevents automatic text size adjustment when rotating to landscape."},
+    {"question":"What is a bottom navigation pattern?","answer":"A mobile UX pattern with navigation tabs at the bottom of the screen, making it easier for thumbs to reach on large phones."}
+  ],
+  "advanced": [
+    {"question":"How do you implement a mobile navigation with proper accessibility?","answer":"Use <nav> with aria-label, a toggle button with aria-expanded and aria-controls, manage focus when menu opens/closes, and trap focus within the menu."},
+    {"question":"How does the CSS content-visibility property improve mobile performance?","answer":"content-visibility: auto defers rendering of off-screen elements, reducing initial paint time and improving LCP (Largest Contentful Paint)."},
+    {"question":"What is the interaction between 100vh and mobile browser chrome?","answer":"100vh on mobile includes the browser chrome (URL bar). When the user scrolls, chrome hides, changing viewport size. Use 100dvh for dynamic handling or 100lvh/100svh for fixed behavior."},
+    {"question":"How do you implement a smooth infinite scroll for mobile feeds?","answer":"Use Intersection Observer API to detect when the user nears the bottom, then load more content. Avoid scroll events for performance."},
+    {"question":"What are the mobile performance implications of JavaScript frameworks?","answer":"Heavy JS frameworks increase bundle size, parse time, and execution time on mobile. Use code splitting, tree shaking, and consider SSR/SSG for content-heavy mobile sites."},
+    {"question":"How do you implement pull-to-refresh pattern?","answer":"Use CSS overscroll-behavior: contain to prevent browser-level pull-to-refresh, then implement custom pull-to-refresh with JavaScript touch events and animation."},
+    {"question":"How does the prefers-reduced-data media query optimize mobile delivery?","answer":"@media (prefers-reduced-data: reduce) detects users on data-saving modes, allowing you to serve lower-quality images, disable auto-play video, and minimize fonts."},
+    {"question":"What is the Performance API and how does it help mobile optimization?","answer":"The Performance API provides metrics like TTFB, FCP, LCP, and CLS. Monitoring these helps identify mobile-specific performance bottlenecks."},
+    {"question":"How do you implement gesture-based navigation (swipe) for mobile?","answer":"Use pointer events (pointerdown, pointermove, pointerup) for cross-browser gesture detection. Calculate delta X/Y to determine swipe direction."},
+    {"question":"What is the difference between responsive design and device-specific design for mobile?","answer":"Responsive design uses fluid grids and media queries to adapt to any screen. Device-specific design detects the exact device and serves tailored markup. Responsive is preferred for maintainability and future-proofing."}
+  ]
+}

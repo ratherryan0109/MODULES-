@@ -1,0 +1,130 @@
+{
+  "module": "120-bem-methodology",
+  "title": "BEM Methodology",
+  "beginner": [
+    {
+      "question": "What does BEM stand for?",
+      "answer": "BEM stands for Block, Element, Modifier. It's a CSS naming methodology created by Yandex to help create reusable, maintainable, and understandable CSS class names."
+    },
+    {
+      "question": "What is a 'Block' in BEM?",
+      "answer": "A Block is a standalone, reusable component that is meaningful on its own. Examples: `.header`, `.menu`, `.button`, `.card`. A Block has its own distinct purpose and can be placed anywhere on the page."
+    },
+    {
+      "question": "What is an 'Element' in BEM?",
+      "answer": "An Element is a part of a Block that has no standalone meaning and is semantically tied to its Block. It's denoted with double underscores: `.card__title`, `.menu__item`, `.button__icon`."
+    },
+    {
+      "question": "What is a 'Modifier' in BEM?",
+      "answer": "A Modifier represents a variation or state of a Block or Element. It's denoted with double dashes: `.button--primary`, `.card--featured`, `.menu__item--active`. Modifiers change appearance, behavior, or state."
+    },
+    {
+      "question": "What is the syntax for a BEM class name?",
+      "answer": "The syntax is: `.block__element--modifier`. Double underscore separates Block from Element. Double dash separates Block/Element from Modifier. Example: `.card__title--highlighted`."
+    },
+    {
+      "question": "How do you write a modifier for a Block (not an Element) in BEM?",
+      "answer": "A Block modifier uses just the block name plus modifier: `.button--large`. This changes the block itself without creating an element relationship. Usage: `<button class=\"button button--large\">`."
+    },
+    {
+      "question": "What is the main benefit of BEM naming?",
+      "answer": "BEM eliminates CSS selector conflicts and specificity wars. Every class has a unique, predictable name in a flat structure. There's no nesting or descendant selectors, so specificity remains consistently low (all classes, no elements or IDs)."
+    },
+    {
+      "question": "How do you represent a nested element in BEM if a block contains nested components?",
+      "answer": "An element always has the block name as its root, regardless of nesting depth. `.card__text` is correct even if the text is nested inside `.card__body`. Elements are not nested in the naming; they're always flat: `.block__element`."
+    },
+    {
+      "question": "Can an Element contain another Element in BEM naming?",
+      "answer": "No, BEM does not support chained elements. `.card__body__title` is incorrect. The correct naming is `.card__title` — elements are always a single level deep from the block, regardless of DOM nesting."
+    },
+    {
+      "question": "What is the difference between a BEM Block and a CSS class in traditional CSS?",
+      "answer": "A BEM Block is a logical component with clear boundaries, while a traditional CSS class may style any element without component context. BEM provides structure and predictability that traditional flat or nested CSS lacks."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you handle multiple modifiers on one BEM element?",
+      "answer": "Multiple modifiers are applied as separate classes: `<button class=\"button button--large button--primary button--disabled\">`. Each modifier class adds one variation. The base block class provides the foundation, modifiers layer on changes."
+    },
+    {
+      "question": "How do you handle BEM for a component with child blocks?",
+      "answer": "Each child block has its own independent BEM structure. A card containing a button: the card uses `.card`, `.card__title`. The button uses `.btn`, `.btn--primary`. The button's BEM is independent; it does not become `.card__btn`."
+    },
+    {
+      "question": "How does BEM solve the 'Cascade Problem'?",
+      "answer": "BEM flattens specificity — every selector is a single class (0,0,1,0). There's no inheritance or cascade between components. This eliminates the 'this style isn't working because of specificity' problem entirely."
+    },
+    {
+      "question": "What is a 'BEM Mix'?",
+      "answer": "A mix is when a Block and Element class are applied to the same HTML element, allowing the element to be both a standalone Block and an Element of another Block. Example: `<div class=\"card header__card\">` — the same div is a `.card` block and a `.header__card` element."
+    },
+    {
+      "question": "How do you use BEM with responsive design?",
+      "answer": "Use BEM blocks as-is across breakpoints. For responsive variations, add a modifier: `.menu--mobile` or `.menu--expanded`. The block's internal elements adjust via responsive CSS inside the block's stylesheet, not through naming changes."
+    },
+    {
+      "question": "What is the BEM approach to styling `<h1>` to `<h6>` headings in a card?",
+      "answer": "Use element classes: `.card__title` regardless of the actual heading level. The heading level is semantic HTML, the BEM class is visual. This separates content structure from presentation: `<h2 class=\"card__title\">`."
+    },
+    {
+      "question": "How does BEM handle pseudo-classes like `:hover` and `:focus`?",
+      "answer": "BEM doesn't have a special syntax for pseudo-classes. Use standard CSS: `.button:hover`, `.button:focus-visible`. The modifier pattern applies to states you want a class name for: `.button--active` for the active state, not `:active`."
+    },
+    {
+      "question": "How do you handle third-party CSS classes alongside BEM?",
+      "answer": "Keep third-party classes as-is. In your CSS, don't mix BEM and third-party selectors in the same rule. Apply third-party classes in HTML alongside BEM: `<button class=\"btn btn--primary btn--large utility-class\">`."
+    },
+    {
+      "question": "How do you create a BEM class for an element that only exists in a specific modifier?",
+      "answer": "Style the modifier's child element with nested CSS: `.card--featured .card__title { color: gold; }`. The element class remains `.card__title`; the modifier parent changes how the element looks."
+    },
+    {
+      "question": "What is the 'BEM naming for media queries' approach?",
+      "answer": "BEM blocks should be responsive at the block level, not naming level. If a block needs to be rearranged at mobile widths, create a modifier: `.card--stacked`. The block's internal CSS handles the responsive changes for that modifier."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you handle deeply nested components with BEM in a complex UI (e.g., a comment thread)?",
+      "answer": "Each level is a separate BEM block. `.comment` contains `.comment__body`. If `.comment__body` contains another `.comment`, the nested comment is a new block instance. BEM doesn't encode depth — each `.comment` is a fresh block."
+    },
+    {
+      "question": "What are the performance implications of BEM's flat class structure?",
+      "answer": "BEM classes are fast for the browser to match (single class selectors). However, large HTML with many classes (base + modifiers + elements) increases HTML file size slightly. The performance benefit of fast selector matching usually outweighs the size increase."
+    },
+    {
+      "question": "How does BEM integrate with CSS Modules?",
+      "answer": "CSS Modules provide automatic scoping via unique class names. You can use BEM-style naming inside CSS Modules as a convention, and the build tool adds hashing for uniqueness. Example: `.card__title` becomes `.card__title_abc123`."
+    },
+    {
+      "question": "What is the BEM approach for a component that changes its HTML structure based on its modifier?",
+      "answer": "Keep the same BEM structure regardless of modifier. The modifier changes CSS (display, order, visibility) but not the class structure. If the HTML structure is fundamentally different, it's a different block, not a modifier."
+    },
+    {
+      "question": "How do you handle BEM in the context of web components (Shadow DOM)?",
+      "answer": "In Shadow DOM, BEM naming is less critical because the shadow boundary provides CSS isolation. However, BEM still adds clarity for component structure. Use BEM inside shadow templates for the component developer's understanding."
+    },
+    {
+      "question": "What are the downsides of BEM in very large design systems?",
+      "answer": "BEM can lead to long, verbose class names (`.accordion__section__trigger__icon--expanded` — though this is incorrect nesting, the temptation exists). HTML becomes less readable. Some teams find BEM too rigid and prefer utility-first or hybrid approaches."
+    },
+    {
+      "question": "How do you handle BEM for elements inside a modifier without repeating the modifier class?",
+      "answer": "Use the modifier as the parent: `.card--featured .card__icon { color: gold; }`. This is the BEM-approved way — the element class stays `.card__icon`, and the modifier context changes its appearance via cascade."
+    },
+    {
+      "question": "What is the 'BEM SMART' variant and how does it differ?",
+      "answer": "BEM SMART extends BEM with states (`is-`, `has-` prefixes) and themes (`theme-`). It treats states differently from modifiers, with `.is-active`, `.has-error` used alongside BEM. This is closer to SMACSS's state category."
+    },
+    {
+      "question": "How do you document BEM components for a team?",
+      "answer": "Create a living style guide showing each block, its elements, and modifiers. Document the HTML structure each BEM component expects. Note which elements are optional, which modifiers are combinable, and whether modifiers affect child elements."
+    },
+    {
+      "question": "How does BEM handle CSS custom properties (variables) compared to preprocessor variables?",
+      "answer": "BEM doesn't dictate variable usage, but CSS custom properties complement BEM well: define block-level defaults with custom properties on the block's class (`.card { --card-gap: 1rem; }`) and override with modifiers (`.card--compact { --card-gap: 0.5rem; }`)."
+    }
+  ]
+}

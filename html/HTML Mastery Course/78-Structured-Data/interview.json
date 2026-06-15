@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is structured data in the context of web development?",
+      "answer": "Structured data is a standardized format using a shared vocabulary (like Schema.org) to provide explicit information about a webpage's content, helping search engines understand the context and meaning of the content, enabling enhanced search features like rich snippets."
+    },
+    {
+      "question": "What are the three formats for implementing structured data?",
+      "answer": "The three formats are: JSON-LD (JavaScript Object Notation for Linked Data), Microdata, and RDFa (Resource Description Framework in Attributes). JSON-LD is Google's recommended format."
+    },
+    {
+      "question": "What is Schema.org?",
+      "answer": "Schema.org is a collaborative community project that creates and maintains structured data schemas for web pages. It provides a shared vocabulary that major search engines (Google, Bing, Yahoo, Yandex) use to understand and display website content."
+    },
+    {
+      "question": "How does structured data benefit SEO?",
+      "answer": "Structured data enables rich snippets in search results (like star ratings, prices, and event dates), increases click-through rates, helps content appear in knowledge panels, improves voice search accuracy, and can lead to higher search rankings indirectly through better user engagement."
+    },
+    {
+      "question": "What is JSON-LD and why is it recommended?",
+      "answer": "JSON-LD stands for JavaScript Object Notation for Linked Data. It is recommended because it places all structured data in a separate <script> tag without altering visible HTML, making it easier to implement, maintain, and inject via JavaScript."
+    },
+    {
+      "question": "What does the '@context' property in JSON-LD specify?",
+      "answer": "The '@context' property specifies the vocabulary URL being used, typically 'https://schema.org'. It tells search engines which vocabulary defines the terms used in the structured data block."
+    },
+    {
+      "question": "What does the '@type' property in JSON-LD specify?",
+      "answer": "The '@type' property specifies the type of entity being described, such as Article, Product, Event, Person, Organization, FAQPage, or Recipe. It tells search engines what kind of thing the structured data represents."
+    },
+    {
+      "question": "What is an example of structured data for an article?",
+      "answer": "For an article, you would use { '@type': 'Article', 'headline': 'Article Title', 'author': { '@type': 'Person', 'name': 'Author Name' }, 'datePublished': '2026-06-12' } within a JSON-LD script block."
+    },
+    {
+      "question": "What does a Product schema typically include?",
+      "answer": "A Product schema typically includes name, description, brand (as a Brand object), offers (as an Offer object with price, priceCurrency, and availability), aggregateRating (with ratingValue and reviewCount), and SKU."
+    },
+    {
+      "question": "How do you add structured data to an HTML page?",
+      "answer": "You add structured data by including a <script type='application/ld+json'> block in the <head> or <body> of your HTML page, containing the JSON-LD formatted data describing your content."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does BreadcrumbList structured data work?",
+      "answer": "BreadcrumbList uses ListItem entries with position, name, and item properties to define each level of the navigation hierarchy. Search engines display this as a clickable breadcrumb trail in search results, improving user navigation and understanding of site structure."
+    },
+    {
+      "question": "What is the difference between Microdata and JSON-LD?",
+      "answer": "Microdata embeds structured data attributes directly within HTML elements using itemscope, itemtype, and itemprop attributes, mixing data with presentation. JSON-LD keeps all data in a separate script tag, making it cleaner, easier to maintain, and injectable via JavaScript."
+    },
+    {
+      "question": "How do you structure FAQ schema for multiple questions?",
+      "answer": "FAQ schema uses an FAQPage type with a mainEntity array. Each array element is a Question object with a name (the question) and an acceptedAnswer containing an Answer object with the response text."
+    },
+    {
+      "question": "What are required properties for the Event schema?",
+      "answer": "Event schema requires name, startDate, and location. The location typically uses a Place object with name and address (as a PostalAddress object). Optional properties include endDate, offers, performer, and organizer."
+    },
+    {
+      "question": "How do you represent a person's affiliation with an organization in structured data?",
+      "answer": "Use the worksFor property within a Person object, containing an Organization type: { '@type': 'Person', 'name': 'John', 'worksFor': { '@type': 'Organization', 'name': 'Company' } }."
+    },
+    {
+      "question": "What is the purpose of the 'offers' property in Event schema?",
+      "answer": "The 'offers' property in Event schema contains an Offer object that provides ticket pricing information including url (ticket link), price, priceCurrency, and availability, allowing search results to display ticket prices directly."
+    },
+    {
+      "question": "How do you mark up a video with structured data?",
+      "answer": "Use VideoObject type with properties: name, description, thumbnailUrl, uploadDate, duration (ISO 8601 format), contentUrl (video file URL), and embedUrl (embed player URL). This enables video-rich snippets in search."
+    },
+    {
+      "question": "What is AggregateRating and how is it used?",
+      "answer": "AggregateRating represents the average rating based on multiple reviews. It requires ratingValue (average score) and reviewCount (number of reviews) at minimum. BestCount and worstCount are optional. It's commonly used in Product and LocalBusiness schemas."
+    },
+    {
+      "question": "How do you validate structured data before deploying?",
+      "answer": "Use Google's Rich Results Test (search.google.com/test/rich-results) for Google-specific features, Schema.org Validator (validator.schema.org) for general validation, and monitor Google Search Console for ongoing structured data health reports."
+    },
+    {
+      "question": "What is the 'sameAs' property and when would you use it?",
+      "answer": "The 'sameAs' property specifies URLs of other web pages that represent the same entity, such as social media profiles (LinkedIn, Twitter, Facebook, GitHub). It's used with Person, Organization, and other entity types to establish identity across the web."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you handle nested entities in JSON-LD, such as an article with multiple authors and a publisher?",
+      "answer": "Nested entities are handled by nesting objects within properties. For multiple authors, use an array: { '@type': 'Article', 'author': [{ '@type': 'Person', 'name': 'Author 1' }, { '@type': 'Person', 'name': 'Author 2' }], 'publisher': { '@type': 'Organization', 'name': 'Publisher' } }."
+    },
+    {
+      "question": "What is the '@graph' property in JSON-LD and when should it be used?",
+      "answer": "The '@graph' property is used to define multiple top-level entities in a single JSON-LD block. It wraps an array of independent entities, useful when you want to describe multiple entities (e.g., a WebPage, its BreadcrumbList, and its main Entity) in one script block."
+    },
+    {
+      "question": "How do you implement structured data for a product with multiple variants (different colors/sizes)?",
+      "answer": "Use multiple Offers within the Product's offers array, each with different price, availability, and itemCondition. You can also use HasVariant property to link to variant products. Each variant can have its own SKU, color, and size properties."
+    },
+    {
+      "question": "What is the relationship between structured data and Google's Knowledge Graph?",
+      "answer": "Google's Knowledge Graph is a system that understands entities and their relationships. Structured data feeds information into the Knowledge Graph, helping Google connect entities and display knowledge panels. Properly implemented structured data increases the chances of appearing in Knowledge Panels."
+    },
+    {
+      "question": "How do you mark up a recipe with structured data, including nutrition information?",
+      "answer": "Use Recipe type with properties: name, author, cookTime, recipeIngredient (array), recipeInstructions (array of HowToStep), nutrition (NutritionInformation with calories, fatContent, etc.), and aggregateRating. Google can display this as a rich snippet with photos, ratings, cooking time, and calories."
+    },
+    {
+      "question": "What are the considerations for implementing structured data on single-page applications (SPAs)?",
+      "answer": "For SPAs, inject JSON-LD dynamically via JavaScript after content loads. Use the DOM manipulation to create and append script tags. Ensure structured data updates when the route changes. For SEO, consider server-side rendering (SSR) to include structured data in the initial HTML response."
+    },
+    {
+      "question": "How do you handle a page with multiple content types, such as a product page that also includes a FAQ section?",
+      "answer": "Use multiple JSON-LD blocks on the same page: one for Product schema describing the product, and another for FAQPage schema describing the FAQ section. Each block is independent and targets different content areas of the page."
+    },
+    {
+      "question": "What is the difference between ItemList and BreadcrumbList schemas?",
+      "answer": "ItemList is a generic list of items (used for carousels, article lists, etc.) with position and item properties. BreadcrumbList is specifically for navigation breadcrumbs and uses ListItem with position, name, and item (URL). ItemList is more flexible while BreadcrumbList is specialized for navigation paths."
+    },
+    {
+      "question": "How does structured data work with AMP (Accelerated Mobile Pages)?",
+      "answer": "AMP supports structured data in two ways: embedded JSON-LD in the AMP HTML (within <script type='application/ld+json'>), or using AMP components like <amp-analytics> for dynamic injection. AMP pages should include the same structured data as their canonical counterparts."
+    },
+    {
+      "question": "What are the implications of Google's 'content that is not visible to users' policy regarding structured data?",
+      "answer": "Google's policy requires that structured data must accurately represent the visible page content. Marking up hidden or non-existent content violates guidelines and can result in manual penalties. For example, marking reviews that aren't visible to users or pricing that differs from what's displayed is prohibited."
+    }
+  ]
+}

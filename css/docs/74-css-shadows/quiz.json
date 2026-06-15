@@ -1,0 +1,147 @@
+{
+  "module": "74-css-shadows",
+  "title": "CSS Shadows",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS property adds shadow effects to block-level elements?",
+      "options": ["text-shadow", "drop-shadow()", "box-shadow", "filter: shadow()"],
+      "correctAnswer": 2,
+      "explanation": "box-shadow is the CSS property for adding shadows to block elements."
+    },
+    {
+      "id": 2,
+      "question": "What does the spread-radius parameter in box-shadow do?",
+      "options": ["Controls blur softness", "Expands or contracts the shadow size", "Sets the shadow color", "Moves the shadow horizontally"],
+      "correctAnswer": 1,
+      "explanation": "Spread-radius expands (positive) or contracts (negative) the shadow size before blur is applied."
+    },
+    {
+      "id": 3,
+      "question": "Which keyword makes a box-shadow render inside the element?",
+      "options": ["inside", "inner", "inset", "internal"],
+      "correctAnswer": 2,
+      "explanation": "The inset keyword creates an inner shadow, giving a recessed/pressed appearance."
+    },
+    {
+      "id": 4,
+      "question": "What is the key difference between drop-shadow() and box-shadow?",
+      "options": ["drop-shadow() is faster", "drop-shadow() follows the element's alpha mask", "box-shadow supports multiple layers", "No difference"],
+      "correctAnswer": 1,
+      "explanation": "drop-shadow() applies to the alpha channel of the element, following transparent areas."
+    },
+    {
+      "id": 5,
+      "question": "How do you create multiple shadows on one element?",
+      "options": ["Using nested elements", "Separating shadows with commas", "Using the shadow-group property", "It's not possible"],
+      "correctAnswer": 1,
+      "explanation": "Multiple shadows are created by separating each shadow definition with a comma."
+    },
+    {
+      "id": 6,
+      "question": "Which parameter is NOT available for text-shadow?",
+      "options": ["offset-x", "blur-radius", "spread-radius", "color"],
+      "correctAnswer": 2,
+      "explanation": "text-shadow does not support spread-radius; that parameter is only for box-shadow."
+    },
+    {
+      "id": 7,
+      "question": "What happens when blur-radius is set to 0 in box-shadow?",
+      "options": ["Shadow becomes invisible", "Shadow appears as a hard edge", "Shadow is rendered as a solid fill", "Shadow uses default blur"],
+      "correctAnswer": 1,
+      "explanation": "With blur-radius of 0, the shadow appears as a sharp, unblended outline."
+    },
+    {
+      "id": 8,
+      "question": "Which color notation is recommended for realistic shadows?",
+      "options": ["#000", "rgba() or hsla()", "currentColor", "transparent"],
+      "correctAnswer": 1,
+      "explanation": "Using rgba() or hsla() allows independent control of shadow opacity for realistic blending."
+    },
+    {
+      "id": 9,
+      "question": "What does a positive offset-x value in box-shadow do?",
+      "options": ["Moves shadow left", "Moves shadow right", "Moves shadow up", "Moves shadow down"],
+      "correctAnswer": 1,
+      "explanation": "A positive offset-x shifts the shadow to the right, making the light source appear from the left."
+    },
+    {
+      "id": 10,
+      "question": "Which effect is best achieved with multiple layered text-shadows?",
+      "options": ["Drop shadow", "3D extruded text", "Box shadow", "Border glow"],
+      "correctAnswer": 1,
+      "explanation": "Multiple text-shadow layers with incremental offsets create a 3D extruded text effect."
+    },
+    {
+      "id": 11,
+      "question": "How does box-shadow interact with border-radius?",
+      "options": ["Shadow ignores border-radius", "Shadow follows border-radius curve", "Shadow becomes square", "Border-radius is ignored"],
+      "correctAnswer": 1,
+      "explanation": "box-shadow follows the element's border-radius, creating rounded shadows on rounded elements."
+    },
+    {
+      "id": 12,
+      "question": "Which box-shadow setup creates a realistic Material Design elevation shadow?",
+      "options": ["box-shadow: 0 0 0 0 black", "Multiple layers with different offsets and blurs", "A single solid shadow", "An inset shadow"],
+      "correctAnswer": 1,
+      "explanation": "Multiple shadow layers with varying offsets, blurs, and opacities create realistic elevation."
+    },
+    {
+      "id": 13,
+      "question": "What is the order of values in box-shadow shorthand?",
+      "options": ["color offset-x offset-y blur spread", "offset-x offset-y blur spread color", "blur spread offset-x offset-y color", "offset-x offset-y color blur spread"],
+      "correctAnswer": 1,
+      "explanation": "The order is: offset-x, offset-y, blur-radius, spread-radius, color."
+    },
+    {
+      "id": 14,
+      "question": "Which CSS filter function creates shadows that follow element transparency?",
+      "options": ["shadow()", "box-shadow()", "drop-shadow()", "blur-shadow()"],
+      "correctAnswer": 2,
+      "explanation": "drop-shadow() filter creates shadows that respect the element's alpha channel."
+    },
+    {
+      "id": 15,
+      "question": "What creates an embossed text effect using shadows?",
+      "options": ["Inset box-shadow", "Light top shadow + dark bottom shadow on text", "drop-shadow() filter", "blur-shadow()"],
+      "correctAnswer": 1,
+      "explanation": "A light shadow above and dark shadow below creates an embossed/raised text effect."
+    },
+    {
+      "id": 16,
+      "question": "Can shadows be animated or transitioned?",
+      "options": ["No, shadows are static", "Yes, box-shadow and text-shadow support transitions", "Only filter shadows animate", "Only inset shadows animate"],
+      "correctAnswer": 1,
+      "explanation": "box-shadow and text-shadow are animatable, commonly used for hover elevation effects."
+    },
+    {
+      "id": 17,
+      "question": "What is a common use case for a negative spread-radius?",
+      "options": ["Making shadow larger", "Creating a more realistic, softer shadow", "Removing the shadow", "Inverting the shadow"],
+      "correctAnswer": 1,
+      "explanation": "A negative spread-radius pulls the shadow inward, creating a softer, more realistic look."
+    },
+    {
+      "id": 18,
+      "question": "Which property can improve shadow rendering performance?",
+      "options": ["transform: translateZ(0)", "display: block", "overflow: hidden", "position: relative"],
+      "correctAnswer": 0,
+      "explanation": "transform: translateZ(0) promotes the element to its own compositor layer, improving shadow rendering."
+    },
+    {
+      "id": 19,
+      "question": "What is the default color of box-shadow if none is specified?",
+      "options": ["Black", "Current text color", "Transparent", "Inherited from parent"],
+      "correctAnswer": 1,
+      "explanation": "The default shadow color is the computed value of the element's color property."
+    },
+    {
+      "id": 20,
+      "question": "How do you create a glow/neon effect with text-shadow?",
+      "options": ["Use a single offset shadow", "Use multiple semi-transparent layers with 0 offset and increasing blur", "Use inset box-shadow", "Use filter: glow()"],
+      "correctAnswer": 1,
+      "explanation": "Multiple shadow layers with 0 offset, increasing blur, and matching color create a neon glow."
+    }
+  ]
+}

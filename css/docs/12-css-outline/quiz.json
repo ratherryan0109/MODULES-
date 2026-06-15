@@ -1,0 +1,247 @@
+{
+  "module": "12-css-outline",
+  "title": "CSS Outline",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the main difference between outline and border?",
+      "options": [
+        "Outline is inside the border",
+        "Outline doesn't affect layout",
+        "Outline supports per-side styling",
+        "Outline follows border-radius"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Outline does not affect element size or layout — it overlays on top of the element."
+    },
+    {
+      "id": 2,
+      "question": "Which property creates space between the border and outline?",
+      "options": [
+        "outline-gap",
+        "outline-offset",
+        "outline-spacing",
+        "outline-distance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "outline-offset creates space between the element's border and the outline."
+    },
+    {
+      "id": 3,
+      "question": "What is outline primarily used for in web development?",
+      "options": [
+        "Decorative borders",
+        "Accessibility focus indicators",
+        "Element spacing",
+        "Background styling"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Outlines are primarily used for focus indicators on interactive elements to ensure keyboard accessibility."
+    },
+    {
+      "id": 4,
+      "question": "Can you set different outline styles for different sides of an element?",
+      "options": [
+        "Yes, with outline-top, outline-right, etc.",
+        "No, outline applies uniformly to all sides",
+        "Yes, but only with the shorthand property",
+        "No, outlines can't be styled"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Outlines are always uniform on all sides — there are no per-side outline properties unlike borders."
+    },
+    {
+      "id": 5,
+      "question": "What does outline: none do?",
+      "options": [
+        "Removes the outline from an element",
+        "Sets the outline to its default style",
+        "Makes the outline invisible but keeps its space",
+        "Sets outline width to 0"
+      ],
+      "correctAnswer": 0,
+      "explanation": "outline: none removes the outline entirely. However, removing focus outlines without alternatives harms accessibility."
+    },
+    {
+      "id": 6,
+      "question": "What is the purpose of :focus-visible?",
+      "options": [
+        "Always shows a focus indicator",
+        "Shows focus indicator only when focused via keyboard, not mouse click",
+        "Hides focus indicator for all users",
+        "Shows focus only for touch devices"
+      ],
+      "correctAnswer": 1,
+      "explanation": ":focus-visible shows focus indicators only for keyboard navigation, not mouse clicks, providing the best UX for all users."
+    },
+    {
+      "id": 7,
+      "question": "What happens to outline when border-radius is applied?",
+      "options": [
+        "Outline follows the rounded corners",
+        "Outline stays rectangular regardless of border-radius",
+        "Outline is removed",
+        "Outline gets inverse rounded corners"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Outlines do not follow border-radius — they remain rectangular even when the border has rounded corners."
+    },
+    {
+      "id": 8,
+      "question": "Why is outline useful for debugging CSS layouts?",
+      "options": [
+        "It changes element size, making layout issues visible",
+        "It highlights elements without affecting layout, revealing their boundaries",
+        "It logs element dimensions to the console",
+        "It automatically fixes layout bugs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Since outline doesn't affect layout, it's ideal for visually debugging element boundaries without shifting content."
+    },
+    {
+      "id": 9,
+      "question": "What is the shorthand order for outline?",
+      "options": [
+        "outline: width style color",
+        "outline: color width style",
+        "outline: style width color",
+        "outline: width color style"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The outline shorthand order is: outline: width style color; e.g., outline: 2px solid blue;"
+    },
+    {
+      "id": 10,
+      "question": "What is a negative outline-offset used for?",
+      "options": [
+        "Moving the outline inside the element's border",
+        "Creating a gap between element and outline",
+        "Removing the outline",
+        "Doubling the outline width"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A negative outline-offset value draws the outline inside the element border, which can be useful for focus indicators."
+    },
+    {
+      "id": 11,
+      "question": "How does outline differ from border in terms of accessibility best practices?",
+      "options": [
+        "outline is preferred for focus indicators because it doesn't cause layout shift",
+        "border is always better for accessibility",
+        "They are the same for accessibility",
+        "Neither should be used for focus indicators"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Outline is preferred for focus indicators because it overlays without changing element size or shifting layout."
+    },
+    {
+      "id": 12,
+      "question": "What is the default outline-style value?",
+      "options": [
+        "solid",
+        "none",
+        "dashed",
+        "double"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default outline-style is 'none', meaning elements don't have outlines unless explicitly set or focused by default."
+    },
+    {
+      "id": 13,
+      "question": "Can outline-color use currentColor?",
+      "options": [
+        "Yes, outline-color can use currentColor like border-color",
+        "No, outline-color only accepts named colors",
+        "Yes, but only in modern browsers",
+        "No, outline doesn't support color"
+      ],
+      "correctAnswer": 0,
+      "explanation": "outline-color can use currentColor, which means it inherits the element's text color by default."
+    },
+    {
+      "id": 14,
+      "question": "How does outline behave on table elements?",
+      "options": [
+        "Outline works on each cell individually",
+        "Outline works on the entire table as one unit",
+        "Outline doesn't work on tables",
+        "Outline follows collapsed borders"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An outline on a table element surrounds the entire table as one unit, not individual cells."
+    },
+    {
+      "id": 15,
+      "question": "What is the difference between :focus and :focus-visible?",
+      "options": [
+        ":focus applies to all focus; :focus-visible applies only when the browser determines focus should be visible",
+        ":focus-visible is the same as :focus",
+        ":focus only works on links; :focus-visible works on all elements",
+        ":focus-visible is deprecated"
+      ],
+      "correctAnswer": 0,
+      "explanation": ":focus triggers on any focus event. :focus-visible only shows focus when the browser determines it's needed (typically keyboard navigation)."
+    },
+    {
+      "id": 16,
+      "question": "What happens to outline when zooming the page?",
+      "options": [
+        "Outline scales with the element",
+        "Outline maintains its pixel width regardless of zoom",
+        "Outline disappears when zoomed",
+        "Outline gets thicker"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Outline scales with the element when zooming, maintaining its visual proportion to the element."
+    },
+    {
+      "id": 17,
+      "question": "Which CSS property can be used alongside outline to create a custom offset focus ring?",
+      "options": [
+        "outline-spacing",
+        "outline-offset",
+        "outline-gap",
+        "outline-distance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "outline-offset can create a gap between the element and the outline, useful for visible focus rings."
+    },
+    {
+      "id": 18,
+      "question": "How many values can outline shorthand take?",
+      "options": [
+        "1, 2, or 3 values",
+        "Exactly 3 values",
+        "1 or 2 values only",
+        "Any number up to 4"
+      ],
+      "correctAnswer": 0,
+      "explanation": "outline shorthand can take 1, 2, or 3 values: outline: width style color; any can be omitted."
+    },
+    {
+      "id": 19,
+      "question": "What is the default outline-width value?",
+      "options": [
+        "0",
+        "medium (typically 3-4px)",
+        "thin",
+        "1px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default outline-width is 'medium', which typically renders as 3-4px depending on the browser."
+    },
+    {
+      "id": 20,
+      "question": "Why should you never remove outlines without alternatives?",
+      "options": [
+        "It's invalid CSS to remove outlines",
+        "It makes the site unusable for keyboard-only users",
+        "Outlines cannot be removed",
+        "It causes JavaScript errors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Removing focus outlines prevents keyboard users from seeing which element is focused, making keyboard navigation impossible."
+    }
+  ]
+}

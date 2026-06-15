@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is HTML performance optimization?",
+      "answer": "HTML performance optimization is the practice of structuring and delivering HTML in ways that minimize page load time, reduce bandwidth usage, and improve user experience. It includes techniques like minification, resource hints, critical CSS inlining, deferred JavaScript, image optimization, and proper caching."
+    },
+    {
+      "question": "Why does image size matter for HTML performance?",
+      "answer": "Images are typically the largest resources on a web page. Unoptimized images increase page weight, slow LCP (Largest Contentful Paint), consume bandwidth, and can cause layout shifts. Optimizing images through compression, responsive sizes (srcset), lazy loading, and modern formats (WebP, AVIF) dramatically improves performance."
+    },
+    {
+      "question": "What is the purpose of the loading='lazy' attribute?",
+      "answer": "loading='lazy' tells the browser to defer loading off-screen images and iframes until the user scrolls near them. This reduces initial page load time, saves bandwidth, and improves performance metrics. The browser loads low-priority resources only when needed."
+    },
+    {
+      "question": "What are Core Web Vitals?",
+      "answer": "Core Web Vitals are a set of performance metrics Google considers essential for user experience: LCP (Largest Contentful Paint - loading speed, under 2.5s), FID (First Input Delay - interactivity, under 100ms), and CLS (Cumulative Layout Shift - visual stability, under 0.1). They are ranking factors in Google Search."
+    },
+    {
+      "question": "Why should you put CSS in the head and JavaScript at the end of the body?",
+      "answer": "CSS in the head allows the browser to start rendering immediately with the correct styles, preventing a flash of unstyled content (FOUC). JavaScript at the end of the body (or with defer) prevents it from blocking HTML parsing, allowing the page content to render before scripts execute."
+    },
+    {
+      "question": "What is HTML minification?",
+      "answer": "HTML minification removes unnecessary characters from HTML code (whitespace, comments, line breaks) without affecting functionality. This reduces file size, improves download speed, and reduces bandwidth usage. Typical savings are 10-30% of the original file size."
+    },
+    {
+      "question": "What is the difference between Gzip and Brotli compression?",
+      "answer": "Both are compression algorithms for web content. Brotli is newer and typically achieves 20-30% better compression than Gzip for HTML and CSS. Brotli is slower to compress but decompression is fast. Most modern browsers and servers support both."
+    },
+    {
+      "question": "How does placing scripts in the head vs body affect performance?",
+      "answer": "Scripts in the <head> without defer/async block HTML parsing, delaying page rendering. Scripts at the end of <body> allow the page to render before scripts execute. Using defer in the head combines the best of both: download during parsing, execute after."
+    },
+    {
+      "question": "What is TTFB and why is it important?",
+      "answer": "TTFB (Time to First Byte) measures the time from the browser's request to receiving the first byte of the server response. It reflects server responsiveness, network latency, and CDN performance. Google recommends TTFB under 800ms. High TTFB negatively affects all other performance metrics."
+    },
+    {
+      "question": "What is the rel='dns-prefetch' resource hint?",
+      "answer": "rel='dns-prefetch' tells the browser to resolve the DNS for a domain early, before the browser would normally need to look it up. It's a lightweight hint (only DNS resolution, no TCP/TLS) with broad browser support, useful as a fallback for preconnect."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does the critical rendering path work and how can HTML be optimized for it?",
+      "answer": "The critical rendering path is the sequence of steps the browser takes to render a page: HTML parsing (DOM), CSS parsing (CSSOM), Render Tree construction, Layout, and Paint. Optimization: minimize render-blocking resources (inline critical CSS, defer non-critical JS), optimize the order of resource loading, use resource hints, and reduce CSS selector complexity."
+    },
+    {
+      "question": "Explain the concept of critical CSS and how to implement it.",
+      "answer": "Critical CSS identifies and inlines the styles needed to render above-the-fold content. Implementation: use a tool to extract above-the-fold CSS, inline it in a <style> tag in the <head>, then load the full CSS asynchronously using preload with an onload handler: <link rel='preload' href='styles.css' as='style' onload='this.rel='stylesheet''>."
+    },
+    {
+      "question": "How do you implement a full responsive image solution with art direction?",
+      "answer": "Use the <picture> element with multiple <source> elements for art direction (different crops/aspect ratios), each with media queries. Within the <picture>, an <img> tag with srcset for resolution switching and sizes for display width: <picture><source media='(min-width:800px)' srcset='hero-wide.webp'><source media='(min-width:400px)' srcset='hero-tablet.webp'><img src='hero-mobile.webp' alt='' width='400' height='600' loading='lazy'></picture>."
+    },
+    {
+      "question": "What is Cumulative Layout Shift and how does HTML contribute to preventing it?",
+      "answer": "CLS measures unexpected visual instability during page load. HTML contributions to prevention: always specify width and height on images and videos, reserve space for ads and embeds, use explicit font-display value to prevent invisible/fallback text swaps, avoid inserting content above existing content without user interaction, and use transform animations instead of layout-triggering properties."
+    },
+    {
+      "question": "How do you optimize web font loading for performance?",
+      "answer": "Key strategies: use woff2 format (best compression), subset fonts to only needed characters, preload critical fonts with <link rel='preload'>, use font-display: swap to show fallback text immediately, preconnect to font origins, self-host fonts when possible to avoid DNS lookups, and use variable fonts to reduce the number of font files."
+    },
+    {
+      "question": "What is the difference between preload, prefetch, and preconnect resource hints?",
+      "answer": "preload: load critical resources needed now with high priority. prefetch: load resources likely needed for future navigation with low priority during idle time. preconnect: establish early connections (DNS, TCP, TLS) to origins. dns-prefetch: just DNS resolution (lightest, broadest support). Use preload for hero images and fonts, preconnect for third-party origins, prefetch for likely next-page resources."
+    },
+    {
+      "question": "How does server-side rendering (SSR) affect HTML performance optimization?",
+      "answer": "SSR delivers fully rendered HTML from the server, improving FCP and LCP since content is immediately available without waiting for JavaScript. However, it can increase TTFB due to server processing time. Optimization strategies: stream SSR (send HTML as it's generated), use static generation where possible, implement proper caching, and use partial hydration to reduce JavaScript sent to the client."
+    },
+    {
+      "question": "What strategies can be used to optimize the Largest Contentful Paint (LCP) element?",
+      "answer": "Optimize the LCP element directly: ensure the LCP image is loaded with loading='eager' (not lazy), preload the LCP image with <link rel='preload'>, use responsive images to avoid downloading oversized images, optimize and compress the image file, eliminate render-blocking resources above the LCP element, and ensure fast TTFB with proper server-side optimization."
+    },
+    {
+      "question": "How do HTTP/2 and HTTP/3 affect HTML performance optimization strategies?",
+      "answer": "HTTP/2 multiplexes multiple requests over a single connection, reducing the need for domain sharding and asset bundling. HTTP/3 uses QUIC (UDP-based) for even faster connection establishment. With HTTP/2+: use fewer separate connections, serve resources from fewer domains (preconnect becomes less critical), use server push (carefully), and prioritize critical resources properly."
+    },
+    {
+      "question": "What is the impact of third-party resources (scripts, embeds, widgets) on HTML performance?",
+      "answer": "Third-party resources significantly impact performance: they add HTTP requests, block rendering if synchronous, increase TBT (Total Blocking Time), can cause layout shifts, and may have unpredictable performance. Mitigations: load third-party scripts async or defer, lazy-load below-fold embeds, use resource hints (preconnect, dns-prefetch) for known origins, set explicit dimensions for widgets, and use iframes with loading='lazy'."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the concept of HTTP server push and its current status in HTML performance optimization.",
+      "answer": "HTTP/2 server push allows the server to send resources to the client before they're requested, theoretically eliminating round trips. However, it's been largely deprecated in practice due to inefficiencies - pushed resources may already be cached, and it can waste bandwidth. Current recommendations favor preload hints over server push, as the browser can make smarter decisions about resource priority."
+    },
+    {
+      "question": "How do you implement a comprehensive performance budget with automated enforcement?",
+      "answer": "Define budgets for: page weight (< 500KB), LCP (< 2.5s), number of requests (< 50), DOM size (< 1500 nodes), and JavaScript execution time. Implement enforcement using Lighthouse CI in CI/CD pipelines, webpack performance hints, and performance monitoring tools (Lighthouse, WebPageTest). Add threshold alerts and build failure thresholds for budget violations."
+    },
+    {
+      "question": "What is the interaction between Service Workers and HTML caching strategies?",
+      "answer": "Service workers intercept network requests and serve cached responses, enabling offline support and improved performance. HTML caching strategies: Network First (fresh content but falls back to cache - good for HTML), Cache First (performance but stale - good for assets), Stale While Revalidate (instant cached response plus background update). Service workers can cache the app shell for instant loading on repeat visits."
+    },
+    {
+      "question": "How do you optimize HTML for Core Web Vitals on a single-page application (SPA) with client-side rendering?",
+      "answer": "SPAs face challenges with Core Web Vitals: LCP is delayed until JavaScript renders the content. Solutions: server-side rendering (SSR) or static site generation (SSG) for initial HTML, use <link rel='preload'> for critical application chunks, implement code splitting and lazy loading, use streaming SSR, minimize main thread work during startup, and use the App Shell pattern with a meaningful initial HTML skeleton."
+    },
+    {
+      "question": "What is the impact of <link rel='preload'> as='image' with imagesrcset on browser behavior?",
+      "answer": "The imagesrcset attribute on preload allows the browser to preload responsive images, selecting the best candidate based on the current viewport and device pixel ratio. This is critical for LCP optimization of hero images. Without imagesrcset, the browser must wait for the HTML to fully parse the <img> tag before knowing which responsive variant to use."
+    },
+    {
+      "question": "How do you approach performance optimization for AMP (Accelerated Mobile Pages)?",
+      "answer": "AMP enforces strict performance rules: synchronous rendering, optimized resource loading, no custom JavaScript, and a streamlined CSS limit of 75KB. AMP pages use a pre-renderable framework with guaranteed fast rendering. However, AMP requires maintaining a separate version of each page with its own HTML structure, adding maintenance overhead."
+    },
+    {
+      "question": "What techniques can be used to optimize the First Input Delay (FID) and Total Blocking Time (TBT)?",
+      "answer": "FID/TBT optimization targets: break up long JavaScript tasks (over 50ms) using code splitting, lazy loading, and requestIdleCallback. Minimize polyfill sizes and use differential serving. Defer non-critical JavaScript. Use web workers for heavy computation. Optimize third-party script loading. Implement progressive enhancement so core interactions work without JavaScript."
+    },
+    {
+      "question": "How does Content Security Policy (CSP) affect HTML performance?",
+      "answer": "CSP can impact performance by restricting resource loading, blocking inline scripts/styles (requiring external files), and adding overhead from hash/nonce generation. A strict CSP can prevent certain optimization patterns (like inline critical CSS). However, modern CSP (using nonces for inline scripts) balances security and performance. CSP violation reports add minimal overhead."
+    },
+    {
+      "question": "What is the role of the 'priority' hint in modern browsers for performance optimization?",
+      "answer": "The 'priority' hint (currently experimental) allows developers to signal the relative importance of resources: fetchpriority='high' for critical resources (hero images), fetchpriority='low' for less important ones. This gives browsers better information for resource prioritization when making loading decisions, potentially improving LCP by ensuring critical images load before less important ones."
+    },
+    {
+      "question": "How do you implement differential serving for modern vs. legacy browsers in HTML?",
+      "answer": "Differential serving delivers modern, smaller JavaScript to modern browsers and transpiled/polyfilled code to legacy browsers. Implementation: use <script type='module' src='modern.js'> for modern browsers (ES6+ support), and <script nomodule src='legacy.js' defer> as fallback. Modern browsers load only the module version, while legacy browsers load the nomodule fallback. This typically reduces bundle size by 30-50% for modern browsers."
+    }
+  ]
+}

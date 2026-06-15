@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Basic Machine Learning Introduction Implementation",
+    "description": "Write a Python function that demonstrates the core concept of What is machine learning. Include proper type hints, docstrings, and error handling. Test with sample data.",
+    "difficulty": "easy",
+    "starterCode": "from typing import List, Optional\n\ndef what_is_machine_learning_basic(data: List[int]) -> List[int]:\n    \"\"\"Implement basic what is machine learning logic.\n    \n    Args:\n        data: Input list of integers\n        \n    Returns:\n        Processed list of integers\n    \"\"\"\n    # TODO: Implement the logic\n    pass\n\nif __name__ == \"__main__\":\n    sample = [1, 2, 3, 4, 5]\n    result = what_is_machine_learning_basic(sample)\n    print(f\"Result: {result}\")",
+    "solution": "from typing import List, Optional\n\ndef what_is_machine_learning_basic(data: List[int]) -> List[int]:\n    \"\"\"Implement basic what is machine learning logic.\"\"\"\n    if not data:\n        return []\n    return [x * 2 for x in data]\n\nif __name__ == \"__main__\":\n    sample = [1, 2, 3, 4, 5]\n    result = what_is_machine_learning_basic(sample)\n    print(f\"Result: {result}\")"
+  },
+  {
+    "id": 2,
+    "title": "Intermediate Machine Learning Introduction with Error Handling",
+    "description": "Extend the basic implementation to handle edge cases: empty input, invalid types, boundary conditions. Add logging and type validation.",
+    "difficulty": "medium",
+    "starterCode": "import logging\nfrom typing import List, Any\n\nlogging.basicConfig(level=logging.INFO)\n\ndef what_is_machine_learning_intermediate(data: List[Any]) -> List[int]:\n    \"\"\"Advanced what is machine learning with error handling.\n    \n    Args:\n        data: Input list (any types)\n        \n    Returns:\n        Processed list of integers\n        \n    Raises:\n        TypeError: If data is not a list\n        ValueError: If data contains invalid values\n    \"\"\"\n    # TODO: Add validation and error handling\n    pass",
+    "solution": "import logging\nfrom typing import List, Any\n\nlogging.basicConfig(level=logging.INFO)\n\ndef what_is_machine_learning_intermediate(data: List[Any]) -> List[int]:\n    \"\"\"Advanced what is machine learning with error handling.\"\"\"\n    if not isinstance(data, list):\n        raise TypeError(\"data must be a list\")\n    if not data:\n        logging.warning(\"Empty data provided\")\n        return []\n    result = []\n    for item in data:\n        try:\n            result.append(int(item) * 2)\n        except (ValueError, TypeError):\n            logging.warning(f\"Skipping invalid item: {item}\")\n            continue\n    return result"
+  },
+  {
+    "id": 3,
+    "title": "Advanced Machine Learning Introduction with Performance",
+    "description": "Implement an optimized version using list comprehensions, generators, or other Pythonic patterns. Compare performance with timeit.",
+    "difficulty": "hard",
+    "starterCode": "import timeit\nfrom typing import List, Generator\n\ndef what_is_machine_learning_slow(data: List[int]) -> List[int]:\n    \"\"\"Slow version using explicit loops.\"\"\"\n    result = []\n    for i in range(len(data)):\n        result.append(data[i] * 2)\n    return result\n\ndef what_is_machine_learning_fast(data: List[int]) -> List[int]:\n    \"\"\"Fast version using comprehension.\"\"\"\n    # TODO: Implement optimized version\n    pass\n\nif __name__ == \"__main__\":\n    data = list(range(1000))\n    slow_time = timeit.timeit(lambda: what_is_machine_learning_slow(data), number=1000)\n    fast_time = timeit.timeit(lambda: what_is_machine_learning_fast(data), number=1000)\n    print(f\"Slow: {slow_time:.4f}s, Fast: {fast_time:.4f}s\")",
+    "solution": "import timeit\nfrom typing import List, Generator\n\ndef what_is_machine_learning_slow(data: List[int]) -> List[int]:\n    \"\"\"Slow version using explicit loops.\"\"\"\n    result = []\n    for i in range(len(data)):\n        result.append(data[i] * 2)\n    return result\n\ndef what_is_machine_learning_fast(data: List[int]) -> List[int]:\n    \"\"\"Fast version using comprehension.\"\"\"\n    return [x * 2 for x in data]\n\nif __name__ == \"__main__\":\n    data = list(range(1000))\n    slow_time = timeit.timeit(lambda: what_is_machine_learning_slow(data), number=1000)\n    fast_time = timeit.timeit(lambda: what_is_machine_learning_fast(data), number=1000)\n    print(f\"Slow: {slow_time:.4f}s, Fast: {fast_time:.4f}s\")"
+  },
+  {
+    "id": 4,
+    "title": "Debugging Machine Learning Introduction Code",
+    "description": "The following code has intentional bugs. Find and fix them using pdb, logging, and systematic debugging techniques.",
+    "difficulty": "medium",
+    "starterCode": "import pdb\n\n# This code has bugs — debug and fix it\ndef what_is_machine_learning_buggy(data):\n    \"\"\"Process data (this function has bugs!)\"\"\"\n    result = []\n    for i = range(len(data)):\n        result.append(data[i] * 2  # Missing close paren\n    return result\n\nif __name__ == \"__main__\":\n    data = [1, 2, 3]\n    # TODO: Use pdb to debug\n    result = what_is_machine_learning_buggy(data)\n    print(f\"Result: {result}\")",
+    "solution": "def what_is_machine_learning_fixed(data):\n    \"\"\"Process data (bugs fixed).\"\"\"\n    result = []\n    for i in range(len(data)):\n        result.append(data[i] * 2)\n    return result\n\nif __name__ == \"__main__\":\n    data = [1, 2, 3]\n    result = what_is_machine_learning_fixed(data)\n    print(f\"Result: {result}\")"
+  },
+  {
+    "id": 5,
+    "title": "Refactoring Machine Learning Introduction to Pythonic Style",
+    "description": "The code below works but is not Pythonic. Refactor it to use list comprehensions, type hints, proper naming, and follow PEP 8.",
+    "difficulty": "hard",
+    "starterCode": "# Non-Pythonic code — refactor me!\ndef do_stuff(x):\n    a = []\n    for i in x:\n        a.append(i * 2)\n    return a\n\ndef do_more_stuff(x, y):\n    r = []\n    for i in range(len(x)):\n        r.append(x[i] + y[i])\n    return r\n\nd = [1, 2, 3, 4, 5]\ne = [10, 20, 30, 40, 50]\nprint(do_stuff(d))\nprint(do_more_stuff(d, e))",
+    "solution": "from typing import List\n\ndef double_items(data: List[int]) -> List[int]:\n    \"\"\"Double each item in the list.\"\"\"\n    return [x * 2 for x in data]\n\ndef add_lists(list1: List[int], list2: List[int]) -> List[int]:\n    \"\"\"Add corresponding elements from two lists.\"\"\"\n    return [a + b for a, b in zip(list1, list2)]\n\nif __name__ == \"__main__\":\n    nums = [1, 2, 3, 4, 5]\n    addends = [10, 20, 30, 40, 50]\n    print(double_items(nums))\n    print(add_lists(nums, addends))"
+  }
+]

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 78: Structured Data Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    code { font-family: 'Courier New', monospace; }
+    .output { background: #f0f8ff; padding: 15px; border-left: 4px solid #3498db; margin: 10px 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; }
+    .schema-block { border: 1px solid #e0e0e0; padding: 15px; border-radius: 5px; margin: 10px 0; background: #fafafa; }
+  </style>
+</head>
+<body>
+
+<h1>Structured Data Examples</h1>
+<p>Open your browser's developer console to inspect the JSON-LD blocks after the page loads.</p>
+
+<!-- Example 1: Article with JSON-LD -->
+<div class="example">
+  <h2>Example 1: Article Schema (JSON-LD)</h2>
+  <div class="schema-block">
+    <h3>Article: Understanding CSS Grid</h3>
+    <p>By <strong>Sarah Johnson</strong> | Published: June 10, 2026</p>
+    <p>CSS Grid is a powerful layout system that allows for two-dimensional layouts...</p>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Understanding CSS Grid Layout",
+  "author": {
+    "@type": "Person",
+    "name": "Sarah Johnson"
+  },
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-12",
+  "description": "A comprehensive guide to CSS Grid Layout",
+  "image": "https://example.com/css-grid.jpg",
+  "publisher": {
+    "@type": "Organization",
+    "name": "WebDev Daily"
+  }
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Understanding CSS Grid Layout",
+    "author": {
+      "@type": "Person",
+      "name": "Sarah Johnson"
+    },
+    "datePublished": "2026-06-10",
+    "dateModified": "2026-06-12",
+    "description": "A comprehensive guide to CSS Grid Layout",
+    "image": "https://example.com/css-grid.jpg",
+    "publisher": {
+      "@type": "Organization",
+      "name": "WebDev Daily"
+    }
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> This JSON-LD block describes an article with its author, publication date, and publisher. Google can use this to generate a rich snippet in search results showing the author name and publication date.
+  </div>
+</div>
+
+<!-- Example 2: Product Schema -->
+<div class="example">
+  <h2>Example 2: Product Schema</h2>
+  <div class="schema-block">
+    <div style="display: flex; gap: 20px;">
+      <div style="width: 150px; height: 150px; background: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #666;">Product Image</div>
+      <div>
+        <h3>Premium Wireless Headphones</h3>
+        <p>Noise-cancelling Bluetooth 5.0 headphones with 30-hour battery life</p>
+        <p>Brand: <strong>AudioPro</strong></p>
+        <p>Price: <strong>$79.99</strong> <span style="color: green;">In Stock</span></p>
+        <p>Rating: ⭐⭐⭐⭐½ (234 reviews)</p>
+      </div>
+    </div>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Premium Wireless Headphones",
+  "description": "Noise-cancelling Bluetooth 5.0 headphones",
+  "sku": "APH-2026-001",
+  "brand": {
+    "@type": "Brand",
+    "name": "AudioPro"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "79.99",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "234"
+  }
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Premium Wireless Headphones",
+    "description": "Noise-cancelling Bluetooth 5.0 headphones",
+    "sku": "APH-2026-001",
+    "brand": {
+      "@type": "Brand",
+      "name": "AudioPro"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "79.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "reviewCount": "234"
+    }
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> The Product schema includes pricing, availability, brand, and ratings. Search results can display a price tag, stock status, and star rating alongside the product link.
+  </div>
+</div>
+
+<!-- Example 3: FAQ Schema -->
+<div class="example">
+  <h2>Example 3: FAQ Schema</h2>
+  <div class="schema-block">
+    <h3>Frequently Asked Questions</h3>
+    <details>
+      <summary>What is structured data?</summary>
+      <p>Structured data is a standardized format for providing information about a webpage.</p>
+    </details>
+    <details>
+      <summary>Why use JSON-LD?</summary>
+      <p>JSON-LD is Google's recommended format because it separates data from HTML.</p>
+    </details>
+    <details>
+      <summary>How do I test structured data?</summary>
+      <p>Use Google's Rich Results Test or Schema.org Validator.</p>
+    </details>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is structured data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Structured data is a standardized format for providing information about a webpage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why use JSON-LD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JSON-LD is Google's recommended format because it separates data from HTML."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I test structured data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Google's Rich Results Test or Schema.org Validator."
+      }
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is structured data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Structured data is a standardized format for providing information about a webpage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why use JSON-LD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JSON-LD is Google's recommended format because it separates data from HTML."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I test structured data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use Google's Rich Results Test or Schema.org Validator."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> FAQ schema enables your questions and answers to appear directly in search results as an expandable FAQ snippet, increasing visibility and click-through rate.
+  </div>
+</div>
+
+<!-- Example 4: Event Schema -->
+<div class="example">
+  <h2>Example 4: Event Schema</h2>
+  <div class="schema-block">
+    <h3>Web Developer Conference 2026</h3>
+    <p>📅 September 15-17, 2026 | 9:00 AM - 6:00 PM</p>
+    <p>📍 Convention Center, 123 Main Street, San Francisco, CA</p>
+    <p>🎫 Tickets: $299 | <a href="#">Buy Tickets</a></p>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Web Developer Conference 2026",
+  "startDate": "2026-09-15T09:00:00",
+  "endDate": "2026-09-17T18:00:00",
+  "location": {
+    "@type": "Place",
+    "name": "Convention Center",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Main Street",
+      "addressLocality": "San Francisco",
+      "addressRegion": "CA",
+      "postalCode": "94102"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://example.com/tickets",
+    "price": "299",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Web Developer Conference 2026",
+    "startDate": "2026-09-15T09:00:00",
+    "endDate": "2026-09-17T18:00:00",
+    "location": {
+      "@type": "Place",
+      "name": "Convention Center",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Main Street",
+        "addressLocality": "San Francisco",
+        "addressRegion": "CA",
+        "postalCode": "94102"
+      }
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://example.com/tickets",
+      "price": "299",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> Event schema allows search engines to display event dates, location, and ticket prices directly in search results. Users can add the event to their calendar with one click.
+  </div>
+</div>
+
+<!-- Example 5: BreadcrumbList -->
+<div class="example">
+  <h2>Example 5: BreadcrumbList Schema</h2>
+  <div class="schema-block">
+    <p><a href="#">Home</a> &raquo; <a href="#">Products</a> &raquo; <a href="#">Electronics</a> &raquo; Premium Wireless Headphones</p>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://example.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Products",
+      "item": "https://example.com/products"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Electronics",
+      "item": "https://example.com/products/electronics"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Premium Wireless Headphones",
+      "item": "https://example.com/products/headphones"
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://example.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Products",
+        "item": "https://example.com/products"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Electronics",
+        "item": "https://example.com/products/electronics"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Premium Wireless Headphones",
+        "item": "https://example.com/products/headphones"
+      }
+    ]
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> BreadcrumbList schema enhances the breadcrumb trail in search results, helping users understand the site hierarchy and navigate more easily.
+  </div>
+</div>
+
+<!-- Example 6: Person Schema -->
+<div class="example">
+  <h2>Example 6: Person Schema</h2>
+  <div class="schema-block">
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <div style="width: 100px; height: 100px; border-radius: 50%; background: #3498db; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em;">JD</div>
+      <div>
+        <h3>John Doe</h3>
+        <p><strong>Senior Web Developer</strong> at TechCorp</p>
+        <p>📍 San Francisco, CA</p>
+        <p>🔗 <a href="#">LinkedIn</a> | <a href="#">GitHub</a> | <a href="#">Twitter</a></p>
+      </div>
+    </div>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John Doe",
+  "jobTitle": "Senior Web Developer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "TechCorp"
+  },
+  "url": "https://johndoe.example.com",
+  "sameAs": [
+    "https://linkedin.com/in/johndoe",
+    "https://github.com/johndoe",
+    "https://twitter.com/johndoe"
+  ]
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "John Doe",
+    "jobTitle": "Senior Web Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "TechCorp"
+    },
+    "url": "https://johndoe.example.com",
+    "sameAs": [
+      "https://linkedin.com/in/johndoe",
+      "https://github.com/johndoe",
+      "https://twitter.com/johndoe"
+    ]
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> Person schema provides search engines with professional information that can appear in knowledge panels and author information in search results.
+  </div>
+</div>
+
+<!-- Example 7: Organization Schema -->
+<div class="example">
+  <h2>Example 7: Organization Schema</h2>
+  <div class="schema-block">
+    <h3>TechCorp</h3>
+    <p>Innovating the future of web technology</p>
+    <p>📞 +1-800-555-0199 | 📧 contact@techcorp.example.com</p>
+    <p>🔗 <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a></p>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TechCorp",
+  "url": "https://techcorp.example.com",
+  "logo": "https://techcorp.example.com/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-800-555-0199",
+    "contactType": "customer service",
+    "availableLanguage": ["English", "Spanish"]
+  },
+  "sameAs": [
+    "https://facebook.com/techcorp",
+    "https://twitter.com/techcorp",
+    "https://linkedin.com/company/techcorp"
+  ]
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TechCorp",
+    "url": "https://techcorp.example.com",
+    "logo": "https://techcorp.example.com/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-800-555-0199",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Spanish"]
+    },
+    "sameAs": [
+      "https://facebook.com/techcorp",
+      "https://twitter.com/techcorp",
+      "https://linkedin.com/company/techcorp"
+    ]
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> Organization schema provides search engines with company information used for knowledge panels, including logo, contact details, and social profiles.
+  </div>
+</div>
+
+<!-- Example 8: Video Schema -->
+<div class="example">
+  <h2>Example 8: Video Schema</h2>
+  <div class="schema-block">
+    <div style="display: flex; gap: 20px;">
+      <div style="width: 200px; height: 112px; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; border-radius: 4px;">▶ Video Thumbnail</div>
+      <div>
+        <h3>HTML for Beginners - Full Course</h3>
+        <p>Duration: 30:15 | Uploaded: January 10, 2026</p>
+        <p>Learn HTML from scratch with this comprehensive tutorial.</p>
+      </div>
+    </div>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "HTML for Beginners - Full Course",
+  "description": "Learn HTML from scratch with this comprehensive tutorial",
+  "thumbnailUrl": "https://example.com/thumbnail.jpg",
+  "uploadDate": "2026-01-10",
+  "duration": "PT30M15S",
+  "contentUrl": "https://example.com/videos/html-basics.mp4",
+  "embedUrl": "https://example.com/embed/html-basics"
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "HTML for Beginners - Full Course",
+    "description": "Learn HTML from scratch with this comprehensive tutorial",
+    "thumbnailUrl": "https://example.com/thumbnail.jpg",
+    "uploadDate": "2026-01-10",
+    "duration": "PT30M15S",
+    "contentUrl": "https://example.com/videos/html-basics.mp4",
+    "embedUrl": "https://example.com/embed/html-basics"
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> Video schema helps videos appear in video search results with thumbnail, duration, and upload date. It can also enable rich snippets with play buttons in search results.
+  </div>
+</div>
+
+<!-- Example 9: Multiple Schema Types on One Page -->
+<div class="example">
+  <h2>Example 9: Multiple Schema Types</h2>
+  <div class="note">
+    <strong>Important:</strong> You can include multiple JSON-LD blocks on a single page. Each block is wrapped in its own <code>&lt;script type="application/ld+json"&gt;</code> tag.
+  </div>
+
+  <pre>&lt;!-- WebPage schema --&gt;
+&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "About Us",
+  "description": "Learn about our company",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://example.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://example.com/about"
+      }
+    ]
+  }
+}
+&lt;/script&gt;
+
+&lt;!-- Organization schema --&gt;
+&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TechCorp",
+  "url": "https://techcorp.example.com"
+}
+&lt;/script&gt;
+
+&lt;!-- Person schema for CEO --&gt;
+&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jane Smith",
+  "jobTitle": "CEO",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "TechCorp"
+  }
+}
+&lt;/script&gt;</pre>
+
+  <div class="note">
+    <strong>Key Point:</strong> Each JSON-LD block is independent. You can combine as many schema types as needed to fully describe your page content.
+  </div>
+</div>
+
+<!-- Example 10: Local Business Schema -->
+<div class="example">
+  <h2>Example 10: Local Business Schema</h2>
+  <div class="schema-block">
+    <h3>The Gourmet Kitchen</h3>
+    <p>🍝 Italian Restaurant | Price: $$</p>
+    <p>📍 456 Oak Avenue, New York, NY 10001</p>
+    <p>⭐ 4.3 (187 reviews)</p>
+    <p>🕐 Mon-Sat: 11:00 AM - 10:00 PM</p>
+  </div>
+
+  <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "The Gourmet Kitchen",
+  "servesCuisine": "Italian",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "456 Oak Avenue",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "postalCode": "10001"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.3",
+    "reviewCount": "187"
+  }
+}
+&lt;/script&gt;</pre>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "The Gourmet Kitchen",
+    "servesCuisine": "Italian",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "456 Oak Avenue",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10001"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.3",
+      "reviewCount": "187"
+    }
+  }
+  </script>
+
+  <div class="note">
+    <strong>Explanation:</strong> Local Business schema (including subtypes like Restaurant) helps local businesses appear in local search results, map packs, and knowledge panels with reviews, cuisine type, and price range.
+  </div>
+</div>
+
+<!-- Summary -->
+<div class="example">
+  <h2>Summary</h2>
+  <p>These examples demonstrate the most common Schema.org types used in web development. To validate your structured data:</p>
+  <ol>
+    <li>Use <a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a></li>
+    <li>Use <a href="https://validator.schema.org/" target="_blank">Schema.org Validator</a></li>
+    <li>Check <a href="https://search.google.com/search-console" target="_blank">Google Search Console</a> for errors</li>
+  </ol>
+  <p>Remember: Structured data must always match the visible content on the page.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Fix the Syntax Errors",
+    "description": "The following CSS has multiple syntax errors. Fix all of them to make the styles apply correctly.",
+    "starterCode": "<style>\nbody {\n  background-color: lightblue\n  font-family: Arial, Helvetica, sans-serif;\n  color = #333;\n  margin: 20px\n}\nh1 {\n  color: navy; font-size = 32px\n  text-align: center;\n}\n</style>\n<h1>Hello World</h1>\n<p>This is a paragraph.</p>",
+    "solution": "<style>\nbody {\n  background-color: lightblue;\n  font-family: Arial, Helvetica, sans-serif;\n  color: #333;\n  margin: 20px;\n}\nh1 {\n  color: navy;\n  font-size: 32px;\n  text-align: center;\n}\n</style>\n<h1>Hello World</h1>\n<p>This is a paragraph.</p>"
+  },
+  "medium": {
+    "title": "Convert Longhand to Shorthand",
+    "description": "Convert this longhand CSS to use shorthand properties wherever possible to reduce file size without losing any style information.",
+    "starterCode": "<div class=\"box\">Shorthand Example</div>\n\n<style>\n.box {\n  margin-top: 10px;\n  margin-right: 20px;\n  margin-bottom: 10px;\n  margin-left: 20px;\n  padding-top: 15px;\n  padding-right: 15px;\n  padding-bottom: 15px;\n  padding-left: 15px;\n  border-width: 2px;\n  border-style: solid;\n  border-color: #333;\n  background-color: #f0f0f0;\n  background-image: none;\n  background-repeat: repeat;\n  background-position: left top;\n}\n</style>",
+    "solution": "<div class=\"box\">Shorthand Example</div>\n\n<style>\n.box {\n  margin: 10px 20px;\n  padding: 15px;\n  border: 2px solid #333;\n  background: #f0f0f0;\n}\n</style>"
+  },
+  "hard": {
+    "title": "Build a CSS Syntax Validator Component",
+    "description": "Create an HTML page with a CSS syntax validator. It should have a textarea where users can paste CSS code, and a button that checks for common syntax errors including missing semicolons, unbalanced braces, and use of = instead of :.",
+    "starterCode": "<h1>CSS Syntax Validator</h1>\n<textarea rows=\"8\" cols=\"50\">body {\n  color: blue\n  font-size: 16px;\n  margin = 10px;\n</textarea>\n<br>\n<button>Validate CSS</button>\n<div id=\"results\"></div>",
+    "solution": "<h1>CSS Syntax Validator</h1>\n<textarea id=\"cssInput\" rows=\"8\" cols=\"50\">body {\n  color: blue\n  font-size: 16px;\n  margin = 10px;\n</textarea>\n<br>\n<button onclick=\"validateCSS()\">Validate CSS</button>\n<div id=\"results\"></div>\n\n<style>\n  body { font-family: Arial; max-width: 600px; margin: 40px auto; padding: 20px; }\n  textarea { width: 100%; font-family: monospace; padding: 10px; border: 2px solid #ccc; border-radius: 5px; }\n  button { background: #4299e1; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px 0; }\n  button:hover { background: #2b6cb0; }\n  .error { color: #e53e3e; padding: 5px; }\n  .success { color: #38a169; }\n</style>\n\n<script>\nfunction validateCSS() {\n  const css = document.getElementById('cssInput').value;\n  const lines = css.split('\\n');\n  const errors = [];\n  let openBraces = 0;\n  let closeBraces = 0;\n  lines.forEach((line, i) => {\n    const num = i + 1;\n    if (line.includes('=') && !line.includes('==') && /\\w+\\s*=\\s*\\w/.test(line)) {\n      errors.push('Line ' + num + ': Use colon (:) instead of equals sign (=)');\n    }\n    if (line.includes('{')) openBraces++;\n    if (line.includes('}')) closeBraces++;\n  });\n  if (openBraces !== closeBraces) {\n    errors.push('Unbalanced braces: ' + openBraces + ' opening, ' + closeBraces + ' closing');\n  }\n  const el = document.getElementById('results');\n  if (errors.length === 0) {\n    el.innerHTML = '<p class=\"success\">No syntax errors found!</p>';\n  } else {\n    el.innerHTML = '<p class=\"error\">' + errors.join('<br>') + '</p>';\n  }\n}\n</script>"
+  }
+}

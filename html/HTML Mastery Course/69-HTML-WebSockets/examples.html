@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 69: HTML WebSockets - Examples</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f8f9fa; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #9b59b6; padding-bottom: 10px; }
+        h2 { color: #8e44ad; margin-top: 30px; }
+        .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .example h3 { margin-top: 0; color: #8e44ad; }
+        .controls { margin: 15px 0; }
+        button, input, select { padding: 8px 16px; margin: 5px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        button { background: #8e44ad; color: white; border: none; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #732d91; }
+        button.danger { background: #e74c3c; }
+        button.danger:hover { background: #c0392b; }
+        button.success { background: #27ae60; }
+        button.success:hover { background: #229954; }
+        .output { background: #f1f1f1; padding: 10px; border-radius: 4px; font-family: monospace; min-height: 40px; margin: 10px 0; max-height: 200px; overflow-y: auto; white-space: pre-wrap; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.5; margin: 15px 0; }
+        .note { background: #f3e8ff; border-left: 4px solid #9b59b6; padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+        .chat-window { height: 300px; overflow-y: auto; background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .chat-msg { margin: 5px 0; padding: 8px 12px; border-radius: 15px; max-width: 70%; word-break: break-word; }
+        .chat-msg.sent { background: #8e44ad; color: white; margin-left: auto; }
+        .chat-msg.received { background: #e8e8e8; color: #333; }
+        .connection-status { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .connected { background: #d4edda; color: #155724; }
+        .disconnected { background: #f8d7da; color: #721c24; }
+        .connecting { background: #fff3cd; color: #856404; }
+        .flex { display: flex; gap: 20px; }
+        .flex > * { flex: 1; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+
+<h1>HTML WebSockets - Interactive Examples</h1>
+<p>WebSockets enable real-time, bidirectional communication between browser and server.</p>
+
+<div class="note">
+    <strong>Note:</strong> WebSocket examples require a WebSocket server. Examples 1-3 connect to the public echo server at wss://echo-websocket.websocket.org. Examples 4-6 simulate WebSocket behavior client-side for learning purposes.
+</div>
+
+<!-- EXAMPLE 1: Basic WebSocket Connection -->
+<div class="example" id="example1">
+    <h3>Example 1: Basic WebSocket Connection</h3>
+    <p>Connect to a WebSocket echo server and exchange messages.</p>
+    
+    <div class="controls">
+        <button onclick="wsConnect()">🔗 Connect</button>
+        <button class="danger" onclick="wsDisconnect()">🔌 Disconnect</button>
+        <input type="text" id="wsMessage" value="Hello WebSocket!" style="width:250px">
+        <button onclick="wsSend()" id="sendBtn" disabled>📤 Send</button>
+    </div>
+    
+    <div>
+        Status: <span id="connectionStatus" class="connection-status disconnected">Disconnected</span>
+    </div>
+    <div class="output" id="wsOutput">Click "Connect" to establish WebSocket connection...</div>
+    
+    <div class="code-block">
+const socket = new WebSocket('wss://echo.example.com');
+
+socket.onopen = (e) => { console.log('Connected'); };
+socket.onmessage = (e) => { console.log('Received:', e.data); };
+socket.onclose = (e) => { console.log('Disconnected'); };
+socket.onerror = (e) => { console.error('Error:', e); };
+    </div>
+</div>
+
+<!-- EXAMPLE 2: Chat Interface Simulation -->
+<div class="example" id="example2">
+    <h3>Example 2: Real-Time Chat Interface</h3>
+    <p>Simulated real-time chat using WebSocket-like client behavior.</p>
+    
+    <div class="flex">
+        <div>
+            <h4>User A (This tab)</h4>
+            <div class="chat-window" id="chatWindowA">
+                <div style="color:#999;text-align:center;">WebSocket chat will appear here</div>
+            </div>
+            <div class="controls">
+                <input type="text" id="chatInputA" placeholder="Type a message..." style="width:200px">
+                <button onclick="sendChatMessage('A')">Send</button>
+            </div>
+        </div>
+        <div>
+            <h4>Connection Simulator</h4>
+            <div class="output" id="chatSimulatorOutput" style="height:200px;">
+                Use this panel to simulate receiving messages or connection events.
+            </div>
+            <div class="controls">
+                <button onclick="simulateReceive()">📩 Simulate Receive</button>
+                <button onclick="simulateDisconnect()">⚠️ Simulate Disconnect</button>
+                <button onclick="simulateReconnect()">🔄 Simulate Reconnect</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-block">
+class ChatClient {
+    constructor(url) {
+        this.socket = new WebSocket(url);
+        this.socket.onmessage = (e) => this.displayMessage(e.data);
+    }
+    
+    send(message) {
+        this.socket.send(JSON.stringify({
+            type: 'chat',
+            message: message,
+            timestamp: Date.now()
+        }));
+    }
+}
+    </div>
+</div>
+
+<!-- EXAMPLE 3: Connection States Monitor -->
+<div class="example" id="example3">
+    <h3>Example 3: WebSocket Connection States & Lifecycle</h3>
+    <p>Observe how WebSocket transitions through different states.</p>
+    
+    <div class="controls">
+        <button onclick="startStateDemo()">▶️ Start State Demo</button>
+        <button onclick="manualCloseStateDemo()">❌ Force Close</button>
+        <button onclick="clearStateLog()">🧹 Clear Log</button>
+    </div>
+    
+    <div class="output" id="stateOutput" style="max-height:300px;">
+        Click "Start State Demo" to see WebSocket lifecycle events...
+    </div>
+    
+    <div>
+        <h4>WebSocket ReadyState Values</h4>
+        <table style="width:100%;border-collapse:collapse;margin:10px 0;">
+            <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+            <tr><td>CONNECTING</td><td>0</td><td>Socket has been created. Connection not yet open.</td></tr>
+            <tr><td>OPEN</td><td>1</td><td>Connection is open and ready to communicate.</td></tr>
+            <tr><td>CLOSING</td><td>2</td><td>Connection is in the process of closing.</td></tr>
+            <tr><td>CLOSED</td><td>3</td><td>Connection is closed or could not be opened.</td></tr>
+        </table>
+    </div>
+    
+    <div class="code-block">
+let socket = new WebSocket('wss://echo.example.com');
+console.log('State:', socket.readyState);
+// 0: CONNECTING → 1: OPEN → 2: CLOSING → 3: CLOSED
+    </div>
+</div>
+
+<!-- EXAMPLE 4: Auto-Reconnection with Exponential Backoff -->
+<div class="example" id="example4">
+    <h3>Example 4: Reconnection with Exponential Backoff</h3>
+    <p>Demonstrates intelligent reconnection strategy.</p>
+    
+    <div class="controls">
+        <button onclick="startReconnectDemo()">▶️ Start Demo</button>
+        <button class="danger" onclick="stopReconnectDemo()">⏹️ Stop</button>
+        <button onclick="simulateNetworkDrop()">📡 Simulate Network Drop</button>
+    </div>
+    
+    <div class="output" id="reconnectOutput">
+        Click "Start Demo" to see reconnection strategy in action...
+    </div>
+    
+    <div class="code-block">
+class ReconnectManager {
+    constructor(url, options = {}) {
+        this.url = url;
+        this.maxRetries = options.maxRetries || 10;
+        this.baseDelay = options.baseDelay || 1000;
+        this.maxDelay = options.maxDelay || 30000;
+        this.retryCount = 0;
+    }
+    
+    getDelay() {
+        // Exponential backoff with jitter
+        const delay = Math.min(
+            this.baseDelay * Math.pow(2, this.retryCount),
+            this.maxDelay
+        );
+        return delay + Math.random() * 1000;
+    }
+}
+    </div>
+</div>
+
+<!-- EXAMPLE 5: Simple WebSocket Server Simulation -->
+<div class="example" id="example5">
+    <h3>Example 5: WebSocket Message Protocol</h3>
+    <p>Demonstrates structured message protocol with different message types.</p>
+    
+    <div class="controls">
+        <button onclick="startProtocolDemo()">▶️ Run Protocol Demo</button>
+    </div>
+    <div class="output" id="protocolOutput">
+        Demonstrates how WebSocket messages can be structured with a protocol...
+    </div>
+    
+    <div class="code-block">
+// Message Protocol Types
+const MessageType = {
+    CHAT: 'chat',
+    SYSTEM: 'system',
+    ERROR: 'error',
+    HEARTBEAT: 'heartbeat',
+    ACK: 'acknowledgment'
+};
+
+// Structured message format
+const message = {
+    type: MessageType.CHAT,
+    payload: {
+        text: 'Hello!',
+        sender: 'user123',
+        timestamp: Date.now()
+    },
+    id: 'msg_001'
+};
+
+socket.send(JSON.stringify(message));
+    </div>
+</div>
+
+<!-- EXAMPLE 6: Binary Data Transfer -->
+<div class="example" id="example6">
+    <h3>Example 6: Binary Data over WebSockets</h3>
+    <p>Send and receive binary data (ArrayBuffer) using WebSockets.</p>
+    
+    <div class="controls">
+        <button onclick="sendBinaryDemo()">🔢 Send Binary Data</button>
+        <button onclick="toggleBinaryType()">🔄 Toggle binaryType</button>
+    </div>
+    <div class="output" id="binaryOutput">
+        <div>Current binaryType: <span id="binaryTypeDisplay">blob</span></div>
+    </div>
+    
+    <div class="code-block">
+// Set binary type
+socket.binaryType = 'arraybuffer'; // or 'blob'
+
+// Send binary data
+const buffer = new ArrayBuffer(8);
+const view = new DataView(buffer);
+view.setFloat64(0, 3.14159);
+socket.send(buffer);
+
+// Receive binary data
+socket.onmessage = (e) => {
+    if (e.data instanceof ArrayBuffer) {
+        const view = new DataView(e.data);
+        console.log('Binary:', view.getFloat64(0));
+    }
+};
+    </div>
+</div>
+
+<script>
+// ==========================================
+// SIMULATED WebSocket for client-side demos
+// ==========================================
+// Since WebSockets require a server, we use a simulated EventEmitter
+// to demonstrate concepts without requiring a live server.
+
+class SimulatedWebSocket {
+    constructor(url) {
+        this.url = url;
+        this.readyState = 0; // CONNECTING
+        this.listeners = {};
+        this.messageQueue = [];
+        
+        console.log('Simulated WebSocket created for:', url);
+        
+        // Simulate async connection
+        setTimeout(() => {
+            this.readyState = 1; // OPEN
+            this._emit('open', { target: this });
+            
+            // Process queued messages
+            this.messageQueue.forEach(msg => this._emit('message', { data: msg, target: this }));
+            this.messageQueue = [];
+        }, 500);
+    }
+
+    addEventListener(event, handler) {
+        if (!this.listeners[event]) this.listeners[event] = [];
+        this.listeners[event].push(handler);
+    }
+
+    send(data) {
+        if (this.readyState === 1) {
+            console.log('Sent:', data);
+            // Simulate echo response
+            setTimeout(() => {
+                this._emit('message', { 
+                    data: `Echo: ${data}`,
+                    target: this 
+                });
+            }, 200 + Math.random() * 300);
+        } else {
+            console.log('Queued message (not yet open)');
+            this.messageQueue.push(data);
+        }
+    }
+
+    close(code, reason) {
+        this.readyState = 2; // CLOSING
+        setTimeout(() => {
+            this.readyState = 3; // CLOSED
+            this._emit('close', { code: code || 1000, reason: reason || '', target: this });
+        }, 200);
+    }
+
+    _emit(event, data) {
+        (this.listeners[event] || []).forEach(handler => handler(data));
+        // Also support onEvent handlers
+        const handlerName = 'on' + event;
+        if (typeof this[handlerName] === 'function') {
+            this[handlerName](data);
+        }
+    }
+
+    set onopen(handler) { this.addEventListener('open', handler); }
+    set onmessage(handler) { this.addEventListener('message', handler); }
+    set onclose(handler) { this.addEventListener('close', handler); }
+    set onerror(handler) { this.addEventListener('error', handler); }
+}
+
+// ==========================================
+// EXAMPLE 1: Basic WebSocket
+// ==========================================
+let ws = null;
+
+function wsConnect() {
+    const output = document.getElementById('wsOutput');
+    const status = document.getElementById('connectionStatus');
+    const sendBtn = document.getElementById('sendBtn');
+    
+    if (ws) {
+        output.textContent = 'Already connected or connecting.';
+        return;
+    }
+    
+    // Use real WebSocket to public echo server
+    try {
+        ws = new WebSocket('wss://echo.websocket.org');
+    } catch (e) {
+        // Fallback to simulated
+        ws = new SimulatedWebSocket('wss://echo.websocket.org');
+    }
+    
+    ws.onopen = function(e) {
+        status.textContent = 'Connected';
+        status.className = 'connection-status connected';
+        sendBtn.disabled = false;
+        output.textContent = '✅ WebSocket connection established!\n' + output.textContent;
+    };
+    
+    ws.onmessage = function(e) {
+        const time = new Date().toLocaleTimeString();
+        output.textContent = `[${time}] Received: ${e.data}\n` + output.textContent;
+    };
+    
+    ws.onclose = function(e) {
+        status.textContent = 'Disconnected (code: ' + e.code + ')';
+        status.className = 'connection-status disconnected';
+        sendBtn.disabled = true;
+        output.textContent = `🔌 Connection closed. Code: ${e.code}, Reason: ${e.reason}\n` + output.textContent;
+        ws = null;
+    };
+    
+    ws.onerror = function(e) {
+        output.textContent = '❌ WebSocket error occurred\n' + output.textContent;
+    };
+    
+    status.textContent = 'Connecting...';
+    status.className = 'connection-status connecting';
+    output.textContent = '⏳ Connecting to ws://echo.websocket.org...\n' + output.textContent;
+}
+
+function wsDisconnect() {
+    if (ws) {
+        ws.close(1000, 'User disconnected');
+    }
+}
+
+function wsSend() {
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+        document.getElementById('wsOutput').textContent = '❌ Not connected. Click Connect first.\n' + document.getElementById('wsOutput').textContent;
+        return;
+    }
+    const msg = document.getElementById('wsMessage').value;
+    ws.send(msg);
+    const time = new Date().toLocaleTimeString();
+    document.getElementById('wsOutput').textContent = `[${time}] Sent: ${msg}\n` + document.getElementById('wsOutput').textContent;
+}
+
+// ==========================================
+// EXAMPLE 2: Chat Interface
+// ==========================================
+let chatSocket = null;
+let chatConnected = false;
+
+function initChat() {
+    chatSocket = new SimulatedWebSocket('wss://chat.example.com');
+    
+    chatSocket.onopen = function() {
+        chatConnected = true;
+        addChatMessage('system', 'Connected to chat server');
+    };
+    
+    chatSocket.onmessage = function(e) {
+        const data = e.data;
+        if (data.startsWith('Echo: ')) {
+            const msg = data.substring(6);
+            addChatMessage('received', 'You: ' + msg);
+        } else {
+            addChatMessage('received', data);
+        }
+    };
+    
+    chatSocket.onclose = function() {
+        chatConnected = false;
+        addChatMessage('system', 'Disconnected from chat server');
+    };
+}
+
+function addChatMessage(type, text) {
+    const window = document.getElementById('chatWindowA');
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + (type === 'sent' ? 'sent' : type === 'received' ? 'received' : '');
+    div.style.cssText = type === 'system' ? 'text-align:center;color:#999;font-style:italic;margin:5px 0;background:none;' : '';
+    div.textContent = text;
+    window.appendChild(div);
+    window.scrollTop = window.scrollHeight;
+}
+
+function sendChatMessage(user) {
+    const input = document.getElementById('chatInputA');
+    const msg = input.value.trim();
+    if (!msg) return;
+    
+    if (!chatSocket || !chatConnected) {
+        addChatMessage('system', 'Not connected. Initializing...');
+        initChat();
+        setTimeout(() => {
+            if (chatConnected) {
+                chatSocket.send(msg);
+                addChatMessage('sent', msg);
+                input.value = '';
+            }
+        }, 600);
+        return;
+    }
+    
+    chatSocket.send(msg);
+    addChatMessage('sent', msg);
+    input.value = '';
+}
+
+function simulateReceive() {
+    const messages = [
+        'Hey, how are you?',
+        'Did you finish the project?',
+        'Let me know when you\'re free',
+        'Great work on the demo!',
+        'Can you review my PR?',
+        'Meeting at 3pm?'
+    ];
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    const output = document.getElementById('chatSimulatorOutput');
+    output.textContent = `📩 Simulated received: "${msg}"\n` + output.textContent;
+    addChatMessage('received', 'Friend: ' + msg);
+}
+
+function simulateDisconnect() {
+    const output = document.getElementById('chatSimulatorOutput');
+    output.textContent = '⚠️ Connection dropped!\n' + output.textContent;
+    addChatMessage('system', '⚠️ Connection lost');
+    if (chatSocket) {
+        chatSocket.close(1006, 'Network error');
+        chatConnected = false;
+    }
+}
+
+function simulateReconnect() {
+    const output = document.getElementById('chatSimulatorOutput');
+    output.textContent = '🔄 Reconnecting...\n' + output.textContent;
+    addChatMessage('system', '🔄 Reconnecting...');
+    initChat();
+}
+
+// Initialize chat
+initChat();
+
+// ==========================================
+// EXAMPLE 3: Connection States
+// ==========================================
+let stateSocket = null;
+let stateLog = [];
+
+function startStateDemo() {
+    const output = document.getElementById('stateOutput');
+    stateLog = [];
+    
+    logState('Creating WebSocket instance (readyState = CONNECTING)');
+    
+    stateSocket = new SimulatedWebSocket('wss://state-demo.example.com');
+    
+    logState('readyState = ' + stateSocket.readyState + ' (CONNECTING)');
+    
+    stateSocket.onopen = function() {
+        logState('✅ open event fired');
+        logState('readyState = ' + stateSocket.readyState + ' (OPEN)');
+        logState('Sending test message...');
+        
+        setTimeout(() => {
+            logState('Initiating close...');
+            stateSocket.close(1000, 'Demo complete');
+            logState('readyState = ' + stateSocket.readyState + ' (CLOSING)');
+        }, 1000);
+    };
+    
+    stateSocket.onmessage = function(e) {
+        logState('📩 Received: "' + e.data + '"');
+    };
+    
+    stateSocket.onclose = function(e) {
+        logState('🔌 close event fired');
+        logState('Code: ' + e.code + ', Reason: "' + e.reason + '"');
+        logState('readyState = ' + stateSocket.readyState + ' (CLOSED)');
+        logState('--- Lifecycle Complete ---');
+    };
+    
+    stateSocket.onerror = function(e) {
+        logState('❌ error event fired');
+    };
+}
+
+function logState(msg) {
+    const output = document.getElementById('stateOutput');
+    const time = new Date().toLocaleTimeString();
+    output.textContent = `[${time}] ${msg}\n` + output.textContent;
+}
+
+function manualCloseStateDemo() {
+    if (stateSocket) {
+        stateSocket.close(1001, 'User initiated');
+        logState('User requested close (code 1001)');
+    }
+}
+
+function clearStateLog() {
+    document.getElementById('stateOutput').textContent = 'Log cleared.';
+}
+
+// ==========================================
+// EXAMPLE 4: Reconnection Strategy
+// ==========================================
+let reconnectDemoRunning = false;
+let reconnectAttempts = 0;
+
+function startReconnectDemo() {
+    const output = document.getElementById('reconnectOutput');
+    reconnectDemoRunning = true;
+    reconnectAttempts = 0;
+    
+    const baseDelay = 1000;
+    const maxDelay = 16000;
+    const maxRetries = 8;
+    
+    output.textContent = '🚀 Starting reconnection demo...\n' + output.textContent;
+    
+    function attemptReconnect(retryCount) {
+        if (!reconnectDemoRunning) return;
+        if (retryCount >= maxRetries) {
+            output.textContent = `❌ Max retries (${maxRetries}) reached. Giving up.\n` + output.textContent;
+            return;
+        }
+        
+        const delay = Math.min(baseDelay * Math.pow(2, retryCount), maxDelay);
+        const jitter = Math.random() * 1000;
+        const totalDelay = delay + jitter;
+        
+        reconnectAttempts = retryCount + 1;
+        output.textContent = `🔄 Attempt ${retryCount + 1}/${maxRetries}\n` +
+            `   Base delay: ${Math.round(delay)}ms\n` +
+            `   With jitter: ${Math.round(totalDelay)}ms\n` +
+            `   Total backoff: ${(totalDelay / 1000).toFixed(1)}s\n` +
+            `⏳ Waiting...\n` + output.textContent;
+        
+        setTimeout(() => {
+            if (reconnectDemoRunning) {
+                output.textContent = `🔗 Attempting connection (attempt ${retryCount + 1})...\n` + output.textContent;
+                
+                // Simulate 70% success rate after 3 retries
+                const success = retryCount >= 3 ? Math.random() > 0.3 : false;
+                
+                if (success) {
+                    output.textContent = `✅ Connected successfully after ${retryCount + 1} attempts!\n` + output.textContent;
+                    output.textContent += `📊 Statistics:\n`;
+                    output.textContent += `   Total attempts: ${retryCount + 1}\n`;
+                    output.textContent += `   Total time: ~${(totalDelay / 1000 * (retryCount + 1)).toFixed(1)}s\n`;
+                    reconnectDemoRunning = false;
+                } else {
+                    output.textContent = `❌ Connection failed. Retrying...\n` + output.textContent;
+                    attemptReconnect(retryCount + 1);
+                }
+            }
+        }, totalDelay);
+    }
+    
+    attemptReconnect(0);
+}
+
+function stopReconnectDemo() {
+    reconnectDemoRunning = false;
+    const output = document.getElementById('reconnectOutput');
+    output.textContent = '⏹️ Demo stopped by user.\n' + output.textContent;
+}
+
+function simulateNetworkDrop() {
+    const output = document.getElementById('reconnectOutput');
+    output.textContent = '📡 Network connection dropped! Initiating reconnect...\n' + output.textContent;
+    startReconnectDemo();
+}
+
+// ==========================================
+// EXAMPLE 5: Message Protocol
+// ==========================================
+function startProtocolDemo() {
+    const output = document.getElementById('protocolOutput');
+    
+    const MessageType = {
+        CHAT: 'chat',
+        SYSTEM: 'system',
+        ERROR: 'error',
+        HEARTBEAT: 'heartbeat',
+        ACK: 'acknowledgment'
+    };
+    
+    const messages = [
+        {
+            type: MessageType.SYSTEM,
+            payload: { text: 'Server starting up...' },
+            id: 'sys_001'
+        },
+        {
+            type: MessageType.HEARTBEAT,
+            payload: { timestamp: Date.now() },
+            id: 'hb_' + Date.now()
+        },
+        {
+            type: MessageType.CHAT,
+            payload: { text: 'Hello everyone!', sender: 'Alice', timestamp: Date.now() },
+            id: 'msg_001'
+        },
+        {
+            type: MessageType.CHAT,
+            payload: { text: 'Hi Alice!', sender: 'Bob', timestamp: Date.now() },
+            id: 'msg_002'
+        },
+        {
+            type: MessageType.ACK,
+            payload: { messageId: 'msg_001', status: 'delivered' },
+            id: 'ack_001'
+        },
+        {
+            type: MessageType.ERROR,
+            payload: { code: 4001, message: 'Rate limit exceeded' },
+            id: 'err_001'
+        }
+    ];
+    
+    output.textContent = '📋 WebSocket Message Protocol Demo\n';
+    output.textContent += '================================\n\n';
+    
+    messages.forEach((msg, i) => {
+        output.textContent += `Message ${i + 1}: ${msg.type}\n`;
+        output.textContent += `  ID: ${msg.id}\n`;
+        output.textContent += `  Payload: ${JSON.stringify(msg.payload, null, 4)}\n`;
+        output.textContent += `  JSON: ${JSON.stringify(msg)}\n\n`;
+    });
+    
+    output.textContent += '✅ Protocol demonstration complete.\n';
+    output.textContent += '📌 Key takeaway: Always structure WebSocket messages\n';
+    output.textContent += '   with type, id, and payload fields for routing.\n';
+}
+
+// ==========================================
+// EXAMPLE 6: Binary Data
+// ==========================================
+let binaryType = 'blob';
+
+function sendBinaryDemo() {
+    const output = document.getElementById('binaryOutput');
+    
+    // Create binary data
+    const buffer = new ArrayBuffer(16);
+    const view = new DataView(buffer);
+    
+    // Write different data types
+    view.setInt32(0, 42, true);           // int
+    view.setFloat64(4, Math.PI, true);    // double
+    view.setInt32(12, 0xABCD, true);      // int
+    
+    // Read back for display
+    const intVal = view.getInt32(0, true);
+    const floatVal = view.getFloat64(4, true);
+    const hexVal = view.getInt32(12, true).toString(16);
+    
+    output.textContent = `🔢 Binary Data Demonstration\n`;
+    output.textContent += `==========================\n\n`;
+    output.textContent += `Created ArrayBuffer of ${buffer.byteLength} bytes\n\n`;
+    output.textContent += `Data written:\n`;
+    output.textContent += `  Offset 0: Int32 = ${intVal}\n`;
+    output.textContent += `  Offset 4: Float64 = ${floatVal}\n`;
+    output.textContent += `  Offset 12: Int32 (hex) = 0x${hexVal}\n\n`;
+    output.textContent += `Binary content (hex):\n  `;
+    
+    const bytes = new Uint8Array(buffer);
+    for (let i = 0; i < bytes.length; i++) {
+        output.textContent += bytes[i].toString(16).padStart(2, '0') + ' ';
+        if ((i + 1) % 8 === 0) output.textContent += '\n  ';
+    }
+    
+    output.textContent += `\n\n✅ Binary data prepared for WebSocket transmission.\n`;
+    output.textContent += `📌 Use socket.send(buffer) to send via WebSocket.\n`;
+}
+
+function toggleBinaryType() {
+    binaryType = binaryType === 'blob' ? 'arraybuffer' : 'blob';
+    document.getElementById('binaryTypeDisplay').textContent = binaryType;
+}
+</script>
+
+</body>
+</html>

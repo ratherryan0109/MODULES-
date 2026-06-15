@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the difference between `type=\"text\"` and `type=\"password\"`?",
+      "answer": "Both display single-line text fields. Password masks the characters (shown as dots/asterisks) to prevent shoulder-surfing. The actual value is visible in the HTML source and sent in plain text unless HTTPS is used."
+    },
+    {
+      "question": "When should you use `type=\"email\"` instead of `type=\"text\"`?",
+      "answer": "Use `type=\"email\"` when collecting email addresses. It triggers an @-keyboard on mobile and provides built-in browser validation that checks for the @ symbol and domain format. It also works with the `multiple` attribute for comma-separated emails."
+    },
+    {
+      "question": "What does `type=\"number\"` provide that `type=\"text\"` doesn't?",
+      "answer": "It provides increment/decrement spinner buttons, restricts input to numeric characters, shows a numeric keypad on mobile, and supports `min`, `max`, and `step` attributes for range constraints."
+    },
+    {
+      "question": "How do checkboxes and radio buttons differ?",
+      "answer": "Checkboxes allow multiple independent selections from a group (each checkbox toggles independently). Radio buttons enforce mutual exclusivity — only one can be selected within a group sharing the same `name` attribute."
+    },
+    {
+      "question": "What does the `multiple` attribute do on a file input?",
+      "answer": "It allows the user to select multiple files simultaneously when using the file picker. The files are accessible via JavaScript's `files` property as a FileList containing multiple File objects."
+    },
+    {
+      "question": "What is the purpose of `<input type=\"hidden\">`?",
+      "answer": "Hidden inputs store data that is not visible to the user but is submitted with the form. They're used for CSRF tokens, session identifiers, page state, and other metadata that users don't need to see or modify."
+    },
+    {
+      "question": "What is the difference between `type=\"submit\"` and `type=\"button\"`?",
+      "answer": "`submit` automatically triggers form submission when clicked. `button` does nothing by default and requires JavaScript to attach custom behavior."
+    },
+    {
+      "question": "How does `type=\"range\"` display its current value?",
+      "answer": "Range inputs don't display their current value by default. You must use JavaScript to read `input.value` and display it elsewhere (e.g., via `oninput` event handler updating a `<span>`)."
+    },
+    {
+      "question": "What happens if you use `type=\"search\"`?",
+      "answer": "It renders a search-optimized input field. Some browsers add a clear button (×) when the user types, and mobile devices show a search-specific keyboard with a \"Search\" button."
+    },
+    {
+      "question": "Why should you use `type=\"tel\"` for phone numbers?",
+      "answer": "It triggers a numeric keypad on mobile devices, making phone number entry much faster. However, it doesn't validate the format automatically, so combine it with the `pattern` attribute for format validation."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Explain how the `step` attribute works across different input types.",
+      "answer": "On `number` and `range`, step specifies the increment granularity (e.g., step=\"5\" means multiples of 5). On `date` and `time`, step is in seconds (step=\"900\" = 15-minute intervals). The default step is 1 for number/range, 1 day for date, 60 seconds for time."
+    },
+    {
+      "question": "How does `<input type=\"image\">` differ from `<input type=\"submit\">`?",
+      "answer": "`type=\"image\"` displays an image as a submit button using its `src` attribute. It also submits the x and y coordinates of the click as `name.x` and `name.y` parameters. It requires an `alt` attribute for accessibility."
+    },
+    {
+      "question": "What are the constraints on `<input type=\"number\">` values?",
+      "answer": "The value must be a valid floating-point number. It cannot contain alphabetic characters or special formatting (no commas, currency symbols). The `min` and `max` attributes set range boundaries, and `step` controls the granularity. The browser shows an error for invalid values."
+    },
+    {
+      "question": "How do you create a dual-range slider for price filtering?",
+      "answer": "Use two separate `<input type=\"range\">` elements (one for min, one for max). JavaScript handles the interaction to prevent overlap (ensuring min <= max). The values are displayed in separate elements updated via the `input` event."
+    },
+    {
+      "question": "What is the purpose of `accept` attribute values like `audio/*`, `video/*`, `image/*`?",
+      "answer": "These are MIME type wildcards that filter the file picker to show only specific file categories. `image/*` shows all image formats (JPEG, PNG, GIF, WebP, etc.), `video/*` shows video files, and `audio/*` shows audio files."
+    },
+    {
+      "question": "How does `type=\"datetime-local\"` differ from `type=\"date\"` and `type=\"time\"` combined?",
+      "answer": "`datetime-local` provides a single picker for both date and time in one control, returning a combined value like `2025-04-15T14:30`. Using separate `date` and `time` inputs gives more flexibility for validation but requires combining values in JavaScript."
+    },
+    {
+      "question": "What is the behavior of `<input type=\"reset\">` and why is it often discouraged?",
+      "answer": "Reset restores all form controls to their initial HTML attribute values (not empty). It's often discouraged because users may accidentally click it, losing their input data. If used, it should be placed away from the submit button."
+    },
+    {
+      "question": "How does the `indeterminate` state work for checkboxes?",
+      "answer": "Checkboxes have three visual states: checked, unchecked, and indeterminate (a horizontal line). Indeterminate is set via JavaScript (`checkbox.indeterminate = true`) and represents a mixed state (e.g., a parent checkbox when some children are checked). It cannot be set via HTML."
+    },
+    {
+      "question": "What considerations apply to `<input type=\"month\">` in different locales?",
+      "answer": "Month inputs return YYYY-MM format regardless of browser locale, but the display format varies. For example, US users see \"April 2025\" while UK users might see a different format. The submitted value is always ISO 8601 compliant."
+    },
+    {
+      "question": "How can you create a star rating system using radio inputs?",
+      "answer": "Use five radio buttons with the same name, reversed in order (using flexbox `flex-direction: row-reverse`), styled with CSS to show stars via the `:checked` and `:hover` pseudo-classes. JavaScript is not required for basic functionality — the selected rating value is submitted with the form."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the complete form submission encoding for file uploads.",
+      "answer": "With `enctype=\"multipart/form-data\"`, the browser creates a MIME multipart message. Each form control is a separate part separated by a boundary string. File inputs include Content-Type, Content-Disposition headers, and the raw binary data. Text fields are included as text/plain parts. This encoding is required for files but is ~30% larger than URL-encoded data."
+    },
+    {
+      "question": "How does the `step` attribute interact with `stepUp()` and `stepDown()` methods?",
+      "answer": "`input.stepUp(n)` and `input.stepDown(n)` programmatically increment or decrement the value by n × step. If `n` is omitted, it increments by 1 step. These methods fire the `input` event and respect min/max constraints, throwing an `IndexSizeError` if the result would be out of range."
+    },
+    {
+      "question": "What are the security implications of using `<input type=\"hidden\">` for CSRF protection?",
+      "answer": "Hidden inputs alone are NOT sufficient for CSRF protection because they are visible in the HTML source and can be read by scripts from the same origin. CSRF tokens in hidden inputs should be randomly generated, tied to the user session, validated server-side, and should not be predictable."
+    },
+    {
+      "question": "How does the `form` attribute allow inputs outside a form element?",
+      "answer": "The `form` attribute on any input can reference the `id` of a `<form>` element elsewhere in the document. This allows inputs to be placed outside the `<form>` tags while still being submitted with that form. This is useful for complex layouts where visual positioning differs from form structure."
+    },
+    {
+      "question": "Explain the interaction between `<input type=\"radio\">` and screen readers.",
+      "answer": "Radio buttons should be grouped with the same `name`, wrapped in a `<fieldset>` with a `<legend>`, and each radio should have a `<label>`. Screen readers announce the legend as the group label, the number of options, and the currently selected option. The `aria-required` attribute should be used for required groups."
+    },
+    {
+      "question": "How does the `multiple` attribute interact with `type=\"email\"`?",
+      "answer": "With `multiple`, the email input accepts comma-separated email addresses. Each address is validated individually. Without `multiple`, only a single email is allowed. The `multiple` attribute can also be used with `type=\"file\"` for multi-file uploads."
+    },
+    {
+      "question": "What happens to input values when a form is submitted with `method=\"GET\"` vs `method=\"POST\"`?",
+      "answer": "With GET, the browser appends form data to the URL as query parameters (e.g., `?name=John&age=25`), which is visible in the address bar and limited by URL length (~2048 chars). With POST, data is sent in the request body, allowing larger payloads and binary data (with multipart encoding). GET should not be used for sensitive data."
+    },
+    {
+      "question": "How do you handle the `valueAsNumber` property for empty or invalid number inputs?",
+      "answer": "`valueAsNumber` returns `NaN` for empty or invalid number inputs. You should check with `Number.isNaN(input.valueAsNumber)` before performing arithmetic. It also returns `NaN` if the value is not a valid number according to the input's constraints."
+    },
+    {
+      "question": "What is the relationship between the `input` event and `change` event on input elements?",
+      "answer": "The `input` event fires on every value change (every keystroke, paste, or programmatic change). The `change` event fires when the user commits the change (blurring the field or pressing Enter). For range and color inputs, `input` fires continuously while dragging/selecting, `change` fires on release."
+    },
+    {
+      "question": "How do you implement a custom file upload button that hides the default file input?",
+      "answer": "Hide the file input with `opacity: 0` and `position: absolute`, then overlay it on a styled label or button. The user clicks the visible element, but the click event fires on the hidden file input. After file selection, display the filename in a separate element accessed via JavaScript's `files` property."
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "module": "78-css-clip-path",
+  "title": "CSS Clip Path",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS property creates non-rectangular visual shapes?",
+      "options": ["mask", "clip-path", "overflow", "shape-outside"],
+      "correctAnswer": 1,
+      "explanation": "clip-path creates a clipping region that determines which parts of an element are visible."
+    },
+    {
+      "id": 2,
+      "question": "Which function creates a triangular clip?",
+      "options": ["triangle()", "polygon()", "inset()", "path()"],
+      "correctAnswer": 1,
+      "explanation": "polygon() with three coordinate pairs creates a triangular clip path."
+    },
+    {
+      "id": 3,
+      "question": "What does the inset() function create?",
+      "options": ["A circular clip", "A rectangular clip with optional rounded corners", "A star shape", "An arbitrary SVG path"],
+      "correctAnswer": 1,
+      "explanation": "inset() clips to a rectangle (inset from each edge) with optional round corners."
+    },
+    {
+      "id": 4,
+      "question": "How are polygon points specified?",
+      "options": ["As pixel coordinates only", "As percentage or length pairs separated by commas", "As SVG path strings", "As CSS color values"],
+      "correctAnswer": 1,
+      "explanation": "Polygon points are comma-separated coordinate pairs, typically as percentages."
+    },
+    {
+      "id": 5,
+      "question": "What should be true when animating between polygon clip-paths?",
+      "options": ["Colors must match", "Vertex count must match", "Element size must be the same", "All coordinates must be in pixels"],
+      "correctAnswer": 1,
+      "explanation": "Smooth morphing requires the same number of vertices at each keyframe."
+    },
+    {
+      "id": 6,
+      "question": "Which property works with clip-path to enable text wrapping around clipped shapes?",
+      "options": ["text-align", "shape-outside", "float", "wrap-shape"],
+      "correctAnswer": 1,
+      "explanation": "shape-outside defines the shape around which text wraps, often used with clip-path."
+    },
+    {
+      "id": 7,
+      "question": "What happens to the layout space when an element is clipped with clip-path?",
+      "options": ["Space is removed", "Space remains unchanged", "Space adjusts to fit the clip", "It depends on the element type"],
+      "correctAnswer": 1,
+      "explanation": "clip-path only affects visual rendering, not layout. The original element space is preserved."
+    },
+    {
+      "id": 8,
+      "question": "Which clip-path function uses SVG path data strings?",
+      "options": ["polygon()", "svg-path()", "path()", "d()"],
+      "correctAnswer": 2,
+      "explanation": "path() accepts an SVG path data string for complex custom shapes."
+    },
+    {
+      "id": 9,
+      "question": "Which shape function would you use to create a perfect circle avatar?",
+      "options": ["polygon()", "ellipse()", "circle()", "inset()"],
+      "correctAnswer": 2,
+      "explanation": "circle(50%) clips the element to a perfect circle, ideal for avatar images."
+    },
+    {
+      "id": 10,
+      "question": "What does ellipse(40% 60% at center) create?",
+      "options": ["A perfect circle", "An oval that's wider than it is tall", "An oval that's taller than it is wide", "A rounded rectangle"],
+      "correctAnswer": 2,
+      "explanation": "ellipse(40% 60% at center) creates an oval with 40% horizontal radius and 60% vertical radius."
+    },
+    {
+      "id": 11,
+      "question": "How do you add rounded corners to the inset() function?",
+      "options": ["inset(10px, 5px)", "inset(10px round 5px)", "inset(5px corner)", "inset(10px radius 5px)"],
+      "correctAnswer": 1,
+      "explanation": "The round keyword in inset() adds border-radius-like rounded corners: inset(10px round 5px)."
+    },
+    {
+      "id": 12,
+      "question": "What is the default position for the circle() function if not specified?",
+      "options": ["top left", "center", "50% 50%", "0 0"],
+      "correctAnswer": 2,
+      "explanation": "circle() defaults to center position (50% 50%) of the element."
+    },
+    {
+      "id": 13,
+      "question": "Can clip-path be animated with CSS transitions?",
+      "options": ["No, never", "Yes, between compatible shapes (same vertex count for polygon)", "Only in Chrome", "Only with JavaScript"],
+      "correctAnswer": 1,
+      "explanation": "clip-path can be animated between compatible shapes. polygon animations require matching vertex counts."
+    },
+    {
+      "id": 14,
+      "question": "What is the primary limitation of clip-path for text content?",
+      "options": ["Text becomes unselectable", "Clipped content may overflow and be hidden without scrolling", "Text cannot be clipped", "Fonts break"],
+      "correctAnswer": 1,
+      "explanation": "Clipped content is visually hidden but still present in layout, which can cause accessibility and overflow issues."
+    },
+    {
+      "id": 15,
+      "question": "Which clip-path function is best for creating a hexagon shape?",
+      "options": ["circle()", "inset()", "polygon()", "ellipse()"],
+      "correctAnswer": 2,
+      "explanation": "polygon() with six coordinate pairs creates a hexagonal shape."
+    },
+    {
+      "id": 16,
+      "question": "What happens when clip-path values exceed 100%?",
+      "options": ["An error occurs", "The clip extends beyond the element but is bounded by the element's box", "The element disappears", "The clip inverts"],
+      "correctAnswer": 1,
+      "explanation": "Coordinates beyond 100% are still valid but clipped by the element's border box boundary."
+    },
+    {
+      "id": 17,
+      "question": "How does clip-path interact with border-radius?",
+      "options": ["border-radius is ignored with clip-path", "The clip-path takes precedence over border-radius visually", "They combine for rounded clipped corners", "border-radius breaks clip-path"],
+      "correctAnswer": 1,
+      "explanation": "clip-path overrides border-radius visually, though the border-radius still affects the element's box."
+    },
+    {
+      "id": 18,
+      "question": "What is the browser support consideration for clip-path: path()?",
+      "options": ["Supported everywhere", "path() is newer with limited support compared to basic shapes", "Only in Safari", "Not supported anywhere"],
+      "correctAnswer": 1,
+      "explanation": "clip-path: path() is a newer addition with more limited browser support than basic shape functions."
+    },
+    {
+      "id": 19,
+      "question": "What concept does clip-path: inset(0 round 50%) achieve?",
+      "options": ["A triangle", "A circle/ellipse (if element is square)", "A hexagon", "A star"],
+      "correctAnswer": 1,
+      "explanation": "inset(0 round 50%) clips to the element's bounds with 50% corner rounding, creating a circle on square elements."
+    },
+    {
+      "id": 20,
+      "question": "What is the reference box used by clip-path by default?",
+      "options": ["content-box", "padding-box", "border-box", "margin-box"],
+      "correctAnswer": 2,
+      "explanation": "clip-path uses the border-box as its default reference box for coordinate calculations."
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "module": "110-contrast-ratios",
+  "title": "Contrast Ratios",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the WCAG AA contrast ratio requirement for normal text?",
+      "options": ["3:1", "4.5:1", "7:1", "2:1"],
+      "correctAnswer": 1,
+      "explanation": "WCAG AA requires a minimum 4.5:1 contrast ratio for normal-sized text."
+    },
+    {
+      "id": 2,
+      "question": "What contrast ratio does black text on a white background have?",
+      "options": ["10:1", "15:1", "21:1", "5:1"],
+      "correctAnswer": 2,
+      "explanation": "Pure black (#000000) on pure white (#FFFFFF) has a contrast ratio of 21:1."
+    },
+    {
+      "id": 3,
+      "question": "What is the WCAG AA contrast ratio requirement for large text (≥18px bold or 24px)?",
+      "options": ["4.5:1", "3:1", "2.5:1", "7:1"],
+      "correctAnswer": 1,
+      "explanation": "Large text has a relaxed requirement of 3:1 under WCAG AA."
+    },
+    {
+      "id": 4,
+      "question": "Which color value is used in the WCAG luminance formula with the highest weight?",
+      "options": ["Red", "Green", "Blue", "Alpha"],
+      "correctAnswer": 1,
+      "explanation": "Green has the highest weight (0.7152) in the luminance formula because human eyes are most sensitive to green."
+    },
+    {
+      "id": 5,
+      "question": "What contrast ratio does #767676 on #FFFFFF produce?",
+      "options": ["3:1", "4.5:1", "7:1", "2:1"],
+      "correctAnswer": 1,
+      "explanation": "#767676 (gray) on white produces approximately 4.5:1, which is the AA minimum for normal text."
+    },
+    {
+      "id": 6,
+      "question": "What is the WCAG AAA requirement for normal text contrast?",
+      "options": ["4.5:1", "5:1", "7:1", "10:1"],
+      "correctAnswer": 2,
+      "explanation": "WCAG AAA requires a 7:1 contrast ratio for normal text."
+    },
+    {
+      "id": 7,
+      "question": "Which formula component uses gamma correction in the WCAG luminance calculation?",
+      "options": ["sRGB values", "HSL values", "CMYK values", "Alpha channel"],
+      "correctAnswer": 0,
+      "explanation": "The sRGB values undergo gamma correction (linearization) before being used in the luminance formula."
+    },
+    {
+      "id": 8,
+      "question": "For UI components and graphical objects, what is the minimum contrast ratio?",
+      "options": ["4.5:1", "3:1", "2:1", "5:1"],
+      "correctAnswer": 1,
+      "explanation": "WCAG 2.1 requires a 3:1 contrast ratio for UI components and graphical objects (Success Criterion 1.4.11)."
+    },
+    {
+      "id": 9,
+      "question": "What is the contrast ratio of #999 on #FFF?",
+      "options": ["2.8:1", "4.5:1", "5:1", "1.5:1"],
+      "correctAnswer": 0,
+      "explanation": "#999 on white produces approximately 2.8:1, which fails even AA large text requirements."
+    },
+    {
+      "id": 10,
+      "question": "Which CSS technique improves text contrast over background images?",
+      "options": ["text-shadow", "box-shadow", "transform", "animation"],
+      "correctAnswer": 0,
+      "explanation": "text-shadow (or a pseudo-element overlay) improves text readability on varying backgrounds."
+    },
+    {
+      "id": 11,
+      "question": "What does WCAG SC 1.4.3 specify?",
+      "options": ["Use of color", "Contrast (Minimum)", "Resize text", "Images of text"],
+      "correctAnswer": 1,
+      "explanation": "Success Criterion 1.4.3 is 'Contrast (Minimum)' requiring 4.5:1 for normal text."
+    },
+    {
+      "id": 12,
+      "question": "What is the purpose of the 'prefers-contrast' media query?",
+      "options": ["Detect monitor brightness", "Detect user system contrast preference", "Detect browser contrast settings", "Detect GPU capabilities"],
+      "correctAnswer": 1,
+      "explanation": "prefers-contrast detects the user's system-level contrast preference (more, less, or no preference)."
+    },
+    {
+      "id": 13,
+      "question": "Which font weight is most affected by low contrast?",
+      "options": ["Bold (700)", "Normal (400)", "Light (300)", "Medium (500)"],
+      "correctAnswer": 2,
+      "explanation": "Light/thin font weights (100-300) are most affected because they have thinner strokes that are harder to perceive at low contrast."
+    },
+    {
+      "id": 14,
+      "question": "What is the relative luminance of pure white (#FFFFFF)?",
+      "options": ["0.5", "0.8", "1.0", "0.0"],
+      "correctAnswer": 2,
+      "explanation": "Pure white has a relative luminance of 1.0 (maximum). Pure black has a relative luminance of 0.0."
+    },
+    {
+      "id": 15,
+      "question": "How should disabled buttons handle contrast?",
+      "options": ["Use the same colors as enabled", "Use reduced opacity/contrast but maintain 3:1 minimum", "Remove all contrast", "Use grayscale only"],
+      "correctAnswer": 1,
+      "explanation": "Disabled states should still meet 3:1 minimum contrast for their text and icons to be perceivable."
+    },
+    {
+      "id": 16,
+      "question": "What is the formula for contrast ratio?",
+      "options": ["(L1 + 0.05) / (L2 + 0.05)", "L1 / L2", "(L1 - L2) / L1", "1 / (L1 + L2)"],
+      "correctAnswer": 0,
+      "explanation": "Contrast ratio = (Lighter + 0.05) / (Darker + 0.05), where L is relative luminance."
+    },
+    {
+      "id": 17,
+      "question": "Why are the values 0.2126, 0.7152, and 0.0722 used in the luminance formula?",
+      "options": ["They represent screen brightness", "They account for human eye sensitivity to R, G, B", "They are random constants", "They represent pixel density"],
+      "correctAnswer": 1,
+      "explanation": "These coefficients represent the human eye's relative sensitivity to red, green, and blue light (green being highest)."
+    },
+    {
+      "id": 18,
+      "question": "What should you do if your brand colors fail contrast requirements?",
+      "options": ["Use them anyway", "Use dark/light variants that pass contrast", "Remove all text", "Increase font weight arbitrarily"],
+      "correctAnswer": 1,
+      "explanation": "Create accessible variants of brand colors that pass contrast, using them for text while preserving brand colors for decorative elements."
+    },
+    {
+      "id": 19,
+      "question": "Which tool can calculate contrast ratios directly in the browser?",
+      "options": ["Chrome DevTools color picker", "Windows Calculator", "VS Code", "npm"],
+      "correctAnswer": 0,
+      "explanation": "Chrome DevTools' color picker shows the contrast ratio against the background when inspecting text elements."
+    },
+    {
+      "id": 20,
+      "question": "What contrast ratio is required for placeholder text in form inputs?",
+      "options": ["No requirement", "4.5:1 (AA)", "3:1 (AA large text)", "2:1"],
+      "correctAnswer": 1,
+      "explanation": "Placeholder text is considered presentational, but WCAG recommends 4.5:1 for readability. Best practice is providing visible labels instead."
+    }
+  ]
+}

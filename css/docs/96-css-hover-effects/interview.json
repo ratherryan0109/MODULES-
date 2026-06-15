@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS hover effect?", "answer": "A CSS hover effect applies style changes to an element when a user hovers their cursor over it, using the :hover pseudo-class." },
+    { "question": "How do you create a scale-up hover effect?", "answer": "Use .element:hover { transform: scale(1.1); } with a transition: transform 0.3s; on the element for smooth scaling." },
+    { "question": "How do you add a shadow on hover?", "answer": "Use .element:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.3); } with a transition on box-shadow for smooth appearance." },
+    { "question": "What is a lift effect on hover?", "answer": "A lift effect combines translateY (moving up) and box-shadow (shadow increase) to make the element appear to rise." },
+    { "question": "How do you create an underline hover effect for links?", "answer": "Use a pseudo-element with width transition: ::after { width: 0; } and :hover::after { width: 100%; } for a sliding underline." },
+    { "question": "What is an overlay hover effect?", "answer": "An overlay effect shows a colored semi-transparent layer over an element on hover, often with text appearing in the overlay." },
+    { "question": "How do you add a border highlight on hover?", "answer": "Use .element:hover { border-color: var(--accent); outline: 2px solid var(--accent); } for a visible border highlight." },
+    { "question": "How do you make a button change color smoothly on hover?", "answer": "Apply transition: background-color 0.3s, color 0.3s; and define :hover styles with different background/text colors." },
+    { "question": "Why should you add transitions to hover effects?", "answer": "Transitions make hover effects smooth and polished by interpolating between states over time instead of instant changes." },
+    { "question": "Can you combine multiple properties in a hover effect?", "answer": "Yes, hover effects commonly combine transform, box-shadow, background-color, and opacity for richer interactions." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a hover effect that works on touch devices?", "answer": "Touch devices trigger :hover on tap, but the effect persists; use @media (hover: hover) to apply hover effects only on devices that support hover." },
+    { "question": "How do you create a card hover with content reveal?", "answer": "Set overflow: hidden on the card and use translateY to slide content or overlay into view on hover with transition." },
+    { "question": "How do you create a hover effect that scales from a specific corner?", "answer": "Set transform-origin: bottom right; for scaling, then scale on hover to grow from the bottom-right corner." },
+    { "question": "How can you create an image hover with a text caption overlay?", "answer": "Position an overlay with opacity: 0 and transition, then set opacity: 1 on hover; caption fades or slides in over the image." },
+    { "question": "How do you create a hover effect with multiple layers (image + text + icon)?", "answer": "Use separate elements within the container, each with its own hover transition, or use a single overlay that reveals all content." },
+    { "question": "How do you ensure hover effects don't cause layout shifts?", "answer": "Avoid changing dimensions that affect layout (width, height, margin, padding); use transform and opacity which are visually only." },
+    { "question": "How do you create an icon rotation hover effect?", "answer": "Use transform: rotate(360deg); on hover with a transition for smooth 360-degree rotation of icons or decorative elements." },
+    { "question": "How do you create a hover effect with gradient background animation?", "answer": "Animate background-position on hover with a larger background-size gradient to create a moving gradient effect." },
+    { "question": "How can you use CSS filters for hover effects?", "answer": "Apply filter: brightness(1.2) or filter: saturate(1.5) on hover to enhance images, with transition: filter 0.3s for smooth change." },
+    { "question": "How do you create a hover effect that reveals a border from the center?", "answer": "Use a pseudo-element with scale transform starting from 0 to full size, or animate clip-path from inset(50%) to inset(0)." }
+  ],
+  "advanced": [
+    { "question": "How do you create a hover effect using CSS custom properties for theming?", "answer": "Define hover properties as custom properties, then change them globally for theme switching: --hover-scale: 1.05; transform: scale(var(--hover-scale));" },
+    { "question": "How do you handle hover effects in a scrolling container for performance?", "answer": "Use will-change: transform on hovered elements, avoid repaints, and consider using content-visibility for offscreen elements." },
+    { "question": "How do you create a magnetic hover effect where the element follows the cursor?", "answer": "Pure CSS cannot track cursor position; use JavaScript to read mouse coordinates and update transform values dynamically." },
+    { "question": "How do you create a hover effect that respects reduced motion preferences?", "answer": "Wrap hover transitions in @media (prefers-reduced-motion: no-preference) to disable motion-heavy effects for vestibular disorder users." },
+    { "question": "How do you create a hover effect with a conic-gradient that follows the cursor?", "answer": "This requires JavaScript for cursor tracking; CSS alone cannot dynamically change gradient angles based on mouse position." },
+    { "question": "How do you create a sibling hover effect (hovering one affects another)?", "answer": "Use CSS sibling combinators: .parent:hover .child { opacity: 1; } or the :has() selector: .container:has(.item:hover) .item { opacity: 0.5; }" },
+    { "question": "How do you create a hover effect that works with keyboard focus?", "answer": "Combine :hover with :focus-visible: .element:hover, .element:focus-visible { ... } to ensure keyboard users see the same effect." },
+    { "question": "How do you optimize hover effects for 60fps on low-end devices?", "answer": "Only animate transform and opacity, avoid box-shadow on large elements, use contain: layout style, and reduce paint area." },
+    { "question": "How do you create a hover effect that reveals a tooltip with CSS only?", "answer": "Use a data attribute on the element and a pseudo-element with content: attr(data-tooltip) and opacity/translateY animation on hover." },
+    { "question": "How do you create hover effects for overlapping elements without z-index issues?", "answer": "Use :hover on the parent to control child z-index, or use the :has() selector to adjust stacking when a specific child is hovered." }
+  ]
+}

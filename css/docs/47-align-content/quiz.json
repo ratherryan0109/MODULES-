@@ -1,0 +1,147 @@
+{
+  "module": "47-align-content",
+  "title": "Align Content",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "When does `align-content` work?",
+      "options": ["Only in multi-line flex containers", "In all flex containers", "Only in single-line containers", "Only with flex-direction: column"],
+      "correctAnswer": 0,
+      "explanation": "`align-content` only works when `flex-wrap: wrap` or `wrap-reverse` creates multiple lines."
+    },
+    {
+      "id": 2,
+      "question": "What does `align-content` align?",
+      "options": ["Individual flex items within a line", "Lines of flex items within the container", "The container itself", "Text content"],
+      "correctAnswer": 1,
+      "explanation": "`align-content` distributes space between and around lines of items along the cross axis."
+    },
+    {
+      "id": 3,
+      "question": "What is the difference between `align-content` and `align-items`?",
+      "options": ["align-content aligns lines; align-items aligns items within lines", "They're identical", "align-items aligns lines; align-content aligns items", "align-content only works in Grid"],
+      "correctAnswer": 0,
+      "explanation": "`align-content` distributes entire lines; `align-items` aligns individual items within their line."
+    },
+    {
+      "id": 4,
+      "question": "What is the default value of `align-content`?",
+      "options": ["flex-start", "stretch", "center", "normal/stretch"],
+      "correctAnswer": 3,
+      "explanation": "The default is `normal` which behaves like `stretch` — lines stretch to fill the container."
+    },
+    {
+      "id": 5,
+      "question": "Which value distributes lines with equal space between them but none at edges?",
+      "options": ["space-around", "space-between", "space-evenly", "center"],
+      "correctAnswer": 1,
+      "explanation": "`space-between` puts equal space between lines, with first/last lines at container edges."
+    },
+    {
+      "id": 6,
+      "question": "Which align-content value pushes the first and last lines to the container edges and distributes remaining space between them?",
+      "options": ["space-between", "space-around", "space-evenly", "stretch"],
+      "correctAnswer": 0,
+      "explanation": "space-between places the first line at the start and last at the end, with equal space between remaining lines."
+    },
+    {
+      "id": 7,
+      "question": "What does align-content: center do in a multi-line flex container?",
+      "options": ["Centers items within each line", "Centers the entire group of lines in the container", "Centers the container itself", "Centers text content"],
+      "correctAnswer": 1,
+      "explanation": "align-content: center centers all lines as a group within the cross axis of the container."
+    },
+    {
+      "id": 8,
+      "question": "What is the effect of align-content: flex-start on wrapped flex items?",
+      "options": ["Lines pack at the start of the cross axis", "Items align to the left", "Items shrink to fit", "Lines spread evenly"],
+      "correctAnswer": 0,
+      "explanation": "flex-start packs all lines at the beginning of the cross axis with no extra space between them."
+    },
+    {
+      "id": 9,
+      "question": "What is the difference between space-around and space-evenly for align-content?",
+      "options": ["space-around gives half-size space at edges; space-evenly gives equal space everywhere", "They are identical", "space-evenly has half-size space at edges", "space-evenly only works on rows"],
+      "correctAnswer": 0,
+      "explanation": "With space-around, the first and last lines get half-size space from the edge. With space-evenly, all spacing is equal."
+    },
+    {
+      "id": 10,
+      "question": "Which scenario requires align-content instead of align-items?",
+      "options": ["A flex container with flex-wrap: wrap and multiple lines of items", "A single-line flex container", "Any flex container", "Only grid containers"],
+      "correctAnswer": 0,
+      "explanation": "align-content is specifically for distributing space between multiple lines in a wrapped flex container."
+    },
+    {
+      "id": 11,
+      "question": "What does align-content: stretch do in a multi-line flex container?",
+      "options": ["Lines stretch to fill the cross axis evenly", "Items stretch to fill their line", "The container stretches", "Nothing — stretch is not valid"],
+      "correctAnswer": 0,
+      "explanation": "stretch (the default) distributes remaining space equally among lines, causing them to stretch."
+    },
+    {
+      "id": 12,
+      "question": "What property must be set for align-content to have any visible effect?",
+      "options": ["flex-wrap: wrap (or wrap-reverse)", "flex-direction: column", "justify-content: center", "align-items: stretch"],
+      "correctAnswer": 0,
+      "explanation": "align-content only has a visible effect when flex-wrap creates multiple lines of items."
+    },
+    {
+      "id": 13,
+      "question": "With flex-direction: column and flex-wrap: wrap, what axis does align-content control?",
+      "options": ["The horizontal axis (cross axis)", "The vertical axis (main axis)", "The z-axis", "Both axes"],
+      "correctAnswer": 0,
+      "explanation": "With column direction, the main axis is vertical and cross axis is horizontal. align-content controls distribution on the cross axis."
+    },
+    {
+      "id": 14,
+      "question": "Which align-content value creates equal spacing before, between, and after every line?",
+      "options": ["space-between", "space-around", "space-evenly", "center"],
+      "correctAnswer": 2,
+      "explanation": "space-evenly distributes equal space before the first line, between lines, and after the last line."
+    },
+    {
+      "id": 15,
+      "question": "What does align-content: flex-end do with wrapped items?",
+      "options": ["Packs all lines at the end of the cross axis", "Aligns items to the right", "Moves items to the bottom of each line", "Reverses the line order"],
+      "correctAnswer": 0,
+      "explanation": "flex-end packs all lines at the end of the cross axis, leaving space at the beginning."
+    },
+    {
+      "id": 16,
+      "question": "Can align-content and align-items be used together?",
+      "options": ["Yes, they control different aspects of alignment", "No, they conflict", "Only in grid layouts", "Only in single-line containers"],
+      "correctAnswer": 0,
+      "explanation": "align-content distributes lines within the container; align-items aligns items within each line. They work together."
+    },
+    {
+      "id": 17,
+      "question": "In a wrapped flex container with extra space on the cross axis, which property controls where the lines sit?",
+      "options": ["align-content", "align-items", "justify-content", "align-self"],
+      "correctAnswer": 0,
+      "explanation": "align-content controls how multiple lines are distributed along the cross axis when there's extra space."
+    },
+    {
+      "id": 18,
+      "question": "What is a common use case for align-content?",
+      "options": ["Distributing rows of wrapped cards evenly in a container", "Centering a single button", "Aligning text in a paragraph", "Setting column widths"],
+      "correctAnswer": 0,
+      "explanation": "When cards or items wrap to multiple rows, align-content controls the vertical distribution of those rows."
+    },
+    {
+      "id": 19,
+      "question": "Which is NOT a valid align-content value?",
+      "options": ["space-between", "space-around", "space-evenly", "space-inside"],
+      "correctAnswer": 3,
+      "explanation": "space-inside is not a valid CSS value. Valid values include flex-start, flex-end, center, space-between, space-around, space-evenly, and stretch."
+    },
+    {
+      "id": 20,
+      "question": "What happens to align-content when flex-wrap: nowrap is set?",
+      "options": ["It has no visible effect — only one line exists", "It aligns items vertically", "It centers the container", "It overrides align-items"],
+      "correctAnswer": 0,
+      "explanation": "With nowrap (default), there is only one line, so align-content has nothing to distribute and no visible effect."
+    }
+  ]
+}

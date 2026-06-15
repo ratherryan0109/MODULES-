@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Modules Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; }
+    h1 { margin-bottom: 1rem; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    textarea { width: 100%; height: 250px; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 14px; resize: vertical; }
+    .compiled-output { background: #f5f5f5; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; min-height: 100px; margin: 1rem 0; white-space: pre-wrap; }
+    .preview { border: 2px solid #ddd; border-radius: 8px; padding: 1.5rem; min-height: 150px; margin: 1rem 0; }
+    button { padding: 0.5rem 1rem; background: #0055CC; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .info { background: #f0f0f0; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Modules Playground</h1>
+  <p>Write CSS Module-style code and see how class names get scoped.</p>
+
+  <div class="split">
+    <div>
+      <label>CSS Module Input:</label>
+      <textarea id="cssInput">.root {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.text {
+  color: #6B7280;
+  font-size: 0.9rem;
+}
+
+.button {
+  background: #0055CC;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #003D99;
+}
+
+:global(.container) {
+  max-width: 900px;
+  margin: 0 auto;
+}</textarea>
+    </div>
+    <div>
+      <label>Component Usage (HTML with hashed classes):</label>
+      <textarea id="htmlInput"><div class="root">
+  <h2 class="title">CSS Module Component</h2>
+  <p class="text">This represents a React component using CSS Modules with locally scoped classes.</p>
+  <button class="button">Click Me</button>
+</div></textarea>
+    </div>
+  </div>
+
+  <button onclick="processModules()">Process CSS Modules</button>
+
+  <div class="compiled-output" id="compiledOutput">Compiled CSS will appear here with hashed class names.</div>
+  <div class="preview" id="preview"></div>
+
+  <div class="info">
+    <strong>How it works:</strong> CSS Modules hash class names (e.g., .root → .Card_root_1a2b3)
+    to prevent global conflicts. The hash is deterministic based on file path and class name.
+  </div>
+
+  <script>
+    const cssInput = document.getElementById('cssInput');
+    const htmlInput = document.getElementById('htmlInput');
+    const compiledOutput = document.getElementById('compiledOutput');
+    const preview = document.getElementById('preview');
+
+    function hashString(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+      }
+      return Math.abs(hash).toString(36).substring(0, 5);
+    }
+
+    function processModules() {
+      const css = cssInput.value;
+      const html = htmlInput.value;
+      const componentName = 'Component';
+      const hash = hashString(css);
+
+      // Replace class names with hashed versions
+      const classNames = [...new Set([...css.matchAll(/\.([\w-]+)\s*\{/g)].map(m => m[1]))];
+      const mapping = {};
+
+      classNames.forEach(cls => {
+        if (cls.startsWith(':global')) return;
+        const hashed = `${componentName}_${cls}_${hash}`;
+        mapping[cls] = hashed;
+      });
+
+      let compiledCSS = css;
+      let compiledHTML = html;
+
+      Object.entries(mapping).forEach(([orig, hashed]) => {
+        const reCSS = new RegExp(`\\.${orig}(?=\\s*\\{)`, 'g');
+        compiledCSS = compiledCSS.replace(reCSS, `.${hashed}`);
+
+        // Replace class="orig" with class="hashed" in HTML
+        const reHTML = new RegExp(`class="([^"]*\\s+)?${orig}(\\s+[^"]*)?"`, 'g');
+        compiledHTML = compiledHTML.replace(reHTML, (match) => {
+          return match.replace(new RegExp(`\\b${orig}\\b`), hashed);
+        });
+      });
+
+      compiledOutput.textContent = compiledCSS;
+      preview.innerHTML = `<style>${compiledCSS}</style>${compiledHTML}`;
+
+      // Show mapping
+      compiledOutput.textContent += '\n\n/* Class mapping */\n';
+      Object.entries(mapping).forEach(([orig, hashed]) => {
+        compiledOutput.textContent += `.${orig} → .${hashed}\n`;
+      });
+    }
+
+    cssInput.addEventListener('input', processModules);
+    htmlInput.addEventListener('input', processModules);
+    processModules();
+  </script>
+</body>
+</html>

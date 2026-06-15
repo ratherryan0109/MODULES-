@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utility-First CSS - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    :root { --scale: 4px; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-1 { flex: 1; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .justify-between { justify-content: space-between; }
+    .gap-1 { gap: calc(var(--scale) * 1); }
+    .gap-2 { gap: calc(var(--scale) * 2); }
+    .gap-4 { gap: calc(var(--scale) * 4); }
+    .gap-6 { gap: calc(var(--scale) * 6); }
+    .p-1 { padding: calc(var(--scale) * 1); }
+    .p-2 { padding: calc(var(--scale) * 2); }
+    .p-4 { padding: calc(var(--scale) * 4); }
+    .p-6 { padding: calc(var(--scale) * 6); }
+    .p-8 { padding: calc(var(--scale) * 8); }
+    .m-0 { margin: 0; }
+    .mt-2 { margin-top: calc(var(--scale) * 2); }
+    .mt-4 { margin-top: calc(var(--scale) * 4); }
+    .w-full { width: 100%; }
+    .max-w-sm { max-width: 384px; }
+    .rounded { border-radius: 8px; }
+    .rounded-full { border-radius: 9999px; }
+    .shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+    .border { border: 1px solid #e2e8f0; }
+    .text-sm { font-size: 0.875rem; }
+    .text-base { font-size: 1rem; }
+    .text-lg { font-size: 1.125rem; }
+    .text-xl { font-size: 1.25rem; font-weight: 700; }
+    .text-muted { color: #64748b; }
+    .text-white { color: #fff; }
+    .text-center { text-align: center; }
+    .bg-white { background: #fff; }
+    .bg-primary { background: #06b6d4; }
+    .bg-surface { background: #f1f5f9; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .cursor-pointer { cursor: pointer; }
+    .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .inline-block { display: inline-block; }
+    .block { display: block; }
+
+    .hover\:bg-primary-dark:hover { background: #0891b2; }
+    .hover\:shadow-lg:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+
+    @media (min-width: 768px) {
+      .md\:flex-row { flex-direction: row; }
+      .md\:w-1\/2 { width: 50%; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Utility-First CSS</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Simple Card with Only Utilities</h2>
+    <p>This card uses zero custom CSS — only utility classes for every property.</p>
+    <div class="demo-output">
+      <div class="bg-white rounded shadow p-6 border max-w-sm">
+        <h3 class="text-xl font-bold">Utility Card</h3>
+        <p class="text-sm text-muted mt-2">Built entirely with utility classes. No custom CSS was written for this card.</p>
+        <button class="bg-primary text-white rounded p-2 mt-4 cursor-pointer hover:bg-primary-dark" style="border:none;">Learn More</button>
+      </div>
+    </div>
+    <pre><code>&lt;div class="bg-white rounded shadow p-6 border max-w-sm"&gt;
+  &lt;h3 class="text-xl font-bold"&gt;Utility Card&lt;/h3&gt;
+  &lt;p class="text-sm text-muted mt-2"&gt;...&lt;/p&gt;
+  &lt;button class="bg-primary text-white rounded p-2
+           mt-4 cursor-pointer hover:bg-primary-dark"&gt;
+    Learn More
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Spacing Scale</h2>
+    <p>Utility classes use a consistent 4px scale: <code>p-1</code> = 4px, <code>p-2</code> = 8px, <code>p-4</code> = 16px, etc.</p>
+    <div class="demo-output">
+      <div class="flex gap-2 items-center">
+        <div class="bg-primary text-white rounded p-1 text-sm">p-1</div>
+        <div class="bg-primary text-white rounded p-2 text-sm">p-2</div>
+        <div class="bg-primary text-white rounded p-4 text-sm">p-4</div>
+        <div class="bg-primary text-white rounded p-6 text-sm">p-6</div>
+        <div class="bg-primary text-white rounded p-8 text-sm">p-8</div>
+      </div>
+    </div>
+    <pre><code>:root { --scale: 4px; }
+.p-1 { padding: calc(var(--scale) * 1); }  /* 4px */
+.p-2 { padding: calc(var(--scale) * 2); }  /* 8px */
+.p-4 { padding: calc(var(--scale) * 4); }  /* 16px */
+.p-6 { padding: calc(var(--scale) * 6); }  /* 24px */
+.p-8 { padding: calc(var(--scale) * 8); }  /* 32px */</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Flexbox Layout with Utilities</h2>
+    <p>Layout using <code>.flex</code>, <code>.gap-*</code>, <code>.items-center</code>, and <code>.flex-1</code>.</p>
+    <div class="demo-output">
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="bg-surface rounded p-4 flex-1 text-center">Column 1</div>
+        <div class="bg-surface rounded p-4 flex-1 text-center">Column 2</div>
+        <div class="bg-surface rounded p-4 flex-1 text-center">Column 3</div>
+      </div>
+      <p class="text-sm text-muted mt-2">Resize the viewport to see <code>md:flex-row</code> switch between column and row.</p>
+    </div>
+    <pre><code>&lt;div class="flex flex-col md:flex-row gap-4"&gt;
+  &lt;div class="flex-1"&gt;Column 1&lt;/div&gt;
+  &lt;div class="flex-1"&gt;Column 2&lt;/div&gt;
+  &lt;div class="flex-1"&gt;Column 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Typography Utilities</h2>
+    <p>Consistent type scale: <code>.text-sm</code>, <code>.text-base</code>, <code>.text-lg</code>, <code>.text-xl</code>.</p>
+    <div class="demo-output">
+      <p class="text-sm text-muted">.text-sm — The quick brown fox</p>
+      <p class="text-base">.text-base — The quick brown fox</p>
+      <p class="text-lg font-semibold">.text-lg — The quick brown fox</p>
+      <p class="text-xl">.text-xl — The quick brown fox</p>
+    </div>
+    <pre><code>.text-sm  { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg   { font-size: 1.125rem; }
+.text-xl   { font-size: 1.25rem; font-weight: 700; }</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: State Variants</h2>
+    <p>Use the <code>hover:</code> prefix for state-specific styles. These only apply on hover.</p>
+    <div class="demo-output">
+      <div class="flex gap-2">
+        <button class="bg-primary text-white rounded p-2 cursor-pointer hover:bg-primary-dark" style="border:none;">Hover me</button>
+        <button class="bg-white border rounded p-2 cursor-pointer hover:shadow-lg" style="border:1px solid #e2e8f0;">Shadow on hover</button>
+      </div>
+    </div>
+    <pre><code>.hover\:bg-primary-dark:hover {
+  background: #0891b2;
+}
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Responsive Prefixes</h2>
+    <p>Media query breakpoints as prefixes: <code>md:flex-row</code>, <code>md:w-1/2</code>.</p>
+    <div class="demo-output">
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="bg-surface rounded p-4 md:w-1/2">
+          <p class="font-semibold">Left Panel</p>
+          <p class="text-sm text-muted">Stacks above on mobile, side-by-side on desktop.</p>
+        </div>
+        <div class="bg-surface rounded p-4 md:w-1/2">
+          <p class="font-semibold">Right Panel</p>
+          <p class="text-sm text-muted">Uses <code>md:w-1/2</code> for responsive width.</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>@media (min-width: 768px) {
+  .md\:flex-row { flex-direction: row; }
+  .md\:w-1\/2 { width: 50%; }
+}</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Composing Complex Components</h2>
+    <p>A product card composed entirely from utility classes.</p>
+    <div class="demo-output">
+      <div class="bg-white rounded shadow p-6 border max-w-sm">
+        <div class="flex items-start gap-4">
+          <div class="bg-primary text-white rounded-full" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">UC</div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold">Utility Composition</h3>
+            <p class="text-sm text-muted mt-2">Every style on this card — spacing, colors, typography, borders, shadows — comes from a single-purpose utility class.</p>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-4">
+          <button class="bg-primary text-white rounded p-2 cursor-pointer hover:bg-primary-dark flex-1" style="border:none;">Buy Now</button>
+          <button class="bg-white border rounded p-2 cursor-pointer text-muted flex-1" style="border:1px solid #e2e8f0;">Details</button>
+        </div>
+      </div>
+    </div>
+    <pre><code>&lt;div class="bg-white rounded shadow p-6 border max-w-sm"&gt;
+  &lt;div class="flex items-start gap-4"&gt;
+    &lt;div class="bg-primary text-white rounded-full"&gt;UC&lt;/div&gt;
+    &lt;div class="flex-1"&gt;
+      &lt;h3 class="text-lg font-bold"&gt;Title&lt;/h3&gt;
+      &lt;p class="text-sm text-muted"&gt;Description&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+  </div>
+</body>
+</html>

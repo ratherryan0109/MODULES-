@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does display: inline-block do?", "answer": "display: inline-block makes an element flow inline like text while accepting block-level properties like width, height, and margins." },
+    { "question": "How is inline-block different from inline?", "answer": "Inline elements ignore width and height, while inline-block respects width, height, and vertical margins." },
+    { "question": "How is inline-block different from block?", "answer": "Block elements start on a new line and fill full width, while inline-block elements sit next to each other horizontally." },
+    { "question": "Can you set width and height on an inline-block element?", "answer": "Yes, inline-block elements accept width and height just like block elements." },
+    { "question": "What is the whitespace gap issue with inline-block?", "answer": "Inline-block elements respect whitespace in HTML, creating small gaps between elements due to spaces or newlines in the markup." },
+    { "question": "How do you remove the whitespace gap between inline-block elements?", "answer": "Remove whitespace in HTML, use font-size: 0 on the parent, use negative margins, or use flexbox instead." },
+    { "question": "Can inline-block elements be vertically aligned?", "answer": "Yes, inline-block elements respond to the vertical-align property." },
+    { "question": "What is the default vertical-align for inline-block elements?", "answer": "The default vertical-align is baseline, which aligns the element with the text baseline." },
+    { "question": "Is inline-block supported in all browsers?", "answer": "Yes, inline-block is supported in all modern browsers and Internet Explorer 8+." },
+    { "question": "Can padding affect the sizing of inline-block elements?", "answer": "Yes, padding adds to the total width and height of inline-block elements, just like block elements." }
+  ],
+  "intermediate": [
+    { "question": "How does inline-block compare to float for horizontal layouts?", "answer": "Inline-block does not cause parent collapse like float does, making it easier for horizontal layouts without clearfix." },
+    { "question": "Why does font-size: 0 on the parent remove inline-block gaps?", "answer": "Reducing font-size to 0 makes the whitespace characters (spaces) have zero width, eliminating the visible gap." },
+    { "question": "How does vertical-align affect inline-block elements in a row?", "answer": "vertical-align controls how each inline-block aligns relative to others: top, middle, bottom, or baseline." },
+    { "question": "What happens when inline-block elements have different heights?", "answer": "Their vertical alignment (default baseline) determines their positioning, which can cause uneven rows without explicit alignment." },
+    { "question": "How can you center inline-block elements horizontally?", "answer": "Apply text-align: center to the parent element to center all inline-block children horizontally." },
+    { "question": "How do you create a horizontal navigation bar with inline-block?", "answer": "Set display: inline-block on list items (li) inside a nav, then style them as horizontal links." },
+    { "question": "What is the baseline alignment issue with inline-block?", "answer": "Inline-block elements with different font sizes or content can misalign at the baseline, creating visual unevenness." },
+    { "question": "How do inline-block elements handle overflow?", "answer": "Inline-block elements respect overflow property and can clip or scroll content just like block elements." },
+    { "question": "What is a practical use case for inline-block over Flexbox?", "answer": "Inline-block works better when you need the elements to wrap naturally like text, such as in tag clouds or inline galleries." },
+    { "question": "How do inline-block and text-align interact for centering?", "answer": "text-align: center on the parent centers inline-block children, which is useful for centering variable-width elements." }
+  ],
+  "advanced": [
+    { "question": "How does inline-block create a block formatting context?", "answer": "An inline-block element establishes a new BFC internally, isolating its contents from the parent layout." },
+    { "question": "What are the subtle differences between inline-block and inline-flex?", "answer": "Inline-block flows inline and accepts block properties; inline-flex creates an inline-level flex container with flex behavior inside." },
+    { "question": "How does the CSS spec define the sizing of inline-block elements?", "answer": "An inline-block element is sized by its content by default but accepts explicit width/height; its shrink-to-fit width depends on the containing block." },
+    { "question": "Why does the gap from whitespace persist even with zero font-size in some cases?", "answer": "Zero font-size eliminates the gap, but it also requires resetting font-size on child elements, which can be cumbersome." },
+    { "question": "How does inline-block interact with text-direction in RTL layouts?", "answer": "Inline-block respects the writing direction; in RTL, inline-block elements flow from right to left." },
+    { "question": "What happens to inline-block elements in a flex container?", "answer": "When an inline-block element is a flex item, its display is blockified, and inline-block behavior is overridden." },
+    { "question": "How does min-height and max-height work on inline-block elements?", "answer": "Inline-block elements support min/max height and width properties just like block elements." },
+    { "question": "How does inline-block behave in a floated parent?", "answer": "An inline-block child inside a floated parent respects the parent's width and can wrap normally within that space." },
+    { "question": "What rendering differences exist between inline-block and table-cell?", "answer": "Table-cell creates a table formatting context and has different vertical alignment defaults, while inline-block is more predictable." },
+    { "question": "How do browsers handle the line-box behavior of inline-block elements?", "answer": "Inline-block elements sit within a line box; their height contributes to the line box height, like inline elements but with block sizing." }
+  ]
+}

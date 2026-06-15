@@ -1,0 +1,147 @@
+{
+  "module": "48-flex-grow",
+  "title": "Flex Grow",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `flex-grow` control?",
+      "options": ["How much an item grows when there's extra space", "How much an item shrinks", "The initial size of an item", "The order of items"],
+      "correctAnswer": 0,
+      "explanation": "`flex-grow` determines how much a flex item will grow relative to siblings when extra space exists."
+    },
+    {
+      "id": 2,
+      "question": "What is the default value of `flex-grow`?",
+      "options": ["1", "0", "auto", "100"],
+      "correctAnswer": 1,
+      "explanation": "The default value is `0`, meaning items do NOT grow by default."
+    },
+    {
+      "id": 3,
+      "question": "If 3 items have flex-grow: 1 and the container has 300px extra space, how much does each grow?",
+      "options": ["100px", "150px", "300px", "Depends on content"],
+      "correctAnswer": 0,
+      "explanation": "Total grow = 3. Each item's share = 1/3 × 300px = 100px."
+    },
+    {
+      "id": 4,
+      "question": "What's the shorthand pattern for equal-width columns?",
+      "options": ["flex: 1", "flex: auto", "flex: none", "flex: initial"],
+      "correctAnswer": 0,
+      "explanation": "`flex: 1` sets flex-grow: 1 with flex-basis: 0, creating equal-width columns."
+    },
+    {
+      "id": 5,
+      "question": "Does flex-grow work when items are larger than the container?",
+      "options": ["No, there's no extra space to distribute", "Yes, it still works", "Only in Chrome", "Only with flex-wrap"],
+      "correctAnswer": 0,
+      "explanation": "`flex-grow` only distributes EXTRA space. If items overflow, there's no extra space to grow into."
+    },
+    {
+      "id": 6,
+      "question": "If one item has flex-grow: 2 and two others have flex-grow: 1, how is extra space divided?",
+      "options": ["The first item gets 2/4 (half), the others get 1/4 each", "The first item gets 2/3, others get 1/3 each", "All items get equal space", "The first item gets all extra space"],
+      "correctAnswer": 0,
+      "explanation": "Total flex-grow = 2 + 1 + 1 = 4. The first item gets 2/4, each of the others gets 1/4 of the extra space."
+    },
+    {
+      "id": 7,
+      "question": "What happens when flex-grow is set on items with flex-wrap: wrap?",
+      "options": ["Items grow within their line, then wrap when no more space", "Items stop growing", "flex-grow is ignored with wrap", "Items grow infinitely"],
+      "correctAnswer": 0,
+      "explanation": "Each line in a wrapped flex container distributes its own extra space using flex-grow values."
+    },
+    {
+      "id": 8,
+      "question": "What is the relationship between flex-grow and flex-basis?",
+      "options": ["flex-basis sets the starting size; flex-grow adds to it", "flex-grow overrides flex-basis", "flex-basis overrides flex-grow", "They are unrelated"],
+      "correctAnswer": 0,
+      "explanation": "flex-basis determines the initial size, and flex-grow distributes any extra space on top of that."
+    },
+    {
+      "id": 9,
+      "question": "If two items have flex-basis: 100px and flex-grow: 1, and the container is 400px wide, how wide is each item?",
+      "options": ["250px each (100px basis + 150px extra space each)", "200px each", "100px each", "400px each"],
+      "correctAnswer": 0,
+      "explanation": "Total basis = 200px. Extra space = 400px - 200px = 200px. Each item gets 100px extra. Total = 100px + 100px = 200px. Wait, let me recalculate: 200px extra ÷ 2 = 100px extra each. 100px basis + 100px extra = 200px each."
+    },
+    {
+      "id": 10,
+      "question": "What does flex-grow: 0 do?",
+      "options": ["Prevents the item from growing beyond its flex-basis", "Makes the item invisible", "Removes the item from the flow", "Sets item to full width"],
+      "correctAnswer": 0,
+      "explanation": "flex-grow: 0 (the default) means the item will not grow, staying at its flex-basis size."
+    },
+    {
+      "id": 11,
+      "question": "Can flex-grow use negative values?",
+      "options": ["No, flex-grow must be a non-negative number", "Yes, negative values make items shrink", "Only in some browsers", "Yes, but it behaves like 0"],
+      "correctAnswer": 0,
+      "explanation": "flex-grow accepts non-negative numbers only. Negative values are invalid."
+    },
+    {
+      "id": 12,
+      "question": "If all items have flex-grow: 1, how does the browser distribute extra space?",
+      "options": ["Equally among all items", "Proportional to content size", "To the first item only", "To the last item only"],
+      "correctAnswer": 0,
+      "explanation": "When all items have the same flex-grow value, extra space is divided equally among them."
+    },
+    {
+      "id": 13,
+      "question": "What happens if flex-grow is set to a very high value like 999?",
+      "options": ["That item gets almost all the extra space", "The browser crashes", "It behaves the same as flex-grow: 1", "The item overflows"],
+      "correctAnswer": 0,
+      "explanation": "flex-grow is proportional. A value of 999 compared to others with 1 means that item gets 999/1000 of the extra space."
+    },
+    {
+      "id": 14,
+      "question": "With flex-direction: column, what dimension does flex-grow affect?",
+      "options": ["Height (vertical space)", "Width (horizontal space)", "Both dimensions", "Neither — flex-grow doesn't work with column"],
+      "correctAnswer": 0,
+      "explanation": "flex-grow always affects the main axis. With flex-direction: column, the main axis is vertical."
+    },
+    {
+      "id": 15,
+      "question": "What is the minimum allowed value for flex-grow?",
+      "options": ["0", "1", "-1", "auto"],
+      "correctAnswer": 0,
+      "explanation": "The minimum allowed value for flex-grow is 0. Values can be any non-negative number (0, 0.5, 1, 2, etc.)."
+    },
+    {
+      "id": 16,
+      "question": "If an item has flex-grow: 1 but no explicit flex-basis, what starting size does it use?",
+      "options": ["Its content size (flex-basis defaults to auto)", "0", "100%", "50%"],
+      "correctAnswer": 0,
+      "explanation": "With flex-basis: auto (default), the item starts at its content size, then grows from there."
+    },
+    {
+      "id": 17,
+      "question": "How does flex-grow interact with max-width?",
+      "options": ["max-width caps the growth — an item can't exceed it", "flex-grow overrides max-width", "max-width is ignored in flex containers", "They cause a conflict"],
+      "correctAnswer": 0,
+      "explanation": "An item will not grow past its max-width value, even if flex-grow would distribute more space to it."
+    },
+    {
+      "id": 18,
+      "question": "What does flex-grow: 0.5 mean?",
+      "options": ["The item grows at half the rate of an item with flex-grow: 1", "The item grows to 50% width", "The item grows by 0.5px", "The item does not grow"],
+      "correctAnswer": 0,
+      "explanation": "flex-grow accepts fractional values. An item with 0.5 will grow half as much as an item with 1."
+    },
+    {
+      "id": 19,
+      "question": "In the shorthand flex: 2 1 auto, what is the flex-grow value?",
+      "options": ["2", "1", "auto", "flex"],
+      "correctAnswer": 0,
+      "explanation": "In the flex shorthand (flex: grow shrink basis), the first value is flex-grow. So flex: 2 1 auto has flex-grow: 2."
+    },
+    {
+      "id": 20,
+      "question": "Why might you use flex-grow instead of width or flex-basis?",
+      "options": ["flex-grow dynamically distributes available space, adapting to different container sizes", "flex-grow is faster", "flex-grow works in all browsers", "flex-grow replaces width entirely"],
+      "correctAnswer": 0,
+      "explanation": "flex-grow is dynamic — it distributes whatever space is available, making layouts responsive without fixed sizes."
+    }
+  ]
+}

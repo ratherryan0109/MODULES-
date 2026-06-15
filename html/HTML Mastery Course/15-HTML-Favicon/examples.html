@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 15: HTML Favicon - Examples</title>
+
+  <!-- Example 1: Primary favicon setup -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔖</text></svg>">
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAA">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    .example-box {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .example-box h2 { color: #2980b9; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 18px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin: 15px 0;
+      white-space: pre-wrap;
+    }
+    .note {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+      padding: 12px 18px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+    .favicon-preview {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .favicon-preview .icon-box {
+      text-align: center;
+    }
+    .favicon-preview .icon-box img {
+      display: block;
+      margin: 0 auto 8px;
+    }
+    .favicon-preview .icon-box .label {
+      font-size: 12px;
+      color: #666;
+    }
+    .browser-mock {
+      background: #e8e8e8;
+      border-radius: 8px 8px 0 0;
+      padding: 8px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-family: system-ui;
+    }
+    .browser-mock .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .browser-mock .dot:nth-child(1) { background: #ff5f57; }
+    .browser-mock .dot:nth-child(2) { background: #ffbd2e; }
+    .browser-mock .dot:nth-child(3) { background: #28c840; }
+    .browser-mock .tab {
+      background: white;
+      padding: 4px 12px;
+      border-radius: 4px 4px 0 0;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .browser-mock .tab img { width: 14px; height: 14px; }
+  </style>
+</head>
+<body>
+
+  <h1>🔖 HTML Favicon — Code Examples</h1>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 1: BROWSER TAB PREVIEW -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 1: Browser Tab Preview</h2>
+    <p>Look at the browser tab for this page — you should see the favicon displayed next to the page title.</p>
+    <div class="browser-mock" style="margin:15px 0;">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="tab">
+        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔖</text></svg>" alt="favicon">
+        Module 15: HTML Favicon - Examples
+      </div>
+    </div>
+    <p>This page uses an emoji-based SVG favicon for demonstration. In production, use a proper icon file.</p>
+
+    <div class="code-block">
+      &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 2: FAVICON SIZES COMPARISON -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 2: Favicon Sizes Comparison</h2>
+    <div class="favicon-preview">
+      <div class="icon-box">
+        <div style="width:16px;height:16px;background:#3498db;border-radius:2px;margin:0 auto 8px;"></div>
+        <div class="label">16×16<br>Tab</div>
+      </div>
+      <div class="icon-box">
+        <div style="width:32px;height:32px;background:#3498db;border-radius:4px;margin:0 auto 8px;"></div>
+        <div class="label">32×32<br>Taskbar</div>
+      </div>
+      <div class="icon-box">
+        <div style="width:48px;height:48px;background:#3498db;border-radius:6px;margin:0 auto 8px;"></div>
+        <div class="label">48×48<br>Shortcut</div>
+      </div>
+      <div class="icon-box">
+        <div style="width:64px;height:64px;background:#3498db;border-radius:8px;margin:0 auto 8px;"></div>
+        <div class="label">64×64<br>HiDPI</div>
+      </div>
+      <div class="icon-box">
+        <div style="width:180px;height:180px;background:#3498db;border-radius:12px;margin:0 auto 8px;"></div>
+        <div class="label">180×180<br>Apple Touch</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 3: BASIC FAVICON LINK -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 3: Basic Favicon (ICO format)</h2>
+
+    <div class="code-block">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;My Website&lt;/title&gt;
+
+        &lt;!-- Basic ICO favicon --&gt;
+        &lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        ...
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </div>
+
+    <div class="note">
+      <strong>Tip:</strong> If you place <code>favicon.ico</code> in the website root directory, most browsers will find it automatically without needing a &lt;link&gt; tag.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 4: MODERN FAVICON SETUP -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 4: Modern Multi-Format Favicon Setup</h2>
+
+    <div class="code-block">
+      &lt;!-- SVG Favicon (modern browsers) --&gt;
+      &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+
+      &lt;!-- PNG fallback (multiple sizes) --&gt;
+      &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+      &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+
+      &lt;!-- Apple Touch Icon (iOS) --&gt;
+      &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+
+      &lt;!-- Android / PWA --&gt;
+      &lt;link rel="manifest" href="/site.webmanifest"&gt;
+
+      &lt;!-- Windows Tiles --&gt;
+      &lt;meta name="msapplication-TileColor" content="#ffffff"&gt;
+      &lt;meta name="msapplication-TileImage" content="/mstile-144x144.png"&gt;
+
+      &lt;!-- Browser theme color --&gt;
+      &lt;meta name="theme-color" content="#ffffff"&gt;
+    </div>
+
+    <div class="note">
+      <strong>Best practice:</strong> Use an online favicon generator to create all these sizes automatically.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 5: EMOJI FAVICON (Data URI) -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 5: Emoji Favicon with Data URI</h2>
+
+    <p>This page itself uses an emoji favicon via a data URI — a quick trick for development:</p>
+
+    <div class="code-block">
+      &lt;link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🚀&lt;/text&gt;&lt;/svg&gt;"&gt;
+    </div>
+
+    <div class="output" style="background:#f0fdf4;border:1px solid #86efac;padding:15px;border-radius:6px;margin:10px 0;">
+      This works by encoding the SVG inline as a data URI. Change the emoji to any character to create instant favicons!
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 6: SVG FAVICON -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 6: SVG Favicon File</h2>
+
+    <p>Contents of <code>favicon.svg</code>:</p>
+
+    <div class="code-block">
+      &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"&gt;
+        &lt;rect width="32" height="32" rx="6" fill="#2563eb"/&gt;
+        &lt;text x="16" y="22" font-family="Arial" font-size="18"
+              fill="white" text-anchor="middle" font-weight="bold"&gt;M&lt;/text&gt;
+      &lt;/svg&gt;
+    </div>
+
+    <p style="margin-top:10px;">This creates a simple blue square with the letter "M" — perfectly crisp at any size.</p>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 7: MANIFEST FILE -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 7: Web Manifest (site.webmanifest)</h2>
+
+    <div class="code-block">
+      {
+        "name": "My Awesome Website",
+        "short_name": "MySite",
+        "description": "A description of my website",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "#2563eb",
+        "icons": [
+          { "src": "/icon-192x192.png", "sizes": "192x192", "type": "image/png" },
+          { "src": "/icon-512x512.png", "sizes": "512x512", "type": "image/png" }
+        ]
+      }
+    </div>
+
+    <p>Link it in your HTML:</p>
+    <div class="code-block">
+      &lt;link rel="manifest" href="/site.webmanifest"&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 8: REAL-WORLD FAVICON META TAGS -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 8: Real-World Favicon Head Section</h2>
+
+    <div class="code-block">
+      &lt;!-- Primary --&gt;
+      &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+      &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+      &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+      &lt;link rel="shortcut icon" href="/favicon.ico"&gt;
+
+      &lt;!-- iOS --&gt;
+      &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+      &lt;link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2563eb"&gt;
+
+      &lt;!-- PWA --&gt;
+      &lt;link rel="manifest" href="/site.webmanifest"&gt;
+
+      &lt;!-- Windows / Browser --&gt;
+      &lt;meta name="msapplication-TileColor" content="#2563eb"&gt;
+      &lt;meta name="msapplication-config" content="/browserconfig.xml"&gt;
+      &lt;meta name="theme-color" content="#ffffff"&gt;
+    </div>
+  </div>
+
+</body>
+</html>

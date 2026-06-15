@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the difference between <b> and <strong>?",
+      "answer": "<b> is presentational — it makes text bold with no semantic meaning. <strong> indicates strong importance and is semantic — screen readers emphasize it differently."
+    },
+    {
+      "question": "What is the difference between <i> and <em>?",
+      "answer": "<i> is presentational italic for technical terms, foreign words, etc. <em> indicates stress emphasis, changing the meaning of a sentence."
+    },
+    {
+      "question": "What does the <mark> element do?",
+      "answer": "<mark> highlights text for reference purposes, such as search result keywords. It has a yellow background by default."
+    },
+    {
+      "question": "What is the <small> element used for?",
+      "answer": "<small> represents side comments, fine print, and disclaimers like copyright text or legal notices."
+    },
+    {
+      "question": "What does the <del> element represent?",
+      "answer": "<del> represents text that has been deleted or removed from the document, shown with a strikethrough line."
+    },
+    {
+      "question": "What does the <ins> element represent?",
+      "answer": "<ins> represents text that has been inserted or added to the document, typically shown as underlined."
+    },
+    {
+      "question": "What does the <sub> element do?",
+      "answer": "<sub> defines subscript text, displayed half a character below the normal line, like the 2 in H₂O."
+    },
+    {
+      "question": "What does the <sup> element do?",
+      "answer": "<sup> defines superscript text, displayed half a character above the normal line, like the 2 in E=mc²."
+    },
+    {
+      "question": "What is the <code> element used for?",
+      "answer": "<code> marks a fragment of computer code. It is displayed in a monospace font."
+    },
+    {
+      "question": "What is the <q> element used for?",
+      "answer": "<q> marks short inline quotations that do not require paragraph breaks. Browsers automatically add quotation marks."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the difference between <del> and <s>?",
+      "answer": "<del> indicates that content has been deleted (often with a replacement via <ins>). <s> indicates that content is no longer accurate or relevant but is not replaced."
+    },
+    {
+      "question": "What is the <abbr> element and how do you provide the full expansion?",
+      "answer": "<abbr> marks up abbreviations. Use the title attribute to provide the full expansion: <abbr title='HyperText Markup Language'>HTML</abbr>."
+    },
+    {
+      "question": "What is the <cite> element used for?",
+      "answer": "<cite> marks the title of a creative work — books, articles, movies, paintings, etc. It is distinct from quoting content."
+    },
+    {
+      "question": "What is the <kbd> element?",
+      "answer": "<kbd> represents user keyboard input, such as keyboard shortcuts: <kbd>Ctrl</kbd> + <kbd>S</kbd>."
+    },
+    {
+      "question": "What is the <samp> element?",
+      "answer": "<samp> represents sample output from a computer program or system: <samp>Error 404: Page not found</samp>."
+    },
+    {
+      "question": "What is the <var> element?",
+      "answer": "<var> represents a variable name in mathematical expressions or programming: <var>x</var> = <var>y</var> + 2."
+    },
+    {
+      "question": "What is the <dfn> element?",
+      "answer": "<dfn> marks the defining instance of a term. It indicates the term is being defined within the surrounding content."
+    },
+    {
+      "question": "What is the difference between presentational and semantic markup?",
+      "answer": "Presentational markup (<b>, <i>) only affects visual appearance. Semantic markup (<strong>, <em>) conveys meaning, improving accessibility and SEO."
+    },
+    {
+      "question": "What is the <bdi> element used for?",
+      "answer": "<bdi> (Bi-Directional Isolation) isolates a span of text that might have different directionality from its surroundings, preventing direction changes from affecting adjacent content."
+    },
+    {
+      "question": "What is the <bdo> element?",
+      "answer": "<bdo> (Bi-Directional Override) explicitly overrides the text direction for its content using the dir attribute: <bdo dir='rtl'>Text displays right-to-left</bdo>."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the HTML spec define the difference between <em> and <i> in terms of accessibility tree mapping?",
+      "answer": "Both map to the same 'emphasis' role in the accessibility tree, but <em> indicates stress emphasis (changing sentence meaning) while <i> is for idiomatic text (technical terms, foreign words) without stress emphasis."
+    },
+    {
+      "question": "How do screen readers handle <strong> and <em> compared to normal text?",
+      "answer": "Screen readers typically use a different voice pitch or volume for <strong> and <em>. The exact behavior varies by screen reader, but they are conveyed with additional prosodic emphasis."
+    },
+    {
+      "question": "What is the <ruby> element and how does it work with <rt> and <rp>?",
+      "answer": "<ruby> provides ruby annotations — small explanatory text above or below the main text, commonly used for East Asian typography. <rt> provides the annotation, <rp> provides fallback parentheses for browsers that do not support ruby."
+    },
+    {
+      "question": "What is the difference between the <code> element's semantic meaning and its visual presentation?",
+      "answer": "Semantically, <code> identifies a fragment of computer code. Visually, it is displayed in monospace font. The semantic meaning is preserved even if CSS changes the visual appearance."
+    },
+    {
+      "question": "How does the HTML5 spec define the content model for <small>?",
+      "answer": "The HTML5 spec redefined <small> from presentational (smaller text) to semantic: it represents side comments and fine print such as disclaimers, caveats, legal restrictions, or copyright."
+    },
+    {
+      "question": "What is the <data> element and how does it differ from <time>?",
+      "answer": "<data> associates content with a machine-readable value via the value attribute for generic data. <time> is specific to dates and times. Both provide machine-readable alternatives."
+    },
+    {
+      "question": "How do the <b> and <i> elements map to the accessibility tree in modern browsers?",
+      "answer": "In the HTML5 spec, <b> maps to 'role=generic' (no semantic meaning) and <i> also maps to 'role=generic'. They are not distinguished from regular <span> elements in the accessibility tree."
+    },
+    {
+      "question": "What is the <u> element's semantic meaning in HTML5?",
+      "answer": "In HTML5, <u> represents 'unarticulated annotation' — text that has a non-textual annotation, such as labeling misspelled words or proper names in Chinese. It should not be used for link-like underlining."
+    },
+    {
+      "question": "How does the <wbr> element differ from using &shy; (soft hyphen)?",
+      "answer": "<wbr> suggests a line break opportunity without adding a visible hyphen. &shy; (soft hyphen) suggests a break opportunity with a hyphen character shown at the break point."
+    },
+    {
+      "question": "What is the relationship between the <cite> element and the article's references section?",
+      "answer": "HTML5 restricts <cite> to titles of creative works only (not people's names). For a references section, use structured data with <ul> or <ol> lists, and pair <cite> with <a> for linked citations."
+    }
+  ]
+}

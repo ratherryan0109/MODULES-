@@ -1,0 +1,147 @@
+{
+  "module": "52-building-layouts-with-flexbox",
+  "title": "Building Layouts with Flexbox",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which flex pattern makes a footer stick to the bottom?",
+      "options": ["flex-direction: column + flex: 1 on main", "flex-direction: row", "flex-wrap: wrap", "justify-content: space-between"],
+      "correctAnswer": 0,
+      "explanation": "Use `flex-direction: column` on body, `flex: 1` on main content to push footer down."
+    },
+    {
+      "id": 2,
+      "question": "Which pattern creates equal-height cards with button at bottom?",
+      "options": ["Card as column flex container, button: margin-top: auto", "Card as row flex container", "Using justify-content", "Using flex-wrap"],
+      "correctAnswer": 0,
+      "explanation": "Make each card `display: flex; flex-direction: column` with `margin-top: auto` on the button."
+    },
+    {
+      "id": 3,
+      "question": "How do you create responsive cards without media queries?",
+      "options": ["flex-wrap: wrap + flex: 1 1 250px", "flex-direction: column", "justify-content: center", "align-items: stretch"],
+      "correctAnswer": 0,
+      "explanation": "`flex-wrap: wrap` with `flex: 1 1 250px` creates responsive cards that wrap automatically."
+    },
+    {
+      "id": 4,
+      "question": "Which pattern is best for a nav bar with logo and links?",
+      "options": ["display: flex + justify-content: space-between", "display: grid", "float: left", "position: absolute"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox with `justify-content: space-between` is ideal for nav bars."
+    },
+    {
+      "id": 5,
+      "question": "What layout is NOT ideal for Flexbox?",
+      "options": ["Complex 2D magazine layout", "Navigation bars", "Centering content", "Card rows"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox is 1D. Complex 2D layouts are better suited to CSS Grid."
+    },
+    {
+      "id": 6,
+      "question": "How do you create a Holy Grail layout with Flexbox?",
+      "options": ["Column direction on body, then row on main for sidebar + content", "Three separate flex containers", "Using only flex-wrap", "Using position: fixed"],
+      "correctAnswer": 0,
+      "explanation": "The Holy Grail layout uses flex-direction: column on the body and display: flex on the main area for sidebars."
+    },
+    {
+      "id": 7,
+      "question": "What is the purpose of `margin-left: auto` on a flex item?",
+      "options": ["Pushes that item to the right, separating it from previous items", "Centers the item", "Adds space to the left of the item", "Makes the item invisible"],
+      "correctAnswer": 0,
+      "explanation": "Auto margins in flexbox absorb available space, pushing the item to the far end of the axis."
+    },
+    {
+      "id": 8,
+      "question": "Which pattern is best for a centered login form?",
+      "options": ["Body as flex container with justify-content: center and align-items: center", "Using text-align: center", "Using float: center", "Using position: absolute with transforms"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox centering (align-items + justify-content both set to center) is the simplest way to center a form."
+    },
+    {
+      "id": 9,
+      "question": "How would you create a three-column layout where the center column is wider?",
+      "options": ["flex: 1 on side columns, flex: 2 on center column", "flex: 1 on all columns", "flex: 0 on side columns", "Using fixed widths"],
+      "correctAnswer": 0,
+      "explanation": "Using different flex-grow values creates proportional columns. flex: 2 on center makes it twice as wide."
+    },
+    {
+      "id": 10,
+      "question": "What pattern creates a media object (image left, content right)?",
+      "options": ["display: flex on container, fixed width on image, flex: 1 on content", "Using float: left", "Using inline-block", "Using grid"],
+      "correctAnswer": 0,
+      "explanation": "The classic media object uses flexbox — image gets a fixed width, content fills remaining space with flex: 1."
+    },
+    {
+      "id": 11,
+      "question": "How do you create equal-width columns with Flexbox?",
+      "options": ["flex: 1 on each column item", "width: 50% on each item", "flex-grow: 1 on container", "Using table display"],
+      "correctAnswer": 0,
+      "explanation": "flex: 1 on each item sets flex-basis: 0 and flex-grow: 1, making all items equal width."
+    },
+    {
+      "id": 12,
+      "question": "What is a common pattern for a dashboard widget grid?",
+      "options": ["flex-wrap: wrap with flex: 1 1 300px on widgets", "flex-direction: column", "justify-content: space-evenly", "align-items: stretch"],
+      "correctAnswer": 0,
+      "explanation": "Wrapping flex items with a flex-basis (300px) creates a responsive dashboard grid."
+    },
+    {
+      "id": 13,
+      "question": "How would you create a vertically centered hero section?",
+      "options": ["display: flex; align-items: center; justify-content: center on hero", "line-height equal to height", "vertical-align: middle", "padding-top: 50%"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox centering on both axes is the most reliable way to center content in a hero section."
+    },
+    {
+      "id": 14,
+      "question": "What flex pattern creates a navbar where nav links are on the right?",
+      "options": ["justify-content: space-between on the navbar", "float: right on links", "text-align: right with inline-block", "margin-right: 0 on links"],
+      "correctAnswer": 0,
+      "explanation": "space-between pushes logo left and nav links right, then you can use margin-left: auto on the nav group."
+    },
+    {
+      "id": 15,
+      "question": "How would you build a card layout where cards have equal height?",
+      "options": ["align-items: stretch (default) on the flex container", "height: 100% on each card", "equal padding on cards", "min-height on container"],
+      "correctAnswer": 0,
+      "explanation": "By default (stretch), all flex items in a row have equal height — this is a key advantage of Flexbox for cards."
+    },
+    {
+      "id": 16,
+      "question": "What is the margin-trick for pushing a flex item to the end?",
+      "options": ["margin-top: auto (in column) or margin-left: auto (in row)", "margin-right: 100%", "float: right inside the flex", "position: absolute"],
+      "correctAnswer": 0,
+      "explanation": "Auto margins on the cross or main axis push items to the end, useful for footer buttons or nav links."
+    },
+    {
+      "id": 17,
+      "question": "Which flex pattern helps create an input group with a button attached?",
+      "options": ["display: flex on container, flex: 1 on input, fixed width on button", "Using float: left on both", "Using width: auto", "Using inline-flex"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox makes input groups easy — the input gets flex: 1 to fill space, and the button stays at its natural width."
+    },
+    {
+      "id": 18,
+      "question": "How do you build a centered pagination component with Flexbox?",
+      "options": ["display: flex; justify-content: center on the pagination container", "text-align: center with inline-block", "margin: 0 auto", "Using table display"],
+      "correctAnswer": 0,
+      "explanation": "justify-content: center on a flex container perfectly centers pagination links as a group."
+    },
+    {
+      "id": 19,
+      "question": "What is the best approach for a sticky sidebar with Flexbox?",
+      "options": ["Use flex: 0 0 300px on sidebar and flex: 1 on main content", "Use position: fixed only", "Use float: left for sidebar", "Use display: inline-block"],
+      "correctAnswer": 0,
+      "explanation": "A fixed-width sidebar (flex: 0 0 300px) paired with flexible main content (flex: 1) creates a classic sidebar layout."
+    },
+    {
+      "id": 20,
+      "question": "How would you create a centered badge or pill element?",
+      "options": ["display: inline-flex; align-items: center; justify-content: center", "text-align: center with padding", "border-radius: 50% with fixed dimensions", "Using grid place-items"],
+      "correctAnswer": 0,
+      "explanation": "inline-flex with centering on both axes, plus padding and border-radius, creates perfectly centered badges."
+    }
+  ]
+}

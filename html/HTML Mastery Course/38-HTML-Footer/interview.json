@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"question":"What is the <footer> element?","answer":"The <footer> element represents the footer of a page or section, typically containing copyright, contact info, and related links."},
+    {"question":"Can a page have more than one <footer>?","answer":"Yes, a page can have multiple <footer> elements. One page-level footer and additional footers inside articles or sections."},
+    {"question":"What is the default display of <footer>?","answer":"<footer> is a block-level element by default."},
+    {"question":"What kind of content belongs in a footer?","answer":"Copyright notices, legal links, contact information, sitemaps, social media links, and back-to-top links."},
+    {"question":"Is <footer> inside <article> a landmark?","answer":"No, only page-level <footer> has the contentinfo landmark role. Inside an article, it has no landmark role."},
+    {"question":"Can <footer> contain headings?","answer":"Yes, <footer> can contain heading elements for organizing sections within the footer."},
+    {"question":"What element should I use for contact info in a footer?","answer":"Use the <address> element for contact information in a footer."},
+    {"question":"Can <footer> contain <nav>?","answer":"Yes, <footer> commonly contains <nav> for footer navigation links."},
+    {"question":"What is the difference between <footer> and <div>?","answer":"<footer> has semantic meaning representing a footer region. <div> is a generic container with no semantic meaning."},
+    {"question":"What does the contentinfo ARIA role mean?","answer":"contentinfo is a landmark role that indicates metadata about the page, such as copyright and legal links."}
+  ],
+  "intermediate": [
+    {"question":"What is the implicit ARIA role of a page-level <footer>?","answer":"A page-level <footer> has an implicit role of 'contentinfo'. When nested inside an article or section, it has no implicit role."},
+    {"question":"How should you handle multiple <footer> elements for accessibility?","answer":"Only the page-level <footer> should have role='contentinfo' (implicit). Provide aria-label on footer <nav> elements to distinguish them from other nav landmarks."},
+    {"question":"What elements cannot be nested inside a <footer>?","answer":"A <footer> must not contain <header>, <main>, or another <footer>."},
+    {"question":"When should you use <small> inside a <footer>?","answer":"Use <small> for fine print, legal disclaimers, and copyright text that is less prominent."},
+    {"question":"How does the <footer> element interact with the HTML5 outline?","answer":"<footer> does not create a new section in the document outline. It is a sectioning root but does not affect heading hierarchy."},
+    {"question":"Can you use CSS Grid inside a <footer>?","answer":"Yes, CSS Grid or Flexbox are recommended for creating multi-column footer layouts."},
+    {"question":"What is the correct way to add social media links in a footer?","answer":"Wrap social media links in a <nav> element with aria-label='Social media links' inside the <footer>."},
+    {"question":"How should back-to-top links be implemented in a footer?","answer":"Use an anchor link: <a href='#top'>Back to top</a> targeting an element with id='top' at the top of the page."},
+    {"question":"What is the purpose of the <address> element?","answer":"The <address> element provides contact information for the nearest <article> or <body> ancestor."},
+    {"question":"Can a <footer> contain a <form>?","answer":"Yes, <footer> can contain a <form> for newsletter signups or other tangential form interactions."}
+  ],
+  "advanced": [
+    {"question":"How does the <footer> contentinfo role affect screen reader navigation?","answer":"Screen readers announce 'contentinfo landmark' for page-level footers, allowing users to quickly jump to footer content using landmark navigation."},
+    {"question":"What happens when you have multiple page-level <footer> elements without proper scoping?","answer":"If multiple <footer> elements are direct children of <body>, all get the contentinfo role, which may confuse screen readers. Only one should be the page-level footer."},
+    {"question":"How does the <footer> element behave in print stylesheets?","answer":"In print, the <footer> typically retains its content but may have additional print-specific information like page URLs or print dates."},
+    {"question":"What is the interaction between <footer> and CSS position: sticky?","answer":"A sticky footer pattern uses CSS to keep the footer at the bottom: body { display: flex; flex-direction: column; min-height: 100vh; } footer { margin-top: auto; }."},
+    {"question":"How can you make a footer stick to the bottom of the viewport when content is short?","answer":"Use flexbox: body { display: flex; flex-direction: column; min-height: 100vh; } main { flex: 1; } footer { flex-shrink: 0; }."},
+    {"question":"What are safe-area-inset-* CSS environment variables and how do they relate to footers?","answer":"env(safe-area-inset-bottom) accounts for notched device bottom areas. Apply as padding-bottom: env(safe-area-inset-bottom) on page footer."},
+    {"question":"How should you handle the footer in a mobile-first responsive design?","answer":"On mobile, footer content is often stacked vertically. Use media queries to switch to multi-column layout on larger screens. Hide non-essential links."},
+    {"question":"What accessibility issues can arise from placing too many links in a footer?","answer":"Excessive footer links create navigation burden for screen reader users. Group links with <nav aria-label='...'> and limit to essential links only."},
+    {"question":"How does the <footer> element work with Shadow DOM?","answer":"In Shadow DOM, <footer> inside a shadow root creates its own contentinfo scope separate from the light DOM page footer."},
+    {"question":"What are the SEO implications of footer content?","answer":"Footer links pass link equity but are weighted less than main content links. Important pages should be linked from main content rather than exclusively from the footer."}
+  ]
+}

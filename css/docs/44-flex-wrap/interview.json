@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does flex-wrap do in Flexbox?", "answer": "flex-wrap controls whether flex items wrap to a new line when they exceed the container's main axis size." },
+    { "question": "What are the values of flex-wrap?", "answer": "The values are nowrap, wrap, and wrap-reverse." },
+    { "question": "What is the default value of flex-wrap?", "answer": "The default value is nowrap." },
+    { "question": "What does flex-wrap: nowrap do?", "answer": "nowrap forces all flex items to stay on one line, even if they overflow the container." },
+    { "question": "What does flex-wrap: wrap do?", "answer": "wrap allows items to wrap onto multiple lines when they overflow the container." },
+    { "question": "What does flex-wrap: wrap-reverse do?", "answer": "wrap-reverse wraps items in reverse order, creating new lines above instead of below." },
+    { "question": "What happens without flex-wrap when items are wider than the container?", "answer": "Items shrink (if flex-shrink > 0) or overflow the container horizontally." },
+    { "question": "Does flex-wrap affect the alignment of items?", "answer": "Indirectly, yes. With wrap enabled, align-content controls spacing between wrapped lines." },
+    { "question": "Can flex-wrap work with column direction?", "answer": "Yes, flex-wrap: wrap with flex-direction: column wraps items into new columns instead of rows." },
+    { "question": "How do you create a responsive grid with flex-wrap?", "answer": "Set flex-wrap: wrap and give items a fixed flex-basis (e.g., 200px) so they wrap into rows as space shrinks." }
+  ],
+  "intermediate": [
+    { "question": "How does flex-wrap interact with the align-content property?", "answer": "align-content controls spacing between wrapped lines; it only takes effect when flex-wrap is set to wrap or wrap-reverse." },
+    { "question": "How does wrap-reverse change the visual order of rows?", "answer": "wrap-reverse reverses the order of rows, placing the last row at the top and the first row at the bottom." },
+    { "question": "How do you create a multi-line flex container with even spacing?", "answer": "Use flex-wrap: wrap; align-content: space-between; on the container to distribute wrapped rows evenly." },
+    { "question": "How does flex-wrap affect the cross-axis behavior of items?", "answer": "Each wrapped line creates a new flex line on the cross axis; items in the same line are aligned together." },
+    { "question": "What is the difference between wrapping and overflow scroll?", "answer": "Wrapping moves items to the next line; overflow scroll keeps items on one line but allows horizontal scrolling." },
+    { "question": "How does min-width prevent items from wrapping?", "answer": "If min-width on items is larger than the container width, items cannot shrink enough to fit, preventing true wrapping." },
+    { "question": "How does flex-wrap work with flex-basis for responsive layouts?", "answer": "Combine flex-wrap: wrap with flex-basis (or width) values that sum to more than 100% at certain widths to trigger wrapping." },
+    { "question": "How do you align wrapped rows differently within the container?", "answer": "Use align-content to control the distribution of wrapped rows along the cross axis." },
+    { "question": "How does the number of items affect wrapping behavior?", "answer": "With fixed flex-basis, wrapping occurs when the total item width exceeds the container width; fewer items may not wrap." },
+    { "question": "How does flex-wrap interact with margins on flex items?", "answer": "Item margins are included in the item's total size for wrapping calculations, potentially causing earlier wrapping." }
+  ],
+  "advanced": [
+    { "question": "How does wrapping behave with flex-direction: column when height is constrained?", "answer": "With a fixed height and column wrap, items wrap into new columns when the total item height exceeds the container height." },
+    { "question": "What is the difference in wrapping behavior between flexbox and CSS Grid auto-fill?", "answer": "Flexbox wrapping only happens when items overflow; Grid auto-fill creates tracks regardless of content, reserving empty space." },
+    { "question": "How does align-content: stretch work with wrapped flex lines?", "answer": "stretch stretches each wrapped line to fill the cross-axis container space, distributing remaining space equally among lines." },
+    { "question": "How do you prevent wrapping for specific items while allowing others to wrap?", "answer": "Set flex-shrink: 0 and a specific flex-basis on items that should not wrap; they will stay at their size while others wrap around." },
+    { "question": "How does the flex-wrap property interact with CSS fragmentation (page breaks)?", "answer": "In print or multi-column, flex-wrap does not create fragmentation breaks; use break-inside for print-friendly wrapping." },
+    { "question": "How does wrap behavior change when the container has padding?", "answer": "Padding is subtracted from the container's content area before items are laid out, affecting the wrapping threshold." },
+    { "question": "How does flex-wrap: wrap and gap interact to create consistent spacing?", "answer": "gap adds fixed space between items and also between wrapped lines, creating a grid-like gutter system." },
+    { "question": "How do you create a masonry-like layout using flex-wrap with varied item heights?", "answer": "Flex-wrap alone cannot create true masonry (columns fill independently); use CSS columns or Grid for masonry layouts." },
+    { "question": "How does the browser compute flex lines when wrapping occurs?", "answer": "The browser places items sequentially; when an item would overflow, it starts a new flex line, then distributes items among lines." },
+    { "question": "How does wrap-reverse affect accessibility and keyboard navigation?", "answer": "Visual order is reversed (last row becomes first), but tab order follows DOM order, creating a disconnect that can confuse keyboard users." }
+  ]
+}

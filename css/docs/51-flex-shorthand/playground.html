@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Flex Shorthand Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b}.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px}
+.controls{flex:0 0 250px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:15px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group select,.group input[type=range]{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px}
+#container{display:flex;min-height:100px;width:600px;background:#2d2d44;border-radius:8px;padding:10px;transition:all .3s}
+.item{background:#ff6b6b;padding:20px;border-radius:4px;min-width:50px;text-align:center;transition:all .3s}
+.item:nth-child(2){background:#4ecdc4}.item:nth-child(3){background:#45b7d1}
+#code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf}
+</style>
+</head>
+<body>
+<h1>⚡ Flex Shorthand Playground</h1>
+<p class="subtitle">Try different flex shorthand values</p>
+<div class="layout">
+<div class="controls">
+<div class="group"><label>Item 1 flex</label><input type="range" id="f1" min="0" max="5" value="1"><span id="l1">flex: 1</span></div>
+<div class="group"><label>Item 2 flex</label><input type="range" id="f2" min="0" max="5" value="1"><span id="l2">flex: 1</span></div>
+<div class="group"><label>Item 3 flex</label><input type="range" id="f3" min="0" max="5" value="1"><span id="l3">flex: 1</span></div>
+<div class="group"><label>Presets</label><select id="preset" onchange="applyPreset()">
+<option value="1,1,1">flex: 1 (equal)</option>
+<option value="1,2,1">flex: 1,2,1 (proportional)</option>
+<option value="0,1,0">flex: none,1,none</option>
+</select></div>
+</div>
+<div class="preview">
+<div id="container"><div class="item" id="i1">1</div><div class="item" id="i2">2</div><div class="item" id="i3">3</div></div>
+<div id="code">flex: 1, 1, 1</div>
+</div>
+</div>
+<script>
+const items=[document.getElementById('i1'),document.getElementById('i2'),document.getElementById('i3')];
+const labels=[document.getElementById('l1'),document.getElementById('l2'),document.getElementById('l3')];
+['f1','f2','f3'].forEach(id=>document.getElementById(id).addEventListener('input',update));
+function update(){
+const vals=[document.getElementById('f1').value,document.getElementById('f2').value,document.getElementById('f3').value];
+items.forEach((item,i)=>{item.style.flex=`${vals[i]} 1 0`;labels[i].textContent=`flex: ${vals[i]}`;});
+document.getElementById('code').textContent=`flex: ${vals.join(', ')}`;
+}
+function applyPreset(){
+const v=document.getElementById('preset').value.split(',').map(Number);
+document.getElementById('f1').value=v[0];document.getElementById('f2').value=v[1];document.getElementById('f3').value=v[2];
+update();
+}
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Clear - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; padding: 30px; background: #f5f5f5; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { margin-bottom: 30px; color: #333; }
+    h2 { margin: 30px 0 15px; color: #555; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; font-family: 'Consolas', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+
+    .float-box { float: left; width: 120px; height: 80px; background: #4a90d9; color: white; margin: 5px; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-weight: bold; }
+    .float-right { float: right; width: 120px; height: 80px; background: #e94560; color: white; margin: 5px; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-weight: bold; }
+    .clear-box { padding: 15px; background: #f0f0f0; border: 2px dashed #999; margin: 10px 0; }
+
+    /* Clear values */
+    .cleared-left { clear: left; background: #c8e6c9; padding: 10px; border: 2px solid #2e7d32; margin: 5px 0; }
+    .cleared-right { clear: right; background: #fff9c4; padding: 10px; border: 2px solid #f9a825; margin: 5px 0; }
+    .cleared-both { clear: both; background: #fce4ec; padding: 10px; border: 2px solid #c62828; margin: 5px 0; }
+
+    /* Clearfix demo */
+    .clearfix-parent { background: #e3f2fd; border: 2px solid #1565c0; padding: 10px; }
+    .clearfix-parent::after { content: ""; display: table; clear: both; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Clear - Examples</h1>
+
+    <div class="example">
+      <h2>1. Without Clear (Default Behavior)</h2>
+      <div class="code">.element { /* no clear set - defaults to clear: none */ }</div>
+      <div class="float-box">Left</div>
+      <div class="float-box">Left</div>
+      <div class="float-right">Right</div>
+      <div class="clear-box">This content sits next to the floated elements because no clear is applied. It wraps around the floats.</div>
+    </div>
+
+    <div class="example">
+      <h2>2. Clear Left</h2>
+      <div class="code">.element { clear: left; }</div>
+      <div class="float-box">Left</div>
+      <div class="float-box">Left</div>
+      <div class="float-right">Right</div>
+      <div class="cleared-left">clear: left moves me below all left-floated elements, but I still wrap around right floats.</div>
+      <div class="note">Notice this element cleared left floats but still sits next to the right float.</div>
+    </div>
+
+    <div class="example">
+      <h2>3. Clear Right</h2>
+      <div class="code">.element { clear: right; }</div>
+      <div class="float-box">Left</div>
+      <div class="float-box">Left</div>
+      <div class="float-right">Right</div>
+      <div class="cleared-right">clear: right moves me below all right-floated elements, but I still wrap around left floats.</div>
+    </div>
+
+    <div class="example">
+      <h2>4. Clear Both</h2>
+      <div class="code">.element { clear: both; }</div>
+      <div class="float-box">Left</div>
+      <div class="float-box">Left</div>
+      <div class="float-right">Right</div>
+      <div class="cleared-both">clear: both moves me below ALL floated elements (both left and right). This is the most commonly used clear value.</div>
+    </div>
+
+    <div class="example">
+      <h2>5. Clearfix on Parent Container</h2>
+      <div class="code">.parent::after { content: ''; display: table; clear: both; }</div>
+      <div class="clearfix-parent">
+        <div class="float-box">Item 1</div>
+        <div class="float-box">Item 2</div>
+        <div class="float-box">Item 3</div>
+      </div>
+      <p>The parent above has a clearfix. Notice it has a visible background and border because the clearfix properly contains the floated children.</p>
+    </div>
+
+    <div class="example">
+      <h2>6. Multi-Row Float Layout with Clear</h2>
+      <div class="code">.item { float: left; }<br>.row-break { clear: both; }</div>
+      <div>
+        <div class="float-box">1</div>
+        <div class="float-box">2</div>
+        <div class="float-box">3</div>
+        <div style="clear: both;"></div>
+        <div class="float-box">4</div>
+        <div class="float-box">5</div>
+        <div class="float-box">6</div>
+      </div>
+      <p>The empty div with clear: both creates a row break after the third item.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+{
+  "module": "100-css-container-queries",
+  "title": "CSS Container Queries",
+  "difficulty": "advanced",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does container-type: inline-size do?",
+      "options": ["Sets container width", "Creates a containment context for inline-size queries", "Makes container inline", "Sets container height"],
+      "correctAnswer": 1,
+      "explanation": "container-type: inline-size establishes the element as a query container for inline-size queries."
+    },
+    {
+      "id": 2,
+      "question": "What is the main advantage of container queries over media queries?",
+      "options": ["Faster performance", "Component responds to its container, not viewport", "More properties available", "Better browser support"],
+      "correctAnswer": 1,
+      "explanation": "Container queries enable components to adapt to their parent container's size."
+    },
+    {
+      "id": 3,
+      "question": "Which unit equals 1% of the container's inline size?",
+      "options": ["cqw", "cqi", "cqh", "cqb"],
+      "correctAnswer": 1,
+      "explanation": "cqi = 1% of the container's inline size."
+    },
+    {
+      "id": 4,
+      "question": "What property prevents container queries from working?",
+      "options": ["overflow: visible", "container-type: none", "display: block", "position: relative"],
+      "correctAnswer": 1,
+      "explanation": "container-type: none (default) disables container query containment."
+    },
+    {
+      "id": 5,
+      "question": "How do you name a container for targeted queries?",
+      "options": ["@container name (...)", "container-name: sidebar", "@container sidebar (...)", "Both B and C"],
+      "correctAnswer": 3,
+      "explanation": "Set container-name, then use @container name (...) to target it specifically."
+    },
+    {
+      "id": 6,
+      "question": "Can container queries be nested?",
+      "options": ["Yes", "No", "Only 1 level", "Only with media queries"],
+      "correctAnswer": 0,
+      "explanation": "Container queries can be nested — a component can be inside multiple query containers."
+    },
+    {
+      "id": 7,
+      "question": "What does @container (min-width: 400px) query?",
+      "options": ["Viewport width", "Container width", "Element width", "Parent width"],
+      "correctAnswer": 1,
+      "explanation": "@container queries the nearest ancestor with a containment context."
+    },
+    {
+      "id": 8,
+      "question": "What is the browser support status for container queries?",
+      "options": ["Chrome 105+, Firefox 110+, Safari 16+", "Only Chrome", "No support", "All browsers"],
+      "correctAnswer": 0,
+      "explanation": "Container queries are supported in Chrome 105+, Firefox 110+, Safari 16+, Edge 105+."
+    },
+    {
+      "id": 9,
+      "question": "What does cqmin represent?",
+      "options": ["1% of container width", "The smaller of cqi or cqb", "Minimum container size", "Container min-width"],
+      "correctAnswer": 1,
+      "explanation": "cqmin is the smaller value of cqi (inline) and cqb (block) container units."
+    },
+    {
+      "id": 10,
+      "question": "How do you provide fallback for browsers without container query support?",
+      "options": ["Use @supports", "Provide default styles outside @container", "Use polyfill", "All of the above"],
+      "correctAnswer": 3,
+      "explanation": "Use @supports (container-type: inline-size), provide defaults, or use a polyfill."
+    },
+    {
+      "id": 11,
+      "question": "What does the container shorthand combine?",
+      "options": ["container-name and container-type", "container-type and container-query", "container-name and container-rule", "All container-* properties"],
+      "correctAnswer": 0,
+      "explanation": "container: name / type is shorthand for container-name and container-type."
+    },
+    {
+      "id": 12,
+      "question": "What happens if you use container-type: size?",
+      "options": ["Queries respond to both inline and block size", "Only height is queried", "It disables container queries", "It creates a fixed-size container"],
+      "correctAnswer": 0,
+      "explanation": "container-type: size creates a containment context that responds to both width and height changes."
+    },
+    {
+      "id": 13,
+      "question": "Which containment does container-type: inline-size implicitly apply?",
+      "options": ["contain: layout style inline-size", "contain: size", "contain: strict", "contain: none"],
+      "correctAnswer": 0,
+      "explanation": "container-type: inline-size implicitly applies contain: layout style inline-size for performance isolation."
+    },
+    {
+      "id": 14,
+      "question": "What is a common pitfall with container queries?",
+      "options": ["Circular dependencies when container size depends on content", "They don't work with flexbox", "They require JavaScript", "They only work on images"],
+      "correctAnswer": 0,
+      "explanation": "If a container's size depends on its content and content changes based on the query, you get circular dependencies."
+    },
+    {
+      "id": 15,
+      "question": "How do container query units work for fluid typography?",
+      "options": ["font-size: clamp(1rem, 3cqi, 2rem)", "font-size: 3cqw", "font-size: container-unit(3)", "font-size: responsive(3)"],
+      "correctAnswer": 0,
+      "explanation": "Container query units with clamp() create fluid typography that scales with the container."
+    },
+    {
+      "id": 16,
+      "question": "What is the difference between cqw and cqi?",
+      "options": ["cqw is 1% of container width, cqi is 1% of container inline size", "They are identical", "cqw is for viewport, cqi is for container", "cqw is deprecated"],
+      "correctAnswer": 0,
+      "explanation": "cqw is 1% of container width (always horizontal), cqi is 1% of inline size (writing-mode aware)."
+    },
+    {
+      "id": 17,
+      "question": "Which is more appropriate for page-level layout?",
+      "options": ["Media queries for page structure, container queries for components", "Container queries for everything", "Media queries for everything", "Neither — use flexbox"],
+      "correctAnswer": 0,
+      "explanation": "Use media queries for page layout and container queries for reusable component adaptation."
+    },
+    {
+      "id": 18,
+      "question": "What does container-type: normal do?",
+      "options": ["No containment — names the container without making it queryable", "Creates a normal flow container", "Resets container queries", "Enables all query types"],
+      "correctAnswer": 0,
+      "explanation": "container-type: normal names the container but doesn't establish a queryable containment context."
+    },
+    {
+      "id": 19,
+      "question": "What is the correct feature detection for container queries?",
+      "options": ["@supports (container-type: inline-size)", "@media (container-type)", "@if supports-container", "@import supports(container)"],
+      "correctAnswer": 0,
+      "explanation": "@supports (container-type: inline-size) detects if the browser supports container queries."
+    },
+    {
+      "id": 20,
+      "question": "When should you use a named container instead of anonymous?",
+      "options": ["When you have nested containers and need to target a specific one", "Always use named containers", "Only when using CSS Grid", "Named containers are deprecated"],
+      "correctAnswer": 0,
+      "explanation": "Named containers are essential in nested layouts to target the correct parent container."
+    }
+  ]
+}

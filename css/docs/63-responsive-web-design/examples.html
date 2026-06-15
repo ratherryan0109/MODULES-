@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Web Design Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; line-height: 1.6; color: #333; padding: 1rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { margin-bottom: 1rem; color: #2563eb; }
+    h2 { margin: 2rem 0 1rem; color: #1e40af; }
+    .demo { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; }
+    .demo-header { margin-bottom: 1rem; font-weight: 600; color: #475569; }
+
+    /* Example 1: Fluid Typography */
+    .fluid-type { font-size: clamp(1rem, 2.5vw, 2rem); }
+
+    /* Example 2: Responsive Grid */
+    .responsive-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .responsive-grid > div { background: #3b82f6; color: white; padding: 2rem; text-align: center; border-radius: 6px; }
+
+    /* Example 3: Responsive Flex */
+    .responsive-flex { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .responsive-flex > div { flex: 1 1 200px; background: #8b5cf6; color: white; padding: 2rem; text-align: center; border-radius: 6px; }
+
+    /* Example 4: Media Queries */
+    .media-demo { background: #f59e0b; color: white; padding: 2rem; text-align: center; border-radius: 6px; }
+    .media-demo::after { content: "Mobile View"; }
+    @media (min-width: 600px) { .media-demo { background: #10b981; } .media-demo::after { content: "Tablet View"; } }
+    @media (min-width: 900px) { .media-demo { background: #3b82f6; } .media-demo::after { content: "Desktop View"; } }
+
+    /* Example 5: Responsive Nav */
+    .responsive-nav { background: #1e293b; padding: 1rem; border-radius: 6px; }
+    .responsive-nav ul { list-style: none; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .responsive-nav a { color: white; text-decoration: none; padding: 0.5rem 1rem; border-radius: 4px; }
+    .responsive-nav a:hover { background: #334155; }
+    @media (max-width: 600px) { .responsive-nav ul { flex-direction: column; } }
+
+    /* Example 6: Responsive Cards */
+    .card-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .card-image { width: 100%; height: 180px; object-fit: cover; }
+    .card-body { padding: 1rem; }
+    .card-body h3 { margin-bottom: 0.5rem; }
+    .card-body p { color: #64748b; font-size: 0.9rem; }
+
+    /* Example 7: Responsive Image */
+    .responsive-img-container { max-width: 100%; }
+    .responsive-img-container img { max-width: 100%; height: auto; display: block; }
+
+    /* Example 8: Responsive Table */
+    .table-container { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    th { background: #f1f5f9; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Responsive Web Design Examples</h1>
+
+    <div class="demo">
+      <div class="demo-header">1. Fluid Typography (Resize browser)</div>
+      <p class="fluid-type">This text scales fluidly between 1rem and 2rem</p>
+    </div>
+
+    <div class="demo">
+      <div class="demo-header">2. Responsive Grid (auto-fit + minmax)</div>
+      <div class="responsive-grid">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo-header">3. Responsive Flexbox</div>
+      <div class="responsive-flex">
+        <div>Flex 1</div><div>Flex 2</div><div>Flex 3</div><div>Flex 4</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo-header">4. Media Queries in Action</div>
+      <div class="media-demo"></div>
+      <p style="margin-top:0.5rem;font-size:0.85rem;color:#64748b;">Resize to see background and text change at 600px and 900px</p>
+    </div>
+
+    <div class="demo">
+      <div class="demo-header">5. Responsive Navigation</div>
+      <nav class="responsive-nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="demo">
+      <div class="demo-header">6. Responsive Card Grid</div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-image" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+          <div class="card-body">
+            <h3>Card Title 1</h3>
+            <p>This card automatically adjusts in the responsive grid layout.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+          <div class="card-body">
+            <h3>Card Title 2</h3>
+            <p>Cards use minmax to ensure minimum readable width.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
+          <div class="card-body">
+            <h3>Card Title 3</h3>
+            <p>Grid auto-fill creates as many columns as will fit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo-header">7. Responsive Image</div>
+      <div class="responsive-img-container">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%233b82f6'/%3E%3Ctext x='400' y='200' font-family='system-ui' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3EResponsive Image (scales with container)%3C/text%3E%3C/svg%3E" alt="Responsive demo image">
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo-header">8. Responsive Table (horizontally scrollable)</div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th><th>Email</th><th>Role</th><th>Department</th><th>Location</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Alice Johnson</td><td>alice@example.com</td><td>Developer</td><td>Engineering</td><td>New York</td><td>Active</td></tr>
+            <tr><td>Bob Smith</td><td>bob@example.com</td><td>Designer</td><td>Creative</td><td>San Francisco</td><td>Active</td></tr>
+            <tr><td>Carol White</td><td>carol@example.com</td><td>Manager</td><td>Operations</td><td>Chicago</td><td>On Leave</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

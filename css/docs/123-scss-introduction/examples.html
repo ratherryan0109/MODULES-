@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCSS Introduction - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    .card { background: #fff; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .card__title { font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 600; }
+    .card__body { color: #64748b; margin-bottom: 1rem; }
+    .card--featured { border: 2px solid #06b6d4; }
+    .card--featured .card__title { color: #06b6d4; }
+    .card--compact { padding: 1rem; }
+    .card--compact .card__title { font-size: 1rem; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer; min-height: 44px; text-decoration: none; transition: background 0.15s; }
+    .btn--primary { background: #06b6d4; color: #fff; }
+    .btn--primary:hover { background: #0891b2; }
+    .btn--secondary { background: #f1f5f9; color: #1e293b; border: 1px solid #e2e8f0; }
+
+    @media (min-width: 768px) { .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; } }
+
+    .scss-block { background: #1e1e2e; color: #cdd6f4; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; white-space: pre; overflow-x: auto; }
+    .scss-block .c { color: #6c7086; }
+    .scss-block .k { color: #89b4fa; }
+    .scss-block .s { color: #a6e3a1; }
+    .scss-block .v { color: #f38ba8; }
+    .scss-block .f { color: #cba6f7; }
+    .scss-block .n { color: #f9e2af; }
+  </style>
+</head>
+<body>
+  <h1>SCSS Introduction</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Variables ($) vs Custom Properties</h2>
+    <p>SCSS variables are compile-time only. They keep values consistent across your codebase.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div class="card card--featured" style="flex:1;">
+          <h3 class="card__title">Featured Card</h3>
+          <p class="card__body">Border and title color use <code>$primary</code> variable.</p>
+        </div>
+        <div class="card" style="flex:1;">
+          <h3 class="card__title">Default Card</h3>
+          <p class="card__body">Standard card using shared spacing variables.</p>
+        </div>
+      </div>
+    </div>
+    <div class="scss-block"><span class="c">// SCSS Variables</span>
+<span class="v">$primary</span>: <span class="n">#06b6d4</span>;
+<span class="v">$spacing</span>: <span class="n">1.5rem</span>;
+
+<span class="k">.card</span> {
+  padding: <span class="v">$spacing</span>;
+  border-radius: <span class="n">8px</span>;
+}
+<span class="k">.card--featured</span> {
+  border: <span class="n">2px</span> solid <span class="v">$primary</span>;
+}</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Nesting with &amp; (Ampersand)</h2>
+    <p>The <code>&amp;</code> references the parent selector, enabling BEM-like nesting.</p>
+    <div class="demo-output">
+      <div class="grid-2">
+        <div class="card card--featured">
+          <h3 class="card__title">Nesting Demo</h3>
+          <p class="card__body">Card with nested SCSS structure.</p>
+          <button class="btn btn--primary">Action</button>
+        </div>
+        <div class="card card--compact">
+          <h3 class="card__title">Compact</h3>
+          <p class="card__body">Modifier changes padding and title size.</p>
+          <button class="btn btn--secondary">Learn More</button>
+        </div>
+      </div>
+    </div>
+    <div class="scss-block"><span class="k">.card</span> {
+  background: white;
+  padding: <span class="v">$spacing</span>;
+
+  <span class="k">&amp;__title</span> {
+    font-size: <span class="n">1.25rem</span>;
+  }
+  <span class="k">&amp;--featured</span> {
+    border: <span class="n">2px</span> solid <span class="v">$primary</span>;
+    <span class="k">&amp;</span> .card__title { <span class="k">color</span>: <span class="v">$primary</span>; }
+  }
+}</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Mixins (@mixin / @include)</h2>
+    <p>Mixins encapsulate reusable style blocks. They can accept parameters.</p>
+    <div class="demo-output">
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+        <div style="background:#fff;border-radius:8px;padding:1rem;box-shadow:0 1px 3px rgba(0,0,0,0.08);flex:1;">
+          <p class="card__title">Cards with shadow</p>
+          <p class="card__body">All cards get the shadow from a <code>@mixin card</code>.</p>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.12);flex:1;">
+          <p class="card__title">Elevated variant</p>
+          <p class="card__body">A parameter changes the shadow depth.</p>
+        </div>
+      </div>
+    </div>
+    <div class="scss-block"><span class="f">@mixin</span> card($shadow: <span class="n">0 1px 3px</span> <span class="n">rgba(0,0,0,0.08)</span>) {
+  background: white;
+  border-radius: <span class="n">8px</span>;
+  box-shadow: <span class="v">$shadow</span>;
+}
+
+<span class="k">.card</span> { <span class="k">@include</span> card(); }
+<span class="k">.card--elevated</span> {
+  <span class="k">@include</span> card(<span class="n">0 4px 12px rgba(0,0,0,0.12)</span>);
+}</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Responsive Mixin</h2>
+    <p>Encapsulate media queries in a mixin for clean responsive code.</p>
+    <div class="demo-output">
+      <div style="display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="padding:1rem;background:#f1f5f9;border-radius:8px;text-align:center;">Stacked on mobile</div>
+        <div style="padding:1rem;background:#e2e8f0;border-radius:8px;text-align:center;">Side by side on desktop</div>
+      </div>
+      <p style="font-size:0.875rem;color:#64748b;margin-top:0.5rem;">Resize to see the layout change (768px breakpoint).</p>
+    </div>
+    <div class="scss-block"><span class="f">@mixin</span> respond-to($bp) {
+  <span class="k">@media</span> (min-width: <span class="v">$bp</span>) {
+    <span class="k">@content</span>;
+  }
+}
+
+<span class="k">.container</span> {
+  display: flex;
+  flex-direction: column;
+  gap: <span class="n">0.5rem</span>;
+
+  <span class="k">@include</span> respond-to(<span class="n">768px</span>) {
+    flex-direction: row;
+  }
+}</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Extend (%placeholder / @extend)</h2>
+    <p>Placeholder selectors (<code>%</code>) let you define styles once and extend them — like a non-copying mixin.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:1rem;">
+        <div style="background:#06b6d4;color:#fff;padding:0.5rem 1rem;border-radius:6px;font-size:0.875rem;">Error</div>
+        <div style="background:#22c55e;color:#fff;padding:0.5rem 1rem;border-radius:6px;font-size:0.875rem;">Success</div>
+        <div style="background:#f59e0b;color:#fff;padding:0.5rem 1rem;border-radius:6px;font-size:0.875rem;">Warning</div>
+      </div>
+    </div>
+    <div class="scss-block"><span class="c">// Placeholder — never compiles on its own</span>
+<span class="k">%badge</span> {
+  padding: <span class="n">0.5rem 1rem</span>;
+  border-radius: <span class="n">6px</span>;
+  font-size: <span class="n">0.875rem</span>;
+  color: white;
+}
+
+<span class="k">.badge--error</span>   { <span class="k">@extend</span> %badge; background: <span class="n">#ef4444</span>; }
+<span class="k">.badge--success</span> { <span class="k">@extend</span> %badge; background: <span class="n">#22c55e</span>; }
+<span class="k">.badge--warning</span> { <span class="k">@extend</span> %badge; background: <span class="n">#f59e0b</span>; }</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Functions and Operations</h2>
+    <p>SCSS supports arithmetic, color functions, and custom <code>@function</code>.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:1rem;align-items:center;">
+        <div style="width:96px;height:96px;background:#06b6d4;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;">Base</div>
+        <div style="width:128px;height:128px;background:#0891b2;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;">Darken</div>
+        <div style="width:128px;height:128px;background:#67e8f9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#0f172a;font-weight:bold;">Lighten</div>
+      </div>
+    </div>
+    <div class="scss-block"><span class="v">$base</span>: <span class="n">#06b6d4</span>;
+<span class="v">$size</span>: <span class="n">96px</span>;
+
+<span class="k">.box</span> {
+  width: <span class="v">$size</span>;
+  height: <span class="v">$size</span>;
+  background: <span class="v">$base</span>;
+}
+<span class="k">.box--dark</span> {
+  width: <span class="v">$size</span> * <span class="n">1.33</span>;  <span class="c">// arithmetic</span>
+  background: darken(<span class="v">$base</span>, <span class="n">15%</span>); <span class="c">// color function</span>
+}</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Partials and @use</h2>
+    <p>Split SCSS into partials (prefixed with <code>_</code>) and import them.</p>
+    <div class="demo-output">
+      <div class="scss-block"><span class="c">// _variables.scss</span>
+<span class="v">$primary</span>: <span class="n">#06b6d4</span>;
+<span class="v">$font-stack</span>: <span class="s">'Inter', sans-serif</span>;
+
+<span class="c">// _mixins.scss</span>
+<span class="f">@mixin</span> flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+<span class="c">// main.scss</span>
+<span class="k">@use</span> <span class="s">'variables'</span>;
+<span class="k">@use</span> <span class="s">'mixins'</span>;
+
+<span class="k">.hero</span> {
+  <span class="k">@include</span> mixins.flex-center;
+  font-family: variables.<span class="v">$font-stack</span>;
+}</div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: SCSS Compilation Pipeline</h2>
+    <p>SCSS compiles to standard CSS. What you write in SCSS becomes clean, browser-compatible CSS.</p>
+    <div class="demo-output">
+      <div class="scss-block" style="font-size:0.85rem;"><span class="c">// SCSS Input</span>
+<span class="k">.alert</span> {
+  padding: <span class="n">1rem</span>;
+  border-radius: <span class="n">6px</span>;
+
+  <span class="k">&amp;--error</span> { background: <span class="n">#fef2f2</span>; }
+  <span class="k">&amp;--success</span> { background: <span class="n">#f0fdf4</span>; }
+}
+
+<span class="c">// CSS Output</span>
+<span class="k">.alert</span> { padding: 1rem; border-radius: 6px; }
+<span class="k">.alert--error</span> { background: #fef2f2; }
+<span class="k">.alert--success</span> { background: #f0fdf4; }</div>
+    </div>
+  </div>
+</body>
+</html>

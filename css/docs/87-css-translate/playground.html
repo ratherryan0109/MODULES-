@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Translate - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #1e1e2e; color: #cdd6f4; padding: 2rem; }
+    h1 { color: #89b4fa; margin-bottom: 1rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    .panel { background: #313244; border-radius: 12px; padding: 1.5rem; border: 1px solid #45475a; }
+    .preview-panel { display: flex; align-items: center; justify-content: center; min-height: 400px; overflow: hidden; }
+    label { display: block; margin: 0.75rem 0 0.25rem; color: #a6e3a1; font-weight: 700; }
+    input[type="range"] { width: 100%; }
+    select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #45475a; background: #181825; color: #cdd6f4; }
+    .demo-box {
+      width: 150px; height: 150px; border-radius: 12px; background: #89b4fa;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #1e1e2e; transition: translate 0.3s ease;
+    }
+    .code-output { background: #181825; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.85rem; white-space: pre-wrap; border: 1px solid #45475a; }
+    button { background: #89b4fa; color: #1e1e2e; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 700; margin-top: 1rem; }
+    button:hover { background: #b4d0fb; }
+    .row { display: flex; gap: 1rem; }
+    .row > div { flex: 1; }
+  </style>
+</head>
+<body>
+  <h1>CSS Translate Playground</h1>
+  <div class="container">
+    <div class="panel">
+      <h2 style="color:#a6e3a1;margin-bottom:1rem;">Controls</h2>
+
+      <label>Translate X (px)</label>
+      <input type="range" id="translateX" min="-200" max="200" value="0">
+      <span id="translateXVal">0px</span>
+
+      <label>Translate Y (px)</label>
+      <input type="range" id="translateY" min="-200" max="200" value="0">
+      <span id="translateYVal">0px</span>
+
+      <label>Translate Z (px) — requires perspective</label>
+      <input type="range" id="translateZ" min="-300" max="300" value="0">
+      <span id="translateZVal">0px</span>
+
+      <label>Unit Type</label>
+      <select id="unitType">
+        <option value="px">px</option>
+        <option value="%">%</option>
+        <option value="em">em</option>
+        <option value="rem">rem</option>
+      </select>
+
+      <label>Parent Perspective (px, 0 = none)</label>
+      <input type="range" id="perspective" min="0" max="1000" step="10" value="0">
+      <span id="perspectiveVal">0</span>
+
+      <button id="resetBtn">Reset</button>
+    </div>
+    <div class="panel preview-panel">
+      <div id="previewWrapper" style="perspective:none;">
+        <div id="previewBox" class="demo-box">Translate</div>
+      </div>
+    </div>
+  </div>
+  <div class="code-output" id="codeOutput">translate: 0px 0px;</div>
+
+  <script>
+    const box = document.getElementById('previewBox');
+    const wrapper = document.getElementById('previewWrapper');
+    const tX = document.getElementById('translateX');
+    const tY = document.getElementById('translateY');
+    const tZ = document.getElementById('translateZ');
+    const unitType = document.getElementById('unitType');
+    const persp = document.getElementById('perspective');
+    const code = document.getElementById('codeOutput');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function update() {
+      const x = tX.value, y = tY.value, z = tZ.value;
+      const unit = unitType.value;
+      const p = persp.value;
+
+      document.getElementById('translateXVal').textContent = x + unit;
+      document.getElementById('translateYVal').textContent = y + unit;
+      document.getElementById('translateZVal').textContent = z + 'px';
+      document.getElementById('perspectiveVal').textContent = p;
+
+      wrapper.style.perspective = p > 0 ? p + 'px' : 'none';
+      box.style.translate = z !== '0' ? `${x}${unit} ${y}${unit} ${z}px` : `${x}${unit} ${y}${unit}`;
+
+      code.textContent = `translate: ${x}${unit} ${y}${unit}${z !== '0' ? ` ${z}px` : ''};\n${p > 0 ? `perspective: ${p}px;` : ''}`;
+    }
+
+    [tX, tY, tZ, unitType, persp].forEach(el => el.addEventListener('input', update));
+    resetBtn.addEventListener('click', () => {
+      tX.value = tY.value = tZ.value = 0;
+      unitType.value = 'px';
+      persp.value = 0;
+      update();
+    });
+    update();
+  </script>
+</body>
+</html>

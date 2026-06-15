@@ -1,0 +1,247 @@
+{
+  "module": "08-css-margins",
+  "title": "CSS Margins",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does margin: 10px 20px; mean?",
+      "options": [
+        "All sides 10px, then 20px",
+        "Top/bottom 10px, left/right 20px",
+        "Top 10px, right 20px",
+        "Left 10px, right 20px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "With 2 values: first = top/bottom, second = left/right."
+    },
+    {
+      "id": 2,
+      "question": "What is margin collapsing?",
+      "options": [
+        "Margins disappear",
+        "Vertical margins combine to the larger value",
+        "Margins multiply together",
+        "Margins are divided by 2"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When two vertical margins meet, they collapse into a single margin equal to the larger value."
+    },
+    {
+      "id": 3,
+      "question": "How do you center a block element horizontally?",
+      "options": [
+        "margin: auto",
+        "margin: 0 auto",
+        "text-align: center",
+        "center: true"
+      ],
+      "correctAnswer": 1,
+      "explanation": "margin: 0 auto centers a block element horizontally when it has a defined width."
+    },
+    {
+      "id": 4,
+      "question": "Can margins have negative values?",
+      "options": [
+        "Yes",
+        "No",
+        "Only left and right",
+        "Only top"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Margins can be negative, pulling elements in opposite directions."
+    },
+    {
+      "id": 5,
+      "question": "What is the correct order of values in the margin shorthand with 4 values?",
+      "options": [
+        "Left, Top, Right, Bottom",
+        "Top, Right, Bottom, Left (clockwise)",
+        "Top, Bottom, Left, Right",
+        "Right, Top, Bottom, Left"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 4-value margin shorthand follows clockwise order: Top, Right, Bottom, Left (TRBL)."
+    },
+    {
+      "id": 6,
+      "question": "Which elements does margin collapsing affect?",
+      "options": [
+        "Horizontal margins on block elements",
+        "Vertical margins on block elements",
+        "All margins on all elements",
+        "Margins on inline elements only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Margin collapsing only affects vertical margins (top/bottom) on block elements in normal flow."
+    },
+    {
+      "id": 7,
+      "question": "How can you prevent margin collapsing between parent and child?",
+      "options": [
+        "Use display: flex on the parent",
+        "Set margin to 0",
+        "Use positive margins only",
+        "It cannot be prevented"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Using display: flex or display: grid on the parent prevents margin collapsing by creating a new formatting context."
+    },
+    {
+      "id": 8,
+      "question": "What happens to top and bottom margins on inline elements?",
+      "options": [
+        "They work normally",
+        "They are applied but don't affect layout",
+        "They collapse with adjacent elements",
+        "They double in size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Inline elements ignore top and bottom margins for layout purposes, though the margins are technically applied."
+    },
+    {
+      "id": 9,
+      "question": "What is the default margin value for all elements?",
+      "options": [
+        "10px",
+        "0",
+        "auto",
+        "Depends on the element"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default margin value in CSS is 0 for all elements, though browsers apply default styles with various margins."
+    },
+    {
+      "id": 10,
+      "question": "What does margin-left: auto do on a block element with a set width?",
+      "options": [
+        "Pushes the element to the left",
+        "Pushes the element to the right",
+        "Centers the element",
+        "Has no effect"
+      ],
+      "correctAnswer": 1,
+      "explanation": "margin-left: auto pushes a block element to the right by absorbing all available space on the left."
+    },
+    {
+      "id": 11,
+      "question": "What does margin: 10px 20px 30px; mean?",
+      "options": [
+        "Top 10px, right/left 20px, bottom 30px",
+        "Top 10px, right 20px, bottom 30px, left auto",
+        "All sides 10px, 20px, then 30px",
+        "Top/bottom 10px, left/right 20px, extra 30px"
+      ],
+      "correctAnswer": 0,
+      "explanation": "With 3 values: top = 10px, left/right = 20px, bottom = 30px."
+    },
+    {
+      "id": 12,
+      "question": "Are percentage margins calculated relative to the element's width or height?",
+      "options": [
+        "Width for left/right, height for top/bottom",
+        "The containing block's width for all directions",
+        "The element's own width for all directions",
+        "The containing block's height for all directions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Percentage margins are calculated relative to the WIDTH of the containing block for all directions, including top and bottom."
+    },
+    {
+      "id": 13,
+      "question": "What is the best practice for spacing in flexbox or grid layouts?",
+      "options": [
+        "Use margin on each child",
+        "Use the gap property",
+        "Use padding on the parent",
+        "Use negative margins"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The gap property is specifically designed for spacing between flex/grid children and should be preferred over margins."
+    },
+    {
+      "id": 14,
+      "question": "Can margin: auto center an element vertically?",
+      "options": [
+        "Yes, always",
+        "No, auto margins only center horizontally on block elements with a set width",
+        "Yes, but only with box-sizing: border-box",
+        "No, vertical centering requires negative margins"
+      ],
+      "correctAnswer": 1,
+      "explanation": "margin: auto only centers horizontally on block elements with a set width. Vertical centering requires flexbox, grid, or other techniques."
+    },
+    {
+      "id": 15,
+      "question": "What is a common use case for negative margins?",
+      "options": [
+        "Creating overlapping or pulled-out visual effects",
+        "Removing borders",
+        "Hiding elements completely",
+        "Speeding up page load"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Negative margins are commonly used for overlapping hero sections, pulling elements out of containers, and other visual effects."
+    },
+    {
+      "id": 16,
+      "question": "What does display: flow-root do in relation to margins?",
+      "options": [
+        "Removes all margins",
+        "Creates a new block formatting context, preventing margin collapse",
+        "Doubles the margin values",
+        "Makes margins work on inline elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "display: flow-root creates a new block formatting context that prevents margin collapse with no side effects."
+    },
+    {
+      "id": 17,
+      "question": "What is the advantage of one-direction margin patterns (e.g., only margin-top)?",
+      "options": [
+        "They are faster to render",
+        "They create more predictable and maintainable spacing",
+        "They prevent all margin collapsing",
+        "They work better with inline elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "One-direction margins (like margin-top on adjacent sibling selectors) create predictable spacing and avoid edge-case bugs with last-child removal."
+    },
+    {
+      "id": 18,
+      "question": "Which property should you use for spacing INSIDE an element?",
+      "options": [
+        "margin",
+        "padding",
+        "border",
+        "gap"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Padding creates space inside an element (between content and border), while margin creates space outside."
+    },
+    {
+      "id": 19,
+      "question": "What happens when you set width: 100% plus margins on an element?",
+      "options": [
+        "The element stays within its parent",
+        "The element overflows horizontally because margins add to the 100% width",
+        "The margins are ignored",
+        "The width adjusts automatically"
+      ],
+      "correctAnswer": 1,
+      "explanation": "width: 100% makes the content area fill the parent, and margins add on top, causing horizontal overflow."
+    },
+    {
+      "id": 20,
+      "question": "What is the purpose of resetting default browser margins?",
+      "options": [
+        "To remove all spacing from the page",
+        "To ensure consistent cross-browser layout by removing unpredictable defaults",
+        "To improve page performance",
+        "To enable margin collapsing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Browsers apply different default margins. A CSS reset ensures consistent spacing across all browsers."
+    }
+  ]
+}

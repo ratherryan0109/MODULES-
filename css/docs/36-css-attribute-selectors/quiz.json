@@ -1,0 +1,147 @@
+{
+    "module": "36-css-attribute-selectors",
+    "title": "CSS Attribute Selectors",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "Which selector matches elements that have a specific attribute?",
+            "options": ["[attr]", "#attr", ".attr", "attr"],
+            "correctAnswer": 0,
+            "explanation": "[attr] selects all elements that have the specified attribute, regardless of its value."
+        },
+        {
+            "id": 2,
+            "question": "What does [href^='https'] match?",
+            "options": ["Links starting with https", "Links ending with https", "Links containing https", "Links exactly equal to https"],
+            "correctAnswer": 0,
+            "explanation": "The ^= operator matches attribute values that START with the specified string. [href^='https'] matches secure links."
+        },
+        {
+            "id": 3,
+            "question": "Which selector matches elements whose attribute ends with a specific value?",
+            "options": ["[attr$='value']", "[attr^='value']", "[attr*='value']", "[attr~='value']"],
+            "correctAnswer": 0,
+            "explanation": "$= is the ends-with operator. For example, [href$='.pdf'] matches all links to PDF files."
+        },
+        {
+            "id": 4,
+            "question": "How do you make an attribute selector case-insensitive?",
+            "options": ["Add i before the closing bracket", "Add i after the value", "Use :is() selector", "Use the !important flag"],
+            "correctAnswer": 0,
+            "explanation": "Adding the i flag before the closing bracket makes the matching case-insensitive, e.g., [type='email' i]."
+        },
+        {
+            "id": 5,
+            "question": "Which attribute selector would match a[href$='.pdf'] for a PDF link?",
+            "options": ["a[href$='.pdf']", "a[href^='.pdf']", "a[href*='.pdf']", "a[href='.pdf']"],
+            "correctAnswer": 0,
+            "explanation": "$= matches the end of the attribute value. [href$='.pdf'] matches links whose href ends with '.pdf'."
+        },
+        {
+            "id": 6,
+            "question": "What does the [attr~='value'] selector do?",
+            "options": ["Matches exact value only", "Matches if value is a whole word in a space-separated list", "Matches if value contains the substring", "Matches if value starts with the string"],
+            "correctAnswer": 1,
+            "explanation": "The ~= operator matches if the attribute value contains the specified word as a whole word in a space-separated list."
+        },
+        {
+            "id": 7,
+            "question": "Which attribute selector matches elements with a lang attribute starting with 'en'?",
+            "options": ["[lang^='en']", "[lang|='en']", "[lang*='en']", "Both [lang^='en'] and [lang|='en']"],
+            "correctAnswer": 1,
+            "explanation": "[lang|='en'] matches lang='en' exactly or lang starting with 'en-' (like en-US, en-GB). It's specifically designed for language subtags."
+        },
+        {
+            "id": 8,
+            "question": "What is the specificity of attribute selectors?",
+            "options": ["Same as elements (0,0,1)", "Same as classes (0,1,0)", "Same as IDs (1,0,0)", "They add no specificity"],
+            "correctAnswer": 1,
+            "explanation": "Attribute selectors have the same specificity as classes and pseudo-classes: 0,1,0."
+        },
+        {
+            "id": 9,
+            "question": "How can you style all disabled form elements using attribute selectors?",
+            "options": ["[disabled]", "element:disabled", ".disabled", "All of the above"],
+            "correctAnswer": 0,
+            "explanation": "[disabled] selects any element with the disabled attribute. This is often combined with a tag selector: input[disabled]."
+        },
+        {
+            "id": 10,
+            "question": "Which selector would match an input that is both required and of type email?",
+            "options": ["input[required][type='email']", "input:required:email", "input[required, type=email]", "input[required] [type=email]"],
+            "correctAnswer": 0,
+            "explanation": "Chaining attribute selectors (input[required][type='email']) matches elements that satisfy ALL conditions simultaneously."
+        },
+        {
+            "id": 11,
+            "question": "What does the [attr*='value'] selector match?",
+            "options": ["Exact match", "Contains substring", "Starts with", "Ends with"],
+            "correctAnswer": 1,
+            "explanation": "*= matches if the attribute value contains the specified string anywhere within it. [class*='icon'] matches class='icon-large'."
+        },
+        {
+            "id": 12,
+            "question": "Which attribute selector would style external links differently from internal ones?",
+            "options": ["a[href^='http']", "a[rel='external']", "Both are valid approaches", "a[href*='://']"],
+            "correctAnswer": 2,
+            "explanation": "Both a[href^='http'] and a[rel='external'] can target external links. Using the href pattern is automatic; using rel requires HTML markup."
+        },
+        {
+            "id": 13,
+            "question": "Can attribute selectors be combined with pseudo-classes?",
+            "options": ["No", "Yes, e.g., input[required]:invalid", "Only with :hover", "Only on form elements"],
+            "correctAnswer": 1,
+            "explanation": "Attribute selectors can be combined with any pseudo-class, e.g., input[type='email']:focus { border-color: blue; }."
+        },
+        {
+            "id": 14,
+            "question": "How can you select elements with a data-attribute value of 'active' using attribute selectors?",
+            "options": ["[data-status='active']", "[data-status^='active']", "[data-status~='active']", "[data-status*='active']"],
+            "correctAnswer": 0,
+            "explanation": "[data-status='active'] performs an exact match. Data attributes work perfectly with all attribute selector patterns."
+        },
+        {
+            "id": 15,
+            "question": "What is a performance consideration for attribute selectors?",
+            "options": ["They are faster than class selectors", "They are slower than class selectors on very large DOMs", "They cause JavaScript errors", "They only work in modern browsers"],
+            "correctAnswer": 1,
+            "explanation": "Attribute selectors require checking each element's attributes and are slower than class selectors, especially on large DOMs."
+        },
+        {
+            "id": 16,
+            "question": "Which of these is NOT a valid attribute selector?",
+            "options": ["[attr='value']", "[attr!='value']", "[attr^='value']", "[attr$='value']"],
+            "correctAnswer": 1,
+            "explanation": "There is no != operator in CSS attribute selectors. Use :not([attr='value']) to exclude matching values."
+        },
+        {
+            "id": 17,
+            "question": "What does the selector a[href*='github.com'] do?",
+            "options": ["Matches links starting with github.com", "Matches links containing github.com anywhere", "Matches links exactly equal to github.com", "Matches links ending with github.com"],
+            "correctAnswer": 1,
+            "explanation": "*= matches any substring. a[href*='github.com'] matches https://github.com, http://www.github.com, and any URL containing github.com."
+        },
+        {
+            "id": 18,
+            "question": "How can you style elements with both class='card' and data-featured='true'?",
+            "options": [".card[data-featured='true']", ".card .featured", "[class='card featured']", "Both .card[data-featured='true'] and chaining work"],
+            "correctAnswer": 3,
+            "explanation": ".card[data-featured='true'] combines a class selector with an attribute selector. Multiple selectors can be chained for precise targeting."
+        },
+        {
+            "id": 19,
+            "question": "What browser support do attribute selectors have?",
+            "options": ["Only modern browsers", "Internet Explorer 7 and above", "Internet Explorer 9 and above", "Chrome and Firefox only"],
+            "correctAnswer": 1,
+            "explanation": "All standard attribute selectors have been supported since Internet Explorer 7. Only the case-insensitive i flag requires modern browsers."
+        },
+        {
+            "id": 20,
+            "question": "Which attribute selector is most appropriate for styling elements with aria-current='page'?",
+            "options": ["[aria-current='page']", "[aria-current^='page']", "[aria-current~='page']", "[aria-current*='page']"],
+            "correctAnswer": 0,
+            "explanation": "Exact match [aria-current='page'] is the most precise and appropriate for targeting the current page indicator in navigation."
+        }
+    ]
+}

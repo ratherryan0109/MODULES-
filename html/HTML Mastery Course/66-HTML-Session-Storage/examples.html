@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 66: Session Storage Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; color: #222; }
+    h1 { border-bottom: 3px solid #4CAF50; padding-bottom: 10px; }
+    h2 { color: #4CAF50; margin-top: 30px; }
+    .example-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; margin: 10px 0; }
+    .output { background: #f9f9f9; border: 1px dashed #999; border-radius: 6px; padding: 15px; margin: 10px 0; }
+    .note { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    .tag { background: #4CAF50; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+    button { padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; margin: 4px; }
+    button:hover { background: #43a047; }
+    button.secondary { background: #6c757d; }
+    button.secondary:hover { background: #5a6268; }
+    input, textarea, select { padding: 8px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box; margin-top: 4px; }
+    .storage-inspector { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 13px; min-height: 80px; white-space: pre-wrap; overflow-x: auto; }
+    .row { display: flex; gap: 10px; align-items: center; margin: 8px 0; }
+    .step { display: inline-block; width: 28px; height: 28px; line-height: 28px; text-align: center; background: #4CAF50; color: white; border-radius: 50%; font-weight: bold; font-size: 14px; margin-right: 8px; }
+    .tab-demo { border: 2px solid #4CAF50; border-radius: 8px; padding: 12px; margin: 8px 0; background: #f1f8e9; }
+  </style>
+</head>
+<body>
+
+<h1>Session Storage — Interactive Examples</h1>
+
+<div class="note">
+  <strong>Important:</strong> Open this page in <strong>two separate tabs</strong> to see tab isolation in action. sessionStorage data is NOT shared between tabs!
+</div>
+
+<!-- Example 1: Basic CRUD -->
+<h2>1. Basic sessionStorage CRUD</h2>
+<div class="example-box">
+  <p>Create, Read, Update, Delete — same API as localStorage.</p>
+  <div class="output">
+    <div class="row">
+      <input type="text" id="crudKey" placeholder="Key" style="width:150px;">
+      <input type="text" id="crudValue" placeholder="Value" style="width:200px;">
+      <button onclick="crudSet()">Set Item</button>
+    </div>
+    <div class="row">
+      <input type="text" id="crudGetKey" placeholder="Key to get" style="width:150px;">
+      <button onclick="crudGet()">Get Item</button>
+      <button onclick="crudRemove()" class="secondary">Remove Item</button>
+      <button onclick="crudClear()" class="secondary" style="background:#dc3545;">Clear All</button>
+    </div>
+    <div id="crudResult" class="storage-inspector">// Results will appear here</div>
+    <script>
+      function crudSet() {
+        const key = document.getElementById('crudKey').value;
+        const value = document.getElementById('crudValue').value;
+        if (!key) return;
+        sessionStorage.setItem(key, value);
+        crudRefresh();
+      }
+      function crudGet() {
+        const key = document.getElementById('crudGetKey').value || document.getElementById('crudKey').value;
+        document.getElementById('crudResult').textContent = `getItem('${key}') → ${JSON.stringify(sessionStorage.getItem(key))}`;
+      }
+      function crudRemove() {
+        const key = document.getElementById('crudGetKey').value || document.getElementById('crudKey').value;
+        sessionStorage.removeItem(key);
+        crudRefresh();
+      }
+      function crudClear() { sessionStorage.clear(); crudRefresh(); }
+      function crudRefresh() {
+        const items = {};
+        for (let i = 0; i < sessionStorage.length; i++) {
+          const k = sessionStorage.key(i);
+          items[k] = sessionStorage.getItem(k);
+        }
+        document.getElementById('crudResult').textContent = JSON.stringify(items, null, 2) || '(empty)';
+      }
+      crudRefresh();
+    </script>
+  </div>
+</div>
+
+<!-- Example 2: Tab Isolation Demo -->
+<h2>2. Tab Isolation Demo</h2>
+<div class="example-box">
+  <p>Each tab has its own sessionStorage. Data set in one tab is NOT visible in another.</p>
+  <div class="output">
+    <div class="tab-demo">
+      <strong>Tab ID:</strong> <span id="tabId">???</span><br>
+      <strong>Session entries:</strong> <span id="tabCount">0</span>
+    </div>
+    <div class="row">
+      <input type="text" id="tabKey" placeholder="Key" style="width:120px;">
+      <input type="text" id="tabValue" placeholder="Value" style="width:150px;">
+      <button onclick="setTabItem()">Set in This Tab</button>
+    </div>
+    <button onclick="refreshTabInfo()" class="secondary">🔄 Refresh</button>
+    <div id="tabContent" class="storage-inspector">// Each tab sees different data</div>
+    <script>
+      const tabId = 'Tab_' + Math.random().toString(36).substring(2, 6).toUpperCase();
+      sessionStorage.setItem('_tab_id', tabId);
+
+      function setTabItem() {
+        const k = document.getElementById('tabKey').value || 'demo';
+        const v = document.getElementById('tabValue').value || 'test';
+        sessionStorage.setItem(k, v);
+        refreshTabInfo();
+      }
+
+      function refreshTabInfo() {
+        document.getElementById('tabId').textContent = sessionStorage.getItem('_tab_id') || tabId;
+        document.getElementById('tabCount').textContent = sessionStorage.length;
+        const items = {};
+        for (let i = 0; i < sessionStorage.length; i++) {
+          const k = sessionStorage.key(i);
+          items[k] = sessionStorage.getItem(k);
+        }
+        document.getElementById('tabContent').textContent = JSON.stringify(items, null, 2);
+      }
+      refreshTabInfo();
+    </script>
+    <div class="note">Open this page in another tab — the Tab ID and data will be different!</div>
+  </div>
+</div>
+
+<!-- Example 3: Multi-Step Form Wizard -->
+<h2>3. Multi-Step Form Wizard</h2>
+<div class="example-box">
+  <p>Navigate between steps — progress is saved in sessionStorage. Closing the tab clears it.</p>
+  <div class="output">
+    <div id="wizard">
+      <div id="wizardNav">
+        <span class="step" id="step1">1</span> Personal Info
+        <span class="step" id="step2">2</span> Account Setup
+        <span class="step" id="step3">3</span> Confirmation
+      </div>
+      <div id="wizardContent" style="margin-top:15px;min-height:180px;">
+        <!-- Step 1 -->
+        <div class="wizard-page" data-step="1">
+          <label>Name <input type="text" id="wizName" onchange="saveWizard()"></label>
+          <label>Email <input type="email" id="wizEmail" onchange="saveWizard()"></label>
+        </div>
+        <!-- Step 2 -->
+        <div class="wizard-page" data-step="2" style="display:none;">
+          <label>Username <input type="text" id="wizUsername" onchange="saveWizard()"></label>
+          <label>Plan <select id="wizPlan" onchange="saveWizard()"><option>Free</option><option>Pro</option><option>Enterprise</option></select></label>
+        </div>
+        <!-- Step 3 -->
+        <div class="wizard-page" data-step="3" style="display:none;">
+          <div id="wizSummary" style="background:#f1f8e9;padding:15px;border-radius:6px;"></div>
+          <button onclick="submitWizard()" style="margin-top:10px;">✅ Submit</button>
+        </div>
+      </div>
+      <div style="margin-top:15px;">
+        <button id="wizPrev" onclick="wizardPrev()" class="secondary" disabled>← Previous</button>
+        <button id="wizNext" onclick="wizardNext()">Next →</button>
+      </div>
+    </div>
+    <script>
+      let currentStep = 1;
+
+      function saveWizard() {
+        const data = {
+          name: document.getElementById('wizName').value,
+          email: document.getElementById('wizEmail').value,
+          username: document.getElementById('wizUsername').value,
+          plan: document.getElementById('wizPlan').value,
+          step: currentStep
+        };
+        sessionStorage.setItem('wizardData', JSON.stringify(data));
+      }
+
+      function loadWizard() {
+        const raw = sessionStorage.getItem('wizardData');
+        if (raw) {
+          try {
+            const data = JSON.parse(raw);
+            if (data.name) document.getElementById('wizName').value = data.name;
+            if (data.email) document.getElementById('wizEmail').value = data.email;
+            if (data.username) document.getElementById('wizUsername').value = data.username;
+            if (data.plan) document.getElementById('wizPlan').value = data.plan;
+            if (data.step) currentStep = data.step;
+          } catch {}
+        }
+        showStep(currentStep);
+      }
+
+      function showStep(n) {
+        document.querySelectorAll('.wizard-page').forEach(p => p.style.display = 'none');
+        const page = document.querySelector(`.wizard-page[data-step="${n}"]`);
+        if (page) page.style.display = 'block';
+        document.querySelectorAll('.step').forEach(s => s.style.background = '#ccc');
+        const active = document.getElementById('step' + n);
+        if (active) active.style.background = '#4CAF50';
+        document.getElementById('wizPrev').disabled = n === 1;
+        document.getElementById('wizNext').textContent = n === 3 ? 'Review' : 'Next →';
+        if (n === 3) {
+          const data = JSON.parse(sessionStorage.getItem('wizardData')) || {};
+          document.getElementById('wizSummary').innerHTML = `
+            <strong>Name:</strong> ${data.name || '—'}<br>
+            <strong>Email:</strong> ${data.email || '—'}<br>
+            <strong>Username:</strong> ${data.username || '—'}<br>
+            <strong>Plan:</strong> ${data.plan || '—'}
+          `;
+        }
+      }
+
+      function wizardNext() {
+        saveWizard();
+        if (currentStep < 3) { currentStep++; showStep(currentStep); saveWizard(); }
+      }
+      function wizardPrev() {
+        if (currentStep > 1) { currentStep--; showStep(currentStep); saveWizard(); }
+      }
+      function submitWizard() {
+        alert('Wizard submitted! Data cleared from sessionStorage.');
+        sessionStorage.removeItem('wizardData');
+        currentStep = 1;
+        showStep(1);
+      }
+
+      loadWizard();
+    </script>
+    <div class="note">Reload the page — your progress is preserved! Close and reopen the tab to reset the wizard.</div>
+  </div>
+</div>
+
+<!-- Example 4: One-Time Flags -->
+<h2>4. One-Time Visitor Flags</h2>
+<div class="example-box">
+  <p>Track whether a user has seen a notification or tour during this session.</p>
+  <div class="output">
+    <div id="flagDemo">
+      <div id="onboardingBanner" style="background:#e3f2fd;border:2px solid #2196f3;border-radius:8px;padding:15px;margin-bottom:10px;">
+        <strong>👋 Welcome!</strong> This is your first visit in this session.
+        <button onclick="dismissOnboarding()" style="margin-left:10px;">Got it!</button>
+      </div>
+      <div id="cookieBanner" style="background:#fff3e0;border:2px solid #ff9800;border-radius:8px;padding:15px;">
+        <strong>🍪 Cookie Notice:</strong> We use essential cookies.
+        <button onclick="acceptCookies()" style="margin-left:10px;">Accept</button>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <button onclick="resetFlags()" class="secondary">🔄 Reset Session Flags</button>
+    </div>
+    <div id="flagStatus" class="storage-inspector" style="margin-top:10px;"></div>
+    <script>
+      function dismissOnboarding() {
+        sessionStorage.setItem('onboardingShown', 'true');
+        document.getElementById('onboardingBanner').style.display = 'none';
+        updateFlags();
+      }
+      function acceptCookies() {
+        sessionStorage.setItem('cookieConsent', 'true');
+        document.getElementById('cookieBanner').style.display = 'none';
+        updateFlags();
+      }
+      function resetFlags() {
+        sessionStorage.removeItem('onboardingShown');
+        sessionStorage.removeItem('cookieConsent');
+        document.getElementById('onboardingBanner').style.display = 'block';
+        document.getElementById('cookieBanner').style.display = 'block';
+        updateFlags();
+      }
+      function updateFlags() {
+        const onboarding = sessionStorage.getItem('onboardingShown');
+        const cookies = sessionStorage.getItem('cookieConsent');
+        document.getElementById('flagStatus').textContent =
+          `onboardingShown: ${onboarding || 'false'}\ncookieConsent: ${cookies || 'false'}`;
+        if (onboarding) document.getElementById('onboardingBanner').style.display = 'none';
+        if (cookies) document.getElementById('cookieBanner').style.display = 'none';
+      }
+      updateFlags();
+    </script>
+    <div class="note">Reload the page — banners you dismissed will remain hidden. Close the tab and reopen to reset.</div>
+  </div>
+</div>
+
+<!-- Example 5: Scroll Position Persistence -->
+<h2>5. Scroll Position Persistence</h2>
+<div class="example-box">
+  <p>Scroll down in this box. When you reload the page, your scroll position is restored from sessionStorage.</p>
+  <div class="output">
+    <div id="scrollContainer" style="height:200px;overflow-y:auto;border:2px solid #4CAF50;border-radius:6px;padding:10px;">
+      <div style="height:800px;">
+        <p>Line 1: Start of content</p>
+        <p>Line 2: Scroll down...</p>
+        <p>Line 10: Keep scrolling...</p>
+        <p>Line 20: You're doing great!</p>
+        <p>Line 30: Almost there...</p>
+        <p>Line 40: This is the bottom.</p>
+      </div>
+    </div>
+    <div style="margin-top:8px;">
+      <span id="scrollPos">Scroll position: 0px</span>
+      <button onclick="clearScrollPos()" class="secondary" style="margin-left:10px;">Reset Saved Position</button>
+    </div>
+    <script>
+      const scrollContainer = document.getElementById('scrollContainer');
+
+      function saveScrollPos() {
+        sessionStorage.setItem('scrollPos', scrollContainer.scrollTop.toString());
+        document.getElementById('scrollPos').textContent = `Scroll position: ${scrollContainer.scrollTop}px`;
+      }
+
+      function restoreScrollPos() {
+        const pos = sessionStorage.getItem('scrollPos');
+        if (pos) {
+          scrollContainer.scrollTop = parseInt(pos, 10);
+          document.getElementById('scrollPos').textContent = `Restored scroll position: ${pos}px`;
+        }
+      }
+
+      function clearScrollPos() {
+        sessionStorage.removeItem('scrollPos');
+        document.getElementById('scrollPos').textContent = 'Saved position cleared';
+      }
+
+      scrollContainer.addEventListener('scroll', saveScrollPos);
+      restoreScrollPos();
+    </script>
+    <div class="note">Reload the page — your scroll position is restored. Close the tab and it resets.</div>
+  </div>
+</div>
+
+<!-- Example 6: Tab-Specific Theme -->
+<h2>6. Tab-Specific Theme (Session-Scoped)</h2>
+<div class="example-box">
+  <p>Change the theme in this tab. Other tabs are NOT affected — each tab has its own preference.</p>
+  <div class="output" id="themeDemo">
+    <div style="padding:20px;border-radius:8px;transition:0.3s;">
+      <p>Choose a theme for THIS tab only:</p>
+      <button onclick="setTabTheme('light')">☀️ Light</button>
+      <button onclick="setTabTheme('dark')">🌙 Dark</button>
+      <button onclick="setTabTheme('forest')">🌲 Forest</button>
+      <button onclick="setTabTheme('ocean')">🌊 Ocean</button>
+      <p id="tabThemeStatus">Current: <span id="currentTabTheme">light</span></p>
+    </div>
+    <script>
+      function setTabTheme(theme) {
+        sessionStorage.setItem('tabTheme', theme);
+        applyTabTheme(theme);
+      }
+      function applyTabTheme(theme) {
+        const container = document.querySelector('#themeDemo > div');
+        const themes = {
+          light: { bg: '#ffffff', text: '#222', border: '#ddd' },
+          dark: { bg: '#333', text: '#f0f0f0', border: '#555' },
+          forest: { bg: '#e8f5e9', text: '#2e7d32', border: '#81c784' },
+          ocean: { bg: '#e3f2fd', text: '#1565c0', border: '#90caf9' }
+        };
+        const t = themes[theme] || themes.light;
+        container.style.background = t.bg;
+        container.style.color = t.text;
+        container.style.border = `2px solid ${t.border}`;
+        document.getElementById('currentTabTheme').textContent = theme;
+      }
+      (function() {
+        const saved = sessionStorage.getItem('tabTheme') || 'light';
+        applyTabTheme(saved);
+      })();
+    </script>
+    <div class="note">Open this page in another tab — it starts with light theme! Each tab has independent settings.</div>
+  </div>
+</div>
+
+<!-- Example 7: Navigation History -->
+<h2>7. Session Navigation History</h2>
+<div class="example-box">
+  <p>Track pages visited during the current session. Useful for breadcrumbs or back-navigation.</p>
+  <div class="output">
+    <div class="row">
+      <button onclick="visitPage('Home')">🏠 Home</button>
+      <button onclick="visitPage('Products')">📦 Products</button>
+      <button onclick="visitPage('Cart')">🛒 Cart</button>
+      <button onclick="visitPage('Checkout')">💳 Checkout</button>
+      <button onclick="visitPage('Support')">🆘 Support</button>
+    </div>
+    <div id="historyDisplay" class="storage-inspector" style="margin-top:10px;"></div>
+    <button onclick="clearHistory()" class="secondary" style="margin-top:5px;">🗑 Clear History</button>
+    <script>
+      function getHistory() {
+        const raw = sessionStorage.getItem('navHistory');
+        return raw ? JSON.parse(raw) : [];
+      }
+      function saveHistory(history) {
+        sessionStorage.setItem('navHistory', JSON.stringify(history));
+        renderHistory();
+      }
+      function visitPage(page) {
+        const history = getHistory();
+        history.push({ page, time: new Date().toLocaleTimeString() });
+        if (history.length > 15) history.shift();
+        saveHistory(history);
+      }
+      function clearHistory() { sessionStorage.removeItem('navHistory'); renderHistory(); }
+      function renderHistory() {
+        const history = getHistory();
+        const el = document.getElementById('historyDisplay');
+        if (history.length === 0) { el.textContent = '// No pages visited yet'; return; }
+        el.textContent = history.map((h, i) => `${i+1}. ${h.page} at ${h.time}`).join('\n');
+      }
+      renderHistory();
+    </script>
+    <div class="note">Click buttons to simulate page visits. History is cleared when the tab closes.</div>
+  </div>
+</div>
+
+<!-- Example 8: Session Timer -->
+<h2>8. Session Timer / Time Elapsed</h2>
+<div class="example-box">
+  <p>Track how long the user has been on the page during this session.</p>
+  <div class="output">
+    <div id="timerDisplay" style="font-size:2em;text-align:center;padding:20px;font-family:monospace;">00:00:00</div>
+    <div>
+      <span id="sessionStart">Session started: —</span>
+    </div>
+    <script>
+      const startKey = 'sessionStartTime';
+
+      function initTimer() {
+        let start = sessionStorage.getItem(startKey);
+        if (!start) {
+          start = Date.now().toString();
+          sessionStorage.setItem(startKey, start);
+        }
+        document.getElementById('sessionStart').textContent =
+          'Session started: ' + new Date(parseInt(start)).toLocaleTimeString();
+      }
+
+      function updateTimer() {
+        const start = parseInt(sessionStorage.getItem(startKey));
+        if (!start) return;
+        const elapsed = Math.floor((Date.now() - start) / 1000);
+        const h = String(Math.floor(elapsed / 3600)).padStart(2, '0');
+        const m = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
+        const s = String(elapsed % 60).padStart(2, '0');
+        document.getElementById('timerDisplay').textContent = `${h}:${m}:${s}`;
+      }
+
+      initTimer();
+      setInterval(updateTimer, 1000);
+    </script>
+    <div class="note">Reload the page — the timer continues. Close the tab and reopen to reset.</div>
+  </div>
+</div>
+
+<!-- Example 9: Feature Detection & Differences -->
+<h2>9. Storage Comparison: sessionStorage vs localStorage</h2>
+<div class="example-box">
+  <div class="output">
+    <div id="compareDisplay" class="storage-inspector">Comparing storage types...</div>
+    <button onclick="compareStorage()" style="margin-top:8px;">🔄 Compare Now</button>
+    <script>
+      function compareStorage() {
+        const localKeys = Object.keys(localStorage).length;
+        const sessionKeys = Object.keys(sessionStorage).length;
+        const localSample = {};
+        for (let i = 0; i < Math.min(5, localStorage.length); i++) {
+          const k = localStorage.key(i);
+          localSample[k] = localStorage.getItem(k);
+        }
+        const sessionSample = {};
+        for (let i = 0; i < Math.min(5, sessionStorage.length); i++) {
+          const k = sessionStorage.key(i);
+          sessionSample[k] = sessionStorage.getItem(k);
+        }
+        document.getElementById('compareDisplay').textContent =
+          `=== Storage Comparison ===\n\n` +
+          `localStorage items: ${localKeys}\n` +
+          `sessionStorage items: ${sessionKeys}\n\n` +
+          `localStorage was setItem('shared', 'local'): ${localStorage.getItem('shared') || '—'}\n` +
+          `sessionStorage getItem('shared'): ${sessionStorage.getItem('shared') || '—'}\n\n` +
+          `=== localStorage sample ===\n${JSON.stringify(localSample, null, 2) || '(empty)'}\n\n` +
+          `=== sessionStorage sample ===\n${JSON.stringify(sessionSample, null, 2) || '(empty)'}`;
+      }
+      compareStorage();
+    </script>
+  </div>
+</div>
+
+<!-- Example 10: Session Storage Inspector -->
+<h2>10. Live Session Storage Inspector</h2>
+<div class="example-box">
+  <p>View all items in sessionStorage for this tab.</p>
+  <div class="output">
+    <button onclick="refreshSessionInspector()">🔄 Refresh</button>
+    <button onclick="clearSessionStorage()" class="secondary" style="background:#dc3545;">🗑 Clear All</button>
+    <div id="sessionInspector" class="storage-inspector" style="margin-top:10px;"></div>
+    <script>
+      function refreshSessionInspector() {
+        const items = {};
+        for (let i = 0; i < sessionStorage.length; i++) {
+          const k = sessionStorage.key(i);
+          try { items[k] = JSON.parse(sessionStorage.getItem(k)); } catch { items[k] = sessionStorage.getItem(k); }
+        }
+        const el = document.getElementById('sessionInspector');
+        if (Object.keys(items).length === 0) el.textContent = '// No items in sessionStorage';
+        else el.textContent = JSON.stringify(items, null, 2);
+      }
+      function clearSessionStorage() {
+        if (confirm('Clear all sessionStorage data for this tab?')) {
+          sessionStorage.clear();
+          refreshSessionInspector();
+        }
+      }
+      refreshSessionInspector();
+    </script>
+  </div>
+</div>
+
+</body>
+</html>

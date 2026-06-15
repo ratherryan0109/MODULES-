@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Forms Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 700px; margin: 0 auto; }
+    .controls { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .controls label { display: flex; flex-direction: column; gap: 5px; }
+
+    .form-preview {
+      background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .form-preview .form-group { margin-bottom: 20px; }
+    .form-preview label { display: block; margin-bottom: 6px; font-weight: 600; color: var(--label-color, #333); }
+    .form-preview input, .form-preview textarea {
+      width: 100%; padding: var(--input-padding, 12px);
+      border: var(--input-border-width, 2px) solid var(--input-border, #ddd);
+      border-radius: var(--input-radius, 6px);
+      font-size: var(--input-font-size, 1rem);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-preview input:focus, .form-preview textarea:focus {
+      outline: none; border-color: var(--focus-color, #007bff);
+      box-shadow: 0 0 0 3px var(--focus-shadow, rgba(0,123,255,0.25));
+    }
+    .form-preview textarea { resize: vertical; min-height: 80px; }
+    .form-preview .btn {
+      padding: 12px 24px; border: none; border-radius: 6px; font-size: 1rem;
+      background: var(--btn-bg, #007bff); color: #fff; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Forms Playground</h1>
+    <div class="controls">
+      <label>Border Width:
+        <input type="range" id="borderWidth" min="1" max="6" value="2">
+        <span id="borderWidthVal">2px</span>
+      </label>
+      <label>Border Radius:
+        <input type="range" id="borderRadius" min="0" max="20" value="6">
+        <span id="borderRadiusVal">6px</span>
+      </label>
+      <label>Padding:
+        <input type="range" id="paddingSlider" min="4" max="24" value="12">
+        <span id="paddingVal">12px</span>
+      </label>
+      <label>Focus Color:
+        <input type="color" id="focusColor" value="#007bff">
+      </label>
+    </div>
+    <div class="form-preview" id="formPreview">
+      <div class="form-group">
+        <label for="play-name">Name</label>
+        <input type="text" id="play-name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="play-email">Email</label>
+        <input type="email" id="play-email" placeholder="email@example.com">
+      </div>
+      <div class="form-group">
+        <label for="play-msg">Message</label>
+        <textarea id="play-msg" placeholder="Your message"></textarea>
+      </div>
+      <button class="btn">Submit</button>
+    </div>
+  </div>
+  <script>
+    const preview = document.getElementById('formPreview');
+
+    document.getElementById('borderWidth').addEventListener('input', e => {
+      const val = e.target.value + 'px';
+      document.getElementById('borderWidthVal').textContent = val;
+      preview.style.setProperty('--input-border-width', val);
+    });
+    document.getElementById('borderRadius').addEventListener('input', e => {
+      const val = e.target.value + 'px';
+      document.getElementById('borderRadiusVal').textContent = val;
+      preview.style.setProperty('--input-radius', val);
+    });
+    document.getElementById('paddingSlider').addEventListener('input', e => {
+      const val = e.target.value + 'px';
+      document.getElementById('paddingVal').textContent = val;
+      preview.style.setProperty('--input-padding', val);
+    });
+    document.getElementById('focusColor').addEventListener('input', e => {
+      const val = e.target.value;
+      preview.style.setProperty('--focus-color', val);
+      preview.style.setProperty('--focus-shadow', val + '40');
+    });
+  </script>
+</body>
+</html>

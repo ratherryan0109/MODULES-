@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessible Components Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #f8f9fa; color: #222; }
+    h1 { margin-bottom: 0.5rem; }
+    .subtitle { color: #666; margin-bottom: 2rem; }
+    section { background: #fff; border: 1px solid #dee2e6; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+    h2 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #eee; }
+
+    /* Utility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .demo-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+    .bad { border-left: 4px solid #e74c3c; padding-left: 1rem; margin-bottom: 1.5rem; }
+    .good { border-left: 4px solid #2ecc71; padding-left: 1rem; margin-bottom: 1.5rem; }
+
+    /* Skip link */
+    .skip-link { position: absolute; top: -100%; left: 1rem; padding: 0.75rem 1.5rem; background: #0066cc; color: #fff; border-radius: 4px; z-index: 1000; text-decoration: none; }
+    .skip-link:focus { top: 1rem; }
+
+    /* Navigation */
+    nav[aria-label="Main"] { background: #343a40; padding: 0.75rem 1rem; border-radius: 8px; display: flex; gap: 0.5rem; }
+    nav[aria-label="Main"] a { color: #adb5bd; text-decoration: none; padding: 0.5rem 1rem; border-radius: 4px; }
+    nav[aria-label="Main"] a[aria-current="page"] { color: #fff; background: #0066cc; }
+    nav[aria-label="Main"] a:focus-visible { outline: 2px solid #ffc107; outline-offset: 2px; }
+
+    /* Tabs */
+    [role="tablist"] { display: flex; gap: 0; border-bottom: 2px solid #dee2e6; }
+    [role="tab"] { padding: 0.75rem 1.5rem; border: none; background: none; cursor: pointer; font-size: 1rem; color: #666; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+    [role="tab"][aria-selected="true"] { color: #0066cc; border-bottom-color: #0066cc; }
+    [role="tab"]:focus-visible { outline: 2px solid #0066cc; outline-offset: -2px; border-radius: 4px; }
+    [role="tabpanel"] { padding: 1.5rem; background: #f8f9fa; border: 1px solid #dee2e6; border-top: none; border-radius: 0 0 8px 8px; }
+
+    /* Form */
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; margin-bottom: 0.25rem; font-weight: 600; }
+    .field input, .field textarea, .field select { width: 100%; padding: 0.75rem; border: 2px solid #ced4da; border-radius: 6px; font-size: 1rem; }
+    .field input:focus-visible { outline: none; border-color: #0066cc; box-shadow: 0 0 0 3px #0066cc40; }
+    .field .hint { font-size: 0.875rem; color: #666; margin-top: 0.25rem; display: block; }
+    .field .error { font-size: 0.875rem; color: #e74c3c; display: none; margin-top: 0.25rem; }
+    .field.has-error input { border-color: #e74c3c; }
+    .field.has-error .error { display: block; }
+
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+    .modal-overlay[open] { display: flex; }
+    .modal-content { background: #fff; border-radius: 12px; padding: 2rem; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; }
+    .modal-content:focus-visible { outline: 3px solid #0066cc; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 0.25rem; border-radius: 4px; }
+    .modal-close:focus-visible { outline: 2px solid #0066cc; }
+    .btn { padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+    .btn-primary { background: #0066cc; color: #fff; }
+    .btn-primary:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
+    .btn-secondary { background: #6c757d; color: #fff; }
+
+    /* Accordion */
+    .accordion { border: 1px solid #dee2e6; border-radius: 8px; overflow: hidden; }
+    .accordion-trigger { width: 100%; padding: 1rem 1.5rem; background: #f8f9fa; border: none; text-align: left; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .accordion-trigger:hover { background: #e9ecef; }
+    .accordion-trigger:focus-visible { outline: 2px solid #0066cc; outline-offset: -2px; }
+    .accordion-panel { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .accordion-panel.open { max-height: 200px; padding: 1rem 1.5rem; }
+    .accordion-icon { transition: transform 0.3s; }
+    .accordion-trigger[aria-expanded="true"] .accordion-icon { transform: rotate(180deg); }
+
+    /* Tooltip */
+    .tooltip-container { position: relative; display: inline-block; }
+    .tooltip-trigger { text-decoration: underline; text-decoration-style: dotted; cursor: help; }
+    .tooltip-content { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.875rem; white-space: nowrap; margin-bottom: 0.5rem; }
+    .tooltip-content::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #333; }
+    .tooltip-trigger:hover + .tooltip-content, .tooltip-trigger:focus + .tooltip-content, .tooltip-content:hover { display: block; }
+
+    /* Breadcrumb */
+    nav[aria-label="Breadcrumb"] { padding: 0.75rem 0; display: flex; gap: 0.5rem; align-items: center; }
+    nav[aria-label="Breadcrumb"] a { color: #0066cc; text-decoration: none; }
+    nav[aria-label="Breadcrumb"] a:hover { text-decoration: underline; }
+    nav[aria-label="Breadcrumb"] [aria-current="page"] { color: #666; text-decoration: none; }
+
+    @media (forced-colors: active) {
+      .btn:focus-visible, a:focus-visible, [role="tab"]:focus-visible { outline: 2px solid Highlight; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <h1>🧩 Accessible Components</h1>
+  <p class="subtitle">Building inclusive UI components with proper semantics, ARIA, and CSS</p>
+
+  <main id="main">
+    <section>
+      <h2>1. Navigation with aria-current</h2>
+      <nav aria-label="Main">
+        <a href="#" aria-current="page">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Services</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+      <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">aria-current="page" tells screen readers the current page.</p>
+    </section>
+
+    <section>
+      <h2>2. Breadcrumb Navigation</h2>
+      <nav aria-label="Breadcrumb">
+        <a href="#">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="#">Products</a>
+        <span aria-hidden="true">/</span>
+        <a href="#">Electronics</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Laptops</span>
+      </nav>
+    </section>
+
+    <section>
+      <h2>3. Tabs Component</h2>
+      <div role="tablist" aria-label="Product Information">
+        <button role="tab" aria-selected="true" aria-controls="tab-desc" id="tab-desc-btn">Description</button>
+        <button role="tab" aria-selected="false" aria-controls="tab-specs" id="tab-specs-btn">Specifications</button>
+        <button role="tab" aria-selected="false" aria-controls="tab-reviews" id="tab-reviews-btn">Reviews</button>
+      </div>
+      <div role="tabpanel" id="tab-desc" aria-labelledby="tab-desc-btn">
+        <p>This product features cutting-edge technology with an intuitive interface.</p>
+      </div>
+      <div role="tabpanel" id="tab-specs" aria-labelledby="tab-specs-btn" hidden>
+        <p>Dimensions: 10" x 8" x 0.5" | Weight: 2 lbs | Battery: 12 hours</p>
+      </div>
+      <div role="tabpanel" id="tab-reviews" aria-labelledby="tab-reviews-btn" hidden>
+        <p>★★★★☆ (4.5/5 from 128 reviews)</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Accordion</h2>
+      <div class="accordion">
+        <h3>
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="panel1">
+            What is your return policy?
+            <span class="accordion-icon" aria-hidden="true">▼</span>
+          </button>
+        </h3>
+        <div class="accordion-panel" id="panel1" role="region" aria-labelledby="accordion-trigger-1">
+          <p>You can return any item within 30 days of purchase for a full refund.</p>
+        </div>
+      </div>
+      <div class="accordion" style="border-top:none;border-radius:0;">
+        <h3>
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="panel2">
+            Do you ship internationally?
+            <span class="accordion-icon" aria-hidden="true">▼</span>
+          </button>
+        </h3>
+        <div class="accordion-panel" id="panel2" role="region" aria-labelledby="accordion-trigger-2">
+          <p>Yes, we ship to over 100 countries worldwide.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Accessible Form</h2>
+      <form novalidate style="max-width:500px;">
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required aria-describedby="name-hint">
+          <span id="name-hint" class="hint">Enter your first and last name.</span>
+        </div>
+        <div class="field">
+          <label for="email-acc">Email Address</label>
+          <input type="email" id="email-acc" required aria-describedby="email-hint">
+          <span id="email-hint" class="hint">We'll never share your email.</span>
+        </div>
+        <div class="field">
+          <label for="country">Country</label>
+          <select id="country">
+            <option>United States</option>
+            <option>Canada</option>
+            <option>United Kingdom</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>
+            <input type="checkbox" aria-describedby="terms-text">
+            <span id="terms-text">I agree to the <a href="#">terms and conditions</a></span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>6. Modal Dialog</h2>
+      <button class="btn btn-primary" id="open-modal-btn">Open Modal</button>
+      <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content" tabindex="-1">
+          <div class="modal-header">
+            <h2 id="modal-title">Confirm Deletion</h2>
+            <button class="modal-close" aria-label="Close modal" id="modal-close">✕</button>
+          </div>
+          <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+          <div style="display:flex;gap:0.75rem;margin-top:1.5rem;">
+            <button class="btn btn-primary">Delete</button>
+            <button class="btn btn-secondary" id="modal-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>7. Tooltip</h2>
+      <p>Hover or focus the <span class="tooltip-container">
+        <span class="tooltip-trigger" tabindex="0" aria-describedby="tooltip1">underlined text</span>
+        <span class="tooltip-content" id="tooltip1" role="tooltip">This is helpful information</span>
+      </span> to see a tooltip.</p>
+    </section>
+
+    <section>
+      <h2>8. Bad vs Good: Component Comparison</h2>
+      <div class="demo-row">
+        <div class="bad" style="flex:1;">
+          <h3>❌ Bad: Div as Button</h3>
+          <div class="btn" onclick="alert('clicked')" style="background:#0066cc;color:#fff;padding:0.75rem 1.5rem;border-radius:6px;cursor:pointer;text-align:center;">Click me</div>
+          <p style="font-size:0.875rem;color:#888;margin-top:0.5rem;">Not keyboard accessible, no role="button", no Enter/Space handling.</p>
+        </div>
+        <div class="good" style="flex:1;">
+          <h3>✅ Good: Native Button</h3>
+          <button class="btn btn-primary">Click me</button>
+          <p style="font-size:0.875rem;color:#888;margin-top:0.5rem;">Native button handles keyboard, focus, and accessibility automatically.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:0.875rem;color:#888;">
+    <p>Test these components with keyboard navigation and a screen reader (NVDA/VoiceOver).</p>
+  </footer>
+
+  <script>
+    // Tabs
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll('[role="tabpanel"]');
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => activateTab(i));
+      tab.addEventListener('keydown', (e) => {
+        const current = [...tabs].indexOf(document.activeElement);
+        if (e.key === 'ArrowRight') {
+          e.preventDefault(); activateTab((current + 1) % tabs.length);
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault(); activateTab((current - 1 + tabs.length) % tabs.length);
+        } else if (e.key === 'Home') {
+          e.preventDefault(); activateTab(0);
+        } else if (e.key === 'End') {
+          e.preventDefault(); activateTab(tabs.length - 1);
+        }
+      });
+    });
+    function activateTab(index) {
+      tabs.forEach((t, i) => {
+        t.setAttribute('aria-selected', i === index);
+        panels[i].hidden = i !== index;
+      });
+      tabs[index].focus();
+    }
+
+    // Accordion
+    document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', !expanded);
+        const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+        panel.classList.toggle('open');
+      });
+    });
+
+    // Modal
+    const modal = document.getElementById('modal');
+    const openBtn = document.getElementById('open-modal-btn');
+    const closeBtn = document.getElementById('modal-close');
+    const cancelBtn = document.getElementById('modal-cancel');
+    let trigger = null;
+
+    openBtn.addEventListener('click', () => {
+      trigger = openBtn;
+      modal.setAttribute('open', '');
+      document.getElementById('modal-title').focus();
+    });
+
+    function closeModal() {
+      modal.removeAttribute('open');
+      if (trigger) trigger.focus();
+    }
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.hasAttribute('open')) closeModal();
+    });
+  </script>
+</body>
+</html>

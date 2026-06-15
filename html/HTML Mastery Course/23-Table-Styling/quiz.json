@@ -1,0 +1,162 @@
+[
+  {
+    "question": "Which CSS property merges adjacent table cell borders into a single border?",
+    "options": ["border-spacing", "border-collapse", "border-merge", "table-layout"],
+    "answer": "border-collapse",
+    "explanation": "border-collapse: collapse merges adjacent borders into one. border-spacing works only when border-collapse is set to separate."
+  },
+  {
+    "question": "What is the default value of the border-collapse property?",
+    "options": ["collapse", "separate", "merge", "none"],
+    "answer": "separate",
+    "explanation": "By default, tables have border-collapse: separate, which means each cell and the table itself display their borders independently."
+  },
+  {
+    "question": "Which property controls the space between cells when border-collapse is set to separate?",
+    "options": ["cell-spacing", "border-spacing", "padding", "gap"],
+    "answer": "border-spacing",
+    "explanation": "border-spacing defines the gap between adjacent cells when border-collapse is separate."
+  },
+  {
+    "question": "What does table-layout: fixed do?",
+    "options": [
+      "Columns resize dynamically based on content",
+      "Column widths are fixed and determined by the first row or explicit width settings",
+      "The table height is fixed",
+      "The table cannot be resized"
+    ],
+    "answer": "Column widths are fixed and determined by the first row or explicit width settings",
+    "explanation": "With fixed layout, the browser renders the table faster because it does not need to analyze every cell's content before determining column widths."
+  },
+  {
+    "question": "How do you apply alternating row colors (zebra striping) to a table?",
+    "options": [
+      "Using the :even and :odd pseudo-classes",
+      "Using tr:nth-child(even) and tr:nth-child(odd)",
+      "Using the striped attribute",
+      "Using nth-of-type on td"
+    ],
+    "answer": "Using tr:nth-child(even) and tr:nth-child(odd)",
+    "explanation": "The :nth-child pseudo-class with 'even' or 'odd' keywords applies styles to alternating rows."
+  },
+  {
+    "question": "What CSS selector targets every third row starting from the second?",
+    "options": ["tr:nth-child(3n+2)", "tr:nth-child(2n+3)", "tr:nth-child(3n-1)", "tr:nth-child(2n+1)"],
+    "answer": "tr:nth-child(3n+2)",
+    "explanation": "3n+2 selects rows 2, 5, 8, 11, etc. — every third row starting from the second."
+  },
+  {
+    "question": "Which property controls the vertical alignment of content within table cells?",
+    "options": ["align-items", "vertical-align", "justify-content", "text-align"],
+    "answer": "vertical-align",
+    "explanation": "vertical-align in table cells can be set to top, middle, or bottom to control content alignment vertically."
+  },
+  {
+    "question": "How can you make a table horizontally scrollable on small screens?",
+    "options": [
+      "Set overflow: scroll on the table",
+      "Wrap the table in a div with overflow-x: auto",
+      "Use table-layout: scroll",
+      "Set width: 100% on the table"
+    ],
+    "answer": "Wrap the table in a div with overflow-x: auto",
+    "explanation": "A wrapper div with overflow-x: auto allows the table to be scrolled horizontally while keeping the rest of the layout intact."
+  },
+  {
+    "question": "What does the caption-side property control?",
+    "options": [
+      "Whether the caption is displayed above or below the table",
+      "The alignment of text inside the caption",
+      "The font size of the caption",
+      "The color of the caption"
+    ],
+    "answer": "Whether the caption is displayed above or below the table",
+    "explanation": "caption-side accepts 'top' (default) or 'bottom' to position the caption element relative to the table."
+  },
+  {
+    "question": "Which pseudo-class is used to highlight a table row when the mouse hovers over it?",
+    "options": [":focus", ":active", ":hover", ":visited"],
+    "answer": ":hover",
+    "explanation": "The :hover pseudo-class applies styles when the user's pointer is over the element."
+  },
+  {
+    "question": "What happens when border-collapse is set to collapse and two adjacent cells have different border styles?",
+    "options": [
+      "Both borders are displayed overlapping",
+      "The browser chooses the more prominent border style",
+      "An error occurs",
+      "The table renders without borders"
+    ],
+    "answer": "The browser chooses the more prominent border style",
+    "explanation": "With collapsed borders, the border style with the highest priority (based on width, style, and color) wins."
+  },
+  {
+    "question": "Which selector targets the first data cell in every row?",
+    "options": ["td:first-of-type", "td:first-child", "td:nth-child(1)", "Both B and C"],
+    "answer": "Both B and C",
+    "explanation": "Both td:first-child and td:nth-child(1) select the first td in each row."
+  },
+  {
+    "question": "What is the purpose of the empty-cells property?",
+    "options": [
+      "To delete empty cells from the table",
+      "To control whether empty cells show their borders and background",
+      "To add placeholder text in empty cells",
+      "To merge empty cells with adjacent cells"
+    ],
+    "answer": "To control whether empty cells show their borders and background",
+    "explanation": "empty-cells: show makes empty cells visible; empty-cells: hide hides their borders and background."
+  },
+  {
+    "question": "How do you style the footer section of a table?",
+    "options": ["tfoot { ... }", "table-footer { ... }", "footer { ... }", "tablefoot { ... }"],
+    "answer": "tfoot { ... }",
+    "explanation": "The tfoot element represents the table footer and can be targeted directly with CSS."
+  },
+  {
+    "question": "What is the best practice for applying padding in a table?",
+    "options": [
+      "Apply padding to the table element",
+      "Apply padding to th and td elements",
+      "Apply padding to thead and tbody",
+      "Apply padding to tr elements"
+    ],
+    "answer": "Apply padding to th and td elements",
+    "explanation": "Padding on table cells (th and td) creates space between the cell border and its content."
+  },
+  {
+    "question": "Which CSS property is commonly used to transition hover effects smoothly?",
+    "options": ["animation", "transition", "transform", "hover-effect"],
+    "answer": "transition",
+    "explanation": "The transition property allows smooth interpolation between states, such as background-color changes on hover."
+  },
+  {
+    "question": "What attribute on td elements is commonly used for responsive card-style layouts on mobile?",
+    "options": ["data-label", "data-title", "aria-label", "scope"],
+    "answer": "data-label",
+    "explanation": "data-label attributes on td elements provide content for ::before pseudo-elements that act as row headers on mobile."
+  },
+  {
+    "question": "Which table-layout value provides faster rendering for large tables?",
+    "options": ["auto", "fixed", "fast", "dynamic"],
+    "answer": "fixed",
+    "explanation": "table-layout: fixed is faster because the browser determines column widths from the first row only, without analyzing all cell content."
+  },
+  {
+    "question": "How do you hide the thead element on mobile while keeping it accessible?",
+    "options": [
+      "Use display: none on thead",
+      "Use visibility: hidden on thead",
+      "Use display: none on thead within a media query; screen readers still read it",
+      "Remove thead from the HTML"
+    ],
+    "answer": "Use display: none on thead within a media query; screen readers still read it",
+    "explanation": "display: none hides the element visually but some screen readers still announce it if it is in the DOM."
+  },
+  {
+    "question": "What selector targets the last cell in a table row?",
+    "options": ["td:last-of-type", "td:last-child", "td:end", "td:final"],
+    "answer": "td:last-child",
+    "explanation": "td:last-child selects the last td element within each row."
+  }
+]

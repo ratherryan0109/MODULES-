@@ -1,0 +1,147 @@
+{
+  "module": "49-flex-shrink",
+  "title": "Flex Shrink",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `flex-shrink` control?",
+      "options": ["How much an item shrinks when space is tight", "How much an item grows", "The initial size", "The order"],
+      "correctAnswer": 0,
+      "explanation": "`flex-shrink` determines how much a flex item shrinks relative to siblings when there isn't enough space."
+    },
+    {
+      "id": 2,
+      "question": "What is the default `flex-shrink` value?",
+      "options": ["0", "1", "auto", "100"],
+      "correctAnswer": 1,
+      "explanation": "The default is `1`, meaning items shrink proportionally by default."
+    },
+    {
+      "id": 3,
+      "question": "What does `flex-shrink: 0` do?",
+      "options": ["Prevents an item from shrinking", "Makes an item shrink infinitely", "Hides the item", "Centers the item"],
+      "correctAnswer": 0,
+      "explanation": "`flex-shrink: 0` prevents an item from shrinking, maintaining its flex-basis size."
+    },
+    {
+      "id": 4,
+      "question": "If 3 items have basis 200px in a 300px container with shrink: 1 each, what happens?",
+      "options": ["Each shrinks equally to ~100px", "Items overflow", "Items stay at 200px", "Only the last shrinks"],
+      "correctAnswer": 0,
+      "explanation": "Total basis is 600px in a 300px container. Each loses 100px, resulting in ~100px each."
+    },
+    {
+      "id": 5,
+      "question": "What property prevents items from shrinking below their content size?",
+      "options": ["min-width", "flex-shrink", "flex-basis", "max-width"],
+      "correctAnswer": 0,
+      "explanation": "`min-width: 0` allows items to shrink below their minimum content size. Without it, items stop shrinking at their content size."
+    },
+    {
+      "id": 6,
+      "question": "If one item has flex-shrink: 2 and two others have flex-shrink: 1, which shrinks more?",
+      "options": ["The item with flex-shrink: 2 shrinks twice as much as each of the others", "All shrink equally", "flex-shrink: 1 items shrink more", "Only the flex-shrink: 2 item shrinks"],
+      "correctAnswer": 0,
+      "explanation": "Higher flex-shrink means more shrinkage. An item with 2 shrinks twice as much as one with 1."
+    },
+    {
+      "id": 7,
+      "question": "What does flex-shrink: 0 do to an item in a flex container?",
+      "options": ["Prevents it from shrinking below its flex-basis", "Makes it invisible", "Removes it from flow", "Centers it"],
+      "correctAnswer": 0,
+      "explanation": "flex-shrink: 0 means the item will not shrink, maintaining its flex-basis size regardless of container constraints."
+    },
+    {
+      "id": 8,
+      "question": "Can flex-shrink use decimal values like 0.5?",
+      "options": ["Yes, flex-shrink accepts non-negative numbers including decimals", "No, only whole numbers", "Only in Safari", "No, only 0 or 1"],
+      "correctAnswer": 0,
+      "explanation": "flex-shrink accepts any non-negative number, including decimals like 0.5."
+    },
+    {
+      "id": 9,
+      "question": "How does min-width interact with flex-shrink?",
+      "options": ["min-width acts as a floor — items won't shrink below it", "flex-shrink overrides min-width", "min-width is ignored in flexbox", "They cause a browser error"],
+      "correctAnswer": 0,
+      "explanation": "min-width sets a lower bound. Even if flex-shrink would make an item smaller, min-width prevents it."
+    },
+    {
+      "id": 10,
+      "question": "What is the difference between flex-shrink: 0 and flex-shrink: 1?",
+      "options": ["0 prevents shrinking; 1 allows proportional shrinking", "0 allows shrinking; 1 prevents it", "0 makes items invisible; 1 shows them", "There is no difference"],
+      "correctAnswer": 0,
+      "explanation": "flex-shrink: 0 blocks all shrinkage; flex-shrink: 1 allows the item to shrink with others."
+    },
+    {
+      "id": 11,
+      "question": "With flex-direction: column, what dimension does flex-shrink affect?",
+      "options": ["Height (items shrink vertically)", "Width (items shrink horizontally)", "Both", "Neither"],
+      "correctAnswer": 0,
+      "explanation": "flex-shrink always affects the main axis dimension. With column direction, that's height."
+    },
+    {
+      "id": 12,
+      "question": "What is the minimum value for flex-shrink?",
+      "options": ["0", "1", "auto", "Not defined"],
+      "correctAnswer": 0,
+      "explanation": "flex-shrink must be a non-negative number. The minimum valid value is 0."
+    },
+    {
+      "id": 13,
+      "question": "Which scenario makes flex-shrink important?",
+      "options": ["When items' total flex-basis exceeds the container size", "When there's extra space", "When items are centered", "When using flex-wrap"],
+      "correctAnswer": 0,
+      "explanation": "flex-shrink only activates when items are too large for the container and need to shrink."
+    },
+    {
+      "id": 14,
+      "question": "By default (flex-shrink: 1), do all items shrink equally?",
+      "options": ["Yes, with the same flex-shrink and basis, they shrink equally proportional to their basis", "No, the first item always shrinks most", "Only if there are exactly 3 items", "Only in Firefox"],
+      "correctAnswer": 0,
+      "explanation": "With equal flex-shrink and flex-basis values, all items share the shrinkage burden equally."
+    },
+    {
+      "id": 15,
+      "question": "What is a practical use for flex-shrink: 0?",
+      "options": ["Preventing a sidebar or icon from getting compressed", "Making items fill the container", "Creating equal-width columns", "Centering content"],
+      "correctAnswer": 0,
+      "explanation": "flex-shrink: 0 is useful for fixed-size elements like sidebars, logos, or icons that shouldn't compress."
+    },
+    {
+      "id": 16,
+      "question": "If an item has flex-shrink: 3 and others have flex-shrink: 1, how much more does it shrink?",
+      "options": ["Three times as much as each item with flex-shrink: 1", "Three times total, not per item", "It doesn't shrink more", "It grows instead"],
+      "correctAnswer": 0,
+      "explanation": "flex-shrink is proportional. An item with 3 shrinks three times as much as an item with 1."
+    },
+    {
+      "id": 17,
+      "question": "How is the shrink amount calculated for each item?",
+      "options": ["Proportional to flex-shrink × flex-basis divided by total", "Based on the item's width only", "Randomly distributed", "First item gets all the shrink"],
+      "correctAnswer": 0,
+      "explanation": "Shrink factor = (flex-shrink × flex-basis) / sum of all (flex-shrink × flex-basis). The deficit is multiplied by this factor."
+    },
+    {
+      "id": 18,
+      "question": "Does flex-shrink affect items with flex-wrap: wrap?",
+      "options": ["Yes, items on each line shrink independently before wrapping", "No, wrap disables shrink", "Only on the last line", "Only on the first line"],
+      "correctAnswer": 0,
+      "explanation": "Each line in a wrapped container handles shrinkage independently before items are forced to wrap."
+    },
+    {
+      "id": 19,
+      "question": "What happens when an item reaches its min-width during shrinking?",
+      "options": ["It stops shrinking, and remaining items absorb the rest", "It continues shrinking", "It overflows", "The item is hidden"],
+      "correctAnswer": 0,
+      "explanation": "Once an item hits min-width, it can't shrink further. The remaining deficit is redistributed among other items."
+    },
+    {
+      "id": 20,
+      "question": "What does the shorthand flex: 1 0 200px mean for shrink behavior?",
+      "options": ["flex-shrink: 0 — the item doesn't shrink", "flex-shrink: 1 — the item shrinks", "flex-shrink: 200px — invalid", "flex-shrink: auto"],
+      "correctAnswer": 0,
+      "explanation": "In the flex shorthand (flex: grow shrink basis), the second value is flex-shrink. So flex: 1 0 200px has flex-shrink: 0."
+    }
+  ]
+}

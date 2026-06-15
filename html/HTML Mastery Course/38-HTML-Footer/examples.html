@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Footer Examples</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f8f9fa; }
+  .example-box { background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; }
+  .example-box h2 { color: #1565c0; border-bottom: 2px solid #e3f2fd; padding-bottom: 8px; }
+  .output { padding: 0; margin: 10px 0; }
+  pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; }
+  footer.demo { background: #1565c0; color: white; padding: 20px; border-radius: 4px; }
+  footer.demo a { color: #bbdefb; }
+  footer.demo section h2, footer.demo section h3 { color: white; margin-top: 0; }
+  .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+</style></head>
+<body>
+<h1>HTML <code>&lt;footer&gt;</code> Examples</h1>
+
+<div class="example-box">
+  <h2>Example 1: Page-Level Footer</h2>
+  <div class="output">
+    <main style="padding:20px; background:#e3f2fd; border-radius:4px; margin-bottom:5px;">
+      <h2>Main Content</h2>
+      <p>This is the primary content area.</p>
+    </main>
+    <footer class="demo">
+      <p>&copy; 2026 HTML Mastery Course. All rights reserved.</p>
+      <nav aria-label="Footer navigation">
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
+      </nav>
+    </footer>
+  </div>
+  <pre><code>&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 HTML Mastery Course. All rights reserved.&lt;/p&gt;
+  &lt;nav aria-label="Footer navigation"&gt;
+    &lt;a href="#"&gt;Privacy Policy&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/footer&gt;</code></pre>
+</div>
+
+<div class="example-box">
+  <h2>Example 2: Multi-Column Footer</h2>
+  <div class="output">
+    <footer class="demo">
+      <div class="footer-grid">
+        <section><h3>Company</h3><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li></ul></section>
+        <section><h3>Support</h3><ul><li><a href="#">Help Center</a></li><li><a href="#">Contact</a></li></ul></section>
+        <section><h3>Legal</h3><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></section>
+      </div>
+      <hr>
+      <p>&copy; 2026 Company Inc.</p>
+    </footer>
+  </div>
+</div>
+
+<div class="example-box">
+  <h2>Example 3: Article Footer</h2>
+  <div class="output">
+    <article style="border:1px solid #ddd; padding:15px; border-radius:4px;">
+      <h2>Blog Post Title</h2>
+      <p>Blog content goes here...</p>
+      <footer style="background:#f5f5f5; padding:10px; margin-top:10px; border-radius:4px; color:#333;">
+        <p>Posted by <strong>Jane Doe</strong> on <time datetime="2026-06-01">June 1, 2026</time></p>
+        <p>Tags: <a href="#">HTML</a>, <a href="#">CSS</a></p>
+      </footer>
+    </article>
+  </div>
+  <pre><code>&lt;article&gt;
+  &lt;h2&gt;Blog Post Title&lt;/h2&gt;
+  &lt;p&gt;Content...&lt;/p&gt;
+  &lt;footer&gt;
+    &lt;p&gt;Posted by Jane Doe on &lt;time datetime="2026-06-01"&gt;June 1, 2026&lt;/time&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/article&gt;</code></pre>
+</div>
+</body></html>

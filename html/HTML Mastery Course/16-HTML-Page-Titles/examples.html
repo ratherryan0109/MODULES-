@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 16: HTML Page Titles - Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: #333; line-height: 1.6; padding: 20px; }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    .example-box { background: white; border: 2px solid #ddd; border-radius: 10px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .example-box h2 { color: #2980b9; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .code-block { background: #2d2d2d; color: #f8f8f2; padding: 18px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; font-size: 14px; overflow-x: auto; margin: 15px 0; white-space: pre-wrap; }
+    .note { background: #fff3cd; border-left: 5px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; }
+    .output { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 6px; margin: 10px 0; }
+    .tab-mock { background: #e8e8e8; border-radius: 8px 8px 0 0; padding: 8px 15px; display: flex; align-items: center; gap: 10px; }
+    .tab-mock .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .tab-mock .dot:nth-child(1) { background: #ff5f57; }
+    .tab-mock .dot:nth-child(2) { background: #ffbd2e; }
+    .tab-mock .dot:nth-child(3) { background: #28c840; }
+    .tab-mock .tab { background: white; padding: 6px 16px; border-radius: 4px 4px 0 0; font-size: 13px; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .serp-result { border: 1px solid #ddd; border-radius: 8px; padding: 16px; background: white; }
+    .serp-result .serp-title { color: #1a0dab; font-size: 20px; line-height: 1.3; }
+    .serp-result .serp-url { color: #006621; font-size: 14px; }
+    .serp-result .serp-desc { color: #545454; font-size: 14px; margin-top: 4px; }
+    .title-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .title-table th, .title-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    .title-table th { background: #f0f2f5; }
+    .title-table .good { color: #2ecc71; font-weight: bold; }
+    .title-table .bad { color: #e74c3c; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>📄 HTML Page Titles — Code Examples</h1>
+  <p style="text-align:center;color:#7f8c8d;margin-bottom:30px;">Look at your browser tab — the title you see is defined by the &lt;title&gt; element.</p>
+
+  <div class="example-box">
+    <h2>Example 1: Browser Tab Visualization</h2>
+    <div class="tab-mock">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="tab">Module 16: HTML Page Titles - Examples</div>
+    </div>
+    <p style="margin-top:10px;">The text in the mock tab above is what appears in your real browser tab right now.</p>
+    <div class="code-block">
+      &lt;title&gt;Module 16: HTML Page Titles - Examples&lt;/title&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 2: Title in Search Results (SERP Preview)</h2>
+    <div class="serp-result">
+      <div class="serp-title">HTML Page Titles — Complete Guide with Best Practices | HTML Mastery</div>
+      <div class="serp-url">https://htmlmastery.com/courses/page-titles</div>
+      <div class="serp-desc">Learn how to write effective HTML page titles. This guide covers SEO best practices, title length limits, accessibility, and common mistakes to avoid.</div>
+    </div>
+    <p style="margin-top:10px;">The title appears as the clickable headline in Google search results. Keep it under 60 characters to avoid truncation.</p>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 3: Good vs Bad Titles</h2>
+    <table class="title-table">
+      <tr><th>Type</th><th>Title</th><th>Verdict</th></tr>
+      <tr>
+        <td>Homepage</td>
+        <td>Home</td>
+        <td class="bad">❌ Too vague</td>
+      </tr>
+      <tr>
+        <td>Homepage</td>
+        <td>Web Design Tutorials — Learn HTML, CSS & JavaScript | SiteName</td>
+        <td class="good">✅ Descriptive with keywords and brand</td>
+      </tr>
+      <tr>
+        <td>Article</td>
+        <td>Article 42</td>
+        <td class="bad">❌ Meaningless</td>
+      </tr>
+      <tr>
+        <td>Article</td>
+        <td>How to Center a Div — CSS Flexbox Tutorial | SiteName</td>
+        <td class="good">✅ Clear and keyword-rich</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>Buy Cheap Shoes Online Free Shipping Discount Sale</td>
+        <td class="bad">❌ Keyword stuffing</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>Nike Air Max 270 — Men's Running Shoes | Nike Official</td>
+        <td class="good">✅ Natural and descriptive</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 4: Standard Title Patterns</h2>
+    <div class="code-block">
+      &lt;!-- Homepage --&gt;
+      &lt;title&gt;SiteName — Web Development Tutorials &amp; Resources&lt;/title&gt;
+
+      &lt;!-- Article/ Blog Post --&gt;
+      &lt;title&gt;How to Center a Div — CSS Tutorial | SiteName&lt;/title&gt;
+
+      &lt;!-- Category Page --&gt;
+      &lt;title&gt;CSS Tutorials — Learn Cascading Style Sheets | SiteName&lt;/title&gt;
+
+      &lt;!-- Product Page --&gt;
+      &lt;title&gt;Product Name — Category | BrandName&lt;/title&gt;
+
+      &lt;!-- About Page --&gt;
+      &lt;title&gt;About Us — Our Story &amp; Team | SiteName&lt;/title&gt;
+
+      &lt;!-- Contact Page --&gt;
+      &lt;title&gt;Contact Us — Get in Touch | SiteName&lt;/title&gt;
+
+      &lt;!-- 404 Error Page --&gt;
+      &lt;title&gt;404: Page Not Found — SiteName&lt;/title&gt;
+
+      &lt;!-- Search Results --&gt;
+      &lt;title&gt;Search Results for "keyword" — SiteName&lt;/title&gt;
+
+      &lt;!-- Multi-step Process --&gt;
+      &lt;title&gt;Checkout — Step 2 of 3: Shipping | StoreName&lt;/title&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 5: Dynamic Title with JavaScript</h2>
+    <div class="output" style="text-align:center;">
+      <p><strong>Current page title:</strong> <span id="currentTitle"></span></p>
+      <button onclick="changeTitle('New Title — Changed by JS')" style="padding:10px 20px;margin:5px;cursor:pointer;">Change Title</button>
+      <button onclick="changeTitle('Module 16: HTML Page Titles - Examples')" style="padding:10px 20px;margin:5px;cursor:pointer;">Reset Title</button>
+      <button onclick="addNotificationBadge()" style="padding:10px 20px;margin:5px;cursor:pointer;">Add Notification Badge</button>
+    </div>
+    <div class="code-block">
+      &lt;script&gt;
+        // Change title dynamically
+        document.title = "New Page Title";
+
+        // Add notification badge
+        function addNotificationBadge(count) {
+          document.title = `(${count}) New Messages — Mail App`;
+        }
+
+        // Update title based on page visibility
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            document.title = 'Come back! — SiteName';
+          }
+        });
+      &lt;/script&gt;
+    </div>
+    <script>
+      document.getElementById('currentTitle').textContent = document.title;
+      function changeTitle(t) { document.title = t; document.getElementById('currentTitle').textContent = t; }
+      function addNotificationBadge() { changeTitle('(3) New Messages — Mail App'); }
+    </script>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 6: Title Length Comparison</h2>
+    <p>Search engines typically display 50-60 characters. Longer titles get truncated.</p>
+    <table class="title-table">
+      <tr><th>Title</th><th>Length</th><th>Display</th></tr>
+      <tr>
+        <td>CSS Flexbox Tutorial — Complete Guide with Examples | SiteName</td>
+        <td>61 chars</td>
+        <td class="good">✅ Fits within limits</td>
+      </tr>
+      <tr>
+        <td>CSS Flexbox Tutorial: The Complete Guide to Flexible Box Layouts with Real-World Examples</td>
+        <td>96 chars</td>
+        <td class="bad">❌ Truncated in search results</td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>

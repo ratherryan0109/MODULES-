@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the syntax for a CSS media query?", "answer": "@media media-type and (condition) { CSS rules }. Example: @media screen and (max-width: 768px) { ... }" },
+    { "question": "What are the media types available in CSS?", "answer": "Common media types are all, screen, print, speech. screen is the default for computer screens and mobile devices." },
+    { "question": "What does max-width: 768px mean in a media query?", "answer": "It applies the CSS rules when the viewport width is 768 pixels or less." },
+    { "question": "What does min-width: 768px mean in a media query?", "answer": "It applies the CSS rules when the viewport width is 768 pixels or more." },
+    { "question": "How do you combine multiple conditions in a media query?", "answer": "Use the and keyword: @media (min-width: 600px) and (max-width: 1200px) { ... }" },
+    { "question": "What is orientation in media queries?", "answer": "orientation detects whether the device is in landscape (width > height) or portrait (height > width) mode." },
+    { "question": "How do you target landscape orientation with a media query?", "answer": "@media (orientation: landscape) { ... } applies styles when the device is in landscape mode." },
+    { "question": "What does prefers-reduced-motion check for?", "answer": "It checks if the user has requested reduced motion in their system accessibility settings to disable animations." },
+    { "question": "What does prefers-color-scheme detect?", "answer": "It detects whether the user prefers light or dark color scheme for theming purposes." },
+    { "question": "Can you nest media queries inside other CSS rules?", "answer": "Yes, CSS nesting allows media queries to be nested inside selectors for better organization." }
+  ],
+  "intermediate": [
+    { "question": "What is the difference between @media and @import for responsive CSS?", "answer": "@media conditionally applies rules within a stylesheet; @import can load different stylesheets based on media, but is less performant." },
+    { "question": "How do you use media queries for high-resolution displays?", "answer": "Use min-resolution: 2dppx or -webkit-min-device-pixel-ratio: 2 for Retina/HiDPI screens." },
+    { "question": "What is the prefers-contrast media feature?", "answer": "It detects if the user prefers more or less contrast in their display settings, useful for accessibility adjustments." },
+    { "question": "How do you write a media query for print styles?", "answer": "@media print { ... } hides non-essential elements, adjusts colors, and ensures content flows well on paper." },
+    { "question": "What is the prefers-reduced-data media feature?", "answer": "It detects if the user prefers reduced data usage, allowing you to serve smaller images or fewer assets." },
+    { "question": "How do you exclude a media type in a media query?", "answer": "Use the not keyword: @media not screen { ... } applies to all non-screen media (e.g., print, speech)." },
+    { "question": "Can you use JavaScript to detect media queries?", "answer": "Yes, using window.matchMedia('(min-width: 768px)') to programmatically check and respond to media query changes." },
+    { "question": "How do media queries interact with CSS specificity?", "answer": "Media queries do not affect specificity. Rules inside media queries have the same specificity as outside; the later rule wins if conditions match." },
+    { "question": "What is the only keyword in media queries used for?", "answer": "The only keyword prevents older browsers that do not support media queries from applying the styles: @media only screen and (min-width: 768px)." },
+    { "question": "How do you write media queries for hover capability?", "answer": "@media (hover: hover) targets devices that support hovering (like mice), while (hover: none) targets touch devices." }
+  ],
+  "advanced": [
+    { "question": "How does the CSS media query cascade interact with framework-based responsive utilities?", "answer": "Framework classes often apply fixed breakpoint values. Custom media queries can override them if placed after and specificity matches or exceeds framework selectors." },
+    { "question": "What is the difference between prefers-reduced-motion and prefers-reduced-transparency?", "answer": "reduced-motion disables animations and transitions; reduced-transparency disables transparent/translucent effects for readability." },
+    { "question": "How do you handle media queries in CSS-in-JS solutions?", "answer": "CSS-in-JS libraries typically use template literals or helper functions to embed @media rules within component styles." },
+    { "question": "What is the interaction between media queries and CSS Container Queries?", "answer": "Container queries (@container) respond to container size, while media queries respond to viewport size. They can be combined for element-level and viewport-level responsive behavior." },
+    { "question": "How do you use range syntax in modern media queries?", "answer": "Modern syntax allows @media (width >= 768px) and (width <= 1200px) instead of min-width/max-width for more readable range expressions." },
+    { "question": "What are the performance considerations for too many media queries?", "answer": "Hundreds of media queries can increase stylesheet size and parse time. Grouping related breakpoints together improves maintainability and performance." },
+    { "question": "How does scripting media feature (prefers-scripting) work?", "answer": "It detects if JavaScript is enabled/disabled, allowing you to provide fallback styles for non-JS environments." },
+    { "question": "What is the forced-colors media feature?", "answer": "It detects if the user has forced colors mode enabled (like Windows High Contrast mode) for accessibility." },
+    { "question": "Can you use custom properties in media query conditions?", "answer": "No, custom properties (CSS variables) cannot be used in media query conditions because @media conditions are evaluated before custom property resolution." },
+    { "question": "How do you test media queries for dynamic viewport units like svw, lvw, dvw?", "answer": "Media queries still use the initial containing block (viewport) dimensions. Dynamic viewport units (dvh, dvw) respond to browser UI changes but media queries use the static viewport." }
+  ]
+}

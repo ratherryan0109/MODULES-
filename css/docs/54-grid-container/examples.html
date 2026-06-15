@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Container - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .grid { display: grid; gap: 8px; padding: 8px; background: #e2e8f0; border-radius: 6px; }
+    .grid > div { background: #06b6d4; color: white; padding: 16px; border-radius: 4px; text-align: center; font-weight: 600; }
+    .grid > div:nth-child(2n) { background: #0891b2; }
+    .grid > div:nth-child(3n) { background: #0e7490; }
+    .note { background: #f0fdfa; border-left: 4px solid #06b6d4; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.875rem; color: #475569; }
+  </style>
+</head>
+<body>
+  <h1>CSS Grid Container</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: display: grid</h2>
+    <p>A block-level grid container creates a grid formatting context. Children become grid items.</p>
+    <div class="demo-output">
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+    <pre><code>.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: display: inline-grid</h2>
+    <p>An inline-level grid sits inline with text. The grid container only takes the width of its content.</p>
+    <div class="demo-output">
+      <p>Text before
+        <span style="display:inline-grid;grid-template-columns:repeat(3,60px);gap:4px;padding:4px;background:#e2e8f0;border-radius:6px;vertical-align:middle;">
+          <span style="background:#06b6d4;color:white;padding:8px;border-radius:4px;text-align:center;font-weight:600;font-size:0.875rem">A</span>
+          <span style="background:#0891b2;color:white;padding:8px;border-radius:4px;text-align:center;font-weight:600;font-size:0.875rem">B</span>
+          <span style="background:#0e7490;color:white;padding:8px;border-radius:4px;text-align:center;font-weight:600;font-size:0.875rem">C</span>
+        </span>
+        text after — the grid flows inline.
+      </p>
+    </div>
+    <pre><code>.container {
+    display: inline-grid;
+    grid-template-columns: repeat(3, 60px);
+    gap: 4px;
+}</code></pre>
+    <div class="note">inline-grid is useful for small UI elements like icon rows or inline toolbars.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Explicit Columns with grid-template-columns</h2>
+    <p>Define column widths explicitly. Mixed units (px, fr, %) create flexible layouts.</p>
+    <div class="demo-output">
+      <div class="grid" style="grid-template-columns:120px 1fr 2fr">
+        <div>120px</div><div>1fr</div><div>2fr</div>
+      </div>
+    </div>
+    <pre><code>.container {
+    display: grid;
+    grid-template-columns: 120px 1fr 2fr;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Explicit Rows with grid-template-rows</h2>
+    <p>Control row heights. The classic auto / 1fr / auto pattern creates a sticky footer.</p>
+    <div class="demo-output">
+      <div class="grid" style="grid-template-columns:1fr; grid-template-rows:auto 1fr auto; min-height:250px">
+        <div style="background:#6366f1">Header — auto height</div>
+        <div style="background:#06b6d4">Main — 1fr fills remaining space</div>
+        <div style="background:#6366f1">Footer — auto height</div>
+      </div>
+    </div>
+    <pre><code>.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}</code></pre>
+    <div class="note">The 1fr row absorbs all leftover space, pushing the footer to the bottom.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: The repeat() Function</h2>
+    <p>repeat() avoids repetitive track definitions.</p>
+    <div class="demo-output">
+      <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div>
+      </div>
+    </div>
+    <pre><code>.container {
+    grid-template-columns: repeat(4, 1fr);
+    /* Same as: 1fr 1fr 1fr 1fr */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: minmax() for Responsive Tracks</h2>
+    <p>Each track has a minimum size and a maximum size. Combined with auto-fit, this creates responsive grids without media queries.</p>
+    <div class="demo-output">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+    <pre><code>.container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}</code></pre>
+    <div class="note">Resize the browser. Items wrap automatically. auto-fit collapses empty tracks so items expand to fill space.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Grid Gap</h2>
+    <p>The gap property controls spacing between grid items (shorthand for row-gap and column-gap).</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div style="flex:1;min-width:180px">
+          <p style="font-size:0.875rem;color:#64748b;margin-bottom:4px">gap: 4px (tight)</p>
+          <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:4px">
+            <div>1</div><div>2</div><div>3</div><div>4</div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:180px">
+          <p style="font-size:0.875rem;color:#64748b;margin-bottom:4px">gap: 16px (moderate)</p>
+          <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:16px">
+            <div>1</div><div>2</div><div>3</div><div>4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.tight    { gap: 4px; }
+.moderate { gap: 16px; }</code></pre>
+  </div>
+</body>
+</html>

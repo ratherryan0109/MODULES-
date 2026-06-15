@@ -1,0 +1,147 @@
+{
+    "module": "34-css-image-gallery",
+    "title": "CSS Image Gallery",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "Which CSS property prevents image distortion when using a fixed height in a gallery?",
+            "options": ["object-fit: cover", "background-size: cover", "overflow: hidden", "display: block"],
+            "correctAnswer": 0,
+            "explanation": "object-fit: cover ensures the image fills the container while maintaining its aspect ratio, cropping excess instead of stretching."
+        },
+        {
+            "id": 2,
+            "question": "What Grid value creates responsive columns without media queries?",
+            "options": ["repeat(auto-fill, minmax(200px, 1fr))", "grid-template-columns: 1fr 1fr 1fr", "display: flex; flex-wrap: wrap", "repeat(4, 1fr)"],
+            "correctAnswer": 0,
+            "explanation": "repeat(auto-fill, minmax(200px, 1fr)) creates as many columns as fit, each at least 200px, automatically adjusting without media queries."
+        },
+        {
+            "id": 3,
+            "question": "What attribute enables native lazy loading for gallery images?",
+            "options": ["loading='lazy'", "lazy='true'", "async='true'", "defer='true'"],
+            "correctAnswer": 0,
+            "explanation": "loading='lazy' defers loading of off-screen images until the user scrolls near them, improving initial page load performance."
+        },
+        {
+            "id": 4,
+            "question": "Which CSS property should you use for smooth hover animations in a gallery?",
+            "options": ["transition", "animation", "@keyframes", "transform: smooth"],
+            "correctAnswer": 0,
+            "explanation": "The transition property enables smooth interpolation between states on hover, such as transform: scale() for zoom effects."
+        },
+        {
+            "id": 5,
+            "question": "What is the accessibility requirement for gallery images?",
+            "options": ["All images must have alt text", "All images must have captions", "All images must be lazy loaded", "All images must be the same size"],
+            "correctAnswer": 0,
+            "explanation": "Every image must have descriptive alt text for screen readers. This is a fundamental accessibility and HTML specification requirement."
+        },
+        {
+            "id": 6,
+            "question": "What is the difference between auto-fill and auto-fit in CSS Grid for galleries?",
+            "options": ["No difference", "auto-fill keeps empty tracks; auto-fit collapses them", "auto-fit keeps empty tracks; auto-fill collapses them", "auto-fill is for columns only"],
+            "correctAnswer": 1,
+            "explanation": "auto-fill creates grid tracks even if empty, while auto-fit collapses empty tracks. auto-fit is usually preferred for galleries."
+        },
+        {
+            "id": 7,
+            "question": "Which CSS property creates a masonry-style layout?",
+            "options": ["display: masonry", "CSS columns with column-count", "grid-template-rows: masonry", "display: grid with auto-rows"],
+            "correctAnswer": 1,
+            "explanation": "CSS columns (column-count) create a masonry-like layout where items flow top-to-bottom in columns. CSS Grid masonry is not yet widely supported."
+        },
+        {
+            "id": 8,
+            "question": "What should you set on image containers when using transform: scale() for hover zoom?",
+            "options": ["overflow: hidden", "position: relative", "z-index: 1", "display: inline-block"],
+            "correctAnswer": 0,
+            "explanation": "overflow: hidden on the container prevents the zoomed image from overflowing its boundaries, keeping the layout clean."
+        },
+        {
+            "id": 9,
+            "question": "Which element is best for semantically grouping an image with its caption?",
+            "options": ["div", "figure and figcaption", "section", "article"],
+            "correctAnswer": 1,
+            "explanation": "The <figure> element with <figcaption> provides semantic grouping of images with their captions, improving accessibility and SEO."
+        },
+        {
+            "id": 10,
+            "question": "What CSS property prevents cumulative layout shift (CLS) in image galleries?",
+            "options": ["aspect-ratio", "object-fit", "display: grid", "max-width: 100%"],
+            "correctAnswer": 0,
+            "explanation": "aspect-ratio reserves the correct amount of vertical space before the image loads, preventing layout shifts that cause Cumulative Layout Shift (CLS)."
+        },
+        {
+            "id": 11,
+            "question": "How can you make gallery images focusable for keyboard navigation?",
+            "options": ["Add tabindex='0' to images", "Wrap images in anchor tags", "Use JavaScript only", "Images are focusable by default"],
+            "correctAnswer": 0,
+            "explanation": "Adding tabindex='0' makes non-interactive elements like images focusable via keyboard, allowing keyboard users to navigate through gallery items."
+        },
+        {
+            "id": 12,
+            "question": "What image format provides the best compression for web galleries?",
+            "options": ["JPEG", "PNG", "WebP with JPEG fallback", "GIF"],
+            "correctAnswer": 2,
+            "explanation": "WebP offers 25-35% smaller file sizes than JPEG with similar quality. Using WebP with a JPEG fallback ensures broad browser compatibility."
+        },
+        {
+            "id": 13,
+            "question": "What is the purpose of the decoding='async' attribute on gallery images?",
+            "options": ["Decodes the image asynchronously to reduce main thread work", "Loads images in reverse order", "Decrypts the image", "Delays image decoding to after page load"],
+            "correctAnswer": 0,
+            "explanation": "decoding='async' allows the browser to decode the image off the main thread, reducing jank and improving perceived performance."
+        },
+        {
+            "id": 14,
+            "question": "Which property creates a caption overlay that slides up from the bottom on hover?",
+            "options": ["transform: translateY(100%) to translateY(0)", "opacity: 0 to 1", "height: 0 to auto", "max-height: 0 to 100%"],
+            "correctAnswer": 0,
+            "explanation": "translateY(100%) positions the caption below the image, transitioning to translateY(0) on hover to slide it up into view."
+        },
+        {
+            "id": 15,
+            "question": "What is a common issue with using CSS columns for masonry galleries?",
+            "options": ["Items overflow horizontally", "Items are ordered top-to-bottom, not left-to-right", "Columns don't work in browsers", "Items overlap each other"],
+            "correctAnswer": 1,
+            "explanation": "CSS columns fill items top-to-bottom in each column before moving to the next, which may not match the expected left-to-right reading order."
+        },
+        {
+            "id": 16,
+            "question": "What attribute provides responsive images at different viewport sizes?",
+            "options": ["srcset", "sizes", "Both srcset and sizes", "media"],
+            "correctAnswer": 2,
+            "explanation": "srcset lists different image file URLs for different resolutions, and sizes tells the browser which size to use at different viewport widths."
+        },
+        {
+            "id": 17,
+            "question": "Which CSS property applies a darkening effect to gallery images on hover?",
+            "options": ["filter: brightness(0.7)", "opacity: 0.7", "mix-blend-mode: darken", "background-blend-mode: darken"],
+            "correctAnswer": 0,
+            "explanation": "filter: brightness(0.7) darkens the image on hover, often combined with a caption overlay for better text readability."
+        },
+        {
+            "id": 18,
+            "question": "What gap value is recommended for grid galleries?",
+            "options": ["gap: 0", "gap: 8px to 16px", "gap: 4px", "gap: 32px"],
+            "correctAnswer": 1,
+            "explanation": "A gap of 8-16px provides sufficient spacing between gallery items without wasting too much space, balancing aesthetics and content density."
+        },
+        {
+            "id": 19,
+            "question": "What does content-visibility: auto do for gallery performance?",
+            "options": ["Defers rendering of off-screen gallery sections", "Makes images load faster", "Hides all images", "Changes image layout"],
+            "correctAnswer": 0,
+            "explanation": "content-visibility: auto defers rendering of off-screen sections until they are near the viewport, significantly improving initial page load performance."
+        },
+        {
+            "id": 20,
+            "question": "How should hover-only effects be handled for accessibility in image galleries?",
+            "options": ["They should be removed entirely", "They must also work with :focus", "They work automatically on mobile", "Keyboard users don't need them"],
+            "correctAnswer": 1,
+            "explanation": "Hover effects must also be triggered by :focus so keyboard users receive the same visual feedback when tabbing through gallery items."
+        }
+    ]
+}

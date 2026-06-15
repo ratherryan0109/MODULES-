@@ -1,0 +1,25 @@
+{
+  "module": "CSS 2D Transformations",
+  "challenges": [
+    {
+      "id": 1, "difficulty": "easy", "title": "Hover Card with Multiple Transforms",
+      "description": "Create a card that translates up, scales slightly, and adds shadow on hover.", "hint": "Combine translateY, scale, and box-shadow transition.", "expected_outcome": "Card lifts and enlarges on hover.", "solution": { "css": ".card { transition: transform 0.3s ease, box-shadow 0.3s ease; } .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }" }
+    },
+    {
+      "id": 2, "difficulty": "easy", "title": "Absolute Centering Challenge",
+      "description": "Center a 200x100 div perfectly in a 500x300 container using transforms.", "hint": "Use position absolute with top:50%, left:50%, and translate.", "expected_outcome": "Div is perfectly centered.", "solution": { "css": ".child { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 100px; }" }
+    },
+    {
+      "id": 3, "difficulty": "medium", "title": "Interactive Transform Chain",
+      "description": "Create an element where each click adds another transform effect (move, rotate, scale, skew).", "hint": "Use JavaScript to cycle through transform classes.", "expected_outcome": "Element cycles through transform stages.", "solution": { "css": ".s1 { transform: translateX(50px); } .s2 { transform: translateX(50px) rotate(45deg); } .s3 { transform: translateX(50px) rotate(45deg) scale(1.2); } .s4 { transform: translateX(50px) rotate(45deg) scale(1.2) skew(10deg); }" }
+    },
+    {
+      "id": 4, "difficulty": "medium", "title": "Transform Origin Selector",
+      "description": "Create 5 small boxes showing the same transform applied from different transform origins.", "hint": "Use scale(1.5) with transform-origin at different corners.", "expected_outcome": "Same scale applied from different pivot points.", "solution": { "css": ".box1 { transform-origin: center; } .box2 { transform-origin: top left; } .box3 { transform-origin: top right; } .box4 { transform-origin: bottom left; } .box5 { transform-origin: bottom right; } .box:hover { transform: scale(1.5); }" }
+    },
+    {
+      "id": 5, "difficulty": "hard", "title": "CSS Matrix Calculator",
+      "description": "Create a tool that shows the equivalent matrix() for a given set of transforms.", "hint": "Calculate combined matrix from translate, rotate, scale values.", "expected_outcome": "Matrix values update as transforms change.", "solution": { "css": "/* Complex JS solution needed to compute matrix multiplication */ .demo { transform: matrix(0.707, 0.707, -0.707, 0.707, 50, 0); /* rotate 45deg + translateX 50px */ }" }
+    }
+  ]
+}

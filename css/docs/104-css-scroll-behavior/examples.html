@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Scroll Behavior - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { color: #a6e3a1; margin-bottom: 0.5rem; }
+    .example-card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; }
+    .pre { font-family: monospace; background: #181825; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; white-space: pre-wrap; border-left: 3px solid #89b4fa; }
+    code { background: #45475a; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+
+    .content { max-width: 900px; margin: 0 auto; padding: 2rem; }
+    .nav-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 2rem; padding: 1rem; background: #313244; border-radius: 12px; border: 1px solid #45475a; position: sticky; top: 0; z-index: 10; }
+    .nav-bar a { padding: 8px 16px; background: #45475a; border-radius: 6px; color: #cdd6f4; text-decoration: none; font-size: 0.9rem; transition: background 0.2s; }
+    .nav-bar a:hover { background: #89b4fa; color: #1e1e2e; }
+
+    /* Example 1: Smooth sections */
+    .smooth-section { min-height: 300px; padding: 40px; margin-bottom: 16px; border-radius: 12px; scroll-margin-top: 80px; }
+    #sec1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+    #sec2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    #sec3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    #sec4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+
+    /* Example 2: Sidebar */
+    .layout { display: grid; grid-template-columns: 200px 1fr; gap: 20px; }
+    .sidebar { height: 300px; overflow-y: auto; scroll-behavior: smooth; background: #181825; border-radius: 8px; padding: 12px; }
+    .sidebar a { display: block; padding: 8px 12px; color: #cdd6f4; text-decoration: none; border-radius: 4px; }
+    .sidebar a:hover { background: #45475a; }
+    .content-area { height: 300px; overflow-y: auto; padding: 16px; background: #181825; border-radius: 8px; }
+    .content-area .item { min-height: 200px; padding: 20px; margin-bottom: 8px; border-radius: 8px; scroll-margin-top: 16px; }
+    .item:nth-child(1) { background: #45475a; }
+    .item:nth-child(2) { background: #585b70; }
+    .item:nth-child(3) { background: #45475a; }
+    .item:nth-child(4) { background: #585b70; }
+
+    /* Example 3: Back to top */
+    .long-content { height: 200px; overflow-y: auto; background: #181825; border-radius: 8px; padding: 16px; }
+    .long-content p { margin-bottom: 20px; }
+
+    /* Example 4: scroll-margin demo */
+    .fixed-header-demo { position: sticky; top: 0; background: rgba(49, 50, 68, 0.95); padding: 12px 20px; border-radius: 8px; border: 1px solid #45475a; z-index: 5; display: flex; align-items: center; gap: 12px; }
+    .fixed-header-demo a { color: #89b4fa; text-decoration: none; }
+    .fixed-header-demo .badge { background: #f38ba8; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; color: #1e1e2e; font-weight: 700; }
+    .demo-sections { margin-top: 16px; }
+    .demo-section { min-height: 200px; padding: 24px; margin-bottom: 8px; border-radius: 8px; scroll-margin-top: 60px; }
+    .demo-section:nth-child(1) { background: #45475a; }
+    .demo-section:nth-child(2) { background: #585b70; }
+    .demo-section:nth-child(3) { background: #45475a; }
+
+    /* Example 5: Toggle smooth/instant */
+    .toggle-demo { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+    .toggle-btn { padding: 8px 16px; border: 2px solid #45475a; border-radius: 6px; cursor: pointer; background: #181825; color: #cdd6f4; font-weight: 600; transition: all 0.2s; }
+    .toggle-btn.active { border-color: #89b4fa; background: #89b4fa; color: #1e1e2e; }
+    .scroll-box { height: 200px; overflow-y: auto; background: #181825; border-radius: 8px; padding: 16px; }
+    .scroll-box p { margin-bottom: 16px; padding: 12px; background: #45475a; border-radius: 6px; scroll-margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="content" style="scroll-behavior: smooth;">
+    <h1>CSS Scroll Behavior — Interactive Examples</h1>
+
+    <div class="example-card">
+      <h2>1. Smooth Anchor Navigation</h2>
+      <p>Click the navigation links to see smooth scrolling between sections (global <code>scroll-behavior: smooth</code> is active).</p>
+      <div class="nav-bar">
+        <a href="#sec1">→ Section 1</a>
+        <a href="#sec2">→ Section 2</a>
+        <a href="#sec3">→ Section 3</a>
+        <a href="#sec4">→ Section 4</a>
+      </div>
+      <div id="sec1" class="smooth-section"><h2>Section 1</h2><p>Scrolled smoothly into view!</p></div>
+      <div id="sec2" class="smooth-section"><h2>Section 2</h2><p>Notice the smooth animation between sections.</p></div>
+      <div id="sec3" class="smooth-section"><h2>Section 3</h2><p>The browser controls timing for optimal performance.</p></div>
+      <div id="sec4" class="smooth-section"><h2>Section 4</h2><p>Fast, fluid, and accessible.</p></div>
+      <div class="pre">html {\n  scroll-behavior: smooth;\n}</div>
+    </div>
+
+    <div class="example-card">
+      <h2>2. Container-Specific Smooth Scroll</h2>
+      <p>The sidebar navigation and content area both have <code>scroll-behavior: smooth</code> applied independently.</p>
+      <div class="layout">
+        <div class="sidebar">
+          <a href="#item1">Item 1</a>
+          <a href="#item2">Item 2</a>
+          <a href="#item3">Item 3</a>
+          <a href="#item4">Item 4</a>
+        </div>
+        <div class="content-area" id="containerScroll">
+          <div class="item" id="item1"><strong>Item 1</strong><br>Content with smooth scroll</div>
+          <div class="item" id="item2"><strong>Item 2</strong><br>Scrolling inside a container</div>
+          <div class="item" id="item3"><strong>Item 3</strong><br>Works with any overflow container</div>
+          <div class="item" id="item4"><strong>Item 4</strong><br>Last item in the list</div>
+        </div>
+      </div>
+      <div class="pre">.sidebar, .content-area {\n  overflow-y: auto;\n  scroll-behavior: smooth;\n}</div>
+    </div>
+
+    <div class="example-card">
+      <h2>3. scroll-margin for Fixed Headers</h2>
+      <div class="fixed-header-demo">
+        <span style="font-weight:700;">📌 Fixed Header</span>
+        <span class="badge">scroll-margin-top: 60px</span>
+        <a href="#demo1">Demo 1</a>
+        <a href="#demo2">Demo 2</a>
+        <a href="#demo3">Demo 3</a>
+      </div>
+      <p>Each section has <code>scroll-margin-top: 60px</code> so the fixed header doesn't cover the content.</p>
+      <div class="demo-sections">
+        <div class="demo-section" id="demo1"><h3>Demo Section 1</h3><p>Notice the 60px offset below the sticky bar.</p></div>
+        <div class="demo-section" id="demo2"><h3>Demo Section 2</h3><p>scroll-margin creates a buffer zone.</p></div>
+        <div class="demo-section" id="demo3"><h3>Demo Section 3</h3><p>All sections have consistent offset.</p></div>
+      </div>
+      <div class="pre">section[id] {\n  scroll-margin-top: 60px; /* Matches header height */\n}</div>
+    </div>
+
+    <div class="example-card">
+      <h2>4. JavaScript scrollIntoView() Integration</h2>
+      <p>Use JavaScript to programmatically scroll to items within a container.</p>
+      <div class="toggle-demo">
+        <button class="toggle-btn active" id="scrollToTop" onclick="scrollToItem(0)">Scroll to Top</button>
+        <button class="toggle-btn" onclick="scrollToItem(1)">Scroll to Item 2</button>
+        <button class="toggle-btn" onclick="scrollToItem(3)">Scroll to Item 4</button>
+      </div>
+      <div class="long-content" id="jsScrollContainer">
+        <p id="jsItem0" style="background:#667eea;color:white;"><strong>Item 1</strong> — Top of container</p>
+        <p id="jsItem1" style="background:#764ba2;color:white;"><strong>Item 2</strong> — scrollIntoView({ behavior: 'smooth' })</p>
+        <p id="jsItem2" style="background:#f093fb;color:white;"><strong>Item 3</strong> — Native smooth scroll</p>
+        <p id="jsItem3" style="background:#f5576c;color:white;"><strong>Item 4</strong> — Bottom item</p>
+      </div>
+      <div class="pre">element.scrollIntoView({\n  behavior: 'smooth',\n  block: 'start'\n});</div>
+    </div>
+
+    <div class="example-card">
+      <h2>5. prefers-reduced-motion Override</h2>
+      <p>When users prefer reduced motion, smooth scrolling should be disabled.</p>
+      <div class="pre">@media (prefers-reduced-motion: reduce) {\n  html {\n    scroll-behavior: auto;\n  }\n  * {\n    animation-duration: 0.01ms !important;\n    transition-duration: 0.01ms !important;\n  }\n}</div>
+    </div>
+  </div>
+
+  <script>
+    function scrollToItem(index) {
+      const container = document.getElementById('jsScrollContainer');
+      const item = document.getElementById('jsItem' + index);
+      if (item) {
+        item.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
+  </script>
+</body>
+</html>

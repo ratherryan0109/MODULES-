@@ -1,0 +1,128 @@
+{
+    "beginner": [
+        {
+            "question": "What is a WebSocket and how does it differ from HTTP?",
+            "answer": "WebSocket is a protocol that provides full-duplex communication over a single TCP connection. Unlike HTTP's request-response model where the client must initiate every exchange, WebSocket allows both client and server to send messages at any time. HTTP connections are short-lived and closed after each response, while WebSocket maintains a persistent connection for ongoing real-time communication."
+        },
+        {
+            "question": "How do you create a WebSocket connection in JavaScript?",
+            "answer": "Create a new WebSocket instance with the server URL: const socket = new WebSocket('wss://example.com/ws'). The URL scheme must be ws:// (unsecured) or wss:// (secured). The connection attempt begins immediately upon instantiation."
+        },
+        {
+            "question": "What are the four WebSocket events and when do they fire?",
+            "answer": "The four events are: (1) 'open' — fires when the connection is successfully established, (2) 'message' — fires when data is received from the server, (3) 'close' — fires when the connection closes, and (4) 'error' — fires when an error occurs. These can be handled via onopen, onmessage, onclose, onerror properties or addEventListener."
+        },
+        {
+            "question": "What is the WebSocket readyState property and its possible values?",
+            "answer": "readyState indicates the connection state: 0 = CONNECTING (not yet open), 1 = OPEN (ready to communicate), 2 = CLOSING (in the process of closing), 3 = CLOSED (connection closed or failed). Always check readyState === WebSocket.OPEN before calling send()."
+        },
+        {
+            "question": "How do you close a WebSocket connection gracefully?",
+            "answer": "Call socket.close(code, reason) where code is a status code (default 1000 for normal closure) and reason is an optional string explaining why. The server receives a close event and both sides can clean up. After close() is called, readyState transitions to CLOSING then CLOSED."
+        },
+        {
+            "question": "What types of data can be sent through a WebSocket?",
+            "answer": "WebSocket.send() accepts three types: strings (text/data), ArrayBuffer (binary), and Blob (binary). For structured data like objects, serialize with JSON.stringify() before sending and parse with JSON.parse() when receiving."
+        },
+        {
+            "question": "What is the difference between ws:// and wss://?",
+            "answer": "ws:// is the unsecured WebSocket protocol (like HTTP). wss:// is the secured WebSocket protocol (like HTTPS) which uses TLS/SSL encryption. Always use wss:// in production to prevent man-in-the-middle attacks and ensure data privacy."
+        },
+        {
+            "question": "What happens if a WebSocket connection drops unexpectedly?",
+            "answer": "The 'close' event fires with code 1006 (Abnormal Closure) or similar. The browser does not automatically reconnect. Developers must implement reconnection logic by listening for the close event and creating a new WebSocket connection, possibly with exponential backoff."
+        },
+        {
+            "question": "Can WebSocket be used in Service Workers?",
+            "answer": "Yes, WebSocket connections can be established from Service Workers. This allows background tabs to maintain real-time connections even when the page is not active, enabling features like push notifications and background data sync."
+        },
+        {
+            "question": "What are some common use cases for WebSockets?",
+            "answer": "Common use cases include: real-time chat applications, live sports scores and stock tickers, online multiplayer games, collaborative document editing, live notifications, IoT device communication, real-time dashboards and monitoring tools, and live-streaming data feeds."
+        }
+    ],
+    "intermediate": [
+        {
+            "question": "How do you implement reconnection logic with exponential backoff for WebSockets?",
+            "answer": "Listen for the close event, then attempt to reconnect with increasing delays: baseDelay * 2^attemptCount. Add random jitter to prevent thundering herd. Cap the maximum delay (e.g., 30 seconds). Track retry count and give up after a maximum number of attempts. Optionally, implement a health check endpoint."
+        },
+        {
+            "question": "What are WebSocket subprotocols and how do you use them?",
+            "answer": "Subprotocols are application-level protocols negotiated during the WebSocket handshake. Pass an array of protocol names as the second argument to the constructor: new WebSocket('ws://server.com', ['json', 'msgpack']). The server selects one supported protocol. This allows the same WebSocket endpoint to support multiple message formats."
+        },
+        {
+            "question": "How do you send and receive binary data over WebSockets?",
+            "answer": "Set binaryType to 'arraybuffer' (or keep 'blob' default). Send binary data as ArrayBuffer or Blob. When receiving, check if event.data is instanceof ArrayBuffer or Blob. For performance-critical apps, use Transferable objects and typed arrays (Uint8Array, Float64Array) backed by ArrayBuffer."
+        },
+        {
+            "question": "What is the Sec-WebSocket-Key and how is it used in the handshake?",
+            "answer": "The client generates a random 16-byte value, base64-encodes it, and sends it as Sec-WebSocket-Key header. The server appends a fixed GUID (258EAFA5-E914-47DA-95CA-C5AB0DC85B11), computes the SHA-1 hash, base64-encodes it, and returns it as Sec-WebSocket-Accept. This proves the server understands WebSocket protocol."
+        },
+        {
+            "question": "How do you handle large number of concurrent WebSocket connections?",
+            "answer": "On the client side, browsers limit connections per domain (typically 6-10). Strategies include: (1) using multiple subdomains to increase limits, (2) multiplexing multiple logical streams over one connection, (3) using HTTP/2 Server Push for some data, (4) implementing connection pooling, (5) using WebSocket over HTTP/2 which supports multiplexing."
+        },
+        {
+            "question": "What is a WebSocket ping/pong heartbeat and why is it needed?",
+            "answer": "Heartbeat is a keepalive mechanism to detect dead connections. The client sends periodic 'ping' messages; the server responds with 'pong'. If no pong is received within a timeout, the client assumes the connection is dead and initiates reconnection. This prevents stale connections from consuming resources."
+        },
+        {
+            "question": "How do you authenticate WebSocket connections?",
+            "answer": "Several approaches: (1) Pass authentication tokens as query parameters during connection: new WebSocket('ws://server.com?token=abc'), (2) Use the Sec-WebSocket-Protocol header to send auth credentials, (3) Authenticate via HTTP first, then pass a session token, (4) Send authentication message as the first message after connection opens."
+        },
+        {
+            "question": "What are the security concerns with WebSockets?",
+            "answer": "Key concerns include: (1) Cross-Site WebSocket Hijacking (CSWSH) — malicious sites can connect to WebSocket endpoints using the user's credentials, (2) Same-Origin Policy does not restrict WebSocket connections, (3) Always use wss:// in production, (4) Validate Origin header on the server side, (5) Implement authentication and authorization for all messages, (6) Be careful with proxy and firewall compatibility."
+        },
+        {
+            "question": "How would you design a WebSocket message protocol for a chat application?",
+            "answer": "Design a structured message format: { type: 'message'|'join'|'leave'|'typing', payload: { text, sender, timestamp }, id: unique_id, version: 1 }. Implement server-side routing by type field. Include acknowledgment (ACK) messages. Handle reconnection by sending last known message ID so the server can replay missed messages. Use binary formats like Protocol Buffers for high-throughput scenarios."
+        },
+        {
+            "question": "What is backpressure in WebSocket communication and how do you handle it?",
+            "answer": "Backpressure occurs when the client sends data faster than the server can process it. Symptoms include increasing memory usage and latency. Handle it by: (1) buffering messages with a queue limit, (2) monitoring the bufferedAmount property (socket.bufferedAmount), (3) implementing flow control by pausing sends when bufferedAmount exceeds a threshold, (4) using server-side rate limiting."
+        }
+    ],
+    "advanced": [
+        {
+            "question": "How does WebSocket multiplexing work and what are the implementation approaches?",
+            "answer": "Multiplexing allows multiple logical channels over one WebSocket connection. Approaches: (1) Application-level multiplexing — prefix each message with a channel ID, route on the server side, (2) Using WebSocket over HTTP/2 which natively supports multiplexed streams, (3) Using extensions like PERMESSAGE-DEFLATE with multiplexing. Libraries like SockJS implement this. Each 'channel' maintains its own message queue and event handlers."
+        },
+        {
+            "question": "Explain how WebSocket compression (permessage-deflate) works and its trade-offs.",
+            "answer": "The permessage-deflate extension compresses WebSocket messages using DEFLATE algorithm. Each message is compressed independently. Benefits: reduces bandwidth usage (especially for text-based protocols like JSON). Trade-offs: increased CPU usage for compression/decompression, added latency per message, more complex implementation. Enable by negotiating the extension during handshake: new WebSocket(url, { protocols, perMessageDeflate: true })."
+        },
+        {
+            "question": "How would you implement a WebSocket-based distributed system with horizontal scaling?",
+            "answer": "Use a publish/subscribe pattern with a message broker (Redis, RabbitMQ, Kafka). Each WebSocket server instance subscribes to relevant channels. When a message is received, the server publishes it to the broker, which distributes to all instances. Use consistent hashing to route user connections to specific instances. Implement sticky sessions (load balancer affinity) or a shared session store for state. For broadcasting, use the broker fan-out pattern."
+        },
+        {
+            "question": "What is the WebSocket lifecycle in terms of TCP and how does it handle network interruptions?",
+            "answer": "The WebSocket lifecycle: TCP connect → HTTP upgrade handshake → bidirectional message exchange → close frame exchange → TCP close. WebSocket relies on TCP for delivery. If the TCP connection breaks (e.g., network timeout, WiFi drop), the WebSocket eventually detects it through failed TCP keepalives. The OS may take 2+ hours to detect a dead TCP socket, which is why application-level heartbeats are essential."
+        },
+        {
+            "question": "How do you handle WebSocket reconnection with message delivery guarantees?",
+            "answer": "Implement an at-least-once delivery pattern: (1) Each message has a unique monotonically increasing ID, (2) Client maintains a queue of unacknowledged messages, (3) Server tracks last processed message ID per client, (4) On reconnect, client sends last received ACK ID, (5) Server replays missed messages from its buffer, (6) Client deduplicates on message ID. For exactly-once delivery, add a deduplication cache on the server."
+        },
+        {
+            "question": "What are the browser limitations for WebSocket connections and how can you work around them?",
+            "answer": "Browser limitations: (1) Connection limit per domain (Chrome: 6, Firefox: 6, Safari: 6), (2) No cross-origin restrictions (same-origin policy doesn't apply), (3) No WebSocket in all environments (some corporate proxies block ws://). Workarounds: use multiple subdomains, implement connection pooling, fall back to HTTP long-polling or SSE, use a WebSocket-to-HTTP bridge service."
+        },
+        {
+            "question": "How does WebSocket behave with HTTP/2 and what are the implications?",
+            "answer": "HTTP/2 has its own server push mechanism but WebSocket is a separate protocol. RFC 8441 defines WebSocket over HTTP/2, allowing WebSocket connections to be multiplexed over the same HTTP/2 connection. Benefits: reduced connection overhead, better multiplexing. This is supported in modern browsers and enables efficient use of network resources when maintaining multiple WebSocket connections."
+        },
+        {
+            "question": "What are the alternative protocols to WebSocket and when would you choose them?",
+            "answer": "Alternatives: (1) Server-Sent Events (SSE) — unidirectional server-to-client, simpler, uses standard HTTP, auto-reconnects. Choose when only server push is needed. (2) WebRTC — peer-to-peer, UDP-based. Choose for low-latency video/audio/data channels. (3) HTTP/2 Server Push — for pushing resources, not real-time data. (4) Long-polling — older technique, choose for maximum compatibility. (5) gRPC-Web — for streaming RPCs with Protocol Buffers."
+        },
+        {
+            "question": "How do you test and debug WebSocket connections in a CI/CD pipeline?",
+            "answer": "Use: (1) wscat or websocat CLI tools for manual testing, (2) Autobahn WebSocket Test Suite for protocol compliance, (3) Custom integration tests using ws or uWebSockets.js test clients, (4) Browser DevTools 'Network' tab records WebSocket frames, (5) Wireshark for low-level packet inspection, (6) Load testing with artillery.io or k6 which support WebSocket, (7) Mock WebSocket servers in unit tests to simulate various scenarios."
+        },
+        {
+            "question": "How would you design a WebSocket API for a real-time collaborative editing application (like Google Docs)?",
+            "answer": "Use Operational Transformation (OT) or Conflict-Free Replicated Data Types (CRDTs) over WebSocket. Protocol design: (1) Each operation has a type (insert, delete, format), position, and content, (2) Operations include vector clocks or Lamport timestamps for ordering, (3) Server broadcasts operations to all connected clients, (4) Clients apply operations to their local document state, (5) Implement acknowledgment tracking for each client, (6) Handle reconnection by requesting missed operations from the server using the last applied operation ID, (7) Use a 'cursor' message type for real-time cursor position sharing, (8) Batch operations during high-frequency typing to reduce message overhead."
+        }
+    ]
+}

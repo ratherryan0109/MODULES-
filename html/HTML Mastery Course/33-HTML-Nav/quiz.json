@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What does the HTML <nav> element represent?",
+    "options": ["A network connection", "A section of navigation links", "A navigation timeline", "A network protocol"],
+    "answer": "A section of navigation links",
+    "explanation": "The <nav> element represents a section of a page that links to other pages or to parts within the current page."
+  },
+  {
+    "question": "What is the implicit ARIA role of the <nav> element?",
+    "options": ["navigation", "nav", "menu", "list"],
+    "answer": "navigation",
+    "explanation": "The <nav> element has an implicit ARIA role of 'navigation', making it a landmark for assistive technologies."
+  },
+  {
+    "question": "Which attribute should be used to differentiate multiple <nav> elements?",
+    "options": ["id", "class", "aria-label", "title"],
+    "answer": "aria-label",
+    "explanation": "Use aria-label to give each <nav> a unique label (e.g., 'Main navigation', 'Footer navigation') so screen readers can distinguish them."
+  },
+  {
+    "question": "Which HTML element is best paired with <nav> for structuring links?",
+    "options": ["<div>", "<span>", "<ul> or <ol>", "<p>"],
+    "answer": "<ul> or <ol>",
+    "explanation": "Using <ul> (or <ol>) inside <nav> provides proper structure, hierarchy, and accessibility for navigation links."
+  },
+  {
+    "question": "What attribute marks the current page in a navigation list?",
+    "options": ["active", "selected", "aria-current", "current"],
+    "answer": "aria-current",
+    "explanation": "aria-current=\"page\" indicates the current page within a navigation menu, helping screen reader users understand their location."
+  },
+  {
+    "question": "Which navigation type should use <ol> instead of <ul>?",
+    "options": ["Main navigation", "Sidebar navigation", "Breadcrumb navigation", "Footer navigation"],
+    "answer": "Breadcrumb navigation",
+    "explanation": "Breadcrumb trails represent a sequence of pages, so the order matters. Use <ol> (ordered list) for breadcrumbs."
+  },
+  {
+    "question": "Can a page have multiple <nav> elements?",
+    "options": ["No, only one per page", "Yes, with different aria-labels", "Only if nested", "Only in HTML5"],
+    "answer": "Yes, with different aria-labels",
+    "explanation": "A page can have multiple <nav> elements, each representing a different navigation section. Use distinct aria-label values to differentiate them."
+  },
+  {
+    "question": "Should ALL links on a page be wrapped in <nav>?",
+    "options": ["Yes", "No, only major navigation blocks", "Only links in the header", "Only external links"],
+    "answer": "No, only major navigation blocks",
+    "explanation": "Only major navigation blocks should use <nav>. Individual links within content, footers, or sidebars should not all be wrapped in <nav>."
+  },
+  {
+    "question": "Can a <nav> element contain non-link content?",
+    "options": ["Yes, any content", "No, it should only contain navigation links", "Only headings", "Only images"],
+    "answer": "No, it should only contain navigation links",
+    "explanation": "<nav> should primarily contain links for navigation. Including non-navigation content reduces semantic clarity."
+  },
+  {
+    "question": "What is the correct way to structure a breadcrumb navigation?",
+    "options": ["<nav><ul><li>Home</li><li>Products</li></ul></nav>", "<nav><ol><li><a href='/'>Home</a></li><li aria-current='page'>Product</li></ol></nav>", "<div class='breadcrumb'>Home > Product</div>", "<breadcrumb>Home > Product</breadcrumb>"],
+    "answer": "<nav><ol><li><a href='/'>Home</a></li><li aria-current='page'>Product</li></ol></nav>",
+    "explanation": "Breadcrumbs should use <nav> with <ol> (ordered list) and aria-current on the current page item."
+  },
+  {
+    "question": "Can <nav> be placed inside <footer>?",
+    "options": ["No, never", "Yes, for a significant collection of footer links", "Only in HTML5", "Only with ARIA roles"],
+    "answer": "Yes, for a significant collection of footer links",
+    "explanation": "A <nav> can appear in the <footer> if it contains a meaningful collection of footer navigation links."
+  },
+  {
+    "question": "What is the purpose of aria-label on a <nav> element?",
+    "options": ["To style the navigation", "To provide a unique accessible name for the navigation", "To add a tooltip", "To change the navigation direction"],
+    "answer": "To provide a unique accessible name for the navigation",
+    "explanation": "aria-label provides a descriptive label that screen readers announce, helping users identify and navigate to the correct navigation region."
+  },
+  {
+    "question": "Which element should NOT be a child of <nav>?",
+    "options": ["<ul>", "<a>", "<nav>", "<li>"],
+    "answer": "<nav>",
+    "explanation": "<nav> cannot be nested inside another <nav> element. Navigation should not contain sub-navigation as a direct child."
+  },
+  {
+    "question": "What is a common pattern for mobile navigation?",
+    "options": ["Breadcrumb", "Hamburger menu with toggle", "Pagination", "Footer links"],
+    "answer": "Hamburger menu with toggle",
+    "explanation": "Hamburger menus (three-line icon that expands navigation) are the most common mobile navigation pattern."
+  },
+  {
+    "question": "Does <nav> create a section in the document outline?",
+    "options": ["Yes", "No", "Only with <h1> inside", "Only at page level"],
+    "answer": "Yes",
+    "explanation": "Like <section> and <article>, <nav> is a sectioning element that creates a new section in the document outline."
+  },
+  {
+    "question": "What should you use for pagination controls?",
+    "options": ["<div> with buttons", "<nav aria-label='Pagination'><ul><li><a>...</a></li></ul></nav>", "<pagination> element", "<table> with links"],
+    "answer": "<nav aria-label='Pagination'><ul><li><a>...</a></li></ul></nav>",
+    "explanation": "Pagination is a form of navigation and should use <nav> with an unordered list of page links."
+  },
+  {
+    "question": "What is the difference between putting <nav> inside <header> vs outside?",
+    "options": ["No difference", "Inside header is for primary nav, outside can be secondary", "Only inside is valid", "Only outside is valid"],
+    "answer": "Inside header is for primary nav, outside can be secondary",
+    "explanation": "Primary navigation typically goes inside the page <header>. Secondary navigation (sidebar, footer) can appear outside the header."
+  },
+  {
+    "question": "How do screen readers announce a <nav> element?",
+    "options": ["They ignore it", "They announce 'navigation region' and the aria-label", "They read all links without context", "They announce 'menu'"],
+    "answer": "They announce 'navigation region' and the aria-label",
+    "explanation": "Screen readers announce 'navigation region' (or 'navigation landmark') followed by the aria-label value, allowing users to jump to navigation."
+  },
+  {
+    "question": "Should social media links in a sidebar use <nav>?",
+    "options": ["Yes, always", "Only if they are the primary navigation", "No, they are supplementary content", "Only in the footer"],
+    "answer": "Only if they are the primary navigation",
+    "explanation": "Social media links are typically supplementary content and do not need <nav>. Use <nav> only for major navigation blocks."
+  },
+  {
+    "question": "What is the best way to indicate a disabled navigation link?",
+    "options": ["Remove the <a> tag", "Use aria-disabled='true' on the <a>", "Use CSS pointer-events: none", "Replace with a <span>"],
+    "answer": "Use aria-disabled='true' on the <a>",
+    "explanation": "aria-disabled='true' communicates to assistive technologies that the link is disabled while keeping it in the tab order for context."
+  }
+]

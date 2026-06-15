@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Rows - Examples</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:#ff6b6b;font-size:28px;margin-bottom:5px}
+h2{color:#4ecdc4;margin:30px 0 10px;font-size:20px;border-bottom:1px solid #333;padding-bottom:5px}
+h3{color:#ffd93d;margin:15px 0 8px;font-size:16px}
+code{background:#2d2d44;padding:2px 6px;border-radius:3px;color:#ffd93d;font-size:14px}
+pre{background:#2d2d44;padding:15px;border-radius:6px;margin:10px 0;overflow-x:auto}
+.demo-box{background:#16213e;padding:15px;border-radius:8px;margin:15px 0}
+.demo-box p{color:#aaa;font-size:14px;margin-bottom:8px}
+.grid{display:grid;gap:8px;padding:10px;background:#2d2d44;border-radius:8px;margin:8px 0}
+.grid>div{background:#ff6b6b;padding:15px;border-radius:4px;text-align:center;font-weight:bold;font-size:14px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.grid>div:nth-child(2n){background:#4ecdc4;color:#1a1a2e}
+.grid>div:nth-child(3n){background:#45b7d1}
+.grid>div:nth-child(5n){background:#a29bfe}
+.note{background:#2d2d44;border-left:4px solid #ffd93d;padding:10px 15px;margin:10px 0;border-radius:0 6px 6px 0;font-size:14px;color:#ccc}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Grid Rows Examples</h1>
+<p style="color:#aaa;margin-bottom:20px">Interactive examples of <code>grid-template-rows</code> with different sizing strategies</p>
+
+<div class="demo-box">
+<h2>1. Fixed Height Rows</h2>
+<p>Exact pixel heights for specific row tracks.</p>
+<div class="grid" style="grid-template-rows:80px 120px 60px;grid-template-columns:1fr;min-height:280px">
+<div style="background:#6c5ce7;">Row 1: 80px</div>
+<div style="background:#4ecdc4;color:#1a1a2e;">Row 2: 120px</div>
+<div style="background:#6c5ce7;">Row 3: 60px</div>
+</div>
+<pre><code>.container {
+    grid-template-rows: 80px 120px 60px;
+    grid-template-columns: 1fr;
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>2. The Classic: auto 1fr auto (Sticky Footer)</h2>
+<p>Header and footer size to their content; main fills all remaining space.</p>
+<div class="grid" style="grid-template-rows:auto 1fr auto;grid-template-columns:1fr;min-height:300px">
+<div style="background:#6c5ce7;padding:20px;">Header (auto height)</div>
+<div style="background:#4ecdc4;color:#1a1a2e;padding:30px;">Main Content — 1fr fills all remaining vertical space. Resize me!</div>
+<div style="background:#6c5ce7;padding:15px;">Footer (auto height) — sticks to bottom</div>
+</div>
+<pre><code>.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    min-height: 400px; /* Or 100vh */
+}
+/* Auto rows fit content; 1fr fills leftover space */</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>3. Equal Height Rows with repeat()</h2>
+<p>Using <code>repeat(3, 1fr)</code> to create 3 equal-height rows.</p>
+<div class="grid" style="grid-template-rows:repeat(3,1fr);grid-template-columns:1fr;height:300px">
+<div>Row 1: 1fr</div>
+<div>Row 2: 1fr</div>
+<div>Row 3: 1fr</div>
+</div>
+<pre><code>.container {
+    grid-template-rows: repeat(3, 1fr);
+    height: 300px; /* Required: fr needs a reference height */
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>4. Spanning Rows with grid-row</h2>
+<p>Items spanning multiple rows for vertical emphasis.</p>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,80px);gap:8px">
+<div style="grid-row:span 3;background:#6c5ce7;">Spans<br>3<br>Rows</div>
+<div>Item 2</div><div>Item 3</div>
+<div>Item 4</div><div>Item 5</div>
+<div style="background:#a29bfe;">Item 6</div>
+<div style="grid-row:span 2;background:#ffd93d;color:#1a1a2e;">Spans 2 Rows</div>
+<div>Item 8</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 80px);
+}
+.item-1 { grid-row: span 3; }  /* Spans all 3 rows vertically */
+.item-7 { grid-row: span 2; }  /* Spans 2 rows */</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>5. minmax() in Rows</h2>
+<p>Rows with a minimum height that can grow to 1fr.</p>
+<div class="grid" style="grid-template-rows:minmax(60px,1fr) minmax(100px,2fr) minmax(50px,1fr);grid-template-columns:1fr;min-height:300px">
+<div style="background:#6c5ce7;">minmax(60px, 1fr)<br>At least 60px, grows to fill</div>
+<div style="background:#4ecdc4;color:#1a1a2e;">minmax(100px, 2fr)<br>At least 100px, gets double space</div>
+<div style="background:#6c5ce7;">minmax(50px, 1fr)<br>At least 50px, grows to fill</div>
+</div>
+<pre><code>.container {
+    grid-template-rows: minmax(60px, 1fr) minmax(100px, 2fr) minmax(50px, 1fr);
+    min-height: 400px;
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>6. Implicit Rows with grid-auto-rows</h2>
+<p>Items beyond the explicit rows get sized by <code>grid-auto-rows</code>.</p>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,60px);grid-auto-rows:40px">
+<div>Exp 1</div><div>Exp 2</div><div>Exp 3</div>
+<div>Exp 4</div><div>Exp 5</div><div>Exp 6</div>
+<div style="background:#a29bfe;">Imp 7 (40px)</div>
+<div style="background:#a29bfe;">Imp 8 (40px)</div>
+<div style="background:#a29bfe;">Imp 9 (40px)</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 60px);  /* 2 explicit rows */
+    grid-auto-rows: 40px;                 /* All implicit rows */
+}
+/* First 2 rows: 60px. Remaining rows: 40px each */</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>7. Mixed Row Layout with Spanning</h2>
+<p>Real-world pattern: banner (auto), content grid (1fr), metadata row.</p>
+<div class="grid" style="grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr auto;min-height:300px">
+<div style="grid-column:1/-1;background:#6c5ce7;padding:20px;">Banner — auto height (sizes to content)</div>
+<div style="background:#4ecdc4;color:#1a1a2e;padding:30px;">Main Content — fills remaining space<br>Uses 1fr</div>
+<div style="background:#45b7d1;padding:30px;">Side Content — also fills space<br>Also 1fr</div>
+<div style="grid-column:1/-1;background:#a29bfe;padding:10px;">Metadata footer — auto height</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 350px;
+}</code></pre>
+</div>
+
+</div>
+</body>
+</html>

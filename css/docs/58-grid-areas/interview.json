@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is grid-template-areas in CSS Grid?", "answer": "It defines named grid areas using a visual ASCII-art-like string pattern, where each string represents a row and names represent cells." },
+    { "question": "What is the grid-area property?", "answer": "grid-area assigns an element to a named grid area, referencing a name defined in grid-template-areas. It can also be a shorthand for grid-row and grid-column." },
+    { "question": "How do you define a named grid area?", "answer": "In grid-template-areas, use the same name in adjacent cells to create a spanning area. For example, 'header header header' creates a header spanning three columns." },
+    { "question": "What character represents an empty cell in grid-template-areas?", "answer": "A dot (.) represents an empty cell that should not be occupied by any named area." },
+    { "question": "How do you assign an element to a named grid area?", "answer": "Set grid-area: name on the child element, where name matches one defined in grid-template-areas." },
+    { "question": "How many characters do you need per row in grid-template-areas?", "answer": "Each row string must have the same number of names (or dots), matching the number of columns in the grid." },
+    { "question": "Can grid-template-areas create irregular shapes?", "answer": "No, named areas must form a rectangular grid. Each named region must be a contiguous rectangle." },
+    { "question": "What does grid-area shorthand with four values do?", "answer": "grid-area: row-start / column-start / row-end / column-end defines placement by grid line numbers instead of a named area." },
+    { "question": "Can you use whitespace in grid-template-areas strings?", "answer": "Yes, whitespace separates area names. Multiple spaces are treated as a single separator." },
+    { "question": "Do you need to set grid-template-columns and grid-template-rows when using grid-template-areas?", "answer": "No, but without them each column and row defaults to auto sizing based on content." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a holy grail layout using grid-template-areas?", "answer": "Define areas: header, nav, main, aside, footer in a structure that matches the holy grail: three rows (header, content, footer) with three columns (nav, main, aside)." },
+    { "question": "What happens if a cell name appears in non-adjacent positions?", "answer": "It creates two separate regions with the same name, which is invalid. Each named area must be a single contiguous rectangle." },
+    { "question": "How do you combine grid-template-areas with grid-template-columns?", "answer": "grid-template-areas defines the structural layout, while grid-template-columns sizes the columns referenced by the area names." },
+    { "question": "Can you use both grid-area names and line-based placement on the same item?", "answer": "No, grid-area overrides any line-based properties. An item can either use named areas or line-based placement, not both." },
+    { "question": "How do you override an element's grid-area placement at different breakpoints?", "answer": "In a media query, redefine grid-template-areas on the container to reposition named items by changing where their names appear." },
+    { "question": "What is the grid-area shorthand equivalent of grid-row: 1 / 3 and grid-column: 2 / 4?", "answer": "grid-area: 1 / 2 / 3 / 4, which maps to row-start / column-start / row-end / column-end." },
+    { "question": "How does grid-template-areas interact with grid-auto-flow?", "answer": "When both are used, auto-flow places items not assigned to named areas into remaining cells, respecting the defined area structure." },
+    { "question": "Can you use grid-template-areas without assigning every cell to a named area?", "answer": "Yes, use dots (.) for cells you want to leave empty or unnamed in the grid." },
+    { "question": "How do you create a stacked layout with grid-template-areas?", "answer": "Have all area names in the same row string, e.g., 'header' on one row, 'main' on the next, 'footer' on the last, creating a stacked layout." },
+    { "question": "What does grid-template-areas: none do?", "answer": "It resets the named areas, removing all previously defined area templates." }
+  ],
+  "advanced": [
+    { "question": "How does grid-template-areas interact with writing modes and direction?", "answer": "grid-template-areas respects the direction and writing mode: in rtl, the area strings are mirrored. Area names themselves are not auto-translated." },
+    { "question": "Can you use CSS custom properties inside grid-template-areas?", "answer": "No, grid-template-areas only accepts string values or none. Custom properties that resolve to strings are not valid here." },
+    { "question": "How do you create overlapping areas with grid-template-areas?", "answer": "Grid-template-areas does not support overlapping regions since each cell can have only one name. Use line-based placement for overlapping items." },
+    { "question": "What happens when grid-template-areas references a name not defined on any child?", "answer": "The named area exists as empty space in the grid layout, and no item is placed into it." },
+    { "question": "How do you debug grid-template-areas in browser DevTools?", "answer": "Modern browsers show overlay grid line numbers and area names when inspecting a grid container, making it easy to visualize named areas." },
+    { "question": "Can grid-template-areas be used with subgrid?", "answer": "No, subgrid uses grid-template-columns: subgrid or grid-template-rows: subgrid, and cannot directly use grid-template-areas from the parent." },
+    { "question": "How does grid-template-areas handle spanning items that don't match the area shape?", "answer": "If an item's grid-area assignment puts it in a cell that is part of a named region, it fills that entire region. Spanning is defined by the area shape." },
+    { "question": "What is the maximum number of named areas you can define?", "answer": "There is no fixed maximum, but performance may degrade with hundreds of named areas. The spec does not define an explicit limit." },
+    { "question": "How do you use the same area name for multiple items across different breakpoints?", "answer": "You cannot have two items with the same grid-area name simultaneously. Instead, use different names at different breakpoints or use line-based placement." },
+    { "question": "How does grid-template-areas interact with CSS Grid's placement algorithms for auto-placed items?", "answer": "Items without grid-area are auto-placed after named areas are resolved. Auto-placed items fill remaining unoccupied cells, avoiding named areas." }
+  ]
+}

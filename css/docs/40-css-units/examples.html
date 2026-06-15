@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Units Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    section { background: #fff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .example-title { margin-bottom: 15px; color: #333; }
+
+    /* rem vs em comparison */
+    .root-demo { font-size: 20px; }
+    .root-demo .rem-text { font-size: 1rem; } /* = 20px (root) */
+    .root-demo .em-text { font-size: 1.5em; } /* = 30px (1.5 * 20) */
+    .root-demo .nested-em {
+      font-size: 1.2em; /* 1.2 * 20 = 24px */
+    }
+    .root-demo .nested-em .nested-em {
+      font-size: 1.2em; /* 1.2 * 24 = 28.8px — compounding! */
+    }
+
+    /* Viewport units */
+    .vp-demo {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .vp-box {
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 14px; border-radius: 4px;
+    }
+    .vpw { width: 25vw; height: 80px; background: #007bff; }
+    .vph { width: 120px; height: 20vh; background: #28a745; }
+    .vmin { width: 20vmin; height: 20vmin; background: #dc3545; }
+    .vmax { width: 20vmax; height: 20vmax; background: #6f42c1; }
+
+    /* ch unit */
+    .ch-demo { width: 40ch; background: #f8f9fa; padding: 15px; border-radius: 6px; }
+
+    /* fr unit */
+    .fr-demo {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 8px;
+      background: #eee; padding: 8px; border-radius: 6px;
+    }
+    .fr-demo div { padding: 20px; background: #007bff; color: #fff; text-align: center; border-radius: 4px; }
+
+    /* calc() */
+    .calc-demo {
+      width: calc(100% - 40px);
+      max-width: 600px;
+      height: 80px;
+      background: #ffc107;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Units Examples</h1>
+
+  <section class="root-demo">
+    <h2 class="example-title">rem vs em (root font: 20px)</h2>
+    <p class="rem-text">This is 1rem = 20px (root font)</p>
+    <p class="em-text">This is 1.5em = 30px</p>
+    <p class="nested-em">This is 1.2em = 24px
+      <span class="nested-em">Nested 1.2em = 28.8px (compounding!)</span>
+    </p>
+  </section>
+
+  <section>
+    <h2>Viewport Units</h2>
+    <div class="vp-demo">
+      <div class="vp-box vpw">25vw</div>
+      <div class="vp-box vph">20vh</div>
+      <div class="vp-box vmin">20vmin</div>
+      <div class="vp-box vmax">20vmax</div>
+    </div>
+    <p style="margin-top: 10px; color: #666;">Resize the browser to see viewport units change.</p>
+  </section>
+
+  <section>
+    <h2>ch Unit (character width)</h2>
+    <div class="ch-demo">
+      <p>This container is 40ch wide — about 40 characters per line for optimal readability.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>fr Unit (Grid fractional)</h2>
+    <div class="fr-demo">
+      <div>1fr</div>
+      <div>2fr</div>
+      <div>1fr</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>calc() Unit</h2>
+    <div class="calc-demo">calc(100% - 40px) with max-width: 600px</div>
+  </section>
+</body>
+</html>

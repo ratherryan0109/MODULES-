@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the CSS aspect-ratio property?", "answer": "The aspect-ratio property sets a preferred aspect ratio for an element, defining how its width relates to its height (e.g., 16/9)." },
+    { "question": "How do you set a 16:9 aspect ratio on an element?", "answer": "Use aspect-ratio: 16 / 9; the browser automatically sizes the height based on the width." },
+    { "question": "What is the default value of aspect-ratio?", "answer": "The default value is auto, meaning the element has no preferred aspect ratio." },
+    { "question": "Can aspect-ratio work with both width and height?", "answer": "Yes, aspect-ratio computes the missing dimension based on the set dimension; if both are set, aspect-ratio is ignored." },
+    { "question": "How does aspect-ratio behave with images?", "answer": "For images, aspect-ratio: auto uses the image's intrinsic dimensions; setting a specific ratio overrides the intrinsic aspect ratio." },
+    { "question": "What happens when you set aspect-ratio on a flex item?", "answer": "Flex items respect aspect-ratio, using cross-axis sizing to maintain the ratio when the main axis size is determined." },
+    { "question": "Can aspect-ratio handle landscape and portrait orientations?", "answer": "Yes, aspect-ratio: 4/3 creates landscape; aspect-ratio: 3/4 creates portrait orientation." },
+    { "question": "How does aspect-ratio work with percentage padding?", "answer": "aspect-ratio supersedes the percentage padding trick for maintaining ratios; it is simpler and more predictable." },
+    { "question": "Does aspect-ratio affect an element's content?", "answer": "aspect-ratio sets the box size; content inside may overflow if not handled with overflow or object-fit properties." },
+    { "question": "What is the syntax for a 1:1 square aspect ratio?", "answer": "Use aspect-ratio: 1 or aspect-ratio: 1 / 1; both create a square element." }
+  ],
+  "intermediate": [
+    { "question": "How does aspect-ratio interact with min-width and max-width?", "answer": "min/max constraints can override aspect-ratio; the element respects the constraints even if they break the ratio." },
+    { "question": "How does aspect-ratio work with grid items?", "answer": "Grid items with aspect-ratio use the grid track size as the main dimension and compute the other axis to maintain the ratio." },
+    { "question": "How do you create responsive iframe embeds with aspect-ratio?", "answer": "Set aspect-ratio: 16/9 on the iframe wrapper; the iframe fills the wrapper with 100% width and height." },
+    { "question": "What is the difference between aspect-ratio and the padding-bottom trick?", "answer": "aspect-ratio is a native CSS property requiring no pseudo-elements; the padding-bottom trick uses percentage padding on a wrapper." },
+    { "question": "How does aspect-ratio work with images in a responsive grid?", "answer": "Set aspect-ratio on images to maintain consistency regardless of upload dimensions; use object-fit: cover to fill the box without distortion." },
+    { "question": "How does aspect-ratio interact with the contain property?", "answer": "contain: size can affect aspect-ratio elements; the contained element must have explicit sizing for containment to work." },
+    { "question": "Can aspect-ratio be animated or transitioned?", "answer": "aspect-ratio cannot be smoothly animated with CSS transitions; it changes instantaneously between values." },
+    { "question": "How does aspect-ratio behave with replaced elements like video?", "answer": "Replaced elements use their intrinsic ratio; aspect-ratio overrides it, but the element's content may not fill the new ratio without object-fit." },
+    { "question": "How do you use aspect-ratio with CSS variables?", "answer": "Store aspect ratio in a custom property: --ratio: 16/9; aspect-ratio: var(--ratio); for dynamic ratio control." },
+    { "question": "How does aspect-ratio work with the object-fit property?", "answer": "object-fit controls how content fills the aspect-ratio box; object-fit: cover maintains content ratio while filling the box." }
+  ],
+  "advanced": [
+    { "question": "How does aspect-ratio interact with intrinsic sizing (min-content, max-content)?", "answer": "Intrinsic sizing can override aspect-ratio when the element's content demands more space than the ratio allows." },
+    { "question": "How do you create a grid of equal-height cards with consistent aspect ratios?", "answer": "Set aspect-ratio on grid children with a fixed width track; all cards maintain the ratio while the grid controls the width." },
+    { "question": "How does aspect-ratio behave in a flex container with align-items: stretch?", "answer": "Stretch can override the aspect-ratio height; use align-items: flex-start on the flex container to preserve the ratio." },
+    { "question": "How does aspect-ratio work with scroll-driven animations?", "answer": "aspect-ratio changes during scroll-driven animations are allowed but cannot be smoothly animated; use alternative techniques for progress-based resizing." },
+    { "question": "What is the legacy browser fallback for aspect-ratio?", "answer": "Use the padding-bottom trick with a wrapper and absolute-positioned content as a fallback for browsers without aspect-ratio support." },
+    { "question": "How do container queries interact with aspect-ratio?", "answer": "Container queries can change aspect-ratio based on container size: @container (width > 500px) { .box { aspect-ratio: 16/9; } }" },
+    { "question": "How does aspect-ratio work with subgrid?", "answer": "Subgrid items can use aspect-ratio within subgrid tracks; the subgrid sizing is inherited from the parent grid then constrained by the ratio." },
+    { "question": "How do you create an aspect-ratio-aware utility class?", "answer": ".ratio-16-9 { aspect-ratio: 16/9; } .ratio-square { aspect-ratio: 1; } for reusable ratio classes across components." },
+    { "question": "How does aspect-ratio affect Cumulative Layout Shift (CLS)?", "answer": "aspect-ratio prevents CLS by reserving space before content loads, giving the browser a known dimension to allocate." },
+    { "question": "How do you handle aspect-ratio with the picture element and different image crops?", "answer": "Set aspect-ratio on the img element inside picture; each source can have different dimensions, but the aspect-ratio ensures the space is reserved." }
+  ]
+}

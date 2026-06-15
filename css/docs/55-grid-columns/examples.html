@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Columns - Examples</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:#ff6b6b;font-size:28px;margin-bottom:5px}
+h2{color:#4ecdc4;margin:30px 0 10px;font-size:20px;border-bottom:1px solid #333;padding-bottom:5px}
+h3{color:#ffd93d;margin:15px 0 8px;font-size:16px}
+code{background:#2d2d44;padding:2px 6px;border-radius:3px;color:#ffd93d;font-size:14px}
+pre{background:#2d2d44;padding:15px;border-radius:6px;margin:10px 0;overflow-x:auto}
+.demo-box{background:#16213e;padding:15px;border-radius:8px;margin:15px 0}
+.demo-box p{color:#aaa;font-size:14px;margin-bottom:8px}
+.grid{display:grid;gap:8px;padding:10px;background:#2d2d44;border-radius:8px;margin:8px 0}
+.grid>div{background:#ff6b6b;padding:15px;border-radius:4px;text-align:center;font-weight:bold;font-size:14px;min-height:40px;display:flex;align-items:center;justify-content:center}
+.grid>div:nth-child(2n){background:#4ecdc4;color:#1a1a2e}
+.grid>div:nth-child(3n){background:#45b7d1}
+.grid>div:nth-child(5n){background:#a29bfe}
+.note{background:#2d2d44;border-left:4px solid #ffd93d;padding:10px 15px;margin:10px 0;border-radius:0 6px 6px 0;font-size:14px;color:#ccc}
+.label{display:inline-block;background:#6c5ce7;color:#fff;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:bold;margin-right:5px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Grid Columns Examples</h1>
+<p style="color:#aaa;margin-bottom:20px">Interactive examples of <code>grid-template-columns</code> with different sizing strategies</p>
+
+<div class="demo-box">
+<h2>1. Fixed Width Columns</h2>
+<p>Each column gets an exact pixel width. The total must fit within the container.</p>
+<div class="grid" style="grid-template-columns:150px 200px 150px">
+<div>150px</div><div>200px</div><div>150px</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: 150px 200px 150px;
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>2. The fr Unit — Flexible Columns</h2>
+<p><code>fr</code> distributes remaining space proportionally. Here <code>1fr 2fr 1fr</code> means the middle column gets twice the space.</p>
+<div class="grid" style="grid-template-columns:1fr 2fr 1fr">
+<div>1fr (25%)</div><div>2fr (50%)</div><div>1fr (25%)</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: 1fr 2fr 1fr;
+}</code></pre>
+
+<p>With a fixed column + fr:</p>
+<div class="grid" style="grid-template-columns:200px 1fr 1fr">
+<div>200px fixed</div><div>1fr (flexible)</div><div>1fr (flexible)</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: 200px 1fr 1fr;
+}
+/* The fr units split whatever is LEFT after the 200px column and gaps */</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>3. repeat() Function</h2>
+<p>Create columns efficiently without repeating yourself.</p>
+
+<h3>repeat(4, 1fr) — 4 equal columns</h3>
+<div class="grid" style="grid-template-columns:repeat(4,1fr)">
+<div>1</div><div>2</div><div>3</div><div>4</div>
+<div>5</div><div>6</div><div>7</div><div>8</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(4, 1fr);
+}</code></pre>
+
+<h3>repeat(2, 1fr 2fr) — repeating pattern</h3>
+<div class="grid" style="grid-template-columns:repeat(2,1fr 2fr)">
+<div>1fr</div><div>2fr</div><div>1fr</div><div>2fr</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(2, 1fr 2fr);
+    /* Expands to: 1fr 2fr 1fr 2fr */
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>4. minmax() — Responsive Columns</h2>
+<p>Each column is at least 120px but can grow to fill available space equally.</p>
+<div class="grid" style="grid-template-columns:repeat(4,minmax(120px,1fr))">
+<div>min 120px</div><div>grows to 1fr</div><div>min 120px</div><div>grows to 1fr</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>5. auto-fill vs auto-fit — The Responsive Powerhouse</h2>
+
+<h3>auto-fill — keeps empty track space</h3>
+<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr))">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+/* Resize the browser: empty track slots remain visible */</code></pre>
+
+<h3>auto-fit — collapses empty tracks</h3>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(100px,1fr))">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+</div>
+<pre><code>.container {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+/* Resize the browser: items stretch to fill the container */</code></pre>
+<div class="note"><strong>Try it:</strong> Resize your browser horizontally. With <code>auto-fill</code>, you'll see empty track slots. With <code>auto-fit</code>, items expand to fill all space.</div>
+</div>
+
+<div class="demo-box">
+<h2>6. Mixed Units — Real-World Layout</h2>
+<p>A common page layout: fixed sidebar, flexible content, fixed sidebar.</p>
+<div class="grid" style="grid-template-columns:180px 1fr 180px;min-height:150px">
+<div style="background:#6c5ce7;">Sidebar<br><small>180px</small></div>
+<div style="background:#4ecdc4;color:#1a1a2e;">Content<br><small>1fr (flexible)</small></div>
+<div style="background:#6c5ce7;">Aside<br><small>180px</small></div>
+</div>
+<pre><code>.container {
+    grid-template-columns: 180px 1fr 180px;
+}</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>7. Named Grid Lines</h2>
+<p>Line names make column references more readable.</p>
+<div class="grid" style="grid-template-columns:[sidebar]200px[content]1fr[aside]200px[end];min-height:100px">
+<div style="background:#6c5ce7;">Sidebar<br><small>[sidebar] → [content]</small></div>
+<div style="background:#4ecdc4;color:#1a1a2e;">Content<br><small>[content] → [aside]</small></div>
+<div style="background:#6c5ce7;">Aside<br><small>[aside] → [end]</small></div>
+</div>
+<pre><code>.container {
+    grid-template-columns: 
+        [sidebar] 200px 
+        [content] 1fr 
+        [aside] 200px 
+        [end];
+}
+
+.item { grid-column: sidebar / end; }</code></pre>
+</div>
+
+<div class="demo-box">
+<h2>8. Spanning Columns</h2>
+<p>Items can span multiple columns using <code>grid-column</code>.</p>
+
+<h3>Header spanning all columns (grid-column: 1 / -1)</h3>
+<div class="grid" style="grid-template-columns:repeat(3,1fr)">
+<div style="grid-column:1/-1;background:#6c5ce7;">Header (spans all columns)</div>
+<div>Main Content</div><div>Sidebar</div><div>Widget</div>
+<div style="grid-column:span 2;background:#a29bfe;">Span 2 columns</div>
+<div>Last item</div>
+<div style="grid-column:1/-1;background:#6c5ce7;">Footer (spans all columns)</div>
+</div>
+<pre><code>.container { grid-template-columns: repeat(3, 1fr); }
+.header { grid-column: 1 / -1; }  /* Full width */
+.item2  { grid-column: span 2; }  /* Spans 2 columns */</code></pre>
+</div>
+
+</div>
+</body>
+</html>

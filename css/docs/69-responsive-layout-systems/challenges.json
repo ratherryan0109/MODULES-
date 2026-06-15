@@ -1,0 +1,29 @@
+{
+  "module": "69 - Responsive Layout Systems",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Holy Grail Layout with Grid Areas",
+      "description": "Build a Holy Grail layout using CSS Grid named areas.",
+      "instructions": "Create a page with header, nav, main, aside, and footer using grid-template-areas. Make it responsive: single column on mobile, 2 columns on tablet, 3 columns on desktop.",
+      "hints": ["Use grid-template-areas for semantic naming", "Change grid-template-areas at each breakpoint", "Set min-height: 100vh on the grid container"],
+      "solution": ".page { display: grid; grid-template-areas: 'header' 'nav' 'main' 'aside' 'footer'; } @media (min-width: 768px) { .page { grid-template-areas: 'header header' 'nav main' 'nav aside' 'footer footer'; grid-template-columns: 200px 1fr; } } @media (min-width: 1024px) { .page { grid-template-areas: 'header header header' 'nav main aside' 'footer footer footer'; grid-template-columns: 200px 1fr 250px; } }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Flexbox Card Layout with Mixed Heights",
+      "description": "Build a Flexbox card grid where all cards have equal height and footers align at the bottom regardless of content length.",
+      "instructions": "Create cards with images, variable content, and footers. All card footers should align at the bottom.",
+      "hints": ["Use flex: 1 on the content area to push footer down", "Set gap on the flex container", "Use flex-wrap for responsive wrapping"],
+      "solution": ".card-grid { display: flex; flex-wrap: wrap; gap: 1rem; } .card { display: flex; flex-direction: column; flex: 1 1 300px; } .card-content { flex: 1; } .card-footer { align-self: stretch; }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Full Dashboard with Grid + Container Queries",
+      "description": "Build a complete dashboard that uses CSS Grid for the page layout and container queries for widget responsiveness.",
+      "instructions": "Create a dashboard with sidebar, header, stats grid, chart area, and table. Widgets should adapt using container queries. Use at least 3 breakpoints and 2 container query states.",
+      "hints": ["Use grid-template-areas for the dashboard layout", "Add container-type to widget containers", "Use auto-fit for the stats grid within the dashboard"],
+      "solution": ".dashboard { display: grid; gap: 1rem; grid-template-areas: 'sidebar header' 'sidebar stats' 'sidebar chart' 'sidebar table'; grid-template-columns: 200px 1fr; } .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; } .stat-card { container-type: inline-size; } @container (min-width: 300px) { .stat-card { display: flex; } } @media (max-width: 768px) { .dashboard { grid-template-areas: 'header' 'stats' 'chart' 'table'; grid-template-columns: 1fr; } }"
+    }
+  ]
+}

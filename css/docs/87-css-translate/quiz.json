@@ -1,0 +1,147 @@
+{
+  "module": "87-css-translate",
+  "title": "CSS Translate",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does the standalone translate property do?",
+      "options": ["Moves an element", "Rotates an element", "Scales an element", "Skews an element"],
+      "correctAnswer": 0,
+      "explanation": "The translate property moves an element along the X, Y, and Z axes."
+    },
+    {
+      "id": 2,
+      "question": "How many values can the translate property accept?",
+      "options": ["1-3 values", "1-2 values", "Always 2 values", "Always 3 values"],
+      "correctAnswer": 0,
+      "explanation": "translate accepts 1-3 values: X, Y, and optionally Z."
+    },
+    {
+      "id": 3,
+      "question": "What unit does translate use by default?",
+      "options": ["Any CSS length unit", "px", "em", "%"],
+      "correctAnswer": 0,
+      "explanation": "translate accepts any CSS length unit or percentage."
+    },
+    {
+      "id": 4,
+      "question": "What does translate: -50% -50% do on an absolutely positioned element?",
+      "options": ["Centers it relative to parent", "Moves it up and left 50%", "Hides it", "Scales it to 50%"],
+      "correctAnswer": 0,
+      "explanation": "Combined with top:50%; left:50%, it centers the element perfectly."
+    },
+    {
+      "id": 5,
+      "question": "Which is NOT a valid translate value?",
+      "options": ["translate: 50em", "translate: 50% 50%", "translate: 50 50", "translate: 10px 20px 30px"],
+      "correctAnswer": 2,
+      "explanation": "Values must include units or be percentages."
+    },
+    {
+      "id": 6,
+      "question": "What does the third value in translate specify?",
+      "options": ["Z-axis translation", "Opacity change", "Scale factor", "Rotation angle"],
+      "correctAnswer": 0,
+      "explanation": "The third value moves the element along the Z-axis (3D)."
+    },
+    {
+      "id": 7,
+      "question": "What CSS property is needed to see Z-axis translation?",
+      "options": ["perspective", "transform-style", "backface-visibility", "opacity"],
+      "correctAnswer": 0,
+      "explanation": "perspective on the parent creates a 3D rendering context to visualize Z translations."
+    },
+    {
+      "id": 8,
+      "question": "How does standalone translate compare to transform: translate()?",
+      "options": ["Different syntax, same compositing", "Same syntax", "Standalone is slower", "Only works in 2D"],
+      "correctAnswer": 0,
+      "explanation": "Both are GPU-accelerated but have different syntax and browser support timelines."
+    },
+    {
+      "id": 9,
+      "question": "Can translate be animated independently of transform?",
+      "options": ["Yes, as a separate property", "No, must use transform", "Only with JavaScript", "Only in 3D"],
+      "correctAnswer": 0,
+      "explanation": "translate is an independent property that can be animated separately from transform."
+    },
+    {
+      "id": 10,
+      "question": "What happens if you set both transform and translate on the same element?",
+      "options": ["Both apply (translate moves, transform does other effects)", "Only transform applies", "Only translate applies", "They cancel out"],
+      "correctAnswer": 0,
+      "explanation": "The standalone translate applies in addition to transform functions."
+    },
+    {
+      "id": 11,
+      "question": "In what browser version did standalone translate become widely supported?",
+      "options": ["Chrome 104+", "Chrome 50+", "IE 11", "Safari 10+"],
+      "correctAnswer": 0,
+      "explanation": "Chrome 104+, Firefox 103+, Safari 16+ support standalone translate."
+    },
+    {
+      "id": 12,
+      "question": "What is the default value of translate?",
+      "options": ["none", "0 0", "auto", "initial"],
+      "correctAnswer": 0,
+      "explanation": "The default value of translate is 'none', meaning no translation."
+    },
+    {
+      "id": 13,
+      "question": "Which is better for GPU compositing?",
+      "options": ["Both translate and transform: translate()", "Only transform", "Neither", "Only translate"],
+      "correctAnswer": 0,
+      "explanation": "Both standalone translate and transform: translate() are GPU accelerated."
+    },
+    {
+      "id": 14,
+      "question": "Can translate use viewport units like vw and vh?",
+      "options": ["Yes", "No", "Only in 3D", "Only for X-axis"],
+      "correctAnswer": 0,
+      "explanation": "translate accepts any valid CSS length, including viewport units."
+    },
+    {
+      "id": 15,
+      "question": "What does translate: 0 0 do?",
+      "options": ["No movement", "Moves to top-left", "Hides element", "Resets all transforms"],
+      "correctAnswer": 0,
+      "explanation": "translate: 0 0 means no translation occurs."
+    },
+    {
+      "id": 16,
+      "question": "How do you move an element 20px right and 30px down?",
+      "options": ["translate: 20px 30px", "translate: 30px 20px", "translate: 20px", "translateX: 20px; translateY: 30px"],
+      "correctAnswer": 0,
+      "explanation": "translate: 20px 30px moves 20px right (X) and 30px down (Y)."
+    },
+    {
+      "id": 17,
+      "question": "What is the effect of translate: 0 0 100px?",
+      "options": ["Moves 100px toward viewer (Z-axis)", "No effect without perspective", "Both A and B", "Scales the element"],
+      "correctAnswer": 2,
+      "explanation": "Z translation requires perspective to be visible; otherwise it has no visual effect."
+    },
+    {
+      "id": 18,
+      "question": "Which is a key advantage of standalone translate over transform translate?",
+      "options": ["Cleaner separation of concerns", "Faster performance", "More browser support", "3D only feature"],
+      "correctAnswer": 0,
+      "explanation": "Standalone translate provides cleaner separation when combining with rotate/scale."
+    },
+    {
+      "id": 19,
+      "question": "Can translate be used with @keyframes animations?",
+      "options": ["Yes", "No, only transform", "Only with JavaScript", "Only for 2D"],
+      "correctAnswer": 0,
+      "explanation": "translate is a regular CSS property and can be animated in @keyframes."
+    },
+    {
+      "id": 20,
+      "question": "What happens if you use translate: 50% on an image?",
+      "options": ["Moves 50% of the image's width", "Moves 50% of the parent's width", "Scales to 50%", "Does nothing"],
+      "correctAnswer": 0,
+      "explanation": "Percentage in translate is relative to the element's own dimensions."
+    }
+  ]
+}

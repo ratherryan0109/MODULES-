@@ -1,0 +1,147 @@
+{
+  "module": "72-responsive-dashboard-design",
+  "title": "Responsive Dashboard Design",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS feature is best for dashboard layouts?",
+      "options": ["Flexbox", "CSS Grid with named areas", "Multi-column", "Floats"],
+      "correctAnswer": 1,
+      "explanation": "CSS Grid with named areas provides the most control for complex dashboard layouts."
+    },
+    {
+      "id": 2,
+      "question": "What should happen to dashboard content on mobile?",
+      "options": ["Show everything with horizontal scroll", "Prioritize KPIs and simplify", "Remove all content", "Show desktop version zoomed out"],
+      "correctAnswer": 1,
+      "explanation": "On mobile, show only the most important data (KPIs) and simplify or hide less critical widgets."
+    },
+    {
+      "id": 3,
+      "question": "How should data tables behave on mobile?",
+      "options": ["Horizontal scroll", "Convert to card layout", "Hide the table", "Show fewer rows"],
+      "correctAnswer": 1,
+      "explanation": "Converting tables to card-style layouts with data-label attributes is the recommended pattern."
+    },
+    {
+      "id": 4,
+      "question": "What is progressive disclosure in dashboard design?",
+      "options": ["Hiding all data", "Showing essential info first, details on demand", "Animating data entry", "Loading data progressively"],
+      "correctAnswer": 1,
+      "explanation": "Progressive disclosure shows the most important information first and reveals details when requested."
+    },
+    {
+      "id": 5,
+      "question": "Which grid setup is best for KPI stat cards?",
+      "options": ["repeat(4, 1fr)", "repeat(auto-fit, minmax(150px, 1fr))", "1fr 1fr", "fixed pixel widths"],
+      "correctAnswer": 1,
+      "explanation": "auto-fit with minmax creates responsive KPI cards that wrap naturally."
+    },
+    {
+      "id": 6,
+      "question": "What is a dashboard 'widget'?",
+      "options": ["A UI component that displays data", "A JavaScript plugin", "A CSS framework", "A browser extension"],
+      "correctAnswer": 0,
+      "explanation": "A widget is a self-contained UI component that displays specific data or functionality."
+    },
+    {
+      "id": 7,
+      "question": "How should sidebar navigation behave on mobile?",
+      "options": ["Always visible", "Collapse to off-canvas or bottom nav", "Hidden completely", "Expanded by default"],
+      "correctAnswer": 1,
+      "explanation": "Sidebars should collapse to off-canvas menus or bottom navigation on mobile."
+    },
+    {
+      "id": 8,
+      "question": "What CSS property prevents layout shift for chart containers?",
+      "options": ["min-height", "aspect-ratio", "overflow: hidden", "display: block"],
+      "correctAnswer": 1,
+      "explanation": "aspect-ratio reserves space for charts before they load, preventing layout shift."
+    },
+    {
+      "id": 9,
+      "question": "Which loading pattern is best for dashboard widgets?",
+      "options": ["Spinner", "Skeleton loader matching widget shape", "Blank space", "Full page loader"],
+      "correctAnswer": 1,
+      "explanation": "Skeleton loaders that match the widget shape provide the best perceived performance."
+    },
+    {
+      "id": 10,
+      "question": "What should charts do on mobile?",
+      "options": ["Show all data points", "Simplify (fewer data points, larger touch targets)", "Hide completely", "Use same layout as desktop"],
+      "correctAnswer": 1,
+      "explanation": "Charts should simplify on mobile with fewer data points and larger touch targets for interaction."
+    },
+    {
+      "id": 11,
+      "question": "How can you make a table responsive on mobile?",
+      "options": ["Use CSS to display as cards", "Set overflow-x: auto", "Use smaller font", "Hide columns with JS"],
+      "correctAnswer": 0,
+      "explanation": "The responsive table pattern converts table rows to card-like layouts using display: block and data-label attributes."
+    },
+    {
+      "id": 12,
+      "question": "What is the role of data-label attributes in responsive tables?",
+      "options": ["For styling", "Show label before each cell value on mobile", "For JavaScript", "For SEO"],
+      "correctAnswer": 1,
+      "explanation": "data-label attributes provide visible labels for each table cell when displayed as cards on mobile."
+    },
+    {
+      "id": 13,
+      "question": "Which CSS property is good for lazy-rendering off-screen dashboard sections?",
+      "options": ["display: none", "content-visibility: auto", "visibility: hidden", "opacity: 0"],
+      "correctAnswer": 1,
+      "explanation": "content-visibility: auto defers rendering of off-screen elements, improving initial load performance."
+    },
+    {
+      "id": 14,
+      "question": "What's a good practice for dashboard color schemes?",
+      "options": ["Use brand colors only", "Support both light and dark modes", "Use only grayscale", "Random colors per widget"],
+      "correctAnswer": 1,
+      "explanation": "Supporting both light and dark modes improves dashboard usability in different environments."
+    },
+    {
+      "id": 15,
+      "question": "How should chart colors be chosen for accessibility?",
+      "options": ["Use rainbow palette", "Use color-blind friendly palettes", "Use only blue", "Use high contrast only"],
+      "correctAnswer": 1,
+      "explanation": "Color-blind friendly palettes ensure chart data is distinguishable by all users."
+    },
+    {
+      "id": 16,
+      "question": "What is the recommended approach for dashboard navigation on mobile?",
+      "options": ["Top bar with hamburger", "Bottom tab bar with icons", "Left off-canvas", "All of the above, depending on complexity"],
+      "correctAnswer": 3,
+      "explanation": "The best approach depends on the number of navigation items and dashboard complexity."
+    },
+    {
+      "id": 17,
+      "question": "Why should dashboards avoid horizontal scrolling?",
+      "options": ["It's slow", "It's disorienting and hides content", "It's not supported on mobile", "It breaks layouts"],
+      "correctAnswer": 1,
+      "explanation": "Horizontal scrolling is disorienting on mobile and can hide important data from view."
+    },
+    {
+      "id": 18,
+      "question": "What is a 'KPI' in dashboard design?",
+      "options": ["Key Performance Indicator", "Key Product Index", "Knowledge Processing Input", "Keyboard Processing Interface"],
+      "correctAnswer": 0,
+      "explanation": "KPI stands for Key Performance Indicator - a measurable value that shows progress toward objectives."
+    },
+    {
+      "id": 19,
+      "question": "Which format is best for responsive charts?",
+      "options": ["PNG images", "SVG", "JPEG", "GIF"],
+      "correctAnswer": 1,
+      "explanation": "SVG is resolution-independent, scales perfectly, and is lightweight for charts."
+    },
+    {
+      "id": 20,
+      "question": "What should be the first layout consideration for mobile dashboards?",
+      "options": ["Chart placement", "KPI visibility and prioritization", "Table columns", "Navigation order"],
+      "correctAnswer": 1,
+      "explanation": "KPIs are the most important dashboard element and should be prioritized on mobile."
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Paragraphs - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #27ae60; border-bottom: 3px solid #27ae60; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Module 7: HTML Paragraphs — Examples</h1>
+
+    <!-- Example 1: Basic Paragraphs -->
+    <div class="example">
+        <h2>Example 1: Basic Paragraphs</h2>
+        <p>Notice the automatic spacing between paragraphs.</p>
+        <pre>
+&lt;p&gt;This is the first paragraph. It contains several sentences that
+demonstrate how text flows within a paragraph element.&lt;/p&gt;
+&lt;p&gt;This is the second paragraph. Browsers automatically add vertical
+margin between paragraphs to improve readability.&lt;/p&gt;
+&lt;p&gt;This is the third paragraph. Each paragraph should focus on one
+main idea or topic for the best reading experience.&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>This is the first paragraph. It contains several sentences that demonstrate how text flows within a paragraph element.</p>
+            <p>This is the second paragraph. Browsers automatically add vertical margin between paragraphs to improve readability.</p>
+            <p>This is the third paragraph. Each paragraph should focus on one main idea or topic for the best reading experience.</p>
+        </div>
+    </div>
+
+    <!-- Example 2: Line Breaks -->
+    <div class="example">
+        <h2>Example 2: Line Breaks with &lt;br&gt;</h2>
+        <pre>
+&lt;p&gt;
+    123 Main Street&lt;br&gt;
+    New York, NY 10001&lt;br&gt;
+    United States
+&lt;/p&gt;
+
+&lt;p&gt;
+    Roses are red,&lt;br&gt;
+    Violets are blue,&lt;br&gt;
+    HTML is fun,&lt;br&gt;
+    And so are you!
+&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>123 Main Street<br>New York, NY 10001<br>United States</p>
+            <p>Roses are red,<br>Violets are blue,<br>HTML is fun,<br>And so are you!</p>
+        </div>
+    </div>
+
+    <!-- Example 3: Preformatted Text -->
+    <div class="example">
+        <h2>Example 3: Preformatted Text with &lt;pre&gt;</h2>
+        <pre>
+&lt;pre&gt;
+function greet(name) {
+    console.log("Hello, " + name + "!");
+    return true;
+}
+&lt;/pre&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <pre>
+function greet(name) {
+    console.log("Hello, " + name + "!");
+    return true;
+}
+            </pre>
+        </div>
+    </div>
+
+    <!-- Example 4: Thematic Break -->
+    <div class="example">
+        <h2>Example 4: Thematic Break with &lt;hr&gt;</h2>
+        <pre>
+&lt;section&gt;
+    &lt;h2&gt;Chapter 1: The Beginning&lt;/h2&gt;
+    &lt;p&gt;Story content for chapter one...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;hr&gt;
+
+&lt;section&gt;
+    &lt;h2&gt;Chapter 2: The Middle&lt;/h2&gt;
+    &lt;p&gt;Story content for chapter two...&lt;/p&gt;
+&lt;/section&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <section>
+                <h2>Chapter 1: The Beginning</h2>
+                <p>Story content for chapter one...</p>
+            </section>
+            <hr>
+            <section>
+                <h2>Chapter 2: The Middle</h2>
+                <p>Story content for chapter two...</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- Example 5: Paragraph with Inline Elements -->
+    <div class="example">
+        <h2>Example 5: Paragraphs with Inline Elements</h2>
+        <pre>
+&lt;p&gt;
+    This paragraph contains &lt;strong&gt;strong text&lt;/strong&gt;,
+    &lt;em&gt;emphasized text&lt;/em&gt;, a &lt;a href="#"&gt;hyperlink&lt;/a&gt;,
+    &lt;code&gt;code snippets&lt;/code&gt;, and &lt;mark&gt;highlighted content&lt;/mark&gt;.
+&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>This paragraph contains <strong>strong text</strong>, <em>emphasized text</em>, a <a href="#">hyperlink</a>, <code>code snippets</code>, and <mark>highlighted content</mark>.</p>
+        </div>
+    </div>
+
+    <!-- Example 6: Common Mistakes -->
+    <div class="example">
+        <h2>Example 6: Common Mistakes to Avoid</h2>
+        <pre>
+&lt;!-- ❌ Don't use br for paragraph spacing --&gt;
+Text here&lt;br&gt;&lt;br&gt;&lt;br&gt;More text
+
+&lt;!-- ❌ Don't nest paragraphs --&gt;
+&lt;p&gt;This is &lt;p&gt;nested&lt;/p&gt; wrong&lt;/p&gt;
+
+&lt;!-- ✅ Correct spacing with paragraphs --&gt;
+&lt;p&gt;First paragraph content.&lt;/p&gt;
+&lt;p&gt;Second paragraph content.&lt;/p&gt;</pre>
+        <div class="output-label">Summary:</div>
+        <div class="output">
+            <p style="color: #e74c3c;">❌ Never use &lt;br&gt;&lt;br&gt;&lt;br&gt; for spacing between paragraphs.</p>
+            <p style="color: #e74c3c;">❌ Never nest a &lt;p&gt; inside another &lt;p&gt;.</p>
+            <p style="color: #27ae60;">✅ Always use separate &lt;p&gt; elements for separate paragraphs.</p>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Use CSS properties like <code>margin</code> and <code>line-height</code> to control paragraph spacing instead of empty paragraphs or multiple &lt;br&gt; tags.
+    </div>
+</body>
+</html>

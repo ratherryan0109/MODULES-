@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 37: HTML Aside Element - Examples</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f8f9fa; }
+    .example-box { background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; }
+    .example-box h2 { color: #e65100; border-bottom: 2px solid #fff3e0; padding-bottom: 8px; }
+    .output { padding: 15px; margin: 10px 0; }
+    code { background: #fff3e0; padding: 2px 6px; border-radius: 3px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; }
+    .tag { color: #66d9ef; }
+    .attr { color: #a6e22e; }
+    .str { color: #e6db74; }
+    .blog-layout { display: grid; grid-template-columns: 1fr 280px; gap: 20px; }
+    .sidebar { background: #fff3e0; padding: 15px; border-radius: 8px; }
+    .pull-quote { background: #f5f5f5; border-left: 4px solid #e65100; padding: 15px; margin: 15px 0; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>HTML <code>&lt;aside&gt;</code> Element Examples</h1>
+
+  <!-- Example 1: Blog with Sidebar -->
+  <div class="example-box">
+    <h2>Example 1: Blog Layout with Sidebar <code>&lt;aside&gt;</code></h2>
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <div class="blog-layout">
+        <main>
+          <article>
+            <h2>Understanding CSS Grid</h2>
+            <p>CSS Grid is a powerful two-dimensional layout system that allows developers to create complex layouts with ease...</p>
+            <p>With grid-template-rows and grid-template-columns, you can define exact layouts.</p>
+          </article>
+        </main>
+        <aside class="sidebar" aria-labelledby="sidebar-title">
+          <h3 id="sidebar-title">Related Content</h3>
+          <section>
+            <h4>Popular Posts</h4>
+            <ul>
+              <li><a href="#">Flexbox Guide</a></li>
+              <li><a href="#">CSS Variables</a></li>
+              <li><a href="#">Responsive Design</a></li>
+            </ul>
+          </section>
+          <section>
+            <h4>Categories</h4>
+            <ul>
+              <li><a href="#">HTML</a></li>
+              <li><a href="#">CSS</a></li>
+              <li><a href="#">JavaScript</a></li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </div>
+    <pre><code><span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Understanding CSS Grid<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>CSS Grid is a powerful layout...<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;aside</span> <span class="attr">aria-labelledby</span>=<span class="str">"sidebar-title"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h3</span> <span class="attr">id</span>=<span class="str">"sidebar-title"</span><span class="tag">&gt;</span>Related Content<span class="tag">&lt;/h3&gt;</span>
+  <span class="tag">&lt;section&gt;</span>
+    <span class="tag">&lt;h4&gt;</span>Popular Posts<span class="tag">&lt;/h4&gt;</span>
+    <span class="tag">&lt;ul&gt;</span>
+      <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Flexbox Guide<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+  <span class="tag">&lt;/section&gt;</span>
+<span class="tag">&lt;/aside&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 2: Pull Quote Inside Article -->
+  <div class="example-box">
+    <h2>Example 2: Pull Quote with <code>&lt;aside&gt;</code> Inside an Article</h2>
+    <div class="output">
+      <article>
+        <h3>The Future of Web Development</h3>
+        <p>Web development continues to evolve rapidly, with new technologies emerging every year. The landscape of frontend development has changed dramatically over the past decade.</p>
+        <aside class="pull-quote">
+          <blockquote>"The best way to predict the future is to create it." <cite>— Peter Drucker</cite></blockquote>
+        </aside>
+        <p>Modern frameworks and tools have made it easier than ever to build complex applications...</p>
+      </article>
+    </div>
+    <pre><code><span class="tag">&lt;article&gt;</span>
+  <span class="tag">&lt;h3&gt;</span>The Future of Web Development<span class="tag">&lt;/h3&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Content...<span class="tag">&lt;/p&gt;</span>
+  
+  <span class="tag">&lt;aside&gt;</span>
+    <span class="tag">&lt;blockquote&gt;</span>
+      "The best way to predict the future is to create it."
+      <span class="tag">&lt;cite&gt;</span>— Peter Drucker<span class="tag">&lt;/cite&gt;</span>
+    <span class="tag">&lt;/blockquote&gt;</span>
+  <span class="tag">&lt;/aside&gt;</span>
+  
+  <span class="tag">&lt;p&gt;</span>More content...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/article&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 3: Product Details Sidebar -->
+  <div class="example-box">
+    <h2>Example 3: Product Details <code>&lt;aside&gt;</code></h2>
+    <p>An e-commerce product page using <code>&lt;aside&gt;</code> for specifications and pricing.</p>
+    <div class="output">
+      <div style="display:grid; grid-template-columns: 1fr 300px; gap: 20px;">
+        <main>
+          <article>
+            <h2>Wireless Headphones Pro</h2>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect fill='%23e3f2fd' width='400' height='200'/%3E%3Ctext x='200' y='105' text-anchor='middle' fill='%231a73e8' font-size='16'%3EProduct Image%3C/text%3E%3C/svg%3E" alt="Wireless Headphones Pro" style="width:100%; max-width:400px;">
+            <p>Experience premium sound quality with active noise cancellation. These headphones deliver studio-quality audio with 30 hours of battery life.</p>
+          </article>
+        </main>
+        <aside style="background:#fff3e0; padding:15px; border-radius:8px;" aria-label="Product specifications">
+          <h3>Specifications</h3>
+          <dl>
+            <dt>Battery</dt><dd>30 hours</dd>
+            <dt>Bluetooth</dt><dd>5.3</dd>
+            <dt>Weight</dt><dd>250g</dd>
+            <dt>Noise Cancellation</dt><dd>Active</dd>
+          </dl>
+          <p style="font-size:1.5em; color:#e65100; font-weight:bold;">$89.99</p>
+          <button style="width:100%; padding:10px; background:#e65100; color:white; border:none; border-radius:4px;">Add to Cart</button>
+        </aside>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Introduction - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1a202c;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #2d3748;
+      padding: 20px 30px;
+      border-bottom: 3px solid #4299e1;
+      text-align: center;
+    }
+    header h1 { color: #63b3ed; font-size: 1.8em; }
+    header p { color: #a0aec0; margin-top: 5px; }
+    .container { display: flex; flex: 1; }
+    .editor-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-right: 2px solid #2d3748;
+    }
+    .preview-panel { flex: 1; display: flex; flex-direction: column; }
+    .panel-label {
+      background: #2d3748;
+      padding: 8px 15px;
+      font-size: 0.85em;
+      color: #a0aec0;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    textarea {
+      flex: 1;
+      background: #1a202c;
+      color: #e2e8f0;
+      border: none;
+      padding: 15px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      resize: none;
+      outline: none;
+    }
+    iframe {
+      flex: 1;
+      background: white;
+      border: none;
+      width: 100%;
+    }
+    .controls {
+      background: #2d3748;
+      padding: 10px 15px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border-top: 1px solid #4a5568;
+    }
+    button {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    button:hover { background: #3182ce; }
+    button.reset { background: #4a5568; }
+    button.reset:hover { background: #718096; }
+    .controls label { color: #a0aec0; font-size: 0.9em; }
+    select {
+      background: #4a5568;
+      color: #e2e8f0;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .status { color: #68d391; font-size: 0.85em; margin-left: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎨 CSS Playground: Introduction to CSS</h1>
+    <p>Edit the CSS in the editor panel and see live preview — experiment with colors, fonts, and styles!</p>
+  </header>
+  <div class="container">
+    <div class="editor-panel">
+      <div class="panel-label">📝 CSS Editor</div>
+      <textarea id="cssEditor" spellcheck="false">/* ===== CSS INTRODUCTION PLAYGROUND ===== */
+/* Try editing the styles below and see the preview update instantly! */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 40px;
+  background-color: #f0f4f8;
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #1a365d;
+  text-align: center;
+  font-size: 2.5em;
+  border-bottom: 4px solid #4299e1;
+  padding-bottom: 15px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #4299e1;
+}
+
+.highlight {
+  background: #fefcbf;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn {
+  display: inline-block;
+  background: #4299e1;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #2b6cb0;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #718096;
+  font-size: 0.9em;
+}</textarea>
+      <div class="controls">
+        <button onclick="updatePreview()">▶ Run</button>
+        <button class="reset" onclick="resetCSS()">↺ Reset</button>
+        <label for="themeSelect">Theme:</label>
+        <select id="themeSelect" onchange="updatePreview()">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="sepia">Sepia</option>
+        </select>
+        <span class="status" id="status">Ready</span>
+      </div>
+    </div>
+    <div class="preview-panel">
+      <div class="panel-label">🔍 Live Preview</div>
+      <iframe id="preview"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const defaultCSS = document.getElementById('cssEditor').value;
+
+    function getHTML(css) {
+      return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  ${css}
+</style>
+</head>
+<body>
+  <h1>Welcome to CSS!</h1>
+
+  <div class="card">
+    <h2>What is CSS?</h2>
+    <p>CSS (Cascading Style Sheets) controls the visual presentation of web pages. It makes the web beautiful!</p>
+  </div>
+
+  <div class="card">
+    <h2>Key Concepts</h2>
+    <ul>
+      <li><strong>Selectors</strong> — target HTML elements</li>
+      <li><strong>Properties</strong> — what to change (color, font, size)</li>
+      <li><strong>Values</strong> — the value of the property</li>
+      <li><strong>Cascade</strong> — how conflicting rules are resolved</li>
+      <li><strong>Inheritance</strong> — passing styles to child elements</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Try It Yourself</h2>
+    <p class="highlight">Edit the CSS code on the left panel and click "Run" to see changes!</p>
+    <p>Try changing the <code>background-color</code> of the body, or the <code>color</code> of the h1.</p>
+    <br>
+    <a href="#" class="btn">Click Me</a>
+  </div>
+
+  <footer>
+    <p>CSS Introduction Module — Learn CSS from scratch</p>
+  </footer>
+</body>
+</html>`;
+    }
+
+    function updatePreview() {
+      const css = document.getElementById('cssEditor').value;
+      const theme = document.getElementById('themeSelect').value;
+      const preview = document.getElementById('preview');
+      preview.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(getHTML(css));
+      document.getElementById('status').textContent = '✓ Updated';
+      setTimeout(() => { document.getElementById('status').textContent = 'Ready'; }, 2000);
+    }
+
+    function resetCSS() {
+      document.getElementById('cssEditor').value = defaultCSS;
+      updatePreview();
+    }
+
+    window.addEventListener('load', updatePreview);
+
+    // Auto-update on Ctrl+Enter
+    document.getElementById('cssEditor').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && e.ctrlKey) { updatePreview(); }
+    });
+  </script>
+</body>
+</html>

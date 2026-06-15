@@ -1,0 +1,128 @@
+{
+    "beginner":  [
+                     {
+                         "question":  "What does the CSS overflow property control?",
+                         "answer":  "The overflow property controls what happens when content exceeds an element\u0027s box dimensions. It can clip the content, add scrollbars, or let the content overflow visibly. The property is shorthand for overflow-x and overflow-y, which control horizontal and vertical overflow separately."
+                     },
+                     {
+                         "question":  "What are the five values for the overflow property?",
+                         "answer":  "The five values are: visible (default — content is not clipped and renders outside the box), hidden (content is clipped with no scrollbars), scroll (content is clipped and scrollbars always appear regardless of content size), auto (content is clipped and scrollbars appear only when needed), and clip (like hidden but also prevents programmatic scrolling)."
+                     },
+                     {
+                         "question":  "What is the default value of overflow?",
+                         "answer":  "The default value of overflow is visible. This means content is NOT clipped — it can overflow the element\u0027s box and render outside it, potentially overlapping adjacent elements. This is why long text or large images can extend beyond their containers by default."
+                     },
+                     {
+                         "question":  "What does overflow: hidden do?",
+                         "answer":  "overflow: hidden clips any content that extends beyond the element\u0027s box. The clipped content is invisible — users cannot scroll to see it. This is used for: cropping images to fit a container, hiding text that overflows, creating rounded corners (combined with border-radius), and containing floats or clearing layout issues. The downside is that hidden content is completely inaccessible."
+                     },
+                     {
+                         "question":  "What is the difference between overflow: auto and overflow: scroll?",
+                         "answer":  "overflow: scroll always shows scrollbars (even if content fits), which can clutter the interface but prevents layout shifts when scrollbars appear/disappear. overflow: auto only shows scrollbars when content overflows — cleaner UI but can cause layout shifts when scrollbars appear (content width changes because scrollbars take space). In most cases, overflow: auto is preferred."
+                     },
+                     {
+                         "question":  "How do you create a scrollable container using CSS?",
+                         "answer":  "Set overflow: auto (or overflow: scroll) on the container with explicit dimensions: .scrollable { width: 300px; height: 200px; overflow: auto; }. If content exceeds 200px height, a vertical scrollbar appears. If content exceeds 300px width, a horizontal scrollbar appears. For controlling individual axes: overflow-x: hidden; overflow-y: auto;"
+                     },
+                     {
+                         "question":  "What is text-overflow: ellipsis and how does it work?",
+                         "answer":  "text-overflow: ellipsis adds an ellipsis (...) at the end of overflowing text to indicate truncation. It requires three properties working together: white-space: nowrap (prevents text wrapping), overflow: hidden (clips the excess), and text-overflow: ellipsis (adds the ... indicator). This only works for single-line text truncation. Example: .truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }."
+                     },
+                     {
+                         "question":  "What is the difference between overflow-x and overflow-y?",
+                         "answer":  "overflow-x controls horizontal overflow (content wider than the element), and overflow-y controls vertical overflow (content taller than the element). They accept the same values (visible, hidden, scroll, auto, clip). Example: overflow-x: hidden; overflow-y: auto; hides horizontal scrollbars but allows vertical scrolling when needed."
+                     },
+                     {
+                         "question":  "How do you prevent horizontal overflow on a page?",
+                         "answer":  "Prevent horizontal overflow by: (1) Using overflow-x: hidden on \u003cbody\u003e or \u003chtml\u003e (caution: can hide content); (2) Setting max-width: 100% on all images and media; (3) Using overflow-wrap: break-word for long text; (4) Avoiding fixed-width elements that exceed the viewport; (5) Using responsive units (%, vw, vh, rem) instead of fixed px where possible; (6) Using box-sizing: border-box so padding doesn\u0027t add to width."
+                     },
+                     {
+                         "question":  "How does overflow interact with the box model?",
+                         "answer":  "When overflow is set to a value other than visible (default), the element creates a new Block Formatting Context (BFC). This means: (1) The element\u0027s margins don\u0027t collapse with children; (2) Floated children are contained; (3) The element becomes a containing block for absolutely positioned children. This side effect is commonly used to fix float containment and margin collapsing issues."
+                     }
+                 ],
+    "intermediate":  [
+                         {
+                             "question":  "How do you create single-line text truncation with ellipsis and make it work in all browsers?",
+                             "answer":  ".truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }. For flex items, also add min-width: 0 to allow truncation (flex items default to min-width: auto, which prevents shrinking below content size). For grid items, you may need min-width: 0 or overflow: hidden on the grid item itself. The ellipsis character varies slightly across browsers but is universally supported."
+                         },
+                         {
+                             "question":  "How do you handle the conflict between overflow-x and overflow-y where one axis is visible and the other is non-visible?",
+                             "answer":  "CSS has a constraint: if you set overflow-x to visible and overflow-y to scroll/auto/hidden, overflow-x is automatically recomputed to auto (non-visible). This prevents the case where content would overflow in one axis and be visible while the other axis clips. The browser forces both axes to behave as the non-visible value. To work around this: wrap the content in an outer container with the visible overflow and put the scrollable container inside."
+                         },
+                         {
+                             "question":  "How does overflow: clip differ from overflow: hidden?",
+                             "answer":  "overflow: clip is similar to hidden but with one crucial difference: clip also prevents programmatic scrolling (via JavaScript scroll methods like scrollTop = 100 or scrollTo()). With hidden, content can still be scrolled programmatically (or via the browser\u0027s scrollbar if it somehow appears). clip is stricter — it completely disables all scrolling interaction. It also doesn\u0027t create a scrolling container, which can have performance benefits. Support was added in modern browsers."
+                         },
+                         {
+                             "question":  "How does overflow affect scrollable containers and accessibility?",
+                             "answer":  "For accessibility: (1) Scrollable regions must be keyboard accessible — add tabindex=\"0\" to allow Tab focus; (2) Use role=\"region\" and aria-label to describe the scrollable area; (3) Ensure content is not hidden behind scrollbars at 200% zoom; (4) Test keyboard scrolling (Arrow keys, Page Up/Down, Home/End); (5) Consider that touch users can swipe to scroll, but desktop users need visible scrollbars; (6) overflow: hidden can trap content — avoid hiding content that users need to access."
+                         },
+                         {
+                             "question":  "How does overflow interact with position: sticky?",
+                             "answer":  "position: sticky often fails to work inside elements with overflow: hidden, overflow: auto, or overflow: scroll on any ancestor. This is because sticky behavior is scoped to the nearest scroll container. If an ancestor has overflow set to a value that creates a scroll container (hidden, scroll, auto), the sticky element will stick relative to that ancestor\u0027s viewport, not the page viewport. To make sticky work: ensure no ancestor between the sticky element and the page has overflow: hidden/scroll/auto."
+                         },
+                         {
+                             "question":  "How do you prevent margin collapsing when using overflow?",
+                             "answer":  "Setting overflow: auto, overflow: hidden, or overflow: scroll on a parent element creates a new BFC, which prevents the parent\u0027s margins from collapsing with its children\u0027s margins. This is a common technique to fix unexpected margin collapsing: .container { overflow: auto; }. The trade-off is that overflow: hidden clips content, so overflow: auto is usually safer (only adds scrollbars when needed)."
+                         },
+                         {
+                             "question":  "What is the scrollbar-gutter property and how does it prevent layout shifts?",
+                             "answer":  "scrollbar-gutter reserves space for the scrollbar in the element\u0027s padding/inner area, preventing layout shift when a scrollbar appears/disappears. Values: auto (no space reserved), stable (space is always reserved), stable both-edges (space reserved on both sides). When combined with overflow: auto, it ensures the content width doesn\u0027t change when scrollbars appear, eliminating the horizontal reflow that typically happens when overflow content triggers scrollbars."
+                         },
+                         {
+                             "question":  "How do you create a horizontally scrolling container (like a horizontal card carousel)?",
+                             "answer":  ".horizontal-scroll { display: flex; overflow-x: auto; overflow-y: hidden; gap: 20px; padding: 20px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }. The container has visible cards in a flex row, horizontal scrollbar appears when content overflows. scroll-snap-type: x mandatory enables snap scrolling. -webkit-overflow-scrolling: touch enables smooth momentum scrolling on iOS. For no visible scrollbar: set scrollbar-width: none (Firefox) or ::-webkit-scrollbar { display: none; } (Chrome/Safari)."
+                         },
+                         {
+                             "question":  "How do you debug overflow causing unexpected scrollbars on a page?",
+                             "answer":  "Debugging: (1) Add * { outline: 1px solid red; } to see all element boundaries — find the element extending beyond the viewport; (2) Check for fixed-width elements that exceed the viewport; (3) Look for margins/padding on children that push beyond the parent; (4) Check for background images or box-shadow that extend beyond the element; (5) Use DevTools to find the overflowing element (Chrome shows a \u0027scrollable\u0027 badge on containers); (6) Check for grid/flex items that don\u0027t shrink properly — add min-width: 0 to flex items."
+                         },
+                         {
+                             "question":  "How does overflow interact with CSS columns (multi-column layout)?",
+                             "answer":  "In multi-column layout, overflow controls what happens when content exceeds the column container\u0027s height. When overflow is set to auto/scroll, the content becomes scrollable within the multi-column container. Each column\u0027s content still wraps correctly, and the overflow behavior affects the entire column set. Setting overflow: hidden can clip content that extends beyond the columns. Column layout also has its own overflow control with column-fill (auto/balance) which controls how content fills columns."
+                         }
+                     ],
+    "advanced":  [
+                     {
+                         "question":  "Explain the complete scroll container model including scroll chaining, overscroll-behavior, and scroll origin.",
+                         "answer":  "When a user scrolls and reaches the boundary of a scrollable container, scroll chaining passes the scroll event to the parent container. overscroll-behavior controls this: contain prevents chaining (scrolling stays within the element), none prevents chaining and also disables overscroll effects (like pull-to-refresh on mobile), and auto (default) allows both chaining and overscroll effects. The scroll origin determines the coordinate system for scroll positions — each scroll container has its own origin. This model is crucial for nested scrolling interfaces (chat panels, modals within pages) to prevent unexpected scroll behavior."
+                     },
+                     {
+                         "question":  "How does the CSS overflow property interact with the CSS contain: paint property for rendering performance?",
+                         "answer":  "contain: paint clips an element\u0027s descendants to the element\u0027s padding box (identical to overflow: hidden but without creating a scroll container). When both overflow: hidden and contain: paint are set, the containment optimization allows the browser to skip painting descendants that are outside the element\u0027s box, improving performance. Unlike overflow: hidden alone, contain: paint + overflow: hidden tells the browser it can optimize aggressively because neither the element nor its children will ever need to paint outside the element\u0027s bounds."
+                     },
+                     {
+                         "question":  "How do you implement custom scrollbar styling across different browsers?",
+                         "answer":  "For WebKit browsers: ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #f1f1f1; } ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; } ::-webkit-scrollbar-thumb:hover { background: #555; }. For Firefox: scrollbar-width: thin; scrollbar-color: #888 #f1f1f1; (thumb first, track second). There is no unified standard for custom scrollbars yet. WebKit\u0027s pseudo-elements offer the most control. CSS Scrollbars Styling Module Level 1 (scrollbar-color and scrollbar-width) is the emerging standard, supported in Firefox."
+                     },
+                     {
+                         "question":  "How does overflow affect the CSS box-decoration-break property when content fragments across lines or columns?",
+                         "answer":  "box-decoration-break controls how an element\u0027s box properties (border, padding, margin, background, box-shadow, clip-path) are applied when it fragments across lines, columns, or pages. With box-decoration-break: slice (default), the box model is split at the break, and only the relevant parts are rendered. With box-decoration-break: clone, each fragment gets a full copy of the box model. Overflow interacts with this: if overflow: hidden is set, content at fragmentation breaks may be clipped differently depending on the box-decoration-break value."
+                     },
+                     {
+                         "question":  "How does the CSS scroll-driven animations API (scroll(), view()) interact with overflow containers?",
+                         "answer":  "CSS scroll-driven animations use ScrollTimeline (scrolling of a container) or ViewTimeline (element visibility in the viewport). For ScrollTimeline: .animated { animation: fade-in linear; animation-timeline: scroll(nearest); } triggers based on the nearest scrollable ancestor\u0027s scroll position. For ViewTimeline: animation-timeline: view(block); triggers based on the element\u0027s visibility within its scroll container. These interact with overflow because the scroll container is defined by overflow: auto/scroll. An element in an overflow: hidden container cannot be used for scroll-driven animations since there\u0027s no scrolling."
+                     },
+                     {
+                         "question":  "How do you implement a virtual scroll container concept using CSS (content-visibility + overflow) for performance?",
+                         "answer":  "content-visibility: auto lazily renders off-screen elements in a scroll container, dramatically improving initial page load with long lists. Combined with contain: layout style paint, the browser skips rendering for elements outside the viewport. Example: .long-list { overflow: auto; height: 600px; } .list-item { content-visibility: auto; contain: intent; }. This tells the browser: only render list items that are near the viewport. As the user scrolls, items are rendered just in time. This can improve performance on lists with hundreds of items by 10-100x."
+                     },
+                     {
+                         "question":  "How does the CSS overflow: hidden vs clip affect the element\u0027s scroll event listeners and scroll properties?",
+                         "answer":  "overflow: hidden: The element is not user-scrollable (no scrollbar), but JavaScript can still set scrollTop/scrollLeft programmatically. The browser fires scroll events on the element. scrollWidth/Height reflect the full content size (including overflow). overflow: clip: The element cannot be scrolled by any method — neither user nor programmatic. scrollTop/scrollLeft are clamped to 0. scroll events are not fired. scrollWidth/Height are clamped to the element\u0027s visible size. This distinction matters for accessibility and JavaScript-driven scroll effects."
+                     },
+                     {
+                         "question":  "How does overflow interact with CSS anchor positioning (anchor(), position-fallback)?",
+                         "answer":  "CSS anchor positioning allows positioning an element relative to another (anchor) element. When the anchored element overflows its containing block (which may have overflow: hidden), it could be clipped. The position-fallback mechanism can reposition the anchored element to prevent overflow. This interacts with overflow because: (1) If the anchor\u0027s containing block has overflow: hidden, the positioned element may be clipped; (2) overflow: visible allows the anchored element to extend freely; (3) The overflow behavior should be considered when choosing anchor positions and fallbacks."
+                     },
+                     {
+                         "question":  "How does the CSS spec define the interaction between overflow and keyboard/focus management?",
+                         "answer":  "WCAG 2.1.1 (Keyboard) requires that all content be reachable via keyboard. If overflow: hidden is used on a container that traps keyboard focus, some content may be unreachable by Tab navigation. If a focused element is inside an overflow: hidden container and moves outside the visible area (via animation or repositioning), the focus may become lost (focus is not scrolled into view because there\u0027s no scrollbar). WCAG 2.4.11 (Focus Not Obscured) requires that the focused element is not hidden by other content — overflow: hidden can cause focus to be clipped. Solutions: use overflow: auto instead, or ensure focusable elements are always within the visible overflow area."
+                     },
+                     {
+                         "question":  "How can you create a scrollable container with overflow that maintains keyboard accessibility?",
+                         "answer":  "Use overflow: auto or overflow: scroll on the container, ensure the container has tabindex=\u00270\u0027 if it needs focus, use aria-label or aria-labelledby to describe the scrollable region, and test with keyboard navigation (Tab and arrow keys). Apply scrollbar styling with ::-webkit-scrollbar and maintain visible focus indicators for accessibility."
+                     }
+                 ]
+}

@@ -1,0 +1,122 @@
+[
+    {
+        "question": "What is the primary direction of data flow in Server-Sent Events?",
+        "options": ["Client to server only", "Server to client only", "Bidirectional", "Peer-to-peer"],
+        "answer": "b",
+        "explanation": "SSE is unidirectional — data flows only from server to client. This is the key difference from WebSockets which are bidirectional."
+    },
+    {
+        "question": "Which JavaScript API is used to consume Server-Sent Events?",
+        "options": ["WebSocket", "EventSource", "SSEClient", "ServerPush"],
+        "answer": "b",
+        "explanation": "The EventSource API is used to receive SSE streams. It accepts a URL and automatically handles the connection, reconnection, and event parsing."
+    },
+    {
+        "question": "What MIME type does a server must set for SSE connections?",
+        "options": ["text/html", "text/event-stream", "application/json", "text/plain"],
+        "answer": "b",
+        "explanation": "SSE requires the Content-Type header to be 'text/event-stream'. This tells the browser to keep the connection open and parse events from the stream."
+    },
+    {
+        "question": "How does the EventSource API handle connection drops?",
+        "options": ["It throws an error and stops", "It automatically reconnects", "The developer must manually reconnect", "It falls back to polling"],
+        "answer": "b",
+        "explanation": "EventSource automatically reconnects when the connection drops. It sends the Last-Event-ID header so the server can resume from where it left off."
+    },
+    {
+        "question": "What field marks the end of an SSE event?",
+        "options": ["---", "A blank line (\\n\\n)", "###", "END"],
+        "answer": "b",
+        "explanation": "An empty line (two consecutive newline characters) marks the end of an SSE event. Each event block ends with \\n\\n."
+    },
+    {
+        "question": "How do you receive custom event types with EventSource?",
+        "options": ["eventSource.on('custom', handler)", "eventSource.addEventListener('custom', handler)", "eventSource.onmessage = handler", "eventSource.oncustom = handler"],
+        "answer": "b",
+        "explanation": "Custom event types are received using addEventListener('eventName', handler). The 'message' event catches events without a specific event type."
+    },
+    {
+        "question": "What does the 'id' field in an SSE event do?",
+        "options": ["Identifies the event type", "Sets the event ID for reconnection tracking", "Specifies the data format", "Sets the retry interval"],
+        "answer": "b",
+        "explanation": "The 'id' field sets the event ID, which the browser tracks. On reconnection, the browser sends Last-Event-ID so the server can resume from that point."
+    },
+    {
+        "question": "What does the 'retry' field in SSE specify?",
+        "options": ["Number of retry attempts", "Milliseconds to wait before reconnecting", "Retry for failed events only", "Interval between events"],
+        "answer": "b",
+        "explanation": "The 'retry' field tells the browser how many milliseconds to wait before attempting to reconnect after a connection drop."
+    },
+    {
+        "question": "What happens if an SSE line starts with a colon (':')?",
+        "options": ["It's treated as an event", "It's ignored as a comment", "It sets the event type", "It triggers an error"],
+        "answer": "b",
+        "explanation": "Lines starting with ':' are comments and are ignored by the EventSource. They can be used as keepalive pings to prevent proxy timeouts."
+    },
+    {
+        "question": "Can EventSource send data to the server?",
+        "options": ["Yes, via send()", "No, it only receives data", "Yes, via POST", "Only with credentials enabled"],
+        "answer": "b",
+        "explanation": "EventSource only receives data from the server. It cannot send data to the server. For bidirectional communication, use WebSockets."
+    },
+    {
+        "question": "What HTTP method does EventSource use?",
+        "options": ["POST", "GET", "PUT", "Any method"],
+        "answer": "b",
+        "explanation": "EventSource uses HTTP GET requests. The server must handle GET requests to the specified URL and respond with text/event-stream."
+    },
+    {
+        "question": "How do you close an EventSource connection?",
+        "options": ["eventSource.close()", "eventSource.stop()", "eventSource.terminate()", "eventSource.end()"],
+        "answer": "a",
+        "explanation": "The close() method closes the EventSource connection. After closing, the connection will not automatically reconnect."
+    },
+    {
+        "question": "What is the typical maximum number of SSE connections per browser domain?",
+        "options": ["1-2", "6-10", "Unlimited", "100"],
+        "answer": "b",
+        "explanation": "Like standard HTTP connections, browsers limit SSE connections to 6-10 per domain. This is the same limit as HTTP/1.1 persistent connections."
+    },
+    {
+        "question": "What is the readyState value when an EventSource is connected?",
+        "options": ["0", "1", "2", "3"],
+        "answer": "b",
+        "explanation": "EventSource.OPEN (value 1) means the connection is open and receiving events. CONNECTING is 0 and CLOSED is 2."
+    },
+    {
+        "question": "Can SSE send binary data (like ArrayBuffer)?",
+        "options": ["Yes, with binaryType set", "No, SSE only supports text data", "Only with extensions", "Only in blob format"],
+        "answer": "b",
+        "explanation": "SSE only supports text data. The event stream format is text-based. For binary data, use WebSockets or encode binary as base64 or use a binary protocol."
+    },
+    {
+        "question": "What happens when multiple 'data:' lines are present in an SSE event?",
+        "options": ["Only the last line is used", "They are concatenated with newlines", "An error is thrown", "They create separate events"],
+        "answer": "b",
+        "explanation": "Multiple data: lines in a single event are concatenated with newline characters between them, forming a single data string."
+    },
+    {
+        "question": "Which of the following is NOT a valid EventSource event?",
+        "options": ["open", "message", "error", "close"],
+        "answer": "d",
+        "explanation": "EventSource has three events: 'open' (connection opened), 'message' (data received), and 'error' (connection error). There is no 'close' event."
+    },
+    {
+        "question": "How do you enable credentials (cookies) with EventSource?",
+        "options": ["new EventSource(url, { withCredentials: true })", "new EventSource(url, { credentials: 'include' })", "By default, cookies are always sent", "Cookies cannot be sent with SSE"],
+        "answer": "a",
+        "explanation": "Pass { withCredentials: true } as the second argument to EventSource to include cookies and HTTP authentication in the request."
+    },
+    {
+        "question": "What is a common use case for SSE over WebSockets?",
+        "options": ["Real-time chat applications", "Live news feeds and notifications", "Online gaming", "Peer-to-peer file sharing"],
+        "answer": "b",
+        "explanation": "SSE is ideal for server-to-client data push like live news feeds, notifications, and status updates. Chat and gaming need the bidirectional capability of WebSockets."
+    },
+    {
+        "question": "What happens if you try to parse an SSE event's data without JSON.parse()?",
+        "options": ["It automatically parses as JSON", "The data is a string", "It throws an error", "It returns undefined"],
+        "answer": "b",
+        "explanation": "SSE event data is always a string, even if it contains JSON. You must explicitly parse it with JSON.parse() to access structured data."
+    }
+]

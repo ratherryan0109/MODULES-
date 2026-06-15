@@ -1,0 +1,130 @@
+{
+  "module": "119-clean-css-architecture",
+  "title": "Clean CSS Architecture",
+  "beginner": [
+    {
+      "question": "What is CSS architecture?",
+      "answer": "CSS architecture is the intentional design of how CSS is organized, structured, and maintained in a project. It defines file organization, naming conventions, selector patterns, and the overall approach to styling to ensure scalability and maintainability."
+    },
+    {
+      "question": "What does 'separation of concerns' mean in CSS architecture?",
+      "answer": "Separation of concerns means dividing CSS into distinct layers with clear responsibilities: structure (layout) vs presentation (visual styles) vs behavior (interactive states). Each layer handles its own concern without overstepping into other areas."
+    },
+    {
+      "question": "What is a 'scalable' CSS architecture?",
+      "answer": "Scalable CSS architecture can grow with the project without becoming unmanageable. As new pages, components, and features are added, the existing stylesheet structure remains predictable, new code fits naturally, and old code doesn't need rewrites."
+    },
+    {
+      "question": "What is the benefit of a CSS methodology like BEM or SMACSS?",
+      "answer": "A CSS methodology provides a proven structure for organizing CSS at scale. It standardizes naming, categorization, and file organization across the team, reducing the cognitive load of deciding how to structure styles."
+    },
+    {
+      "question": "What is the difference between 'base' and 'component' CSS?",
+      "answer": "Base CSS provides foundational element-level styles (reset, typography defaults, link colors). Component CSS styles self-contained UI pieces (buttons, cards, modals). Base styles apply globally via element selectors; component styles use class selectors."
+    },
+    {
+      "question": "Why should CSS architecture define a 'component' boundary?",
+      "answer": "Defining a component boundary ensures that one component's styles don't leak into another. It forces encapsulation — all styles for a component live together, and the component is styleable via a consistent class interface without cascade dependencies."
+    },
+    {
+      "question": "What is 'CSS specificity graph' and how does it relate to architecture?",
+      "answer": "A CSS specificity graph charts selector specificity across the stylesheet. A well-architected CSS has a smooth upward slope (base → components → overrides). A chaotic graph has wild spikes (IDs, `!important`) that indicate architectural problems."
+    },
+    {
+      "question": "What is the 'C in CSS' (cascade) and why must architecture account for it?",
+      "answer": "The cascade is the algorithm browsers use to resolve conflicting styles. CSS architecture must account for cascade by controlling selector specificity, source order, and using modern tools like `@layer` to create a predictable, intentional cascade."
+    },
+    {
+      "question": "What is a 'CSS utility class' in the context of architecture?",
+      "answer": "A utility class does one specific thing (`.text-center`, `.mt-4`, `.flex`). In a CSS architecture, utilities are the lowest-level building blocks — intentionally flat and high-specificity (if needed) to override other styles without cascade complexity."
+    },
+    {
+      "question": "Why does a clean CSS architecture reduce development time?",
+      "answer": "A clean architecture makes CSS predictable — developers know where to find styles, how to create new ones, and can change existing styles without breaking things. This reduces debugging time, code review overhead, and the fear of touching CSS."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is SMACSS and what are its five categories?",
+      "answer": "SMACSS (Scalable and Modular Architecture for CSS) by Jonathan Snook categorizes CSS into: Base (default styles), Layout (page sections), Module (reusable components), State (interactive states), and Theme (visual variations). Each category has its own naming and organization rules."
+    },
+    {
+      "question": "What is OOCSS (Object-Oriented CSS) and its two core principles?",
+      "answer": "OOCSS by Nicole Sullivan has two principles: (1) Separate structure from skin — separate layout/positioning from visual decorations, (2) Separate container from content — avoid location-dependent styles. This creates reusable, composable CSS objects."
+    },
+    {
+      "question": "How does ITCSS structure CSS in layers?",
+      "answer": "ITCSS (Inverted Triangle CSS) has 7 layers: Settings (variables), Tools (mixins/functions), Generic (reset/normalize), Elements (bare HTML elements), Objects (layout patterns), Components (UI widgets), and Utilities (overrides). Each layer has higher specificity than the last."
+    },
+    {
+      "question": "What is 'CSS Layers' (@layer) and how does it improve architecture?",
+      "answer": "`@layer` lets developers define explicit cascade layers. Unlike source-order dependency, layers give architects control: `@layer base, components, utilities;` ensures utilities always override components regardless of source order. This replaces the need for specificity tricks."
+    },
+    {
+      "question": "How do you decide between using a component class or a utility class?",
+      "answer": "If a style is used multiple times in the same context (e.g., all buttons), create a component class. If a style is a single property used across unrelated contexts (e.g., `text-align: center`), create a utility class. Components for patterns, utilities for single concerns."
+    },
+    {
+      "question": "What is the 'leaky abstraction' problem in CSS architecture?",
+      "answer": "A leaky abstraction is when internal implementation details of a component's CSS affect the outside. Example: a card component with `margin-bottom: 20px` affects its parent layout. Clean architecture uses external spacing as a parent concern, not a component's own margin."
+    },
+    {
+      "question": "What is the difference between 'block' and 'inline' in the context of CSS architecture?",
+      "answer": "In architecture, 'block-level' components occupy 100% width and stack vertically (sections, cards). 'Inline-level' components sit next to each other (buttons in a toolbar, badges). This distinction affects how you structure layout vs component CSS."
+    },
+    {
+      "question": "How do CSS custom properties support clean architecture?",
+      "answer": "Custom properties enable a design token layer that sits above component CSS. Components reference `--color-primary` instead of hardcoded values. Theming is achieved by scoping custom property overrides (`.dark-mode { --color-primary: #90caf9; }`)."
+    },
+    {
+      "question": "What is the 'CUBE CSS' methodology?",
+      "answer": "CUBE CSS (Composition, Utility, Block, Exception) by Andy Bell is a CSS methodology emphasizing: Composition (layout), Utility (single purpose), Block (component), Exception (overrides). It uses CSS custom properties heavily and avoids pre-processors."
+    },
+    {
+      "question": "How do you handle CSS architecture in a micro-frontend architecture?",
+      "answer": "Each micro-frontend gets its own CSS scope (CSS Modules, Shadow DOM, or namespaced classes). A shared CSS library provides design tokens as CSS custom properties and base element styles. The shell application controls global layout. No direct cross-micro-frontend CSS dependencies."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does CSS `@scope` improve component architecture?",
+      "answer": "`@scope (.card) { ... }` limits CSS rules to a DOM subtree, acting as a native CSS scoping mechanism. This prevents component styles from leaking out and external styles from leaking in, without the complexity of Shadow DOM or CSS Modules."
+    },
+    {
+      "question": "What is 'The Cradle' and how does it relate to CSS architecture scalability?",
+      "answer": "'The Cradle' is a CSS architecture anti-pattern where base element selectors are too opinionated, forcing every component to override them. Clean architecture keeps base styles minimal and lets components define their own opinionated styles."
+    },
+    {
+      "question": "How do you design a CSS architecture for a design system used across 10+ products?",
+      "answer": "Tiered architecture: (1) Design token package (JSON) consumed by all, (2) Base CSS (normalize, typography, grid), (3) Component library (each component has its own CSS), (4) Product theme layer (overrides per product). Each tier has strict boundaries, with `@layer` for cascade control."
+    },
+    {
+      "question": "What is the 'CSS Module Script' approach for JavaScript-driven CSS architecture?",
+      "answer": "CSS Module Scripts (`CSSStyleSheet` constructor) allow constructing CSS programmatically and adopting sheets into documents or Shadow DOMs. This enables dynamic, scoped CSS without build tools — useful for web components and JS framework-agnostic architectures."
+    },
+    {
+      "question": "How do you architect CSS for server-rendered static sites with partial hydration?",
+      "answer": "Use a subset of the full CSS in the static build (critical CSS inlined, above-the-fold only). Lazy-load the remaining CSS. Use CSS custom properties for theming. Avoid runtime-dependent CSS (dynamic classnames from JS). CSS Modules work well with static extraction."
+    },
+    {
+      "question": "How does a 'Functional CSS' architecture compare to 'Semantic CSS' in terms of maintainability?",
+      "answer": "Functional CSS (Tailwind, Tachyons) reuses atomic classes in HTML — excellent for rapid prototyping and consistency but verbose in HTML. Semantic CSS uses descriptive class names — cleaner HTML but more CSS to maintain. The choice depends on team size, project scale, and designer involvement."
+    },
+    {
+      "question": "What is 'CSS architecture drift' and how do you prevent it?",
+      "answer": "Architecture drift occurs when new code deviates from the established architecture (adding new files where they don't belong, using wrong naming conventions, bypassing the component system). Prevent with automated linting, code reviews, architecture decision records (ADRs), and regular audits."
+    },
+    {
+      "question": "How do you design a CSS architecture for themes that supports both runtime switching and server-side rendering?",
+      "answer": "Use CSS custom properties for all themed values. Define theme overrides with attribute selectors: `[data-theme='dark'] { --color-bg: #111; }`. For SSR, inline the current theme's custom properties in `<head>`. The same CSS works for both SSR and client-side theme switching."
+    },
+    {
+      "question": "What is the 'isolation sandwich' pattern for embedded widgets?",
+      "answer": "Embed the widget in Shadow DOM (style isolation). Inside the shadow tree, reset all inheritance with `all: initial`. Then apply the widget's CSS from a scoped `CSSStyleSheet`. The sandwich: page CSS → Shadow DOM boundary → reset → widget CSS."
+    },
+    {
+      "question": "How do you architect CSS for a component that must work in both light and dark mode without duplication?",
+      "answer": "Define all colors as CSS custom properties that change value based on `prefers-color-scheme`. Components reference only custom properties (no hardcoded colors). Each component's CSS is written once and adapts to the mode. Use `color-scheme` for form control theming."
+    }
+  ]
+}

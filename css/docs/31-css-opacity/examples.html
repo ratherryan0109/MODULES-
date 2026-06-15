@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Opacity - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .flex-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .op-box { padding: 1.5rem 2rem; text-align: center; border-radius: 8px; font-weight: bold; color: white; }
+  </style>
+</head>
+<body>
+  <h1>CSS Opacity - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Opacity Values</h2>
+    <p>Opacity ranges from 0 (fully transparent) to 1 (fully opaque).</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div class="op-box" style="background:#06b6d4; opacity:1;">opacity: 1</div>
+        <div class="op-box" style="background:#06b6d4; opacity:0.75;">opacity: 0.75</div>
+        <div class="op-box" style="background:#06b6d4; opacity:0.5;">opacity: 0.5</div>
+        <div class="op-box" style="background:#06b6d4; opacity:0.25;">opacity: 0.25</div>
+      </div>
+    </div>
+    <pre><code>&lt;div style="opacity: 1;"&gt;Fully opaque&lt;/div&gt;
+&lt;div style="opacity: 0.75;"&gt;75% opaque&lt;/div&gt;
+&lt;div style="opacity: 0.5;"&gt;Half transparent&lt;/div&gt;
+&lt;div style="opacity: 0.25;"&gt;Mostly transparent&lt;/div&gt;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: rgba() vs Opacity</h2>
+    <p>rgba() only affects the background; opacity affects the entire element and its children.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div style="flex:1; padding:1.5rem; background:rgba(6,182,212,0.3); border-radius:8px; text-align:center;">
+          <strong>rgba(6,182,212,0.3)</strong><br>
+          <span style="color:#0f172a;">Text is fully opaque</span>
+        </div>
+        <div style="flex:1; padding:1.5rem; background:#06b6d4; border-radius:8px; text-align:center; opacity:0.3; color:white;">
+          <strong>opacity: 0.3</strong><br>
+          <span>Text is also transparent</span>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* rgba — only background is transparent */
+background: rgba(6, 182, 212, 0.3);
+
+/* opacity — entire element + children are transparent */
+opacity: 0.3;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Hover Fade Effect</h2>
+    <p>Combine opacity with transition for smooth hover effects.</p>
+    <div class="demo-output">
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <div style="flex:1; padding:2rem; background:#8b5cf6; color:white; text-align:center; border-radius:8px; opacity:0.6; transition: opacity 0.3s; cursor:pointer;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+          Hover to fade in
+        </div>
+        <div style="flex:1; padding:2rem; background:#f59e0b; color:white; text-align:center; border-radius:8px; opacity:1; transition: opacity 0.3s; cursor:pointer;" onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'">
+          Hover to fade out
+        </div>
+      </div>
+    </div>
+    <pre><code>.box {
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.box:hover { opacity: 1; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Image Opacity</h2>
+    <p>Images respond to opacity just like any other element.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div style="text-align:center;">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='0 0 150 100'%3E%3Crect width='150' height='100' fill='%2306b6d4'/%3E%3Ctext x='75' y='55' text-anchor='middle' fill='white' font-size='14'%3ENormal%3C/text%3E%3C/svg%3E" style="border-radius:6px;">
+          <div>opacity: 1</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='0 0 150 100'%3E%3Crect width='150' height='100' fill='%2306b6d4'/%3E%3Ctext x='75' y='55' text-anchor='middle' fill='white' font-size='14'%3EFaded%3C/text%3E%3C/svg%3E" style="border-radius:6px; opacity:0.5; transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
+          <div>opacity: 0.5 (hover to reveal)</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='0 0 150 100'%3E%3Crect width='150' height='100' fill='%2306b6d4'/%3E%3Ctext x='75' y='55' text-anchor='middle' fill='white' font-size='14'%3EGhost%3C/text%3E%3C/svg%3E" style="border-radius:6px; opacity:0.2;">
+          <div>opacity: 0.2</div>
+        </div>
+      </div>
+    </div>
+    <pre><code>img { opacity: 0.5; }
+img:hover { opacity: 1; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Layered Opacity Effect (Watermark)</h2>
+    <p>Low-opacity overlays create watermark or badge effects.</p>
+    <div class="demo-output">
+      <div style="position:relative; width:100%; height:120px; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem; font-weight:bold; overflow:hidden;">
+        Premium Content
+        <div style="position:absolute; font-size:4rem; opacity:0.1; color:white; font-weight:900; pointer-events:none; transform:rotate(-20deg);">SAMPLE</div>
+      </div>
+    </div>
+    <pre><code>.watermark {
+  position: absolute;
+  opacity: 0.1;
+  font-size: 4rem;
+  pointer-events: none;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Opacity with Text Overlay</h2>
+    <p>Dark overlay with opacity improves text readability on images.</p>
+    <div class="demo-output">
+      <div style="position:relative; width:100%; height:180px; border-radius:8px; overflow:hidden;">
+        <div style="width:100%; height:100%; background:linear-gradient(135deg,#f093fb,#f5576c);"></div>
+        <div style="position:absolute; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem; font-weight:bold;">
+          Text with dark overlay
+        </div>
+      </div>
+    </div>
+    <pre><code>.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  /* Text remains fully readable */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Progressive Disclosure</h2>
+    <p>Use opacity to de-emphasize secondary content while keeping it accessible.</p>
+    <div class="demo-output">
+      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+        <div style="padding:1rem; background:#e2e8f0; border-radius:6px; font-weight:bold;">Primary action</div>
+        <div style="padding:1rem; background:#e2e8f0; border-radius:6px; opacity:0.6;">Secondary option</div>
+        <div style="padding:1rem; background:#e2e8f0; border-radius:6px; opacity:0.35;">Tertiary option</div>
+      </div>
+    </div>
+    <pre><code>.primary { opacity: 1; }
+.secondary { opacity: 0.6; }
+.tertiary { opacity: 0.35; }</code></pre>
+  </div>
+</body>
+</html>

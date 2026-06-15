@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <q> element used for?",
+      "answer": "The <q> element is used for short inline quotations. Browsers automatically add quotation marks around the content."
+    },
+    {
+      "question": "What is the <blockquote> element used for?",
+      "answer": "<blockquote> is used for longer block-level quotations. It is typically indented and can contain multiple paragraphs."
+    },
+    {
+      "question": "What is the difference between <q> and <blockquote>?",
+      "answer": "<q> is an inline element for short quotes (browser adds quotes). <blockquote> is a block-level element for long quotes (browser adds indentation)."
+    },
+    {
+      "question": "What is the <cite> element used for?",
+      "answer": "<cite> marks the title of a creative work such as books, articles, movies, or songs. It is typically rendered in italic."
+    },
+    {
+      "question": "What is the <abbr> element used for?",
+      "answer": "<abbr> marks up abbreviations. The title attribute can provide the full expansion, shown as a tooltip on hover."
+    },
+    {
+      "question": "What is the <address> element used for?",
+      "answer": "<address> marks up contact information for the page or article author, including email, phone, and physical address."
+    },
+    {
+      "question": "What does the cite attribute do on <blockquote>?",
+      "answer": "The cite attribute specifies the URL of the source from which the quotation is taken. It is not visible by default."
+    },
+    {
+      "question": "How are nested <q> elements displayed?",
+      "answer": "Browsers automatically alternate between quotation mark styles for nested <q> elements (e.g., double, then single)."
+    },
+    {
+      "question": "What is the default styling of <blockquote>?",
+      "answer": "<blockquote> is typically rendered with left and right indentation (about 40px margin) by default."
+    },
+    {
+      "question": "What should you NOT use <cite> for?",
+      "answer": "In HTML5, <cite> should not be used for people's names. It is restricted to titles of creative works."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does the cite attribute differ between <q> and <blockquote>?",
+      "answer": "Both accept a cite attribute for the source URL, but it affects semantics the same way — it is not rendered visually but can be accessed programmatically."
+    },
+    {
+      "question": "What is the difference between <cite> and a regular italic style?",
+      "answer": "<cite> has semantic meaning — it identifies the title of a work. Regular italic (<i> or CSS font-style) has no semantic meaning."
+    },
+    {
+      "question": "How do you properly attribute a quote within a <blockquote>?",
+      "answer": "Use a <p> for the quote text and a <cite> for the source attribution inside the <blockquote>. The cite attribute on <blockquote> provides the URL."
+    },
+    {
+      "question": "What is the difference between <abbr> and <acronym>?",
+      "answer": "<abbr> is for all abbreviations. <acronym> was for pronounceable acronyms but is deprecated in HTML5. Use <abbr> for everything."
+    },
+    {
+      "question": "How does the <address> element affect the document outline?",
+      "answer": "<address> does not affect the document outline. It provides contact info for the nearest <article> or <body> ancestor."
+    },
+    {
+      "question": "What is a pull quote and how is it marked up semantically?",
+      "answer": "A pull quote is a key phrase repeated from the article in a sidebar. Use <aside> containing a <blockquote> for semantic markup."
+    },
+    {
+      "question": "How do you style a <blockquote> with CSS for a magazine look?",
+      "answer": "Use border-left, background color, larger font-size, italic style, and padding. Example: blockquote { border-left: 4px solid #ccc; font-style: italic; }"
+    },
+    {
+      "question": "What quote element should be used for dialogue in a story?",
+      "answer": "For dialogue, use <q> for short exchanges within paragraphs. For longer dialogue blocks, use <blockquote>."
+    },
+    {
+      "question": "How can you indicate the language of a quoted passage?",
+      "answer": "Use the lang attribute on the specific element: <q lang='fr'>Ceci est une citation</q>."
+    },
+    {
+      "question": "What is the relationship between <blockquote> and the CSS quotes property?",
+      "answer": "The CSS quotes property controls the quotation mark characters used for <q> elements, allowing customization of the quotation style."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the <q> element interact with the CSS quotes property?",
+      "answer": "The quotes property defines the quotation mark pairs. <q> elements use these defined characters automatically, supporting nested levels and different languages."
+    },
+    {
+      "question": "What is the accessibility tree mapping for <blockquote> and <q>?",
+      "answer": "<blockquote> maps to the 'blockquote' ARIA role. <q> maps to the 'quote' role. Screen readers may announce 'quote' before reading the content."
+    },
+    {
+      "question": "How does the <cite> element interact with the accessibility tree?",
+      "answer": "<cite> has no specific ARIA role. It is typically exposed as a generic element with italic styling. Screen readers do not announce it specially."
+    },
+    {
+      "question": "What is the correct usage of <address> in relation to the document's author?",
+      "answer": "<address> should contain contact info for the document's author, not general business addresses. It belongs in <footer> or near the author's bio."
+    },
+    {
+      "question": "How does the HTML spec define the content model for <blockquote>?",
+      "answer": "<blockquote> accepts flow content (headings, paragraphs, lists, etc.). This means you can put complex content inside a blockquote."
+    },
+    {
+      "question": "What is the semantic way to mark up a quote that has been translated?",
+      "answer": "Use the original quote in a <blockquote> with the lang attribute set to the original language, followed by a <p> with the translation."
+    },
+    {
+      "question": "How do you mark up a conversation between two people semantically?",
+      "answer": "Use <p> elements with <q> for each line of dialogue, or use a definition list (<dl>) with <dt> for speaker names and <dd> for their speech."
+    },
+    {
+      "question": "What is the difference between the cite attribute and the <cite> element?",
+      "answer": "The cite attribute provides a machine-readable URL for the source. The <cite> element provides a human-readable citation label."
+    },
+    {
+      "question": "How does the <bdo> element differ from <bdi> in bidirectional text scenarios?",
+      "answer": "<bdo> overrides the direction of its content. <bdi> isolates its content from surrounding directionality without overriding."
+    },
+    {
+      "question": "What is the correct way to handle quotation marks across different languages with CSS?",
+      "answer": "Use the CSS quotes property with the appropriate pair for each language, combined with the lang attribute on the HTML element to switch quotes automatically."
+    }
+  ]
+}

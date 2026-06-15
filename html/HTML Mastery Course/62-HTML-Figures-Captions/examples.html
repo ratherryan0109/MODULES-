@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Figures & Captions Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f8f9fa;
+      color: #333;
+    }
+    h1 { color: #2c3e50; }
+    h2 { color: #34495e; margin-top: 40px; border-bottom: 2px solid #bdc3c7; padding-bottom: 8px; }
+    h3 { color: #555; }
+
+    figure {
+      margin: 1.5em 0;
+      padding: 1em;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    figure.example-image {
+      text-align: center;
+    }
+
+    figure.example-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    figcaption {
+      font-style: italic;
+      font-size: 0.9em;
+      color: #6c757d;
+      text-align: center;
+      margin-top: 0.75em;
+      padding-top: 0.75em;
+      border-top: 1px solid #eee;
+    }
+
+    figcaption:first-child {
+      margin-top: 0;
+      margin-bottom: 0.75em;
+      padding-top: 0;
+      border-top: none;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.75em;
+    }
+
+    pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 0;
+    }
+
+    code {
+      font-family: 'Fira Code', 'Consolas', monospace;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 0.5em 1em;
+      border-left: 4px solid #3498db;
+      background: #f0f7ff;
+      font-style: italic;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #dee2e6;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    figure.card {
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    figure.card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    figure.card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    figure.card figcaption {
+      padding: 1em;
+      margin: 0;
+      border: none;
+      text-align: left;
+      font-style: normal;
+      font-size: 0.95em;
+      color: #333;
+      background: white;
+    }
+
+    figure.card figcaption strong {
+      display: block;
+      font-size: 1.1em;
+      margin-bottom: 0.3em;
+    }
+
+    .flex-examples {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .flex-examples figure {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .code-figure {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .code-figure pre {
+      border-radius: 8px 8px 0 0;
+    }
+
+    .code-figure figcaption {
+      padding: 0.75em 1em;
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      margin: 0;
+    }
+
+    section {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HTML Figures & Captions Examples</h1>
+  <p>Explore the many ways to use <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code>.</p>
+
+  <section>
+    <h2>1. Image with Caption</h2>
+    <figure class="example-image">
+      <div style="background: linear-gradient(135deg, #667eea, #764ba2); height: 200px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">Sample Image Placeholder</div>
+      <figcaption>Figure 1: A colorful gradient demonstrating the image placeholder style used throughout this example.</figcaption>
+    </figure>
+
+    <figure>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <div style="flex:1; min-width:120px; background: #e74c3c; height: 100px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white;">Photo A</div>
+        <div style="flex:1; min-width:120px; background: #3498db; height: 100px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white;">Photo B</div>
+        <div style="flex:1; min-width:120px; background: #2ecc71; height: 100px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white;">Photo C</div>
+      </div>
+      <figcaption>Figure 2: Gallery view — multiple images grouped within a single figure element.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>2. Caption Position: Top vs Bottom</h2>
+    <div class="flex-examples">
+      <figure>
+        <figcaption>Table 1: Population Data</figcaption>
+        <table>
+          <tr><th>City</th><th>Population</th></tr>
+          <tr><td>New York</td><td>8.4M</td></tr>
+          <tr><td>Los Angeles</td><td>3.8M</td></tr>
+          <tr><td>Chicago</td><td>2.7M</td></tr>
+        </table>
+      </figure>
+
+      <figure>
+        <table>
+          <tr><th>Country</th><th>GDP</th></tr>
+          <tr><td>USA</td><td>$25T</td></tr>
+          <tr><td>China</td><td>$18T</td></tr>
+          <tr><td>Germany</td><td>$4.5T</td></tr>
+        </table>
+        <figcaption>Table 2: GDP by Country (2024 estimate)</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Code Snippet</h2>
+    <figure class="code-figure">
+      <pre><code>// FizzBuzz implementation
+for (let i = 1; i <= 100; i++) {
+  const fizz = i % 3 === 0;
+  const buzz = i % 5 === 0;
+  console.log(
+    fizz && buzz ? "FizzBuzz" :
+    fizz ? "Fizz" :
+    buzz ? "Buzz" : i
+  );
+}</code></pre>
+      <figcaption>Listing 1: FizzBuzz algorithm in JavaScript</figcaption>
+    </figure>
+
+    <figure class="code-figure">
+      <pre><code>&lt;figure&gt;
+  &lt;img src="photo.jpg" alt="Description"&gt;
+  &lt;figcaption&gt;Caption text&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+      <figcaption>Listing 2: Basic figure HTML structure</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>4. Blockquote with Attribution</h2>
+    <figure>
+      <blockquote>
+        "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."
+      </blockquote>
+      <figcaption>— Steve Jobs, <cite>Stanford Commencement Address (2005)</cite></figcaption>
+    </figure>
+
+    <figure>
+      <blockquote>
+        "First, solve the problem. Then, write the code."
+      </blockquote>
+      <figcaption>— John Johnson</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>5. Video with Caption</h2>
+    <figure>
+      <div style="background: #1a1a2e; padding: 20px; border-radius: 4px; text-align: center; color: white;">
+        <div style="font-size: 48px; margin-bottom: 10px;">▶</div>
+        <div>[Video Player Placeholder — tutorial.mp4]</div>
+        <div style="font-size: 12px; color: #999; margin-top: 8px;">Controls: ▶ Play | ⏸ Pause | 🔊 Volume</div>
+      </div>
+      <figcaption>Video 1: Getting Started with HTML (Duration: 12:45)</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>6. Audio Embed</h2>
+    <figure>
+      <div style="background: #f0f0f0; padding: 15px; border-radius: 4px; text-align: center; border: 1px solid #ddd;">
+        <div style="font-size: 36px; margin-bottom: 5px;">🎵</div>
+        <div>[Audio Player Placeholder — interview.mp3]</div>
+        <div style="font-size: 12px; color: #666;">0:00 ──────────────────────── 28:30</div>
+      </div>
+      <figcaption>Episode 87: Interview with Industry Expert</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>7. Data Table</h2>
+    <figure>
+      <table>
+        <thead>
+          <tr>
+            <th>Quarter</th>
+            <th>Revenue</th>
+            <th>Expenses</th>
+            <th>Profit</th>
+            <th>Growth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Q1 2024</td><td>$45,000</td><td>$32,000</td><td>$13,000</td><td>+12%</td></tr>
+          <tr><td>Q2 2024</td><td>$52,000</td><td>$35,000</td><td>$17,000</td><td>+15%</td></tr>
+          <tr><td>Q3 2024</td><td>$61,000</td><td>$38,000</td><td>$23,000</td><td>+18%</td></tr>
+          <tr><td>Q4 2024</td><td>$74,000</td><td>$41,000</td><td>$33,000</td><td>+21%</td></tr>
+        </tbody>
+      </table>
+      <figcaption>Table 3: Annual financial performance by quarter</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>8. Figure Cards Grid</h2>
+    <div class="card-grid">
+      <figure class="card">
+        <div style="background: linear-gradient(135deg, #667eea, #764ba2); height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px;">🏔️</div>
+        <figcaption>
+          <strong>Mountain Retreat</strong>
+          Peaceful mountain escape with stunning views and hiking trails.
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div style="background: linear-gradient(135deg, #f093fb, #f5576c); height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px;">🏖️</div>
+        <figcaption>
+          <strong>Beach Vacation</strong>
+          Tropical paradise with crystal clear waters and white sand beaches.
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div style="background: linear-gradient(135deg, #4facfe, #00f2fe); height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px;">🏙️</div>
+        <figcaption>
+          <strong>City Explorer</strong>
+          Urban adventure through bustling streets and cultural landmarks.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>9. Responsive Figure with Picture Element</h2>
+    <figure>
+      <picture>
+        <div style="background: linear-gradient(135deg, #11998e, #38ef7d); height: 250px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+          Responsive Image Placeholder<br>
+          <span style="font-size: 14px;">(picture element with multiple sources)</span>
+        </div>
+      </picture>
+      <figcaption>Figure 3: Responsive image using the &lt;picture&gt; element with art direction</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>10. Complex Figure with Nested Elements</h2>
+    <figure>
+      <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <div style="background: linear-gradient(180deg, #ffecd2, #fcb69f); padding: 20px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 36px;">📊</div>
+            <h3 style="margin: 10px 0 5px; color: #333;">Q4 Summary</h3>
+            <p style="margin: 0; color: #555; font-size: 14px;">Revenue up 21%</p>
+          </div>
+        </div>
+        <div style="flex: 2; min-width: 200px;">
+          <div style="display: flex; gap: 20px;">
+            <div style="flex: 1; background: #e8f5e9; padding: 15px; border-radius: 8px; text-align: center;">
+              <div style="font-size: 24px; color: #2e7d32;">$74K</div>
+              <div style="font-size: 12px; color: #666;">Revenue</div>
+            </div>
+            <div style="flex: 1; background: #fce4ec; padding: 15px; border-radius: 8px; text-align: center;">
+              <div style="font-size: 24px; color: #c62828;">$41K</div>
+              <div style="font-size: 12px; color: #666;">Expenses</div>
+            </div>
+            <div style="flex: 1; background: #e3f2fd; padding: 15px; border-radius: 8px; text-align: center;">
+              <div style="font-size: 24px; color: #1565c0;">$33K</div>
+              <div style="font-size: 12px; color: #666;">Profit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Figure 4: Q4 2024 Performance Dashboard — revenue, expenses, and profit overview</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>11. Figure with ARIA for Accessibility</h2>
+    <figure role="group" aria-labelledby="chart-caption" aria-describedby="chart-desc">
+      <div style="background: #f5f5f5; padding: 30px; border-radius: 8px; text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 10px;">📈</div>
+        <div style="display: flex; justify-content: center; gap: 40px; margin-top: 20px;">
+          <div><div style="width: 40px; height: 120px; background: linear-gradient(180deg, #3498db, #2980b9); border-radius: 4px 4px 0 0;"></div><div style="margin-top: 5px; font-size: 12px;">Jan</div></div>
+          <div><div style="width: 40px; height: 160px; background: linear-gradient(180deg, #e74c3c, #c0392b); border-radius: 4px 4px 0 0;"></div><div style="margin-top: 5px; font-size: 12px;">Feb</div></div>
+          <div><div style="width: 40px; height: 140px; background: linear-gradient(180deg, #2ecc71, #27ae60); border-radius: 4px 4px 0 0;"></div><div style="margin-top: 5px; font-size: 12px;">Mar</div></div>
+          <div><div style="width: 40px; height: 180px; background: linear-gradient(180deg, #9b59b6, #8e44ad); border-radius: 4px 4px 0 0;"></div><div style="margin-top: 5px; font-size: 12px;">Apr</div></div>
+        </div>
+      </div>
+      <figcaption id="chart-caption">Chart 1: Monthly Active Users (Q1 2024)</figcaption>
+      <p id="chart-desc" style="font-size: 0.85em; color: #666; margin-top: 8px; text-align: center;">
+        Bar chart showing January at 12K, February at 16K, March at 14K, and April at 18K active users.
+      </p>
+    </figure>
+  </section>
+
+  <section>
+    <h2>12. Figure vs Aside Comparison</h2>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+      <figure style="flex: 1; min-width: 250px; background: #e8f5e9; border-color: #a5d6a7;">
+        <div style="background: #2e7d32; color: white; padding: 10px; border-radius: 4px; text-align: center;">
+          ✅ Use &lt;figure&gt; when content is directly referenced in text
+        </div>
+        <figcaption>Figure 5: Example of correctly using the figure element</figcaption>
+      </figure>
+
+      <aside style="flex: 1; min-width: 250px; background: #fff3e0; border: 1px solid #ffcc80; border-radius: 8px; padding: 1em;">
+        <p><strong>💡 Tip:</strong> Use <code>&lt;aside&gt;</code> for tangential content like tips, related links, or advertisements that are not essential to the main flow.</p>
+      </aside>
+    </div>
+  </section>
+
+</body>
+</html>

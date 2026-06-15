@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Flex Basis - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .row { display: flex; background: #f1f5f9; padding: 0.5rem; border-radius: 6px; gap: 0.5rem; }
+    .row div { color: white; padding: 1rem; border-radius: 4px; text-align: center; }
+    .row div:nth-child(1) { background: #06b6d4; }
+    .row div:nth-child(2) { background: #f59e0b; }
+    .row div:nth-child(3) { background: #10b981; }
+    .label { font-size: 0.8rem; color: #64748b; margin-top: 0.25rem; font-family: monospace; text-align: center; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .note { background: #fef9c3; border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; border-radius: 4px; margin-top: 0.75rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Flex Basis - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: flex-basis: auto (Default, Content-Sized)</h2>
+    <p>Items size based on their content. <code>flex-basis: auto</code> falls back to <code>width</code> or content size.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:0 1 auto;">Short</div>
+        <div style="flex:0 1 auto;">Medium text</div>
+        <div style="flex:0 1 auto;">Longer content here</div>
+      </div>
+      <div class="label">Each item sized to its content</div>
+    </div>
+    <pre><code>.item { flex: 0 1 auto; }
+/* Each item is only as wide as its content */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: flex-basis: 0 (Equal Distribution)</h2>
+    <p>Basis starts at 0, so all extra space is distributed equally. All items become the same width.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1 1 0;">One</div>
+        <div style="flex:1 1 0;">Two</div>
+        <div style="flex:1 1 0;">Three</div>
+      </div>
+      <div class="label">All equal width regardless of content</div>
+    </div>
+    <pre><code>.item { flex: 1; }
+/* Shorthand for flex: 1 1 0 — all items equal */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: flex-basis: 200px (Fixed + Grow)</h2>
+    <p>Each item starts at 200px, then grows equally to fill remaining space.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1 1 200px;">200px + share</div>
+        <div style="flex:1 1 200px;">200px + share</div>
+        <div style="flex:1 1 200px;">200px + share</div>
+      </div>
+      <div class="label">flex-basis: 200px each, then grow equally</div>
+    </div>
+    <pre><code>.item { flex: 1 1 200px; }
+/* Starts at 200px, grows to fill container */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: flex-basis: 30% (Percentage-Based)</h2>
+    <p>Basis can be a percentage of the container (no grow/shrink here).</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:0 1 30%;">30%</div>
+        <div style="flex:0 1 30%;">30%</div>
+        <div style="flex:0 1 30%;">30%</div>
+      </div>
+      <div class="label">Each item is 30% of container width</div>
+    </div>
+    <pre><code>.item { flex: 0 1 30%; }
+/* Takes up 30% of container (may wrap if needed) */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Responsive Cards with flex-basis</h2>
+    <p>Cards with <code>flex-basis: 250px</code> and <code>flex-wrap: wrap</code> create a responsive grid without media queries.</p>
+    <div class="demo-output">
+      <div style="display:flex; flex-wrap:wrap; gap:0.75rem; background:#f1f5f9; padding:0.75rem; border-radius:6px;">
+        <div style="flex:1 1 220px; background:#06b6d4; color:white; padding:1.5rem; border-radius:6px; text-align:center;">Card 1</div>
+        <div style="flex:1 1 220px; background:#f59e0b; color:white; padding:1.5rem; border-radius:6px; text-align:center;">Card 2</div>
+        <div style="flex:1 1 220px; background:#10b981; color:white; padding:1.5rem; border-radius:6px; text-align:center;">Card 3</div>
+        <div style="flex:1 1 220px; background:#8b5cf7; color:white; padding:1.5rem; border-radius:6px; text-align:center;">Card 4</div>
+      </div>
+      <div class="label">flex: 1 1 220px — shrink to 220px, grow to fill, wrap</div>
+    </div>
+    <pre><code>.card {
+  flex: 1 1 250px;
+  /* Grows, shrinks, ideal width 250px */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: flex-basis vs width</h2>
+    <p>When both are set, <code>flex-basis</code> wins in a flex context. <code>width</code> is ignored.</p>
+    <div class="demo-output">
+      <div class="grid-2">
+        <div>
+          <div class="label">width: 100px (ignored in flex)</div>
+          <div style="display:flex; background:#f1f5f9; padding:0.5rem; border-radius:6px;">
+            <div style="flex:1 1 200px; width:100px; background:#06b6d4; color:white; padding:1rem; border-radius:4px;">flex-basis wins</div>
+          </div>
+        </div>
+        <div>
+          <div class="label">flex-basis: auto uses width</div>
+          <div style="display:flex; background:#f1f5f9; padding:0.5rem; border-radius:6px;">
+            <div style="flex:0 1 auto; width:150px; background:#f59e0b; color:white; padding:1rem; border-radius:4px;">width used</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* flex-basis overrides width when set to a specific value */
+.item { flex: 1 1 200px; width: 100px; }  /* → 200px basis */
+
+/* flex-basis: auto falls back to width */
+.item { flex: 0 1 auto; width: 150px; }   /* → 150px width */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Understanding the Difference</h2>
+    <p>Visual comparison of auto vs 0 vs fixed basis with grow enabled.</p>
+    <div class="demo-output">
+      <div style="background:#f1f5f9; padding:0.75rem; border-radius:6px;">
+        <div class="label" style="margin-bottom:0.5rem;">flex: 1 (basis: 0) — equal columns</div>
+        <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+          <div style="flex:1; background:#06b6d4; color:white; padding:1rem; border-radius:4px; text-align:center;">Equal 1</div>
+          <div style="flex:1; background:#f59e0b; color:white; padding:1rem; border-radius:4px; text-align:center;">Equal 2</div>
+        </div>
+        <div class="label" style="margin-bottom:0.5rem;">flex: auto (basis: auto) — content-sized + grow</div>
+        <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+          <div style="flex:auto; background:#06b6d4; color:white; padding:1rem; border-radius:4px; text-align:center;">Short</div>
+          <div style="flex:auto; background:#f59e0b; color:white; padding:1rem; border-radius:4px; text-align:center;">Longer content</div>
+        </div>
+        <div class="label" style="margin-bottom:0.5rem;">flex: 1 1 300px — basis 300px + grow</div>
+        <div style="display:flex; gap:0.5rem;">
+          <div style="flex:1 1 300px; background:#06b6d4; color:white; padding:1rem; border-radius:4px; text-align:center;">Min 300 + grow</div>
+          <div style="flex:1 1 300px; background:#f59e0b; color:white; padding:1rem; border-radius:4px; text-align:center;">Min 300 + grow</div>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* flex: 1        → flex-basis: 0  (equal columns) */
+/* flex: auto     → flex-basis: auto (content-sized + grow) */
+/* flex: 1 1 300px → flex-basis: 300px (fixed start + grow) */</code></pre>
+  </div>
+</body>
+</html>

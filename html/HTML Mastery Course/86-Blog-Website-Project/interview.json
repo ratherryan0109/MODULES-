@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is a blog website?",
+      "answer": "A blog website is a regularly updated website or web page where content is displayed in reverse chronological order (newest first). Blog posts typically cover specific topics and include articles, images, and links."
+    },
+    {
+      "question": "What are the essential pages for a blog website?",
+      "answer": "Essential pages include: Homepage (with post grid), Blog post page (full article), About page (author/site info), and Contact page (contact form). Some blogs also have a search page and categories page."
+    },
+    {
+      "question": "What semantic HTML element should you use for a blog post?",
+      "answer": "The <article> element should be used for blog posts. It represents a self-contained composition that is independently distributable or reusable."
+    },
+    {
+      "question": "What is the purpose of a sidebar on a blog?",
+      "answer": "A sidebar provides additional navigation and information, such as categories, recent posts, tags, an author bio, and social media links. It helps readers discover more content."
+    },
+    {
+      "question": "What heading structure should a blog post page use?",
+      "answer": "One <h1> for the post title, <h2> for main sections, and <h3> for subsections. This creates a logical hierarchy that is good for accessibility and SEO."
+    },
+    {
+      "question": "What is a featured post?",
+      "answer": "A featured post is a highlighted article displayed prominently at the top of the blog homepage, often larger than other posts and sometimes with a special background or styling."
+    },
+    {
+      "question": "What is a blog post card?",
+      "answer": "A blog post card is a preview component that shows a thumbnail/icon, title, excerpt, date, and category. Multiple cards are displayed in a grid on the homepage to summarize articles."
+    },
+    {
+      "question": "What is the <aside> element used for in a blog?",
+      "answer": "The <aside> element is used for content indirectly related to the main content, such as sidebars with categories, tags, related posts, and advertisements."
+    },
+    {
+      "question": "What is a blockquote in a blog post?",
+      "answer": "A blockquote (<blockquote>) is used to indicate quoted text from another source. It is typically styled with indentation, a left border, or italic text to distinguish it from regular content."
+    },
+    {
+      "question": "What is the purpose of tags on a blog post?",
+      "answer": "Tags group related posts by topic, helping readers discover more content on subjects they are interested in. They also improve site navigation and SEO."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you create a responsive blog card grid using CSS Grid?",
+      "answer": "Use display: grid with grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) or explicit breakpoints (repeat(3, 1fr) on desktop, repeat(2, 1fr) on tablet, 1fr on mobile) combined with media queries."
+    },
+    {
+      "question": "What is the best way to create a sticky header for a blog?",
+      "answer": "Use position: sticky (or fixed) with top: 0 and z-index: 1000. Add a semi-transparent background (rgba or backdrop-filter) so content scrolls behind it. This keeps navigation always accessible."
+    },
+    {
+      "question": "How do you implement a consistent layout across all blog pages?",
+      "answer": "Use the same header and footer code on every page. Either copy the HTML, use a server-side include (SSI), or for static sites, use a build tool. Consistent CSS classes and container widths ensure visual consistency."
+    },
+    {
+      "question": "What is the optimal line length for blog readability and how do you achieve it?",
+      "answer": "The optimal line length is 45-75 characters. Achieve this by setting a max-width on the article container (typically 650-750px) and using appropriate font size and padding."
+    },
+    {
+      "question": "How do you create a tags cloud widget for the sidebar?",
+      "answer": "A tags cloud displays tags as clickable links with varying sizes or colors based on popularity. Use display: flex with flex-wrap: wrap for layout, and optionally apply different font sizes based on a data attribute for visual weight."
+    },
+    {
+      "question": "What is the role of the <header> element in a blog page structure?",
+      "answer": "The <header> element wraps the introductory content, typically including the site logo, navigation, and sometimes a search bar. Using <header> semantically identifies this content as introductory."
+    },
+    {
+      "question": "How do you style blog post metadata (date, author, category) effectively?",
+      "answer": "Use a small font size (13-14px), muted color (#888 or #999), and proper spacing. Display metadata below the title but above the content. Use inline elements or flexbox to keep items on the same line."
+    },
+    {
+      "question": "How do you create a contact form that is both functional and well-designed?",
+      "answer": "Use proper <form> elements with <label> for each field. Use appropriate input types (text, email, tel, textarea). Add focus states with border-color changes. Include required attributes for basic validation. Style consistently with the rest of the blog."
+    },
+    {
+      "question": "What is the purpose of an About page on a blog?",
+      "answer": "The About page introduces the author or team behind the blog, explains the blog's mission and focus, and helps build trust with readers. It typically includes a bio, expertise, and social media links."
+    },
+    {
+      "question": "How do you implement the 'read more' link on blog post cards?",
+      "answer": "Add a 'Read More' or 'Continue Reading' link at the bottom of the card excerpt that points to the full article page. Use CSS to truncate long excerpts with line-clamp or max-height with overflow: hidden."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a blog with server-side rendering versus a static site generator?",
+      "answer": "Server-side rendering (WordPress, Ghost) generates pages on each request with dynamic content from a database. Static site generators (Hugo, Jekyll, 11ty) pre-build HTML files at build time for faster serving. SSGs are simpler, faster, and more secure, while SSR enables live content management."
+    },
+    {
+      "question": "What are the accessibility considerations for a blog website?",
+      "answer": "Key accessibility considerations include: proper heading hierarchy (h1-h6), alt text on all images, semantic HTML landmarks (header, main, nav, article, aside, footer), sufficient color contrast (4.5:1), focus indicators for keyboard navigation, skip-to-content links, ARIA labels for icon-only buttons, and responsive text that can be zoomed."
+    },
+    {
+      "question": "How do you optimize a blog website for SEO?",
+      "answer": "Optimize by: using semantic HTML structure, unique meta descriptions per page, proper heading hierarchy, descriptive URLs, Open Graph tags for social sharing, structured data (Article schema in JSON-LD), XML sitemaps, internal linking between related posts, fast page load speed, image alt text, and mobile-first responsive design."
+    },
+    {
+      "question": "What is the difference between categories and tags in a blog?",
+      "answer": "Categories are broad, hierarchical groupings of content (like 'JavaScript', 'CSS'). Tags are specific, non-hierarchical keywords that describe individual posts (like 'closures', 'grid', 'animations'). Each post belongs to at least one category but can have many tags."
+    },
+    {
+      "question": "How do you implement a search functionality for a static HTML blog?",
+      "answer": "For static sites, options include: client-side search with JavaScript (index post data as JSON, filter on input), Google Custom Search, Algolia DocSearch, or Lunr.js for offline indexing. For a simple approach, use a form that queries Google site:search."
+    },
+    {
+      "question": "What are the best practices for blog typography?",
+      "answer": "Best practices: 16-20px base font size, 1.5-1.8 line height, 45-75 characters per line, good contrast (4.5:1 minimum), limited number of fonts (2-3 max), proper heading size hierarchy (h1: 2em, h2: 1.5em, h3: 1.25em), and responsive font sizing using rem or clamp()."
+    },
+    {
+      "question": "How do you create a responsive image gallery within a blog post?",
+      "answer": "Use CSS Grid for the gallery layout, max-width: 100% and height: auto for responsive images, object-fit: cover for consistent aspect ratios, and figure/figcaption for semantic captions. For lightbox effects, use the <dialog> element or a JavaScript overlay."
+    },
+    {
+      "question": "What is the role of structured data (JSON-LD) in a blog and how do you implement it?",
+      "answer": "Structured data using JSON-LD (schema.org/Article) helps search engines understand blog content, enabling rich results like author info, publish date, and image previews. Implement by adding a <script type='application/ld+json'> block in the head with properties like @type: Article, headline, author, datePublished, image, and description."
+    },
+    {
+      "question": "How do you implement pagination or infinite scroll for a blog?",
+      "answer": "Pagination splits posts across multiple pages (Page 1, 2, 3) with numbered links. Infinite scroll loads more posts as the user scrolls down using the Intersection Observer API. Pagination is better for SEO and accessibility; infinite scroll provides a smoother browsing experience."
+    },
+    {
+      "question": "How do you design a blog that supports both light and dark mode?",
+      "answer": "Use CSS custom properties (variables) for all colors. Define colors in :root (light mode) and [data-theme='dark'] or using prefers-color-scheme media query. Toggle via JavaScript by adding/removing a data-theme attribute on the html element. Ensure sufficient contrast in both modes."
+    }
+  ]
+}

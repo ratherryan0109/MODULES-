@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Comments - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; margin: 0.75rem 0; }
+    .card h3 { margin: 0 0 0.5rem; color: #0f172a; }
+    .section-marker { background: #f1f5f9; padding: 0.5rem 1rem; border-left: 4px solid #06b6d4; margin: 0.75rem 0; font-weight: 600; color: #334155; }
+    .comment-bad { background: #fef2f2; border-left: 4px solid #ef4444; padding: 0.5rem 1rem; margin: 0.5rem 0; }
+    .comment-good { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 0.5rem 1rem; margin: 0.5rem 0; }
+    .comment-todo { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 0.5rem 1rem; margin: 0.5rem 0; }
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .card-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>CSS Comments - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Section Header Comments</h2>
+    <p>Use comments to organize stylesheets into logical sections.</p>
+    <div class="demo-output">
+      <div class="section-marker">/* ===== RESET & BASE ===== */</div>
+      <div class="card">No margin, no padding, border-box on everything.</div>
+      <div class="section-marker">/* ===== TYPOGRAPHY ===== */</div>
+      <div class="card">Body font: system-ui stack, headings use serif.</div>
+      <div class="section-marker">/* ===== LAYOUT ===== */</div>
+      <div class="card">Container max-width 1200px, centered via auto margins.</div>
+    </div>
+    <pre><code>/* ===== 1. RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+/* ===== 2. TYPOGRAPHY ===== */
+body { font-family: system-ui, sans-serif; line-height: 1.6; }
+h1, h2 { font-family: Georgia, serif; }
+
+/* ===== 3. LAYOUT ===== */
+.container { max-width: 1200px; margin: 0 auto; padding: 1rem; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Good Comments (Explain WHY)</h2>
+    <p>Good comments explain the reasoning behind a choice, not what the code does.</p>
+    <div class="demo-output">
+      <div class="comment-good">Use flexbox for equal-height cards in the grid</div>
+      <div class="card-grid">
+        <div class="card" style="display:flex;flex-direction:column"><h3>Card 1</h3><p style="flex:1">All cards match height.</p></div>
+        <div class="card" style="display:flex;flex-direction:column"><h3>Card 2</h3><p style="flex:1">Even with different content amounts.</p></div>
+      </div>
+      <div class="comment-good">Respect user motion preferences</div>
+      <div class="card" style="background:#f8fafc;border-style:dashed"><em>In a real browser with prefers-reduced-motion: reduce, all animations are disabled.</em></div>
+    </div>
+    <pre><code>/* Use flexbox for equal-height cards in grid */
+.card-grid { display: flex; flex-wrap: wrap; }
+
+/* Respect reduced motion — a11y requirement */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+  }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Bad Comments (Explain WHAT — redundant)</h2>
+    <p>Avoid comments that merely restate the code. They add noise without value.</p>
+    <div class="demo-output">
+      <div class="comment-bad">/* This sets the color to blue */ — your code already says `color: blue`</div>
+      <div class="comment-bad">/* This adds 20px of padding */ — the property name is `padding: 20px`</div>
+      <div class="card" style="background:#f8fafc;border-color:#ef4444;color:#dc2626;text-align:center">Don't state the obvious. Explain WHY, not WHAT.</div>
+    </div>
+    <pre><code>/* ❌ Redundant — code is self-documenting */
+h1 { color: blue; }  /* This sets color to blue */
+.card { padding: 20px; }  /* This adds 20px of padding */
+
+/* ✅ Good — explains the reasoning */
+h1 { color: #1a365d; }  /* Brand navy — matches company logo */
+.card { padding: 20px; }  /* Matches grid gutter in design system */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Disabling Code with Comments</h2>
+    <p>Wrap code in /* ... */ to temporarily disable it during development.</p>
+    <div class="demo-output">
+      <div class="card">This section is active and renders normally.</div>
+      <div class="card" style="opacity:0.5;filter:grayscale(1)"><em>Commented-out CSS is not applied.</em></div>
+    </div>
+    <pre><code>/* Temporarily disabled — causes layout shift on mobile
+.featured-card {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+*/
+
+/* Active */
+.card { background: white; border-radius: 8px; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: TODO, FIXME, and HACK Comments</h2>
+    <p>Standardized prefixes make it easy to search for technical debt.</p>
+    <div class="demo-output">
+      <div class="comment-todo">TODO: Replace hardcoded colors with CSS custom properties</div>
+      <div class="comment-todo">FIXME: Border-radius clipped in Safari &lt; 14</div>
+      <div class="comment-todo">HACK: Negative margin compensates for float clearing issue</div>
+      <div class="comment-todo">OPTIMIZE: Rebuild this layout with CSS Grid to reduce DOM nodes</div>
+    </div>
+    <pre><code>/* TODO: Replace hardcoded colors with CSS custom properties */
+/* FIXME: Border-radius clips on Safari < 14 */
+/* HACK: Negative margin offsets float clearing gap */
+/* OPTIMIZE: Convert this flex layout to CSS Grid */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Inline Comments</h2>
+    <p>End-of-line comments document a single property's rationale.</p>
+    <div class="demo-output">
+      <div style="background:#1e293b;color:#e2e8f0;padding:1rem;border-radius:8px;font-family:'Consolas',monospace;font-size:0.875rem;line-height:2">
+        .banner {<br>
+        &nbsp;&nbsp;background: #0f172a;  /* Dark bg matching brand guidelines */<br>
+        &nbsp;&nbsp;padding: 3rem 2rem;<br>
+        &nbsp;&nbsp;font-size: 1.5rem;    /* 24px / 16px base */<br>
+        &nbsp;&nbsp;color: #f8fafc;       /* High contrast for readability */<br>
+        }
+      </div>
+    </div>
+    <pre><code>.banner {
+  background: #0f172a;   /* Brand dark — matches company palette */
+  padding: 3rem 2rem;
+  font-size: 1.5rem;     /* 24px computed from 16px base */
+  color: #f8fafc;        /* WCAG AAA contrast on dark bg */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Multi-Line Block Comments for Documentation</h2>
+    <p>Block comments can document entire components or modules.</p>
+    <div class="demo-output">
+      <div class="card" style="background:#f0fdf4;border-color:#22c55e">
+        <strong>Component:</strong> UserAvatar<br>
+        <strong>Usage:</strong> &lt;div class="avatar"&gt;&lt;img src="..."&gt;&lt;/div&gt;<br>
+        <strong>States:</strong> default, .avatar--online, .avatar--offline
+      </div>
+    </div>
+    <pre><code>/**
+ * UserAvatar Component
+ *
+ * Renders a circular user avatar with optional online status.
+ * Usage:
+ *   &lt;div class="avatar"&gt;
+ *     &lt;img src="user.jpg" alt="User"&gt;
+ *   &lt;/div&gt;
+ *
+ * Modifiers:
+ *   .avatar--online  — green status indicator
+ *   .avatar--offline — gray status indicator
+ */
+.avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}</code></pre>
+  </div>
+
+</body>
+</html>

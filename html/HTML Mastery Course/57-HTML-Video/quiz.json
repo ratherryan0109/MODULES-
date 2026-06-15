@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Which HTML element is used to embed video content?",
+    "options": ["<media>", "<video>", "<movie>", "<film>"],
+    "answer": "b",
+    "explanation": "The <video> element is the HTML5 standard for embedding video content. <media>, <movie>, and <film> are not valid HTML elements."
+  },
+  {
+    "question": "What attribute provides native video playback controls?",
+    "options": ["playback", "controls", "toolbar", "player"],
+    "answer": "b",
+    "explanation": "The controls attribute is a boolean attribute that displays the browser's native video controls including play/pause, seek, volume, and fullscreen buttons."
+  },
+  {
+    "question": "What is the correct MIME type for MP4 video with H.264 codec?",
+    "options": ["video/mp4", "video/h264", "video/mpeg", "video/mp4v"],
+    "answer": "a",
+    "explanation": "The correct MIME type for MP4 video is 'video/mp4'. For more specificity, you can add codecs: video/mp4; codecs='avc1.42E01E'."
+  },
+  {
+    "question": "Which attribute shows an image before the video starts playing?",
+    "options": ["preview", "thumbnail", "poster", "cover"],
+    "answer": "c",
+    "explanation": "The poster attribute specifies an image URL to be shown while the video is downloading or until the user clicks the play button."
+  },
+  {
+    "question": "What attribute prevents iOS Safari from automatically entering fullscreen?",
+    "options": ["inline", "playsinline", "nativecontrols", "embedded"],
+    "answer": "b",
+    "explanation": "The playsinline attribute (and its older iOS counterpart webkit-playsinline) tells iOS Safari to play the video inline within the web page rather than automatically entering fullscreen mode."
+  },
+  {
+    "question": "Which JavaScript property gets the intrinsic width of a video?",
+    "options": ["video.width", "video.videoWidth", "video.clientWidth", "video.naturalWidth"],
+    "answer": "b",
+    "explanation": "video.videoWidth returns the intrinsic (natural) width of the video in pixels. video.width returns or sets the displayed width attribute. video.naturalWidth does not exist on video elements."
+  },
+  {
+    "question": "What does the 'ended' event indicate on a video element?",
+    "options": ["The video has errors", "Playback has reached the end", "The user closed the video", "The video was unloaded"],
+    "answer": "b",
+    "explanation": "The ended event fires when video playback has reached the end of the media file. It is commonly used to trigger next video logic in a playlist."
+  },
+  {
+    "question": "Which method requests Picture-in-Picture mode?",
+    "options": ["video.pip()", "video.requestPictureInPicture()", "navigator.pip()", "video.enterPiP()"],
+    "answer": "b",
+    "explanation": "video.requestPictureInPicture() is the correct method to enter Picture-in-Picture mode. It returns a Promise that resolves when PiP is activated."
+  },
+  {
+    "question": "What does the <track> element provide for video?",
+    "options": ["Video quality selection", "Captions, subtitles, and chapters", "Alternate video angles", "Audio description tracks"],
+    "answer": "b",
+    "explanation": "The <track> element specifies timed text tracks (WebVTT) for captions, subtitles, descriptions, chapters, and metadata. It uses the 'kind' attribute to specify the track type."
+  },
+  {
+    "question": "Which two video formats provide the broadest cross-browser support?",
+    "options": ["MP4 and AVI", "MP4 and WebM", "WebM and OGV", "MP4 and FLV"],
+    "answer": "b",
+    "explanation": "MP4 (H.264) has universal support across all browsers, while WebM (VP8/VP9) is supported by Firefox, Chrome, and Opera. Together they cover virtually all modern browsers."
+  },
+  {
+    "question": "How do you check if a browser supports a specific video codec?",
+    "options": ["navigator.supportsVideo()", "video.canPlayType()", "video.codecSupported()", "MediaCapabilities.supports()"],
+    "answer": "b",
+    "explanation": "video.canPlayType(type) returns 'probably', 'maybe', or '' (empty string). It checks whether the browser can play the given MIME type and optional codec string."
+  },
+  {
+    "question": "What is the purpose of the readyState property on a video element?",
+    "options": ["Indicates if the video is ready to play", "Shows the video resolution", "Tracks download speed", "Indicates the current frame"],
+    "answer": "a",
+    "explanation": "readyState returns a number from 0 to 4 indicating how much of the video data is available: 0=HAVE_NOTHING, 1=HAVE_METADATA, 2=HAVE_CURRENT_DATA, 3=HAVE_FUTURE_DATA, 4=HAVE_ENOUGH_DATA."
+  },
+  {
+    "question": "What attribute is required alongside autoplay in modern browsers?",
+    "options": ["loop", "muted", "preload", "playsinline"],
+    "answer": "b",
+    "explanation": "Modern browsers enforce autoplay policies that require the muted attribute for autoplay to work. Without muted, the browser will block automatic playback of videos with sound."
+  },
+  {
+    "question": "How do you make a video responsive while maintaining aspect ratio?",
+    "options": ["Set fixed width and height", "Use CSS: max-width:100%; height:auto", "Use the responsive attribute", "Set width='100%' and height='auto'"],
+    "answer": "b",
+    "explanation": "CSS max-width: 100%; height: auto ensures the video scales down on smaller screens while maintaining its aspect ratio. Fixed dimensions would cause overflow or distortion."
+  },
+  {
+    "question": "Which event fires when the video has loaded its first frame?",
+    "options": ["loadstart", "loadeddata", "loadedmetadata", "canplay"],
+    "answer": "b",
+    "explanation": "The loadeddata event fires when the first frame of the video has been loaded, meaning the browser has enough data to render the first frame."
+  },
+  {
+    "question": "What is the default preload value when the attribute is omitted?",
+    "options": ["none", "metadata", "auto", "Browser-dependent but typically 'auto'"],
+    "answer": "d",
+    "explanation": "The default preload behavior varies by browser, but most browsers default to 'auto' — loading the entire video file. The HTML spec allows browsers to choose their own default."
+  },
+  {
+    "question": "How do you exit fullscreen mode programmatically?",
+    "options": ["video.exitFullscreen()", "document.exitFullscreen()", "window.exitFullscreen()", "screen.exitFullscreen()"],
+    "answer": "b",
+    "explanation": "document.exitFullscreen() exits fullscreen mode. While you can call requestFullscreen() on any element, exiting is always done via the document."
+  },
+  {
+    "question": "What does the 'waiting' event indicate?",
+    "options": ["The video is paused by user", "The video is buffering", "The video is loading metadata", "The video source changed"],
+    "answer": "b",
+    "explanation": "The waiting event fires when playback has stopped because of insufficient data to continue. The browser is buffering more data. It is the opposite of the 'playing' event."
+  },
+  {
+    "question": "Which property returns the buffered time ranges of a video?",
+    "options": ["video.buffer", "video.buffered", "video.cache", "video.loaded"],
+    "answer": "b",
+    "explanation": "video.buffered returns a TimeRanges object representing the parts of the video that have been downloaded. It's used for custom buffer progress indicators."
+  },
+  {
+    "question": "What is the purpose of the 'media' attribute on a <source> element?",
+    "options": ["Sets the video bitrate", "Specifies a media query for responsive sources", "Sets the audio codec", "Defines the source file format"],
+    "answer": "b",
+    "explanation": "The media attribute on <source> accepts a CSS media query. The browser selects the first <source> whose media query matches the current viewport, enabling responsive video delivery."
+  }
+]

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 54: Form Validation Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; color: #222; }
+    h1 { border-bottom: 3px solid #FF6B6B; padding-bottom: 10px; }
+    h2 { color: #FF6B6B; margin-top: 30px; }
+    .example-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; margin: 10px 0; }
+    .output { background: #f9f9f9; border: 1px dashed #999; border-radius: 6px; padding: 15px; margin: 10px 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    .tag { background: #FF6B6B; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+    input, select, textarea { padding: 8px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; transition: border-color 0.2s; width: 100%; box-sizing: border-box; margin-top: 4px; }
+    label { display: block; margin-bottom: 12px; font-size: 14px; color: #333; }
+    form { max-width: 450px; }
+    button { padding: 10px 24px; background: #FF6B6B; color: white; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; }
+    button:hover { background: #e55a5a; }
+    .error-msg { color: #e74c3c; font-size: 12px; margin-top: 4px; display: none; }
+    .error-visible { display: block; }
+    .success-msg { color: #4caf50; font-size: 12px; margin-top: 4px; }
+    .validation-styles { /* Empty - used as marker */ }
+  </style>
+</head>
+<body>
+
+<h1>Form Validation — Interactive Examples</h1>
+
+<!-- Example 1: Basic Required Field -->
+<h2>1. Required Field</h2>
+<div class="example-box">
+  <p>The <code>required</code> attribute prevents submission when the field is empty.</p>
+  <div class="code-block">
+    &lt;input type="text" required&gt;
+  </div>
+  <div class="output">
+    <form onsubmit="return false">
+      <label>Name (required):
+        <input type="text" name="name" required placeholder="Enter your name">
+      </label>
+      <button onclick="this.form.reportValidity()">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- Example 2: Type Validation -->
+<h2>2. Input Type Validation</h2>
+<div class="example-box">
+  <p>HTML5 types like <code>email</code>, <code>url</code>, and <code>tel</code> provide built-in format validation.</p>
+  <div class="output">
+    <form onsubmit="return false">
+      <label>Email:
+        <input type="email" name="email" required placeholder="user@example.com">
+      </label>
+      <label>URL:
+        <input type="url" name="url" placeholder="https://example.com">
+      </label>
+      <label>Phone:
+        <input type="tel" name="phone" placeholder="(555) 123-4567">
+      </label>
+      <button onclick="this.form.reportValidity()">Validate</button>
+    </form>
+  </div>
+</div>
+
+<!-- Example 3: Pattern Matching -->
+<h2>3. Pattern Attribute</h2>
+<div class="example-box">
+  <p>The <code>pattern</code> attribute uses regex to validate input formats.</p>
+  <div class="code-block">
+    &lt;input type="text" pattern="[A-Za-z ]+" title="Letters and spaces only"&gt;
+  </div>
+  <div class="output">
+    <form onsubmit="return false">
+      <label>ZIP Code (5 digits):
+        <input type="text" pattern="[0-9]{5}" title="5-digit ZIP code (e.g., 10001)" placeholder="10001" maxlength="5" required>
+      </label>
+      <label>Username (letters, numbers, underscore):
+        <input type="text" pattern="[A-Za-z0-9_]{3,20}" title="3-20 characters: letters, numbers, underscores" placeholder="john_doe" required>
+      </label>
+      <label>Hex Color:
+        <input type="text" pattern="#[0-9A-Fa-f]{6}" title="# followed by 6 hex digits (e.g., #FF6B6B)" placeholder="#FF6B6B" required>
+      </label>
+      <button onclick="this.form.reportValidity()">Validate</button>
+    </form>
+    <div class="note"><strong>Note:</strong> The <code>title</code> attribute provides the error message when the pattern doesn't match.</div>
+  </div>
+</div>
+
+<!-- Example 4: Range and Length Validation -->
+<h2>4. Range and Length Constraints</h2>
+<div class="example-box">
+  <p><code>min</code>, <code>max</code>, <code>minlength</code>, <code>maxlength</code>, and <code>step</code> constrain numeric and text values.</p>
+  <div class="output">
+    <form onsubmit="return false">
+      <label>Age (13-120):
+        <input type="number" name="age" min="13" max="120" required placeholder="25">
+      </label>
+      <label>Rating (1-5):
+        <input type="range" name="rating" min="1" max="5" step="1" value="3">
+        <span id="ratingVal">3</span>
+        <script>
+          document.querySelector('input[type="range"]').addEventListener('input', function() {
+            document.getElementById('ratingVal').textContent = this.value;
+          });
+        </script>
+      </label>
+      <label>Password (8-20 characters):
+        <input type="password" minlength="8" maxlength="20" required placeholder="At least 8 characters">
+      </label>
+      <button onclick="this.form.reportValidity()">Validate</button>
+    </form>
+  </div>
+</div>
+
+<!-- Example 5: Custom Validity Messages -->
+<h2>5. Custom Validity with JavaScript</h2>
+<div class="example-box">
+  <p>Use <code>setCustomValidity()</code> to override default error messages.</p>
+  <div class="output">
+    <form onsubmit="return false">
+      <label>Email:
+        <input type="email" id="customEmail" required placeholder="user@example.com">
+        <span class="error-msg" id="emailError"></span>
+      </label>
+      <button onclick="this.form.reportValidity()">Validate</button>
+    </form>
+    <script>
+      document.getElementById('customEmail').addEventListener('input', function() {
+        if (this.validity.valueMissing) {
+          this.setCustomValidity('Please enter your email address');
+        } else if (this.validity.typeMismatch) {
+          this.setCustomValidity('Enter a valid email like name@domain.com');
+        } else {
+          this.setCustomValidity('');
+        }
+      });
+    </script>
+  </div>
+</div>
+
+<!-- Example 6: Password Confirmation -->
+<h2>6. Password Confirmation</h2>
+<div class="example-box">
+  <p>Custom validation logic ensures two passwords match.</p>
+  <div class="output">
+    <form onsubmit="return false">
+      <label>Password:
+        <input type="password" id="pw1" minlength="8" required placeholder="Min 8 characters">
+      </label>
+      <label>Confirm Password:
+        <input type="password" id="pw2" required placeholder="Re-enter password">
+        <span class="error-msg" id="pwError">Passwords do not match</span>
+      </label>
+      <button onclick="this.form.reportValidity()">Validate</button>
+    </form>
+    <script>
+      document.getElementById('pw2').addEventListener('input', function() {
+        const pw1 = document.getElementById('pw1').value;
+        if (this.value !== pw1) {
+          this.setCustomValidity('Passwords must match');
+          document.getElementById('pwError').style.display = 'block';
+        } else {
+          this.setCustomValidity('');
+          document.getElementById('pwError').style.display = 'none';
+        }
+      });
+      document.getElementById('pw1').addEventListener('input', function() {
+        document.getElementById('pw2').setCustomValidity('');
+        document.getElementById('pwError').style.display = 'none';
+      });
+    </script>
+  </div>
+</div>
+
+<!-- Example 7: Styled Validation States -->
+<h2>7. CSS Validation Styling</h2>
+<div class="example-box">
+  <p>CSS pseudo-classes <code>:valid</code>, <code>:invalid</code>, and <code>:focus</code> style inputs based on their validation state.</p>
+  <style>
+    .styled-demo input { border-color: #ddd; }
+    .styled-demo input:valid { border-color: #4caf50; background: #f1f8e9; }
+    .styled-demo input:invalid { border-color: #f44336; background: #fff5f5; }
+    .styled-demo input:focus:invalid { box-shadow: 0 0 0 3px rgba(244,67,54,0.15); }
+    .styled-demo input:focus:valid { box-shadow: 0 0 0 3px rgba(76,175,80,0.15); }
+    .styled-demo .valid-feedback { display: none; font-size: 12px; color: #4caf50; }
+    .styled-demo input:valid ~ .valid-feedback { display: block; }
+  </style>
+  <div class="output styled-demo">
+    <form onsubmit="return false">
+      <label>Username (3+ chars):
+        <input type="text" pattern="[A-Za-z0-9_]{3,}" required placeholder="john_doe">
+        <span class="valid-feedback">✓ Looks good!</span>
+      </label>
+      <label>Email:
+        <input type="email" required placeholder="user@example.com">
+        <span class="valid-feedback">✓ Valid email</span>
+      </label>
+      <label>Age (18-99):
+        <input type="number" min="18" max="99" required placeholder="25">
+        <span class="valid-feedback">✓ Age is valid</span>
+      </label>
+      <button onclick="this.form.reportValidity()">Validate</button>
+    </form>
+  </div>
+</div>
+
+<!-- Example 8: Real-Time Validation -->
+<h2>8. Real-Time Validation with Blur Events</h2>
+<div class="example-box">
+  <p>Validate on <code>blur</code> (when the user leaves the field) to provide feedback without being intrusive.</p>
+  <div class="output">
+    <form onsubmit="return false">
+      <label>Full Name:
+        <input type="text" class="live-validate" required minlength="2" pattern="[A-Za-z ]+" placeholder="John Doe">
+        <span class="error-msg">Please enter a valid name (letters only, min 2 chars)</span>
+      </label>
+      <label>Email:
+        <input type="email" class="live-validate" required placeholder="john@example.com">
+        <span class="error-msg">Please enter a valid email address</span>
+      </label>
+      <label>Website:
+        <input type="url" class="live-validate" placeholder="https://example.com">
+        <span class="error-msg">Please enter a valid URL</span>
+      </label>
+      <button onclick="this.form.reportValidity()">Submit</button>
+    </form>
+    <script>
+      document.querySelectorAll('.live-validate').forEach(input => {
+        input.addEventListener('blur', function() {
+          const error = this.nextElementSibling;
+          if (!this.validity.valid) {
+            error.style.display = 'block';
+            this.style.borderColor = '#f44336';
+          } else {
+            error.style.display = 'none';
+            this.style.borderColor = '#4caf50';
+          }
+        });
+        input.addEventListener('input', function() {
+          const error = this.nextElementSibling;
+          if (this.validity.valid) {
+            error.style.display = 'none';
+            this.style.borderColor = '#4caf50';
+          } else {
+            this.style.borderColor = '#f44336';
+          }
+        });
+      });
+
+      document.querySelector('.live-validate').addEventListener('blur', function() {
+        const error = this.nextElementSibling;
+        if (!this.validity.valid) { error.style.display = 'block'; this.style.borderColor = '#f44336'; }
+        else { error.style.display = 'none'; this.style.borderColor = '#4caf50'; }
+      });
+    </script>
+  </div>
+</div>
+
+<!-- Example 9: Full Validation API Demo -->
+<h2>9. ValidityState Inspection</h2>
+<div class="example-box">
+  <p>Inspect the ValidityState object to see which validation rules are failing.</p>
+  <div class="output">
+    <form onsubmit="return false">
+      <label>Test Field:
+        <input type="text" id="validityTest" required minlength="5" pattern="[A-Z]+" placeholder="Enter UPPERCASE letters (min 5)">
+      </label>
+      <button type="button" onclick="checkValidityState()">Check Validity State</button>
+      <div id="validityResult" style="margin-top: 10px; font-family: monospace; font-size: 13px; background: #1e1e1e; color: #d4d4d4; padding: 10px; border-radius: 6px; white-space: pre;"></div>
+    </form>
+    <script>
+      function checkValidityState() {
+        const input = document.getElementById('validityTest');
+        const v = input.validity;
+        const result = {
+          valid: v.valid,
+          valueMissing: v.valueMissing,
+          typeMismatch: v.typeMismatch,
+          patternMismatch: v.patternMismatch,
+          tooLong: v.tooLong,
+          tooShort: v.tooShort,
+          rangeUnderflow: v.rangeUnderflow,
+          rangeOverflow: v.rangeOverflow,
+          stepMismatch: v.stepMismatch,
+          badInput: v.badInput,
+          customError: v.customError,
+          validationMessage: input.validationMessage
+        };
+        document.getElementById('validityResult').textContent = JSON.stringify(result, null, 2);
+      }
+    </script>
+  </div>
+</div>
+
+<!-- Example 10: Complete Registration Form -->
+<h2>10. Complete Registration with All Validation</h2>
+<div class="example-box">
+  <p>A comprehensive registration form combining all validation techniques.</p>
+  <div class="output">
+    <style>
+      .reg-form input, .reg-form select { border-color: #ddd; }
+      .reg-form input:valid, .reg-form select:valid { border-color: #4caf50; }
+      .reg-form input:invalid, .reg-form select:invalid { border-color: #e0e0e0; }
+      .reg-form input:focus:invalid, .reg-form select:focus:invalid { border-color: #f44336; }
+      .reg-form .error { color: #f44336; font-size: 12px; margin-top: 2px; display: none; }
+      .reg-form .error.show { display: block; }
+    </style>
+    <form class="reg-form" id="regForm" novalidate style="max-width: 100%;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <label>First Name:
+          <input type="text" class="reg-field" required minlength="2" pattern="[A-Za-z]+" data-error="Enter a valid first name">
+          <span class="error" data-for="first">Enter a valid first name</span>
+        </label>
+        <label>Last Name:
+          <input type="text" class="reg-field" required minlength="2" pattern="[A-Za-z]+" data-error="Enter a valid last name">
+          <span class="error" data-for="last">Enter a valid last name</span>
+        </label>
+      </div>
+      <label>Email:
+        <input type="email" class="reg-field" required data-error="Enter a valid email">
+        <span class="error">Enter a valid email</span>
+      </label>
+      <label>Password:
+        <input type="password" id="regPw" class="reg-field" required minlength="8" data-error="Min 8 characters">
+        <span class="error">Password must be at least 8 characters</span>
+      </label>
+      <label>Confirm Password:
+        <input type="password" id="regConfirm" class="reg-field" required data-error="Passwords must match">
+        <span class="error">Passwords must match</span>
+      </label>
+      <label>Age (18+):
+        <input type="number" class="reg-field" required min="18" max="120" data-error="Must be 18 or older">
+        <span class="error">You must be at least 18 years old</span>
+      </label>
+      <label>Country:
+        <select class="reg-field" required data-error="Select a country">
+          <option value="">-- Select --</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Australia</option>
+          <option>Other</option>
+        </select>
+        <span class="error">Please select your country</span>
+      </label>
+      <label>
+        <input type="checkbox" id="regTerms" class="reg-field" required data-error="Accept terms">
+        I accept the Terms and Conditions
+        <span class="error">You must accept the terms</span>
+      </label>
+      <button type="submit" style="margin-top: 10px;">Register</button>
+    </form>
+    <script>
+      document.getElementById('regForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let allValid = true;
+        this.querySelectorAll('.reg-field').forEach(field => {
+          const errorEl = field.parentElement.querySelector('.error');
+          if (!field.validity.valid) {
+            errorEl.classList.add('show');
+            allValid = false;
+          } else {
+            errorEl.classList.remove('show');
+          }
+        });
+        // Password match check
+        const confirm = document.getElementById('regConfirm');
+        const confirmError = confirm.parentElement.querySelector('.error');
+        if (confirm.value !== document.getElementById('regPw').value) {
+          confirm.setCustomValidity('Passwords must match');
+          confirmError.classList.add('show');
+          allValid = false;
+        } else {
+          confirm.setCustomValidity('');
+          confirmError.classList.remove('show');
+        }
+        if (allValid) {
+          alert('Registration successful! (Demo)');
+          this.reset();
+        }
+      });
+
+      document.querySelectorAll('.reg-field').forEach(field => {
+        field.addEventListener('blur', function() {
+          const errorEl = this.parentElement.querySelector('.error');
+          if (!this.validity.valid) errorEl.classList.add('show');
+          else errorEl.classList.remove('show');
+        });
+        field.addEventListener('input', function() {
+          const errorEl = this.parentElement.querySelector('.error');
+          if (this.validity.valid) {
+            errorEl.classList.remove('show');
+            this.setCustomValidity('');
+          }
+        });
+      });
+    </script>
+  </div>
+</div>
+
+</body>
+</html>

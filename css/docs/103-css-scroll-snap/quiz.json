@@ -1,0 +1,202 @@
+{
+  "module": "103-css-scroll-snap",
+  "title": "CSS Scroll Snap",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS property must be set on the scroll container for scroll snap to work?",
+      "options": ["overflow: auto/scroll", "position: relative", "display: flex", "scroll-behavior: smooth"],
+      "correctAnswer": 0,
+      "explanation": "The container must have overflow set to auto or scroll to enable scrolling. Without it, scroll snap has no effect."
+    },
+    {
+      "id": 2,
+      "question": "What does 'scroll-snap-type: x mandatory' do?",
+      "options": [
+        "On the horizontal axis, always snap to the nearest snap position",
+        "On the vertical axis, snap when near a position",
+        "On both axes, always snap",
+        "Disables horizontal snapping"
+      ],
+      "correctAnswer": 0,
+      "explanation": "x mandatory means: snap on the horizontal axis, and always snap to the nearest position when the user stops scrolling."
+    },
+    {
+      "id": 3,
+      "question": "What is the difference between 'mandatory' and 'proximity' strictness?",
+      "options": [
+        "mandatory always snaps, proximity snaps only when near a snap position",
+        "mandatory snaps faster, proximity snaps slower",
+        "mandatory requires JavaScript, proximity works without JS",
+        "mandatory is for mobile, proximity is for desktop"
+      ],
+      "correctAnswer": 0,
+      "explanation": "mandatory forces the scroll container to always land on a snap position. proximity only snaps when the scroll position is close enough to a snap point."
+    },
+    {
+      "id": 4,
+      "question": "Which property on child elements determines which edge aligns to the snap position?",
+      "options": ["scroll-snap-align", "scroll-snap-type", "align-snap", "snap-align"],
+      "correctAnswer": 0,
+      "explanation": "scroll-snap-align on child elements accepts start, center, or end values to specify which edge aligns to the snap position."
+    },
+    {
+      "id": 5,
+      "question": "What does 'scroll-padding' do in a scroll snap container?",
+      "options": [
+        "Adds padding inside the container that offsets the snap position",
+        "Adds margin to child elements",
+        "Increases the container's scroll area",
+        "Disables snapping at the edges"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scroll-padding defines offsets inside the scroll container that affect where snap positions are calculated. Useful for avoiding fixed headers."
+    },
+    {
+      "id": 6,
+      "question": "Which of the following is a valid combination for scroll-snap-type?",
+      "options": ["x mandatory", "horizontal strict", "both auto", "y always"],
+      "correctAnswer": 0,
+      "explanation": "Valid combinations pair an axis (x, y, block, inline, both) with a strictness keyword (mandatory, proximity). x mandatory is a valid example."
+    },
+    {
+      "id": 7,
+      "question": "What does 'scroll-snap-align: center' do?",
+      "options": [
+        "Centers the child element within the snap position",
+        "Snaps the center of the child to the snap position",
+        "Centers the entire scroll container",
+        "Centers all child content"
+      ],
+      "correctAnswer": 1,
+      "explanation": "scroll-snap-align: center means the center of the child element aligns with the snap position of the scroll container."
+    },
+    {
+      "id": 8,
+      "question": "Which property prevents users from scrolling past a snap item?",
+      "options": ["scroll-snap-stop: always", "scroll-snap-lock", "snap-stop: true", "overflow: hidden"],
+      "correctAnswer": 0,
+      "explanation": "scroll-snap-stop: always forces the scroll container to stop at every snap position, preventing users from scrolling past items."
+    },
+    {
+      "id": 9,
+      "question": "What is the main accessibility concern with scroll-snap-type: mandatory?",
+      "options": [
+        "It can trap keyboard focus if content changes dynamically",
+        "It prevents screen readers from reading content",
+        "It disables tab navigation",
+        "It changes the DOM order"
+      ],
+      "correctAnswer": 0,
+      "explanation": "mandatory snapping can trap users if content changes dynamically. If a new item is added, the user might be forced to a new position unexpectedly."
+    },
+    {
+      "id": 10,
+      "question": "How do you create a horizontal carousel where each item snaps to the start of the container?",
+      "options": [
+        "Container: scroll-snap-type: x mandatory; Children: scroll-snap-align: start",
+        "Container: scroll-snap-type: y mandatory; Children: scroll-snap-align: start",
+        "Container: overflow: hidden; Children: display: flex",
+        "Container: scroll-snap-align: start; Children: scroll-snap-type: x mandatory"
+      ],
+      "correctAnswer": 0,
+      "explanation": "x mandatory on the container with scroll-snap-align: start on children creates a horizontal carousel where each item snaps to the container's left/start edge."
+    },
+    {
+      "id": 11,
+      "question": "How do you account for a fixed 60px header in a scroll snap layout?",
+      "options": [
+        "scroll-padding-block-start: 60px",
+        "margin-top: 60px on the container",
+        "padding-top: 60px on each section",
+        "scroll-snap-offset: 60px"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scroll-padding-block-start: 60px offsets the snap position by 60px from the top, so content snaps below the fixed header."
+    },
+    {
+      "id": 12,
+      "question": "What does scroll-margin do in scroll snap?",
+      "options": [
+        "Adds margin to the child that offsets its snap position",
+        "Adds margin inside the container",
+        "Removes margin from child elements",
+        "Creates visual gaps between snapped items"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scroll-margin on child elements creates a margin outside them that affects where their snap position is calculated, useful for creating gaps between items."
+    },
+    {
+      "id": 13,
+      "question": "Which browser supports CSS Scroll Snap without prefixes?",
+      "options": ["Safari 11+", "Internet Explorer 11", "Firefox 52+", "All browsers listed"],
+      "correctAnswer": 2,
+      "explanation": "Firefox 68+, Chrome 69+, Safari 11+, and Edge 79+ all support modern CSS Scroll Snap. IE does not support it."
+    },
+    {
+      "id": 14,
+      "question": "What happens if you set scroll-snap-type but forget overflow on the container?",
+      "options": [
+        "Scroll snap won't work because the container doesn't scroll",
+        "It works the same, scroll snap adds overflow automatically",
+        "Only snapping works but scrolling is disabled",
+        "The browser throws a CSS error"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Without overflow-x: auto or overflow-y: auto (or scroll), the container can't scroll and scroll snap has no visible effect."
+    },
+    {
+      "id": 15,
+      "question": "What is the effect of scroll-snap-stop: always on a specific child?",
+      "options": [
+        "The container must stop at that child; it can't scroll past it",
+        "That child doesn't participate in snapping",
+        "That child has a stop animation",
+        "The child is hidden when not snapped"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scroll-snap-stop: always ensures the scroll container can't skip past that particular child. It forces a stop at each snap position."
+    },
+    {
+      "id": 16,
+      "question": "Can you use CSS Scroll Snap with CSS Grid?",
+      "options": [
+        "Yes, use grid-auto-flow: column and overflow-x: auto on the grid container",
+        "No, scroll snap only works with flexbox",
+        "Only in Chromium browsers",
+        "Yes, but only for vertical scrolling"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS Grid works with scroll snap. Use grid-auto-flow: column for horizontal scrolling grids, and set scroll-snap-type on the grid container."
+    },
+    {
+      "id": 17,
+      "question": "What touch-specific CSS property helps smooth scrolling on iOS?",
+      "options": ["-webkit-overflow-scrolling: touch", "touch-action: auto", "overflow-scrolling: smooth", "scroll-behavior: smooth"],
+      "correctAnswer": 0,
+      "explanation": "-webkit-overflow-scrolling: touch enables momentum scrolling on iOS, which improves the feel of scroll snap on touch devices."
+    },
+    {
+      "id": 18,
+      "question": "What's the recommended strictness for content browsing experiences like image galleries?",
+      "options": ["proximity", "mandatory", "none", "always"],
+      "correctAnswer": 0,
+      "explanation": "proximity is recommended for content browsing because it allows users to stop mid-scroll if they want, while still providing snap assistance."
+    },
+    {
+      "id": 19,
+      "question": "What should you combine with scroll snap for a polished, app-like feel?",
+      "options": ["scroll-behavior: smooth", "transition: all 0.3s", "animation: snap 0.5s", "transform: translateZ(0)"],
+      "correctAnswer": 0,
+      "explanation": "scroll-behavior: smooth makes the scroll transition between snap positions animated rather than instant, creating a polished feel."
+    },
+    {
+      "id": 20,
+      "question": "Which ARIA role is appropriate for a scroll snap carousel?",
+      "options": ["role=\"region\" with aria-label", "role=\"button\"", "role=\"dialog\"", "role=\"alert\""],
+      "correctAnswer": 0,
+      "explanation": "role=\"region\" with a descriptive aria-label helps screen reader users understand the purpose of the scroll snap carousel."
+    }
+  ]
+}

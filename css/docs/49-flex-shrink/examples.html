@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Flex Shrink - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .row { display: flex; background: #f1f5f9; padding: 0.5rem; border-radius: 6px; gap: 0.5rem; width: 450px; }
+    .row div { color: white; padding: 1rem; border-radius: 4px; text-align: center; flex-basis: 200px; }
+    .row div:nth-child(1) { background: #06b6d4; }
+    .row div:nth-child(2) { background: #f59e0b; }
+    .row div:nth-child(3) { background: #10b981; }
+    .label { font-size: 0.8rem; color: #64748b; margin-top: 0.25rem; font-family: monospace; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .note { background: #fef9c3; border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; border-radius: 4px; margin-top: 0.75rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Flex Shrink - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: All flex-shrink: 1 (Default, Equal Shrink)</h2>
+    <p>Each item has <code>flex-basis: 200px</code> (600px total) but the container is only 450px. All items shrink equally.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1 1 200px;">~150px</div>
+        <div style="flex:1 1 200px;">~150px</div>
+        <div style="flex:1 1 200px;">~150px</div>
+      </div>
+      <div class="label">flex-shrink: 1 &nbsp;|&nbsp; flex-shrink: 1 &nbsp;|&nbsp; flex-shrink: 1</div>
+    </div>
+    <pre><code>.item { flex: 1 1 200px; }
+/* 600px total basis, 450px container → 150px deficit */
+/* Each shrinks by 50px */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Mixed Shrink (Some Resist, Some Yield)</h2>
+    <p>Item 1 has <code>flex-shrink: 0</code> and stays at 200px. Others shrink more to compensate.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1 0 200px; background:#8b5cf7;">200px (no shrink)</div>
+        <div style="flex:1 1 200px;">~125px</div>
+        <div style="flex:1 1 200px;">~125px</div>
+      </div>
+      <div class="label">flex-shrink: 0 &nbsp;|&nbsp; flex-shrink: 1 &nbsp;|&nbsp; flex-shrink: 1</div>
+    </div>
+    <pre><code>.no-shrink { flex: 1 0 200px; }  /* Never shrinks */
+.shrink    { flex: 1 1 200px; }  /* Normal shrink */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Different Shrink Factors</h2>
+    <p>Items with higher <code>flex-shrink</code> values shrink more proportionally.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1 2 200px;">shrink: 2</div>
+        <div style="flex:1 1 200px;">shrink: 1</div>
+        <div style="flex:1 1 200px;">shrink: 1</div>
+      </div>
+      <div class="label">flex-shrink: 2 &nbsp;|&nbsp; flex-shrink: 1 &nbsp;|&nbsp; flex-shrink: 1</div>
+    </div>
+    <pre><code>.item1 { flex: 1 2 200px; }  /* Shrinks 2x more than others */
+.item2 { flex: 1 1 200px; }  /* Normal shrink */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Practical Fixed Sidebar</h2>
+    <p>A common pattern: fixed-width sidebar that never shrinks + flexible content area.</p>
+    <div class="demo-output">
+      <div style="display:flex; background:#f1f5f9; border-radius:6px; min-height:100px;">
+        <div style="flex:0 0 200px; background:#8b5cf7; color:white; padding:1rem; display:flex; align-items:center; justify-content:center;">Fixed Sidebar<br>200px</div>
+        <div style="flex:1; background:#06b6d4; color:white; padding:1rem; display:flex; align-items:center; justify-content:center;">Flexible Content</div>
+      </div>
+    </div>
+    <pre><code>.sidebar { flex: 0 0 200px; }  /* flex-shrink: 0 — never shrinks */
+.content { flex: 1; }           /* flex-shrink: 1 — can shrink */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Preventing Image Shrink</h2>
+    <p>Images in flex items can get squished. Use <code>flex-shrink: 0</code> or <code>min-width: 0</code>.</p>
+    <div class="demo-output">
+      <div style="display:flex; gap:1rem; background:#f1f5f9; padding:1rem; border-radius:6px;">
+        <div style="flex:0 0 auto; background:#06b6d4; color:white; padding:1rem; border-radius:4px;">No shrink</div>
+        <div style="flex:1 1 200px; background:#f59e0b; color:white; padding:1rem; border-radius:4px; overflow:hidden;">This long text will wrap because the item can shrink</div>
+      </div>
+    </div>
+    <pre><code>.no-shrink { flex: 0 0 auto; }        /* Content-sized, no shrink */
+.can-shrink { flex: 1 1 200px; }      /* Can shrink if needed */</code></pre>
+    <div class="note"><strong>Tip:</strong> Use <code>flex-shrink: 0</code> on elements that should maintain their size (sidebars, images, icons).</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Comparison — With and Without Shrink</h2>
+    <p>Side-by-side: without shrink (overflow) vs with shrink (fit).</p>
+    <div class="demo-output">
+      <div class="grid-2">
+        <div>
+          <div class="label">flex-shrink: 0 (overflow)</div>
+          <div style="display:flex; width:300px; background:#f1f5f9; padding:0.5rem; border-radius:6px; gap:0.25rem; overflow:hidden;">
+            <div style="flex:0 0 150px; background:#06b6d4; color:white; padding:0.75rem; border-radius:4px;">150px</div>
+            <div style="flex:0 0 150px; background:#f59e0b; color:white; padding:0.75rem; border-radius:4px;">150px</div>
+          </div>
+          <div style="color:#ef4444; font-size:0.8rem;">Overflow (300px > 300px)</div>
+        </div>
+        <div>
+          <div class="label">flex-shrink: 1 (fits)</div>
+          <div style="display:flex; width:300px; background:#f1f5f9; padding:0.5rem; border-radius:6px; gap:0.25rem;">
+            <div style="flex:1 1 150px; background:#06b6d4; color:white; padding:0.75rem; border-radius:4px;">Shrunk</div>
+            <div style="flex:1 1 150px; background:#f59e0b; color:white; padding:0.75rem; border-radius:4px;">Shrunk</div>
+          </div>
+          <div style="color:#10b981; font-size:0.8rem;">Shrinks to fit perfectly</div>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* Overflows: */
+.item { flex: 0 0 150px; }  /* flex-shrink: 0 */
+/* Fits: */
+.item { flex: 1 1 150px; }  /* flex-shrink: 1 */</code></pre>
+  </div>
+</body>
+</html>

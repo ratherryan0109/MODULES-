@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Transform - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #1e1e2e; color: #cdd6f4; padding: 2rem; }
+    h1 { color: #89b4fa; margin-bottom: 1rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    .panel { background: #313244; border-radius: 12px; padding: 1.5rem; border: 1px solid #45475a; }
+    .preview-panel { display: flex; align-items: center; justify-content: center; min-height: 400px; overflow: hidden; }
+    label { display: block; margin: 0.75rem 0 0.25rem; color: #a6e3a1; font-weight: 700; }
+    input[type="range"] { width: 100%; }
+    select, input[type="text"] { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #45475a; background: #181825; color: #cdd6f4; font-family: monospace; }
+    .demo-box {
+      width: 150px; height: 150px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #1e1e2e;
+      background: #89b4fa; transition: transform 0.3s ease;
+    }
+    .transform-label {
+      position: absolute; bottom: -30px; left: 0; right: 0;
+      text-align: center; color: #a6e3a1; font-size: 0.85rem;
+    }
+    .wrapper { position: relative; display: inline-block; }
+    .code-output {
+      background: #181825; padding: 1rem; border-radius: 8px; margin-top: 1rem;
+      font-size: 0.85rem; white-space: pre-wrap; border: 1px solid #45475a;
+    }
+    button {
+      background: #89b4fa; color: #1e1e2e; border: none; padding: 0.5rem 1rem;
+      border-radius: 6px; cursor: pointer; font-weight: 700; margin-top: 1rem;
+    }
+    button:hover { background: #b4d0fb; }
+    .row { display: flex; gap: 1rem; }
+    .row > div { flex: 1; }
+  </style>
+</head>
+<body>
+  <h1>CSS Transform Playground</h1>
+  <div class="container">
+    <div class="panel">
+      <h2 style="color:#a6e3a1;margin-bottom:1rem;">Controls</h2>
+
+      <label>Translate X (px)</label>
+      <input type="range" id="translateX" min="-200" max="200" value="0">
+      <span id="translateXVal">0px</span>
+
+      <label>Translate Y (px)</label>
+      <input type="range" id="translateY" min="-200" max="200" value="0">
+      <span id="translateYVal">0px</span>
+
+      <label>Rotate (deg)</label>
+      <input type="range" id="rotate" min="0" max="360" value="0">
+      <span id="rotateVal">0deg</span>
+
+      <label>Scale X</label>
+      <input type="range" id="scaleX" min="0.1" max="3" step="0.1" value="1">
+      <span id="scaleXVal">1</span>
+
+      <label>Scale Y</label>
+      <input type="range" id="scaleY" min="0.1" max="3" step="0.1" value="1">
+      <span id="scaleYVal">1</span>
+
+      <label>Skew X (deg)</label>
+      <input type="range" id="skewX" min="-45" max="45" value="0">
+      <span id="skewXVal">0deg</span>
+
+      <label>Skew Y (deg)</label>
+      <input type="range" id="skewY" min="-45" max="45" value="0">
+      <span id="skewYVal">0deg</span>
+
+      <label>Transform Origin</label>
+      <select id="origin">
+        <option value="center">center</option>
+        <option value="top left">top left</option>
+        <option value="top right">top right</option>
+        <option value="bottom left">bottom left</option>
+        <option value="bottom right">bottom right</option>
+      </select>
+
+      <label>Transition Duration (s)</label>
+      <input type="range" id="transitionDur" min="0" max="2" step="0.1" value="0.3">
+      <span id="transitionDurVal">0.3s</span>
+
+      <button id="resetBtn">Reset</button>
+    </div>
+    <div class="panel preview-panel">
+      <div class="wrapper">
+        <div id="previewBox" class="demo-box">Transform</div>
+      </div>
+    </div>
+  </div>
+  <div class="code-output" id="codeOutput">transform: translateX(0px) translateY(0px) rotate(0deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);</div>
+
+  <script>
+    const box = document.getElementById('previewBox');
+    const tX = document.getElementById('translateX');
+    const tY = document.getElementById('translateY');
+    const rot = document.getElementById('rotate');
+    const sX = document.getElementById('scaleX');
+    const sY = document.getElementById('scaleY');
+    const skX = document.getElementById('skewX');
+    const skY = document.getElementById('skewY');
+    const origin = document.getElementById('origin');
+    const tDur = document.getElementById('transitionDur');
+    const code = document.getElementById('codeOutput');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function update() {
+      const tx = tX.value, ty = tY.value, r = rot.value;
+      const sx = sX.value, sy = sY.value, skx = skX.value, sky = skY.value;
+
+      document.getElementById('translateXVal').textContent = tx + 'px';
+      document.getElementById('translateYVal').textContent = ty + 'px';
+      document.getElementById('rotateVal').textContent = r + 'deg';
+      document.getElementById('scaleXVal').textContent = sx;
+      document.getElementById('scaleYVal').textContent = sy;
+      document.getElementById('skewXVal').textContent = skx + 'deg';
+      document.getElementById('skewYVal').textContent = sky + 'deg';
+      document.getElementById('transitionDurVal').textContent = tDur.value + 's';
+
+      box.style.transition = `transform ${tDur.value}s ease`;
+      box.style.transformOrigin = origin.value;
+      box.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(${r}deg) scaleX(${sx}) scaleY(${sy}) skewX(${skx}deg) skewY(${sky}deg)`;
+
+      code.textContent = `transform-origin: ${origin.value};\ntransform: translateX(${tx}px) translateY(${ty}px) rotate(${r}deg) scaleX(${sx}) scaleY(${sy}) skewX(${skx}deg) skewY(${sky}deg);\ntransition: transform ${tDur.value}s ease;`;
+    }
+
+    [tX, tY, rot, sX, sY, skX, skY, origin, tDur].forEach(el => el.addEventListener('input', update));
+
+    resetBtn.addEventListener('click', () => {
+      tX.value = tY.value = 0;
+      rot.value = 0;
+      sX.value = sY.value = 1;
+      skX.value = skY.value = 0;
+      origin.value = 'center';
+      tDur.value = 0.3;
+      update();
+    });
+
+    update();
+  </script>
+</body>
+</html>

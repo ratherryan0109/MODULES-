@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Performance Optimization - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    .bad { border-left: 4px solid #ef4444; padding-left: 1rem; margin: 0.5rem 0; }
+    .good { border-left: 4px solid #22c55e; padding-left: 1rem; margin: 0.5rem 0; }
+    .box { width: 100px; height: 100px; background: #06b6d4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; }
+  </style>
+</head>
+<body>
+  <h1>CSS Performance Optimization</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: content-visibility for Below-Fold Content</h2>
+    <p>Use <code>content-visibility: auto</code> to defer rendering of off-screen sections. They render lazily as the user scrolls.</p>
+    <div class="demo-output">
+      <div style="padding:1rem;background:#f1f5f9;border-radius:8px;margin-bottom:0.5rem;">
+        <p><strong>Above the fold</strong> &mdash; renders immediately.</p>
+      </div>
+      <div style="content-visibility:auto;contain-intrinsic-size:200px;padding:1rem;background:#e2e8f0;border-radius:8px;">
+        <p><strong>Below the fold</strong> &mdash; deferred until near viewport. Check the Elements panel to see this section's rendering is lazy.</p>
+      </div>
+    </div>
+    <pre><code>.below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Animate transform and opacity Only</h2>
+    <p>Animating <code>width</code>, <code>height</code>, <code>top</code>, <code>left</code> triggers layout re-calculations. <code>transform</code> and <code>opacity</code> are GPU-accelerated.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:2rem;align-items:center;">
+        <div class="bad">
+          <p style="font-weight:600;color:#ef4444;">Bad: animates width</p>
+          <div class="box" style="animation:badWidth 1s ease-in-out infinite alternate;"></div>
+        </div>
+        <div class="good">
+          <p style="font-weight:600;color:#22c55e;">Good: animates transform</p>
+          <div class="box" style="animation:goodScale 1s ease-in-out infinite alternate;"></div>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* Avoid — triggers layout */
+@keyframes bad {
+  from { width: 100px; }
+  to { width: 150px; }
+}
+/* Prefer — GPU composited */
+@keyframes good {
+  from { transform: scale(1); }
+  to { transform: scale(1.5); }
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Selector Performance</h2>
+    <p>Browsers read selectors right-to-left. Keep selectors short and avoid universal selectors in key positions.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+        <div class="bad" style="flex:1;">
+          <p style="font-weight:600;color:#ef4444;">Slow</p>
+          <code>div &gt; ul &gt; li &gt; a { }</code>
+          <p style="margin-top:0.5rem;font-size:0.875rem;color:#64748b;">Matches every <code>a</code>, walks up 4 levels.</p>
+        </div>
+        <div class="good" style="flex:1;">
+          <p style="font-weight:600;color:#22c55e;">Fast</p>
+          <code>.nav-link { }</code>
+          <p style="margin-top:0.5rem;font-size:0.875rem;color:#64748b;">Single class lookup &mdash; O(1).</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* Slow: deep descendant selector */
+.container ul li a { color: blue; }
+
+/* Fast: single class */
+.nav-link { color: blue; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: will-change for Anticipated Animations</h2>
+    <p>Hint the browser about upcoming changes so it creates a compositor layer ahead of time.</p>
+    <div class="demo-output">
+      <div class="box" style="will-change:transform;transition:transform 0.3s;cursor:pointer;" onmouseenter="this.style.transform='scale(1.2)'" onmouseleave="this.style.transform='scale(1)'">
+        Hover
+      </div>
+      <p style="margin-top:0.5rem;font-size:0.875rem;color:#64748b;">Use <code>will-change</code> sparingly — overuse consumes GPU memory.</p>
+    </div>
+    <pre><code>.animated-element {
+  will-change: transform, opacity;
+  transition: transform 0.3s;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Critical CSS Inline + Async Non-Critical</h2>
+    <p>Inline above-the-fold CSS in <code>&lt;head&gt;</code> and load the rest asynchronously.</p>
+    <div class="demo-output">
+      <pre style="background:#f1f5f9;color:#0f172a;font-size:0.85rem;">&lt;!-- Critical CSS inlined --&gt;
+&lt;style&gt;
+  header { background: #06b6d4; }
+  .hero { font-size: 2rem; }
+&lt;/style&gt;
+
+&lt;!-- Non-critical loaded async --&gt;
+&lt;link rel="preload"
+      href="styles.css"
+      as="style"
+      onload="this.rel='stylesheet'"&gt;</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: contain Property for Isolation</h2>
+    <p><code>contain: layout style paint</code> tells the browser that this subtree doesn't affect the rest of the page.</p>
+    <div class="demo-output">
+      <div style="contain:layout style paint;padding:1rem;background:#f1f5f9;border-radius:8px;border:2px solid #06b6d4;">
+        <p style="font-weight:600;">Isolated Subtree</p>
+        <p style="font-size:0.875rem;color:#64748b;">Changes inside this box won't trigger re-layout or re-paint outside it.</p>
+      </div>
+    </div>
+    <pre><code>.widget {
+  contain: layout style paint;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Avoid Expensive Properties</h2>
+    <p>Properties like <code>box-shadow</code>, <code>border-radius</code>, and <code>filter</code> can be paint-intensive. Use them wisely.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div style="width:100px;height:100px;background:#06b6d4;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;color:#fff;">Heavy</div>
+        <div style="width:100px;height:100px;background:#06b6d4;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;">Light</div>
+      </div>
+      <p style="margin-top:0.5rem;font-size:0.875rem;color:#64748b;">On low-end devices, the heavy shadow may cause jank during scrolling.</p>
+    </div>
+    <pre><code>/* Use simpler shadows on cards */
+.card {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+/* Reserve heavy shadows for emphasis */
+.card--elevated {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}</code></pre>
+  </div>
+
+  <style>
+    @keyframes badWidth { from { width: 100px; } to { width: 150px; } }
+    @keyframes goodScale { from { transform: scale(1); } to { transform: scale(1.5); } }
+  </style>
+</body>
+</html>

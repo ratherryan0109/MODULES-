@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is CSS Flexbox?", "answer": "CSS Flexbox is a one-dimensional layout model that distributes space and aligns items within a container along a single axis." },
+    { "question": "What is a flex container?", "answer": "A flex container is the parent element that has display: flex or display: inline-flex applied to it." },
+    { "question": "What are flex items?", "answer": "Flex items are the direct children of a flex container that are laid out using the flexbox algorithm." },
+    { "question": "What is the main axis in Flexbox?", "answer": "The main axis is the primary direction along which flex items are placed, determined by flex-direction (horizontal or vertical)." },
+    { "question": "What is the cross axis in Flexbox?", "answer": "The cross axis is perpendicular to the main axis; if the main axis is row, the cross axis is column." },
+    { "question": "What does display: flex do?", "answer": "display: flex turns an element into a block-level flex container, enabling flexbox properties for its children." },
+    { "question": "What does display: inline-flex do?", "answer": "display: inline-flex creates an inline-level flex container that flows inline while maintaining flex behavior inside." },
+    { "question": "What is the default direction of flex items?", "answer": "The default flex-direction is row, placing items horizontally from left to right." },
+    { "question": "Do flex items display as block or inline by default?", "answer": "Flex items are blockified by the flex container but behave according to flex properties, not block layout." },
+    { "question": "Can flex items have margins?", "answer": "Yes, flex items can have margins, which are respected by the flex layout algorithm." }
+  ],
+  "intermediate": [
+    { "question": "How does the flex layout algorithm differ from block layout?", "answer": "Flex layout does not collapse margins, respects item alignment along both axes, and can shrink/grow items to fill space." },
+    { "question": "What happens to floats inside a flex container?", "answer": "Float and clear have no effect on flex items; the container ignores float declarations." },
+    { "question": "How does vertical-align affect flex items?", "answer": "vertical-align has no effect on flex items; alignment is controlled by align-items and align-self." },
+    { "question": "What is the difference between display: flex and display: grid?", "answer": "Flexbox is one-dimensional (row or column); Grid is two-dimensional (rows and columns simultaneously)." },
+    { "question": "Can flex containers be nested?", "answer": "Yes, a flex item can itself be a flex container by setting display: flex on it." },
+    { "question": "What happens to absolutely positioned children of a flex container?", "answer": "Absolutely positioned children are not flex items and are not affected by flex layout properties." },
+    { "question": "How do anonymous flex items work?", "answer": "Any text directly inside a flex container is wrapped in an anonymous flex item for layout purposes." },
+    { "question": "What is the difference between flex-basis: auto and flex-basis: 0?", "answer": "auto bases size on the item's content; 0 ignores content and distributes space equally." },
+    { "question": "How does min-width affect flex items?", "answer": "Flex items have a default min-width: auto, preventing them from shrinking below their content size." },
+    { "question": "What properties can be applied to a flex container?", "answer": "Container properties: flex-direction, flex-wrap, flex-flow, justify-content, align-items, align-content, gap." }
+  ],
+  "advanced": [
+    { "question": "How does the flex layout algorithm resolve automatic minimum sizes?", "answer": "Flex items have min-width/min-height: auto by default, which prevents shrinking below content size; override with min-width: 0." },
+    { "question": "What is the difference between alignment in Flexbox and Grid at the box alignment level?", "answer": "In Flexbox, justify-content aligns items on the main axis and align-items on the cross axis; in Grid, both axes use the same properties." },
+    { "question": "How does the flex shrink algorithm distribute negative space?", "answer": "Negative space is distributed based on each item's flex-shrink factor multiplied by its flex-basis (the flex shrink formula)." },
+    { "question": "What happens when flex items have different align-self values?", "answer": "Each item's align-self overrides the container's align-items for that specific item, creating varied cross-axis positions." },
+    { "question": "How does the gap property work in Flexbox?", "answer": "gap creates fixed spacing between flex items, only between items (not before the first or after the last)." },
+    { "question": "How does Flexbox handle overflow when items do not fit?", "answer": "By default, items shrink (flex-shrink: 1); if wrap is enabled, items wrap; otherwise they overflow." },
+    { "question": "What is the relationship between margin: auto and Flexbox alignment?", "answer": "margin: auto on a flex item absorbs free space, pushing the item away from its siblings; it overrides justify-content alignment." },
+    { "question": "How does writing mode change Flexbox axis behavior?", "answer": "In vertical writing modes (vertical-rl), the main axis stays logical; row runs vertically and column runs horizontally." },
+    { "question": "How do percentage values in flex-basis work?", "answer": "flex-basis: 50% is calculated relative to the flex container's main axis size (width for row, height for column)." },
+    { "question": "What are the accessibility considerations of reordering flex items with order?", "answer": "The order property changes visual order but not DOM order, so screen readers and keyboard navigation follow source order." }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "module": "17-css-lists",
+  "title": "CSS Lists",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "How do you remove default list bullets?",
+      "options": [
+        "list-style: none",
+        "bullets: none",
+        "list-type: none",
+        "marker: none"
+      ],
+      "correctAnswer": 0,
+      "explanation": "list-style: none removes all list markers (bullets/numbers)."
+    },
+    {
+      "id": 2,
+      "question": "Which property makes list items display horizontally?",
+      "options": [
+        "display: inline on li elements or display: flex on ul/ol",
+        "list-style: horizontal",
+        "display: flex on the ul/ol",
+        "direction: row"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Set display: inline or use flexbox on the parent ul/ol to create horizontal lists."
+    },
+    {
+      "id": 3,
+      "question": "What does list-style-position: inside do?",
+      "options": [
+        "Hides the marker",
+        "Places the marker inside the content box, so text wraps under the marker",
+        "Changes marker to a circle",
+        "Moves the list inside the parent"
+      ],
+      "correctAnswer": 1,
+      "explanation": "list-style-position: inside places the bullet/number inside the content area, so text wraps under the marker."
+    },
+    {
+      "id": 4,
+      "question": "Which list-style-type value creates uppercase Roman numerals?",
+      "options": [
+        "upper-roman",
+        "roman",
+        "i",
+        "capital-roman"
+      ],
+      "correctAnswer": 0,
+      "explanation": "list-style-type: upper-roman displays I, II, III, IV for ordered lists."
+    },
+    {
+      "id": 5,
+      "question": "What is the ::marker pseudo-element used for?",
+      "options": [
+        "Creating custom markers",
+        "Styling the list marker (bullet/number) itself",
+        "Removing markers",
+        "Adding markers after list items"
+      ],
+      "correctAnswer": 1,
+      "explanation": "::marker allows styling the list item marker (bullet or number) with color, font-size, and other properties."
+    },
+    {
+      "id": 6,
+      "question": "How do you create a custom counter in CSS?",
+      "options": [
+        "counter-reset and counter-increment properties",
+        "custom-counter: start 1",
+        "counter: myCounter",
+        "list-counter: custom"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS counters use counter-reset (initialize), counter-increment (increase), and content with counter() to display custom numbering."
+    },
+    {
+      "id": 7,
+      "question": "What is the default list-style-type for unordered lists?",
+      "options": [
+        "circle",
+        "square",
+        "disc",
+        "none"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The default marker for unordered lists is 'disc' (filled circle)."
+    },
+    {
+      "id": 8,
+      "question": "What is the shorthand order for list-style?",
+      "options": [
+        "list-style: type position image",
+        "list-style: position type image",
+        "list-style: image type position",
+        "list-style: type image position"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The list-style shorthand order is: list-style: type position image. Any values can be omitted."
+    },
+    {
+      "id": 9,
+      "question": "How do you use an image as a list marker?",
+      "options": [
+        "list-style-image: url('bullet.png')",
+        "list-marker: url('bullet.png')",
+        "list-image: url('bullet.png')",
+        "marker-image: url('bullet.png')"
+      ],
+      "correctAnswer": 0,
+      "explanation": "list-style-image replaces the default marker with a custom image."
+    },
+    {
+      "id": 10,
+      "question": "How do you create a description list in HTML?",
+      "options": [
+        "<ul> with <li> items",
+        "<dl> with <dt> (terms) and <dd> (descriptions)",
+        "<ol> with type=\"description\"",
+        "<list> with <term> elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Description lists use <dl> (list), <dt> (term), and <dd> (description) elements, styled separately."
+    },
+    {
+      "id": 11,
+      "question": "What does list-style-type: decimal-leading-zero do?",
+      "options": [
+        "Adds a decimal point",
+        "Numbers items as 01, 02, 03, etc.",
+        "Adds leading zeros to all numbers",
+        "Creates a numbered list without leading zeros"
+      ],
+      "correctAnswer": 1,
+      "explanation": "decimal-leading-zero numbers ordered list items as 01, 02, 03, etc., padding single digits with a leading zero."
+    },
+    {
+      "id": 12,
+      "question": "What is list-style-position: outside (default)?",
+      "options": [
+        "Marker is inside the content box",
+        "Marker is outside the content box, hanging to the left",
+        "Marker is hidden",
+        "Marker appears after the content"
+      ],
+      "correctAnswer": 1,
+      "explanation": "list-style-position: outside places the marker to the left of the content, hanging outside the element."
+    },
+    {
+      "id": 13,
+      "question": "How do you create a nested list with different bullet styles per level?",
+      "options": [
+        "Use different list-style-type on ul, ul ul, ul ul ul",
+        "Automatically happens with browser defaults",
+        "Use a single list-style-type on the parent",
+        "Nested lists can't have different styles"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Apply list-style-type to nested selectors (ul { disc }, ul ul { circle }, ul ul ul { square }) for hierarchical bullets."
+    },
+    {
+      "id": 14,
+      "question": "What does counter-increment do?",
+      "options": [
+        "Resets a counter to 0",
+        "Increases a counter's value by a specified amount",
+        "Displays the counter value",
+        "Creates a new counter"
+      ],
+      "correctAnswer": 1,
+      "explanation": "counter-increment increases the value of a named counter by 1 (or a specified amount)."
+    },
+    {
+      "id": 15,
+      "question": "Which display value is commonly used for creating horizontal navigation from lists?",
+      "options": [
+        "display: block",
+        "display: inline or display: flex",
+        "display: grid",
+        "display: table"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Either display: inline/inline-block on list items or display: flex on the parent ul creates horizontal navigation lists."
+    },
+    {
+      "id": 16,
+      "question": "How can you change the marker for a single list item?",
+      "options": [
+        "Use the value attribute on <li>",
+        "Use ::marker on that specific li",
+        "It's not possible per item",
+        "Use list-style on the li element"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The value attribute on an <li> changes its number in an ordered list, e.g., <li value=\"10\">."
+    },
+    {
+      "id": 17,
+      "question": "What is the best way to create a custom numbered list with prefixes like Step 1, Step 2?",
+      "options": [
+        "Use CSS counters with the counter() function and a string prefix",
+        "Write each number manually in HTML",
+        "Use list-style-type: step",
+        "Use a custom font"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS counters allow custom formatting: content: 'Step ' counter(my-counter) to display 'Step 1', 'Step 2', etc."
+    },
+    {
+      "id": 18,
+      "question": "What does list-style inherit from parent elements?",
+      "options": [
+        "List-style properties are not inherited",
+        "list-style-type, list-style-position, and list-style-image are all inherited",
+        "Only list-style-type is inherited",
+        "Only list-style-image is inherited"
+      ],
+      "correctAnswer": 1,
+      "explanation": "All list-style sub-properties are inherited. Nested lists inherit settings from their parent unless overridden."
+    },
+    {
+      "id": 19,
+      "question": "How do you add custom content before each list item?",
+      "options": [
+        "Use li::before with content property",
+        "Use list-prefix property",
+        "Use li::marker with content",
+        "Use list-style-content property"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The ::before pseudo-element on li elements allows adding custom content before each item."
+    },
+    {
+      "id": 20,
+      "question": "What is the purpose of the start attribute on <ol>?",
+      "options": [
+        "Sets the starting number for an ordered list",
+        "Adds a starting style",
+        "Restarts numbering from a specific value",
+        "Sets the first item position"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The start attribute on <ol> sets the starting number, e.g., <ol start=\"5\"> starts numbering from 5."
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "question": "What does the colspan attribute do?",
+    "options": ["Merges cells vertically", "Merges cells horizontally", "Adds space between columns", "Sets column width"],
+    "answer": "Merges cells horizontally",
+    "explanation": "colspan specifies the number of columns a cell should span across, merging them horizontally."
+  },
+  {
+    "question": "What does the rowspan attribute do?",
+    "options": ["Merges cells horizontally", "Merges cells vertically", "Adds space between rows", "Sets row height"],
+    "answer": "Merges cells vertically",
+    "explanation": "rowspan specifies the number of rows a cell should span across, merging them vertically."
+  },
+  {
+    "question": "If a cell has colspan=\"3\", how many columns does it occupy?",
+    "options": ["1", "2", "3", "4"],
+    "answer": "3",
+    "explanation": "colspan=\"3\" means the cell spans across 3 columns in the table grid."
+  },
+  {
+    "question": "If the first row has a cell with colspan=\"3\" and another cell, how many columns does the table have?",
+    "options": ["3", "4", "5", "Depends on the second cell"],
+    "answer": "Depends on the second cell",
+    "explanation": "The total column count is colspan value (3) plus the number of columns taken by the other cell(s). If the other cell is a single cell, total is 4."
+  },
+  {
+    "question": "When using rowspan on a cell, what happens in the subsequent rows?",
+    "options": [
+      "You must add an extra cell in each spanned row",
+      "You omit the cell in that column position for each spanned row",
+      "You use colspan=\"0\" to mark the end of the span",
+      "The table automatically adjusts"
+    ],
+    "answer": "You omit the cell in that column position for each spanned row",
+    "explanation": "When a cell spans multiple rows, those rows do not include a cell in the spanned column position."
+  },
+  {
+    "question": "What is the minimum value for colspan or rowspan?",
+    "options": ["0", "1", "2", "No minimum"],
+    "answer": "1",
+    "explanation": "The minimum value is 1, which is the default (no spanning). colspan=\"0\" is not consistently supported."
+  },
+  {
+    "question": "What attribute should be used on a spanned header that covers multiple columns for accessibility?",
+    "options": ["scope=\"colgroup\"", "scope=\"col\"", "scope=\"rowgroup\"", "scope=\"group\""],
+    "answer": "scope=\"colgroup\"",
+    "explanation": "scope=\"colgroup\" tells screen readers that this header applies to a group of columns."
+  },
+  {
+    "question": "If a table has 5 columns total and a cell has colspan=\"3\", how many cells are needed in that row besides it?",
+    "options": ["1", "2", "3", "5"],
+    "answer": "2",
+    "explanation": "The row must sum to 5 columns. With one cell spanning 3, you need 2 more cells (3 + 2 = 5)."
+  },
+  {
+    "question": "What happens if the columns in a row do not sum to the same total as other rows?",
+    "options": [
+      "The table does not render",
+      "Columns misalign and the layout breaks",
+      "The browser adds extra empty cells",
+      "The table adjusts automatically"
+    ],
+    "answer": "Columns misalign and the layout breaks",
+    "explanation": "Mismatched column counts cause rows to have different numbers of columns, breaking the grid alignment."
+  },
+  {
+    "question": "How do you style all cells that use colspan?",
+    "options": ["td[colspan] { ... }", "td.colspan { ... }", ".colspan { ... }", "colspan { ... }"],
+    "answer": "td[colspan] { ... }",
+    "explanation": "The attribute selector [colspan] targets all cells that have the colspan attribute, regardless of value."
+  },
+  {
+    "question": "Which element is appropriate for a cell that spans across columns and serves as a header?",
+    "options": ["<td colspan=\"2\">", "<th colspan=\"2\">", "<header colspan=\"2\">", "<h1 colspan=\"2\">"],
+    "answer": "<th colspan=\"2\">",
+    "explanation": "Use <th> for header cells and <td> for data cells, regardless of whether they span."
+  },
+  {
+    "question": "What is the purpose of the headers attribute on a td element?",
+    "options": [
+      "To style the cell",
+      "To associate the data cell with its header cells by id",
+      "To set the column width",
+      "To merge cells"
+    ],
+    "answer": "To associate the data cell with its header cells by id",
+    "explanation": "The headers attribute takes space-separated ids of th elements, helping screen readers map data to headers."
+  },
+  {
+    "question": "In a table with 4 columns, what rowspan value would make a cell span all rows in a 3-row table?",
+    "options": ["2", "3", "4", "0"],
+    "answer": "3",
+    "explanation": "To span all 3 rows, use rowspan=\"3\". The cell continues through all rows."
+  },
+  {
+    "question": "What is the correct HTML for a header cell that spans 2 columns and 2 rows?",
+    "options": [
+      "<th colspan=\"2\" rowspan=\"2\">",
+      "<th span=\"2x2\">",
+      "<th colspanrow=\"2\">",
+      "<th span=\"2 2\">"
+    ],
+    "answer": "<th colspan=\"2\" rowspan=\"2\">",
+    "explanation": "Both colspan and rowspan can be combined in the same cell by including both attributes."
+  },
+  {
+    "question": "Which of the following is a common mistake when using colspan?",
+    "options": [
+      "Using colspan on a <th> element",
+      "Mismatching column counts between rows",
+      "Using colspan with a value greater than 1",
+      "Applying CSS to spanned cells"
+    ],
+    "answer": "Mismatching column counts between rows",
+    "explanation": "The most common mistake is not adjusting cells in subsequent rows when spanning, causing column misalignment."
+  },
+  {
+    "question": "What does scope=\"rowgroup\" indicate?",
+    "options": [
+      "The header applies to a group of rows",
+      "The header applies to a single row",
+      "The header applies to the entire table",
+      "The header is hidden from screen readers"
+    ],
+    "answer": "The header applies to a group of rows",
+    "explanation": "scope=\"rowgroup\" is used on a header that spans multiple rows with rowspan."
+  },
+  {
+    "question": "When should you use id and headers attributes in complex tables?",
+    "options": [
+      "Never; they are deprecated",
+      "For improved accessibility with screen readers when spanning is complex",
+      "Only for styling purposes",
+      "Only for JavaScript manipulation"
+    ],
+    "answer": "For improved accessibility with screen readers when spanning is complex",
+    "explanation": "id and headers attributes help screen readers associate data cells with their spanning headers."
+  },
+  {
+    "question": "If a row has cells with colspan=\"2\", colspan=\"1\", and colspan=\"1\", how many total columns?",
+    "options": ["3", "4", "5", "2"],
+    "answer": "4",
+    "explanation": "2 + 1 + 1 = 4 columns total for this row."
+  },
+  {
+    "question": "Can you use both colspan and rowspan on the same cell?",
+    "options": ["Yes", "No", "Only in HTML5", "Only with JavaScript"],
+    "answer": "Yes",
+    "explanation": "A cell can have both colspan and rowspan simultaneously, spanning a rectangular block of cells."
+  },
+  {
+    "question": "What is the best first step when designing a complex table with spanning?",
+    "options": [
+      "Write all the HTML at once",
+      "Plan the grid on paper, counting columns for each row",
+      "Use a CSS framework",
+      "Skip accessibility and add it later"
+    ],
+    "answer": "Plan the grid on paper, counting columns for each row",
+    "explanation": "Planning the grid layout first prevents column count mismatches and ensures correct spanning."
+  }
+]

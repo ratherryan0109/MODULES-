@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the class attribute in HTML?",
+      "answer": "The class attribute assigns one or more classification names to an element. It is used for CSS styling and JavaScript manipulation."
+    },
+    {
+      "question": "How do you add multiple classes to an element?",
+      "answer": "Separate class names with spaces: class=\"class1 class2 class3\""
+    },
+    {
+      "question": "What is the CSS syntax for selecting a class?",
+      "answer": "Use a dot prefix: .classname { property: value; }"
+    },
+    {
+      "question": "What is the difference between class and ID?",
+      "answer": "Classes can be reused on multiple elements. IDs must be unique per page. Classes have lower CSS specificity than IDs."
+    },
+    {
+      "question": "Can an element have both a class and an ID?",
+      "answer": "Yes, an element can have both: <div id=\"unique\" class=\"styled\">"
+    },
+    {
+      "question": "How do you select an element by class in JavaScript?",
+      "answer": "Use document.querySelector('.classname') for one or document.querySelectorAll('.classname') for all."
+    },
+    {
+      "question": "What is the classList property?",
+      "answer": "classList is a DOM property that provides methods to add, remove, toggle, and check classes on an element."
+    },
+    {
+      "question": "How do you add a class to an element with JavaScript?",
+      "answer": "element.classList.add('className')"
+    },
+    {
+      "question": "What is a valid class name?",
+      "answer": "A class name must start with a letter, underscore (_), or hyphen (-). It cannot contain spaces."
+    },
+    {
+      "question": "What is BEM in CSS?",
+      "answer": "BEM (Block Element Modifier) is a naming convention: .block__element--modifier, which keeps class names organized and avoids conflicts."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does CSS specificity work with classes?",
+      "answer": "Each class selector adds 0,0,1,0 to specificity. Two classes = 0,0,2,0. Classes beat element selectors (0,0,0,1) but lose to IDs (0,1,0,0)."
+    },
+    {
+      "question": "What happens when you chain class selectors (e.g., .class1.class2)?",
+      "answer": "It selects elements that have BOTH classes. This increases specificity and narrows the selection."
+    },
+    {
+      "question": "How do you check if an element has a specific class in JavaScript?",
+      "answer": "Use element.classList.contains('className') which returns true or false."
+    },
+    {
+      "question": "What is the difference between className and classList?",
+      "answer": "className sets/gets the entire class attribute as a string. classList provides methods (add, remove, toggle) for individual class manipulation."
+    },
+    {
+      "question": "How do you replace one class with another in JavaScript?",
+      "answer": "Use element.classList.replace('oldClass', 'newClass')"
+    },
+    {
+      "question": "What are utility classes?",
+      "answer": "Utility classes are small, single-purpose classes like .text-center, .mt-4, .bold. They are combined to compose styles (functional CSS approach)."
+    },
+    {
+      "question": "What is the problem with using too many classes?",
+      "answer": "It can make HTML verbose and harder to read. Naming conflicts can occur. CSS specificity battles can arise with many combined classes."
+    },
+    {
+      "question": "How do class names interact with CSS preprocessors like Sass?",
+      "answer": "Sass allows nesting with &. Example: .card { &__title { } &--featured { } } compiles to .card__title and .card--featured."
+    },
+    {
+      "question": "What is the modifier in BEM?",
+      "answer": "A modifier (-- modifier) represents a variation or state of a block or element, like .button--primary or .card--featured."
+    },
+    {
+      "question": "How do CSS modules handle class names?",
+      "answer": "CSS modules automatically generate unique class names to avoid conflicts. Classes are imported as objects: import styles from './styles.css'; className={styles.card}"
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the CSS cascade resolve conflicting class declarations?",
+      "answer": "When two classes have equal specificity, the one declared later in the stylesheet wins. !important overrides all, but should be avoided."
+    },
+    {
+      "question": "What is the performance impact of using hundreds of unique classes?",
+      "answer": "Minimal for modern browsers. CSS parsing is fast. However, large CSS files with many class rules take longer to download and parse."
+    },
+    {
+      "question": "How do CSS-in-JS libraries handle class names?",
+      "answer": "Libraries like styled-components generate unique class names at runtime, scoped to components. They solve naming conflicts and dead code elimination."
+    },
+    {
+      "question": "What is the future of CSS scoping with @scope?",
+      "answer": "@scope limits selector reach to a subtree, reducing the need for BEM-style naming. Example: @scope (.card) { :scope { ... } .title { ... } }"
+    },
+    {
+      "question": "How does the CSS :is() pseudo-class affect class selector specificity?",
+      "answer": ":is() takes the specificity of its most specific argument. :is(.card, .featured) has class-level specificity (0,0,1,0)."
+    },
+    {
+      "question": "What is the :where() pseudo-class and how does it differ for classes?",
+      "answer": ":where() always has zero specificity, regardless of its arguments. Useful for resets where you want easy overrides."
+    },
+    {
+      "question": "How do Tailwind CSS class names work under the hood?",
+      "answer": "Tailwind generates utility classes on demand. Class names like .text-center map directly to text-align: center. PurgeCSS removes unused classes in production."
+    },
+    {
+      "question": "What are the accessibility implications of class-based styling?",
+      "answer": "Classes have no direct accessibility impact. However, class names like .hidden with display: none hide content from all users, including screen readers."
+    },
+    {
+      "question": "How does the CSS @container query interact with class selectors?",
+      "answer": "@container queries allow styles based on container size, not viewport. Class selectors inside @container behave normally but respond to container queries."
+    },
+    {
+      "question": "Explain the concept of class composition in functional CSS frameworks.",
+      "answer": "Instead of writing custom CSS, compose styles by adding multiple utility classes: class=\"text-base font-bold text-center mt-4 p-4 bg-blue-500 text-white rounded\". Each class does one thing."
+    }
+  ]
+}

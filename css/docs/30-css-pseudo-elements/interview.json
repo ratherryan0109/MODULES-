@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a pseudo-element in CSS?", "answer": "A pseudo-element is a keyword used to style specific parts of an element, like the first letter or first line, or to insert content before/after an element." },
+    { "question": "What does ::before do?", "answer": "::before inserts generated content before the content of the selected element." },
+    { "question": "What does ::after do?", "answer": "::after inserts generated content after the content of the selected element." },
+    { "question": "What does ::first-letter do?", "answer": "::first-letter styles the first letter of a block-level element." },
+    { "question": "What does ::first-line do?", "answer": "::first-line styles the first line of a block-level element." },
+    { "question": "What is the syntax difference between pseudo-classes and pseudo-elements?", "answer": "Pseudo-classes use single colon (e.g., :hover), while pseudo-elements use double colon (e.g., ::before) for CSS3+." },
+    { "question": "What CSS property is essential for ::before and ::after to show content?", "answer": "The content property is required; without it, ::before and ::after will not render." },
+    { "question": "Can ::before and ::after be used on empty elements like <img>?", "answer": "No, ::before and ::after do not work on replaced elements like <img>, <input>, or <br>." },
+    { "question": "What does the content property do in pseudo-elements?", "answer": "The content property specifies what content to insert, such as text strings, attributes, counters, or images." },
+    { "question": "What is ::selection used for?", "answer": "::selection styles the portion of an element that the user has selected or highlighted." }
+  ],
+  "intermediate": [
+    { "question": "How do you add an icon before every link with ::before?", "answer": "Use a::before { content: '🔗 '; } or use content with background-image for a custom icon." },
+    { "question": "How do you clear floats using ::after?", "answer": "Use .clearfix::after { content: ''; display: table; clear: both; } to contain floated children." },
+    { "question": "What properties can ::first-letter style?", "answer": "::first-letter can style font, color, background, margin, padding, border, float, line-height, and more." },
+    { "question": "What properties can ::first-line style?", "answer": "::first-line can style font, color, background, word-spacing, letter-spacing, text-decoration, and line-height." },
+    { "question": "How can you use ::before to insert attribute values?", "answer": "Use content: attr(data-tooltip) to dynamically insert the value of an HTML attribute into the pseudo-element." },
+    { "question": "Can multiple pseudo-elements be used on the same element?", "answer": "Yes, you can use both ::before and ::after on the same element simultaneously." },
+    { "question": "What is ::marker used for?", "answer": "::marker styles the marker box of a list item, such as the bullet point or number." },
+    { "question": "What is ::placeholder used for?", "answer": "::placeholder styles the placeholder text inside an input or textarea element." },
+    { "question": "How do you create a tooltip using ::before and ::after?", "answer": "Use ::before for the tooltip text (content from attr) and ::after for the arrow triangle, with absolute positioning." },
+    { "question": "Can pseudo-elements be animated?", "answer": "Yes, pseudo-elements can be animated and transitioned as long as the properties are animatable." }
+  ],
+  "advanced": [
+    { "question": "How does the content property support counters?", "answer": "content: counter(counter-name) inserts the current value of a CSS counter, enabling automatic numbering." },
+    { "question": "Can you use images in the content property?", "answer": "Yes, use content: url('image.png') to insert an image as the generated content of a pseudo-element." },
+    { "question": "How do pseudo-elements interact with display properties like flex and grid?", "answer": "Pseudo-elements are treated as children of their parent element and participate in flex/grid layout." },
+    { "question": "How does the CSS spec determine the rendering order of pseudo-elements?", "answer": "The spec defines the cascade order: ::before is placed before the element content, ::after after, both within the element's formatting context." },
+    { "question": "What happens when you set position: absolute on a pseudo-element?", "answer": "The pseudo-element is positioned relative to its parent element, enabling decorative effects like ribbons or overlay icons." },
+    { "question": "How do you use ::before and ::after for custom checkboxes?", "answer": "Hide the native checkbox and use ::before/::after on the label to create custom checked/unchecked visual states." },
+    { "question": "What is the ::backdrop pseudo-element?", "answer": "::backdrop styles the full-screen backdrop behind elements shown fullscreen (like <dialog> opened with showModal())." },
+    { "question": "How do pseudo-elements work in terms of accessibility?", "answer": "Pseudo-element generated content is not exposed to screen readers by default, making it suitable for decorative content only." },
+    { "question": "Can you use pseudo-elements on self-closing SVG elements?", "answer": "In SVG, pseudo-elements may not work on self-closing elements; they require elements with open/close tags." },
+    { "question": "What are the browser limitations of ::file-selector-button?", "answer": "::file-selector-button styles the button inside <input type='file'>, but support varies and customization options are limited." }
+  ]
+}

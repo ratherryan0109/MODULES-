@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Maintainability Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; }
+    h1 { margin-bottom: 1rem; }
+    .editor-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    textarea { width: 100%; height: 350px; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 14px; resize: vertical; }
+    .preview { border: 2px solid #ddd; border-radius: 8px; padding: 1.5rem; min-height: 200px; margin: 1rem 0; }
+    .controls { display: flex; gap: 0.5rem; margin: 1rem 0; }
+    button { padding: 0.5rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; background: #0055CC; color: white; font-weight: 600; }
+    .stats { display: flex; gap: 1rem; margin: 1rem 0; }
+    .stat { background: #f0f0f0; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Maintainability Playground</h1>
+  <p>Write CSS and get instant feedback on maintainability metrics.</p>
+
+  <div class="editor-panel">
+    <div><label>CSS:</label><textarea id="cssInput">:root {
+  --primary: #0055CC;
+  --radius: 8px;
+  --space: 1rem;
+}
+
+.card {
+  border-radius: var(--radius);
+  padding: var(--space);
+  border: 1px solid #ddd;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}</textarea></div>
+    <div><label>HTML:</label><textarea id="htmlInput"><div class="card">
+  <h2>Sample Component</h2>
+  <p>This component uses CSS custom properties for consistent theming.</p>
+  <button class="btn">Click Me</button>
+</div></textarea></div>
+  </div>
+
+  <div class="controls">
+    <button onclick="updatePreview()">Update Preview</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat" id="statLines">Lines: 0</div>
+    <div class="stat" id="statVars">Custom Props: 0</div>
+    <div class="stat" id="statSelectors">Selectors: 0</div>
+    <div class="stat" id="statColors">Hardcoded Colors: 0</div>
+  </div>
+
+  <div class="preview" id="preview"></div>
+
+  <script>
+    const cssInput = document.getElementById('cssInput');
+    const htmlInput = document.getElementById('htmlInput');
+    const preview = document.getElementById('preview');
+
+    function updatePreview() {
+      const css = cssInput.value;
+      const html = htmlInput.value;
+      preview.innerHTML = `<style>${css}</style>${html}`;
+      analyzeCSS(css);
+    }
+
+    function analyzeCSS(css) {
+      const lines = css.split('\n').filter(l => l.trim()).length;
+      const vars = (css.match(/--[\w-]+/g) || []).length;
+      const selectors = (css.match(/\.\w[\w-]*/g) || []).length;
+      const colors = (css.match(/#[0-9a-fA-F]{3,8}\b/g) || []).length;
+
+      document.getElementById('statLines').textContent = `Lines: ${lines}`;
+      document.getElementById('statVars').textContent = `Custom Props: ${vars}`;
+      document.getElementById('statSelectors').textContent = `Selectors: ${selectors}`;
+      document.getElementById('statColors').textContent = `Hardcoded Colors: ${colors}`;
+    }
+
+    cssInput.addEventListener('input', updatePreview);
+    htmlInput.addEventListener('input', updatePreview);
+    updatePreview();
+  </script>
+</body>
+</html>

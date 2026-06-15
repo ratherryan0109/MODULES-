@@ -1,0 +1,247 @@
+{
+  "module": "01-introduction-to-css",
+  "title": "Introduction to CSS",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does CSS stand for?",
+      "options": [
+        "Cascading Style Sheets",
+        "Computer Style Sheets",
+        "Creative Style System",
+        "Colorful Style Sheets"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS stands for Cascading Style Sheets. 'Cascading' refers to the rule-resolution system, 'Style' refers to visual presentation, and 'Sheets' refers to the files or blocks containing the styles."
+    },
+    {
+      "id": 2,
+      "question": "Which HTML tag is used to link an external CSS file?",
+      "options": [
+        "<style>",
+        "<link>",
+        "<css>",
+        "<script>"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The <link> tag is used in the HTML <head> to link an external stylesheet: <link rel=\"stylesheet\" href=\"styles.css\">"
+    },
+    {
+      "id": 3,
+      "question": "Which of the following is the correct CSS syntax?",
+      "options": [
+        "body: {color: black}",
+        "{body; color: black}",
+        "body {color: black;}",
+        "{body: color black;}"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The correct CSS syntax is: selector { property: value; }. So 'body {color: black;}' follows this pattern."
+    },
+    {
+      "id": 4,
+      "question": "Which CSS application method is considered BEST practice for production websites?",
+      "options": [
+        "Inline CSS",
+        "Internal CSS",
+        "External CSS",
+        "Inline combined with internal"
+      ],
+      "correctAnswer": 2,
+      "explanation": "External CSS is best practice because it separates content from presentation, allows browser caching, enables reuse across multiple pages, and simplifies maintenance."
+    },
+    {
+      "id": 5,
+      "question": "What does the 'cascading' in CSS refer to?",
+      "options": [
+        "Styles cascade down from parent to child elements only",
+        "The browser follows a set of rules to determine which style applies when multiple rules conflict",
+        "CSS files must be arranged in a specific order",
+        "Styles can only be applied in a waterfall pattern"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The cascade is the algorithm browsers use to resolve conflicting style declarations based on importance, specificity, and source order."
+    },
+    {
+      "id": 6,
+      "question": "Which of the following is an example of inline CSS?",
+      "options": [
+        "<style> p { color: red; } </style>",
+        "p { color: red; }",
+        "<p style=\"color: red;\">Hello</p>",
+        "<link rel=\"stylesheet\" href=\"style.css\">"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Inline CSS uses the style attribute directly on an HTML element: <p style=\"color: red;\">Hello</p>"
+    },
+    {
+      "id": 7,
+      "question": "Which property is NOT inherited by child elements?",
+      "options": [
+        "color",
+        "font-family",
+        "margin",
+        "line-height"
+      ],
+      "correctAnswer": 2,
+      "explanation": "margin is NOT inherited. Properties like color, font-family, and line-height are inherited from parent to child elements."
+    },
+    {
+      "id": 8,
+      "question": "What does the specificity hierarchy look like (highest to lowest)?",
+      "options": [
+        "ID → Class → Element → Universal",
+        "Element → Class → ID → Universal",
+        "Universal → Element → Class → ID",
+        "Class → ID → Element → Universal"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Specificity hierarchy: ID selectors (highest) → Class/attribute/pseudo-class selectors → Element/pseudo-element selectors → Universal selector (lowest)."
+    },
+    {
+      "id": 9,
+      "question": "Where should the <link> tag for an external CSS file be placed?",
+      "options": [
+        "At the end of the <body>",
+        "Inside the <head> section",
+        "Anywhere in the HTML document",
+        "Inside the <footer>"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The <link> tag for external CSS should be placed inside the <head> section to ensure styles load before page content renders."
+    },
+    {
+      "id": 10,
+      "question": "What is the purpose of browser Developer Tools (DevTools) for CSS?",
+      "options": [
+        "To write CSS code faster",
+        "To inspect, debug, and test CSS in real-time",
+        "To automatically fix CSS errors",
+        "To convert CSS to other formats"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DevTools allow developers to inspect elements, view applied CSS rules, edit styles in real-time, debug layout issues, and test responsive designs."
+    },
+    {
+      "id": 11,
+      "question": "Which of the following correctly applies multiple declarations to a selector?",
+      "options": [
+        "h1 { color: blue; font-size: 20px; }",
+        "h1 { color: blue, font-size: 20px; }",
+        "h1 { color: blue; font-size: 20px }",
+        "h1 { color=blue; font-size=20px; }"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Multiple declarations are separated by semicolons. Each declaration has format 'property: value;'. Option 0 is the only one with correct syntax."
+    },
+    {
+      "id": 12,
+      "question": "What happens if two CSS rules have the same specificity?",
+      "options": [
+        "The browser applies both rules",
+        "The rule that appears later in the source code wins",
+        "The rule that appears first wins",
+        "An error is thrown"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When specificity is equal, the cascade uses source order: the rule that appears later (closer to the bottom) in the stylesheet wins."
+    },
+    {
+      "id": 13,
+      "question": "What is the 'separation of concerns' principle in web development?",
+      "options": [
+        "HTML handles structure, CSS handles presentation, JavaScript handles behavior",
+        "Each web page should be built by a separate team",
+        "CSS files must be in a separate folder from HTML files",
+        "Web design should be separated from web development"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Separation of concerns means HTML is responsible for structure/content, CSS for presentation/styling, and JavaScript for behavior/interactivity."
+    },
+    {
+      "id": 14,
+      "question": "Which CSS selector has the LOWEST specificity?",
+      "options": [
+        ".class-name",
+        "#id-name",
+        "*",
+        "div"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The universal selector (*) has the lowest specificity (0-0-0-0). Element selectors (div) are 0-0-0-1, classes are 0-0-1-0, and IDs are 0-1-0-0."
+    },
+    {
+      "id": 15,
+      "question": "What does the 'rel=\"stylesheet\"' attribute do in the <link> tag?",
+      "options": [
+        "Defines the relationship between the current document and the linked file as a stylesheet",
+        "Reveals the location of the CSS file",
+        "Renders the linked file as a style sheet",
+        "Reloads the stylesheet automatically"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The 'rel' attribute defines the relationship between the current document and the linked resource. 'rel=\"stylesheet\"' tells the browser the linked file is a stylesheet."
+    },
+    {
+      "id": 16,
+      "question": "Which of these is NOT a valid way to apply CSS?",
+      "options": [
+        "External stylesheet via <link>",
+        "Internal stylesheet via <style>",
+        "Directly via the 'css' HTML attribute",
+        "Inline via the 'style' HTML attribute"
+      ],
+      "correctAnswer": 2,
+      "explanation": "There is no 'css' HTML attribute. CSS can be applied via external <link>, internal <style>, or inline style attribute."
+    },
+    {
+      "id": 17,
+      "question": "What is a 'user-agent stylesheet'?",
+      "options": [
+        "A CSS file created by a user",
+        "The default styles built into a web browser",
+        "A stylesheet that manages user authentication",
+        "A third-party CSS library"
+      ],
+      "correctAnswer": 1,
+      "explanation": "User-agent stylesheets are the default styles that browsers apply to HTML elements (e.g., default margins on <body>, default font sizes for headings)."
+    },
+    {
+      "id": 18,
+      "question": "What does 'FOUC' stand for in web development?",
+      "options": [
+        "Flash of Unstyled Content",
+        "Failure of Unified CSS",
+        "Faulty Output of User Components",
+        "Frontend Optimization User Control"
+      ],
+      "correctAnswer": 0,
+      "explanation": "FOUC (Flash of Unstyled Content) is a brief moment when a page appears with default browser styles before the CSS loads. Placing <link> in <head> helps prevent it."
+    },
+    {
+      "id": 19,
+      "question": "Which organization maintains the CSS specifications?",
+      "options": [
+        "Google",
+        "Microsoft",
+        "W3C (World Wide Web Consortium)",
+        "ECMA International"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The W3C (World Wide Web Consortium) maintains and develops CSS specifications. Håkon Wium Lie first proposed CSS in 1994 while at CERN."
+    },
+    {
+      "id": 20,
+      "question": "What is the purpose of a CSS reset or normalize.css?",
+      "options": [
+        "To make all HTML elements invisible",
+        "To reduce cross-browser inconsistencies by normalizing default styles",
+        "To reset the browser completely",
+        "To remove all CSS from a page"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CSS resets and normalize.css reduce browser inconsistencies by overriding default user-agent stylesheets, ensuring elements look consistent across different browsers."
+    }
+  ]
+}

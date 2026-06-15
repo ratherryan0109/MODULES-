@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is form validation and why is it important?",
+      "answer": "Form validation is the process of checking that user input meets specified rules before submission. It's important for data quality, security (preventing invalid/malicious data), and user experience (providing immediate feedback on errors)."
+    },
+    {
+      "question": "What HTML5 attributes are used for validation?",
+      "answer": "Key HTML5 validation attributes include: required (mandatory field), pattern (regex pattern), min/max (numeric range), minlength/maxlength (text length), step (increment), and type-specific validation like type='email', type='url', and type='number'."
+    },
+    {
+      "question": "How do you make a form field required?",
+      "answer": "Add the required attribute to the input element: <input type='text' required>. This is a boolean attribute — its presence makes the field mandatory. The browser will prevent form submission if the field is empty and show an error message."
+    },
+    {
+      "question": "How does the pattern attribute work?",
+      "answer": "The pattern attribute accepts a JavaScript regular expression string. The input value must match this regex for validation to pass. Example: pattern='[A-Za-z]+' only allows letters. The title attribute provides the error message shown on pattern mismatch."
+    },
+    {
+      "question": "What is the purpose of the novalidate attribute?",
+      "answer": "The novalidate attribute on a <form> element disables all native HTML5 constraint validation. It's used when implementing fully custom JavaScript validation or when you want to validate only on the server side."
+    },
+    {
+      "question": "How do you validate an email input?",
+      "answer": "Use type='email' on the input element. The browser automatically checks that the value is a properly formatted email address (contains @ and a domain). Example: <input type='email' required>."
+    },
+    {
+      "question": "What is the minlength and maxlength attributes used for?",
+      "answer": "minlength sets the minimum number of characters required, and maxlength sets the maximum. They work on text inputs and textareas. Example: <input type='text' minlength='3' maxlength='20'> accepts 3-20 characters."
+    },
+    {
+      "question": "What CSS pseudo-classes are available for validation styling?",
+      "answer": ":valid — styles elements that pass validation; :invalid — styles elements that fail validation; :focus:invalid — styles invalid elements on focus; :required — styles required elements. These allow visual feedback without JavaScript."
+    },
+    {
+      "question": "What is the difference between client-side and server-side validation?",
+      "answer": "Client-side validation runs in the browser and provides immediate feedback, improving UX. Server-side validation runs on the server and is essential for security — client-side validation can be bypassed. Both should always be used together."
+    },
+    {
+      "question": "How do you restrict a number input to values between 1 and 10?",
+      "answer": "Use the min and max attributes: <input type='number' min='1' max='10'>. The browser will reject values below 1 or above 10 when the form is submitted or checkValidity() is called."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the Constraint Validation API and how does it work?",
+      "answer": "The Constraint Validation API provides JavaScript access to form element validation states. Key objects and methods: element.validity (ValidityState object), element.validationMessage (error message string), element.checkValidity() (returns boolean), element.reportValidity() (shows error UI), and element.setCustomValidity(message) (sets custom errors)."
+    },
+    {
+      "question": "How do you create custom validation messages with setCustomValidity()?",
+      "answer": "Call setCustomValidity('message') on an input element to set a custom error. The element becomes invalid while a non-empty string is set. To clear the custom error, call setCustomValidity(''). The custom error is reflected in validity.customError and the validationMessage property."
+    },
+    {
+      "question": "How would you validate that two password fields match?",
+      "answer": "Listen to the input event on the confirm password field. Compare its value to the password field. If they don't match, call setCustomValidity('Passwords do not match') on the confirm field. When they match, call setCustomValidity('') to clear the error."
+    },
+    {
+      "question": "What is the ValidityState object and what properties does it contain?",
+      "answer": "ValidityState is an object representing an input's validation state. Properties: valueMissing, typeMismatch, patternMismatch, tooLong, tooShort, rangeUnderflow, rangeOverflow, stepMismatch, badInput, customError, and valid (aggregate — true when all others are false)."
+    },
+    {
+      "question": "How do you implement real-time validation on blur?",
+      "answer": "Add a 'blur' event listener to each input. In the handler, check this.validity.valid. If invalid, show an error message element and style the input. For better UX, also add an 'input' listener that hides the error when the user starts correcting it."
+    },
+    {
+      "question": "What is the form reset event and how do you handle validation state on reset?",
+      "answer": "The 'reset' event fires when a form is reset. After reset, all validation states should be cleared. Example: form.addEventListener('reset', () => { document.querySelectorAll('.error').forEach(e => e.style.display = 'none'); inputs.forEach(i => i.style.borderColor = ''); });"
+    },
+    {
+      "question": "How do you validate a checkbox group (at least one required)?",
+      "answer": "Wrap the checkboxes in a container and validate manually. Example: const checked = document.querySelectorAll('input[name='interests']:checked'); if (checked.length === 0) { setCustomValidity('Select at least one option'); } else { setCustomValidity(''); }"
+    },
+    {
+      "question": "What is the invalid event and how can you use it?",
+      "answer": "The invalid event fires on each form element that fails validation. It can be used to prevent the default browser error UI and show custom error displays. Example: input.addEventListener('invalid', (e) => { e.preventDefault(); showCustomError(input); });"
+    },
+    {
+      "question": "How does HTML5 range validation work with type='number' versus type='range'?",
+      "answer": "type='number' shows an input with spinner buttons and validates min/max/step on submit. type='range' renders a slider and visually restricts the range — the user cannot select values outside min/max. Both support min, max, and step attributes."
+    },
+    {
+      "question": "How do you handle validation for dynamically added form fields?",
+      "answer": "Use event delegation or attach validation listeners when adding fields. The Constraint Validation API works on any input regardless of when it's added to the DOM. For dynamic fields, re-run checkValidity() or trigger validation on the form level after changes."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain how to implement a custom validation framework that supports cross-field validation rules.",
+      "answer": "Create a validation configuration object with rules per field (required, pattern, min, custom functions). A validate() function iterates over all fields, runs their rules, collects errors into an object, and returns it. Cross-field validators (like password match) take multiple field values. The framework should support async validators (e.g., checking username availability via API) and display errors in a centralized or inline manner."
+    },
+    {
+      "question": "How does the Constraint Validation API interact with Shadow DOM and Web Components?",
+      "answer": "Form controls inside Shadow DOM participate in form validation if they are associated with a form using the ElementInternals API. Custom elements can implement the Validatable mixin by attaching an ElementInternals object and using setFormValue() and setValidity() methods. This allows custom elements to participate in native form validation."
+    },
+    {
+      "question": "What is the ElementInternals API and how do you use it for custom form validation?",
+      "answer": "ElementInternals provides methods for custom elements to integrate with HTML forms. Use attachInternals() in the constructor, then call internals.setFormValue(value) to set the form value and internals.setValidity(validityState, message, anchor) to set validation state. This allows custom elements to participate in form submission and validation natively."
+    },
+    {
+      "question": "How do you implement debounced async validation (e.g., checking username availability)?",
+      "answer": "Use a debounce function (300ms delay) triggered on input. When the debounced function fires: (1) Set a loading state, (2) Call the API, (3) If the username is taken, call setCustomValidity('Username is taken'), (4) If available, call setCustomValidity(''). Handle race conditions by keeping a request counter and ignoring stale responses."
+    },
+    {
+      "question": "Explain how to implement a multi-step form with cross-step validation.",
+      "answer": "Each step is a <fieldset> or <div>. Store form data in an object. On 'Next', validate only the current step's fields. If valid, save the data and show the next step. On 'Previous', show the previous step without re-validation. On final submit, validate all steps and submit. Use a progress indicator showing which steps are complete and which have errors."
+    },
+    {
+      "question": "How do you handle i18n (internationalization) of validation messages?",
+      "answer": "Create a message map object with locale keys: { en: { required: 'This field is required' }, es: { required: 'Este campo es obligatorio' } }. Use navigator.language or a user preference to select the locale. Map validation types to message keys and use setCustomValidity() with the localized message. The browser's native validation messages already use the user's locale."
+    },
+    {
+      "question": "What are the security implications of relying solely on client-side validation?",
+      "answer": "Client-side validation can be bypassed — users can disable JavaScript, use browser dev tools to remove attributes, or send HTTP requests directly to the server. Therefore, client-side validation is only for UX. Server-side validation is mandatory for security: SQL injection prevention, XSS filtering, data type checking, size limits, and business rule enforcement must all happen on the server."
+    },
+    {
+      "question": "How does the requestSubmit() method differ from form.submit() regarding validation?",
+      "answer": "form.requestSubmit() triggers HTML5 constraint validation before submitting — it fires the 'submit' event and validates all fields. form.submit() bypasses validation entirely and submits the form directly. requestSubmit() is preferred for programmatic submission with validation, while submit() is only for cases where you've already validated."
+    },
+    {
+      "question": "How do you implement real-time collaborative form validation (multi-user forms)?",
+      "answer": "Use WebSockets or a real-time database (like Firebase) to sync form state across users. When one user's input is validated, broadcast the validation result to other sessions. Implement field-level locking to prevent simultaneous editing conflicts. Use CRDTs (Conflict-free Replicated Data Types) for complex conflict resolution."
+    },
+    {
+      "question": "Explain the full lifecycle of HTML5 constraint validation from user interaction to form submission.",
+      "answer": "(1) User interacts with form fields (input, blur). (2) Browser automatically updates ValidityState on each change. (3) CSS :valid/:invalid pseudo-classes apply styles. (4) On form submission (or requestSubmit()), the browser iterates all form controls. (5) For each control, it checks validity against all constraint attributes. (6) On first invalid control, the browser calls checkValidity() which fires the 'invalid' event. (7) Browser shows the validationMessage in a native error bubble near the first invalid field. (8) If all pass, the submit event fires and data is sent to the server."
+    }
+  ]
+}

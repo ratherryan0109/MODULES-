@@ -1,0 +1,177 @@
+{
+  "module": "105-css-backdrop-filter",
+  "title": "CSS Backdrop Filter",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the difference between 'filter' and 'backdrop-filter'?",
+      "options": [
+        "filter applies to the element, backdrop-filter applies to the area behind the element",
+        "filter is for images, backdrop-filter is for text",
+        "filter works in all browsers, backdrop-filter only in Safari",
+        "filter is animated, backdrop-filter is static"
+      ],
+      "correctAnswer": 0,
+      "explanation": "filter affects the element and its children. backdrop-filter affects only the area behind the element."
+    },
+    {
+      "id": 2,
+      "question": "Which browser still requires the -webkit- prefix for backdrop-filter?",
+      "options": ["Safari", "Chrome", "Firefox", "Edge"],
+      "correctAnswer": 0,
+      "explanation": "Safari requires -webkit-backdrop-filter. All other modern browsers support the unprefixed version."
+    },
+    {
+      "id": 3,
+      "question": "What is a common issue when backdrop-filter is used on root elements like <body>?",
+      "options": ["It doesn't work well because there's no background behind to filter", "It causes the browser to crash", "It applies to all page content", "It's slower than on other elements"],
+      "correctAnswer": 0,
+      "explanation": "backdrop-filter doesn't work well on root elements because there's no background content behind them to filter."
+    },
+    {
+      "id": 4,
+      "question": "What should you always include alongside backdrop-filter for fallback support?",
+      "options": ["A solid background color fallback", "JavaScript polyfill", "An SVG filter", "A !important declaration"],
+      "correctAnswer": 0,
+      "explanation": "Always provide a solid background color as fallback for browsers that don't support backdrop-filter."
+    },
+    {
+      "id": 5,
+      "question": "Which filter function is most commonly used in glassmorphism designs?",
+      "options": ["blur()", "brightness()", "saturate()", "hue-rotate()"],
+      "correctAnswer": 0,
+      "explanation": "blur() is the foundation of glassmorphism, creating the frosted glass effect by blurring the background behind the element."
+    },
+    {
+      "id": 6,
+      "question": "How do you combine multiple backdrop-filter functions?",
+      "options": ["backdrop-filter: blur(8px) brightness(0.8)", "backdrop-filter: blur(8px), brightness(0.8)", "backdrop-filter: blur(8px) && brightness(0.8)", "backdrop-filter: blur(8px) + brightness(0.8)"],
+      "correctAnswer": 0,
+      "explanation": "Multiple filter functions are space-separated in one backdrop-filter declaration."
+    },
+    {
+      "id": 7,
+      "question": "What is the main performance concern with backdrop-filter?",
+      "options": [
+        "It requires GPU compositing which is expensive on mobile devices",
+        "It increases page load time by downloading filters",
+        "It blocks JavaScript execution",
+        "It causes memory leaks in long-running pages"
+      ],
+      "correctAnswer": 0,
+      "explanation": "backdrop-filter requires GPU compositing of multiple layers, which can be performance-intensive, especially on mobile devices and large areas."
+    },
+    {
+      "id": 8,
+      "question": "What visual effect do you get with 'backdrop-filter: blur(0px)'?",
+      "options": ["No visible effect — the background is unchanged", "The element becomes fully transparent", "A sharp, pixelated background", "The element disappears"],
+      "correctAnswer": 0,
+      "explanation": "blur(0px) means no blur is applied. There's no visible backdrop-filter effect."
+    },
+    {
+      "id": 9,
+      "question": "Which browser was the FIRST to support backdrop-filter?",
+      "options": ["Safari 9", "Chrome 76", "Firefox 103", "Edge 79"],
+      "correctAnswer": 0,
+      "explanation": "Safari 9 (2015) was the first to support backdrop-filter with the -webkit- prefix, years before other browsers."
+    },
+    {
+      "id": 10,
+      "question": "In which Firefox version was backdrop-filter added without prefix?",
+      "options": ["Firefox 103", "Firefox 76", "Firefox 89", "Firefox 110"],
+      "correctAnswer": 0,
+      "explanation": "Firefox 103 (2022) was the last major browser to add unprefixed backdrop-filter support."
+    },
+    {
+      "id": 11,
+      "question": "What is the recommended blur range for UI elements like navigation bars?",
+      "options": ["4-12px", "20-40px", "50-100px", "0-2px"],
+      "correctAnswer": 0,
+      "explanation": "A subtle blur of 4-12px is usually sufficient for UI elements. Higher values can reduce readability and increase performance cost."
+    },
+    {
+      "id": 12,
+      "question": "Which CSS feature query can detect backdrop-filter support?",
+      "options": ["@supports (backdrop-filter: blur(1px))", "@media (backdrop-filter)", "@import backdrop-filter", "@support backdrop-filter"],
+      "correctAnswer": 0,
+      "explanation": "@supports (backdrop-filter: blur(1px)) checks if the browser supports the backdrop-filter property."
+    },
+    {
+      "id": 13,
+      "question": "What happens to child elements of an element with backdrop-filter?",
+      "options": ["They render normally, unaffected by the filter", "They are also filtered", "They become semi-transparent", "They are moved behind the parent"],
+      "correctAnswer": 0,
+      "explanation": "Unlike filter, backdrop-filter does NOT affect child elements. Children render normally on top of the filtered background."
+    },
+    {
+      "id": 14,
+      "question": "What's the best practice for animating backdrop-filter?",
+      "options": ["Avoid it on large areas — animate opacity or transform instead", "Use it freely on any element", "Always combine with will-change", "Only animate on hover, never on load"],
+      "correctAnswer": 0,
+      "explanation": "Animating backdrop-filter forces expensive compositing on each frame. Prefer opacity or transform animations for entrance/exit effects."
+    },
+    {
+      "id": 15,
+      "question": "Which is NOT a valid backdrop-filter function?",
+      "options": ["shadow()", "blur()", "grayscale()", "sepia()"],
+      "correctAnswer": 0,
+      "explanation": "shadow() is not a valid filter function. drop-shadow() is the correct function for shadow effects."
+    },
+    {
+      "id": 16,
+      "question": "What CSS property does backdrop-filter NOT work well on?",
+      "options": ["::before and ::after pseudo-elements", "div elements", "section elements", "span elements"],
+      "correctAnswer": 0,
+      "explanation": "backdrop-filter does not work well on pseudo-elements (::before, ::after) in many browsers. Apply it to the actual element instead."
+    },
+    {
+      "id": 17,
+      "question": "What is glassmorphism?",
+      "options": [
+        "A UI style combining semi-transparency, blur, and borders to create a glass-like effect",
+        "A CSS framework for building glass UI components",
+        "A JavaScript library for frosted glass effects",
+        "A design system by Apple"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Glassmorphism is a design trend that uses backdrop-filter: blur(), semi-transparent backgrounds, and subtle borders to create frosted glass-like UI elements."
+    },
+    {
+      "id": 18,
+      "question": "How does backdrop-filter affect text readability?",
+      "options": [
+        "It doesn't directly affect text, but the blurred background can reduce perceived contrast",
+        "It always improves readability",
+        "It always reduces readability",
+        "It has no visual effect on the overall appearance"
+      ],
+      "correctAnswer": 0,
+      "explanation": "backdrop-filter doesn't apply to children, so text renders normally. However, the filtered background may reduce the perceived contrast of text."
+    },
+    {
+      "id": 19,
+      "question": "What happens if you don't set a background color on an element with backdrop-filter?",
+      "options": [
+        "The blur effect is applied but may not be visible since there's nothing contrasting with it",
+        "The element becomes invisible",
+        "A default white background is applied",
+        "The backdrop-filter is ignored"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Without a background, the blur is applied to the area behind the element, but without a semi-transparent overlay, the effect may not be visually apparent."
+    },
+    {
+      "id": 20,
+      "question": "What does 'backdrop-filter: blur(8px) saturate(1.5) brightness(1.2)' do?",
+      "options": [
+        "Blurs the background, increases color vibrancy, and brightens it",
+        "Blurs the element itself with multiple effects",
+        "Applies blur to the element and saturates its children",
+        "Only the last effect (brightness) is applied"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Multiple filters are applied in order: blur softens the background, saturate enhances color intensity, and brightness lightens the result."
+    }
+  ]
+}

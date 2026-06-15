@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What are HTML headings?",
+      "answer": "HTML headings are tags (<h1> to <h6>) that define the hierarchy and structure of content. <h1> is the most important, <h6> is the least important."
+    },
+    {
+      "question": "How many heading levels are there in HTML?",
+      "answer": "There are six heading levels: <h1>, <h2>, <h3>, <h4>, <h5>, and <h6>."
+    },
+    {
+      "question": "What is the difference between <h1> and <h6>?",
+      "answer": "<h1> is the most important, highest-level heading with the largest default size. <h6> is the least important with the smallest default size."
+    },
+    {
+      "question": "How many <h1> tags should a page have?",
+      "answer": "Best practice is to use only one <h1> per page, representing the main topic or title of the page."
+    },
+    {
+      "question": "Do headings affect SEO?",
+      "answer": "Yes. Search engines use headings to understand page structure. Keywords in headings carry more weight for ranking."
+    },
+    {
+      "question": "Can you use headings just to make text bigger?",
+      "answer": "No. Headings should be used semantically for structure. Use CSS font-size to style text size instead."
+    },
+    {
+      "question": "What happens if you skip heading levels?",
+      "answer": "Skipping levels (like going from <h1> to <h4>) breaks the document outline and creates accessibility issues for screen reader users."
+    },
+    {
+      "question": "What is the default style of headings?",
+      "answer": "All headings are bold by default. <h1> is 2em, <h2> is 1.5em, <h3> is 1.17em, <h4> is 1em, <h5> is 0.83em, <h6> is 0.67em."
+    },
+    {
+      "question": "Can an <h1> be inside a <section>?",
+      "answer": "Yes, but it is generally better to use <h2> inside sections to maintain a proper hierarchy with the page's main <h1>."
+    },
+    {
+      "question": "What is the <hgroup> element?",
+      "answer": "<hgroup> groups a primary heading with one or more secondary headings, treating them as one heading in the document outline."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do screen readers use headings for navigation?",
+      "answer": "Screen readers provide a 'headings menu' that lists all headings on the page. Users can jump between headings to navigate the content structure quickly."
+    },
+    {
+      "question": "What is the HTML5 outline algorithm?",
+      "answer": "The outline algorithm creates a hierarchical structure based on heading elements and sectioning content (<article>, <section>, <nav>, <aside>). It determines the document outline for accessibility."
+    },
+    {
+      "question": "Can you have multiple <h1> tags with HTML5 sectioning elements?",
+      "answer": "Technically yes, within sectioning elements. However, most accessibility experts still recommend using only one visible <h1> for clarity."
+    },
+    {
+      "question": "What is the relationship between heading hierarchy and WCAG compliance?",
+      "answer": "WCAG Success Criterion 1.3.1 (Info and Relationships) requires that headings convey structure. Proper hierarchy without skipping levels is a key accessibility requirement."
+    },
+    {
+      "question": "How should you handle headings in a single-page application (SPA)?",
+      "answer": "SPAs should dynamically update the <h1> and page title based on the current view. Each view/route should have a proper heading hierarchy starting from <h1>."
+    },
+    {
+      "question": "What is the best heading strategy for a long-form article?",
+      "answer": "Use one <h1> for the article title, <h2> for major sections, <h3> for subsections, and continue descending. This creates a clear outline for readers and search engines."
+    },
+    {
+      "question": "How do you style headings with CSS while preserving semantic meaning?",
+      "answer": "Use CSS properties like font-size, font-weight, color, text-transform, and margin to style headings. The semantic meaning comes from the HTML tag, not the visual style."
+    },
+    {
+      "question": "What is the difference between <h1> and <title>?",
+      "answer": "<h1> is the visible main heading on the page. <title> is the metadata shown in the browser tab and search results. They should be similar but not necessarily identical."
+    },
+    {
+      "question": "How does the <hgroup> element affect the outline?",
+      "answer": "<hgroup> hides all its child headings from the outline except the first (highest-level) heading, preventing subheadings from appearing as separate outline entries."
+    },
+    {
+      "question": "What heading level should you use in a footer section?",
+      "answer": "Footer content is low in the page hierarchy. Use <h2> or lower, but often footer sections need no heading at all unless they contain distinct content sections."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the HTML5 outline algorithm differ from the HTML4 approach?",
+      "answer": "HTML4 had a flat heading hierarchy based solely on heading level numbers. HTML5 introduced sectioning elements that create nested outline sections, theoretically allowing multiple <h1> elements within different sections."
+    },
+    {
+      "question": "Why is the HTML5 outline algorithm considered 'not implemented' in most browsers?",
+      "answer": "The HTML5 outline algorithm was never implemented in browser accessibility trees or screen readers. User agents continue to use the HTML4 heading rank approach, making proper heading levels (not just sections) the practical requirement."
+    },
+    {
+      "question": "How do heading levels interact with the accessibility tree?",
+      "answer": "Headings create nodes in the accessibility tree with specific roles (heading) and level properties. Screen readers access these nodes to provide navigation by heading level."
+    },
+    {
+      "question": "What is the impact of CSS display properties on heading semantics?",
+      "answer": "Changing display (e.g., display: inline) does not remove heading semantics. The element still has the heading role in the accessibility tree, but visual positioning may confuse users."
+    },
+    {
+      "question": "How should dynamic heading levels be managed in component-based frameworks (React, Vue)?",
+      "answer": "Component frameworks should accept heading level as a prop (e.g., level prop) to allow parent pages to set the correct level. Hard-coding heading levels in reusable components breaks hierarchy."
+    },
+    {
+      "question": "What is the relationship between ARIA heading roles and HTML heading tags?",
+      "answer": "You can use role='heading' with aria-level='N' on non-heading elements, but native heading tags (<h1>-<h6>) are preferred because they have built-in semantics, keyboard navigation, and better assistive technology support."
+    },
+    {
+      "question": "How do search engines specifically use heading tags in their ranking algorithms?",
+      "answer": "Search engines use headings to understand topic hierarchy. Keywords in <h1> carry significant weight. Headings also contribute to featured snippets and semantic search understanding."
+    },
+    {
+      "question": "What is the correct treatment of headings in the W3C HTML specification regarding optional content?",
+      "answer": "The HTML spec states that heading elements contain phrasing content (text-level elements). Although the spec allows some flow content in specific contexts, best practice restricts headings to inline content."
+    },
+    {
+      "question": "How does the CSS 'heading' pseudo-class (:is(h1, h2, h3, h4, h5, h6)) help with styling?",
+      "answer": "The :is() pseudo-class allows selecting all heading levels in one rule: :is(h1, h2, h3, h4, h5, h6). Modern CSS provides the :where() pseudo-class with zero specificity for more flexible heading styling."
+    },
+    {
+      "question": "What is the correct way to handle headings in an iframe or embedded document?",
+      "answer": "Embedded documents (iframe, web components) should have their own heading hierarchy starting from <h1>. They are independent documents and their heading levels do not interact with the parent page."
+    }
+  ]
+}

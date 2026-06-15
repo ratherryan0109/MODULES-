@@ -1,0 +1,130 @@
+{
+  "module": "112-reduced-motion",
+  "title": "Reduced Motion",
+  "beginner": [
+    {
+      "question": "What is the `prefers-reduced-motion` media query?",
+      "answer": "`prefers-reduced-motion` detects whether the user has requested reduced motion at the OS level (Windows: Settings → Ease of Access → Display → Show animations; macOS: System Preferences → Accessibility → Display → Reduce motion)."
+    },
+    {
+      "question": "Why should websites respect `prefers-reduced-motion`?",
+      "answer": "Animations can cause discomfort, nausea, or vestibular disorders (like vertigo) for users with motion sensitivity. Respecting this preference ensures an accessible experience for users with vestibular disorders, migraines, or seizure disorders."
+    },
+    {
+      "question": "What values does `prefers-reduced-motion` accept?",
+      "answer": "Two values: `no-preference` (default, user has no preference) and `reduce` (user has requested reduced motion). Some browsers treat the absence of a setting as `reduce` for accessibility reasons."
+    },
+    {
+      "question": "What types of animations are most problematic for users with motion sensitivity?",
+      "answer": "Parallax scrolling, continuous auto-playing carousels, zooming effects, spinning loaders, shaking/ vibration effects, flashing elements, and large-scale page transitions are among the most problematic for motion-sensitive users."
+    },
+    {
+      "question": "What is the simplest CSS code to respect reduced motion?",
+      "answer": "`@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }` — this stops most animations while keeping them computable."
+    },
+    {
+      "question": "What is the difference between `animation-duration: 0` and `animation-duration: 0.01ms`?",
+      "answer": "Some browsers don't dispatch the `animationend` event when duration is 0, which can break JavaScript-dependent flows. Using `0.01ms` (1/100000th of a second) effectively hides the animation while still dispatching events."
+    },
+    {
+      "question": "How does `scroll-behavior: smooth` interact with reduced motion?",
+      "answer": "`scroll-behavior: smooth` should be set to `auto` when reduced motion is preferred, since smooth scrolling can cause disorientation for some users. Add `scroll-behavior: auto !important` in the reduce query."
+    },
+    {
+      "question": "Should ALL animations be removed when reduced motion is preferred?",
+      "answer": "No, essential animations (loading spinners that indicate progress, animated feedback for form submission, shimmer skeletons) can stay if they're subtle. The key is removing non-essential, decorative, or large-scale motion."
+    },
+    {
+      "question": "What is a 'parallax scrolling' effect and why is it problematic?",
+      "answer": "Parallax scrolling creates an illusion of depth by moving background content slower than foreground content during scroll. It can trigger vestibular disorders because the visual motion doesn't match the user's physical expectation of scrolling."
+    },
+    {
+      "question": "How can you test if your site respects `prefers-reduced-motion`?",
+      "answer": "Enable reduced motion in your OS settings (Windows: Settings → Ease of Access → Display → 'Show animations' off; macOS: System Preferences → Accessibility → Display → 'Reduce motion' on), then test your site. Chrome DevTools also has an emulation option."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you conditionally enable scroll-triggered animations (AOS) with reduced motion?",
+      "answer": "Use JavaScript to check `window.matchMedia('(prefers-reduced-motion: reduce)').matches`. If true, skip initializing animation libraries (AOS, ScrollReveal, etc.) and reveal content immediately without animations."
+    },
+    {
+      "question": "What is the `prefers-reduced-transparency` media query?",
+      "answer": "`prefers-reduced-transparency` detects if the user has requested reduced transparency effects (blur, glassmorphism). Values: `no-preference` or `reduce`. Use it to reduce or remove backdrop blur and semi-transparent overlays that can cause eye strain."
+    },
+    {
+      "question": "How do you create a CSS animation that plays only if reduced motion is not preferred?",
+      "answer": "Define the animation outside the reduced motion query, then wrap the keyframes or animation property in `@media (prefers-reduced-motion: no-preference) { .element { /* animation styles */ } }`."
+    },
+    {
+      "question": "What is `prefers-reduced-motion` support across browsers?",
+      "answer": "Supported in all modern browsers: Chrome 74+, Firefox 63+, Safari 10.1+, Edge 79+. Safari 10.1 was the first to implement it. It has over 95% global support as of 2024."
+    },
+    {
+      "question": "How do you create a reduced-motion-friendly but still engaging alternative to a full animation?",
+      "answer": "Replace motion-based transitions with simpler visual changes — fade instead of slide, color change instead of scale, opacity changes instead of movement. The content transition happens but without large-scale movement."
+    },
+    {
+      "question": "What is the WCAG success criterion for reduced motion?",
+      "answer": "WCAG 2.1 SC 2.3.3 (Animation from Interactions) — a Level AAA criterion — requires that motion animation triggered by user interaction can be disabled unless essential. This includes parallax, hover effects, and scroll-triggered animations."
+    },
+    {
+      "question": "How do you use `window.matchMedia` to test reduced motion in JavaScript?",
+      "answer": "`const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)'); if (motionQuery.matches) { /* disable animations */ }`. Listen for changes: `motionQuery.addEventListener('change', handler)`."
+    },
+    {
+      "question": "What is the relationship between `prefers-reduced-motion` and `@keyframes`?",
+      "answer": "You can wrap entire `@keyframes` blocks in a `@media (prefers-reduced-motion: no-preference)` query to prevent them from being used when reduced motion is preferred. However, since keyframes can be referenced by multiple elements, using `animation-duration: 0` is often simpler."
+    },
+    {
+      "question": "How do you handle animated SVGs and CSS reduced motion preferences?",
+      "answer": "For inline SVGs with CSS animations, standard CSS reduced motion queries work. For SMIL animations in SVGs (e.g., `<animate>`), you need JavaScript to pause/reverse them. For animated SVGs loaded as `<img>`, no CSS control is possible."
+    },
+    {
+      "question": "What is 'motion sensitivity' and how common is it?",
+      "answer": "Motion sensitivity (vestibular disorder) affects approximately 35% of adults over 40. Symptoms include dizziness, nausea, headaches, and disorientation triggered by visual motion. This is why reduced motion support is considered a best practice even beyond compliance."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a user-facing animation toggle for users who can't access OS-level reduced motion settings?",
+      "answer": "Store preference in localStorage: add a toggle button that sets `document.documentElement.dataset.reducedMotion = 'true'`, and in CSS use `[data-reduced-motion='true'] * { animation: none !important; transition: none !important; }`. Sync with OS preference using `matchMedia`."
+    },
+    {
+      "question": "How do you create a reduced-motion experience that still conveys animation purpose (e.g., indicating a state change)?",
+      "answer": "Replace motion with subtle visual cues: a brief color flash to indicate a state change, a small opacity pulse instead of a slide, or a discreet checkmark that fades in. The key is preserving the communication while removing the motion that causes discomfort."
+    },
+    {
+      "question": "What is the `prefers-reduced-motion` behavior for CSS `scroll-driven animations`?",
+      "answer": "Scroll-driven animations should respect `prefers-reduced-motion`. When reduced motion is preferred, scroll-driven animations should revert to static states or use the `auto` keyword in `animation-timeline` to fall back to no animation."
+    },
+    {
+      "question": "How do you handle intersection observer-based animations with reduced motion?",
+      "answer": "Check `matchMedia('(prefers-reduced-motion: reduce)')` before setting up the IntersectionObserver. If reduced motion is preferred, immediately reveal all elements with their final state (opacity: 1, transform: none) without observer setup."
+    },
+    {
+      "question": "What is 'flash rate' reduction and how does it relate to WCAG?",
+      "answer": "WCAG SC 2.3.1 (Three Flashes or Below Threshold) limits flashing to 3 per second. For reduced motion, also reduce flash rates of highly saturated content. Some users with photosensitive epilepsy are triggered by specific frequencies and color combinations."
+    },
+    {
+      "question": "How do you create a CSS-only solution that respects reduced motion without affecting dynamic children?",
+      "answer": "Use the `:not()` pseudo-class: `@media (prefers-reduced-motion: reduce) { *:not(.essential-animation) { animation-duration: 0.01ms !important; } }`. This allows critical animations (like loading states) to keep running while stopping decorative ones."
+    },
+    {
+      "question": "What considerations apply to Canvas/WebGL animations with reduced motion?",
+      "answer": "Canvas animations must be controlled via JavaScript since they're not DOM-based. Check `matchMedia` before initializing the animation loop. For WebGL, reduce particle counts, disable auto-rotation, and stop continuous rendering when tab is not visible."
+    },
+    {
+      "question": "How does the CSS `@media (prefers-reduced-motion)` interact with print stylesheets?",
+      "answer": "The print media query (`@media print`) overrides screen preferences. In print, motion is irrelevant, though animations in print are typically disabled anyway. If you have animations that also affect print output, wrap them in `@media screen`."
+    },
+    {
+      "question": "What is the CSS `animation` property's `auto` keyword in combination with reduced motion?",
+      "answer": "The CSS `animation` auto keyword is a future feature that allows the UA to decide whether to honor or ignore animations based on user preferences. In practice, browsers already respect `prefers-reduced-motion` for this purpose in modern implementations."
+    },
+    {
+      "question": "How do you test reduced motion behavior in automated test suites?",
+      "answer": "In Playwright: `await page.emulateMedia({ reducedMotion: 'reduce' })`. In Puppeteer: `await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }])`. Then assert that animation-play-state is 'paused' or durations are near zero."
+    }
+  ]
+}

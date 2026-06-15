@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quotations - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #16a085; border-bottom: 3px solid #16a085; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        blockquote.demo-bq { border-left: 4px solid #16a085; padding: 15px; margin: 10px 0; background: #f0fdf4; }
+    </style>
+</head>
+<body>
+    <h1>Module 9: HTML Quotations — Examples</h1>
+
+    <!-- Example 1: Inline Quotation -->
+    <div class="example">
+        <h2>Example 1: Inline Quotation with &lt;q&gt;</h2>
+        <pre>
+&lt;p&gt;Marie Curie once said, &lt;q&gt;Nothing in life is to be feared, it is only to be understood.&lt;/q&gt;&lt;/p&gt;
+
+&lt;p&gt;She asked, &lt;q cite="https://example.com/interview"&gt;Have you read the report?&lt;/q&gt;&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>Marie Curie once said, <q>Nothing in life is to be feared, it is only to be understood.</q></p>
+            <p>She asked, <q cite="https://example.com/interview">Have you read the report?</q></p>
+        </div>
+    </div>
+
+    <!-- Example 2: Nested Quotations -->
+    <div class="example">
+        <h2>Example 2: Nested Quotations</h2>
+        <pre>
+&lt;p&gt;He reported, &lt;q&gt;The witness stated, &lt;q&gt;I saw the car turn left at the intersection&lt;/q&gt;, and then the officer took notes.&lt;/q&gt;&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output (browsers alternate quote styles):</div>
+        <div class="output">
+            <p>He reported, <q>The witness stated, <q>I saw the car turn left at the intersection</q>, and then the officer took notes.</q></p>
+        </div>
+    </div>
+
+    <!-- Example 3: Block Quotation -->
+    <div class="example">
+        <h2>Example 3: Block Quotation with &lt;blockquote&gt;</h2>
+        <pre>
+&lt;blockquote cite="https://example.com/speech"&gt;
+    &lt;p&gt;The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.&lt;/p&gt;
+    &lt;cite&gt;— Steve Jobs, Stanford Commencement Speech&lt;/cite&gt;
+&lt;/blockquote&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <blockquote cite="https://example.com/speech" style="border-left: 4px solid #16a085; padding: 15px; margin: 10px 0; background: #f0fdf4;">
+                <p>The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.</p>
+                <cite>— Steve Jobs, Stanford Commencement Speech</cite>
+            </blockquote>
+        </div>
+    </div>
+
+    <!-- Example 4: Citation -->
+    <div class="example">
+        <h2>Example 4: Citations with &lt;cite&gt;</h2>
+        <pre>
+&lt;p&gt;My favorite novel is &lt;cite&gt;To Kill a Mockingbird&lt;/cite&gt; by Harper Lee.&lt;/p&gt;
+&lt;p&gt;The article was published in &lt;cite&gt;Nature Magazine&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;Watch the documentary &lt;cite&gt;The Social Dilemma&lt;/cite&gt; on Netflix.&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>My favorite novel is <cite>To Kill a Mockingbird</cite> by Harper Lee.</p>
+            <p>The article was published in <cite>Nature Magazine</cite>.</p>
+            <p>Watch the documentary <cite>The Social Dilemma</cite> on Netflix.</p>
+        </div>
+    </div>
+
+    <!-- Example 5: Abbreviations -->
+    <div class="example">
+        <h2>Example 5: Abbreviations with &lt;abbr&gt;</h2>
+        <pre>
+&lt;p&gt;The &lt;abbr title="World Wide Web Consortium"&gt;W3C&lt;/abbr&gt; maintains HTML standards.&lt;/p&gt;
+&lt;p&gt;Please send your &lt;abbr title="Curriculum Vitae"&gt;CV&lt;/abbr&gt; by Friday.&lt;/p&gt;
+&lt;p&gt;&lt;abbr title="Doctor"&gt;Dr.&lt;/abbr&gt; Smith will see you now.&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output (hover to see tooltip):</div>
+        <div class="output">
+            <p>The <abbr title="World Wide Web Consortium">W3C</abbr> maintains HTML standards.</p>
+            <p>Please send your <abbr title="Curriculum Vitae">CV</abbr> by Friday.</p>
+            <p><abbr title="Doctor">Dr.</abbr> Smith will see you now.</p>
+        </div>
+    </div>
+
+    <!-- Example 6: Address -->
+    <div class="example">
+        <h2>Example 6: Contact Information with &lt;address&gt;</h2>
+        <pre>
+&lt;address&gt;
+    Written by &lt;a href="mailto:alice@example.com"&gt;Alice Johnson&lt;/a&gt;&lt;br&gt;
+    &lt;strong&gt;Company Name&lt;/strong&gt;&lt;br&gt;
+    456 Business Ave, Suite 200&lt;br&gt;
+    San Francisco, CA 94102&lt;br&gt;
+    &lt;a href="tel:+15551234567"&gt;(555) 123-4567&lt;/a&gt;
+&lt;/address&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <address style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
+                Written by <a href="mailto:alice@example.com">Alice Johnson</a><br>
+                <strong>Company Name</strong><br>
+                456 Business Ave, Suite 200<br>
+                San Francisco, CA 94102<br>
+                <a href="tel:+15551234567">(555) 123-4567</a>
+            </address>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Use the <code>cite</code> attribute on both <code>&lt;q&gt;</code> and <code>&lt;blockquote&gt;</code> to provide the source URL for attribution.
+    </div>
+</body>
+</html>

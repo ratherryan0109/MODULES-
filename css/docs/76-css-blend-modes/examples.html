@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Blend Modes - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .note { background: #f0fdfa; border-left: 4px solid #06b6d4; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.875rem; color: #475569; }
+    .flex-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .flex-row > div { flex:1; min-width:150px; text-align:center; }
+    .blend-box { height:100px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Blend Modes</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: mix-blend-mode on Elements</h2>
+    <p>mix-blend-mode blends an element with its background. Each element sits on a gradient background.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="flex:1;min-width:120px"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1);mix-blend-mode:multiply;background:white;color:#0f172a">multiply</div></div>
+        <div style="flex:1;min-width:120px"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1);mix-blend-mode:screen;background:#1e293b;color:white">screen</div></div>
+        <div style="flex:1;min-width:120px"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1);mix-blend-mode:overlay;background:#ddd;color:#0f172a">overlay</div></div>
+        <div style="flex:1;min-width:120px"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1);mix-blend-mode:difference;background:white;color:#0f172a">difference</div></div>
+      </div>
+    </div>
+    <pre><code>.multiply   { mix-blend-mode: multiply; }
+.screen     { mix-blend-mode: screen; }
+.overlay    { mix-blend-mode: overlay; }
+.difference { mix-blend-mode: difference; }</code></pre>
+    <div class="note">multiply darkens, screen lightens, overlay increases contrast, difference inverts colors.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: background-blend-mode (Duotone)</h2>
+    <p>background-blend-mode blends multiple background layers. Combine a gradient with an image for duotone effects.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1),repeating-linear-gradient(45deg,#fff,#fff 8px,transparent 8px,transparent 12px);background-blend-mode:multiply">multiply</div><code style="font-size:0.75rem">gradient + pattern</code></div>
+        <div><div class="blend-box" style="background:linear-gradient(135deg,#ec4899,#f59e0b),repeating-linear-gradient(45deg,#fff,#fff 8px,transparent 8px,transparent 12px);background-blend-mode:screen">screen</div><code style="font-size:0.75rem">screen blend</code></div>
+        <div><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1),repeating-linear-gradient(45deg,#fff,#fff 8px,transparent 8px,transparent 12px);background-blend-mode:overlay">overlay</div><code style="font-size:0.75rem">overlay blend</code></div>
+      </div>
+    </div>
+    <pre><code>.duotone {
+    background:
+        linear-gradient(135deg, #06b6d4, #6366f1),
+        url('photo.jpg');
+    background-blend-mode: multiply;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Text with mix-blend-mode</h2>
+    <p>Blend text directly into the background for dramatic hero sections.</p>
+    <div class="demo-output">
+      <div style="height:180px;border-radius:12px;background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <p style="font-size:3.5rem;font-weight:900;color:white;mix-blend-mode:difference;text-align:center;">BLEND MODE</p>
+      </div>
+    </div>
+    <pre><code>.hero-text {
+    color: white;
+    mix-blend-mode: difference;
+    /* Text inverts the background colors beneath it */
+}</code></pre>
+    <div class="note">difference blend mode inverts whatever is behind the text, creating a striking effect on gradient backgrounds.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Hover Image Overlay</h2>
+    <p>Use mix-blend-mode on overlays for creative hover effects.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div>
+          <div style="position:relative;border-radius:8px;overflow:hidden;background:#e2e8f0">
+            <div style="height:120px;background:linear-gradient(135deg,#06b6d4,#6366f1);"></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#ec4899,#f59e0b);mix-blend-mode:multiply;opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;color:white;font-weight:700" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='0'">Hover</div>
+          </div>
+          <code style="font-size:0.75rem">multiply overlay</code>
+        </div>
+        <div>
+          <div style="position:relative;border-radius:8px;overflow:hidden;background:#e2e8f0">
+            <div style="height:120px;background:linear-gradient(135deg,#06b6d4,#6366f1);"></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#fff,transparent);mix-blend-mode:overlay;opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;color:white;font-weight:700" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='0'">Hover</div>
+          </div>
+          <code style="font-size:0.75rem">overlay highlight</code>
+        </div>
+      </div>
+    </div>
+    <pre><code>.overlay {
+    background: linear-gradient(135deg, #ec4899, #f59e0b);
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.container:hover .overlay { opacity: 0.7; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: isolation: isolate</h2>
+    <p>isolation: isolate creates a new stacking context, preventing blend modes from affecting elements outside the container.</p>
+    <div class="demo-output">
+      <div style="isolation:isolate;padding:1.5rem;border:2px solid #e2e8f0;border-radius:8px;background:white">
+        <p style="margin-bottom:0.5rem;color:#475569">The blended text below only blends within this box:</p>
+        <p style="mix-blend-mode:difference;color:red;font-size:1.5rem;font-weight:700">Blended Text</p>
+      </div>
+    </div>
+    <pre><code>.container {
+    isolation: isolate;
+    /* mix-blend-mode on children won't bleed outside */
+}
+.child { mix-blend-mode: difference; }</code></pre>
+    <div class="note">Without isolation, the child's mix-blend-mode would blend with elements behind the container too.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Practical Blend Modes Gallery</h2>
+    <p>Common blend modes and their visual effect on a gradient background.</p>
+    <div class="demo-output">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+        <div style="text-align:center"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);mix-blend-mode:multiply;background:white">multiply</div><code style="font-size:0.65rem">Darkens</code></div>
+        <div style="text-align:center"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);mix-blend-mode:screen;background:#1e293b">screen</div><code style="font-size:0.65rem">Lightens</code></div>
+        <div style="text-align:center"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);mix-blend-mode:overlay;background:#cbd5e1">overlay</div><code style="font-size:0.65rem">Contrast</code></div>
+        <div style="text-align:center"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);mix-blend-mode:difference;background:white">difference</div><code style="font-size:0.65rem">Inverts</code></div>
+        <div style="text-align:center"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);mix-blend-mode:color-dodge;background:#1e293b">dodge</div><code style="font-size:0.65rem">Brightens</code></div>
+        <div style="text-align:center"><div class="blend-box" style="background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);mix-blend-mode:soft-light;background:#cbd5e1">soft-light</div><code style="font-size:0.65rem">Subtle</code></div>
+      </div>
+    </div>
+    <pre><code>.multiply   { mix-blend-mode: multiply; }
+.screen     { mix-blend-mode: screen; }
+.overlay    { mix-blend-mode: overlay; }
+.difference { mix-blend-mode: difference; }</code></pre>
+  </div>
+</body>
+</html>

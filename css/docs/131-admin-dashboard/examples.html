@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdminPanel - Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#f1f5f9;--surface:#ffffff;--sidebar:#1e293b;--sidebar-text:#94a3b8;--sidebar-active:#3b82f6;--text:#0f172a;--text-light:#64748b;--border:#e2e8f0;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--orange:#f59e0b;--ff:'Inter',system-ui,sans-serif;--radius:0.75rem;--shadow:0 1px 3px rgba(0,0,0,0.1);--transition:0.2s ease}
+    html{font-size:14px}
+    body{font-family:var(--ff);background:var(--bg);color:var(--text);overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+    .dashboard{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    @media(max-width:768px){.dashboard{grid-template-columns:1fr}}
+
+    .sidebar{background:var(--sidebar);padding:1.5rem 0;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+    .sidebar-logo{display:flex;align-items:center;gap:.75rem;padding:0 1.5rem 2rem;color:white;font-size:1.25rem;font-weight:700}
+    .sidebar-logo .icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white}
+    .sidebar-nav{flex:1}
+    .sidebar-label{padding:.5rem 1.5rem;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--sidebar-text);margin-top:1rem}
+    .sidebar-item{display:flex;align-items:center;gap:1rem;padding:.65rem 1.5rem;color:var(--sidebar-text);transition:all var(--transition);cursor:pointer;border-left:3px solid transparent;font-size:.9rem}
+    .sidebar-item:hover{background:rgba(255,255,255,0.05);color:white}
+    .sidebar-item.active{background:rgba(59,130,246,0.1);color:white;border-left-color:var(--blue)}
+    .sidebar-item .icon{font-size:1.25rem;width:20px;text-align:center}
+    .sidebar-item .badge{margin-left:auto;background:var(--red);color:white;font-size:.7rem;padding:.1rem .5rem;border-radius:100px;font-weight:600}
+
+    .main-area{display:flex;flex-direction:column;min-height:100vh}
+    .header{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+    .header-left{display:flex;align-items:center;gap:1rem}
+    .menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text)}
+    .header-search{display:flex;align-items:center;background:var(--bg);border-radius:8px;padding:.35rem .75rem;gap:.5rem}
+    .header-search input{border:none;background:none;outline:none;font-family:var(--ff);font-size:.85rem;color:var(--text);width:200px}
+    .header-right{display:flex;align-items:center;gap:1rem}
+    .header-right button{background:none;border:none;cursor:pointer;font-size:1.15rem;position:relative;color:var(--text-light)}
+    .header-right .notif-dot{position:absolute;top:0;right:0;width:8px;height:8px;background:var(--red);border-radius:50%}
+    .avatar{width:36px;height:36px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+
+    @media(max-width:768px){
+      .sidebar{display:none;position:fixed;z-index:100;width:260px}
+      .sidebar.open{display:flex}
+      .menu-btn{display:block}
+      .overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:99}
+      .overlay.open{display:block}
+    }
+
+    .content{padding:1.5rem 2rem;flex:1}
+    .page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+    .page-header h1{font-size:1.5rem;font-weight:700}
+    .page-header .date{color:var(--text-light);font-size:.85rem}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:8px;font-weight:500;border:none;cursor:pointer;font-size:.85rem;transition:all var(--transition)}
+    .btn-primary{background:var(--blue);color:white}
+    .btn-primary:hover{background:#2563eb}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-bottom:2rem}
+    .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow var(--transition)}
+    .stat-card:hover{box-shadow:var(--shadow)}
+    .stat-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+    .stat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem}
+    .stat-icon.blue{background:#dbeafe;color:var(--blue)}
+    .stat-icon.green{background:#dcfce7;color:var(--green)}
+    .stat-icon.orange{background:#fef3c7;color:var(--orange)}
+    .stat-icon.red{background:#fee2e2;color:var(--red)}
+    .stat-value{font-size:2rem;font-weight:700;line-height:1}
+    .stat-label{font-size:.85rem;color:var(--text-light);margin-top:.25rem}
+    .stat-trend{display:inline-flex;align-items:center;gap:.25rem;font-size:.8rem;font-weight:600;margin-top:.5rem;padding:.15rem .5rem;border-radius:100px}
+    .stat-trend.up{color:var(--green);background:#dcfce7}
+    .stat-trend.down{color:var(--red);background:#fee2e2}
+
+    .widget-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-bottom:2rem}
+    @media(min-width:900px){.widget-grid{grid-template-columns:2fr 1fr}}
+
+    .widget{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+    .widget-title{font-size:1rem;font-weight:600;margin-bottom:1.25rem;display:flex;justify-content:space-between;align-items:center}
+    .widget-title a{font-size:.8rem;color:var(--blue);font-weight:500}
+
+    .activity-item{display:flex;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
+    .activity-item:last-child{border-bottom:none}
+    .activity-avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:.8rem}
+    .activity-text{font-size:.85rem;flex:1}
+    .activity-text strong{font-weight:600}
+    .activity-text .time{display:block;font-size:.75rem;color:var(--text-light);margin-top:.15rem}
+
+    .chart-bars{display:flex;align-items:flex-end;gap:.5rem;height:200px;padding-top:1rem}
+    .chart-bar{flex:1;background:var(--blue);border-radius:4px 4px 0 0;min-height:4px;transition:height var(--transition);position:relative}
+    .chart-bar:hover{opacity:.8}
+    .chart-bar .bar-value{position:absolute;top:-1.5rem;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:600}
+
+    table{width:100%;border-collapse:collapse;font-size:.85rem}
+    th{padding:.75rem;text-align:left;font-weight:600;color:var(--text-light);border-bottom:2px solid var(--border);white-space:nowrap}
+    td{padding:.75rem;border-bottom:1px solid var(--border);vertical-align:middle}
+    tr:hover td{background:#f8fafc}
+    .status{padding:.2rem .6rem;border-radius:100px;font-size:.75rem;font-weight:500}
+    .status.active{background:#dcfce7;color:var(--green)}
+    .status.pending{background:#fef3c7;color:var(--orange)}
+    .status.inactive{background:#fee2e2;color:var(--red)}
+
+    @media(max-width:600px){
+      .content{padding:1rem}
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .header-search input{width:120px}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+
+<div class="dashboard">
+  <aside class="sidebar" id="sidebar" aria-label="Admin sidebar">
+    <div class="sidebar-logo"><div class="icon">&#9632;</div> AdminPanel</div>
+    <nav class="sidebar-nav" aria-label="Sidebar navigation">
+      <div class="sidebar-label">Main</div>
+      <a href="#" class="sidebar-item active"><span class="icon">&#9632;</span> Dashboard</a>
+      <a href="#" class="sidebar-item"><span class="icon">&#128196;</span> Analytics</a>
+      <a href="#" class="sidebar-item"><span class="icon">&#128722;</span> Orders <span class="badge">12</span></a>
+      <div class="sidebar-label">Management</div>
+      <a href="#" class="sidebar-item"><span class="icon">&#128101;</span> Users</a>
+      <a href="#" class="sidebar-item"><span class="icon">&#128193;</span> Products</a>
+      <a href="#" class="sidebar-item"><span class="icon">&#128197;</span> Calendar</a>
+      <div class="sidebar-label">Settings</div>
+      <a href="#" class="sidebar-item"><span class="icon">&#9881;</span> Settings</a>
+      <a href="#" class="sidebar-item"><span class="icon">&#128273;</span> Security</a>
+    </nav>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="main-area">
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle sidebar">&#9776;</button>
+        <div class="header-search"><span>🔍</span><input type="search" placeholder="Search..." aria-label="Search dashboard"></div>
+      </div>
+      <div class="header-right">
+        <button aria-label="Notifications">🔔<span class="notif-dot"></span></button>
+        <button aria-label="Messages">✉️</button>
+        <div class="avatar" aria-label="Profile">AD</div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="page-header">
+        <div><h1>Dashboard</h1><p class="date">June 12, 2026</p></div>
+        <button class="btn btn-primary">+ New Report</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-header"><div class="stat-icon blue">💰</div></div><div class="stat-value">$45,231</div><div class="stat-label">Total Revenue</div><div class="stat-trend up">↑ 12.5%</div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-icon green">👥</div></div><div class="stat-value">2,345</div><div class="stat-label">Active Users</div><div class="stat-trend up">↑ 8.2%</div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-icon orange">📦</div></div><div class="stat-value">1,234</div><div class="stat-label">Orders</div><div class="stat-trend up">↑ 3.7%</div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-icon red">⚠️</div></div><div class="stat-value">12</div><div class="stat-label">Issues</div><div class="stat-trend down">↓ 2.1%</div></div>
+      </div>
+
+      <div class="widget-grid">
+        <div class="widget">
+          <div class="widget-title"><span>Revenue Chart</span><a href="#">View Full</a></div>
+          <div class="chart-bars">
+            <div class="chart-bar" style="height:40%"><span class="bar-value">$12k</span></div>
+            <div class="chart-bar" style="height:65%"><span class="bar-value">$20k</span></div>
+            <div class="chart-bar" style="height:45%"><span class="bar-value">$14k</span></div>
+            <div class="chart-bar" style="height:80%"><span class="bar-value">$25k</span></div>
+            <div class="chart-bar" style="height:55%"><span class="bar-value">$17k</span></div>
+            <div class="chart-bar" style="height:90%"><span class="bar-value">$28k</span></div>
+            <div class="chart-bar" style="height:70%"><span class="bar-value">$22k</span></div>
+          </div>
+        </div>
+        <div class="widget">
+          <div class="widget-title"><span>Recent Activity</span></div>
+          <div class="activity-item"><div class="activity-avatar" style="background:var(--blue)">JD</div><div class="activity-text"><strong>John Doe</strong> placed a new order <span class="time">2 min ago</span></div></div>
+          <div class="activity-item"><div class="activity-avatar" style="background:var(--green)">SM</div><div class="activity-text"><strong>Sarah Miller</strong> updated her profile <span class="time">15 min ago</span></div></div>
+          <div class="activity-item"><div class="activity-avatar" style="background:var(--orange)">AK</div><div class="activity-text"><strong>Alex Kim</strong> submitted a support ticket <span class="time">1 hour ago</span></div></div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title"><span>Recent Orders</span><a href="#">View All</a></div>
+        <div style="overflow-x:auto">
+          <table>
+            <thead><tr><th>Order</th><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>#12345</td><td>John Doe</td><td>Pro Plan Annual</td><td>$299</td><td><span class="status active">Active</span></td></tr>
+              <tr><td>#12346</td><td>Sarah Miller</td><td>Starter Monthly</td><td>$29</td><td><span class="status active">Active</span></td></tr>
+              <tr><td>#12347</td><td>Alex Kim</td><td>Enterprise License</td><td>$999</td><td><span class="status pending">Pending</span></td></tr>
+              <tr><td>#12348</td><td>Emma Wilson</td><td>Pro Plan Annual</td><td>$299</td><td><span class="status inactive">Inactive</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  const menuBtn=document.getElementById('menuBtn'),sidebar=document.getElementById('sidebar'),overlay=document.getElementById('overlay');
+  menuBtn.addEventListener('click',()=>{sidebar.classList.toggle('open');overlay.classList.toggle('open')});
+  overlay.addEventListener('click',()=>{sidebar.classList.remove('open');overlay.classList.remove('open')});
+</script>
+</body></html>

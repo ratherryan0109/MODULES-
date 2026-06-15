@@ -1,0 +1,247 @@
+{
+  "module": "11-css-box-model",
+  "title": "CSS Box Model",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What are the four layers of the box model from inside to outside?",
+      "options": [
+        "Content, Padding, Border, Margin",
+        "Margin, Border, Padding, Content",
+        "Content, Border, Padding, Margin",
+        "Padding, Content, Border, Margin"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The box model layers from inside out: Content → Padding → Border → Margin."
+    },
+    {
+      "id": 2,
+      "question": "What does box-sizing: border-box do?",
+      "options": [
+        "Excludes border from width calculation",
+        "Includes padding and border in the specified width",
+        "Makes border invisible",
+        "Removes the border"
+      ],
+      "correctAnswer": 1,
+      "explanation": "border-box makes the specified width include content, padding, and border — total width = specified width + margin."
+    },
+    {
+      "id": 3,
+      "question": "If an element has width: 200px, padding: 20px, border: 5px, what is total width?",
+      "options": [
+        "200px",
+        "250px",
+        "230px",
+        "225px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "200 (content) + 20+20 (padding) + 5+5 (border) = 250px total width with content-box."
+    },
+    {
+      "id": 4,
+      "question": "Which layer of the box model is always transparent?",
+      "options": [
+        "Content",
+        "Padding",
+        "Border",
+        "Margin"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Margin is always transparent and does not show background color. It creates space outside the border."
+    },
+    {
+      "id": 5,
+      "question": "What is the default box-sizing value in CSS?",
+      "options": [
+        "border-box",
+        "content-box",
+        "padding-box",
+        "inherit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default box-sizing is content-box, where the specified width/height only applies to the content area."
+    },
+    {
+      "id": 6,
+      "question": "In the box model, which layer's background color is visible?",
+      "options": [
+        "Only the content area",
+        "Content and padding area",
+        "Content, padding, and border area",
+        "All four layers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The background color extends into the padding area (and border if border is transparent), but not into margins."
+    },
+    {
+      "id": 7,
+      "question": "What tool is best for inspecting the box model of an element?",
+      "options": [
+        "Text editor",
+        "Browser DevTools",
+        "CSS validator",
+        "HTML validator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Browser DevTools provide a visual box model diagram showing content, padding, border, and margin dimensions."
+    },
+    {
+      "id": 8,
+      "question": "With box-sizing: border-box, if width is 300px, border is 10px, and padding is 20px, what is content width?",
+      "options": [
+        "300px",
+        "240px",
+        "260px",
+        "250px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "300 - 10-10 (border) - 20-20 (padding) = 240px content width with border-box."
+    },
+    {
+      "id": 9,
+      "question": "Which CSS property determines whether an element can have width and height set?",
+      "options": [
+        "position",
+        "display",
+        "float",
+        "overflow"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The display property determines box behavior. Block and inline-block elements respect width/height; inline elements don't."
+    },
+    {
+      "id": 10,
+      "question": "What happens to the box model when display: flex is applied?",
+      "options": [
+        "The box model no longer applies",
+        "Flex items still follow the box model, but with different default behavior",
+        "Margins collapse differently",
+        "Padding is ignored"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Flex items still have content, padding, border, and margin, but flex layout changes how margins are distributed."
+    },
+    {
+      "id": 11,
+      "question": "How does the box model affect element positioning?",
+      "options": [
+        "Only content area affects positioning",
+        "Content, padding, border, and margin all contribute to the space an element occupies",
+        "Only margin affects positioning",
+        "Positioning ignores the box model"
+      ],
+      "correctAnswer": 1,
+      "explanation": "All four layers determine the total space an element occupies in the document flow."
+    },
+    {
+      "id": 12,
+      "question": "What is the difference between inline and block boxes?",
+      "options": [
+        "Block boxes respect width/height; inline boxes don't",
+        "Inline boxes respect width/height; block boxes don't",
+        "They are identical in box behavior",
+        "Block boxes can't have padding"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Block boxes fill available width and respect all box model properties. Inline boxes shrink to content width and ignore width/height."
+    },
+    {
+      "id": 13,
+      "question": "What does margin: 0 auto do in relation to the box model?",
+      "options": [
+        "Removes all margins",
+        "Centers a block element horizontally by distributing auto margins equally",
+        "Sets margins to 0 on all sides",
+        "Creates equal vertical margins"
+      ],
+      "correctAnswer": 1,
+      "explanation": "margin: 0 auto sets top/bottom to 0 and distributes remaining space equally on left/right, centering the element."
+    },
+    {
+      "id": 14,
+      "question": "What happens when two vertical margins meet in normal flow?",
+      "options": [
+        "They add together",
+        "They collapse to the larger of the two values",
+        "The browser throws a warning",
+        "They cancel each other out"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Vertical margins collapse in normal flow — the resulting margin equals the larger (not the sum) of the adjacent margins."
+    },
+    {
+      "id": 15,
+      "question": "Why is box-sizing: border-box considered easier for layout?",
+      "options": [
+        "It ignores borders completely",
+        "Width/height declarations include padding and border, making calculations simpler",
+        "It makes all elements the same size",
+        "It removes the need for margins"
+      ],
+      "correctAnswer": 1,
+      "explanation": "With border-box, the specified width includes padding and border, so you don't need to mentally add them for total dimensions."
+    },
+    {
+      "id": 16,
+      "question": "Which DevTools panel shows the box model visualization?",
+      "options": [
+        "Console",
+        "Elements panel > Computed/Box Model",
+        "Sources panel",
+        "Network panel"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In the Elements panel, the Computed or Layout section shows a visual box model with current dimensions for each layer."
+    },
+    {
+      "id": 17,
+      "question": "What is content-box best used for?",
+      "options": [
+        "Simplified layout calculations",
+        "When you need explicit control over content dimensions independent of padding/border",
+        "Responsive design",
+        "All purposes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "content-box is useful when you need the content area to stay exactly the specified size regardless of padding or borders."
+    },
+    {
+      "id": 18,
+      "question": "How does padding affect background painting differently from margins?",
+      "options": [
+        "Padding shows background; margins are transparent",
+        "Margins show background; padding is transparent",
+        "Both show background",
+        "Neither shows background"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The padding area inherits the element's background, while margins are always transparent."
+    },
+    {
+      "id": 19,
+      "question": "What is a common CSS reset for the box model?",
+      "options": [
+        "*, *::before, *::after { box-sizing: border-box; }",
+        "* { margin: 0; padding: 0; box-sizing: border-box; }",
+        "body { box-sizing: border-box; }",
+        "html { box-sizing: border-box; }"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Applying box-sizing: border-box to all elements and pseudo-elements is the most common box-model reset pattern."
+    },
+    {
+      "id": 20,
+      "question": "Why is the box model considered the most important CSS concept?",
+      "options": [
+        "It's the hardest concept to learn",
+        "Every element is rendered as a box, so understanding the model is foundational to all layout work",
+        "It determines which properties are valid",
+        "It controls the cascade"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Every element is rendered as a rectangular box, making the box model the foundation of all CSS layout work."
+    }
+  ]
+}

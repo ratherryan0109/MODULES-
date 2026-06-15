@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the skew() function do in CSS?", "answer": "skew(x-angle, y-angle) tilts an element along the X and Y axes by the specified angles, distorting its shape." },
+    { "question": "What does skewX() do?", "answer": "skewX(angle) tilts an element horizontally along the X-axis, shifting its top and bottom edges in opposite directions." },
+    { "question": "What does skewY() do?", "answer": "skewY(angle) tilts an element vertically along the Y-axis, shifting its left and right edges in opposite directions." },
+    { "question": "What happens when you apply skewX(45deg) to an element?", "answer": "The element's vertical edges tilt 45 degrees, turning a rectangle into a parallelogram shape." },
+    { "question": "What units can skew angles accept?", "answer": "Skew accepts angle units: degrees (deg), radians (rad), gradians (grad), and turns (turn)." },
+    { "question": "Does skew affect the element's layout box?", "answer": "No, skew only visually distorts the element; the layout box remains unchanged in the document flow." },
+    { "question": "What is the default skew value?", "answer": "The default is skew(0deg, 0deg), meaning no distortion is applied to the element." },
+    { "question": "Can skew be combined with other transform functions?", "answer": "Yes, skew can be combined with translate, rotate, and scale in a single transform property." },
+    { "question": "How do you apply skew only along the X-axis?", "answer": "Use skewX(angle) or skew(angle, 0) where the Y parameter is omitted or set to 0." },
+    { "question": "Does skew affect the content inside the element?", "answer": "Yes, all content inside the element is skewed along with it, including text and images." }
+  ],
+  "intermediate": [
+    { "question": "What is the visual effect of skewX vs skewY on text?", "answer": "skewX creates italic-like slanting of text horizontally; skewY stretches text vertically, creating a falling or rising effect." },
+    { "question": "How does transform-origin affect skew behavior?", "answer": "transform-origin determines which part of the element remains fixed during skew; different origins produce different distortion anchors." },
+    { "question": "What are common use cases for CSS skew?", "answer": "Creating parallelogram buttons, diagonal section dividers, ribbon effects, perspective-like tilts, and stylistic text treatments." },
+    { "question": "How does skew interact with borders and box-shadows?", "answer": "Borders and box-shadows skew with the element, creating matching parallelograms or distorted shadow shapes." },
+    { "question": "Can you skew an element without skewing its content?", "answer": "Yes, apply a reverse skew to the content: skew the parent, then apply the opposite skew to the child element." },
+    { "question": "How does skew compare to using transform: matrix()?", "answer": "skewX(a) is equivalent to matrix(1, 0, tan(a), 1, 0, 0); skewY(a) is matrix(1, tan(a), 0, 1, 0, 0) where tan(a) is the tangent of the angle." },
+    { "question": "What happens when you apply both skewX and skewY?", "answer": "The element distorts in both directions, creating a more complex shape that shifts both vertical and horizontal edges simultaneously." },
+    { "question": "How does skew affect percentage-based width or height?", "answer": "Percentage dimensions are calculated from the parent before skew is applied; the visual result shows the skewed layout box." },
+    { "question": "How does skew interact with overflow: hidden?", "answer": "Overflow clipping uses the original element box, potentially clipping skewed corners that extend beyond the original boundary." },
+    { "question": "Can skew be used for 3D-like perspective effects?", "answer": "Skew alone cannot create true 3D perspective, but combining skew with scale can simulate pseudo-3D depth effects." }
+  ],
+  "advanced": [
+    { "question": "How do you calculate the effective angle of combined skew operations?", "answer": "Skew operations are not additive; skewX(a) then skewX(b) does not equal skewX(a+b), because the second skew applies to already-distorted coordinates." },
+    { "question": "How does skew interact with vector graphics and SVG?", "answer": "Skew on SVG elements uses the SVG coordinate system; gradients and patterns within skewed SVGs can exhibit unexpected rendering." },
+    { "question": "How can you create a perspective floor effect using skew?", "answer": "Apply large skewX values (60-80deg) combined with scaleY to create a faux-3D ground plane effect for isometric or pseudo-3D designs." },
+    { "question": "What are the performance implications of animating skew?", "answer": "Skew animations may be less performant than translate or scale because skew can trigger rasterization changes depending on the browser." },
+    { "question": "How does extreme skew (near 90deg) affect rendering?", "answer": "As skew approaches 90deg, the element becomes infinitely thin in one dimension, causing potential rendering artifacts or disappearance." },
+    { "question": "How does skew interact with pointer events and click areas?", "answer": "The hit-test area matches the skewed visual shape; pointer events are mapped through the inverse transform to determine if a click hits the content." },
+    { "question": "How can you create a ribbon or folded-corner effect using skew?", "answer": "Use pseudo-elements with skewY and position them at element corners to create fold or ribbon effects that appear layered over the main element." },
+    { "question": "How does skew behave with background patterns or repeating gradients?", "answer": "Background images and gradients are skewed with the element, creating angled pattern effects that can be used for dynamic backgrounds." },
+    { "question": "How do you unskew text inside a skewed container?", "answer": "Apply the opposite skew value to the inner element, e.g., if parent is skewX(10deg), child gets skewX(-10deg) to restore text to normal." },
+    { "question": "How does skew interact with CSS filters like blur?", "answer": "Filters apply after the transform, so blurred skewed elements may display clipping at the edges due to the filter expanding beyond the element box." }
+  ]
+}

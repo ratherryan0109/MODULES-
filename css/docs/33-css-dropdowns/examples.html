@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Dropdowns Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; margin: 0; }
+    section { background: #fff; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+    /* Horizontal nav with dropdowns */
+    nav ul {
+      list-style: none; margin: 0; padding: 0; display: flex; background: #333;
+    }
+    nav > ul > li {
+      position: relative;
+    }
+    nav > ul > li > a {
+      display: block; color: #fff; padding: 14px 20px; text-decoration: none;
+    }
+    nav > ul > li:hover > a {
+      background: #575757;
+    }
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #f9f9f9;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 10;
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li:hover > ul {
+      display: block;
+    }
+    nav ul li ul li a {
+      display: block;
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+    }
+    nav ul li ul li a:hover {
+      background: #ddd;
+    }
+
+    /* Nested dropdown */
+    nav ul li ul li {
+      position: relative;
+    }
+    nav ul li ul li ul {
+      top: 0;
+      left: 100%;
+    }
+
+    /* Animated dropdown */
+    .animated-dropdown .dropdown-content {
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .animated-dropdown:hover .dropdown-content {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Dropdowns Examples</h1>
+
+  <section>
+    <h2>Basic Dropdown Menu</h2>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li>
+          <a href="#">Services</a>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Development</a></li>
+            <li><a href="#">SEO</a></li>
+          </ul>
+        </li>
+        <li><a href="#">About</a></li>
+        <li>
+          <a href="#">Contact</a>
+          <ul>
+            <li><a href="#">Email</a></li>
+            <li><a href="#">Phone</a></li>
+            <li><a href="#">Location</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Nested Multi-Level Dropdown</h2>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li>
+          <a href="#">Products</a>
+          <ul>
+            <li><a href="#">Electronics</a></li>
+            <li>
+              <a href="#">Clothing</a>
+              <ul>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Kids</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+        </li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Animated Dropdown (opacity + visibility)</h2>
+    <div style="position: relative; display: inline-block;" class="animated-dropdown">
+      <button style="padding: 12px 20px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Hover Me</button>
+      <div class="dropdown-content" style="position: absolute; top: 100%; left: 0; background: #fff; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); padding: 12px; margin-top: 4px; border-radius: 4px;">
+        <p>This dropdown fades in smoothly.</p>
+        <a href="#" style="display: block; padding: 8px 0; color: #007bff;">Link 1</a>
+        <a href="#" style="display: block; padding: 8px 0; color: #007bff;">Link 2</a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to HTML - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #e44d26; border-bottom: 3px solid #e44d26; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Module 1: Introduction to HTML — Examples</h1>
+
+    <!-- Example 1: Basic HTML Skeleton -->
+    <div class="example">
+        <h2>Example 1: The Basic HTML Skeleton</h2>
+        <p>Every HTML page starts with DOCTYPE, html, head, and body tags.</p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <h1>Welcome!</h1>
+            <p>This is a paragraph.</p>
+        </div>
+    </div>
+
+    <!-- Example 2: Text Formatting -->
+    <div class="example">
+        <h2>Example 2: Text Formatting Tags</h2>
+        <p>HTML provides tags to emphasize and structure text.</p>
+        <pre>
+&lt;p&gt;This is &lt;strong&gt;strong&lt;/strong&gt; text.&lt;/p&gt;
+&lt;p&gt;This is &lt;em&gt;emphasized&lt;/em&gt; text.&lt;/p&gt;
+&lt;p&gt;This is &lt;u&gt;underlined&lt;/u&gt; text.&lt;/p&gt;
+&lt;p&gt;This is &lt;mark&gt;highlighted&lt;/mark&gt; text.&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>This is <strong>strong</strong> text.</p>
+            <p>This is <em>emphasized</em> text.</p>
+            <p>This is <u>underlined</u> text.</p>
+            <p>This is <mark>highlighted</mark> text.</p>
+        </div>
+    </div>
+
+    <!-- Example 3: Links and Images -->
+    <div class="example">
+        <h2>Example 3: Links and Images</h2>
+        <p>Hyperlinks (<code>&lt;a&gt;</code>) and images (<code>&lt;img&gt;</code>) are core to web pages.</p>
+        <pre>
+&lt;a href="https://example.com"&gt;Visit Example.com&lt;/a&gt;
+&lt;br&gt;
+&lt;img src="https://via.placeholder.com/150" alt="Placeholder Image"&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <a href="https://example.com">Visit Example.com</a><br>
+            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        </div>
+    </div>
+
+    <!-- Example 4: Lists -->
+    <div class="example">
+        <h2>Example 4: Ordered and Unordered Lists</h2>
+        <pre>
+&lt;h3&gt;Shopping List (Unordered)&lt;/h3&gt;
+&lt;ul&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;li&gt;Bread&lt;/li&gt;
+    &lt;li&gt;Eggs&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Recipe Steps (Ordered)&lt;/h3&gt;
+&lt;ol&gt;
+    &lt;li&gt;Boil water&lt;/li&gt;
+    &lt;li&gt;Add pasta&lt;/li&gt;
+    &lt;li&gt;Cook for 10 minutes&lt;/li&gt;
+&lt;/ol&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <h3>Shopping List (Unordered)</h3>
+            <ul>
+                <li>Milk</li>
+                <li>Bread</li>
+                <li>Eggs</li>
+            </ul>
+            <h3>Recipe Steps (Ordered)</h3>
+            <ol>
+                <li>Boil water</li>
+                <li>Add pasta</li>
+                <li>Cook for 10 minutes</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Example 5: Nesting and Structure -->
+    <div class="example">
+        <h2>Example 5: Proper Nesting</h2>
+        <p>Always close inner tags before outer tags.</p>
+        <pre>
+&lt;div style="background: #eef; padding: 10px;"&gt;
+    &lt;h2&gt;Nested Structure&lt;/h2&gt;
+    &lt;p&gt;This is a &lt;span style="color: red;"&gt;red span&lt;/span&gt; inside a paragraph.&lt;/p&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="background: #eef; padding: 10px;">
+                <h2>Nested Structure</h2>
+                <p>This is a <span style="color: red;">red span</span> inside a paragraph.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 6: Semantic Elements -->
+    <div class="example">
+        <h2>Example 6: Semantic HTML5 Elements</h2>
+        <p>HTML5 introduced meaningful elements like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;footer&gt;</code>.</p>
+        <pre>
+&lt;header&gt;
+    &lt;h1&gt;My Blog&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;a href="#"&gt;Home&lt;/a&gt; |
+        &lt;a href="#"&gt;About&lt;/a&gt; |
+        &lt;a href="#"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h2&gt;Blog Post Title&lt;/h2&gt;
+        &lt;p&gt;Article content goes here...&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2026 My Blog&lt;/p&gt;
+&lt;/footer&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <header>
+                <h1>My Blog</h1>
+                <nav>
+                    <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a>
+                </nav>
+            </header>
+            <main>
+                <article>
+                    <h2>Blog Post Title</h2>
+                    <p>Article content goes here...</p>
+                </article>
+            </main>
+            <footer>
+                <p>&copy; 2026 My Blog</p>
+            </footer>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Right-click any web page and select "View Page Source" to see its HTML. This is a great way to learn from real websites!
+    </div>
+</body>
+</html>

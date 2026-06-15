@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Float - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; padding: 30px; background: #f5f5f5; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { margin-bottom: 30px; color: #333; }
+    h2 { margin: 30px 0 15px; color: #555; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; font-family: 'Consolas', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+
+    /* Text Wrap Example */
+    .float-left-img { float: left; width: 150px; height: 150px; background: #4a90d9; color: white; display: flex; align-items: center; justify-content: center; margin: 0 15px 10px 0; border-radius: 8px; }
+    .float-right-img { float: right; width: 120px; height: 120px; background: #e94560; color: white; display: flex; align-items: center; justify-content: center; margin: 0 0 10px 15px; border-radius: 8px; }
+
+    /* Gallery Example */
+    .gallery { background: #f8f9fa; padding: 15px; border-radius: 8px; }
+    .gallery-item { float: left; width: 30%; margin: 1.66%; height: 100px; background: #6c5ce7; color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+    .clearfix::after { content: ""; display: table; clear: both; }
+
+    /* Drop Cap */
+    .drop-cap::first-letter { float: left; font-size: 3.5em; line-height: 0.8; margin-right: 6px; color: #e94560; font-weight: bold; }
+
+    /* Collapsed Parent Demo */
+    .collapsed-parent { background: #fce4ec; padding: 10px; border: 2px dashed #c62828; margin: 10px 0; }
+    .collapsed-parent .child { float: left; width: 100px; height: 100px; background: #c62828; color: white; margin: 5px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+
+    /* Pull Quote */
+    .pull-quote { float: right; width: 200px; margin: 5px 0 5px 15px; padding: 15px; background: #f0f0f0; border-left: 4px solid #4a90d9; font-style: italic; font-size: 1.2em; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Float - Examples</h1>
+
+    <div class="example">
+      <h2>1. Text Wrapping (Left Float)</h2>
+      <div class="code">img { float: left; margin-right: 15px; }</div>
+      <div class="float-left-img">📷 Image</div>
+      <p>This text wraps around the floated image on the left. The float property was originally designed for this exact purpose - allowing text to flow around an element. The image is taken out of the normal flow, but unlike absolute positioning, text still wraps around it. This is great for articles, blog posts, and any content where you want images integrated with text.</p>
+    </div>
+
+    <div class="example">
+      <h2>2. Text Wrapping (Right Float)</h2>
+      <div class="code">img { float: right; margin-left: 15px; }</div>
+      <div class="float-right-img">📷 Image</div>
+      <p>This text wraps around the floated image on the right. Floats work equally well on both sides. Right floats are commonly used for pull quotes, sidebars, or images that should appear on the right side of the text. The margin ensures there's always space between the floated element and the wrapping text.</p>
+    </div>
+
+    <div class="example">
+      <h2>3. Image Gallery with Float</h2>
+      <div class="code">.item { float: left; width: 30%; margin: 1.66%; }<br>.clearfix::after { content: ''; clear: both; display: table; }</div>
+      <div class="note">This is a classic float-based gallery. Notice the clearfix on the parent to prevent collapse.</div>
+      <div class="gallery clearfix">
+        <div class="gallery-item">Item 1</div>
+        <div class="gallery-item">Item 2</div>
+        <div class="gallery-item">Item 3</div>
+        <div class="gallery-item">Item 4</div>
+        <div class="gallery-item">Item 5</div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>4. Drop Cap with Float</h2>
+      <div class="code">p::first-letter { float: left; font-size: 3.5em; line-height: 0.8; margin-right: 6px; }</div>
+      <p class="drop-cap">Float is perfect for creating drop caps - a decorative typographic effect where the first letter of a paragraph is enlarged and "drops" into the text. By floating the first letter, the rest of the text wraps around its right and bottom sides, creating a professional, magazine-style appearance.</p>
+    </div>
+
+    <div class="example">
+      <h2>5. Collapsed Parent (Without Clearfix)</h2>
+      <div class="code">// Parent has no clearfix - height collapses!</div>
+      <div class="collapsed-parent">
+        <div class="child">1</div>
+        <div class="child">2</div>
+        <div class="child">3</div>
+      </div>
+      <p>The parent above has no height because all children are floated. The border collapses to nothing (just the padding).</p>
+    </div>
+
+    <div class="example">
+      <h2>6. Pull Quote with Float</h2>
+      <div class="code">.pull-quote { float: right; width: 200px; border-left: 4px solid #4a90d9; }</div>
+      <div class="pull-quote">"Float is perfect for pull quotes that highlight key excerpts from the text."</div>
+      <p>Pull quotes are another classic float use case. A pull quote is a key phrase or excerpt pulled from the text and displayed more prominently. Floats allow the pull quote to sit beside the main text while the surrounding content flows around it naturally. This creates a visually engaging layout commonly seen in magazines and editorial designs.</p>
+    </div>
+  </div>
+</body>
+</html>

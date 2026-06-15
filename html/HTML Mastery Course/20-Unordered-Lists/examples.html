@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 20: Unordered Lists - Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: #333; line-height: 1.8; padding: 20px; }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    .example-box { background: white; border: 2px solid #ddd; border-radius: 10px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .example-box h2 { color: #2980b9; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .code-block { background: #2d2d2d; color: #f8f8f2; padding: 18px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 14px; overflow-x: auto; margin: 15px 0; white-space: pre-wrap; }
+    .output { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 6px; margin: 10px 0; }
+    .output ul, .output li { margin: 4px 0; }
+    .output ul { padding-left: 25px; }
+
+    .bullet-disc { list-style-type: disc; }
+    .bullet-circle { list-style-type: circle; }
+    .bullet-square { list-style-type: square; }
+    .bullet-none { list-style-type: none; }
+
+    .custom-check { list-style: none; }
+    .custom-check li::before { content: '✓ '; color: #2ecc71; font-weight: bold; }
+
+    .custom-arrow { list-style: none; }
+    .custom-arrow li::before { content: '→ '; color: #3498db; }
+
+    .colored-marker li::marker { color: #e94560; font-weight: bold; }
+
+    .horizontal-nav { list-style: none; display: flex; gap: 25px; background: #1a1a2e; padding: 15px 25px; border-radius: 8px; }
+    .horizontal-nav a { color: white; text-decoration: none; }
+    .horizontal-nav a:hover { color: #e94560; }
+
+    .breadcrumb { list-style: none; display: flex; gap: 8px; }
+    .breadcrumb li::after { content: '›'; margin-left: 8px; color: #94a3b8; }
+    .breadcrumb li:last-child::after { content: ''; }
+    .breadcrumb a { color: #2563eb; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>📍 Unordered Lists — Code Examples</h1>
+
+  <div class="example-box">
+    <h2>Example 1: Basic Unordered List</h2>
+    <div class="output">
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>React</li>
+      </ul>
+    </div>
+    <div class="code-block">
+      &lt;ul&gt;
+        &lt;li&gt;HTML&lt;/li&gt;
+        &lt;li&gt;CSS&lt;/li&gt;
+      &lt;/ul&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 2: Bullet Style Comparison</h2>
+    <div class="output">
+      <p><strong>disc (default):</strong></p>
+      <ul class="bullet-disc"><li>Item</li><li>Item</li></ul>
+      <p><strong>circle:</strong></p>
+      <ul class="bullet-circle"><li>Item</li><li>Item</li></ul>
+      <p><strong>square:</strong></p>
+      <ul class="bullet-square"><li>Item</li><li>Item</li></ul>
+      <p><strong>none:</strong></p>
+      <ul class="bullet-none"><li>No bullet</li><li>No bullet</li></ul>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 3: Custom Bullet with Checkmarks</h2>
+    <div class="output">
+      <p><strong>Features:</strong></p>
+      <ul class="custom-check">
+        <li>Responsive design</li>
+        <li>Accessible markup</li>
+        <li>Cross-browser compatible</li>
+        <li>SEO optimized</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 4: Colored Markers via ::marker</h2>
+    <div class="output">
+      <ul class="colored-marker">
+        <li>Red bullet marker</li>
+        <li>Also red</li>
+        <li>Styled with ::marker</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 5: Horizontal Navigation Menu</h2>
+    <div class="output">
+      <ul class="horizontal-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="code-block">
+      ul { list-style: none; display: flex; gap: 25px; }
+      a { color: white; text-decoration: none; }
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 6: Breadcrumb Navigation</h2>
+    <div class="output">
+      <ul class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Category</a></li>
+        <li>Current Page</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 7: Nested Unordered Lists</h2>
+    <div class="output">
+      <ul>
+        <li>Frontend Technologies
+          <ul>
+            <li>HTML5</li>
+            <li>CSS3
+              <ul>
+                <li>Flexbox</li>
+                <li>Grid</li>
+              </ul>
+            </li>
+            <li>JavaScript</li>
+          </ul>
+        </li>
+        <li>Backend Technologies
+          <ul>
+            <li>Node.js</li>
+            <li>Python</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 8: Icon List with Custom Markers</h2>
+    <div class="output">
+      <ul class="custom-arrow">
+        <li>View documentation</li>
+        <li>Download the SDK</li>
+        <li>Join the community</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 9: Footer Links Group</h2>
+    <div class="output">
+      <div style="display:flex;gap:40px;background:#2c3e50;color:white;padding:25px;border-radius:8px;">
+        <div>
+          <h4 style="margin-bottom:10px;color:#e94560;">Products</h4>
+          <ul style="list-style:none;color:rgba(255,255,255,0.7);">
+            <li style="margin:5px 0;">Web App</li>
+            <li style="margin:5px 0;">Mobile App</li>
+            <li style="margin:5px 0;">API</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:10px;color:#e94560;">Company</h4>
+          <ul style="list-style:none;color:rgba(255,255,255,0.7);">
+            <li style="margin:5px 0;">About</li>
+            <li style="margin:5px 0;">Careers</li>
+            <li style="margin:5px 0;">Contact</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

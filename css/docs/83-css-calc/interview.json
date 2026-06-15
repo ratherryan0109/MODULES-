@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the calc() function in CSS?", "answer": "calc() allows you to perform mathematical calculations (addition, subtraction, multiplication, division) on CSS property values." },
+    { "question": "What operators can you use in calc()?", "answer": "The four basic operators: + (addition), - (subtraction), * (multiplication), / (division)." },
+    { "question": "Can calc() mix different CSS units?", "answer": "Yes, calc() can mix units like percentages, px, em, rem, vw, etc. Example: calc(100% - 40px)." },
+    { "question": "What is a common use for calc() in responsive layouts?", "answer": "Fluid widths: width: calc(100% - 250px) for a full-width element minus a fixed sidebar." },
+    { "question": "Can calc() be used for font-size?", "answer": "Yes: font-size: calc(1rem + 0.5vw) creates text that scales with both root font size and viewport width." },
+    { "question": "What is the syntax for calc()?", "answer": "calc(expression) where the expression contains values and operators with proper spacing around + and - operators." },
+    { "question": "Why must there be spaces around + and - in calc()?", "answer": "Spaces are required to avoid ambiguity with negative values. calc(100%-40px) is invalid; calc(100% - 40px) is valid." },
+    { "question": "Can calc() be used inside other CSS functions?", "answer": "Yes, calc() can be nested inside min(), max(), clamp(), and even inside other calc() calls." },
+    { "question": "Can calc() be used in media queries?", "answer": "No, calc() cannot be used in @media query conditions. Media queries require literal values." },
+    { "question": "What is the difference between calc() and preprocessor calculations?", "answer": "calc() runs in the browser at runtime, responding to dynamic values. Preprocessor calculations (Sass, Less) are computed at build time." }
+  ],
+  "intermediate": [
+    { "question": "How do you center an element with calc()?", "answer": "left: calc(50% - (elementWidth / 2)). For absolute positioning: left: calc(50% - 100px) for a 200px-wide element." },
+    { "question": "How does calc() handle multiplication and division?", "answer": "For multiplication, at least one operand must be a number. For division, the right operand must be a number (cannot divide by a length)." },
+    { "question": "Can calc() be used in CSS Grid track sizing?", "answer": "Yes: grid-template-columns: 1fr calc(100% - 250px) or grid-template-columns: repeat(3, calc(33.333% - 10px))." },
+    { "question": "How do you create a full-width container with padding using calc()?", "answer": "width: calc(100% - 2 * 20px) assuming 20px padding on each side. But using padding directly is simpler." },
+    { "question": "How does calc() work with CSS custom properties?", "answer": "Custom properties can be used in calc(): width: calc(var(--sidebar-width) + 20px). This enables dynamic calculations." },
+    { "question": "What are some common calc() gotchas with percentages?", "answer": "Percentage calculations depend on the parent element's size. calc(50% + 50%) equals 100% of the parent, but calc(50% + 50px) adds a fixed value to a percentage." },
+    { "question": "How do you use calc() for responsive column widths?", "answer": "width: calc(33.333% - 20px) creates three columns with 20px gaps between them, accounting for the gap spacing." },
+    { "question": "Can calc() be used in transform properties?", "answer": "Yes: transform: translateX(calc(100vw / 2)) or transform: translate(calc(50% - 10px), 0)." },
+    { "question": "How does calc() work with the background-position property?", "answer": "background-position: calc(100% - 20px) calc(50%) positions a background 20px from the right edge and vertically centered." },
+    { "question": "What happens when calc() produces a negative value?", "answer": "Most CSS properties accept negative values where meaningful (margin, transform). Others clamp to 0." }
+  ],
+  "advanced": [
+    { "question": "How does calc() interact with CSS Grid's minmax() function?", "answer": "calc() can be used inside minmax(): grid-template-columns: repeat(3, minmax(200px, calc(33.333% - 10px)))." },
+    { "question": "What is the difference between calc() and the * and / operators with viewport units?", "answer": "calc(100vw / 2) equals 50vw but is more expressive. calc(100vw - 20px) is useful where no single unit achieves the same result." },
+    { "question": "How do you handle calc() in CSS animations for performance?", "answer": "Avoid recalculating calc() on every frame where possible. Use transform and opacity for animations (GPU-composited) and calc() for initial layout." },
+    { "question": "What are the browser rendering implications of calc() with many custom properties?", "answer": "Each calc() with custom properties must be resolved during style recalc. Excessive use can increase style recalculation time." },
+    { "question": "How does calc() work with CSS Container Queries and cqi units?", "answer": "calc(100cqi - 40px) calculates a value based on the container's inline size, enabling container-relative fluid layouts." },
+    { "question": "What is the interaction between calc() and CSS Houdini's Typed OM?", "answer": "Typed OM (CSSStyleValue) can parse and manipulate calc() expressions as CSSMathValue objects, enabling programmatic manipulation." },
+    { "question": "How do you use calc() with the env() function for safe area handling?", "answer": "padding-bottom: calc(env(safe-area-inset-bottom) + 20px) adds app spacing plus safe area for notched devices." },
+    { "question": "What is the calc() viewport units gotcha for mobile browsers?", "answer": "Mobile browsers handle vh units differently (address bar shows/hides). calc(100vh - 50px) may have dynamic size changes on scroll." },
+    { "question": "How do you create a fluid grid with calc() and minmax() for variable column counts?", "answer": "grid-template-columns: repeat(auto-fill, minmax(calc(250px + 5vw), 1fr)) creates responsive columns with fluid minimum sizes." },
+    { "question": "What are the best practices for writing maintainable calc() expressions?", "answer": "Keep expressions simple, use descriptive CSS custom properties for magic numbers, add comments for complex formulas, and test across browsers." }
+  ]
+}

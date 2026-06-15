@@ -1,0 +1,130 @@
+{
+  "module": "134-interactive-pricing-page",
+  "title": "Interactive Pricing Page",
+  "beginner": [
+    {
+      "question": "What is a 'pricing page' in web design?",
+      "answer": "A pricing page presents product/service pricing plans (typically 3-4 tiers) with feature comparisons. It's designed to convert visitors into customers. Key elements: plan names, prices, feature lists, CTA buttons, and a billing toggle."
+    },
+    {
+      "question": "What is a 'toggle switch' for monthly/yearly billing?",
+      "answer": "A toggle switch (or segmented control) that switches between monthly and yearly pricing. Yearly usually shows a discount (e.g., 'Save 20%'). Use a styled checkbox or radio buttons with labels for the toggle."
+    },
+    {
+      "question": "How do you style a pricing card?",
+      "answer": "A pricing card uses `display: flex; flex-direction: column;` with consistent padding, border, border-radius, and shadow. Contains: plan name, price, description, feature list (checkmarks), and CTA button. Cards are equal height with flex-grow on content."
+    },
+    {
+      "question": "What is a 'feature comparison table'?",
+      "answer": "A table comparing features across plans. Rows are features, columns are plans. Each cell has a checkmark (✓) or cross (✗). The recommended plan is highlighted. On mobile, convert to cards or horizontal scroll."
+    },
+    {
+      "question": "How do you highlight the 'recommended' or 'most popular' plan?",
+      "answer": "Use a modifier class (`.pricing-card--popular`) with different styling: a 'Most Popular' badge, slightly larger scale, different border color, prominent shadow, and maybe a different CTA button color. The badge uses `position: absolute; top: -12px;`."
+    },
+    {
+      "question": "How do you build a responsive pricing grid?",
+      "answer": "Use CSS Grid: `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))`. Three plans on desktop, two on tablet, one on mobile. The popular card can be slightly larger with `transform: scale(1.05)`."
+    },
+    {
+      "question": "How do you display a 'price' in a pricing card?",
+      "answer": "Use a large font-size for the number: `font-size: 3rem; font-weight: 800;`. Currency symbol (`$`) is smaller, positioned as superscript. Period (`/mo`, `/yr`) is smaller, below. Example: `$29 /mo`."
+    },
+    {
+      "question": "What is the purpose of 'feature checkmarks' on pricing cards?",
+      "answer": "Checkmarks (✓) or green icons show which features are included in a plan. Crosses (✗) or gray dashes show excluded features. Each feature is a list item with the icon and text. Accessible: use `aria-label` for screen readers."
+    },
+    {
+      "question": "How do you style the primary CTA button on a pricing card?",
+      "answer": "The CTA button should be prominent: full-width (`width: 100%`), good padding (`padding: 12px 24px`), high contrast, and clear text ('Start Free Trial', 'Subscribe', 'Get Started'). Use `border-radius: 8px; font-weight: 600;`."
+    },
+    {
+      "question": "What is a 'free trial' mention on a pricing card?",
+      "answer": "A small text above or below the CTA indicating trial length (e.g., '14-day free trial', 'No credit card required'). Use `font-size: 0.875rem; color: var(--text-muted);` to keep it subtle but informative."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement a CSS 'toggle switch' for billing period?",
+      "answer": "Use a hidden `<input type=\"checkbox\">` and style the adjacent `<label>`. The label has two spans (the track and thumb). Track: `width: 48px; height: 24px; border-radius: 12px; background: #ccc;`. Thumb: `width: 20px; height: 20px; border-radius: 50%; background: white; transform: translateX(2px);`. Checked: thumb translates to right."
+    },
+    {
+      "question": "How do you handle price switching with just CSS (no JavaScript)?",
+      "answer": "Use the checkbox hack: the toggle's checked state toggles between monthly and yearly prices using CSS `:checked` + adjacent siblings. Hide yearly prices by default: `.yearly-price { display: none; }`. On `:checked`, show yearly and hide monthly."
+    },
+    {
+      "question": "How do you implement a 'slider' for pageviews/price (interactive pricing)?",
+      "answer": "Use `<input type=\"range\">` with custom styling. Track: `-webkit-appearance: none; height: 8px; border-radius: 4px; background: linear-gradient(to right, var(--primary) X%, #ddd X%);`. Thumb: `width: 24px; height: 24px; border-radius: 50%; background: var(--primary);`."
+    },
+    {
+      "question": "How do you display the 'savings badge' for yearly pricing?",
+      "answer": "A small pill-shaped badge next to the yearly option: `padding: 2px 8px; border-radius: 12px; background: #10b981; color: white; font-size: 0.75rem; font-weight: 600;`. Text: 'Save 20%'. Use `white-space: nowrap;` to prevent wrapping."
+    },
+    {
+      "question": "How do you create an animated price change when toggling billing?",
+      "answer": "Use CSS `transition: opacity 0.3s ease, transform 0.3s ease;` on the price element. When toggling: fade out old price (opacity 0, translateY -10px), swap text content via CSS `::before` or JavaScript, fade in new price."
+    },
+    {
+      "question": "How do you design a responsive 'enterprise' pricing card?",
+      "answer": "An enterprise card differs: no feature list (or shorter), 'Contact Sales' button instead of 'Subscribe', includes trust signals (SLA, dedicated support, SSO). Often placed separately from the main grid or as a full-width row."
+    },
+    {
+      "question": "How do you handle 'custom pricing' for enterprise plans?",
+      "answer": "Display 'Custom' instead of a price number, or 'Let's talk' with a contact form link. The CTA is 'Contact Sales'. Include a brief description of enterprise benefits (custom integration, priority support, dedicated account manager)."
+    },
+    {
+      "question": "How do you create a responsive pricing page with multiple cards and a comparison table below?",
+      "answer": "Top: pricing cards grid. Below: feature comparison table. On mobile, cards stack vertically. The comparison table becomes horizontal-scrollable (`overflow-x: auto`) or converts to individual plan details with accordion sections."
+    },
+    {
+      "question": "How do you add 'tooltip' info icons on features for more details?",
+      "answer": "Use a small info icon (i) with `cursor: help;`. On hover/focus, show a tooltip with explanation. Use `position: relative;` on the feature item and `position: absolute;` on the tooltip. Style with `aria-describedby` for accessibility."
+    },
+    {
+      "question": "How do you design a 'money-back guarantee' badge on pricing cards?",
+      "answer": "A small badge or text: '30-day money-back guarantee'. Use an icon (shield) with text. Place near the CTA or at the bottom of the card. Use `font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px;`."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a 'real-time price calculator' that combines plan + add-ons?",
+      "answer": "Use CSS custom properties for base prices and add-on costs. JavaScript updates `--total-price` property on selection changes. Display total with animation. Use `calc()` with custom properties to compute totals in CSS for display."
+    },
+    {
+      "question": "How do you implement 'country-specific pricing' with currency conversion?",
+      "answer": "Use CSS `:lang()` pseudo-class or `[data-country]` attribute to adjust price display: `[data-country=\"US\"] .price { --price: 29; }`. JavaScript handles conversion rates. Show currency symbol based on locale. Maintain consistent card layout."
+    },
+    {
+      "question": "How do you create an 'annual vs monthly savings calculator'?",
+      "answer": "Display both prices: monthly cost × 12 vs annual cost. Highlight savings: 'You save $60/year'. Use CSS to show savings in a highlighted box. Animate numbers on toggle. Use `text-decoration: line-through` on the full price."
+    },
+    {
+      "question": "How do you implement a 'multi-product' pricing grid with different tiers?",
+      "answer": "Use a matrix layout: rows are products, columns are plans. Each cell has the product's price for that plan. Use CSS Grid with sticky first column for product names. On mobile, convert to per-product card sets with tabs or accordion."
+    },
+    {
+      "question": "How do you handle 'tax and fees' display in pricing sections?",
+      "answer": "Add a small note below prices: '+ applicable taxes'. On checkout, show a detailed breakdown. Use CSS `display: flex; justify-content: space-between;` for each line item (subtotal, tax, total). Respect different tax display regulations globally."
+    },
+    {
+      "question": "How do you implement a 'team/seat-based' pricing UI?",
+      "answer": "Add a quantity selector (number input with +/-) that multiplies the per-seat price. Show total price updating in real-time. The feature list may include 'per seat' notes. Use JavaScript to recalculate total = perSeatPrice × seats."
+    },
+    {
+      "question": "How do you create a 'pricing FAQ' that's integrated with the pricing cards?",
+      "answer": "An accordion section below the pricing grid. Questions cover: Can I upgrade? Is there a free trial? Can I cancel? Use `aria-expanded` on toggle buttons. Schema markup with `@type: FAQPage` for SEO."
+    },
+    {
+      "question": "How do you implement 'grandfathering' price display for existing customers?",
+      "answer": "Show 'Your current plan: $19/mo. New price: $29/mo' with a note about grandfathering. Use CSS to highlight the difference with a callout box. Include a deadline for the current price. Use `aria-live` for announcements."
+    },
+    {
+      "question": "How do you handle 'promotional pricing' with countdown timers?",
+      "answer": "Display a countdown banner above the pricing grid. Use CSS `animation: pulse 2s infinite;` for urgency. The timer (days/hours/minutes/seconds) updates via JavaScript. Ensure the layout doesn't shift when the banner appears."
+    },
+    {
+      "question": "How do you implement 'usage-based' pricing visualization (like API calls)?",
+      "answer": "Show a base price + overage cost. Use a visual gauge or progress bar showing current usage tier. Example: 'First 1000 calls free, then $0.01/call'. Use CSS `width: calc(usage / limit * 100%)` for the progress bar. Color transitions for tiers."
+    }
+  ]
+}

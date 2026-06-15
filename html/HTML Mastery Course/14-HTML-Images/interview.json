@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "How do you add an image to an HTML page?",
+      "answer": "Use the <img> element with the src attribute: <img src='image.jpg' alt='description'>. The src specifies the file path, and alt provides accessibility text."
+    },
+    {
+      "question": "What is the difference between JPEG and PNG formats?",
+      "answer": "JPEG uses lossy compression, great for photographs with small file sizes but no transparency. PNG uses lossless compression, supports transparency, and is better for graphics, screenshots, and images with text."
+    },
+    {
+      "question": "Why is the alt attribute important?",
+      "answer": "The alt attribute provides text alternatives for screen readers, appears when images fail to load, and helps with SEO. It's required for valid HTML accessibility."
+    },
+    {
+      "question": "How do you make an image a link?",
+      "answer": "Wrap the <img> tag inside an <a> tag: <a href='page.html'><img src='icon.jpg' alt='Page description'></a>. The alt text should describe the link destination."
+    },
+    {
+      "question": "What are the most common image formats used on the web?",
+      "answer": "The most common formats are JPEG (photos), PNG (graphics with transparency), GIF (animations), SVG (vectors/icons), and the newer WebP and AVIF (better compression)."
+    },
+    {
+      "question": "How do you set the size of an image in HTML?",
+      "answer": "Use the width and height attributes: <img src='photo.jpg' width='400' height='300'>. Also use CSS max-width: 100% for responsive behavior."
+    },
+    {
+      "question": "What does the 'loading' attribute do on an image?",
+      "answer": "The loading attribute controls lazy loading. loading='lazy' defers image loading until it's near the viewport, improving performance. loading='eager' loads it immediately."
+    },
+    {
+      "question": "What is an SVG image?",
+      "answer": "SVG (Scalable Vector Graphics) is an XML-based vector image format. Unlike raster formats (JPEG/PNG), SVGs scale infinitely without losing quality, making them ideal for icons, logos, and illustrations."
+    },
+    {
+      "question": "How do you add a caption below an image?",
+      "answer": "Use <figure> and <figcaption>: <figure><img src='photo.jpg' alt='...'><figcaption>Your caption</figcaption></figure>. This semantically groups the image with its caption."
+    },
+    {
+      "question": "What should alt text contain for an informative image?",
+      "answer": "Alt text should describe the content and function of the image. For a chart, describe the data. For a photo, describe the scene. Don't start with 'image of' or 'picture of'."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do responsive images work with srcset and sizes?",
+      "answer": "srcset lists multiple image files with width descriptors (e.g., 400w, 800w). sizes tells the browser the image's display width at different viewport breakpoints. The browser selects the most appropriate source based on the device's screen size and resolution."
+    },
+    {
+      "question": "What is the difference between srcset width descriptors and density descriptors?",
+      "answer": "Width descriptors (400w, 800w) are used with the sizes attribute for responsive width-based selection. Density descriptors (1x, 2x, 3x) are for different pixel densities on fixed-width images, e.g., srcset='icon-1x.png 1x, icon-2x.png 2x'."
+    },
+    {
+      "question": "When should you use the <picture> element instead of srcset?",
+      "answer": "Use <picture> for art direction — when you want to show different crops or entirely different images at different viewport sizes. Use srcset for resolution switching — the same image at different sizes. <picture> also handles format fallbacks with type attributes."
+    },
+    {
+      "question": "What is Cumulative Layout Shift (CLS) and how do images affect it?",
+      "answer": "CLS measures visual stability. Without width/height attributes, images load with 0x0 size then expand, pushing content down. Setting width and height reserves space, preventing layout shifts. Combined with CSS max-width: 100%, images become stable and responsive."
+    },
+    {
+      "question": "How does lazy loading improve page performance?",
+      "answer": "Lazy loading (loading='lazy') defers loading of images outside the initial viewport. This reduces initial page weight, bandwidth usage, and load time. Images load as the user scrolls near them. It's especially beneficial for image-heavy pages and mobile users."
+    },
+    {
+      "question": "What are WebP and AVIF, and why are they recommended?",
+      "answer": "WebP and AVIF are modern image formats offering superior compression compared to JPEG and PNG. WebP supports lossy/lossless compression with alpha channel. AVIF offers even better compression rates. Using them with <picture> fallbacks ensures broad browser compatibility."
+    },
+    {
+      "question": "How do you create an image map with clickable regions?",
+      "answer": "Use the usemap attribute on the <img> linking to a <map> element. Inside <map>, <area> elements define clickable shapes (rect, circle, poly) with coordinates and href attributes. Each <area> needs alt text for accessibility."
+    },
+    {
+      "question": "What is the object-fit property and what values does it accept?",
+      "answer": "object-fit controls how an image fits within its container: fill (stretch), contain (fit without cropping), cover (fill and crop), none (original size), scale-down (smaller of none/contain). cover is commonly used for thumbnails and hero images."
+    },
+    {
+      "question": "How should you handle images in an accessible way?",
+      "answer": "Always provide descriptive alt text, use empty alt='' for decorative images, use <figure> for complex images with captions, add aria-labelledby for image groups, ensure color contrast in images with text, and avoid using images for essential text content."
+    },
+    {
+      "question": "What is the 'decoding' attribute and when should you use it?",
+      "answer": "decoding hints image decoding behavior: 'sync' (decode immediately), 'async' (decode without delaying other content), 'auto' (browser default). Use async for non-critical images to improve perceived performance."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain how the browser selects images from srcset and sizes.",
+      "answer": "The browser: (1) loads the sizes attribute to determine the image's display width (using the first matching media query as a viewport width), (2) multiplies that by the device pixel ratio (DPR), (3) picks the smallest source from srcset that is at least that large, (4) falls back to the src attribute src if no match or if the browser doesn't support srcset. This ensures each device gets the optimal image."
+    },
+    {
+      "question": "What is the 'fetchpriority' attribute and how does it interact with loading='lazy'?",
+      "answer": "fetchpriority hints image fetch priority: 'high', 'low', or 'auto'. It's useful for critical images (LCP elements). When combined with loading='lazy', fetchpriority='high' can prioritize lazy images earlier. Note that browser support and behavior may vary."
+    },
+    {
+      "question": "How does the browser handle image decoding with the 'decoding' attribute?",
+      "answer": "Images are fetched, then decoded from compressed format to raw pixel data. decoding='sync' blocks other work during decoding. decoding='async' allows the browser to continue parsing and rendering while the image decodes in the background. decoding='auto' lets the browser decide. Async decoding is recommended for most images."
+    },
+    {
+      "question": "What are the performance implications of inline SVG vs external SVG files?",
+      "answer": "Inline SVGs avoid HTTP requests and can be styled with CSS, animated, and scripted directly. However, they increase HTML size and aren't cached. External SVG files can be cached by the browser and shared across pages but add HTTP requests. For icons repeated across a site, external SVG sprites or icon systems are more efficient."
+    },
+    {
+      "question": "Explain the concept of 'responsive images' beyond just width/height scaling.",
+      "answer": "Responsive images encompass (1) resolution switching — serving different sizes of the same image via srcset/sizes, (2) art direction — serving different crops/aspect ratios via <picture> media queries, (3) format selection — serving modern formats with fallbacks via <picture> type attributes, and (4) density descriptors for retina displays."
+    },
+    {
+      "question": "How does the browser preload scanner interact with images?",
+      "answer": "The browser's preload scanner parses HTML ahead of the main parser and discovers images in <img src> before CSS is fully loaded. It starts fetching high-priority images early. However, images with loading='lazy' may be deferred even by the preload scanner. srcset images discovered by the preload scanner will trigger early fetches."
+    },
+    {
+      "question": "What is the Largest Contentful Paint (LCP) and how do images affect it?",
+      "answer": "LCP measures when the largest content element becomes visible. Images (especially hero images) are common LCP candidates. To optimize: preload the hero image with <link rel='preload' as='image' href='hero.jpg'>, set fetchpriority='high', compress the image, and ensure fast loading with CDN delivery."
+    },
+    {
+      "question": "How do Content Security Policy (CSP) rules affect image loading?",
+      "answer": "CSP's img-src directive controls which sources images can be loaded from. If an image domain isn't whitelisted in img-src, the browser blocks the image. Inline SVGs (as data URIs) may be affected by img-src and the 'unsafe-inline' setting for script-src."
+    },
+    {
+      "question": "What are the advantages and disadvantages of using data URIs (base64) for images?",
+      "answer": "Advantages: reduces HTTP requests, useful for very small images and sprites, works in single-file HTML. Disadvantages: ~33% larger file size (base64 overhead), blocks initial render (embedded in HTML/CSS), not cacheable separately, increases HTML parse time. Best for tiny images (under 1KB) that are critical to initial render."
+    },
+    {
+      "question": "Explain image optimization strategies for Core Web Vitals.",
+      "answer": "Strategies include: (1) compress images with tools like Squoosh or Sharp, (2) use modern formats (WebP/AVIF) with fallbacks, (3) implement responsive images with srcset for resolution switching, (4) lazy load non-critical images, (5) preload hero images with fetchpriority='high', (6) set explicit width/height to prevent CLS, (7) use CDN with automatic image optimization, (8) reduce JPEG quality to 80-85% for significant savings."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "beginner": [
+    {"question":"What is a datalist and when would you use it?","answer":"A `<datalist>` provides autocomplete suggestions for an `<input>` via the `list` attribute. Use it when you want to suggest common values but still allow free-text entry. Examples: browser names, country codes, search queries."},
+    {"question":"How do you connect an input to a datalist?","answer":"The input's `list` attribute must match the datalist's `id`. Example: `<input list=\"browsers\">` and `<datalist id=\"browsers\">`."},
+    {"question":"What's the difference between <datalist> and <select>?","answer":"A `<select>` forces the user to choose from the listed options. A `<datalist>` provides suggestions but allows free-text entry. Use select when choices must be restricted, datalist for flexible autocomplete."},
+    {"question":"Does datalist work with all input types?","answer":"No. It works with text, search, url, tel, email, number, range, color, date, month, week, and time. It does NOT work with file, checkbox, radio, submit, button, reset, image, or hidden."},
+    {"question":"What attributes can <option> have inside a datalist?","answer":"`value` (required for the suggestion text) and `label` (optional descriptive text shown alongside the value)."}
+  ],
+  "intermediate": [
+    {"question":"How do you dynamically populate a datalist with JavaScript?","answer":"Get the datalist element reference, then set its `innerHTML` with `<option>` elements, or manipulate `datalist.options`. Example: `const dl = document.getElementById('list'); dl.innerHTML = items.map(i => '<option value=\"'+i+'\">').join('');`."},
+    {"question":"What styling limitations does the native datalist have?","answer":"The suggestion popup is rendered by the operating system/browser and cannot be styled with CSS. You cannot change colors, fonts, sizes, or positioning of the dropdown."},
+    {"question":"How does datalist interact with form validation?","answer":"Datalist does not affect form validation. The input value can be anything regardless of the datalist options. Use the `pattern` attribute or custom validation if you need to restrict to list values."},
+    {"question":"Can you use datalist inside a Shadow DOM?","answer":"Yes, but both the `<input>` and `<datalist>` must be in the same shadow tree. The association does not work across shadow boundaries."},
+    {"question":"How do you detect when a user selects a suggestion from the datalist?","answer":"Listen for the `input` event and check `event.inputType` or compare the current value against a stored previous value. There is no native 'suggestion selected' event."}
+  ],
+  "advanced": [
+    {"question":"What is the browser implementation detail for the matching algorithm in datalist?","answer":"Browsers perform a case-insensitive prefix or substring match, with behavior varying by implementation. Chrome and Firefox use substring matching; older Safari versions used prefix matching. The spec does not mandate a specific algorithm."},
+    {"question":"How would you implement a custom stylable autocomplete using datalist as a progressive enhancement?","answer":"Use the native `<datalist>` as base, then overlay a custom dropdown component. Check `window.HTMLDataListElement` support. For unsupported browsers, build a full custom combobox. For supported ones, the native list works but you replace it with a styled list on top."},
+    {"question":"What are the accessibility implications of using datalist vs ARIA combobox pattern?","answer":"Native datalist provides automatic screen reader announcements (number of suggestions, navigation hints). The ARIA combobox pattern (role=combobox + role=listbox) requires manual management but gives full styling control and cross-browser consistency."},
+    {"question":"How would you implement a 'tags' input that uses datalist for suggestions and supports custom values?","answer":"Use a contenteditable div or a text input with split-on-commit. The datalist provides suggestions. When the user selects or types a delimiter (comma, enter), the value is added as a tag. The list attribute dynamically updates to exclude already-selected tags."},
+    {"question":"What are the performance considerations when using datalist with thousands of options?","answer":"Datalist with large option sets (1000+) can cause lag on mobile browsers and memory issues. Always filter options to a reasonable number (max 50-100) when updating dynamically. Debounce the input handler when regenerating the list."}
+  ]
+}

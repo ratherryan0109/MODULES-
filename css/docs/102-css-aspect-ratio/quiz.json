@@ -1,0 +1,182 @@
+{
+  "module": "102-css-aspect-ratio",
+  "title": "CSS Aspect Ratio",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does the CSS property 'aspect-ratio: 16 / 9' do?",
+      "options": [
+        "Sets the element's width to 16px and height to 9px",
+        "Maintains a 16:9 ratio between width and height",
+        "Sets the browser viewport to 16:9",
+        "Creates a 16-column by 9-row grid"
+      ],
+      "correctAnswer": 1,
+      "explanation": "aspect-ratio defines the proportional relationship between width and height. 16/9 means the width will be 16 units for every 9 units of height."
+    },
+    {
+      "id": 2,
+      "question": "What happens if you set both 'width' and 'height' explicitly along with 'aspect-ratio'?",
+      "options": [
+        "aspect-ratio overrides both dimensions",
+        "The explicit width and height win, aspect-ratio is ignored",
+        "Only the smaller explicit dimension wins",
+        "The browser calculates an average"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When both width and height are explicitly set, aspect-ratio is ignored. The property only calculates one dimension from the other."
+    },
+    {
+      "id": 3,
+      "question": "Which CSS property should you combine with aspect-ratio to control how an image fills its box?",
+      "options": ["object-fit", "background-size", "overflow", "resize"],
+      "correctAnswer": 0,
+      "explanation": "object-fit controls how an image or video fills its content box. cover fills and crops, contain shows all content with letterboxing."
+    },
+    {
+      "id": 4,
+      "question": "What does 'aspect-ratio: 1' mean?",
+      "options": ["1:1 ratio (square)", "1px width", "1% height", "Single column layout"],
+      "correctAnswer": 0,
+      "explanation": "aspect-ratio: 1 is shorthand for 1/1, creating a perfect square where width equals height."
+    },
+    {
+      "id": 5,
+      "question": "What was the common technique for creating aspect ratios before the aspect-ratio property?",
+      "options": ["JavaScript dimension calculation", "The padding-bottom percentage hack", "Using CSS tables", "SVG viewBox trick"],
+      "correctAnswer": 1,
+      "explanation": "The padding-bottom hack used percentage-based padding (e.g., padding-bottom: 56.25% for 16:9) on a wrapper element with position: absolute on the inner element."
+    },
+    {
+      "id": 6,
+      "question": "What does 'aspect-ratio: auto' do on an <img> element?",
+      "options": ["Sets a 1:1 square ratio", "Uses the image's intrinsic aspect ratio", "Disables aspect ratio", "Uses the parent's aspect ratio"],
+      "correctAnswer": 1,
+      "explanation": "auto tells the browser to use the element's intrinsic aspect ratio — the natural ratio of the image file."
+    },
+    {
+      "id": 7,
+      "question": "What does the two-value syntax 'aspect-ratio: auto 16 / 9' do?",
+      "options": [
+        "Creates a 16:9 box with auto margins",
+        "Uses intrinsic ratio if available, otherwise 16:9",
+        "Automatically switches between 16:9 and 9:16",
+        "Sets the ratio to auto on mobile and 16:9 on desktop"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The two-value syntax provides a fallback: auto uses the element's intrinsic ratio, and 16/9 is used if no intrinsic ratio exists."
+    },
+    {
+      "id": 8,
+      "question": "What is the padding-bottom percentage for a 4:3 aspect ratio?",
+      "options": ["75%", "56.25%", "133.33%", "25%"],
+      "correctAnswer": 0,
+      "explanation": "For 4:3 ratio: 3/4 × 100 = 75%. Padding-bottom is calculated as (height / width) × 100%."
+    },
+    {
+      "id": 9,
+      "question": "Which browser versions support aspect-ratio?",
+      "options": ["Chrome 89+, Firefox 87+, Safari 15+, Edge 89+", "Chrome 69+, Firefox 66+, Safari 12+", "All browsers including IE11", "Only Chromium-based browsers"],
+      "correctAnswer": 0,
+      "explanation": "CSS aspect-ratio is supported in Chrome 89+, Firefox 87+, Safari 15+, and Edge 89+. IE does not support it."
+    },
+    {
+      "id": 10,
+      "question": "Why is aspect-ratio better than the padding-bottom hack?",
+      "options": [
+        "It's faster to write and doesn't need wrapper elements",
+        "It has better browser support",
+        "It supports more aspect ratios",
+        "It works with all HTML elements"
+      ],
+      "correctAnswer": 0,
+      "explanation": "aspect-ratio is cleaner (no wrapper needed), more intuitive (16/9 vs 56.25%), and doesn't require position: absolute on the inner element."
+    },
+    {
+      "id": 11,
+      "question": "What should you do if an element with aspect-ratio contains text that might overflow?",
+      "options": ["Remove aspect-ratio", "Set overflow: auto or add min-height", "Use smaller text", "Increase the width"],
+      "correctAnswer": 1,
+      "explanation": "Text-heavy elements with aspect-ratio may clip content. Set overflow: auto to allow scrolling or add a min-height safety net."
+    },
+    {
+      "id": 12,
+      "question": "What happens to aspect-ratio when an element has width: auto in a flex container?",
+      "options": [
+        "It works the same as in block layout",
+        "The flex container's cross-axis alignment affects the effective ratio",
+        "Aspect-ratio is ignored in flex contexts",
+        "Only height is calculated"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In flex containers, items stretch by default (align-items: stretch), which can affect aspect-ratio calculations. Adjust alignment as needed."
+    },
+    {
+      "id": 13,
+      "question": "What is the aspect-ratio for standard widescreen video?",
+      "options": ["4:3", "16:9", "21:9", "2:1"],
+      "correctAnswer": 1,
+      "explanation": "Standard widescreen video uses a 16:9 aspect ratio. This is the most common ratio for modern displays and video content."
+    },
+    {
+      "id": 14,
+      "question": "If you set 'width: 100%' and 'aspect-ratio: 16/9' on a div in a 400px-wide container, what will the height be?",
+      "options": ["225px", "300px", "400px", "250px"],
+      "correctAnswer": 0,
+      "explanation": "Height = width / (16/9) = 400 / 1.777... = 225px."
+    },
+    {
+      "id": 15,
+      "question": "Which object-fit value should you use to ensure an image fills its aspect-ratio box without distortion, cropping content?",
+      "options": ["cover", "contain", "fill", "scale-down"],
+      "correctAnswer": 1,
+      "explanation": "object-fit: contain shows the entire image within the box while preserving aspect ratio, adding letterboxing if needed. cover crops but fills completely."
+    },
+    {
+      "id": 16,
+      "question": "Does aspect-ratio work on replaced elements like <canvas> and <video>?",
+      "options": ["Yes, it works on all elements", "No, only images", "Only on <video>, not <canvas>", "Only on non-replaced elements"],
+      "correctAnswer": 0,
+      "explanation": "aspect-ratio works on all HTML elements — replaced (img, video, canvas) and non-replaced (div, section, p)."
+    },
+    {
+      "id": 17,
+      "question": "What CSS at-rule can detect aspect-ratio support for fallbacks?",
+      "options": ["@media", "@supports", "@import", "@layer"],
+      "correctAnswer": 1,
+      "explanation": "@supports not (aspect-ratio: 16 / 9) can detect missing support and provide fallback styles for older browsers."
+    },
+    {
+      "id": 18,
+      "question": "What is the decimal equivalent of a 4:3 aspect ratio?",
+      "options": ["1.33", "1.5", "1.77", "0.75"],
+      "correctAnswer": 0,
+      "explanation": "4/3 = 1.333... The decimal represents how many times wider the element is compared to its height."
+    },
+    {
+      "id": 19,
+      "question": "What happens to aspect-ratio if neither width nor height is constrained?",
+      "options": [
+        "The element takes the ratio from the parent",
+        "Aspect-ratio has no visible effect",
+        "The element collapses to zero dimensions",
+        "The browser defaults to a 1:1 ratio"
+      ],
+      "correctAnswer": 1,
+      "explanation": "If neither dimension is constrained (e.g., a block element with width: auto and no container width), aspect-ratio has no visible effect."
+    },
+    {
+      "id": 20,
+      "question": "What is the most common use case for 'aspect-ratio: auto 16/9'?",
+      "options": [
+        "Images that might not load — use intrinsic ratio if loaded, 16:9 if not",
+        "Videos that should always be 16:9 regardless of source",
+        "Responsive containers that switch ratio at breakpoints",
+        "Elements that should be square on mobile and 16:9 on desktop"
+      ],
+      "correctAnswer": 0,
+      "explanation": "auto 16/9 on an img means: if the image has loaded (has intrinsic ratio), use that; otherwise use 16:9 as a placeholder ratio."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Create a Card with Distinct Borders",
+    "description": "Style a profile card with different borders on each side and rounded corners. Top border should be thick solid blue, right dashed green, bottom dotted orange, and left double purple.",
+    "starterCode": "<div class=\"card\">\n  <h2>John Doe</h2>\n  <p>Web Developer</p>\n</div>\n\n<style>\n  /* Add per-side borders with different styles */\n</style>",
+    "solution": "<div class=\"card\">\n  <h2>John Doe</h2>\n  <p>Web Developer</p>\n</div>\n\n<style>\n.card {\n  max-width: 300px;\n  margin: 40px auto;\n  padding: 30px;\n  font-family: Arial;\n  text-align: center;\n  border-top: 5px solid #4299e1;\n  border-right: 4px dashed #38a169;\n  border-bottom: 4px dotted #d69e2e;\n  border-left: 5px double #9f7aea;\n  border-radius: 15px;\n}\n</style>"
+  },
+  "medium": {
+    "title": "Build a Button System with Border Effects",
+    "description": "Create 3 buttons with different border styles that animate on hover: an outlined button that fills on hover, a ghost button where border appears on hover, and an underlined button with animated bottom border.",
+    "starterCode": "<button class=\"btn outlined\">Outlined</button>\n<button class=\"btn ghost\">Ghost</button>\n<button class=\"btn underlined\">Underlined</button>\n\n<style>\n  /* Style each button type with border hover effects */\n</style>",
+    "solution": "<button class=\"btn outlined\">Outlined</button>\n<button class=\"btn ghost\">Ghost</button>\n<button class=\"btn underlined\">Underlined</button>\n\n<style>\nbody { padding: 40px; font-family: Arial; }\n.btn { background: none; padding: 12px 24px; font-size: 16px; cursor: pointer; margin: 10px; transition: all 0.3s; }\n.outlined { border: 2px solid #4299e1; color: #4299e1; border-radius: 5px; }\n.outlined:hover { background: #4299e1; color: white; }\n.ghost { border: 2px solid transparent; color: #333; border-radius: 5px; }\n.ghost:hover { border-color: #333; }\n.underlined { border: none; color: #e53e3e; border-bottom: 2px solid #e53e3e; border-radius: 0; padding: 8px 0; }\n.underlined:hover { border-bottom-width: 4px; }\n</style>"
+  },
+  "hard": {
+    "title": "Build a Profile Card with Custom Shapes",
+    "description": "Create a profile card featuring a circular avatar using border-radius: 50%, a pill-shaped badge, and a top accent border. Use box-sizing: border-box to ensure borders don't break the layout.",
+    "starterCode": "<div class=\"profile-card\">\n  <div class=\"avatar\"></div>\n  <h2>Jane Smith</h2>\n  <span class=\"badge\">Pro Member</span>\n  <p>Full-stack developer with 5 years experience building web applications.</p>\n</div>\n\n<style>\n  /* Create the profile card with circle, pill, and accent border */\n</style>",
+    "solution": "<div class=\"profile-card\">\n  <div class=\"avatar\"></div>\n  <h2>Jane Smith</h2>\n  <span class=\"badge\">Pro Member</span>\n  <p>Full-stack developer with 5 years experience building web applications.</p>\n</div>\n\n<style>\n* { box-sizing: border-box; }\nbody { display: flex; justify-content: center; padding: 40px; font-family: Arial; background: #f7fafc; }\n.profile-card {\n  width: 320px;\n  padding: 30px;\n  text-align: center;\n  background: white;\n  border-top: 4px solid #4299e1;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.1);\n}\n.avatar {\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  margin: 0 auto 15px;\n}\n.badge {\n  display: inline-block;\n  padding: 6px 20px;\n  border-radius: 9999px;\n  background: #ebf8ff;\n  color: #4299e1;\n  font-size: 0.85em;\n  font-weight: bold;\n}\n</style>"
+  }
+}

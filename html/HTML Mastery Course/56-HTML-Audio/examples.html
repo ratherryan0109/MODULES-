@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 56: HTML Audio Examples</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fafafa;
+      color: #222;
+    }
+    h1 { border-bottom: 3px solid #4A90D9; padding-bottom: 10px; }
+    h2 { color: #4A90D9; margin-top: 30px; }
+    .example-box {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+    .output {
+      background: #f5f5f5;
+      border: 1px dashed #999;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+    .note {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .tag {
+      background: #4A90D9;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    audio { width: 100%; }
+    .custom-player {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .custom-player button {
+      background: rgba(255,255,255,0.2);
+      border: 2px solid white;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .custom-player button:hover { background: rgba(255,255,255,0.4); }
+    .custom-player input[type="range"] {
+      flex: 1;
+      min-width: 100px;
+      accent-color: white;
+    }
+    .custom-player .time { font-size: 14px; font-variant-numeric: tabular-nums; }
+    .vis-canvas {
+      width: 100%;
+      height: 150px;
+      background: #1a1a2e;
+      border-radius: 8px;
+    }
+    .playlist-item {
+      padding: 10px 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .playlist-item:hover { background: #f0f0f0; }
+    .playlist-item.active { background: #e3f2fd; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h1>HTML Audio — Interactive Examples</h1>
+<p>All examples use a generated sine wave audio (no external files needed).</p>
+
+<!-- Example 1: Basic Audio -->
+<h2>1. Basic Audio with Controls</h2>
+<div class="example-box">
+  <p>The simplest way to embed audio — the <code>controls</code> attribute provides native play/pause and volume.</p>
+  <div class="code-block">
+    &lt;audio controls&gt;<br>
+    &nbsp;&nbsp;&lt;source src="audio.mp3" type="audio/mpeg"&gt;<br>
+    &nbsp;&nbsp;&lt;source src="audio.ogg" type="audio/ogg"&gt;<br>
+    &nbsp;&nbsp;Your browser does not support HTML5 audio.<br>
+    &lt;/audio&gt;
+  </div>
+  <div class="output">
+    <audio controls id="basicAudio">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.ogg" type="audio/ogg">
+      Your browser does not support the audio element.
+    </audio>
+    <p><small>Using a demo track from SoundHelix. If it doesn't load, try another source.</small></p>
+  </div>
+</div>
+
+<!-- Example 2: Autoplay and Loop -->
+<h2>2. Autoplay with Loop (Muted)</h2>
+<div class="example-box">
+  <p>Autoplay requires the <code>muted</code> attribute in modern browsers. The audio loops indefinitely.</p>
+  <div class="code-block">
+    &lt;audio autoplay loop muted&gt;<br>
+    &nbsp;&nbsp;&lt;source src="background.mp3" type="audio/mpeg"&gt;<br>
+    &lt;/audio&gt;
+  </div>
+  <div class="note">
+    <strong>Note:</strong> Click the button below to allow unmuted autoplay once.
+  </div>
+  <div class="output">
+    <button onclick="enableAutoplay()">Enable Autoplay Demo</button>
+    <audio id="loopAudio" loop muted style="display:none;">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    </audio>
+    <p id="autoStatus">Autoplay: disabled (muted)</p>
+    <script>
+      function enableAutoplay() {
+        const a = document.getElementById('loopAudio');
+        a.muted = false;
+        a.play().catch(() => {
+          document.getElementById('autoStatus').textContent = 'Autoplay blocked by browser policy';
+        });
+        document.getElementById('autoStatus').textContent = 'Autoplay enabled (unmuted)';
+      }
+    </script>
+  </div>
+</div>
+
+<!-- Example 3: Preload Strategies -->
+<h2>3. Preload Strategies</h2>
+<div class="example-box">
+  <p>The <code>preload</code> attribute controls how much audio data the browser loads before play.</p>
+  <div class="code-block">
+    &lt;audio controls preload="metadata"&gt;
+  </div>
+  <div class="output">
+    <p><strong>preload="none":</strong> Loads nothing until user clicks play</p>
+    <audio controls preload="none">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+    </audio>
+    <p><strong>preload="metadata":</strong> Loads duration and basic info</p>
+    <audio controls preload="metadata">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+    </audio>
+    <p><strong>preload="auto":</strong> Loads entire file (default)</p>
+    <audio controls preload="auto">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</div>
+
+<!-- Example 4: JavaScript Audio API -->
+<h2>4. JavaScript Audio API — Programmatic Control</h2>
+<div class="example-box">
+  <p>Create and control audio entirely from JavaScript.</p>
+  <div class="code-block">
+    const audio = new Audio('track.mp3');<br>
+    audio.volume = 0.5;<br>
+    audio.playbackRate = 1.5;<br>
+    audio.play();<br><br>
+    // Events<br>
+    audio.addEventListener('ended', () => console.log('Finished'));
+  </div>
+  <div class="output">
+    <button onclick="playJS()">▶ Play</button>
+    <button onclick="pauseJS()">⏸ Pause</button>
+    <button onclick="stopJS()">⏹ Stop</button>
+    <label>Speed: <select onchange="speedJS(this.value)">
+      <option value="0.5">0.5x</option>
+      <option value="1" selected>1x</option>
+      <option value="1.5">1.5x</option>
+      <option value="2">2x</option>
+    </select></label>
+    <label>Volume: <input type="range" min="0" max="1" step="0.1" value="0.7" oninput="volJS(this.value)"></label>
+    <p id="jsStatus">Ready</p>
+    <script>
+      const jsAudio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3');
+      jsAudio.volume = 0.7;
+
+      function playJS() {
+        jsAudio.play().catch(e => document.getElementById('jsStatus').textContent = 'Play failed: ' + e.message);
+        document.getElementById('jsStatus').textContent = 'Playing...';
+      }
+      function pauseJS() { jsAudio.pause(); document.getElementById('jsStatus').textContent = 'Paused'; }
+      function stopJS() { jsAudio.pause(); jsAudio.currentTime = 0; document.getElementById('jsStatus').textContent = 'Stopped'; }
+      function speedJS(v) { jsAudio.playbackRate = parseFloat(v); }
+      function volJS(v) { jsAudio.volume = parseFloat(v); }
+      jsAudio.addEventListener('ended', () => document.getElementById('jsStatus').textContent = 'Finished');
+    </script>
+  </div>
+</div>
+
+<!-- Example 5: Custom Audio Player -->
+<h2>5. Custom Audio Player</h2>
+<div class="example-box">
+  <p>A styled custom player with seek bar, time display, and volume control.</p>
+  <div class="output">
+    <div class="custom-player" id="customPlayer">
+      <button id="cpPlayBtn">▶</button>
+      <input type="range" id="cpSeek" value="0" min="0" max="100" step="0.1">
+      <span class="time" id="cpCurrent">0:00</span>
+      <span class="time">/</span>
+      <span class="time" id="cpDuration">0:00</span>
+      <input type="range" id="cpVolume" min="0" max="1" step="0.05" value="0.7" style="max-width:80px;">
+      <button id="cpMuteBtn">🔊</button>
+    </div>
+    <script>
+      (function() {
+        const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3');
+        const playBtn = document.getElementById('cpPlayBtn');
+        const seek = document.getElementById('cpSeek');
+        const current = document.getElementById('cpCurrent');
+        const duration = document.getElementById('cpDuration');
+        const volume = document.getElementById('cpVolume');
+        const muteBtn = document.getElementById('cpMuteBtn');
+        let isSeeking = false;
+
+        playBtn.addEventListener('click', () => {
+          if (audio.paused) {
+            audio.play().catch(e => alert('Play failed: ' + e.message));
+          } else {
+            audio.pause();
+          }
+        });
+
+        audio.addEventListener('play', () => { playBtn.textContent = '⏸'; });
+        audio.addEventListener('pause', () => { playBtn.textContent = '▶'; });
+        audio.addEventListener('ended', () => { playBtn.textContent = '▶'; });
+
+        audio.addEventListener('loadedmetadata', () => {
+          duration.textContent = formatTime(audio.duration);
+          seek.max = audio.duration;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+          if (!isSeeking) {
+            seek.value = audio.currentTime;
+            current.textContent = formatTime(audio.currentTime);
+          }
+        });
+
+        seek.addEventListener('input', () => {
+          isSeeking = true;
+          current.textContent = formatTime(parseFloat(seek.value));
+        });
+
+        seek.addEventListener('change', () => {
+          audio.currentTime = parseFloat(seek.value);
+          isSeeking = false;
+        });
+
+        volume.addEventListener('input', () => {
+          audio.volume = parseFloat(volume.value);
+          muteBtn.textContent = audio.volume === 0 ? '🔇' : '🔊';
+        });
+
+        muteBtn.addEventListener('click', () => {
+          audio.muted = !audio.muted;
+          muteBtn.textContent = audio.muted ? '🔇' : '🔊';
+        });
+
+        function formatTime(s) {
+          if (isNaN(s)) return '0:00';
+          const m = Math.floor(s / 60);
+          const sec = Math.floor(s % 60).toString().padStart(2, '0');
+          return `${m}:${sec}`;
+        }
+      })();
+    </script>
+  </div>
+</div>
+
+<!-- Example 6: Playlist -->
+<h2>6. Audio Playlist</h2>
+<div class="example-box">
+  <p>A simple JavaScript-powered playlist that queues and plays multiple tracks.</p>
+  <div class="output">
+    <div id="playlist">
+      <div class="playlist-item active" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" onclick="playTrack(this)">🎵 Track 1 - Ambient</div>
+      <div class="playlist-item" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" onclick="playTrack(this)">🎵 Track 2 - Groove</div>
+      <div class="playlist-item" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" onclick="playTrack(this)">🎵 Track 3 - Uptempo</div>
+      <div class="playlist-item" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3" onclick="playTrack(this)">🎵 Track 4 - Chill</div>
+    </div>
+    <div style="margin-top: 10px;">
+      <button onclick="playlistAudio.play()">▶ Play</button>
+      <button onclick="playlistAudio.pause()">⏸ Pause</button>
+      <span id="playlistStatus">Select a track</span>
+    </div>
+    <script>
+      const playlistAudio = new Audio();
+      let currentItem = null;
+
+      function playTrack(el) {
+        document.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('active'));
+        el.classList.add('active');
+        playlistAudio.src = el.dataset.src;
+        currentItem = el;
+        playlistAudio.play().catch(e => console.warn(e));
+        document.getElementById('playlistStatus').textContent = 'Playing: ' + el.textContent.trim();
+      }
+
+      playlistAudio.addEventListener('ended', () => {
+        const next = currentItem?.nextElementSibling;
+        if (next) {
+          playTrack(next);
+        } else {
+          document.getElementById('playlistStatus').textContent = 'Playlist finished';
+        }
+      });
+    </script>
+  </div>
+</div>
+
+<!-- Example 7: Sound Detection -->
+<h2>7. Audio Features Detection</h2>
+<div class="example-box">
+  <p>Check which audio formats the user's browser supports.</p>
+  <div class="code-block">
+    const audio = document.createElement('audio');<br>
+    audio.canPlayType('audio/mpeg'); // 'probably' | 'maybe' | ''
+  </div>
+  <div class="output" id="supportOutput">
+    <script>
+      (function() {
+        const a = document.createElement('audio');
+        const formats = [
+          { fmt: 'MP3', type: 'audio/mpeg' },
+          { fmt: 'OGG', type: 'audio/ogg; codecs="vorbis"' },
+          { fmt: 'WAV', type: 'audio/wav' },
+          { fmt: 'AAC', type: 'audio/aac' },
+          { fmt: 'FLAC', type: 'audio/flac' },
+          { fmt: 'WebM/Opus', type: 'audio/webm; codecs="opus"' }
+        ];
+        let html = '<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%">';
+        html += '<tr><th>Format</th><th>MIME Type</th><th>Support Level</th></tr>';
+        formats.forEach(f => {
+          const support = a.canPlayType(f.type);
+          const icon = support === 'probably' ? '✅' : support === 'maybe' ? '⚠️' : '❌';
+          const color = support === 'probably' ? '#4caf50' : support === 'maybe' ? '#ff9800' : '#f44336';
+          html += `<tr><td>${f.fmt}</td><td>${f.type}</td><td style="color:${color}">${icon} ${support || 'not supported'}</td></tr>`;
+        });
+        html += '</table>';
+        document.getElementById('supportOutput').innerHTML = html;
+      })();
+    </script>
+  </div>
+</div>
+
+<!-- Example 8: Audio Context Visualization -->
+<h2>8. Audio Visualization (Playground)</h2>
+<div class="example-box">
+  <p>This demonstrates how to connect an audio element to the Web Audio API for visualization.</p>
+  <div class="note">
+    <strong>Note:</strong> AudioContext requires user gesture. Click "Start Visualization" first.
+  </div>
+  <div class="output">
+    <button onclick="startViz()">▶ Start Visualization</button>
+    <button onclick="stopViz()">⏹ Stop</button>
+    <canvas id="visCanvas" class="vis-canvas"></canvas>
+    <script>
+      let vizAudio = null;
+      let vizSource = null;
+      let analyser = null;
+      let audioCtx = null;
+      let animId = null;
+      let isVizPlaying = false;
+
+      function startViz() {
+        if (isVizPlaying) return;
+        try {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          vizAudio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+          vizSource = audioCtx.createMediaElementSource(vizAudio);
+          analyser = audioCtx.createAnalyser();
+          analyser.fftSize = 256;
+          vizSource.connect(analyser);
+          analyser.connect(audioCtx.destination);
+
+          const canvas = document.getElementById('visCanvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = canvas.offsetWidth;
+          canvas.height = 150;
+          const bufferLength = analyser.frequencyBinCount;
+          const dataArray = new Uint8Array(bufferLength);
+
+          function draw() {
+            animId = requestAnimationFrame(draw);
+            analyser.getByteFrequencyData(dataArray);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const barWidth = (canvas.width / bufferLength) * 2;
+            let x = 0;
+            for (let i = 0; i < bufferLength; i++) {
+              const barHeight = (dataArray[i] / 255) * canvas.height;
+              const hue = (i / bufferLength) * 300;
+              ctx.fillStyle = `hsl(${hue}, 80%, 60%)`;
+              ctx.fillRect(x, canvas.height - barHeight, barWidth - 1, barHeight);
+              x += barWidth;
+            }
+          }
+
+          vizAudio.play().then(() => {
+            draw();
+            isVizPlaying = true;
+          }).catch(e => alert('Play blocked: ' + e.message));
+        } catch(e) {
+          alert('Visualization error: ' + e.message);
+        }
+      }
+
+      function stopViz() {
+        if (vizAudio) { vizAudio.pause(); vizAudio = null; }
+        if (animId) { cancelAnimationFrame(animId); animId = null; }
+        if (audioCtx) { audioCtx.close(); audioCtx = null; }
+        isVizPlaying = false;
+        const canvas = document.getElementById('visCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    </script>
+  </div>
+</div>
+
+<!-- Example 9: Media Session API -->
+<h2>9. Media Session API Integration</h2>
+<div class="example-box">
+  <p>Integrate with system media controls (lock screen, notification bar) using the Media Session API.</p>
+  <div class="code-block">
+    if ('mediaSession' in navigator) {<br>
+    &nbsp;&nbsp;navigator.mediaSession.metadata = new MediaMetadata({<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;title: 'Song Title',<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;artist: 'Artist Name',<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;artwork: [{ src: 'cover.jpg', sizes: '512x512' }]<br>
+    &nbsp;&nbsp;});<br>
+    }
+  </div>
+  <div class="output">
+    <button onclick="demoMediaSession()">▶ Play with Media Session</button>
+    <p id="mediaSessionStatus">Click to try (works on mobile/Chrome)</p>
+    <script>
+      function demoMediaSession() {
+        const a = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3');
+        a.play();
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: 'SoundHelix Demo',
+            artist: 'SoundHelix',
+            album: 'Example Tracks',
+            artwork: [
+              { src: 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><rect fill="#4A90D9" width="512" height="512"/><text x="256" y="256" fill="white" font-size="200" text-anchor="middle" dy=".35em">♪</text></svg>'), sizes: '512x512', type: 'image/svg+xml' }
+            ]
+          });
+          navigator.mediaSession.setActionHandler('play', () => a.play());
+          navigator.mediaSession.setActionHandler('pause', () => a.pause());
+          document.getElementById('mediaSessionStatus').textContent = 'Media Session active — check your lock screen!';
+        } else {
+          document.getElementById('mediaSessionStatus').textContent = 'Media Session API not supported in this browser';
+        }
+      }
+    </script>
+  </div>
+</div>
+
+<!-- Example 10: Error Handling -->
+<h2>10. Error Handling and Fallbacks</h2>
+<div class="example-box">
+  <p>Robust audio implementations handle loading errors gracefully.</p>
+  <div class="code-block">
+    audio.addEventListener('error', (e) => {<br>
+    &nbsp;&nbsp;const msg = audio.error.message;<br>
+    &nbsp;&nbsp;showFallback();<br>
+    });
+  </div>
+  <div class="output">
+    <audio controls id="errorDemo">
+      <source src="nonexistent.mp3" type="audio/mpeg">
+      <source src="nonexistent.ogg" type="audio/ogg">
+      Your browser does not support audio. 
+      <a href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">Download the audio file</a> instead.
+    </audio>
+    <p id="errorMsg" style="color: #856404; background: #fff3cd; padding: 8px; border-radius: 4px;"></p>
+    <script>
+      document.getElementById('errorDemo').addEventListener('error', function() {
+        document.getElementById('errorMsg').textContent = '⚠️ Audio source failed to load. Using fallback text.';
+      });
+    </script>
+  </div>
+</div>
+
+</body>
+</html>

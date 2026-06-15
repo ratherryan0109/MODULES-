@@ -1,0 +1,222 @@
+[
+  {
+    "question": "Which object provides access to the Geolocation API?",
+    "options": [
+      "window.location",
+      "navigator.geolocation",
+      "document.geolocation",
+      "window.geolocation"
+    ],
+    "answer": "b",
+    "explanation": "The Geolocation API is accessed through navigator.geolocation, which must first be checked for browser support."
+  },
+  {
+    "question": "What method is used to get a one-time position fix?",
+    "options": [
+      "navigator.geolocation.getLocation()",
+      "navigator.geolocation.getCurrentPosition()",
+      "navigator.geolocation.getPosition()",
+      "navigator.geolocation.requestPosition()"
+    ],
+    "answer": "b",
+    "explanation": "getCurrentPosition(success, error, options) requests a single position fix and returns the result via callback."
+  },
+  {
+    "question": "Which property of the Position object gives the accuracy of the coordinates?",
+    "options": [
+      "position.coords.precision",
+      "position.coords.accuracy",
+      "position.coords.confidence",
+      "position.accuracy"
+    ],
+    "answer": "b",
+    "explanation": "position.coords.accuracy provides the accuracy of the latitude and longitude in meters."
+  },
+  {
+    "question": "What does error code 1 (PERMISSION_DENIED) mean?",
+    "options": [
+      "GPS signal lost",
+      "The user denied the location request",
+      "Request timed out",
+      "Location information unavailable"
+    ],
+    "answer": "b",
+    "explanation": "PERMISSION_DENIED (code 1) indicates the user explicitly denied the geolocation permission request."
+  },
+  {
+    "question": "Which option improves position accuracy at the cost of more power consumption?",
+    "options": [
+      "enableHighAccuracy: true",
+      "highPrecision: true",
+      "accurateMode: true",
+      "useGPS: true"
+    ],
+    "answer": "a",
+    "explanation": "enableHighAccuracy: true requests the best possible accuracy (typically using GPS), which consumes more battery."
+  },
+  {
+    "question": "What method is used to continuously monitor position changes?",
+    "options": [
+      "navigator.geolocation.monitorPosition()",
+      "navigator.geolocation.trackPosition()",
+      "navigator.geolocation.watchPosition()",
+      "navigator.geolocation.followPosition()"
+    ],
+    "answer": "c",
+    "explanation": "watchPosition() returns a watch ID and calls the success callback each time the position changes."
+  },
+  {
+    "question": "How do you stop tracking a position previously started with watchPosition()?",
+    "options": [
+      "navigator.geolocation.stopWatch(id)",
+      "navigator.geolocation.clearWatch(id)",
+      "navigator.geolocation.endWatch(id)",
+      "navigator.geolocation.removeWatch(id)"
+    ],
+    "answer": "b",
+    "explanation": "clearWatch(watchId) stops the position tracking associated with the given watch ID."
+  },
+  {
+    "question": "What does the maximumAge option control?",
+    "options": [
+      "Maximum device age",
+      "Maximum position cache age in milliseconds",
+      "Maximum number of position requests",
+      "Maximum distance moved before update"
+    ],
+    "answer": "b",
+    "explanation": "maximumAge specifies how old (in ms) a cached position can be before requesting a fresh position."
+  },
+  {
+    "question": "Which property on the Position object holds the time the position was acquired?",
+    "options": [
+      "position.time",
+      "position.coords.timestamp",
+      "position.timestamp",
+      "position.acquired"
+    ],
+    "answer": "c",
+    "explanation": "position.timestamp is a DOMTimeStamp indicating when the position data was acquired."
+  },
+  {
+    "question": "What is required for the Geolocation API to work?",
+    "options": [
+      "A GPS chip in the device",
+      "A secure context (HTTPS or localhost)",
+      "A geolocation API key",
+      "An active internet connection at all times"
+    ],
+    "answer": "b",
+    "explanation": "The Geolocation API requires a secure context (HTTPS) or localhost. It will not work on plain HTTP."
+  },
+  {
+    "question": "What does heading represent in the Coordinates object?",
+    "options": [
+      "Direction the device is facing",
+      "Direction of travel in degrees clockwise from true north",
+      "GPS satellite heading",
+      "Compass bearing to nearest landmark"
+    ],
+    "answer": "b",
+    "explanation": "heading indicates the direction of travel in degrees clockwise from true north. It is null if the device is stationary."
+  },
+  {
+    "question": "What happens if you call getCurrentPosition before the user grants permission?",
+    "options": [
+      "The position is returned immediately",
+      "The browser prompts the user for permission",
+      "An error is thrown",
+      "The request is silently ignored"
+    ],
+    "answer": "b",
+    "explanation": "The first call to getCurrentPosition triggers the browser's permission prompt for the user to grant or deny access."
+  },
+  {
+    "question": "How can you check the current geolocation permission state without triggering a prompt?",
+    "options": [
+      "navigator.geolocation.checkPermission()",
+      "navigator.permissions.query({name: 'geolocation'})",
+      "Check navigator.geolocation.state",
+      "It's not possible to check without prompting"
+    ],
+    "answer": "b",
+    "explanation": "The Permissions API with navigator.permissions.query({name: 'geolocation'}) returns the current state (granted, denied, or prompt)."
+  },
+  {
+    "question": "What value does speed return in the Coordinates object?",
+    "options": [
+      "Speed in kilometers per hour",
+      "Speed in meters per second",
+      "Speed in miles per hour",
+      "Speed in knots"
+    ],
+    "answer": "b",
+    "explanation": "speed is the velocity of the device in meters per second. It is null if the device cannot measure speed."
+  },
+  {
+    "question": "Which error code is triggered when the position request exceeds the timeout?",
+    "options": [
+      "PERMISSION_DENIED (1)",
+      "POSITION_UNAVAILABLE (2)",
+      "TIMEOUT (3)",
+      "NETWORK_ERROR (4)"
+    ],
+    "answer": "c",
+    "explanation": "TIMEOUT (code 3) occurs when the time specified in the options.timeout is exceeded before a position is obtained."
+  },
+  {
+    "question": "What is the default behavior if the timeout option is not specified?",
+    "options": [
+      "Timeout is 10 seconds",
+      "Timeout is infinite",
+      "Timeout is 30 seconds",
+      "There is no default; it must be specified"
+    ],
+    "answer": "b",
+    "explanation": "If timeout is not specified, the request will wait indefinitely for a position fix."
+  },
+  {
+    "question": "Which of the following is NOT a valid approach for handling a denied geolocation request?",
+    "options": [
+      "Show a message explaining why location is needed",
+      "Use IP-based geolocation as fallback",
+      "Continually re-prompt the user until they accept",
+      "Allow manual location entry"
+    ],
+    "answer": "c",
+    "explanation": "Continually re-prompting is poor UX. Once denied, gracefully degrade with fallback options or explanatory messaging."
+  },
+  {
+    "question": "What does the altitude property return?",
+    "options": [
+      "Height above the device",
+      "Altitude in meters above the WGS84 ellipsoid",
+      "Distance from the nearest cell tower",
+      "Floor number in a building"
+    ],
+    "answer": "b",
+    "explanation": "altitude is the height in meters above the WGS84 ellipsoid (approximate mean sea level). It is null if not available."
+  },
+  {
+    "question": "Why should geolocation requests be triggered by user interaction (click/tap)?",
+    "options": [
+      "To reduce battery usage",
+      "To ensure the permission prompt is user-initiated and expected",
+      "To bypass HTTPS requirements",
+      "To improve GPS signal acquisition"
+    ],
+    "answer": "b",
+    "explanation": "Triggering on user interaction makes the permission prompt expected and contextual, improving user trust and acceptance rates."
+  },
+  {
+    "question": "What is the typical accuracy range for IP-based geolocation?",
+    "options": [
+      "1-10 meters",
+      "10-100 meters",
+      "Tens of kilometers",
+      "Exactly 50 kilometers"
+    ],
+    "answer": "c",
+    "explanation": "IP geolocation typically provides accuracy in the range of tens of kilometers (city-level), much less precise than GPS or Wi-Fi."
+  }
+]

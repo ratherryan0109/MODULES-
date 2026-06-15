@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Grid Alignment - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b}.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px;flex-wrap:wrap}
+.controls{flex:0 0 280px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;min-width:400px;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:12px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group select,.group input{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px}
+.group input[type="range"]{padding:0;height:6px;cursor:pointer}
+.grid-container{display:grid;gap:4px;background:#2d2d44;border-radius:8px;padding:4px;transition:all .3s;min-height:250px}
+.el{display:flex;align-items:center;justify-content:center;border-radius:4px;font-weight:bold;font-size:13px;text-align:center;overflow:hidden;padding:4px}
+#css-code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf;white-space:pre;overflow-x:auto}
+.btn{background:#6c5ce7;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;margin-top:5px;margin-right:5px}
+.btn-reset{background:#ff6b6b}
+</style>
+</head>
+<body>
+<h1>Grid Alignment Playground</h1>
+<p class="subtitle">Experiment with item alignment, content alignment, and per-item overrides</p>
+<div class="layout">
+<div class="controls">
+<div class="group"><label>Mode</label><select id="mode"><option value="item">Item Alignment (in cells)</option><option value="content">Content Alignment (of tracks)</option></select></div>
+<div class="group"><label>justify-items / justify-content</label><select id="justify"><option value="stretch">stretch (default)</option><option value="start">start</option><option value="center">center</option><option value="end">end</option><option value="space-between">space-between</option><option value="space-around">space-around</option><option value="space-evenly">space-evenly</option></select></div>
+<div class="group"><label>align-items / align-content</label><select id="align"><option value="stretch">stretch (default)</option><option value="start">start</option><option value="center">center</option><option value="end">end</option><option value="space-between">space-between</option><option value="space-around">space-around</option><option value="space-evenly">space-evenly</option></select></div>
+<div class="group"><label>Item 1 justify-self override</label><select id="item1-justify"><option value="">None (inherit)</option><option value="start">start</option><option value="center">center</option><option value="end">end</option><option value="stretch">stretch</option></select></div>
+<div class="group"><label>Item 2 align-self override</label><select id="item2-align"><option value="">None (inherit)</option><option value="start">start</option><option value="center">center</option><option value="end">end</option><option value="stretch">stretch</option></select></div>
+<div class="group"><label>Columns</label><select id="cols"><option value="repeat(3, 1fr)">3 equal (1fr)</option><option value="repeat(3, 80px)">3 fixed (80px)</option><option value="repeat(2, 100px)">2 fixed (100px)</option></select></div>
+<div class="group"><label>Rows</label><select id="rows"><option value="repeat(2, 1fr)">2 equal (1fr)</option><option value="repeat(2, 60px)">2 fixed (60px)</option></select></div>
+<button class="btn btn-reset" onclick="resetPlayground()">Reset</button>
+<div class="group" style="margin-top:12px"><label>Content mode note</label><p style="color:#888;font-size:12px">Content alignment only works when tracks are smaller than the container. Use fixed sizes (80px) to see it.</p></div>
+</div>
+<div class="preview">
+<div id="grid" class="grid-container"></div>
+<div id="css-code">/* Alignment CSS */</div>
+</div>
+</div>
+<script>
+const grid=document.getElementById('grid'),code=document.getElementById('css-code');
+const mode=document.getElementById('mode'),justify=document.getElementById('justify');
+const align=document.getElementById('align'),cols=document.getElementById('cols');
+const rows=document.getElementById('rows'),i1j=document.getElementById('item1-justify');
+const i2a=document.getElementById('item2-align');
+
+function update(){
+const m=mode.value,c=cols.value,r=rows.value;
+const jProp=m==='item'?'justifyItems':'justifyContent';
+const aProp=m==='item'?'alignItems':'alignContent';
+const j=jProp==='justifyContent'&&['space-between','space-around','space-evenly'].includes(justify.value)?justify.value:['space-between','space-around','space-evenly'].includes(justify.value)?'center':justify.value;
+const a=aProp==='alignContent'&&['space-between','space-around','space-evenly'].includes(align.value)?align.value:['space-between','space-around','space-evenly'].includes(align.value)?'center':align.value;
+grid.style.gridTemplateColumns=c;
+grid.style.gridTemplateRows=r;
+grid.style[jProp]=j;
+grid.style[aProp]=a;
+const items=6;grid.innerHTML='';
+const colors=['#ff6b6b','#4ecdc4','#45b7d1','#a29bfe','#ffd93d','#6c5ce7'];
+const colorTexts=['#fff','#1a1a2e','#fff','#fff','#1a1a2e','#fff'];
+for(let i=1;i<=items;i++){
+const el=document.createElement('div');el.className='el';
+el.style.background=colors[i-1];el.style.color=colorTexts[i-1];
+if(i===1&&i1j.value){el.style.justifySelf=i1j.value;}
+if(i===2&&i2a.value){el.style.alignSelf=i2a.value;}
+el.textContent=i===1&&i1j.value?`#1 (${i1j.value})`:i===2&&i2a.value?`#2 (${i2a.value})`:`Item ${i}`;
+el.style.padding='12px 8px';
+grid.appendChild(el);
+}
+let itemCss='';
+if(i1j.value)itemCss+=`\n.item-1 { justify-self: ${i1j.value}; }`;
+if(i2a.value)itemCss+=`\n.item-2 { align-self: ${i2a.value}; }`;
+code.textContent=`.container {\n  display: grid;\n  grid-template-columns: ${c};\n  grid-template-rows: ${r};\n  ${jProp}: ${j};\n  ${aProp}: ${a};\n}${itemCss}`;
+}
+document.querySelectorAll('.controls select').forEach(el=>el.addEventListener('change',update));
+document.querySelectorAll('.controls input').forEach(el=>el.addEventListener('input',update));
+function resetPlayground(){mode.value='item';justify.value='stretch';align.value='stretch';cols.value='repeat(3, 1fr)';rows.value='repeat(2, 1fr)';i1j.value='';i2a.value='';update();}
+update();
+</script>
+</body>
+</html>

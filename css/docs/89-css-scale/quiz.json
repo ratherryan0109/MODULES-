@@ -1,0 +1,147 @@
+{
+  "module": "89-css-scale",
+  "title": "CSS Scale",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does scale: 2 do?",
+      "options": ["Doubles element size", "Moves element 2px", "Rotates 2 degrees", "Changes opacity"],
+      "correctAnswer": 0,
+      "explanation": "scale: 2 doubles the element's size uniformly on both axes."
+    },
+    {
+      "id": 2,
+      "question": "What scale value returns the element to original size?",
+      "options": ["1", "0", "100%", "none"],
+      "correctAnswer": 0,
+      "explanation": "scale: 1 is the identity value (no scaling)."
+    },
+    {
+      "id": 3,
+      "question": "What happens with scale: 0?",
+      "options": ["Element becomes invisible (zero size)", "Element collapses to 1px", "Nothing", "Throws error"],
+      "correctAnswer": 0,
+      "explanation": "scale: 0 reduces the element to zero size, making it invisible."
+    },
+    {
+      "id": 4,
+      "question": "What does scale: -1 do?",
+      "options": ["Flips the element (mirror)", "Shrinks to -1px", "Moves -1px", "Creates an error"],
+      "correctAnswer": 0,
+      "explanation": "Negative scale values mirror (flip) the element across the axis."
+    },
+    {
+      "id": 5,
+      "question": "How do you scale X and Y independently?",
+      "options": ["scale: 1.5 0.5", "scale: 1.5", "scaleX: 1.5; scaleY: 0.5", "Both A and C"],
+      "correctAnswer": 3,
+      "explanation": "Either use 'scale: 1.5 0.5' or separate scaleX/scaleY properties."
+    },
+    {
+      "id": 6,
+      "question": "What property controls the center point of scaling?",
+      "options": ["transform-origin", "scale-origin", "origin", "transform-center"],
+      "correctAnswer": 0,
+      "explanation": "transform-origin determines the point from which scaling occurs."
+    },
+    {
+      "id": 7,
+      "question": "Is scale GPU accelerated?",
+      "options": ["Yes", "No", "Only in Chrome", "Only with transform: scale()"],
+      "correctAnswer": 0,
+      "explanation": "The standalone scale property is GPU accelerated, like all transform properties."
+    },
+    {
+      "id": 8,
+      "question": "What is the default value of scale?",
+      "options": ["none", "1", "0", "auto"],
+      "correctAnswer": 0,
+      "explanation": "The default value of the scale property is 'none', meaning no scaling."
+    },
+    {
+      "id": 9,
+      "question": "What does scale: 1.2 do to text inside the element?",
+      "options": ["Scales text proportionally", "Only scales the element box", "Increases font size only", "Changes text color"],
+      "correctAnswer": 0,
+      "explanation": "scale uniformly scales the entire element, including its content."
+    },
+    {
+      "id": 10,
+      "question": "Which scale value is best for a hover 'pop' effect?",
+      "options": ["1.05 to 1.1", "2.0", "0.5", "5.0"],
+      "correctAnswer": 0,
+      "explanation": "A subtle 1.05-1.1 scale provides a nice hover pop without being jarring."
+    },
+    {
+      "id": 11,
+      "question": "What does scale: 1 0.5 do?",
+      "options": ["Normal width, half height", "Half width, normal height", "Half both dimensions", "One axis only"],
+      "correctAnswer": 0,
+      "explanation": "The two values are X and Y scale: 1 (normal X), 0.5 (half Y)."
+    },
+    {
+      "id": 12,
+      "question": "Can scale be animated in @keyframes?",
+      "options": ["Yes", "No, only via transform", "Only with JavaScript", "Only in 3D"],
+      "correctAnswer": 0,
+      "explanation": "scale is a regular CSS property and can be used in @keyframes."
+    },
+    {
+      "id": 13,
+      "question": "What's the effect of scale: 1.5 1.5 on a 100px element?",
+      "options": ["150px × 150px", "100px × 150px", "150px × 100px", "50px × 50px"],
+      "correctAnswer": 0,
+      "explanation": "scale: 1.5 multiplies both dimensions by 1.5: 100 * 1.5 = 150px."
+    },
+    {
+      "id": 14,
+      "question": "Which is NOT a valid scale value?",
+      "options": ["scale: auto 1", "scale: 1.5", "scale: 0.5 0.5", "scale: none"],
+      "correctAnswer": 0,
+      "explanation": "'auto' is not a valid value for scale."
+    },
+    {
+      "id": 15,
+      "question": "How do you create a button press effect with scale?",
+      "options": [":active { scale: 0.95 }", ":hover { scale: 1.1 }", ":focus { scale: 1 }", ":visited { scale: 0.5 }"],
+      "correctAnswer": 0,
+      "explanation": "Slightly scaling down on :active (0.95) creates a realistic press effect."
+    },
+    {
+      "id": 16,
+      "question": "Does scaling affect document flow?",
+      "options": ["No, original space is preserved", "Yes, elements shift", "Only with scale < 1", "Only with scale > 1"],
+      "correctAnswer": 0,
+      "explanation": "Scale doesn't affect document flow; the element keeps its original layout space."
+    },
+    {
+      "id": 17,
+      "question": "What is the 3D scale syntax?",
+      "options": ["scale: 1.5 1.5 2.0", "scale: 1.5, 1.5, 2.0", "scale3d: 1.5 1.5 2.0", "scale-z: 2.0"],
+      "correctAnswer": 0,
+      "explanation": "Three values in scale represent X, Y, and Z scaling."
+    },
+    {
+      "id": 18,
+      "question": "What does scale: 1.1 on hover do combined with transition?",
+      "options": ["Smoothly enlarges element by 10%", "Instantly makes it bigger", "Only works in 3D", "Requires JavaScript"],
+      "correctAnswer": 0,
+      "explanation": "Combined with transition, scale: 1.1 smoothly animates to 110% size."
+    },
+    {
+      "id": 19,
+      "question": "What's the relationship between scale and transform-origin?",
+      "options": ["Origin defines the anchor point for scaling", "Origin limits scale range", "Origin must match scale", "They are independent"],
+      "correctAnswer": 0,
+      "explanation": "transform-origin determines whether scaling expands outward from center or from a corner."
+    },
+    {
+      "id": 20,
+      "question": "Can scale and transform: scale() be used together?",
+      "options": ["Yes, they combine", "No, transform overrides scale", "No, scale overrides transform", "Only in older browsers"],
+      "correctAnswer": 0,
+      "explanation": "standalone scale applies in addition to transform: scale(), combining both effects."
+    }
+  ]
+}

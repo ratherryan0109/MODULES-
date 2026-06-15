@@ -1,0 +1,147 @@
+{
+  "module": "76-css-blend-modes",
+  "title": "CSS Blend Modes",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS property blends an element with the content behind it?",
+      "options": ["background-blend-mode", "mix-blend-mode", "blend-mode", "isolation"],
+      "correctAnswer": 1,
+      "explanation": "mix-blend-mode blends an element with its parent/background content."
+    },
+    {
+      "id": 2,
+      "question": "Which blend mode creates the darkest result by multiplying color values?",
+      "options": ["screen", "overlay", "multiply", "difference"],
+      "correctAnswer": 2,
+      "explanation": "multiply multiplies the base and blend colors, always producing a darker result."
+    },
+    {
+      "id": 3,
+      "question": "What does background-blend-mode blend?",
+      "options": ["The element with its parent", "Multiple background layers of the same element", "Text with its background", "Adjacent sibling elements"],
+      "correctAnswer": 1,
+      "explanation": "background-blend-mode blends an element's multiple background layers with each other."
+    },
+    {
+      "id": 4,
+      "question": "Which CSS property limits blending to a specific container?",
+      "options": ["overflow: hidden", "isolation: isolate", "contain: strict", "blend-mode: isolate"],
+      "correctAnswer": 1,
+      "explanation": "isolation: isolate creates a new stacking context, limiting the blend effect to within the container."
+    },
+    {
+      "id": 5,
+      "question": "Which blend mode is best for creating a duotone effect?",
+      "options": ["screen", "difference", "multiply (with gradient overlay)", "hue"],
+      "correctAnswer": 2,
+      "explanation": "multiply combined with a gradient overlay on a grayscale image creates a classic duotone effect."
+    },
+    {
+      "id": 6,
+      "question": "What is the default value of mix-blend-mode?",
+      "options": ["none", "normal", "multiply", "initial"],
+      "correctAnswer": 1,
+      "explanation": "The default value for mix-blend-mode is normal, meaning no blending occurs."
+    },
+    {
+      "id": 7,
+      "question": "Which blend mode is best for creating an inverted/textured text effect?",
+      "options": ["multiply", "screen", "difference", "color-dodge"],
+      "correctAnswer": 2,
+      "explanation": "difference creates an inverted effect based on the background, great for striking text effects."
+    },
+    {
+      "id": 8,
+      "question": "What should you consider when using blend modes for text?",
+      "options": ["Font size", "Color contrast and readability", "Font family", "Text alignment"],
+      "correctAnswer": 1,
+      "explanation": "Always ensure text remains readable with sufficient contrast when applying blend modes."
+    },
+    {
+      "id": 9,
+      "question": "Which blend mode lightens everything except black?",
+      "options": ["multiply", "overlay", "screen", "color-burn"],
+      "correctAnswer": 2,
+      "explanation": "screen inverts, multiplies, and inverts back, always producing a lighter result than the original."
+    },
+    {
+      "id": 10,
+      "question": "What does the overlay blend mode do?",
+      "options": ["Always darkens", "Applies multiply to dark areas and screen to light areas", "Inverts colors", "Shows the difference between pixels"],
+      "correctAnswer": 1,
+      "explanation": "overlay combines multiply (for dark areas) and screen (for light areas), increasing contrast."
+    },
+    {
+      "id": 11,
+      "question": "Which property would you use to blend a gradient overlay on top of a background image?",
+      "options": ["mix-blend-mode", "background-blend-mode", "isolation", "blend-mode"],
+      "correctAnswer": 1,
+      "explanation": "background-blend-mode blends the element's own background layers (gradient + image) together."
+    },
+    {
+      "id": 12,
+      "question": "What is the effect of mix-blend-mode: screen on a black element?",
+      "options": ["The element becomes invisible", "The element is fully visible", "The element becomes white", "The element becomes transparent"],
+      "correctAnswer": 0,
+      "explanation": "screen with a completely black source has no effect, making the element effectively invisible."
+    },
+    {
+      "id": 13,
+      "question": "Which blend mode family operates on HSL attributes rather than RGB?",
+      "options": ["Multiply, screen, overlay", "Hue, saturation, color, luminosity", "Difference, exclusion", "Darken, lighten"],
+      "correctAnswer": 1,
+      "explanation": "hue, saturation, color, and luminosity blend modes use HSL components instead of RGB."
+    },
+    {
+      "id": 14,
+      "question": "What is the difference between color-burn and multiply?",
+      "options": ["They are identical", "color-burn creates a more intense, contrasty darkening", "multiply is more intense", "color-burn lightens instead"],
+      "correctAnswer": 1,
+      "explanation": "color-burn darkens more aggressively than multiply by increasing contrast in dark areas."
+    },
+    {
+      "id": 15,
+      "question": "How does mix-blend-mode affect accessibility for text overlays?",
+      "options": ["Always improves readability", "Can reduce contrast and should be tested with contrast checkers", "Has no effect on accessibility", "Only affects images"],
+      "correctAnswer": 1,
+      "explanation": "Blend modes can significantly alter text contrast, requiring verification with WCAG contrast ratio tools."
+    },
+    {
+      "id": 16,
+      "question": "What happens when you apply mix-blend-mode to a fixed-position element?",
+      "options": ["It breaks", "Blending may not work as expected due to stacking context changes", "It blends with the viewport", "No effect"],
+      "correctAnswer": 1,
+      "explanation": "Fixed elements create new stacking contexts, which can affect how mix-blend-mode interacts with content."
+    },
+    {
+      "id": 17,
+      "question": "Which blend mode is equivalent to shining two slides onto the same screen?",
+      "options": ["multiply", "overlay", "screen", "color-dodge"],
+      "correctAnswer": 2,
+      "explanation": "screen is analogous to projecting two slides — the result is always lighter, like overlapping light beams."
+    },
+    {
+      "id": 18,
+      "question": "What is the practical use of mix-blend-mode: difference?",
+      "options": ["Creating duotone images", "Making text readable on any background", "Creating inverted cutout text effects", "Blending gradients"],
+      "correctAnswer": 2,
+      "explanation": "difference creates a high-contrast inverted effect, useful for cutout text that's readable on varying backgrounds."
+    },
+    {
+      "id": 19,
+      "question": "Can mix-blend-mode and background-blend-mode be used together?",
+      "options": ["No, they conflict", "Yes, they affect different layers and can be combined", "Only with isolation", "Only in Chrome"],
+      "correctAnswer": 1,
+      "explanation": "mix-blend-mode blends the element with its background, while background-blend-mode blends the element's own background layers."
+    },
+    {
+      "id": 20,
+      "question": "What is the mathematical formula behind the multiply blend mode?",
+      "options": ["Base + Source", "Base × Source", "|Base - Source|", "1 - (1 - Base) × (1 - Source)"],
+      "correctAnswer": 1,
+      "explanation": "multiply multiplies the base and source channel values (normalized 0-1), always resulting in darker colors."
+    }
+  ]
+}

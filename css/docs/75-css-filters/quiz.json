@@ -1,0 +1,147 @@
+{
+  "module": "75-css-filters",
+  "title": "CSS Filters",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS property applies graphical effects like blur and brightness to an element?",
+      "options": ["transform", "filter", "effect", "backdrop-filter"],
+      "correctAnswer": 1,
+      "explanation": "The filter property applies graphical effects such as blur, brightness, contrast, and more."
+    },
+    {
+      "id": 2,
+      "question": "What value of brightness() makes an element fully black?",
+      "options": ["0", "0.5", "1", "-1"],
+      "correctAnswer": 0,
+      "explanation": "brightness(0) makes the element completely black. Values range from 0 to infinity."
+    },
+    {
+      "id": 3,
+      "question": "How are multiple filter functions combined?",
+      "options": ["With commas", "With spaces", "With plus signs", "They cannot be combined"],
+      "correctAnswer": 1,
+      "explanation": "Multiple filter functions are separated by spaces: filter: brightness(1.2) contrast(1.1);"
+    },
+    {
+      "id": 4,
+      "question": "Which filter function shifts the color wheel?",
+      "options": ["color-rotate()", "hue-rotate()", "shift()", "tint()"],
+      "correctAnswer": 1,
+      "explanation": "hue-rotate() shifts all colors by a given angle around the color wheel."
+    },
+    {
+      "id": 5,
+      "question": "What does backdrop-filter affect?",
+      "options": ["The element itself", "The area behind the element", "The parent element", "Child elements only"],
+      "correctAnswer": 1,
+      "explanation": "backdrop-filter applies filters to the area behind the element, creating effects like glassmorphism."
+    },
+    {
+      "id": 6,
+      "question": "Which of these is NOT a valid CSS filter function?",
+      "options": ["blur()", "shadow()", "sepia()", "saturate()"],
+      "correctAnswer": 1,
+      "explanation": "shadow() is not a valid CSS filter function. The correct function is drop-shadow()."
+    },
+    {
+      "id": 7,
+      "question": "What is the default value for grayscale()?",
+      "options": ["0", "1", "0.5", "100%"],
+      "correctAnswer": 0,
+      "explanation": "grayscale(0) is the default (full color). grayscale(1) is fully grayscale."
+    },
+    {
+      "id": 8,
+      "question": "Which filter is most computationally expensive?",
+      "options": ["grayscale()", "blur() with large values", "brightness()", "saturate()"],
+      "correctAnswer": 1,
+      "explanation": "blur() with large radius values is GPU-intensive and can cause performance issues."
+    },
+    {
+      "id": 9,
+      "question": "What does filter: invert(1) do to an element?",
+      "options": ["Flips it upside down", "Inverts all colors like a photo negative", "Reverses the layout", "Mirrors the element"],
+      "correctAnswer": 1,
+      "explanation": "invert(1) fully inverts all colors, creating a photo negative effect."
+    },
+    {
+      "id": 10,
+      "question": "Which filter value creates a vintage/old-photo effect?",
+      "options": ["grayscale(1)", "sepia(0.8)", "hue-rotate(180deg)", "brightness(0.5)"],
+      "correctAnswer": 1,
+      "explanation": "sepia() applies a warm brownish tone that creates a vintage photographic look."
+    },
+    {
+      "id": 11,
+      "question": "What is the range of valid values for saturate()?",
+      "options": ["0 to 1", "0 to 100", "0 to infinity", "1 to 100"],
+      "correctAnswer": 2,
+      "explanation": "saturate() accepts values from 0 (desaturated) to infinity (oversaturated)."
+    },
+    {
+      "id": 12,
+      "question": "How does the order of filter functions affect the result?",
+      "options": ["Order doesn't matter", "Order matters — filters are applied left to right sequentially", "Only alphabetical order works", "Filters are averaged"],
+      "correctAnswer": 1,
+      "explanation": "Each filter function is applied in sequence, and the order can significantly change the visual result."
+    },
+    {
+      "id": 13,
+      "question": "What effect does backdrop-filter: blur(10px) with semi-transparent background create?",
+      "options": ["Frosted glass effect (glassmorphism)", "Solid color overlay", "Transparent text", "Blurred element content"],
+      "correctAnswer": 0,
+      "explanation": "backdrop-filter: blur() on a semi-transparent element creates the frosted glass glassmorphism effect."
+    },
+    {
+      "id": 14,
+      "question": "Which media query respects users who prefer reduced motion for filters?",
+      "options": ["@media (motion: reduce)", "@media (prefers-reduced-motion: reduce)", "@media (animation: off)", "@media (filter: none)"],
+      "correctAnswer": 1,
+      "explanation": "prefers-reduced-motion: reduce detects users who request less animation, including filter animations."
+    },
+    {
+      "id": 15,
+      "question": "Can CSS filters be transitioned or animated?",
+      "options": ["No", "Yes, filter changes can be transitioned", "Only blur() can animate", "Only with JavaScript"],
+      "correctAnswer": 1,
+      "explanation": "The filter property supports transitions and animations between different filter states."
+    },
+    {
+      "id": 16,
+      "question": "What does filter: contrast(2) do?",
+      "options": ["Reduces contrast by half", "Doubles the contrast", "Sets contrast to normal", "Removes all contrast"],
+      "correctAnswer": 1,
+      "explanation": "contrast(2) doubles the contrast, making darks darker and lights lighter."
+    },
+    {
+      "id": 17,
+      "question": "How do you reference an SVG filter in CSS?",
+      "options": ["filter: svg(#id)", "filter: element(#id)", "filter: url(#id)", "filter: ref(#id)"],
+      "correctAnswer": 2,
+      "explanation": "SVG filters are referenced using url(): filter: url(#myFilter)."
+    },
+    {
+      "id": 18,
+      "question": "What happens to the stacking context when filter is applied?",
+      "options": ["Nothing changes", "A new stacking context is created", "The element goes behind", "The z-index is reset"],
+      "correctAnswer": 1,
+      "explanation": "Applying a filter creates a new stacking context and containing block for the element."
+    },
+    {
+      "id": 19,
+      "question": "Which filter function is equivalent to adjusting transparency?",
+      "options": ["alpha()", "transparent()", "opacity()", "fade()"],
+      "correctAnswer": 2,
+      "explanation": "opacity() in filter adjusts transparency, useful when combining with other filters."
+    },
+    {
+      "id": 20,
+      "question": "What is the effect of applying multiple filters vs. a single combined approach?",
+      "options": ["Same result always", "Sequential filters compound — order changes the outcome", "Only the last filter applies", "Filters are averaged together"],
+      "correctAnswer": 1,
+      "explanation": "Filters are applied sequentially; changing the order changes the visual result because each step modifies the output of the previous step."
+    }
+  ]
+}

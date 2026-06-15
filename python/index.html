@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Python Mastery Course - 206 modules covering Python fundamentals to advanced topics">
+  <title>Python Mastery Course</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🐍</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <style>
+    :root {
+      --primary: #306998;
+      --primary-dark: #1e415e;
+      --primary-light: #6baed6;
+      --accent: #FFD43B;
+      --accent-dark: #e6b800;
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --success: #16a34a;
+      --error: #dc2626;
+      --warning: #d97706;
+      --glass-bg: rgba(255,255,255,0.7);
+      --glass-border: rgba(0,0,0,0.06);
+      --glass-shadow: 0 8px 32px rgba(48,105,152,0.1);
+      --radius: 16px;
+      --transition: 0.3s ease;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding-top: 60px; overflow-x: hidden; }
+    .blob { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.15; pointer-events: none; z-index: 0; }
+    .blob-1 { width: 400px; height: 400px; background: var(--primary); top: -100px; left: -100px; }
+    .blob-2 { width: 350px; height: 350px; background: var(--accent); bottom: -80px; right: -80px; }
+    .blob-3 { width: 250px; height: 250px; background: var(--primary-light); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .glass { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); }
+    .glass-card { background: var(--surface); border-radius: var(--radius); padding: 24px; box-shadow: var(--glass-shadow); border: 1px solid var(--glass-border); }
+    .app { display: flex; height: calc(100vh - 60px); position: relative; z-index: 1; }
+    .app-header { position: fixed; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; padding: 0 20px; gap: 12px; z-index: 100; background: var(--glass-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); }
+    .app-header .badge { background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+    .app-header h1 { font-size: 1.1em; font-weight: 700; color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .app-header .progress { font-size: 0.8em; color: var(--text-muted); background: var(--glass-bg); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--glass-border); white-space: nowrap; }
+    .hamburger { display: none; background: none; border: none; font-size: 1.3em; cursor: pointer; color: var(--text); padding: 4px; }
+    .sidebar-overlay { display: none; position: fixed; inset: 0; z-index: 50; }
+    .sidebar { width: 300px; min-width: 300px; background: var(--glass-bg); backdrop-filter: blur(12px); border-right: 1px solid var(--glass-border); overflow-y: auto; padding: 16px 0; }
+    .sidebar::-webkit-scrollbar { width: 6px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 3px; }
+    .sidebar-section { padding: 4px 16px 4px 20px; font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); margin-top: 16px; }
+    .sidebar-section:first-child { margin-top: 0; }
+    .module-item { display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 20px; cursor: pointer; transition: var(--transition); text-decoration: none; color: var(--text-secondary); border-left: 3px solid transparent; }
+    .module-item:hover { background: rgba(48,105,152,0.05); color: var(--text); }
+    .module-item.active { background: rgba(48,105,152,0.1); color: var(--primary); border-left-color: var(--primary); font-weight: 600; }
+    .module-item .num { font-size: 0.75em; color: var(--text-muted); min-width: 28px; font-weight: 600; }
+    .module-item.active .num { color: var(--primary); }
+    .module-item .title { font-size: 0.85em; line-height: 1.3; flex: 1; }
+    .module-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; opacity: 0; }
+    .module-item.visited .dot { opacity: 0.4; background: var(--success); }
+    .content { flex: 1; overflow-y: auto; padding: 24px; }
+    .content::-webkit-scrollbar { width: 8px; }
+    .content::-webkit-scrollbar-track { background: transparent; }
+    .content::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+    .tab-bar { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; background: var(--surface); border-radius: 12px; padding: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid var(--glass-border); }
+    .tab-btn { padding: 8px 16px; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; border-radius: 8px; font-size: 0.82em; font-weight: 500; transition: var(--transition); }
+    .tab-btn:hover { background: rgba(48,105,152,0.05); color: var(--text); }
+    .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 2px 8px rgba(48,105,152,0.2); }
+    .content-panel { display: none; animation: fadeIn 0.2s ease; }
+    .content-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-buttons { display: flex; gap: 12px; justify-content: space-between; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--glass-border); }
+    .nav-btn { padding: 10px 24px; border: none; border-radius: 10px; font-size: 0.85em; font-weight: 600; cursor: pointer; transition: var(--transition); }
+    .nav-btn.primary { background: var(--primary); color: white; }
+    .nav-btn.primary:hover { background: var(--primary-dark); box-shadow: 0 4px 12px rgba(48,105,152,0.3); }
+    .nav-btn.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--glass-border); }
+    .nav-btn.secondary:hover { background: var(--bg); }
+    .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .loading-spinner { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .loading-spinner .spinner { width: 32px; height: 32px; border: 3px solid var(--glass-border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-state { text-align: center; padding: 60px 20px; color: var(--error); }
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+
+    /* LESSON */
+    .lesson h1 { font-size: 1.8em; color: var(--text); margin-bottom: 16px; font-weight: 700; }
+    .lesson h2 { font-size: 1.3em; color: var(--primary); margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); display: inline-block; }
+    .lesson h3 { font-size: 1.1em; color: var(--text); margin: 20px 0 10px; }
+    .lesson h4 { font-size: 1em; color: var(--text-secondary); margin: 16px 0 8px; }
+    .lesson p { margin: 8px 0; line-height: 1.7; }
+    .lesson ul, .lesson ol { margin: 8px 0 8px 24px; }
+    .lesson li { margin: 4px 0; }
+    .lesson pre { background: #f8fafc; border-radius: 8px; padding: 16px; overflow-x: auto; border: 1px solid #e2e8f0; margin: 12px 0; }
+    .lesson code { font-family: "JetBrains Mono", "Fira Code", monospace; font-size: 0.9em; }
+    .lesson p code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: var(--primary-dark); }
+    .lesson table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9em; }
+    .lesson table th, .lesson table td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+    .lesson table th { background: #f8fafc; color: var(--text-secondary); font-weight: 600; }
+    .lesson blockquote { border-left: 4px solid var(--accent); padding: 8px 16px; margin: 12px 0; background: rgba(255,212,59,0.08); border-radius: 0 8px 8px 0; color: var(--text-secondary); }
+    .lesson img { max-width: 100%; border-radius: 8px; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .lesson hr { border: none; border-top: 1px solid #e2e8f0; margin: 24px 0; }
+
+    /* QUIZ */
+    .quiz-question { background: var(--surface); border-radius: 12px; padding: 20px; margin-bottom: 16px; border: 1px solid var(--glass-border); }
+    .quiz-question .q-text { font-weight: 600; margin-bottom: 12px; color: var(--text); }
+    .quiz-option { display: block; width: 100%; text-align: left; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: var(--surface); cursor: pointer; margin-bottom: 6px; transition: var(--transition); font-size: 0.9em; }
+    .quiz-option:hover { border-color: var(--primary-light); background: rgba(48,105,152,0.03); }
+    .quiz-option.selected { border-color: var(--primary); background: rgba(48,105,152,0.06); }
+    .quiz-option.correct { border-color: var(--success); background: rgba(22,163,74,0.08); color: var(--success); }
+    .quiz-option.wrong { border-color: var(--error); background: rgba(220,38,38,0.08); color: var(--error); }
+    .quiz-option:disabled { cursor: default; }
+    .quiz-explanation { display: none; margin-top: 10px; padding: 12px; background: #f8fafc; border-radius: 8px; font-size: 0.85em; color: var(--text-secondary); border-left: 3px solid var(--primary); }
+    .quiz-explanation.show { display: block; }
+    .quiz-score { text-align: center; margin-bottom: 20px; font-size: 1.1em; color: var(--primary); font-weight: 600; }
+
+    /* CHALLENGES */
+    .challenge-card { background: var(--surface); border-radius: 12px; padding: 20px; margin-bottom: 16px; border: 1px solid var(--glass-border); border-left: 4px solid var(--text-muted); }
+    .challenge-card.easy { border-left-color: var(--success); }
+    .challenge-card.medium { border-left-color: var(--warning); }
+    .challenge-card.hard { border-left-color: var(--error); }
+    .challenge-card .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.75em; font-weight: 600; margin-bottom: 8px; }
+    .challenge-card.easy .tag { background: rgba(22,163,74,0.1); color: var(--success); }
+    .challenge-card.medium .tag { background: rgba(217,119,6,0.1); color: var(--warning); }
+    .challenge-card.hard .tag { background: rgba(220,38,38,0.1); color: var(--error); }
+    .challenge-card h3 { font-size: 1em; margin-bottom: 8px; }
+    .challenge-card p { font-size: 0.9em; color: var(--text-secondary); margin-bottom: 12px; }
+    .challenge-card pre { background: #f8fafc; border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 0.82em; border: 1px solid #e2e8f0; margin: 8px 0; }
+    .challenge-card .solution-btn { background: var(--primary); color: white; border: none; padding: 6px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82em; margin-top: 8px; }
+    .challenge-card .solution-btn:hover { background: var(--primary-dark); }
+    .challenge-card .solution-content { display: none; margin-top: 12px; padding: 12px; background: #f8fafc; border-radius: 8px; border-left: 3px solid var(--accent); }
+    .challenge-card .solution-content.show { display: block; }
+
+    /* RESOURCES */
+    .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .resource-card { background: var(--surface); border-radius: 12px; padding: 20px; border: 1px solid var(--glass-border); transition: var(--transition); }
+    .resource-card:hover { box-shadow: 0 4px 12px rgba(48,105,152,0.1); transform: translateY(-2px); }
+    .resource-card .type { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.75em; font-weight: 600; margin-bottom: 8px; }
+    .resource-card .type.documentation { background: rgba(48,105,152,0.1); color: var(--primary); }
+    .resource-card .type.tutorial { background: rgba(22,163,74,0.1); color: var(--success); }
+    .resource-card .type.course { background: rgba(217,119,6,0.1); color: var(--warning); }
+    .resource-card .type.newsletter { background: rgba(99,102,241,0.1); color: #6366f1; }
+    .resource-card h3 { font-size: 0.95em; margin-bottom: 6px; }
+    .resource-card h3 a { color: var(--primary); text-decoration: none; }
+    .resource-card h3 a:hover { text-decoration: underline; }
+    .resource-card p { font-size: 0.85em; color: var(--text-secondary); }
+
+    /* VIDEOS */
+    .videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .video-card { background: var(--surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); transition: var(--transition); }
+    .video-card:hover { box-shadow: 0 4px 12px rgba(48,105,152,0.1); transform: translateY(-2px); }
+    .video-card .iframe-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    .video-card .iframe-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .video-card .info { padding: 12px 16px; }
+    .video-card .info h3 { font-size: 0.9em; margin-bottom: 4px; color: var(--text); }
+    .video-card .info .channel { font-size: 0.8em; color: var(--text-muted); }
+    .video-card .info .meta { display: flex; gap: 8px; margin-top: 6px; font-size: 0.75em; }
+    .video-card .info .meta span { background: #f1f5f9; padding: 2px 8px; border-radius: 4px; color: var(--text-secondary); }
+
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .sidebar { position: fixed; left: -300px; top: 60px; bottom: 0; z-index: 60; transition: left 0.3s ease; width: 280px; min-width: 280px; }
+      .sidebar.open { left: 0; }
+      .sidebar-overlay.show { display: block; }
+      .content { padding: 16px; }
+      .tab-bar { overflow-x: auto; flex-wrap: nowrap; padding: 4px; }
+      .tab-btn { white-space: nowrap; padding: 6px 12px; font-size: 0.78em; }
+      .resources-grid, .videos-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      body { padding-top: 52px; }
+      .app-header { height: 52px; padding: 0 12px; }
+      .app-header h1 { font-size: 0.95em; }
+      .content { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <header class="app-header glass">
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+    <div class="badge">Py</div>
+    <h1>Python Mastery Course</h1>
+    <span class="progress" id="progressBadge">0 / 206</span>
+  </header>
+
+  <div class="app">
+    <nav class="sidebar" id="sidebar">
+      <div id="moduleList"></div>
+    </nav>
+
+    <main class="content" id="content">
+      <div class="tab-bar" id="tabBar">
+        <button class="tab-btn active" data-tab="lesson">Lesson</button>
+        <button class="tab-btn" data-tab="examples">Examples</button>
+        <button class="tab-btn" data-tab="playground">Playground</button>
+        <button class="tab-btn" data-tab="quiz">Quiz</button>
+        <button class="tab-btn" data-tab="challenges">Challenges</button>
+        <button class="tab-btn" data-tab="cheatsheet">Cheatsheet</button>
+        <button class="tab-btn" data-tab="project">Project</button>
+        <button class="tab-btn" data-tab="resources">Resources</button>
+        <button class="tab-btn" data-tab="videos">Videos</button>
+      </div>
+
+      <div id="panel-lesson" class="content-panel active"><div class="loading-spinner"><div class="spinner"></div>Loading lesson...</div></div>
+      <div id="panel-examples" class="content-panel"></div>
+      <div id="panel-playground" class="content-panel"></div>
+      <div id="panel-quiz" class="content-panel"></div>
+      <div id="panel-challenges" class="content-panel"></div>
+      <div id="panel-cheatsheet" class="content-panel"></div>
+      <div id="panel-project" class="content-panel"></div>
+      <div id="panel-resources" class="content-panel"></div>
+      <div id="panel-videos" class="content-panel"></div>
+
+      <div class="nav-buttons">
+        <button class="nav-btn secondary" id="prevBtn" onclick="goToModule(currentIndex - 1)">← Previous</button>
+        <button class="nav-btn primary" id="nextBtn" onclick="goToModule(currentIndex + 1)">Next →</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    const COURSE_PATH = 'Python Mastery Course/';
+
+    const sections = [
+      'Python Fundamentals',
+      'Python Collections',
+      'Control Flow',
+      'Functions & Modules',
+      'Core Utilities',
+      'Exception Handling',
+      'Object Oriented Programming',
+      'File Handling',
+      'MySQL Databases',
+      'MongoDB Databases',
+      'NumPy, Pandas & SciPy',
+      'Matplotlib Data Visualization',
+      'Machine Learning',
+      'Data Structures & Algorithms',
+      'Django & Backend Development',
+      'Professional Python Development',
+      'Real World Projects'
+    ];
+
+    const modules = [
+      { num: 1, title: 'Python Introduction', folder: '01-Python-Introduction', section: 'Python Fundamentals' },
+      { num: 2, title: 'Python Installation & Setup', folder: '02-Python-Installation-and-Setup', section: 'Python Fundamentals' },
+      { num: 3, title: 'Python Get Started', folder: '03-Python-Get-Started', section: 'Python Fundamentals' },
+      { num: 4, title: 'Python Syntax', folder: '04-Python-Syntax', section: 'Python Fundamentals' },
+      { num: 5, title: 'Python Output', folder: '05-Python-Output', section: 'Python Fundamentals' },
+      { num: 6, title: 'Python Comments', folder: '06-Python-Comments', section: 'Python Fundamentals' },
+      { num: 7, title: 'Python Variables', folder: '07-Python-Variables', section: 'Python Fundamentals' },
+      { num: 8, title: 'Python Data Types', folder: '08-Python-Data-Types', section: 'Python Fundamentals' },
+      { num: 9, title: 'Python Numbers', folder: '09-Python-Numbers', section: 'Python Fundamentals' },
+      { num: 10, title: 'Python Casting', folder: '10-Python-Casting', section: 'Python Fundamentals' },
+      { num: 11, title: 'Python Strings', folder: '11-Python-Strings', section: 'Python Fundamentals' },
+      { num: 12, title: 'Python Booleans', folder: '12-Python-Booleans', section: 'Python Fundamentals' },
+      { num: 13, title: 'Python Operators', folder: '13-Python-Operators', section: 'Python Fundamentals' },
+      { num: 14, title: 'Python User Input', folder: '14-Python-User-Input', section: 'Python Fundamentals' },
+      { num: 15, title: 'Python String Formatting', folder: '15-Python-String-Formatting', section: 'Python Fundamentals' },
+      { num: 16, title: 'Python None Type', folder: '16-Python-None-Type', section: 'Python Fundamentals' },
+      { num: 17, title: 'Python Virtual Environment', folder: '17-Python-Virtual-Environment', section: 'Python Fundamentals' },
+      { num: 18, title: 'Python Lists', folder: '18-Python-Lists', section: 'Python Collections' },
+      { num: 19, title: 'Python List Methods', folder: '19-Python-List-Methods', section: 'Python Collections' },
+      { num: 20, title: 'Python Tuples', folder: '20-Python-Tuples', section: 'Python Collections' },
+      { num: 21, title: 'Python Tuple Methods', folder: '21-Python-Tuple-Methods', section: 'Python Collections' },
+      { num: 22, title: 'Python Sets', folder: '22-Python-Sets', section: 'Python Collections' },
+      { num: 23, title: 'Python Set Methods', folder: '23-Python-Set-Methods', section: 'Python Collections' },
+      { num: 24, title: 'Python Dictionaries', folder: '24-Python-Dictionaries', section: 'Python Collections' },
+      { num: 25, title: 'Python Dictionary Methods', folder: '25-Python-Dictionary-Methods', section: 'Python Collections' },
+      { num: 26, title: 'Python Arrays', folder: '26-Python-Arrays', section: 'Python Collections' },
+      { num: 27, title: 'Nested Data Structures', folder: '27-Nested-Data-Structures', section: 'Python Collections' },
+      { num: 28, title: 'Python if Statement', folder: '28-Python-If-Statement', section: 'Control Flow' },
+      { num: 29, title: 'Python if-else', folder: '29-Python-If-Else-Statement', section: 'Control Flow' },
+      { num: 30, title: 'Python elif', folder: '30-Python-Elif-Statement', section: 'Control Flow' },
+      { num: 31, title: 'Python match Statement', folder: '31-Python-Match-Statement', section: 'Control Flow' },
+      { num: 32, title: 'Python while Loops', folder: '32-Python-While-Loops', section: 'Control Flow' },
+      { num: 33, title: 'Python for Loops', folder: '33-Python-For-Loops', section: 'Control Flow' },
+      { num: 34, title: 'Python range() Function', folder: '34-Python-Range-Function', section: 'Control Flow' },
+      { num: 35, title: 'break Statement', folder: '35-Break-Statement', section: 'Control Flow' },
+      { num: 36, title: 'continue Statement', folder: '36-Continue-Statement', section: 'Control Flow' },
+      { num: 37, title: 'Nested Loops', folder: '37-Nested-Loops', section: 'Control Flow' },
+      { num: 38, title: 'List Comprehensions', folder: '38-List-Comprehensions', section: 'Control Flow' },
+      { num: 39, title: 'Python Functions', folder: '39-Python-Functions', section: 'Functions & Modules' },
+      { num: 40, title: 'Function Arguments', folder: '40-Function-Arguments', section: 'Functions & Modules' },
+      { num: 41, title: 'Return Values', folder: '41-Return-Values', section: 'Functions & Modules' },
+      { num: 42, title: 'Lambda Functions', folder: '42-Lambda-Functions', section: 'Functions & Modules' },
+      { num: 43, title: 'Recursion', folder: '43-Recursion', section: 'Functions & Modules' },
+      { num: 44, title: 'Scope', folder: '44-Scope', section: 'Functions & Modules' },
+      { num: 45, title: 'Python Iterators', folder: '45-Python-Iterators', section: 'Functions & Modules' },
+      { num: 46, title: 'Python Modules', folder: '46-Python-Modules', section: 'Functions & Modules' },
+      { num: 47, title: 'Built-in Modules', folder: '47-Built-in-Modules', section: 'Functions & Modules' },
+      { num: 48, title: 'Creating Custom Modules', folder: '48-Creating-Custom-Modules', section: 'Functions & Modules' },
+      { num: 49, title: 'PIP Package Manager', folder: '49-PIP-Package-Manager', section: 'Functions & Modules' },
+      { num: 50, title: 'Python Dates', folder: '50-Python-Dates', section: 'Core Utilities' },
+      { num: 51, title: 'Python Math', folder: '51-Python-Math', section: 'Core Utilities' },
+      { num: 52, title: 'Random Module', folder: '52-Random-Module', section: 'Core Utilities' },
+      { num: 53, title: 'Statistics Module', folder: '53-Statistics-Module', section: 'Core Utilities' },
+      { num: 54, title: 'JSON Handling', folder: '54-JSON-Handling', section: 'Core Utilities' },
+      { num: 55, title: 'Regular Expressions', folder: '55-Regular-Expressions', section: 'Core Utilities' },
+      { num: 56, title: 'Python Try Except', folder: '56-Python-Try-Except', section: 'Exception Handling' },
+      { num: 57, title: 'else & finally', folder: '57-Else-and-Finally', section: 'Exception Handling' },
+      { num: 58, title: 'Raising Exceptions', folder: '58-Raising-Exceptions', section: 'Exception Handling' },
+      { num: 59, title: 'Custom Exceptions', folder: '59-Custom-Exceptions', section: 'Exception Handling' },
+      { num: 60, title: 'Python OOP Introduction', folder: '60-Python-OOP-Introduction', section: 'Object Oriented Programming' },
+      { num: 61, title: 'Python Classes & Objects', folder: '61-Python-Classes-and-Objects', section: 'Object Oriented Programming' },
+      { num: 62, title: 'Python __init__', folder: '62-Python-init-Method', section: 'Object Oriented Programming' },
+      { num: 63, title: 'Python self Parameter', folder: '63-Python-self-Parameter', section: 'Object Oriented Programming' },
+      { num: 64, title: 'Class Properties', folder: '64-Class-Properties', section: 'Object Oriented Programming' },
+      { num: 65, title: 'Class Methods', folder: '65-Class-Methods', section: 'Object Oriented Programming' },
+      { num: 66, title: 'Encapsulation', folder: '66-Encapsulation', section: 'Object Oriented Programming' },
+      { num: 67, title: 'Inheritance', folder: '67-Inheritance', section: 'Object Oriented Programming' },
+      { num: 68, title: 'Polymorphism', folder: '68-Polymorphism', section: 'Object Oriented Programming' },
+      { num: 69, title: 'Inner Classes', folder: '69-Inner-Classes', section: 'Object Oriented Programming' },
+      { num: 70, title: 'Magic Methods', folder: '70-Magic-Methods', section: 'Object Oriented Programming' },
+      { num: 71, title: 'Python File Handling', folder: '71-Python-File-Handling', section: 'File Handling' },
+      { num: 72, title: 'Text Files (.txt)', folder: '72-Text-Files', section: 'File Handling' },
+      { num: 73, title: 'Reading Text Files', folder: '73-Reading-Text-Files', section: 'File Handling' },
+      { num: 74, title: 'Writing Text Files', folder: '74-Writing-Text-Files', section: 'File Handling' },
+      { num: 75, title: 'Appending Text Files', folder: '75-Appending-Text-Files', section: 'File Handling' },
+      { num: 76, title: 'Binary Files (.bin)', folder: '76-Binary-Files', section: 'File Handling' },
+      { num: 77, title: 'Reading Binary Files', folder: '77-Reading-Binary-Files', section: 'File Handling' },
+      { num: 78, title: 'Writing Binary Files', folder: '78-Writing-Binary-Files', section: 'File Handling' },
+      { num: 79, title: 'Creating Files', folder: '79-Creating-Files', section: 'File Handling' },
+      { num: 80, title: 'Deleting Files', folder: '80-Deleting-Files', section: 'File Handling' },
+      { num: 81, title: 'File Paths & pathlib', folder: '81-File-Paths-and-Pathlib', section: 'File Handling' },
+      { num: 82, title: 'CSV Files', folder: '82-CSV-Files', section: 'File Handling' },
+      { num: 83, title: 'JSON Files', folder: '83-JSON-Files', section: 'File Handling' },
+      { num: 84, title: 'Pickle Files', folder: '84-Pickle-Files', section: 'File Handling' },
+      { num: 85, title: 'Working with Directories', folder: '85-Working-with-Directories', section: 'File Handling' },
+      { num: 86, title: 'OS Module', folder: '86-OS-Module', section: 'File Handling' },
+      { num: 87, title: 'Temporary Files', folder: '87-Temporary-Files', section: 'File Handling' },
+      { num: 88, title: 'MySQL Get Started', folder: '88-MySQL-Get-Started', section: 'MySQL Databases' },
+      { num: 89, title: 'MySQL Create Database', folder: '89-MySQL-Create-Database', section: 'MySQL Databases' },
+      { num: 90, title: 'MySQL Create Table', folder: '90-MySQL-Create-Table', section: 'MySQL Databases' },
+      { num: 91, title: 'MySQL Insert', folder: '91-MySQL-Insert', section: 'MySQL Databases' },
+      { num: 92, title: 'MySQL Select', folder: '92-MySQL-Select', section: 'MySQL Databases' },
+      { num: 93, title: 'MySQL WHERE', folder: '93-MySQL-Where', section: 'MySQL Databases' },
+      { num: 94, title: 'MySQL ORDER BY', folder: '94-MySQL-Order-By', section: 'MySQL Databases' },
+      { num: 95, title: 'MySQL Update', folder: '95-MySQL-Update', section: 'MySQL Databases' },
+      { num: 96, title: 'MySQL Delete', folder: '96-MySQL-Delete', section: 'MySQL Databases' },
+      { num: 97, title: 'MySQL JOIN', folder: '97-MySQL-Join', section: 'MySQL Databases' },
+      { num: 98, title: 'MongoDB Get Started', folder: '98-MongoDB-Get-Started', section: 'MongoDB Databases' },
+      { num: 99, title: 'MongoDB Create Database', folder: '99-MongoDB-Create-Database', section: 'MongoDB Databases' },
+      { num: 100, title: 'MongoDB Collections', folder: '100-MongoDB-Collections', section: 'MongoDB Databases' },
+      { num: 101, title: 'MongoDB Insert', folder: '101-MongoDB-Insert', section: 'MongoDB Databases' },
+      { num: 102, title: 'MongoDB Find', folder: '102-MongoDB-Find', section: 'MongoDB Databases' },
+      { num: 103, title: 'MongoDB Query', folder: '103-MongoDB-Query', section: 'MongoDB Databases' },
+      { num: 104, title: 'MongoDB Sort', folder: '104-MongoDB-Sort', section: 'MongoDB Databases' },
+      { num: 105, title: 'MongoDB Update', folder: '105-MongoDB-Update', section: 'MongoDB Databases' },
+      { num: 106, title: 'MongoDB Delete', folder: '106-MongoDB-Delete', section: 'MongoDB Databases' },
+      { num: 107, title: 'MongoDB Limit', folder: '107-MongoDB-Limit', section: 'MongoDB Databases' },
+      { num: 108, title: 'NumPy Introduction', folder: '108-NumPy-Introduction', section: 'NumPy, Pandas & SciPy' },
+      { num: 109, title: 'NumPy Arrays', folder: '109-NumPy-Arrays', section: 'NumPy, Pandas & SciPy' },
+      { num: 110, title: 'NumPy Operations', folder: '110-NumPy-Operations', section: 'NumPy, Pandas & SciPy' },
+      { num: 111, title: 'Pandas Introduction', folder: '111-Pandas-Introduction', section: 'NumPy, Pandas & SciPy' },
+      { num: 112, title: 'Pandas Series', folder: '112-Pandas-Series', section: 'NumPy, Pandas & SciPy' },
+      { num: 113, title: 'Pandas DataFrames', folder: '113-Pandas-DataFrames', section: 'NumPy, Pandas & SciPy' },
+      { num: 114, title: 'Data Cleaning', folder: '114-Data-Cleaning', section: 'NumPy, Pandas & SciPy' },
+      { num: 115, title: 'Data Analysis', folder: '115-Data-Analysis', section: 'NumPy, Pandas & SciPy' },
+      { num: 116, title: 'SciPy Introduction', folder: '116-SciPy-Introduction', section: 'NumPy, Pandas & SciPy' },
+      { num: 117, title: 'Matplotlib Introduction', folder: '117-Matplotlib-Introduction', section: 'Matplotlib Data Visualization' },
+      { num: 118, title: 'Matplotlib Installation', folder: '118-Matplotlib-Installation-and-Setup', section: 'Matplotlib Data Visualization' },
+      { num: 119, title: 'Matplotlib Pyplot', folder: '119-Matplotlib-Pyplot', section: 'Matplotlib Data Visualization' },
+      { num: 120, title: 'Figure & Axes', folder: '120-Figure-and-Axes', section: 'Matplotlib Data Visualization' },
+      { num: 121, title: 'Line Charts', folder: '121-Line-Charts', section: 'Matplotlib Data Visualization' },
+      { num: 122, title: 'Markers', folder: '122-Markers', section: 'Matplotlib Data Visualization' },
+      { num: 123, title: 'Labels & Titles', folder: '123-Labels-and-Titles', section: 'Matplotlib Data Visualization' },
+      { num: 124, title: 'Legends', folder: '124-Legends', section: 'Matplotlib Data Visualization' },
+      { num: 125, title: 'Grid', folder: '125-Grid', section: 'Matplotlib Data Visualization' },
+      { num: 126, title: 'Multiple Lines', folder: '126-Multiple-Lines', section: 'Matplotlib Data Visualization' },
+      { num: 127, title: 'Subplots', folder: '127-Subplots', section: 'Matplotlib Data Visualization' },
+      { num: 128, title: 'Scatter Plots', folder: '128-Scatter-Plots', section: 'Matplotlib Data Visualization' },
+      { num: 129, title: 'Bubble Charts', folder: '129-Bubble-Charts', section: 'Matplotlib Data Visualization' },
+      { num: 130, title: 'Bar Charts', folder: '130-Bar-Charts', section: 'Matplotlib Data Visualization' },
+      { num: 131, title: 'Horizontal Bar Charts', folder: '131-Horizontal-Bar-Charts', section: 'Matplotlib Data Visualization' },
+      { num: 132, title: 'Histograms', folder: '132-Histograms', section: 'Matplotlib Data Visualization' },
+      { num: 133, title: 'Pie Charts', folder: '133-Pie-Charts', section: 'Matplotlib Data Visualization' },
+      { num: 134, title: 'Box Plots', folder: '134-Box-Plots', section: 'Matplotlib Data Visualization' },
+      { num: 135, title: 'Area Charts', folder: '135-Area-Charts', section: 'Matplotlib Data Visualization' },
+      { num: 136, title: 'Heatmaps', folder: '136-Heatmaps', section: 'Matplotlib Data Visualization' },
+      { num: 137, title: 'Error Bars', folder: '137-Error-Bars', section: 'Matplotlib Data Visualization' },
+      { num: 138, title: 'Style Sheets', folder: '138-Style-Sheets', section: 'Matplotlib Data Visualization' },
+      { num: 139, title: 'Color Maps', folder: '139-Color-Maps', section: 'Matplotlib Data Visualization' },
+      { num: 140, title: 'Figure Customization', folder: '140-Figure-Customization', section: 'Matplotlib Data Visualization' },
+      { num: 141, title: 'Saving Charts', folder: '141-Saving-Charts', section: 'Matplotlib Data Visualization' },
+      { num: 142, title: 'Real World Dashboards', folder: '142-Real-World-Dashboards', section: 'Matplotlib Data Visualization' },
+      { num: 143, title: 'ML Introduction', folder: '143-Machine-Learning-Introduction', section: 'Machine Learning' },
+      { num: 144, title: 'Mean Median Mode', folder: '144-Mean-Median-Mode', section: 'Machine Learning' },
+      { num: 145, title: 'Standard Deviation', folder: '145-Standard-Deviation', section: 'Machine Learning' },
+      { num: 146, title: 'Percentile', folder: '146-Percentile', section: 'Machine Learning' },
+      { num: 147, title: 'Data Distribution', folder: '147-Data-Distribution', section: 'Machine Learning' },
+      { num: 148, title: 'Normal Distribution', folder: '148-Normal-Distribution', section: 'Machine Learning' },
+      { num: 149, title: 'Scatter Plot Analysis', folder: '149-Scatter-Plot-Analysis', section: 'Machine Learning' },
+      { num: 150, title: 'Linear Regression', folder: '150-Linear-Regression', section: 'Machine Learning' },
+      { num: 151, title: 'Polynomial Regression', folder: '151-Polynomial-Regression', section: 'Machine Learning' },
+      { num: 152, title: 'Multiple Regression', folder: '152-Multiple-Regression', section: 'Machine Learning' },
+      { num: 153, title: 'Feature Scaling', folder: '153-Feature-Scaling', section: 'Machine Learning' },
+      { num: 154, title: 'Train Test Split', folder: '154-Train-Test-Split', section: 'Machine Learning' },
+      { num: 155, title: 'Decision Trees', folder: '155-Decision-Trees', section: 'Machine Learning' },
+      { num: 156, title: 'Confusion Matrix', folder: '156-Confusion-Matrix', section: 'Machine Learning' },
+      { num: 157, title: 'Logistic Regression', folder: '157-Logistic-Regression', section: 'Machine Learning' },
+      { num: 158, title: 'K-Means Clustering', folder: '158-K-Means-Clustering', section: 'Machine Learning' },
+      { num: 159, title: 'K-Nearest Neighbors', folder: '159-K-Nearest-Neighbors', section: 'Machine Learning' },
+      { num: 160, title: 'Cross Validation', folder: '160-Cross-Validation', section: 'Machine Learning' },
+      { num: 161, title: 'Grid Search', folder: '161-Grid-Search', section: 'Machine Learning' },
+      { num: 162, title: 'AUC ROC Curve', folder: '162-AUC-ROC-Curve', section: 'Machine Learning' },
+      { num: 163, title: 'DSA Introduction', folder: '163-DSA-Introduction', section: 'Data Structures & Algorithms' },
+      { num: 164, title: 'Arrays (DSA)', folder: '164-Arrays-Python', section: 'Data Structures & Algorithms' },
+      { num: 165, title: 'Lists (DSA)', folder: '165-Lists-DSA', section: 'Data Structures & Algorithms' },
+      { num: 166, title: 'Stacks', folder: '166-Stacks', section: 'Data Structures & Algorithms' },
+      { num: 167, title: 'Queues', folder: '167-Queues', section: 'Data Structures & Algorithms' },
+      { num: 168, title: 'Linked Lists', folder: '168-Linked-Lists', section: 'Data Structures & Algorithms' },
+      { num: 169, title: 'Hash Tables', folder: '169-Hash-Tables', section: 'Data Structures & Algorithms' },
+      { num: 170, title: 'Trees', folder: '170-Trees', section: 'Data Structures & Algorithms' },
+      { num: 171, title: 'Binary Trees', folder: '171-Binary-Trees', section: 'Data Structures & Algorithms' },
+      { num: 172, title: 'Binary Search Trees', folder: '172-Binary-Search-Trees', section: 'Data Structures & Algorithms' },
+      { num: 173, title: 'AVL Trees', folder: '173-AVL-Trees', section: 'Data Structures & Algorithms' },
+      { num: 174, title: 'Graphs', folder: '174-Graphs', section: 'Data Structures & Algorithms' },
+      { num: 175, title: 'Linear Search', folder: '175-Linear-Search', section: 'Data Structures & Algorithms' },
+      { num: 176, title: 'Binary Search', folder: '176-Binary-Search', section: 'Data Structures & Algorithms' },
+      { num: 177, title: 'Bubble Sort', folder: '177-Bubble-Sort', section: 'Data Structures & Algorithms' },
+      { num: 178, title: 'Selection Sort', folder: '178-Selection-Sort', section: 'Data Structures & Algorithms' },
+      { num: 179, title: 'Insertion Sort', folder: '179-Insertion-Sort', section: 'Data Structures & Algorithms' },
+      { num: 180, title: 'Quick Sort', folder: '180-Quick-Sort', section: 'Data Structures & Algorithms' },
+      { num: 181, title: 'Merge Sort', folder: '181-Merge-Sort', section: 'Data Structures & Algorithms' },
+      { num: 182, title: 'Counting Sort', folder: '182-Counting-Sort', section: 'Data Structures & Algorithms' },
+      { num: 183, title: 'Radix Sort', folder: '183-Radix-Sort', section: 'Data Structures & Algorithms' },
+      { num: 184, title: 'Django Introduction', folder: '184-Django-Introduction', section: 'Django & Backend Development' },
+      { num: 185, title: 'Django Models', folder: '185-Django-Models', section: 'Django & Backend Development' },
+      { num: 186, title: 'Django Views', folder: '186-Django-Views', section: 'Django & Backend Development' },
+      { num: 187, title: 'Django Templates', folder: '187-Django-Templates', section: 'Django & Backend Development' },
+      { num: 188, title: 'Django Authentication', folder: '188-Django-Authentication', section: 'Django & Backend Development' },
+      { num: 189, title: 'REST APIs with Python', folder: '189-REST-APIs-with-Python', section: 'Django & Backend Development' },
+      { num: 190, title: 'Requests Module', folder: '190-Requests-Module', section: 'Professional Python Development' },
+      { num: 191, title: 'Clean Code Practices', folder: '191-Clean-Code-Practices', section: 'Professional Python Development' },
+      { num: 192, title: 'Debugging Techniques', folder: '192-Debugging-Techniques', section: 'Professional Python Development' },
+      { num: 193, title: 'Logging', folder: '193-Logging', section: 'Professional Python Development' },
+      { num: 194, title: 'Testing Fundamentals', folder: '194-Testing-Fundamentals', section: 'Professional Python Development' },
+      { num: 195, title: 'Performance Optimization', folder: '195-Performance-Optimization', section: 'Professional Python Development' },
+      { num: 196, title: 'Python Best Practices', folder: '196-Python-Best-Practices', section: 'Professional Python Development' },
+      { num: 197, title: 'Calculator Project', folder: '197-Calculator-Project', section: 'Real World Projects' },
+      { num: 198, title: 'Password Generator', folder: '198-Password-Generator', section: 'Real World Projects' },
+      { num: 199, title: 'Quiz Application', folder: '199-Quiz-Application', section: 'Real World Projects' },
+      { num: 200, title: 'Expense Tracker', folder: '200-Expense-Tracker', section: 'Real World Projects' },
+      { num: 201, title: 'Student Management System', folder: '201-Student-Management-System', section: 'Real World Projects' },
+      { num: 202, title: 'Library Management System', folder: '202-Library-Management-System', section: 'Real World Projects' },
+      { num: 203, title: 'Weather Application', folder: '203-Weather-Application', section: 'Real World Projects' },
+      { num: 204, title: 'Web Scraper Project', folder: '204-Web-Scraper-Project', section: 'Real World Projects' },
+      { num: 205, title: 'AI Chatbot Project', folder: '205-AI-Chatbot-Project', section: 'Real World Projects' },
+      { num: 206, title: 'Python Capstone Project', folder: '206-Complete-Python-Capstone', section: 'Real World Projects' }
+    ];
+
+    let currentIndex = 0;
+    let currentTab = 'lesson';
+    const cache = {};
+    const visited = new Set();
+    let quizAnswered = {};
+    let quizDataCache = [];
+
+    const el = (id) => document.getElementById(id);
+    const panelLesson = el('panel-lesson');
+    const panelExamples = el('panel-examples');
+    const panelPlayground = el('panel-playground');
+    const panelQuiz = el('panel-quiz');
+    const panelChallenges = el('panel-challenges');
+    const panelCheatsheet = el('panel-cheatsheet');
+    const panelProject = el('panel-project');
+    const panelResources = el('panel-resources');
+    const panelVideos = el('panel-videos');
+
+    function renderSidebar() {
+      const list = el('moduleList');
+      let html = '';
+      sections.forEach(section => {
+        html += `<div class="sidebar-section">${section}</div>`;
+        modules.filter(m => m.section === section).forEach(mod => {
+          html += `<a class="module-item" data-index="${modules.indexOf(mod)}">
+            <span class="num">${mod.num}</span>
+            <span class="title">${mod.title}</span>
+            <span class="dot"></span>
+          </a>`;
+        });
+      });
+      list.innerHTML = html;
+      updateSidebar();
+    }
+
+    function updateSidebar() {
+      document.querySelectorAll('.module-item').forEach((el, i) => {
+        const idx = parseInt(el.dataset.index);
+        el.classList.toggle('active', idx === currentIndex);
+        el.classList.toggle('visited', visited.has(idx));
+      });
+      const active = document.querySelector('.module-item.active');
+      if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+        currentTab = btn.dataset.tab;
+        const panel = el('panel-' + currentTab);
+        if (panel) panel.classList.add('active');
+        if (currentTab !== 'lesson') loadTabContent(currentTab);
+      });
+    });
+
+    function switchTab(tab) {
+      const btn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+      if (btn) btn.click();
+    }
+
+    function goToModule(index) {
+      if (index < 0 || index >= modules.length) return;
+      currentIndex = index;
+      visited.add(index);
+      updateSidebar();
+      updateProgress();
+
+      el('prevBtn').disabled = index === 0;
+      el('nextBtn').disabled = index === modules.length - 1;
+
+      window.location.hash = 'module-' + modules[index].num;
+
+      // Reset to lesson tab
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('[data-tab="lesson"]').classList.add('active');
+      document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+      panelLesson.classList.add('active');
+      currentTab = 'lesson';
+
+      // Show loading on lesson
+      panelLesson.innerHTML = '<div class="loading-spinner"><div class="spinner"></div>Loading lesson...</div>';
+
+      const mod = modules[index];
+      fetchText(COURSE_PATH + mod.folder + '/lesson.md').then(md => {
+        panelLesson.innerHTML = '<div class="lesson">' + marked.parse(md) + '</div>';
+        panelLesson.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+      }).catch(() => {
+        panelLesson.innerHTML = '<div class="error-state">⚠ Failed to load lesson.md. Make sure you\'re running a local server.<br><br><code>npx serve .</code><br>or<br><code>python -m http.server 8000</code></div>';
+      });
+    }
+
+    function updateProgress() {
+      el('progressBadge').textContent = visited.size + ' / ' + modules.length;
+    }
+
+    async function fetchText(path) {
+      const res = await fetch(path);
+      if (!res.ok) throw new Error('Not found');
+      return res.text();
+    }
+
+    async function fetchJSON(path) {
+      const res = await fetch(path);
+      if (!res.ok) throw new Error('Not found');
+      return res.json();
+    }
+
+    function loadTabContent(tab) {
+      const mod = modules[currentIndex];
+      const cacheKey = mod.folder + '/' + tab;
+      if (cache[cacheKey]) {
+        const panel = el('panel-' + tab);
+        panel.innerHTML = cache[cacheKey];
+        if (tab === 'quiz') initQuiz();
+        if (tab !== 'quiz') panel.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
+        return;
+      }
+
+      const panel = el('panel-' + tab);
+      panel.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+
+      const loaders = {
+        'examples': () => fetchText(COURSE_PATH + mod.folder + '/examples.html').then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const cards = doc.querySelectorAll('.example-card');
+          let render = '';
+          cards.forEach(c => render += c.outerHTML);
+          cache[cacheKey] = render;
+          panel.innerHTML = render;
+          panel.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
+        }),
+        'playground': () => {
+          loadPlatformStyles();
+          return fetchText('platform/frontend/editor.html').then(html => {
+            cache[cacheKey] = html;
+            panel.innerHTML = html;
+            loadPlatformScripts();
+          });
+        },
+        'quiz': () => fetchJSON(COURSE_PATH + mod.folder + '/quiz.json').then(data => {
+          const html = renderQuiz(data);
+          cache[cacheKey] = html;
+          panel.innerHTML = html;
+          initQuiz();
+        }),
+        'challenges': () => fetchJSON(COURSE_PATH + mod.folder + '/challenges.json').then(data => {
+          const html = renderChallenges(data);
+          cache[cacheKey] = html;
+          panel.innerHTML = html;
+          panel.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
+        }),
+        'cheatsheet': () => fetchText(COURSE_PATH + mod.folder + '/cheatsheet.md').then(md => {
+          const html = '<div class="lesson">' + marked.parse(md) + '</div>';
+          cache[cacheKey] = html;
+          panel.innerHTML = html;
+          panel.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
+        }),
+        'project': () => fetchText(COURSE_PATH + mod.folder + '/project.md').then(md => {
+          const html = '<div class="lesson">' + marked.parse(md) + '</div>';
+          cache[cacheKey] = html;
+          panel.innerHTML = html;
+          panel.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
+        }),
+        'resources': () => fetchJSON(COURSE_PATH + mod.folder + '/resources.json').then(data => {
+          const html = renderResources(data);
+          cache[cacheKey] = html;
+          panel.innerHTML = html;
+        }),
+        'videos': () => fetchJSON(COURSE_PATH + mod.folder + '/video.json').then(data => {
+          const html = renderVideos(data);
+          cache[cacheKey] = html;
+          panel.innerHTML = html;
+        })
+      };
+
+      if (loaders[tab]) {
+        loaders[tab]().catch(() => {
+          panel.innerHTML = '<div class="error-state">⚠ Failed to load content. Make sure you\'re running a local server.</div>';
+        });
+      }
+    }
+
+    function renderQuiz(data) {
+      if (!data || !data.length) return '<div class="empty-state">No quiz questions available.</div>';
+      quizAnswered = {};
+      quizDataCache = data;
+      let html = '<div class="quiz-score" id="quizScore">Score: 0 / ' + data.length + '</div>';
+      data.forEach((q, i) => {
+        html += '<div class="quiz-question">';
+        html += '<div class="q-text">' + (i + 1) + '. ' + q.question + '</div>';
+        ['a', 'b', 'c', 'd'].forEach((opt, j) => {
+          html += '<button class="quiz-option" data-q="' + i + '" data-opt="' + opt + '" onclick="handleQuizAnswer(this)">' +
+            opt.toUpperCase() + '. ' + q.options[j] + '</button>';
+        });
+        html += '<div class="quiz-explanation" id="explain-' + i + '">' + q.explanation + '</div>';
+        html += '</div>';
+      });
+      return html;
+    }
+
+    function initQuiz() {
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.onclick = function() { handleQuizAnswer(this); };
+      });
+    }
+
+    function handleQuizAnswer(btn) {
+      const qIdx = btn.dataset.q;
+      if (quizAnswered[qIdx]) return;
+      quizAnswered[qIdx] = true;
+      const correct = quizDataCache[qIdx].answer;
+      const options = btn.parentElement.querySelectorAll('.quiz-option');
+      options.forEach(o => o.disabled = true);
+      options.forEach(o => {
+        if (o.dataset.opt === correct) o.classList.add('correct');
+        else if (o.classList.contains('selected')) o.classList.add('wrong');
+      });
+      if (btn.dataset.opt === correct) btn.classList.add('correct');
+      else btn.classList.add('selected', 'wrong');
+      el('explain-' + qIdx).classList.add('show');
+      updateQuizScore();
+    }
+
+    function getQuizData() { return quizDataCache; }
+
+    function updateQuizScore() {
+      const total = quizDataCache.length;
+      const correct = document.querySelectorAll('.quiz-option.correct').length / 4;
+      el('quizScore').textContent = 'Score: ' + correct + ' / ' + total;
+    }
+
+    function renderChallenges(data) {
+      if (!data || !data.length) return '<div class="empty-state">No challenges available.</div>';
+      return data.map(c => {
+        return '<div class="challenge-card ' + c.difficulty + '">' +
+          '<span class="tag">' + c.difficulty.toUpperCase() + '</span>' +
+          '<h3>' + c.title + '</h3>' +
+          '<p>' + c.description + '</p>' +
+          '<pre><code class="language-python">' + escapeHTML(c.starterCode) + '</code></pre>' +
+          '<button class="solution-btn" onclick="toggleSolution(this)">Show Solution</button>' +
+          '<div class="solution-content"><pre><code class="language-python">' + escapeHTML(c.solution) + '</code></pre></div>' +
+          '</div>';
+      }).join('');
+    }
+
+    function renderResources(data) {
+      if (!data || !data.length) return '<div class="empty-state">No resources available.</div>';
+      return '<div class="resources-grid">' + data.map(r => {
+        const typeClass = r.type.toLowerCase().replace(/\s+/g, '-');
+        return '<div class="resource-card">' +
+          '<span class="type ' + typeClass + '">' + r.type + '</span>' +
+          '<h3><a href="' + r.url + '" target="_blank" rel="noopener">' + r.title + '</a></h3>' +
+          '<p>' + r.description + '</p></div>';
+      }).join('') + '</div>';
+    }
+
+    function renderVideos(data) {
+      const videos = Array.isArray(data) ? data : (data && data.videos ? data.videos : []);
+      if (!videos.length) return '<div class="empty-state">No video resources available.</div>';
+      return '<div class="videos-grid">' + videos.map(v => {
+        const embed = v.embedUrl || (v.url ? v.url.replace('watch?v=', 'embed/') : '');
+        return '<div class="video-card">' +
+          '<div class="iframe-wrap"><iframe src="' + embed + '" allowfullscreen loading="lazy"></iframe></div>' +
+          '<div class="info">' +
+          '<h3>' + v.title + '</h3>' +
+          '<div class="channel">' + (v.channel || 'YouTube') + '</div>' +
+          '<div class="meta">' +
+          (v.level ? '<span>' + v.level + '</span>' : '') +
+          (v.duration ? '<span>' + v.duration + '</span>' : '') +
+          '</div></div></div>';
+      }).join('') + '</div>';
+    }
+
+    function escapeHTML(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+
+    function toggleSolution(btn) {
+      const content = btn.nextElementSibling;
+      content.classList.toggle('show');
+      btn.textContent = content.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+      if (content.classList.contains('show')) {
+        content.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
+      }
+    }
+
+    // Hash navigation
+    function handleHash() {
+      const match = window.location.hash.match(/module-(\d+)/);
+      if (match) {
+        const num = parseInt(match[1]);
+        const idx = modules.findIndex(m => m.num === num);
+        if (idx >= 0) goToModule(idx);
+      }
+    }
+
+    window.addEventListener('hashchange', handleHash);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+      if (e.key === 'ArrowLeft') goToModule(currentIndex - 1);
+      if (e.key === 'ArrowRight') goToModule(currentIndex + 1);
+    });
+
+    // Hamburger menu
+    el('hamburgerBtn').addEventListener('click', () => {
+      el('sidebar').classList.toggle('open');
+      el('sidebarOverlay').classList.toggle('show');
+    });
+    el('sidebarOverlay').addEventListener('click', () => {
+      el('sidebar').classList.remove('open');
+      el('sidebarOverlay').classList.remove('show');
+    });
+
+    // Sidebar clicks
+    document.getElementById('moduleList').addEventListener('click', (e) => {
+      const item = e.target.closest('.module-item');
+      if (item) {
+        goToModule(parseInt(item.dataset.index));
+        el('sidebar').classList.remove('open');
+        el('sidebarOverlay').classList.remove('show');
+      }
+    });
+
+    var _platformStylesLoaded = false;
+    var _platformScriptsLoaded = false;
+
+    function loadPlatformStyles() {
+      if (_platformStylesLoaded) return;
+      _platformStylesLoaded = true;
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'platform/frontend/editor.css';
+      document.head.appendChild(link);
+    }
+
+    function loadPlatformScripts() {
+      if (_platformScriptsLoaded) return;
+      _platformScriptsLoaded = true;
+      var scripts = [
+        'platform/frontend/codemirror/bundle.js',
+        'platform/frontend/editor.js',
+        'platform/frontend/py-runtime.js',
+        'platform/frontend/pkg-install.js',
+        'platform/frontend/input-dialog.js',
+        'wasm/python-loader.js',
+      ];
+      var loaded = 0;
+      var total = scripts.length;
+      function onDone() {
+        loaded++;
+        if (loaded < total) return;
+        console.debug('[Playground] all scripts loaded');
+        if (window.PyCodeMirror) {
+          PyCodeMirror.initEditor();
+          PyCodeMirror.showSnippets();
+        }
+        if (window.PyRuntime) {
+          PyRuntime.init();
+        }
+      }
+      scripts.forEach(function(src) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.async = true;
+        s.onload = onDone;
+        s.onerror = function() { console.warn('[Playground] script failed:', src); onDone(); };
+        document.body.appendChild(s);
+      });
+    }
+
+    // Register service worker for offline mode
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(function(e) {
+        console.log('SW registration skipped:', e);
+      });
+    }
+
+    // Init
+    renderSidebar();
+    if (!window.location.hash) {
+      goToModule(0);
+    } else {
+      handleHash();
+    }
+  </script>
+</body>
+</html>

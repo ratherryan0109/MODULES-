@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Accessibility - Examples</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        .example { border: 2px solid #2e7d32; border-radius: 8px; padding: 20px; margin: 20px 0; background: #e8f5e9; }
+        .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Cascadia Code', monospace; font-size: 14px; margin: 10px 0; }
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        .badge-good { background: #4caf50; color: white; }
+        .badge-bad { background: #f44336; color: white; }
+        .column { display: flex; gap: 20px; flex-wrap: wrap; }
+        .column > * { flex: 1; min-width: 280px; }
+        .focus-visible:focus-visible { outline: 3px solid #2e7d32; outline-offset: 2px; }
+        .semantic-nav ul { list-style: none; padding: 0; display: flex; gap: 15px; background: #c8e6c9; padding: 10px; border-radius: 4px; }
+        .non-semantic-nav { background: #ffcdd2; padding: 10px; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; border: 1px solid #a5d6a7; text-align: left; }
+        th { background: #a5d6a7; }
+    </style>
+</head>
+<body>
+    <h1>Semantic Accessibility - Interactive Examples</h1>
+    <p>Compare semantic vs non-semantic implementations side by side. Test with a screen reader to hear the difference.</p>
+
+    <div class="example">
+        <h2>1. Button vs div click handler</h2>
+        <div class="column">
+            <div>
+                <span class="badge badge-bad">Non-semantic</span>
+                <div onclick="alert('Clicked')" style="cursor:pointer;background:#ffcdd2;padding:10px;display:inline-block;border-radius:4px;">
+                    Click me (div)
+                </div>
+                <p style="font-size:13px;color:#666;">Not keyboard accessible, no role, no focus</p>
+            </div>
+            <div>
+                <span class="badge badge-good">Semantic</span>
+                <button onclick="alert('Clicked')" class="focus-visible" style="padding:10px;border-radius:4px;">
+                    Click me (button)
+                </button>
+                <p style="font-size:13px;color:#666;">Keyboard accessible, focusable, proper role</p>
+            </div>
+        </div>
+        <div class="code">&lt;!-- Non-semantic --&gt;
+&lt;div onclick="alert('Clicked')"&gt;Click me&lt;/div&gt;
+
+&lt;!-- Semantic --&gt;
+&lt;button onclick="alert('Clicked')"&gt;Click me&lt;/button&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>2. Navigation Structure</h2>
+        <div class="column">
+            <div>
+                <span class="badge badge-bad">Non-semantic</span>
+                <div class="non-semantic-nav">
+                    <span onclick="alert('Home')" style="cursor:pointer;margin-right:15px;">Home</span>
+                    <span onclick="alert('About')" style="cursor:pointer;margin-right:15px;">About</span>
+                    <span onclick="alert('Contact')" style="cursor:pointer;">Contact</span>
+                </div>
+            </div>
+            <div>
+                <span class="badge badge-good">Semantic</span>
+                <nav aria-label="Main navigation" class="semantic-nav">
+                    <ul>
+                        <li><a href="#" class="focus-visible">Home</a></li>
+                        <li><a href="#" class="focus-visible">About</a></li>
+                        <li><a href="#" class="focus-visible">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="code">&lt;!-- Non-semantic --&gt;
+&lt;div&gt;
+    &lt;span onclick="..."&gt;Home&lt;/span&gt;
+    &lt;span onclick="..."&gt;About&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Semantic --&gt;
+&lt;nav aria-label="Main"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>3. Heading Structure</h2>
+        <div class="column">
+            <div>
+                <span class="badge badge-bad">Non-semantic</span>
+                <div style="font-size:24px;font-weight:bold;">Page Title</div>
+                <div style="font-size:20px;font-weight:bold;">Section 1</div>
+                <p>Some text...</p>
+                <div style="font-size:16px;font-weight:bold;">Sub Section</div>
+                <p>More text...</p>
+            </div>
+            <div>
+                <span class="badge badge-good">Semantic</span>
+                <h1 style="font-size:24px;">Page Title</h1>
+                <h2 style="font-size:20px;">Section 1</h2>
+                <p>Some text...</p>
+                <h3 style="font-size:16px;">Sub Section</h3>
+                <p>More text...</p>
+            </div>
+        </div>
+        <div class="code">&lt;!-- Non-semantic --&gt;
+&lt;div style="font-size:24px;font-weight:bold;"&gt;Title&lt;/div&gt;
+
+&lt;!-- Semantic --&gt;
+&lt;h1&gt;Title&lt;/h1&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>4. List vs Divs</h2>
+        <div class="column">
+            <div>
+                <span class="badge badge-bad">Non-semantic</span>
+                <div style="margin:0;">Item 1</div>
+                <div style="margin:0;">Item 2</div>
+                <div style="margin:0;">Item 3</div>
+            </div>
+            <div>
+                <span class="badge badge-good">Semantic</span>
+                <ul style="margin:0;">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="code">&lt;!-- Screen reader: 3 divs, no grouping --&gt;
+&lt;div&gt;Item 1&lt;/div&gt;&lt;div&gt;Item 2&lt;/div&gt;
+
+&lt;!-- Screen reader: 'List with 2 items' + item positions --&gt;
+&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>5. Form Structure</h2>
+        <div class="column">
+            <div>
+                <span class="badge badge-bad">Non-semantic</span>
+                <div>
+                    <div>Name:</div>
+                    <input type="text" id="bad-name" style="margin-bottom:8px;">
+                    <div>Email:</div>
+                    <input type="email" id="bad-email" style="margin-bottom:8px;">
+                    <div onclick="alert('Submitted')" style="cursor:pointer;background:#ffcdd2;padding:8px;display:inline-block;">Save</div>
+                </div>
+            </div>
+            <div>
+                <span class="badge badge-good">Semantic</span>
+                <form>
+                    <label for="good-name">Name:</label>
+                    <input type="text" id="good-name" class="focus-visible" style="display:block;margin-bottom:8px;">
+                    <label for="good-email">Email:</label>
+                    <input type="email" id="good-email" class="focus-visible" style="display:block;margin-bottom:8px;">
+                    <button type="submit" class="focus-visible">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2>6. Semantic Table</h2>
+        <table>
+            <caption>Employee Directory</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Extension</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Alice Johnson</th>
+                    <td>Engineering</td>
+                    <td>1234</td>
+                </tr>
+                <tr>
+                    <th scope="row">Bob Smith</th>
+                    <td>Marketing</td>
+                    <td>5678</td>
+                </tr>
+                <tr>
+                    <th scope="row">Carol Williams</th>
+                    <td>Design</td>
+                    <td>9012</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="code">&lt;table&gt;
+    &lt;caption&gt;Employee Directory&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Name&lt;/th&gt;
+            &lt;th scope="col"&gt;Department&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Alice Johnson&lt;/th&gt;
+            &lt;td&gt;Engineering&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>7. Details/Summary (Native Disclosure)</h2>
+        <p>Native semantic disclosure widget - no JavaScript needed:</p>
+        <details>
+            <summary>What is semantic HTML?</summary>
+            <p>Semantic HTML uses elements that convey meaning about their content, such as &lt;nav&gt;, &lt;article&gt;, and &lt;form&gt;, instead of generic &lt;div&gt; elements. This improves accessibility, SEO, and code maintainability.</p>
+        </details>
+        <details>
+            <summary>Why is it important?</summary>
+            <p>Semantic HTML provides built-in accessibility features, better screen reader support, and improved keyboard navigation without requiring ARIA attributes or JavaScript.</p>
+        </details>
+        <div class="code">&lt;details&gt;
+    &lt;summary&gt;Question title&lt;/summary&gt;
+    &lt;p&gt;Answer content&lt;/p&gt;
+&lt;/details&gt;
+&lt;!-- Built-in: keyboard toggle with Enter/Space --&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>8. Dialog Element</h2>
+        <p>Native semantic dialog with built-in focus management:</p>
+        <button onclick="document.getElementById('demo-dialog').showModal()" class="focus-visible">
+            Open Dialog
+        </button>
+        <dialog id="demo-dialog" style="border:2px solid #2e7d32; border-radius:8px; padding:20px;">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete this item?</p>
+            <form method="dialog">
+                <button value="cancel" class="focus-visible" style="margin-right:10px;">Cancel</button>
+                <button value="confirm" class="focus-visible" style="background:#f44336; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Delete</button>
+            </form>
+        </dialog>
+        <div class="code">&lt;dialog&gt;
+    &lt;h2&gt;Confirm&lt;/h2&gt;
+    &lt;p&gt;Are you sure?&lt;/p&gt;
+    &lt;form method="dialog"&gt;
+        &lt;button value="cancel"&gt;Cancel&lt;/button&gt;
+        &lt;button value="confirm"&gt;Confirm&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/dialog&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>9. Definition List</h2>
+        <dl>
+            <dt>Accessibility</dt>
+            <dd>The practice of making websites usable by people of all abilities and disabilities.</dd>
+            <dt>Semantic HTML</dt>
+            <dd>Using HTML elements that convey meaning about the content they contain.</dd>
+            <dt>ARIA</dt>
+            <dd>A set of attributes that supplement HTML to improve accessibility for dynamic content.</dd>
+        </dl>
+        <div class="code">&lt;dl&gt;
+    &lt;dt&gt;Term&lt;/dt&gt;
+    &lt;dd&gt;Definition&lt;/dd&gt;
+&lt;/dl&gt;</div>
+    </div>
+
+    <div class="example">
+        <h2>10. Figure with Figcaption</h2>
+        <figure>
+            <pre style="background:#1e1e1e; color:#d4d4d4; padding:15px; border-radius:6px; overflow-x:auto;"><code>function greet(name) {
+    return `Hello, ${name}!`;
+}</code></pre>
+            <figcaption>Example: JavaScript greeting function</figcaption>
+        </figure>
+        <div class="code">&lt;figure&gt;
+    &lt;pre&gt;&lt;code&gt;function greet() { ... }&lt;/code&gt;&lt;/pre&gt;
+    &lt;figcaption&gt;Example function&lt;/figcaption&gt;
+&lt;/figure&gt;</div>
+    </div>
+
+    <script>
+        document.getElementById('demo-dialog')?.addEventListener('close', (e) => {
+            if (e.target.returnValue === 'confirm') {
+                alert('Item deleted!');
+            }
+        });
+    </script>
+</body>
+</html>

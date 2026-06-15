@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Container Queries - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;padding:30px;background:#0f0f1a;color:#e0e0e0}
+.container{max-width:900px;margin:0 auto}
+h1{color:#ffd700}.subtitle{color:#aaa;margin-bottom:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.panel{background:#1a1a2e;border-radius:10px;padding:16px;border:1px solid #2a2a4a}
+.panel h2{color:#00d4ff;font-size:1rem;margin-bottom:8px}
+.ctrl{margin-bottom:10px}
+.ctrl label{display:block;color:#ccc;margin-bottom:2px;font-size:0.8rem}
+.ctrl input{width:100%;padding:5px 8px;border:1px solid #333;border-radius:5px;background:#0a0a1a;color:#e0e0e0}
+.ctrl input[type=range]{padding:0}
+.preview{background:#12122a;border-radius:8px;padding:16px;margin-bottom:12px}
+.card-container{container-type:inline-size;resize:horizontal;overflow:auto;padding:12px;background:rgba(255,255,255,0.05);border-radius:8px;border:2px dashed #2a2a4a;min-width:150px}
+.card{background:#1e293b;border-radius:12px;padding:16px;display:grid;gap:12px;grid-template-columns:var(--cols);color:white}
+.card-img{height:80px;background:linear-gradient(135deg,var(--c1),var(--c2));border-radius:8px}
+.card h3{color:#ffd700}
+.card p{color:#94a3b8;font-size:0.85rem}
+.code{background:#0a0a1a;padding:12px;border-radius:8px;font-family:'Fira Code',monospace;font-size:0.8rem;color:#a8e6cf}
+</style>
+</head>
+<body>
+<div class=container>
+<h1>Container Queries Playground</h1>
+<p class=subtitle>Adjust container width and query breakpoints.</p>
+<div class=row>
+<div class=panel><h2>Container</h2>
+<div class=ctrl><label>Width: <span id=wVal>400px</span></label><input type=range id=contW min=150 max=800 value=400></div>
+<div class=ctrl><label>Color 1</label><input type=color id=c1 value="#3b82f6"></div>
+<div class=ctrl><label>Color 2</label><input type=color id=c2 value="#8b5cf6"></div>
+</div>
+<div class=panel><h2>Query Breakpoints</h2>
+<div class=ctrl><label>Breakpoint 1: <span id=bp1V>350px</span></label><input type=range id=bp1 min=200 max=600 value=350></div>
+<div class=ctrl><label>Breakpoint 2: <span id=bp2V>550px</span></label><input type=range id=bp2 min=300 max=800 value=550></div>
+</div>
+</div>
+<div class=preview><div class=card-container id=cardCont style="max-width:400px"><div class=card id=card><div class=card-img></div><div><h3>Responsive Card</h3><p>Resize or adjust settings to see container queries in action.</p></div></div></div></div>
+<div class=code id=codeOut>/* Generated CSS */</div>
+</div>
+<script>
+const cardCont=document.getElementById('cardCont'),card=document.getElementById('card'),contW=document.getElementById('contW'),c1=document.getElementById('c1'),c2=document.getElementById('c2'),bp1=document.getElementById('bp1'),bp2=document.getElementById('bp2');
+function update(){
+const w=contW.value+'px',b1=parseInt(bp1.value),b2=parseInt(bp2.value);
+document.getElementById('wVal').textContent=w;document.getElementById('bp1V').textContent=b1+'px';document.getElementById('bp2V').textContent=b2+'px';
+cardCont.style.maxWidth=w;
+card.style.setProperty('--c1',c1.value);card.style.setProperty('--c2',c2.value);
+const actualW=cardCont.offsetWidth;
+let cols='1fr';
+if(actualW>=b2)cols='150px 1fr';
+else if(actualW>=b1)cols='100px 1fr';
+card.style.setProperty('--cols',cols);
+document.getElementById('codeOut').textContent=`/* Container */\n.card-container { container-type: inline-size; }\n\n/* Queries */\n@container (min-width: ${b1}px) { .card { grid-template-columns: 100px 1fr; } }\n@container (min-width: ${b2}px) { .card { grid-template-columns: 150px 1fr; } }\n\n/* Current state */\nContainer width: ${actualW}px\nActive breakpoint: ${actualW>=b2?b2:actualW>=b1?b1:'none'}px`;
+}
+[contW,c1,c2,bp1,bp2].forEach(el=>el.addEventListener('input',update));
+window.addEventListener('resize',update);update();
+</script>
+</body>
+</html>

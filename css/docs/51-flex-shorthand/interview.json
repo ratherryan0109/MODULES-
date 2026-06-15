@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the flex shorthand property?", "answer": "The flex shorthand combines flex-grow, flex-shrink, and flex-basis into a single declaration." },
+    { "question": "What is the syntax of the flex shorthand?", "answer": "flex: grow shrink basis, e.g., flex: 1 0 auto or flex: 2 1 200px." },
+    { "question": "What does flex: 1 do?", "answer": "flex: 1 sets flex-grow: 1, flex-shrink: 1, flex-basis: 0, making the item grow and shrink equally." },
+    { "question": "What does flex: 0 do?", "answer": "flex: 0 sets flex-grow: 0, flex-shrink: 0, flex-basis: 0, making the item fixed at zero size." },
+    { "question": "What does flex: none do?", "answer": "flex: none sets flex-grow: 0, flex-shrink: 0, flex-basis: auto, making the item fully inflexible." },
+    { "question": "What does flex: auto do?", "answer": "flex: auto sets flex-grow: 1, flex-shrink: 1, flex-basis: auto, allowing items to grow from their content size." },
+    { "question": "What does flex: initial do?", "answer": "flex: initial sets flex-grow: 0, flex-shrink: 1, flex-basis: auto, which is the default flex behavior." },
+    { "question": "How do you write flex shorthand for a non-growing, non-shrinking fixed-width item?", "answer": "Use flex: 0 0 200px to set a fixed main-axis size of 200px." },
+    { "question": "Can you use the flex shorthand with just one value?", "answer": "Yes: flex: 1 sets grow to 1, shrink to 1, basis to 0. flex: 200px sets basis to 200px, grow/shrink defaults." },
+    { "question": "What are the default flex values if none are specified?", "answer": "The defaults are flex-grow: 0, flex-shrink: 1, flex-basis: auto." }
+  ],
+  "intermediate": [
+    { "question": "What is the difference between flex: 1 and flex: auto?", "answer": "flex: 1 sets basis: 0 (equal distribution); flex: auto sets basis: auto (distribution based on content size)." },
+    { "question": "What does flex: 2 1 100px do?", "answer": "grow: 2 (grows twice as fast as others), shrink: 1 (shrinks normally), basis: 100px (starts at 100px)." },
+    { "question": "How does flex: 0 1 auto differ from the default?", "answer": "This is exactly the default flex behavior: no grow, can shrink, basis auto." },
+    { "question": "How does flex: 1 0 200px behave?", "answer": "The item can grow (grow: 1) but cannot shrink (shrink: 0), starting from 200px basis." },
+    { "question": "What is the most common flex shorthand values for sidebars?", "answer": "Use flex: 0 0 250px for a fixed-width sidebar that neither grows nor shrinks." },
+    { "question": "What is the most common flex shorthand for a flexible content area?", "answer": "Use flex: 1 1 auto or simply flex: 1 for a content area that fills remaining space." },
+    { "question": "How does flex: 0 1 50% behave in a row?", "answer": "The item starts at 50% width, cannot grow, but can shrink if the container is too small." },
+    { "question": "What does flex: 1 1 0 achieve?", "answer": "flex: 1 1 0 is the same as flex: 1 — equal distribution of space with both grow and shrink enabled." },
+    { "question": "How does the flex shorthand handle two-value syntax?", "answer": "Two values: first is flex-grow, second is flex-shrink if it's a number, or flex-basis if it's a length/percentage." },
+    { "question": "How does the flex shorthand handle three-value syntax?", "answer": "Three values: first is flex-grow, second is flex-shrink, third is flex-basis (must have unit unless 0)." }
+  ],
+  "advanced": [
+    { "question": "How does flex: 1 differ from flex: 1 1 0% in different browsers?", "answer": "flex: 1 sets basis: 0; flex: 1 1 0% sets basis: 0%. In most browsers they behave identically, but 0% can resolve differently in some edge cases." },
+    { "question": "How do you create a flex item that takes up twice as much space as others using shorthand?", "answer": "Use flex: 2 on the item and flex: 1 on the others; both set basis: 0 with proportional growth." },
+    { "question": "How does the flex shorthand interact with the min-width: auto default?", "answer": "Even with flex: 1 (basis: 0), the min-width: auto default prevents items from shrinking below their content size." },
+    { "question": "What are the implications of using flex: 1 on a row of text-heavy elements?", "answer": "Text-heavy items may overflow because they cannot shrink below their min-content size, despite flex: 1." },
+    { "question": "How do you use the flex shorthand in a card grid pattern?", "answer": "Use flex: 0 0 calc(33.33% - gap) to create three equal columns in a flex-wrap container." },
+    { "question": "How does flex: 0 0 auto compare to setting width directly?", "answer": "flex: 0 0 auto uses content-based sizing similarly to width: auto, but flex-basis only applies on the main axis." },
+    { "question": "How does the flex shorthand behave with flex-direction: column?", "answer": "The same values work, but flex-basis now controls height instead of width." },
+    { "question": "How do keyword values (initial, auto, none) map to numeric flex values?", "answer": "initial: 0 1 auto; auto: 1 1 auto; none: 0 0 auto." },
+    { "question": "How do you reset flex properties to default using shorthand?", "answer": "Use flex: initial or flex: 0 1 auto to reset to the default flex behavior." },
+    { "question": "How does flex: 1 1 fit-content work?", "answer": "This sets flex-basis to fit-content, so the item starts at its content size but can grow and shrink." }
+  ]
+}

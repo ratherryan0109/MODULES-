@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labels Examples</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',sans-serif; background:#f0f2f5; padding:30px 20px; }
+    .container { max-width:800px; margin:0 auto; }
+    h1 { color:#1a1a2e; border-bottom:3px solid #4a6cf7; padding-bottom:12px; margin-bottom:30px; }
+    h2 { color:#4a6cf7; margin:30px 0 16px; }
+    .card { background:white; border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:0 2px 12px rgba(0,0,0,0.08); }
+    .card label { display:block; margin-bottom:4px; font-weight:600; color:#333; font-size:14px; }
+    .card input { width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:8px; font-size:15px; transition:all 0.3s; margin-bottom:12px; }
+    .card input:focus { border-color:#4a6cf7; outline:none; box-shadow:0 0 0 3px rgba(74,108,247,0.12); }
+    pre { background:#2d3748; color:#e2e8f0; padding:14px; border-radius:8px; overflow-x:auto; font-size:13px; margin-bottom:12px; }
+    .flex-row { display:flex; gap:16px; flex-wrap:wrap; }
+    .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+    .inline-label { display:inline-flex; align-items:center; gap:6px; margin-right:16px; font-weight:400; cursor:pointer; }
+    .inline-label input { width:auto; margin:0; }
+    .req::after { content:" *"; color:#e53e3e; }
+    .error { border-color:#fc8181!important; }
+    .error-text { color:#e53e3e; font-size:13px; margin:-8px 0 12px; }
+    .note { background:#fefcbf; border-left:4px solid #ecc94b; padding:12px 16px; border-radius:4px; margin:12px 0; font-size:14px; }
+    button { background:#4a6cf7; color:white; border:none; padding:10px 24px; border-radius:6px; cursor:pointer; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Label Techniques — Interactive Examples</h1>
+  <div class="card">
+    <h2>1. Explicit Label (Recommended)</h2>
+    <pre>&lt;label for="email"&gt;Email:&lt;/label&gt;&lt;input id="email"&gt;</pre>
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" placeholder="you@example.com">
+    <p style="font-size:13px;color:#718096;">Click the label text — it focuses the input.</p>
+  </div>
+  <div class="card">
+    <h2>2. Implicit Label (Wrapping)</h2>
+    <pre>&lt;label&gt;Email: &lt;input&gt;&lt;/label&gt;</pre>
+    <label style="font-weight:400;">Subscribe to our newsletter
+      <input type="checkbox" name="subscribe" style="width:auto;margin-left:4px;">
+    </label>
+    <p style="font-size:13px;color:#718096;">The checkbox is inside the label — click the text to toggle.</p>
+  </div>
+  <div class="card">
+    <h2>3. Required Label Indicator</h2>
+    <pre>&lt;label class="required"&gt;&lt;/label&gt;</pre>
+    <label for="reqField" class="req">Full Name</label>
+    <input type="text" id="reqField" required placeholder="John Doe">
+  </div>
+  <div class="card">
+    <h2>4. Visually Hidden Label</h2>
+    <pre>&lt;label class="visually-hidden"&gt;&lt;/label&gt;</pre>
+    <label for="searchField" class="visually-hidden">Search the site</label>
+    <input type="search" id="searchField" placeholder="Search..." style="margin-bottom:0;">
+    <p style="font-size:13px;color:#718096;margin-top:8px;">Label is hidden visually but available for screen readers.</p>
+  </div>
+  <div class="card">
+    <h2>5. aria-label</h2>
+    <pre>&lt;input aria-label="Search"&gt;</pre>
+    <input type="search" aria-label="Search documentation" placeholder="Search docs..." style="margin-bottom:0;">
+  </div>
+  <div class="card">
+    <h2>6. aria-labelledby</h2>
+    <pre>&lt;h2 id="title"&gt;...&lt;/h2&gt;&lt;input aria-labelledby="title"&gt;</pre>
+    <h2 id="contactTitle" style="font-size:16px;margin-bottom:8px;">Contact Information</h2>
+    <label for="fullname">Full Name</label>
+    <input type="text" id="fullname" aria-labelledby="contactTitle" placeholder="This input is labelled by heading above">
+  </div>
+  <div class="card">
+    <h2>7. Inline Labels for Checkbox/Radio Groups</h2>
+    <form onsubmit="event.preventDefault();">
+      <label class="inline-label"><input type="checkbox" name="interest" value="web"> Web Dev</label>
+      <label class="inline-label"><input type="checkbox" name="interest" value="ai"> AI/ML</label>
+      <label class="inline-label"><input type="checkbox" name="interest" value="mobile"> Mobile</label>
+      <div style="margin-top:12px;">
+        <label class="inline-label"><input type="radio" name="exp" value="beginner"> Beginner</label>
+        <label class="inline-label"><input type="radio" name="exp" value="intermediate"> Intermediate</label>
+        <label class="inline-label"><input type="radio" name="exp" value="advanced"> Advanced</label>
+      </div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>8. Grouped Labels with Fieldset</h2>
+    <form onsubmit="event.preventDefault();">
+      <fieldset style="border:2px solid #e2e8f0;border-radius:8px;padding:16px;">
+        <legend style="font-weight:700;padding:0 8px;">Payment Method</legend>
+        <label class="inline-label"><input type="radio" name="payment" value="cc"> Credit Card</label>
+        <label class="inline-label"><input type="radio" name="payment" value="paypal"> PayPal</label>
+        <label class="inline-label"><input type="radio" name="payment" value="crypto"> Crypto</label>
+      </fieldset>
+    </form>
+  </div>
+  <div class="card">
+    <h2>9. Error State with Label</h2>
+    <form onsubmit="event.preventDefault();">
+      <label for="errField">Email Address</label>
+      <input type="email" id="errField" class="error" value="invalid-email">
+      <div class="error-text" id="errMsg" role="alert">Please enter a valid email address.</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>10. Click Target Comparison</h2>
+    <p style="margin-bottom:12px;">Click the text labels below — notice the difference:</p>
+    <div style="display:flex;gap:20px;">
+      <div><label style="background:#e2e8f0;padding:8px 16px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:400;"><input type="radio" name="demo" value="a"> Large click target</label></div>
+      <div><input type="radio" name="demo" value="b" id="smallTarget"> <label for="smallTarget" style="display:inline;font-weight:400;">Small click target</label></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

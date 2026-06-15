@@ -1,0 +1,147 @@
+{
+  "module": "96-css-hover-effects",
+  "title": "CSS Hover Effects",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which pseudo-class triggers hover effects?",
+      "options": [":active", ":hover", ":focus", ":visited"],
+      "correctAnswer": 1,
+      "explanation": ":hover is triggered when the user points at an element."
+    },
+    {
+      "id": 2,
+      "question": "What property should be used for smooth hover transitions?",
+      "options": ["animation", "transition", "transform", "@keyframes"],
+      "correctAnswer": 1,
+      "explanation": "transition creates smooth interpolation between hover states."
+    },
+    {
+      "id": 3,
+      "question": "Which approach is best for a card hover lift effect?",
+      "options": ["Animating margin-top", "Using translateY", "Animating top", "Using padding"],
+      "correctAnswer": 1,
+      "explanation": "translateY is GPU-accelerated and doesn't trigger layout."
+    },
+    {
+      "id": 4,
+      "question": "How do you detect devices that support hover?",
+      "options": ["@media (pointer: fine)", "@media (hover: hover)", "@media (any-hover)", "@media (touch: none)"],
+      "correctAnswer": 1,
+      "explanation": "@media (hover: hover) detects devices that support hover interactions."
+    },
+    {
+      "id": 5,
+      "question": "What is a common issue with hover effects on mobile?",
+      "options": ["Too slow", "No hover state on touch devices", "Too fast", "Not supported"],
+      "correctAnswer": 1,
+      "explanation": "Touch devices don't have hover, so effects triggered only on :hover may not work."
+    },
+    {
+      "id": 6,
+      "question": "Which pattern creates an underline that animates from center?",
+      "options": ["Border-bottom transition", "::after pseudo-element with width transition", "Text-decoration transition", "Box-shadow bottom"],
+      "correctAnswer": 1,
+      "explanation": "A ::after pseudo-element with centered position and expanding width creates center underline."
+    },
+    {
+      "id": 7,
+      "question": "What is the ideal duration for hover transitions?",
+      "options": ["50ms", "200-400ms", "1s", "3s"],
+      "correctAnswer": 1,
+      "explanation": "200-400ms is the sweet spot for UI hover feedback — fast enough to feel responsive."
+    },
+    {
+      "id": 8,
+      "question": "How do you make hover effects accessible for keyboard users?",
+      "options": ["Add :focus styles alongside :hover", "Only use :hover", "Disable hover", "Use JavaScript"],
+      "correctAnswer": 0,
+      "explanation": ":focus styles ensure keyboard users see interactive feedback."
+    },
+    {
+      "id": 9,
+      "question": "What does filter: grayscale(1) do in a hover effect?",
+      "options": ["Removes color on hover", "Makes image black and white by default, color on hover", "Blurs the image", "Brightens the image"],
+      "correctAnswer": 1,
+      "explanation": "grayscale(1) desaturates; toggling to 0 restores color on hover."
+    },
+    {
+      "id": 10,
+      "question": "Which hover effect combination is most performant?",
+      "options": ["transform + box-shadow", "width + height", "margin + padding", "font-size + color"],
+      "correctAnswer": 0,
+      "explanation": "transform and box-shadow are composited; width/height/margin/padding trigger layout."
+    },
+    {
+      "id": 11,
+      "question": "What is the 'sticky hover' problem on mobile?",
+      "options": [":hover state persists after tap until user taps elsewhere", ":hover doesn't work at all", ":hover triggers twice", ":hover is always active"],
+      "correctAnswer": 0,
+      "explanation": "On mobile, a tap triggers :hover and :active, and the hover state persists until the user taps elsewhere."
+    },
+    {
+      "id": 12,
+      "question": "What is the correct order for link pseudo-classes?",
+      "options": [":link, :visited, :hover, :active", ":hover, :link, :visited, :active", ":active, :hover, :link, :visited", ":link, :hover, :visited, :active"],
+      "correctAnswer": 0,
+      "explanation": "The correct order is LoVe HAte: Link, Visited, Hover, Active."
+    },
+    {
+      "id": 13,
+      "question": "Which property can create a button glow effect on hover?",
+      "options": ["box-shadow", "text-shadow", "outline", "border-color"],
+      "correctAnswer": 0,
+      "explanation": "box-shadow with a colored spread creates a glow effect: box-shadow: 0 0 20px rgba(59,130,246,0.5);"
+    },
+    {
+      "id": 14,
+      "question": "How do you create a button press effect with scale?",
+      "options": [":active { scale: 0.95; }", ":hover { scale: 1.1; }", ":focus { scale: 0.5; }", ":visited { scale: 0.95; }"],
+      "correctAnswer": 0,
+      "explanation": "Scaling down slightly on :active (0.95) creates a realistic press effect."
+    },
+    {
+      "id": 15,
+      "question": "What is the purpose of will-change for hover effects?",
+      "options": ["Promotes the element to its own compositor layer", "Changes the element's color", "Disables hover effects", "Speeds up the transition"],
+      "correctAnswer": 0,
+      "explanation": "will-change: transform hints to the browser to promote the element to its own layer for smoother animation."
+    },
+    {
+      "id": 16,
+      "question": "Which media query detects touch-only devices?",
+      "options": ["@media (pointer: coarse)", "@media (hover: none)", "@media (touch: true)", "@media (input: touch)"],
+      "correctAnswer": 0,
+      "explanation": "pointer: coarse detects touch-based input (fingers on a touchscreen)."
+    },
+    {
+      "id": 17,
+      "question": "What does an image zoom hover effect typically use?",
+      "options": ["transform: scale() inside overflow: hidden wrapper", "width: 110%", "max-width: none", "object-fit: cover"],
+      "correctAnswer": 0,
+      "explanation": "An overflow: hidden wrapper with transform: scale(1.1) on the image creates a smooth zoom effect."
+    },
+    {
+      "id": 18,
+      "question": "Why should you avoid animating margin for hover effects?",
+      "options": ["It triggers layout recalculation", "It's not supported", "It only animates in Chrome", "It requires JavaScript"],
+      "correctAnswer": 0,
+      "explanation": "Animating margin triggers layout, causing other elements to reflow. Prefer transform instead."
+    },
+    {
+      "id": 19,
+      "question": "What does a background fill from left hover effect use?",
+      "options": ["linear-gradient with background-position transition", "width: 100% transition", "opacity transition", "transform: scaleX()"],
+      "correctAnswer": 0,
+      "explanation": "A gradient background with background-position transition creates a directional fill effect."
+    },
+    {
+      "id": 20,
+      "question": "How should hover effects be applied for progressive enhancement?",
+      "options": ["Content must be usable without hover effects", "Hover effects are required for functionality", "Only desktop gets hover effects", "Hover effects replace click actions"],
+      "correctAnswer": 0,
+      "explanation": "Hover effects are enhancements — all functionality must work without them."
+    }
+  ]
+}

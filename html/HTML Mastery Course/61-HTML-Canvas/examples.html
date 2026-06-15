@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Canvas Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 { color: #2c3e50; }
+    h2 { color: #34495e; margin-top: 40px; border-bottom: 2px solid #bdc3c7; padding-bottom: 8px; }
+    canvas {
+      border: 1px solid #ccc;
+      background: white;
+      margin: 10px 0;
+      display: block;
+    }
+    pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    section {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .controls {
+      margin: 10px 0;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 8px;
+    }
+    button:hover { background: #2980b9; }
+  </style>
+</head>
+<body>
+
+<h1>HTML Canvas Examples</h1>
+
+<section>
+  <h2>1. Basic Shapes</h2>
+  <canvas id="basicShapes" width="400" height="300"></canvas>
+  <pre>
+ctx.fillRect(50, 50, 100, 80);
+ctx.strokeRect(200, 50, 100, 80);
+ctx.clearRect(70, 70, 60, 40);
+
+// Triangle
+ctx.beginPath();
+ctx.moveTo(50, 200);
+ctx.lineTo(150, 250);
+ctx.lineTo(20, 250);
+ctx.closePath();
+ctx.fill();
+  </pre>
+</section>
+
+<section>
+  <h2>2. Gradients</h2>
+  <canvas id="gradients" width="400" height="300"></canvas>
+  <pre>
+const linear = ctx.createLinearGradient(0, 0, 400, 0);
+linear.addColorStop(0, 'red');
+linear.addColorStop(0.5, 'yellow');
+linear.addColorStop(1, 'blue');
+ctx.fillStyle = linear;
+ctx.fillRect(0, 0, 400, 150);
+
+const radial = ctx.createRadialGradient(200, 225, 10, 200, 225, 80);
+radial.addColorStop(0, 'white');
+radial.addColorStop(1, 'purple');
+ctx.fillStyle = radial;
+ctx.beginPath();
+ctx.arc(200, 225, 80, 0, Math.PI * 2);
+ctx.fill();
+  </pre>
+</section>
+
+<section>
+  <h2>3. Text Rendering</h2>
+  <canvas id="textRendering" width="400" height="200"></canvas>
+  <pre>
+ctx.font = 'bold 36px Arial';
+ctx.fillStyle = '#e74c3c';
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+ctx.fillText('Hello Canvas!', 200, 60);
+
+ctx.font = '24px Courier New';
+ctx.strokeStyle = '#2c3e50';
+ctx.lineWidth = 1;
+ctx.strokeText('Stroked Text', 200, 130);
+
+ctx.font = '16px Georgia';
+ctx.fillStyle = '#27ae60';
+ctx.fillText('Rendered at Retina quality', 200, 175);
+  </pre>
+</section>
+
+<section>
+  <h2>4. Path Operations</h2>
+  <canvas id="pathOps" width="400" height="300"></canvas>
+  <pre>
+ctx.beginPath();
+ctx.arc(100, 100, 60, 0, Math.PI * 2);
+ctx.fillStyle = '#3498db';
+ctx.fill();
+ctx.strokeStyle = '#2c3e50';
+ctx.lineWidth = 3;
+ctx.stroke();
+
+// Bezier curve
+ctx.beginPath();
+ctx.moveTo(200, 200);
+ctx.bezierCurveTo(300, 50, 350, 250, 380, 100);
+ctx.strokeStyle = '#e74c3c';
+ctx.lineWidth = 4;
+ctx.stroke();
+  </pre>
+</section>
+
+<section>
+  <h2>5. Image Drawing</h2>
+  <div class="controls">
+    <button onclick="drawImageExample()">Draw Image</button>
+    <button onclick="applySepia()">Apply Sepia Filter</button>
+  </div>
+  <canvas id="imageCanvas" width="400" height="300"></canvas>
+  <img id="sourceImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect width='200' height='150' fill='%233498db'/%3E%3Ccircle cx='100' cy='75' r='50' fill='%23e74c3c'/%3E%3Ctext x='100' y='80' text-anchor='middle' fill='white' font-size='20'%3ECanvas%3C/text%3E%3C/svg%3E" style="display:none;">
+</section>
+
+<section>
+  <h2>6. Animation</h2>
+  <canvas id="animation" width="400" height="300"></canvas>
+  <div class="controls">
+    <button onclick="startAnimation()">Start</button>
+    <button onclick="stopAnimation()">Stop</button>
+  </div>
+  <pre>
+function animate() {
+  ctx.clearRect(0, 0, 400, 300);
+  // Draw moving circle
+  ctx.beginPath();
+  ctx.arc(x, 150, 30, 0, Math.PI * 2);
+  ctx.fillStyle = '#e74c3c';
+  ctx.fill();
+  x += 2;
+  if (x > 400) x = 0;
+  animId = requestAnimationFrame(animate);
+}
+  </pre>
+</section>
+
+<section>
+  <h2>7. Composite Operations</h2>
+  <canvas id="composite" width="400" height="300"></canvas>
+  <div class="controls">
+    <label>Mode: <select id="compositeMode" onchange="drawComposite()">
+      <option value="source-over">source-over</option>
+      <option value="source-in">source-in</option>
+      <option value="source-out">source-out</option>
+      <option value="source-atop">source-atop</option>
+      <option value="destination-over">destination-over</option>
+      <option value="destination-in">destination-in</option>
+      <option value="destination-out">destination-out</option>
+      <option value="destination-atop">destination-atop</option>
+      <option value="lighter">lighter</option>
+      <option value="copy">copy</option>
+      <option value="xor">xor</option>
+      <option value="multiply">multiply</option>
+      <option value="screen">screen</option>
+      <option value="overlay">overlay</option>
+      <option value="darken">darken</option>
+      <option value="lighten">lighten</option>
+    </select></label>
+  </div>
+</section>
+
+<section>
+  <h2>8. Pixel Manipulation</h2>
+  <canvas id="pixelCanvas" width="200" height="200"></canvas>
+  <div class="controls">
+    <button onclick="drawColorWheel()">Draw Wheel</button>
+    <button onclick="grayscalePixels()">Grayscale</button>
+    <button onclick="invertPixels()">Invert</button>
+  </div>
+</section>
+
+<section>
+  <h2>9. Transformations</h2>
+  <canvas id="transform" width="400" height="300"></canvas>
+  <div class="controls">
+    <button onclick="drawTransform(0)">No Rotate</button>
+    <button onclick="drawTransform(15)">Rotate 15°</button>
+    <button onclick="drawTransform(45)">Rotate 45°</button>
+    <button onclick="drawTransform(90)">Rotate 90°</button>
+  </div>
+  <pre>
+ctx.save();
+ctx.translate(200, 150);
+ctx.rotate(angle * Math.PI / 180);
+ctx.fillStyle = '#e74c3c';
+ctx.fillRect(-50, -50, 100, 100);
+ctx.strokeStyle = '#2c3e50';
+ctx.strokeRect(-50, -50, 100, 100);
+ctx.restore();
+  </pre>
+</section>
+
+<section>
+  <h2>10. Mouse Interaction</h2>
+  <canvas id="interactive" width="400" height="300"></canvas>
+  <div class="controls">
+    <p>Click inside the canvas. Coordinates: <span id="coords">(0, 0)</span></p>
+  </div>
+</section>
+
+<script>
+// ===== 1. Basic Shapes =====
+(function() {
+  const canvas = document.getElementById('basicShapes');
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#3498db';
+  ctx.fillRect(50, 50, 100, 80);
+
+  ctx.strokeStyle = '#e74c3c';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(200, 50, 100, 80);
+
+  ctx.clearRect(70, 70, 60, 40);
+
+  // Triangle
+  ctx.fillStyle = '#2ecc71';
+  ctx.beginPath();
+  ctx.moveTo(50, 200);
+  ctx.lineTo(150, 250);
+  ctx.lineTo(20, 250);
+  ctx.closePath();
+  ctx.fill();
+
+  // Rounded rectangle path
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.arcTo(x + w, y, x + w, y + r, r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+    ctx.lineTo(x + r, y + h);
+    ctx.arcTo(x, y + h, x, y + h - r, r);
+    ctx.lineTo(x, y + r);
+    ctx.arcTo(x, y, x + r, y, r);
+    ctx.closePath();
+  }
+
+  ctx.fillStyle = '#9b59b6';
+  roundRect(ctx, 200, 190, 100, 70, 15);
+  ctx.fill();
+})();
+
+// ===== 2. Gradients =====
+(function() {
+  const canvas = document.getElementById('gradients');
+  const ctx = canvas.getContext('2d');
+
+  const linear = ctx.createLinearGradient(0, 0, 400, 0);
+  linear.addColorStop(0, '#e74c3c');
+  linear.addColorStop(0.25, '#f39c12');
+  linear.addColorStop(0.5, '#2ecc71');
+  linear.addColorStop(0.75, '#3498db');
+  linear.addColorStop(1, '#9b59b6');
+  ctx.fillStyle = linear;
+  ctx.fillRect(0, 0, 400, 130);
+
+  const radial = ctx.createRadialGradient(200, 225, 10, 200, 225, 80);
+  radial.addColorStop(0, '#ffffff');
+  radial.addColorStop(0.4, '#f1c40f');
+  radial.addColorStop(1, '#e67e22');
+  ctx.fillStyle = radial;
+  ctx.beginPath();
+  ctx.arc(200, 225, 80, 0, Math.PI * 2);
+  ctx.fill();
+})();
+
+// ===== 3. Text Rendering =====
+(function() {
+  const canvas = document.getElementById('textRendering');
+  const ctx = canvas.getContext('2d');
+
+  // Shadow for text
+  ctx.shadowColor = 'rgba(0,0,0,0.3)';
+  ctx.shadowBlur = 4;
+  ctx.shadowOffsetX = 2;
+  ctx.shadowOffsetY = 2;
+
+  ctx.font = 'bold 36px Arial, sans-serif';
+  ctx.fillStyle = '#e74c3c';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Hello Canvas!', 200, 60);
+
+  ctx.shadowColor = 'transparent';
+  ctx.shadowBlur = 0;
+
+  ctx.font = '24px Courier New, monospace';
+  ctx.strokeStyle = '#2c3e50';
+  ctx.lineWidth = 1.5;
+  ctx.strokeText('Stroked Text', 200, 130);
+
+  ctx.font = '16px Georgia, serif';
+  ctx.fillStyle = '#27ae60';
+  ctx.fillText('Rendered at high quality', 200, 175);
+})();
+
+// ===== 4. Path Operations =====
+(function() {
+  const canvas = document.getElementById('pathOps');
+  const ctx = canvas.getContext('2d');
+
+  // Filled circle
+  ctx.beginPath();
+  ctx.arc(100, 100, 60, 0, Math.PI * 2);
+  ctx.fillStyle = '#3498db';
+  ctx.fill();
+  ctx.strokeStyle = '#2c3e50';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // Bezier curve
+  ctx.beginPath();
+  ctx.moveTo(200, 200);
+  ctx.bezierCurveTo(250, 50, 350, 250, 380, 100);
+  ctx.strokeStyle = '#e74c3c';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  // Quadratic curve
+  ctx.beginPath();
+  ctx.moveTo(300, 250);
+  ctx.quadraticCurveTo(350, 180, 380, 230);
+  ctx.strokeStyle = '#2ecc71';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // Ellipse
+  ctx.beginPath();
+  ctx.ellipse(300, 80, 40, 25, Math.PI / 4, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(155, 89, 182, 0.5)';
+  ctx.fill();
+  ctx.strokeStyle = '#8e44ad';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Arc
+  ctx.beginPath();
+  ctx.arc(50, 230, 40, 0, Math.PI * 1.5);
+  ctx.strokeStyle = '#e67e22';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+})();
+
+// ===== 5. Image Drawing =====
+let imgCanvas, imgCtx;
+(function() {
+  imgCanvas = document.getElementById('imageCanvas');
+  imgCtx = imgCanvas.getContext('2d');
+
+  const img = document.getElementById('sourceImg');
+  img.onload = function() {
+    drawImageExample();
+  };
+  if (img.complete) {
+    drawImageExample();
+  }
+})();
+
+function drawImageExample() {
+  const img = document.getElementById('sourceImg');
+  imgCtx.clearRect(0, 0, 400, 300);
+
+  // Draw original image
+  imgCtx.drawImage(img, 10, 10, 180, 135);
+
+  // Draw scaled
+  imgCtx.drawImage(img, 210, 10, 180, 135);
+
+  // Draw portion
+  imgCtx.drawImage(img, 25, 25, 150, 100, 10, 155, 380, 135);
+}
+
+function applySepia() {
+  const imgData = imgCtx.getImageData(0, 0, 400, 300);
+  const data = imgData.data;
+
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+
+    data[i]     = Math.min(255, r * 0.393 + g * 0.769 + b * 0.189);
+    data[i + 1] = Math.min(255, r * 0.349 + g * 0.686 + b * 0.168);
+    data[i + 2] = Math.min(255, r * 0.272 + g * 0.534 + b * 0.131);
+  }
+
+  imgCtx.putImageData(imgData, 0, 0);
+}
+
+// ===== 6. Animation =====
+let animId = null;
+let x = 0;
+let y = 150;
+let dx = 3;
+let dy = 2;
+
+const animCanvas = document.getElementById('animation');
+const animCtx = animCanvas.getContext('2d');
+
+function drawAnimationFrame() {
+  animCtx.clearRect(0, 0, 400, 300);
+
+  // Background grid
+  animCtx.strokeStyle = '#eee';
+  animCtx.lineWidth = 1;
+  for (let i = 0; i < 400; i += 40) {
+    animCtx.beginPath();
+    animCtx.moveTo(i, 0);
+    animCtx.lineTo(i, 300);
+    animCtx.stroke();
+  }
+  for (let i = 0; i < 300; i += 40) {
+    animCtx.beginPath();
+    animCtx.moveTo(0, i);
+    animCtx.lineTo(400, i);
+    animCtx.stroke();
+  }
+
+  // Gradient ball
+  const gradient = animCtx.createRadialGradient(x - 10, y - 10, 5, x, y, 30);
+  gradient.addColorStop(0, '#ffffff');
+  gradient.addColorStop(0.5, '#e74c3c');
+  gradient.addColorStop(1, '#c0392b');
+
+  animCtx.beginPath();
+  animCtx.arc(x, y, 30, 0, Math.PI * 2);
+  animCtx.fillStyle = gradient;
+  animCtx.fill();
+  animCtx.strokeStyle = '#2c3e50';
+  animCtx.lineWidth = 2;
+  animCtx.stroke();
+
+  // Shadow
+  animCtx.shadowColor = 'rgba(0,0,0,0.2)';
+  animCtx.shadowBlur = 10;
+  animCtx.shadowOffsetX = 4;
+  animCtx.shadowOffsetY = 4;
+  animCtx.beginPath();
+  animCtx.arc(x, y, 30, 0, Math.PI * 2);
+  animCtx.fill();
+  animCtx.shadowColor = 'transparent';
+
+  // Update
+  x += dx;
+  y += dy;
+  if (x > 370 || x < 30) dx = -dx;
+  if (y > 270 || y < 30) dy = -dy;
+}
+
+function startAnimation() {
+  if (animId) return;
+  function frame() {
+    drawAnimationFrame();
+    animId = requestAnimationFrame(frame);
+  }
+  animId = requestAnimationFrame(frame);
+}
+
+function stopAnimation() {
+  if (animId) {
+    cancelAnimationFrame(animId);
+    animId = null;
+  }
+}
+
+// Draw initial frame
+drawAnimationFrame();
+
+// ===== 7. Composite Operations =====
+function drawComposite() {
+  const canvas = document.getElementById('composite');
+  const ctx = canvas.getContext('2d');
+  const mode = document.getElementById('compositeMode').value;
+
+  ctx.clearRect(0, 0, 400, 300);
+
+  // Draw background rectangle
+  ctx.fillStyle = '#3498db';
+  ctx.fillRect(50, 50, 300, 200);
+
+  // Draw applied composite rectangle
+  ctx.globalCompositeOperation = mode;
+  ctx.fillStyle = '#e74c3c';
+  ctx.beginPath();
+  ctx.arc(200, 150, 80, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Reset
+  ctx.globalCompositeOperation = 'source-over';
+
+  // Label
+  ctx.font = '14px Arial';
+  ctx.fillStyle = '#2c3e50';
+  ctx.textAlign = 'center';
+  ctx.fillText('Mode: ' + mode, 200, 280);
+}
+
+drawComposite();
+
+// ===== 8. Pixel Manipulation =====
+const pixelCanvas = document.getElementById('pixelCanvas');
+const pixelCtx = pixelCanvas.getContext('2d');
+
+function drawColorWheel() {
+  pixelCtx.clearRect(0, 0, 200, 200);
+  const imageData = pixelCtx.createImageData(200, 200);
+  const data = imageData.data;
+
+  for (let y = 0; y < 200; y++) {
+    for (let x = 0; x < 200; x++) {
+      const i = (y * 200 + x) * 4;
+      const dx = x - 100;
+      const dy = y - 100;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 100) {
+        const angle = Math.atan2(dy, dx) + Math.PI;
+        const hue = angle / (Math.PI * 2);
+        const saturation = dist / 100;
+        const [r, g, b] = hslToRgb(hue, saturation, 0.5);
+        data[i]     = r;
+        data[i + 1] = g;
+        data[i + 2] = b;
+        data[i + 3] = 255;
+      }
+    }
+  }
+
+  pixelCtx.putImageData(imageData, 0, 0);
+}
+
+function grayscalePixels() {
+  const imageData = pixelCtx.getImageData(0, 0, 200, 200);
+  const data = imageData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+    data[i] = data[i + 1] = data[i + 2] = avg;
+  }
+  pixelCtx.putImageData(imageData, 0, 0);
+}
+
+function invertPixels() {
+  const imageData = pixelCtx.getImageData(0, 0, 200, 200);
+  const data = imageData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    data[i]     = 255 - data[i];
+    data[i + 1] = 255 - data[i + 1];
+    data[i + 2] = 255 - data[i + 2];
+  }
+  pixelCtx.putImageData(imageData, 0, 0);
+}
+
+function hslToRgb(h, s, l) {
+  let r, g, b;
+  if (s === 0) {
+    r = g = b = l;
+  } else {
+    const hue2rgb = (p, q, t) => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1/6) return p + (q - p) * 6 * t;
+      if (t < 1/2) return q;
+      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+      return p;
+    };
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = hue2rgb(p, q, h + 1/3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1/3);
+  }
+  return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+}
+
+drawColorWheel();
+
+// ===== 9. Transformations =====
+const transformCanvas = document.getElementById('transform');
+const transformCtx = transformCanvas.getContext('2d');
+
+function drawTransform(angleDeg) {
+  transformCtx.clearRect(0, 0, 400, 300);
+
+  // Draw axis
+  transformCtx.strokeStyle = '#ddd';
+  transformCtx.lineWidth = 1;
+  transformCtx.beginPath();
+  transformCtx.moveTo(200, 0);
+  transformCtx.lineTo(200, 300);
+  transformCtx.moveTo(0, 150);
+  transformCtx.lineTo(400, 150);
+  transformCtx.stroke();
+
+  // Draw center dot
+  transformCtx.fillStyle = '#333';
+  transformCtx.beginPath();
+  transformCtx.arc(200, 150, 4, 0, Math.PI * 2);
+  transformCtx.fill();
+
+  const angleRad = angleDeg * Math.PI / 180;
+
+  transformCtx.save();
+  transformCtx.translate(200, 150);
+  transformCtx.rotate(angleRad);
+
+  // Rectangle
+  transformCtx.fillStyle = 'rgba(231, 76, 60, 0.7)';
+  transformCtx.fillRect(-60, -40, 120, 80);
+  transformCtx.strokeStyle = '#2c3e50';
+  transformCtx.lineWidth = 2;
+  transformCtx.strokeRect(-60, -40, 120, 80);
+
+  // Label
+  transformCtx.fillStyle = '#2c3e50';
+  transformCtx.font = '12px Arial';
+  transformCtx.textAlign = 'center';
+  transformCtx.textBaseline = 'bottom';
+  transformCtx.fillText(angleDeg + '°', 0, -42);
+
+  transformCtx.restore();
+
+  // Info text
+  transformCtx.font = '14px Arial';
+  transformCtx.fillStyle = '#555';
+  transformCtx.textAlign = 'center';
+  transformCtx.textBaseline = 'bottom';
+  transformCtx.fillText('Translated to (200, 150), rotated ' + angleDeg + '°', 200, 290);
+}
+
+drawTransform(0);
+
+// ===== 10. Mouse Interaction =====
+(function() {
+  const canvas = document.getElementById('interactive');
+  const ctx = canvas.getContext('2d');
+  const coordsSpan = document.getElementById('coords');
+
+  // Draw some hit targets
+  const circles = [
+    { x: 100, y: 100, r: 50, color: '#e74c3c', label: 'Red' },
+    { x: 250, y: 100, r: 50, color: '#3498db', label: 'Blue' },
+    { x: 175, y: 220, r: 50, color: '#2ecc71', label: 'Green' },
+    { x: 100, y: 220, r: 30, color: '#f39c12', label: 'Orange' },
+    { x: 250, y: 220, r: 30, color: '#9b59b6', label: 'Purple' }
+  ];
+
+  function drawInteractive() {
+    ctx.clearRect(0, 0, 400, 300);
+
+    circles.forEach(c => {
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+      ctx.fillStyle = c.color;
+      ctx.fill();
+      ctx.strokeStyle = '#2c3e50';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 14px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(c.label, c.x, c.y);
+    });
+
+    ctx.font = '12px Arial';
+    ctx.fillStyle = '#888';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('Click on a colored circle', 200, 290);
+  }
+
+  drawInteractive();
+
+  canvas.addEventListener('click', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const clickX = (event.clientX - rect.left) * scaleX;
+    const clickY = (event.clientY - rect.top) * scaleY;
+
+    coordsSpan.textContent = `(${Math.round(clickX)}, ${Math.round(clickY)})`;
+
+    // Check circle hits
+    let hit = false;
+    circles.forEach(c => {
+      const dist = Math.sqrt((clickX - c.x) ** 2 + (clickY - c.y) ** 2);
+      if (dist <= c.r) {
+        hit = true;
+        alert('Clicked on ' + c.label + ' circle!');
+      }
+    });
+
+    if (!hit) {
+      // Flash the canvas border briefly
+      canvas.style.borderColor = '#e74c3c';
+      setTimeout(() => canvas.style.borderColor = '#ccc', 200);
+    }
+  });
+
+  canvas.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const mouseX = (event.clientX - rect.left) * scaleX;
+    const mouseY = (event.clientY - rect.top) * scaleY;
+
+    let cursor = 'default';
+    circles.forEach(c => {
+      const dist = Math.sqrt((mouseX - c.x) ** 2 + (mouseY - c.y) ** 2);
+      if (dist <= c.r) cursor = 'pointer';
+    });
+    canvas.style.cursor = cursor;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Position - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; background: #1a1a2e; color: #eee; }
+    .top-bar { background: #16213e; padding: 15px 20px; display: flex; align-items: center; gap: 20px; }
+    .top-bar h1 { font-size: 20px; }
+    .top-bar select, .top-bar input { padding: 8px 12px; border-radius: 4px; border: none; font-size: 14px; }
+    .top-bar label { font-size: 14px; }
+    .main { display: flex; flex: 1; }
+    .editor-panel { flex: 1; display: flex; flex-direction: column; }
+    .preview-panel { flex: 1; background: white; position: relative; overflow: hidden; }
+    .controls { background: #0f3460; padding: 10px 20px; display: flex; gap: 10px; }
+    .controls button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #e94560; color: white; font-weight: bold; }
+    .controls button:hover { background: #c73650; }
+    .controls label { color: #ccc; font-size: 13px; display: flex; align-items: center; gap: 5px; }
+    #code { flex: 1; background: #1e1e1e; color: #d4d4d4; border: none; padding: 20px; font-family: 'Consolas', monospace; font-size: 14px; resize: none; outline: none; tab-size: 2; }
+    #preview { width: 100%; height: 100%; border: none; }
+    .instructions { position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.7); color: #eee; padding: 8px 12px; border-radius: 4px; font-size: 12px; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>🎯 CSS Position Playground</h1>
+    <select id="preset">
+      <option value="relative">Relative</option>
+      <option value="absolute" selected>Absolute</option>
+      <option value="fixed">Fixed</option>
+      <option value="sticky">Sticky</option>
+    </select>
+    <label>Top: <input type="number" id="offsetTop" value="20" style="width:60px">px</label>
+    <label>Left: <input type="number" id="offsetLeft" value="20" style="width:60px">px</label>
+  </div>
+  <div class="main">
+    <div class="editor-panel">
+      <div class="controls">
+        <button onclick="applyCode()">▶ Run</button>
+        <button onclick="resetCode()">↺ Reset</button>
+        <label><input type="checkbox" id="autoUpdate" checked> Auto-run</label>
+      </div>
+      <textarea id="code">
+<!-- Try editing the CSS below -->
+<style>
+  .container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #f0f0f0;
+    border: 2px dashed #999;
+    margin: 60px auto;
+    padding: 10px;
+  }
+  .box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 150px;
+    height: 100px;
+    background: #e94560;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+</style>
+<div class="container">
+  Container (position: relative)
+  <div class="box">Positioned Box</div>
+</div></textarea>
+    </div>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
+      <div class="instructions">Edit code → Click Run</div>
+    </div>
+  </div>
+
+  <script>
+    const codeEl = document.getElementById('code');
+    const preview = document.getElementById('preview');
+    const presets = {
+      relative: '.box {\n  position: relative;\n  top: 20px;\n  left: 20px;\n  width: 150px;\n  height: 100px;\n  background: #e94560;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 8px;\n  font-weight: bold;\n}',
+      absolute: '.box {\n  position: absolute;\n  top: 20px;\n  left: 20px;\n  width: 150px;\n  height: 100px;\n  background: #e94560;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 8px;\n  font-weight: bold;\n}',
+      fixed: '.box {\n  position: fixed;\n  top: 20px;\n  left: 20px;\n  width: 150px;\n  height: 100px;\n  background: #e94560;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 8px;\n  font-weight: bold;\n  z-index: 999;\n}',
+      sticky: '#preview {\n  height: 600px;\n}\n.box {\n  position: sticky;\n  top: 20px;\n  left: 20px;\n  width: 150px;\n  height: 100px;\n  background: #e94560;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 8px;\n  font-weight: bold;\n}'
+    };
+
+    function applyCode() {
+      let html = codeEl.value;
+      // Wrap in full document if not already
+      if (!html.includes('<html')) {
+        html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:sans-serif;padding:20px;min-height:100vh;}</style></head><body>' + html + '</body></html>';
+      }
+      preview.srcdoc = html;
+    }
+
+    function resetCode() {
+      const sel = document.getElementById('preset').value;
+      const base = '<style>\n  .container {\n    position: relative;\n    width: 300px;\n    height: 200px;\n    background: #f0f0f0;\n    border: 2px dashed #999;\n    margin: 60px auto;\n    padding: 10px;\n  }\n</style>\n<div class="container">\n  Container (position: relative)\n  <div class="box">Positioned Box</div>\n</div>';
+      codeEl.value = presets[sel] ? base.replace('.box {', presets[sel]) : base;
+      applyCode();
+    }
+
+    document.getElementById('preset').addEventListener('change', resetCode);
+
+    // Auto-run on input
+    codeEl.addEventListener('input', () => {
+      if (document.getElementById('autoUpdate').checked) {
+        clearTimeout(window._runTimer);
+        window._runTimer = setTimeout(applyCode, 300);
+      }
+    });
+
+    // Initial render
+    resetCode();
+  </script>
+</body>
+</html>

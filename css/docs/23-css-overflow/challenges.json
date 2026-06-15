@@ -1,0 +1,89 @@
+{
+  "module": "CSS Overflow",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Truncated Text with Ellipsis",
+      "description": "Create a card component that displays a title and description. If the description text is too long, it should be truncated with an ellipsis (...).",
+      "requirements": [
+        "Card with fixed width (250px)",
+        "Title that wraps normally",
+        "Description that truncates with ellipsis after one line",
+        "Use CSS only (no JavaScript)"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  .card {\n    width: 250px;\n    border: 1px solid #ddd;\n    border-radius: 8px;\n    padding: 20px;\n    margin: 20px auto;\n    font-family: sans-serif;\n  }\n  .card h3 { margin-bottom: 10px; }\n  .card p {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n</style>\n</head>\n<body>\n  <div class=\"card\">\n    <h3>Card Title</h3>\n    <p>This is a very long description that will be truncated with an ellipsis because it exceeds the available width of the container.</p>\n  </div>\n</body>\n</html>",
+        "explanation": "The paragraph uses white-space: nowrap, overflow: hidden, and text-overflow: ellipsis to truncate long text with an ellipsis."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Scrollable FAQ Section",
+      "description": "Create a scrollable FAQ section with a fixed height. Scrollbars should only appear when needed.",
+      "requirements": [
+        "Container with fixed height (300px) and width (400px)",
+        "At least 5 FAQ items",
+        "Scrollbars appear only when content overflows",
+        "Borders and padding for visual clarity"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  .faq-container {\n    width: 400px;\n    height: 300px;\n    overflow-y: auto;\n    border: 2px solid #333;\n    border-radius: 8px;\n    padding: 15px;\n    margin: 20px auto;\n    font-family: sans-serif;\n  }\n  .faq-item { margin-bottom: 20px; }\n  .faq-item h3 { margin-bottom: 5px; color: #4a90d9; }\n  .faq-item p { line-height: 1.5; color: #555; }\n</style>\n</head>\n<body>\n  <div class=\"faq-container\">\n    <div class=\"faq-item\">\n      <h3>Q1: What is CSS?</h3>\n      <p>CSS stands for Cascading Style Sheets and is used for styling web pages.</p>\n    </div>\n    <div class=\"faq-item\">\n      <h3>Q2: What is overflow?</h3>\n      <p>Overflow controls what happens when content exceeds the container dimensions.</p>\n    </div>\n    <div class=\"faq-item\">\n      <h3>Q3: What is overflow auto vs scroll?</h3>\n      <p>Auto shows scrollbars only when needed; scroll always shows them.</p>\n    </div>\n    <div class=\"faq-item\">\n      <h3>Q4: What is text-overflow ellipsis?</h3>\n      <p>It adds ... to truncated text when combined with overflow hidden and nowrap.</p>\n    </div>\n    <div class=\"faq-item\">\n      <h3>Q5: What is overflow-wrap?</h3>\n      <p>overflow-wrap helps break long words to prevent overflow.</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "overflow-y: auto ensures the container shows a vertical scrollbar only when the content height exceeds the container's 300px height."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Responsive Image Gallery with Overflow Handling",
+      "description": "Create an image gallery where images are contained within fixed-size cards. Images should not overflow or distort their containers.",
+      "requirements": [
+        "Grid of image cards (3 columns)",
+        "Each card has fixed dimensions (200px × 200px)",
+        "Images should fill the card without overflowing",
+        "Images should maintain aspect ratio (cover)",
+        "Add rounded corners to images"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; padding: 20px; }\n  .gallery {\n    display: grid;\n    grid-template-columns: repeat(3, 200px);\n    gap: 20px;\n    justify-content: center;\n  }\n  .card {\n    width: 200px;\n    height: 200px;\n    border-radius: 12px;\n    overflow: hidden;\n    box-shadow: 0 4px 12px rgba(0,0,0,0.15);\n  }\n  .card img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    display: block;\n  }\n  .card-placeholder {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n    font-weight: bold;\n  }\n</style>\n</head>\n<body>\n  <div class=\"gallery\">\n    <div class=\"card\">\n      <div class=\"card-placeholder\" style=\"background: #e94560;\">Image 1</div>\n    </div>\n    <div class=\"card\">\n      <div class=\"card-placeholder\" style=\"background: #4a90d9;\">Image 2</div>\n    </div>\n    <div class=\"card\">\n      <div class=\"card-placeholder\" style=\"background: #2ecc71;\">Image 3</div>\n    </div>\n    <div class=\"card\">\n      <div class=\"card-placeholder\" style=\"background: #f39c12;\">Image 4</div>\n    </div>\n    <div class=\"card\">\n      <div class=\"card-placeholder\" style=\"background: #9b59b6;\">Image 5</div>\n    </div>\n    <div class=\"card\">\n      <div class=\"card-placeholder\" style=\"background: #1abc9c;\">Image 6</div>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "overflow: hidden on the card clips the image to the card boundaries. object-fit: cover ensures the image fills the space without distortion. The placeholder divs simulate real images."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Custom Scrollbar Chat Interface",
+      "description": "Build a chat message interface with a custom-styled scrollbar. Include both sent and received messages.",
+      "requirements": [
+        "Chat container with fixed height (400px)",
+        "Custom scrollbar styling (different color, rounded, thinner)",
+        "At least 8 chat messages alternating left and right",
+        "Messages should be styled differently for sent and received"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; padding: 20px; background: #f0f0f0; }\n  .chat {\n    width: 400px;\n    height: 400px;\n    margin: 20px auto;\n    border-radius: 12px;\n    background: white;\n    padding: 20px;\n    overflow-y: auto;\n    box-shadow: 0 4px 12px rgba(0,0,0,0.15);\n  }\n  /* Custom scrollbar */\n  .chat::-webkit-scrollbar { width: 6px; }\n  .chat::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 3px; }\n  .chat::-webkit-scrollbar-thumb { background: #4a90d9; border-radius: 3px; }\n  .chat::-webkit-scrollbar-thumb:hover { background: #357abd; }\n  /* Firefox */\n  .chat { scrollbar-width: thin; scrollbar-color: #4a90d9 #f1f1f1; }\n\n  .message { margin-bottom: 15px; display: flex; }\n  .message.sent { justify-content: flex-end; }\n  .message.received { justify-content: flex-start; }\n  .bubble {\n    max-width: 70%;\n    padding: 10px 15px;\n    border-radius: 15px;\n    line-height: 1.4;\n  }\n  .sent .bubble { background: #4a90d9; color: white; border-bottom-right-radius: 5px; }\n  .received .bubble { background: #e9ecef; color: #333; border-bottom-left-radius: 5px; }\n  .time { font-size: 11px; color: #999; margin-top: 3px; }\n</style>\n</head>\n<body>\n  <div class=\"chat\">\n    <div class=\"message received\">\n      <div class=\"bubble\">Hey! How are you? <div class=\"time\">10:30 AM</div></div>\n    </div>\n    <div class=\"message sent\">\n      <div class=\"bubble\">I'm great, thanks! <div class=\"time\">10:31 AM</div></div>\n    </div>\n    <div class=\"message received\">\n      <div class=\"bubble\">Did you finish the project? <div class=\"time\">10:32 AM</div></div>\n    </div>\n    <div class=\"message sent\">\n      <div class=\"bubble\">Almost done! Just need to fix a few things. <div class=\"time\">10:33 AM</div></div>\n    </div>\n    <div class=\"message received\">\n      <div class=\"bubble\">Great! Let me know when you're ready to review. <div class=\"time\">10:34 AM</div></div>\n    </div>\n    <div class=\"message sent\">\n      <div class=\"bubble\">Will do! Should be ready by EOD. <div class=\"time\">10:35 AM</div></div>\n    </div>\n    <div class=\"message received\">\n      <div class=\"bubble\">Perfect, no rush! <div class=\"time\">10:36 AM</div></div>\n    </div>\n    <div class=\"message sent\">\n      <div class=\"bubble\">Thanks for understanding! 😊 <div class=\"time\">10:37 AM</div></div>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "The chat container uses overflow-y: auto for scrollability. Custom scrollbar is styled with ::-webkit-scrollbar for Chrome/Safari/Edge and scrollbar-width/color for Firefox."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Overflow-Managed Dashboard Layout",
+      "description": "Build a dashboard layout that handles overflow in multiple scenarios: a fixed header, a sidebar with many nav items, a main content area with long text, and a card grid. Use different overflow strategies for each section.",
+      "requirements": [
+        "Fixed header (no overflow) - 60px height",
+        "Sidebar with many navigation items - overflow-y: auto",
+        "Main content with a long article - overflow-y: auto",
+        "Responsive card grid where cards don't overflow horizontally",
+        "Text truncation on card titles",
+        "Custom scrollbar styling on sidebar",
+        "Use overscroll-behavior: contain on sidebar"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  body { font-family: sans-serif; height: 100vh; display: flex; flex-direction: column; }\n\n  .header {\n    height: 60px; background: #1a1a2e; color: white;\n    display: flex; align-items: center; padding: 0 20px;\n    flex-shrink: 0;\n  }\n  .layout { display: flex; flex: 1; overflow: hidden; }\n\n  .sidebar {\n    width: 220px; background: #16213e; color: white;\n    overflow-y: auto; overscroll-behavior: contain;\n    flex-shrink: 0;\n  }\n  .sidebar::-webkit-scrollbar { width: 5px; }\n  .sidebar::-webkit-scrollbar-thumb { background: #4a90d9; border-radius: 3px; }\n  .sidebar a {\n    display: block; padding: 12px 20px; color: #ccc;\n    text-decoration: none; border-bottom: 1px solid #1a1a2e;\n  }\n  .sidebar a:hover { background: #0f3460; color: white; }\n\n  .main {\n    flex: 1; overflow-y: auto; padding: 30px;\n  }\n\n  .card-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n    gap: 20px; margin-top: 20px;\n  }\n  .card {\n    border: 1px solid #ddd; border-radius: 8px;\n    padding: 20px; min-height: 150px;\n  }\n  .card h3 {\n    white-space: nowrap; overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .card p { margin-top: 10px; color: #666; }\n</style>\n</head>\n<body>\n  <header class=\"header\">Dashboard (Fixed Height, No Overflow)</header>\n  <div class=\"layout\">\n    <aside class=\"sidebar\">\n      <a href=\"#\">Dashboard</a>\n      <a href=\"#\">Analytics</a>\n      <a href=\"#\">Users</a>\n      <a href=\"#\">Products</a>\n      <a href=\"#\">Orders</a>\n      <a href=\"#\">Settings</a>\n      <a href=\"#\">Help</a>\n      <a href=\"#\">Reports</a>\n      <a href=\"#\">Invoices</a>\n      <a href=\"#\">Support Tickets</a>\n      <a href=\"#\">Announcements</a>\n      <a href=\"#\">Integrations</a>\n    </aside>\n    <main class=\"main\">\n      <h1>Dashboard</h1>\n      <div class=\"card-grid\">\n        <div class=\"card\"><h3>Total Users - A Very Long Title That Will Be Truncated</h3><p>1,234 active users this month.</p></div>\n        <div class=\"card\"><h3>Revenue</h3><p>$12,345 this month.</p></div>\n        <div class=\"card\"><h3>Orders</h3><p>456 new orders.</p></div>\n        <div class=\"card\"><h3>Support Tickets</h3><p>78 open tickets.</p></div>\n      </div>\n      <p style=\"margin-top: 30px;\">Scroll down for more content...</p>\n      <p style=\"margin-top: 200px;\">More content here.</p>\n      <p style=\"margin-top: 200px;\">Even more content.</p>\n    </main>\n  </div>\n</body>\n</html>",
+        "explanation": "Header has fixed height with flex-shrink: 0. Sidebar uses overflow-y: auto with overscroll-behavior: contain and custom scrollbar. Main content uses overflow-y: auto. Cards use grid with auto-fill to prevent horizontal overflow. Card titles use text-overflow: ellipsis."
+      }
+    }
+  ]
+}

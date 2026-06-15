@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Align Content Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b}.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px}
+.controls{flex:0 0 250px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:15px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group select,.group input[type=range]{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px}
+#container{display:flex;flex-wrap:wrap;min-height:300px;width:450px;background:#2d2d44;border-radius:8px;padding:10px;transition:all .3s}
+.item{background:#ff6b6b;padding:20px;border-radius:4px;text-align:center;flex:0 0 100px;margin:2px}
+.item:nth-child(2n){background:#4ecdc4}.item:nth-child(3n){background:#45b7d1}
+#code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf}
+.btn{background:#6c5ce7;color:#fff;border:none;padding:8px;border-radius:4px;cursor:pointer;width:100%;margin-top:10px}
+</style>
+</head>
+<body>
+<h1>📊 Align Content Playground</h1>
+<p class="subtitle">Only works with flex-wrap: wrap and extra container height</p>
+<div class="layout">
+<div class="controls">
+<div class="group"><label>align-content</label><select id="ac">
+<option>flex-start</option><option>flex-end</option><option>center</option>
+<option>space-between</option><option>space-around</option><option>space-evenly</option><option>stretch</option></select></div>
+<div class="group"><label>align-items</label><select id="ai"><option>stretch</option><option>flex-start</option><option>center</option></select></div>
+<div class="group"><label>Container Height</label><input type="range" id="height" min="200" max="500" value="300"></div>
+<div class="group"><label>Container Width</label><input type="range" id="width" min="300" max="600" value="450"></div>
+<button class="btn" onclick="reset()">Reset</button>
+</div>
+<div class="preview">
+<div id="container"></div>
+<div id="code">align-content: flex-start;</div>
+</div>
+</div>
+<script>
+const c=document.getElementById('container'),code=document.getElementById('code');
+for(let i=1;i<=8;i++){const d=document.createElement('div');d.className='item';d.textContent=i;c.appendChild(d)}
+document.querySelectorAll('select,input').forEach(el=>el.addEventListener('input',update));
+function update(){
+c.style.alignContent=document.getElementById('ac').value;
+c.style.alignItems=document.getElementById('ai').value;
+c.style.minHeight=document.getElementById('height').value+'px';
+c.style.width=document.getElementById('width').value+'px';
+code.textContent=`align-content: ${document.getElementById('ac').value};\nalign-items: ${document.getElementById('ai').value};`;
+}
+function reset(){document.getElementById('ac').value='flex-start';document.getElementById('ai').value='stretch';document.getElementById('height').value='300';document.getElementById('width').value='450';update()}
+update();
+</script>
+</body>
+</html>

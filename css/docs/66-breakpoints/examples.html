@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakpoints Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 1rem; background: #f8fafc; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { color: #2563eb; margin-bottom: 1rem; }
+    h2 { color: #1e40af; margin: 1.5rem 0 0.5rem; font-size: 1.15rem; }
+    .demo { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .badge { background: #dbeafe; color: #1e40af; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; display: inline-block; margin-bottom: 0.5rem; }
+
+    /* 1. Content-based breakpoints */
+    .content-grid { display: grid; gap: 1rem; }
+    .content-grid > .item { background: #3b82f6; color: white; padding: 2rem; text-align: center; border-radius: 6px; }
+    @media (min-width: 650px) { .content-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 950px) { .content-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    /* 2. No media query needed (auto-fit) */
+    .auto-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .auto-grid > .item { background: #10b981; color: white; padding: 2rem; text-align: center; border-radius: 6px; }
+
+    /* 3. Multi-class breakpoint demo */
+    .bp-demo { padding: 1rem; text-align: center; border-radius: 6px; background: #f59e0b; color: white; }
+    .bp-demo .label::after { content: "xs (< 576px)"; }
+    @media (min-width: 576px) { .bp-demo { background: #f97316; } .bp-demo .label::after { content: "sm (≥ 576px)"; } }
+    @media (min-width: 768px) { .bp-demo { background: #ef4444; } .bp-demo .label::after { content: "md (≥ 768px)"; } }
+    @media (min-width: 992px) { .bp-demo { background: #8b5cf6; } .bp-demo .label::after { content: "lg (≥ 992px)"; } }
+    @media (min-width: 1200px) { .bp-demo { background: #3b82f6; } .bp-demo .label::after { content: "xl (≥ 1200px)"; } }
+
+    /* 4. Range syntax */
+    .range-demo { padding: 1rem; text-align: center; border-radius: 6px; background: #e2e8f0; }
+    @media (400px <= width <= 800px) { .range-demo { background: #dbeafe; border: 2px solid #3b82f6; } }
+
+    /* 5. Typography breakpoints */
+    .typo-demo h3 { font-size: 1.25rem; }
+    .typo-demo p { font-size: 0.9rem; line-height: 1.6; }
+    @media (min-width: 768px) { .typo-demo h3 { font-size: 1.5rem; } .typo-demo p { font-size: 1rem; } }
+
+    /* 6. Navigation breakpoints */
+    .nav { background: #1e293b; border-radius: 8px; display: flex; flex-direction: column; }
+    .nav a { color: white; text-decoration: none; padding: 0.75rem 1rem; border-bottom: 1px solid #334155; }
+    .nav a:last-child { border-bottom: none; }
+    @media (min-width: 640px) { .nav { flex-direction: row; } .nav a { border-bottom: none; border-right: 1px solid #334155; } }
+
+    /* 7. Sidebar layout */
+    .sidebar-layout { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .sidebar-layout .main { background: #f1f5f9; padding: 1.5rem; border-radius: 6px; }
+    .sidebar-layout .side { background: #e2e8f0; padding: 1.5rem; border-radius: 6px; }
+    @media (min-width: 768px) { .sidebar-layout { grid-template-columns: 1fr 300px; } }
+
+    /* 8. Gallery breakpoints */
+    .gallery { display: grid; gap: 0.5rem; grid-template-columns: repeat(2, 1fr); }
+    .gallery > div { aspect-ratio: 1; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 4px; }
+    @media (min-width: 600px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 900px) { .gallery { grid-template-columns: repeat(4, 1fr); } }
+
+    /* Breakpoint ruler */
+    .ruler { position: sticky; top: 0; background: #1e293b; color: white; padding: 0.5rem; border-radius: 8px; margin-bottom: 2rem; display: flex; justify-content: space-between; font-size: 0.75rem; }
+    .ruler span { padding: 0.2rem 0.4rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="ruler" id="ruler">
+      <span>xs: 0</span>
+      <span>sm: 576</span>
+      <span>md: 768</span>
+      <span>lg: 992</span>
+      <span>xl: 1200</span>
+      <span id="currentBp" style="color:#fbbf24;">Current: xs</span>
+    </div>
+
+    <h1>CSS Breakpoints Examples</h1>
+    <p style="margin-bottom:2rem;color:#64748b;">Resize browser to see each breakpoint in action.</p>
+
+    <div class="demo">
+      <span class="badge">Example 1</span>
+      <h2>Content-Based Breakpoints (650px, 950px)</h2>
+      <div class="content-grid">
+        <div class="item">1</div><div class="item">2</div><div class="item">3</div><div class="item">4</div><div class="item">5</div><div class="item">6</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 2</span>
+      <h2>Auto-Fit Grid (no media queries)</h2>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:0.5rem;">Uses <code>repeat(auto-fit, minmax(200px, 1fr))</code></p>
+      <div class="auto-grid">
+        <div class="item">1</div><div class="item">2</div><div class="item">3</div><div class="item">4</div><div class="item">5</div><div class="item">6</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 3</span>
+      <h2>Bootstrap-Style Breakpoint Classes</h2>
+      <div class="bp-demo"><span class="label">Current: </span></div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 4</span>
+      <h2>Modern Range Syntax (400px - 800px)</h2>
+      <div class="range-demo">Blue border when viewport is between 400px and 800px</div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 5</span>
+      <h2>Typography Breakpoints</h2>
+      <div class="typo-demo">
+        <h3>Heading sized by viewport</h3>
+        <p>Body text increases at 768px for better desktop readability. This prevents text from being too small on large screens or too large on mobile.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 6</span>
+      <h2>Navigation Breakpoints</h2>
+      <nav class="nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 7</span>
+      <h2>Sidebar Layout (768px breakpoint)</h2>
+      <div class="sidebar-layout">
+        <div class="main">Main Content Area</div>
+        <div class="side">Sidebar</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 8</span>
+      <h2>Gallery with Multiple Breakpoints</h2>
+      <div class="gallery">
+        <div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateBreakpoint() {
+      const w = window.innerWidth;
+      const el = document.getElementById('currentBp');
+      if (w < 576) el.textContent = 'Current: xs (< 576px)';
+      else if (w < 768) el.textContent = 'Current: sm (≥ 576px)';
+      else if (w < 992) el.textContent = 'Current: md (≥ 768px)';
+      else if (w < 1200) el.textContent = 'Current: lg (≥ 992px)';
+      else el.textContent = 'Current: xl (≥ 1200px)';
+    }
+    window.addEventListener('resize', updateBreakpoint);
+    updateBreakpoint();
+  </script>
+</body>
+</html>

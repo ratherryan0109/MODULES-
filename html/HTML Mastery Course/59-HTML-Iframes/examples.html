@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 59: HTML Iframe Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #fafafa; color: #222; }
+    h1 { border-bottom: 3px solid #6C63FF; padding-bottom: 10px; }
+    h2 { color: #6C63FF; margin-top: 30px; }
+    .example-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; margin: 10px 0; }
+    .output { margin: 10px 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    iframe { border: 1px solid #ddd; border-radius: 4px; }
+    .iframe-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #f0f0f0; border-radius: 8px; }
+    .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .sandbox-demo { display: flex; gap: 16px; flex-wrap: wrap; }
+    .sandbox-demo > div { flex: 1; min-width: 250px; }
+    .msg-box { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin: 10px 0; background: #f9f9f9; min-height: 100px; }
+    .msg-box .msg { padding: 6px 10px; margin: 4px 0; border-radius: 4px; font-size: 13px; }
+    .msg-box .msg.sent { background: #e3f2fd; text-align: right; }
+    .msg-box .msg.received { background: #f3e5f5; text-align: left; }
+  </style>
+</head>
+<body>
+
+<h1>HTML Iframes — Interactive Examples</h1>
+
+<!-- Example 1: Basic Iframe -->
+<h2>1. Basic Iframe Embed</h2>
+<div class="example-box">
+  <p>Simple iframe with src, width, height, and title attributes.</p>
+  <div class="code-block">
+    &lt;iframe src="https://example.com" width="600" height="400" title="Example page"&gt;<br>
+    &nbsp;&nbsp;Fallback content here<br>
+    &lt;/iframe&gt;
+  </div>
+  <div class="output">
+    <iframe src="https://example.com" width="100%" height="250" title="Example.com homepage" style="max-width:600px;"></iframe>
+  </div>
+</div>
+
+<!-- Example 2: srcdoc -->
+<h2>2. Inline HTML with srcdoc</h2>
+<div class="example-box">
+  <p>The <code>srcdoc</code> attribute allows embedding inline HTML without a separate URL.</p>
+  <div class="code-block">
+    &lt;iframe srcdoc="&lt;h1&gt;Hello!&lt;/h1&gt;&lt;p&gt;This is inline content.&lt;/p&gt;"&gt;&lt;/iframe&gt;
+  </div>
+  <div class="output">
+    <iframe srcdoc="<style>body{font-family:sans-serif;padding:20px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;}</style><h1>Inline Content</h1><p>This HTML is written directly in the srcdoc attribute!</p><ul><li>No external file needed</li><li>Perfect for small widgets</li></ul>" 
+      width="100%" height="200" title="Inline content example"></iframe>
+  </div>
+</div>
+
+<!-- Example 3: Sandbox -->
+<h2>3. Sandbox Attribute</h2>
+<div class="example-box">
+  <p>The <code>sandbox</code> attribute restricts iframe capabilities. Compare the sandboxed iframe (no scripts) vs unrestricted.</p>
+  <div class="code-block">
+    &lt;iframe sandbox src="page.html"&gt;&lt;/iframe&gt;
+  </div>
+  <div class="sandbox-demo">
+    <div>
+      <h3>🔒 Sandboxed (no scripts)</h3>
+      <iframe sandbox srcdoc="<p>JavaScript disabled:</p><script>document.write('<p style=color:red>This script should not run</p>')</script><noscript><p style=color:green>✓ JavaScript is disabled (sandbox active)</p></noscript>" 
+        width="100%" height="80" title="Sandboxed iframe"></iframe>
+    </div>
+    <div>
+      <h3>✅ Sandbox with allow-scripts</h3>
+      <iframe sandbox="allow-scripts" srcdoc="<p>JavaScript enabled:</p><script>document.write('<p style=color:blue>✓ This script ran successfully!</p>')</script>" 
+        width="100%" height="80" title="Sandbox with scripts"></iframe>
+    </div>
+    <div>
+      <h3>🔓 No sandbox (session)</h3>
+      <iframe srcdoc="<p>SessionStorage available:</p><script>try { sessionStorage.setItem('test','ok'); document.write('<p style=color:green>✓ SessionStorage works (same origin via srcdoc)</p>'); } catch(e) { document.write('<p style=color:red>✗ ' + e.message + '</p>'); }</script>" 
+        width="100%" height="80" title="Unrestricted iframe"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 4: Responsive Iframe -->
+<h2>4. Responsive Iframe</h2>
+<div class="example-box">
+  <p>Using the padding-bottom trick to maintain aspect ratio.</p>
+  <div class="code-block">
+    .container { position: relative; padding-bottom: 56.25%; height: 0; }<br>
+    .container iframe { position: absolute; width: 100%; height: 100%; }
+  </div>
+  <div class="output">
+    <div class="iframe-container">
+      <iframe src="https://example.com" title="Responsive example"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 5: Lazy Loading -->
+<h2>5. Lazy Loading Iframe</h2>
+<div class="example-box">
+  <p>Use <code>loading="lazy"</code> to defer loading off-screen iframes until they are near the viewport.</p>
+  <div class="code-block">
+    &lt;iframe src="page.html" loading="lazy" title="..."&gt;&lt;/iframe&gt;
+  </div>
+  <div style="height:300px;display:flex;align-items:center;justify-content:center;background:#f0f0f0;border-radius:8px;margin:10px 0;">
+    <span style="color:#999;">↓ Scroll down for lazy-loaded iframe ↓</span>
+  </div>
+  <iframe src="https://example.com" loading="lazy" width="100%" height="200" title="Lazy loaded content"></iframe>
+  <p style="font-size:13px;color:#666;">This iframe only loaded when you scrolled near it.</p>
+</div>
+
+<!-- Example 6: postMessage Communication -->
+<h2>6. Cross-Frame Communication with postMessage</h2>
+<div class="example-box">
+  <p>Send messages between the parent page and the iframe securely.</p>
+  
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:280px;">
+      <h3>Parent Page</h3>
+      <div class="msg-box" id="parentMessages">
+        <div class="msg received">📩 Messages appear here</div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="parentMsgInput" placeholder="Type a message..." style="flex:1;padding:8px;border:1px solid #ddd;border-radius:4px;">
+        <button onclick="sendToIframe()" style="background:#6C63FF;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;">Send →</button>
+      </div>
+    </div>
+    <div style="flex:1;min-width:280px;">
+      <h3>Iframe (Child)</h3>
+      <iframe id="messageFrame" srcdoc="
+        <style>
+          body{font-family:sans-serif;padding:10px;font-size:13px;}
+          .msg-box{min-height:80px;border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:8px;}
+          .msg{padding:4px 8px;margin:4px 0;border-radius:4px;font-size:12px;}
+          .msg.sent{background:#f3e5f5;}
+          .msg.received{background:#e3f2fd;}
+          input,button{padding:6px;border-radius:4px;}
+          input{flex:1;border:1px solid #ddd;}
+          button{background:#6C63FF;color:white;border:none;cursor:pointer;}
+          .flex{display:flex;gap:6px;}
+        </style>
+        <p><strong>Child Frame</strong></p>
+        <div class='msg-box' id='childMessages'><div class='msg received'>🔄 Waiting for messages</div></div>
+        <div class='flex'><input type='text' id='childMsgInput' placeholder='Reply...'><button onclick='sendToParent()'>Send ↑</button></div>
+        <script>
+          function addMsg(text, type) {
+            const box = document.getElementById('childMessages');
+            const div = document.createElement('div');
+            div.className = 'msg ' + type;
+            div.textContent = text;
+            box.appendChild(div);
+          }
+          function sendToParent() {
+            const input = document.getElementById('childMsgInput');
+            if (!input.value.trim()) return;
+            window.parent.postMessage({ text: input.value, from: 'child' }, '*');
+            addMsg('You: ' + input.value, 'sent');
+            input.value = '';
+          }
+          window.addEventListener('message', function(e) {
+            addMsg('Parent: ' + e.data.text, 'received');
+          });
+        <\/script>
+        " width="100%" height="200" title="Message frame"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const messageFrame = document.getElementById('messageFrame');
+
+    function sendToIframe() {
+      const input = document.getElementById('parentMsgInput');
+      if (!input.value.trim()) return;
+      messageFrame.contentWindow.postMessage({ text: input.value, from: 'parent' }, '*');
+      const box = document.getElementById('parentMessages');
+      const div = document.createElement('div');
+      div.className = 'msg sent';
+      div.textContent = 'You: ' + input.value;
+      box.appendChild(div);
+      input.value = '';
+    }
+
+    window.addEventListener('message', (e) => {
+      const box = document.getElementById('parentMessages');
+      const div = document.createElement('div');
+      div.className = 'msg received';
+      div.textContent = 'Child: ' + e.data.text;
+      box.appendChild(div);
+    });
+
+    // Allow Enter key to send
+    document.getElementById('parentMsgInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendToIframe();
+    });
+  </script>
+</div>
+
+<!-- Example 7: Allow Attribute -->
+<h2>7. Permissions Policy (allow attribute)</h2>
+<div class="example-box">
+  <p>The <code>allow</code> attribute controls which browser features the iframe can access.</p>
+  <div class="code-block">
+    &lt;iframe src="camera.html" allow="camera; microphone"&gt;&lt;/iframe&gt;
+  </div>
+  <div class="output">
+    <iframe srcdoc="<style>body{font-family:sans-serif;padding:20px;text-align:center;}</style><h3>📷 Feature Policy Demo</h3><p id='status'>Checking permissions...</p><script>try { navigator.mediaDevices.getUserMedia({video:true}).then(() => { document.getElementById('status').textContent = '✅ Camera access would be requested'; }).catch(() => { document.getElementById('status').textContent = '❌ Camera not available (expected)'; }); } catch(e) { document.getElementById('status').textContent = '❌ ' + e.message; }<\/script>" 
+      allow="camera 'src'; microphone 'src'" width="100%" height="150" title="Permissions demo"></iframe>
+  </div>
+  <div class="note">Note: The allow attribute only grants permission; the browser still prompts the user.</div>
+</div>
+
+<!-- Example 8: Target Attribute with Iframe Name -->
+<h2>8. Targeting Forms and Links with name Attribute</h2>
+<div class="example-box">
+  <p>Use the <code>name</code> attribute to make an iframe the target of links or form submissions.</p>
+  <div class="code-block">
+    &lt;iframe name="myframe"&gt;&lt;/iframe&gt;<br>
+    &lt;a href="page.html" target="myframe"&gt;Load in iframe&lt;/a&gt;
+  </div>
+  <div class="output">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
+      <a href="https://example.com" target="targetFrame" style="background:#6C63FF;color:white;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;">Load Example.com →</a>
+      <a href="https://en.wikipedia.org/wiki/HTML" target="targetFrame" style="background:#6C63FF;color:white;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;">Load Wikipedia →</a>
+      <button onclick="document.getElementById('targetFrame').src = 'https://httpbin.org/html'" style="background:#6C63FF;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;">Load httpbin →</button>
+    </div>
+    <iframe id="targetFrame" name="targetFrame" srcdoc="<p style='padding:20px;text-align:center;color:#999;'>Click a link above to load content here</p>" width="100%" height="200" title="Target frame"></iframe>
+  </div>
+</div>
+
+<!-- Example 9: Referrer Policy -->
+<h2>9. Referrer Policy</h2>
+<div class="example-box">
+  <p>The <code>referrerpolicy</code> attribute controls what referrer information is sent when following links inside the iframe.</p>
+  <div class="code-block">
+    &lt;iframe src="page.html" referrerpolicy="no-referrer"&gt;&lt;/iframe&gt;
+  </div>
+  <div class="output">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <iframe referrerpolicy="no-referrer" srcdoc="<p style='padding:10px'>referrerpolicy: <strong>no-referrer</strong></p><p style='font-size:12px;color:#666;'>No referrer info sent</p>" width="200" height="80" title="No referrer"></iframe>
+      <iframe referrerpolicy="origin" srcdoc="<p style='padding:10px'>referrerpolicy: <strong>origin</strong></p><p style='font-size:12px;color:#666;'>Only origin sent</p>" width="200" height="80" title="Origin referrer"></iframe>
+      <iframe referrerpolicy="unsafe-url" srcdoc="<p style='padding:10px'>referrerpolicy: <strong>unsafe-url</strong></p><p style='font-size:12px;color:#666;'>Full URL sent</p>" width="200" height="80" title="Unsafe URL"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Example 10: Multiple iframes in Grid -->
+<h2>10. Iframe Grid Layout</h2>
+<div class="example-box">
+  <p>Multiple iframes arranged in a responsive grid.</p>
+  <div class="output">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+      <iframe srcdoc="<style>body{background:#ff6b6b;color:white;display:flex;align-items:center;justify-content:center;height:100%;margin:0;font-size:24px;font-weight:bold;}</style><div>1</div>" width="100%" height="120" title="Tile 1"></iframe>
+      <iframe srcdoc="<style>body{background:#4ecdc4;color:white;display:flex;align-items:center;justify-content:center;height:100%;margin:0;font-size:24px;font-weight:bold;}</style><div>2</div>" width="100%" height="120" title="Tile 2"></iframe>
+      <iframe srcdoc="<style>body{background:#45b7d1;color:white;display:flex;align-items:center;justify-content:center;height:100%;margin:0;font-size:24px;font-weight:bold;}</style><div>3</div>" width="100%" height="120" title="Tile 3"></iframe>
+      <iframe srcdoc="<style>body{background:#f9ca24;color:white;display:flex;align-items:center;justify-content:center;height:100%;margin:0;font-size:24px;font-weight:bold;}</style><div>4</div>" width="100%" height="120" title="Tile 4"></iframe>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

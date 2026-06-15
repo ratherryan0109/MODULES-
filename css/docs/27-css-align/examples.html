@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Alignment - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; padding: 30px; background: #f5f5f5; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { margin-bottom: 30px; color: #333; }
+    h2 { margin: 30px 0 15px; color: #555; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; font-family: 'Consolas', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+
+    /* Text align demo */
+    .text-left { text-align: left; background: #e3f2fd; padding: 10px; }
+    .text-center { text-align: center; background: #c8e6c9; padding: 10px; }
+    .text-right { text-align: right; background: #fce4ec; padding: 10px; }
+    .text-justify { text-align: justify; background: #fff9c4; padding: 10px; }
+
+    /* Block centering */
+    .block-center { width: 300px; height: 100px; background: #4a90d9; color: white; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+
+    /* Vertical align */
+    .valign-demo { background: #f0f0f0; padding: 20px; height: 150px; }
+    .valign-demo span { display: inline-block; width: 80px; padding: 5px; margin: 0 5px; border-radius: 4px; color: white; }
+    .valign-demo .va1 { height: 40px; background: #e94560; vertical-align: baseline; }
+    .valign-demo .va2 { height: 80px; background: #4a90d9; vertical-align: top; }
+    .valign-demo .va3 { height: 60px; background: #2ecc71; vertical-align: middle; }
+    .valign-demo .va4 { height: 90px; background: #f39c12; vertical-align: bottom; }
+
+    /* Flex centering */
+    .flex-center { display: flex; align-items: center; justify-content: center; height: 200px; background: #e8f0fe; border-radius: 8px; }
+    .flex-center .box { width: 150px; height: 80px; background: #6c5ce7; color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+
+    /* Grid centering */
+    .grid-center { display: grid; place-items: center; height: 200px; background: #f3e5f5; border-radius: 8px; }
+    .grid-center .box { width: 150px; height: 80px; background: #9c27b0; color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+
+    /* Absolute center */
+    .abs-container { position: relative; height: 200px; background: #fff3e0; border-radius: 8px; }
+    .abs-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; padding: 20px; background: #ff9800; color: white; border-radius: 8px; text-align: center; }
+
+    /* Line height vertical center */
+    .line-height-center { height: 80px; line-height: 80px; background: #e0f7fa; text-align: center; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Alignment - Examples</h1>
+
+    <div class="example">
+      <h2>1. Text Alignment</h2>
+      <div class="code">text-align: left | center | right | justify;</div>
+      <div class="text-left">Left aligned text</div>
+      <div class="text-center">Center aligned text</div>
+      <div class="text-right">Right aligned text</div>
+      <div class="text-justify">Justified text stretches each line to fill the width. This creates even margins on both sides but can cause uneven spacing between words.</div>
+    </div>
+
+    <div class="example">
+      <h2>2. Block Centering with margin: auto</h2>
+      <div class="code">.block { width: 300px; margin: 0 auto; }</div>
+      <div class="block-center">Centered Block</div>
+    </div>
+
+    <div class="example">
+      <h2>3. Vertical Alignment (inline-block)</h2>
+      <div class="code">vertical-align: baseline | top | middle | bottom;</div>
+      <div class="valign-demo">
+        <span class="va1">baseline</span>
+        <span class="va2">top</span>
+        <span class="va3">middle</span>
+        <span class="va4">bottom</span>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>4. Flexbox Centering</h2>
+      <div class="code">display: flex; align-items: center; justify-content: center;</div>
+      <div class="flex-center">
+        <div class="box">Centered</div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>5. Grid Centering</h2>
+      <div class="code">display: grid; place-items: center;</div>
+      <div class="grid-center">
+        <div class="box">Centered</div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>6. Absolute Centering with Transform</h2>
+      <div class="code">position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);</div>
+      <div class="abs-container">
+        <div class="abs-center">Absolutely Centered</div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>7. Line Height Vertical Centering</h2>
+      <div class="code">.box { height: 80px; line-height: 80px; text-align: center; }</div>
+      <div class="line-height-center">Vertically centered text</div>
+      <div class="note">Only works for single lines of text.</div>
+    </div>
+  </div>
+</body>
+</html>

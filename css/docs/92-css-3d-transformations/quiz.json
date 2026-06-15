@@ -1,0 +1,67 @@
+{
+  "module": "92-css-3d-transformations",
+  "title": "CSS 3D Transformations",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1, "question": "What property creates depth perception in 3D transforms?", "options": ["perspective", "depth", "z-index", "transform-style"], "correctAnswer": 0, "explanation": "perspective defines the distance from the viewer to the z=0 plane, creating depth."
+    },
+    {
+      "id": 2, "question": "What does a smaller perspective value (e.g. 200px) do?", "options": ["Creates more extreme 3D effect", "Creates subtler effect", "Disables 3D", "Moves viewer farther away"], "correctAnswer": 0, "explanation": "Smaller perspective = viewer is closer = more dramatic 3D effect."
+    },
+    {
+      "id": 3, "question": "What property is needed for child elements to maintain their own 3D positions?", "options": ["transform-style: preserve-3d", "perspective: inherit", "backface-visibility: hidden", "transform-origin: 3d"], "correctAnswer": 0, "explanation": "preserve-3d allows children to have their own 3D transform context."
+    },
+    {
+      "id": 4, "question": "What does rotateY(180deg) do to an element?", "options": ["Flips it horizontally (like a book closing)", "Flips it vertically", "Spins it flat", "Moves it backward"], "correctAnswer": 0, "explanation": "rotateY(180deg) flips the element around the Y-axis, showing its back."
+    },
+    {
+      "id": 5, "question": "What does backface-visibility: hidden prevent?", "options": ["Seeing element when rotated away", "Hiding the front face", "Double-sided rendering", "3D transform errors"], "correctAnswer": 0, "explanation": "backface-visibility: hidden hides the element when it's rotated > 90° away."
+    },
+    {
+      "id": 6, "question": "What does translateZ(100px) do?", "options": ["Moves element 100px closer to viewer", "Moves 100px right", "Moves 100px down", "Scales on Z-axis"], "correctAnswer": 0, "explanation": "Positive translateZ moves the element toward the viewer (closer)."
+    },
+    {
+      "id": 7, "question": "What is the default value of transform-style?", "options": ["flat", "preserve-3d", "auto", "inherit"], "correctAnswer": 0, "explanation": "The default is flat, meaning child elements are flattened into the parent's plane."
+    },
+    {
+      "id": 8, "question": "Which perspective usage applies to specific elements only?", "options": ["transform: perspective(800px)", "perspective: 800px on parent", "Only JavaScript can do this", "None of the above"], "correctAnswer": 0, "explanation": "Using perspective() as a transform function applies it to a single element."
+    },
+    {
+      "id": 9, "question": "What does the Z-axis represent in 3D CSS?", "options": ["Depth (toward/away from viewer)", "Vertical (up/down)", "Horizontal (left/right)", "Rotation"], "correctAnswer": 0, "explanation": "The Z-axis represents depth in 3D space."
+    },
+    {
+      "id": 10, "question": "What is a good starting perspective value for natural 3D?", "options": ["800-1000px", "100px", "5000px", "50px"], "correctAnswer": 0, "explanation": "800-1000px provides a natural, realistic depth perception."
+    },
+    {
+      "id": 11, "question": "Which is NOT a 3D transform function?", "options": ["scaleX()", "rotateX()", "translateZ()", "perspective()"], "correctAnswer": 0, "explanation": "scaleX() is a 2D transform; rotateX, translateZ, and perspective() are 3D."
+    },
+    {
+      "id": 12, "question": "What does perspective-origin control?", "options": ["The vanishing point position", "The element's origin", "The light source", "The camera angle"], "correctAnswer": 0, "explanation": "perspective-origin defines where the viewer is looking from."
+    },
+    {
+      "id": 13, "question": "What happens when an element has perspective on both parent and itself?", "options": ["Both are applied (parent's then element's)", "Only parent's applies", "Only element's applies", "Error"], "correctAnswer": 0, "explanation": "Both perspective contexts are applied: first parent's 3D space, then element's own."
+    },
+    {
+      "id": 14, "question": "What is the IE9+ prefix for 3D transforms?", "options": ["-ms-", "-webkit-", "-moz-", "-o-"], "correctAnswer": 0, "explanation": "IE 9-10 used -ms- prefix for 3D transforms."
+    },
+    {
+      "id": 15, "question": "Which scenario creates a 'card flip' effect?", "options": ["rotateY(180deg) with backface-visibility", "rotateX(180deg) only", "translateZ(-100px)", "scaleX(-1)"], "correctAnswer": 0, "explanation": "A card flip uses rotateY(180deg) and backface-visibility: hidden on both faces."
+    },
+    {
+      "id": 16, "question": "What does a negative translateZ value do?", "options": ["Moves element away from viewer", "Moves element closer", "Moves element left", "Causes error"], "correctAnswer": 0, "explanation": "Negative translateZ moves the element away from the viewer (farther into screen)."
+    },
+    {
+      "id": 17, "question": "What is the 3D rendering context created by?", "options": ["perspective + transform-style: preserve-3d", "Only perspective", "Only preserve-3d", "z-index"], "correctAnswer": 0, "explanation": "Both perspective (or perspective()) and transform-style: preserve-3d are needed."
+    },
+    {
+      "id": 18, "question": "Can you use 3D transforms without perspective?", "options": ["Yes, but they appear flat", "No, they won't render", "Only rotateZ works", "Only translateZ works"], "correctAnswer": 0, "explanation": "3D transforms work without perspective but appear flat (no depth illusion)."
+    },
+    {
+      "id": 19, "question": "What does scaleZ() affect visually?", "options": ["Depth scaling (requires 3D space)", "Only combined with translateZ", "Nothing directly visible", "2D width/height"], "correctAnswer": 0, "explanation": "scaleZ scales along Z-axis, visible when combined with other 3D transforms."
+    },
+    {
+      "id": 20, "question": "Which property prevents flickering during 3D card flips?", "options": ["backface-visibility: hidden", "perspective: 800px", "transform-style: flat", "overflow: hidden"], "correctAnswer": 0, "explanation": "backface-visibility: hidden prevents the back side from showing during rotation."
+    }
+  ]
+}

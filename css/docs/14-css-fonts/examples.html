@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Fonts - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+    @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+    @media (max-width: 640px) { .grid-3 { grid-template-columns: 1fr; } }
+    .card { padding: 1rem; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; }
+    .weight-row { display: flex; gap: 1rem; align-items: center; padding: 0.25rem 0; }
+    .weight-label { min-width: 120px; color: #64748b; font-size: 0.85rem; }
+    .font-card { min-height: 80px; display: flex; align-items: center; justify-content: center; padding: 1rem; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; text-align: center; }
+    .google-font-note { background: #fffbeb; border: 1px solid #f59e0b; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.85rem; margin: 0.75rem 0; }
+  </style>
+</head>
+<body>
+  <h1>CSS Fonts - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Font Families</h2>
+    <p>The <code>font-family</code> property lists fallbacks from preferred to generic. Always end with a generic family (<code>serif</code>, <code>sans-serif</code>, <code>monospace</code>).</p>
+    <div class="demo-output">
+      <div class="grid-3">
+        <div class="font-card" style="font-family:Georgia, 'Times New Roman', serif;font-size:1.2em">Georgia, serif<br><span style="font-size:0.75rem;color:#64748b">Classic newspaper feel</span></div>
+        <div class="font-card" style="font-family:'Segoe UI', system-ui, sans-serif;font-size:1.2em">System UI, sans-serif<br><span style="font-size:0.75rem;color:#64748b">Modern, clean</span></div>
+        <div class="font-card" style="font-family:'Courier New', Consolas, monospace;font-size:1.2em">Courier New, monospace<br><span style="font-size:0.75rem;color:#64748b">Code-like appearance</span></div>
+      </div>
+    </div>
+    <pre><code>.serif    { font-family: Georgia, 'Times New Roman', serif; }
+.sans     { font-family: 'Segoe UI', system-ui, sans-serif; }
+.mono     { font-family: 'Courier New', Consolas, monospace; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Font Size</h2>
+    <p>Font size can be absolute (px, pt) or relative (em, rem, %, vw). Relative units respect user preferences.</p>
+    <div class="demo-output">
+      <div class="grid-2">
+        <div class="card" style="font-size:12px">12px — too small for body text</div>
+        <div class="card" style="font-size:16px">16px — browser default, good for body</div>
+        <div class="card" style="font-size:1.5rem">1.5rem — heading sized</div>
+        <div class="card" style="font-size:clamp(1rem, 2.5vw, 2rem)">clamp(1rem, 2.5vw, 2rem) — fluid</div>
+      </div>
+    </div>
+    <pre><code>.small  { font-size: 12px; }
+.body   { font-size: 16px; }        /* or 1rem */
+.h1     { font-size: 2rem; }
+.fluid  { font-size: clamp(1rem, 2.5vw, 2rem); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Font Weight</h2>
+    <p>Weight ranges from 100 (thin) to 900 (black). Most fonts support 400 (normal) and 700 (bold).</p>
+    <div class="demo-output">
+      <div class="weight-row"><span class="weight-label">font-weight: 100</span><span style="font-weight:100;font-size:1.2em">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">font-weight: 300</span><span style="font-weight:300;font-size:1.2em">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">font-weight: 400 (normal)</span><span style="font-weight:400;font-size:1.2em">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">font-weight: 600</span><span style="font-weight:600;font-size:1.2em">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">font-weight: 700 (bold)</span><span style="font-weight:700;font-size:1.2em">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">font-weight: 900</span><span style="font-weight:900;font-size:1.2em">The quick brown fox</span></div>
+    </div>
+    <pre><code>.thin  { font-weight: 100; }
+.normal { font-weight: 400; }
+.bold  { font-weight: 700; }
+.black { font-weight: 900; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Font Style and Variant</h2>
+    <p><code>font-style</code> controls italic/oblique. <code>font-variant: small-caps</code> converts text to uppercase with smaller capitals.</p>
+    <div class="demo-output">
+      <div class="grid-3">
+        <div class="font-card" style="font-style:normal">Normal style</div>
+        <div class="font-card" style="font-style:italic">Italic style</div>
+        <div class="font-card" style="font-variant:small-caps">Small Caps</div>
+      </div>
+    </div>
+    <pre><code>.normal     { font-style: normal; }
+.italic     { font-style: italic; }
+.small-caps { font-variant: small-caps; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Font Shorthand</h2>
+    <p>The <code>font</code> shorthand combines style, weight, size/line-height, and family in one declaration.</p>
+    <div class="demo-output">
+      <div class="card" style="font: italic 600 1.25rem/1.8 Georgia, serif;text-align:center">
+        font: italic 600 1.25rem/1.8 Georgia, serif
+      </div>
+    </div>
+    <pre><code>.shorthand {
+  font: italic 600 1.25rem/1.8 Georgia, serif;
+  /*  style  weight  size/line-height  family  */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Web Fonts with @font-face</h2>
+    <p>Use <code>@font-face</code> to load custom fonts. Provide multiple formats (woff2, woff) for browser compatibility.</p>
+    <div class="demo-output">
+      <div class="google-font-note">
+        <strong>@font-face</strong> loads fonts from your server. Example for a self-hosted font:
+      </div>
+    </div>
+    <pre><code>@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/custom.woff2') format('woff2'),
+       url('fonts/custom.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;  /* Show text in fallback while loading */
+}
+
+body { font-family: 'MyCustomFont', sans-serif; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Font Loading with Google Fonts</h2>
+    <p>Google Fonts are loaded via a <code>&lt;link&gt;</code> tag in the HTML head. Add <code>&amp;display=swap</code> for better performance.</p>
+    <div class="demo-output">
+      <div class="google-font-note">
+        <strong>HTML:</strong> &lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"&gt;<br><br>
+        <strong>CSS:</strong> font-family: 'Roboto', sans-serif;
+      </div>
+      <div class="font-card" style="font-family:'Roboto', sans-serif;font-size:1.2em">This text would use Roboto if the Google Font link were added to the page head.</div>
+    </div>
+    <pre><code>&lt;!-- In &lt;head&gt; --&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+/* In CSS */
+body { font-family: 'Inter', sans-serif; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: Font Rendering Properties</h2>
+    <p>Fine-tune font rendering with <code>font-smooth</code> and <code>text-rendering</code>.</p>
+    <div class="demo-output">
+      <div class="card" style="-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility">
+        <strong>Smooth rendering</strong> — These settings improve legibility on modern screens.<br>
+        <code>text-rendering: optimizeLegibility</code> enables common ligatures.
+      </div>
+    </div>
+    <pre><code>body {
+  -webkit-font-smoothing: antialiased;  /* macOS */
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}</code></pre>
+  </div>
+
+</body>
+</html>

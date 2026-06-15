@@ -1,0 +1,247 @@
+﻿{
+    "module":  "29-css-pseudo-classes",
+    "title":  "CSS Pseudo-classes",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "What syntax is used for pseudo-classes?",
+                          "options":  [
+                                          "Two colons (::)",
+                                          "One colon (:)",
+                                          "A hash (#)",
+                                          "A dot (.)"
+                                      ],
+                          "explanation":  "Pseudo-classes use a single colon (e.g., :hover, :first-child). Double colons (::) are used for pseudo-elements.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  2,
+                          "question":  "What is the correct order for link pseudo-classes?",
+                          "options":  [
+                                          ":hover, :link, :visited, :active",
+                                          ":link, :visited, :hover, :active",
+                                          ":active, :hover, :link, :visited",
+                                          ":link, :hover, :active, :visited"
+                                      ],
+                          "explanation":  "The LVHA order (Link-Visited-Hover-Active) ensures all states work correctly without being overridden.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What does :nth-child(odd) select?",
+                          "options":  [
+                                          "Even-numbered children",
+                                          "Odd-numbered children",
+                                          "First child only",
+                                          "Last child only"
+                                      ],
+                          "explanation":  ":nth-child(odd) selects children at odd positions (1, 3, 5, ...). This is equivalent to :nth-child(2n+1).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "What is the difference between :first-child and :first-of-type?",
+                          "options":  [
+                                          "They are the same",
+                                          ":first-child selects first child regardless of type; :first-of-type selects first of its element type",
+                                          ":first-of-type selects first child regardless of type",
+                                          "Both select only the first element"
+                                      ],
+                          "explanation":  ":first-child targets an element that is the first child of its parent. :first-of-type targets the first element of its type among siblings.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  5,
+                          "question":  "What specificity do pseudo-classes have?",
+                          "options":  [
+                                          "Same as elements (0,0,1)",
+                                          "Same as classes (0,1,0)",
+                                          "Same as IDs (1,0,0)",
+                                          "They add no specificity"
+                                      ],
+                          "explanation":  "Pseudo-classes have the same specificity as regular classes: 0,1,0.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  6,
+                          "question":  "Which pseudo-class selects elements that are NOT matching a given selector?",
+                          "options":  [
+                                          ":exclude()",
+                                          ":not()",
+                                          ":except()",
+                                          ":no()"
+                                      ],
+                          "explanation":  "The :not() pseudo-class excludes elements that match its argument selector.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  7,
+                          "question":  "What does :empty select?",
+                          "options":  [
+                                          "Elements with no children or text",
+                                          "Elements with zero width",
+                                          "Empty input fields",
+                                          "Elements with no ID"
+                                      ],
+                          "explanation":  ":empty selects elements that have no children (including text nodes). Whitespace is considered content.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  8,
+                          "question":  "Which pseudo-class is triggered when an element is the target of a URL fragment?",
+                          "options":  [
+                                          ":hash",
+                                          ":target",
+                                          ":link",
+                                          ":focus"
+                                      ],
+                          "explanation":  ":target selects the element whose ID matches the URL\u0027s fragment identifier (the part after #).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  9,
+                          "question":  "What does :focus-visible do differently from :focus?",
+                          "options":  [
+                                          "It\u0027s the same as :focus",
+                                          "It only shows focus for keyboard users, not mouse clicks",
+                                          "It only shows focus for touch users",
+                                          "It shows focus only on mobile"
+                                      ],
+                          "explanation":  ":focus-visible shows a focus indicator only when the browser determines it\u0027s needed (usually keyboard navigation), not on mouse clicks.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  10,
+                          "question":  "Which pseudo-class selects the root element of the document?",
+                          "options":  [
+                                          ":html",
+                                          ":root",
+                                          ":document",
+                                          ":base"
+                                      ],
+                          "explanation":  ":root selects the highest-level parent element in the DOM. For HTML documents, this is the \u003chtml\u003e element.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  11,
+                          "question":  "What does :nth-child(2n+1) select?",
+                          "options":  [
+                                          "Even-numbered children",
+                                          "Odd-numbered children",
+                                          "Every second child starting from 2",
+                                          "Children 2 through N"
+                                      ],
+                          "explanation":  "2n+1 produces odd numbers: 1, 3, 5, 7... This is equivalent to :nth-child(odd).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  12,
+                          "question":  "Which pseudo-class applies to form elements with valid data?",
+                          "options":  [
+                                          ":correct",
+                                          ":valid",
+                                          ":ok",
+                                          ":success"
+                                      ],
+                          "explanation":  ":valid selects form elements whose content validates successfully against the input constraints (e.g., type, required, pattern).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  13,
+                          "question":  "What does :checked select?",
+                          "options":  [
+                                          "Radio buttons or checkboxes that are selected",
+                                          "Elements that have been verified",
+                                          "Form inputs with content",
+                                          "Links that have been clicked"
+                                      ],
+                          "explanation":  ":checked selects radio buttons or checkboxes that are in the checked state.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  14,
+                          "question":  "How can you select an element that does NOT have a class?",
+                          "options":  [
+                                          ":not(.classname)",
+                                          "[class!=\u0027classname\u0027]",
+                                          ":no-class",
+                                          "element:not([class])"
+                                      ],
+                          "explanation":  "element:not([class]) selects elements that do not have a class attribute. The :not() pseudo-class combined with attribute selector.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  15,
+                          "question":  "What is the :where() pseudo-class used for?",
+                          "options":  [
+                                          "Selecting elements by location",
+                                          "Grouping selectors with zero specificity",
+                                          "Selecting elements by width",
+                                          "Filtering by coordinates"
+                                      ],
+                          "explanation":  ":where() groups selectors like :is() but contributes zero to specificity, making it useful for default styles that should be easy to override.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  16,
+                          "question":  "Which pseudo-class is used to style an element when it\u0027s being activated (clicked)?",
+                          "options":  [
+                                          ":click",
+                                          ":active",
+                                          ":press",
+                                          ":down"
+                                      ],
+                          "explanation":  ":active styles an element during the moment it\u0027s being activated (e.g., the instant between mouse press and release).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  17,
+                          "question":  "What does :last-of-type select?",
+                          "options":  [
+                                          "The last child of any type",
+                                          "The last element of its type among siblings",
+                                          "The last element in the document",
+                                          "The last attribute of an element"
+                                      ],
+                          "explanation":  ":last-of-type selects the last element of a particular type among its siblings.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  18,
+                          "question":  "Which pseudo-class represents a disabled form element?",
+                          "options":  [
+                                          ":inactive",
+                                          ":disabled",
+                                          ":off",
+                                          ":unavailable"
+                                      ],
+                          "explanation":  ":disabled selects form elements that have the disabled attribute, making them uneditable.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "What is the specificity of :is(.class1, .class2)?",
+                          "options":  [
+                                          "0,0,0",
+                                          "0,1,0",
+                                          "0,2,0",
+                                          "1,0,0"
+                                      ],
+                          "explanation":  ":is() takes the specificity of its most specific argument. Since both arguments are classes, it\u0027s 0,2,0.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  20,
+                          "question":  "What does ::selection (pseudo-element) vs :target (pseudo-class) do?",
+                          "options":  [
+                                          "Same thing",
+                                          "::selection styles highlighted text; :target targets URL fragment",
+                                          "::selection targets CSS errors; :target targets links",
+                                          "::selection is for print; :target is for screen"
+                                      ],
+                          "explanation":  "::selection is a pseudo-element that styles text selected/highlighted by the user. :target is a pseudo-class that targets the element matching the URL fragment.",
+                          "correctAnswer":  1
+                      }
+                  ]
+}

@@ -1,0 +1,130 @@
+{
+  "module": "109-color-accessibility",
+  "title": "Color Accessibility",
+  "beginner": [
+    {
+      "question": "What is color accessibility in web design?",
+      "answer": "Color accessibility ensures that content is perceivable by users with various types of color vision deficiencies (color blindness) and visual impairments, by maintaining sufficient contrast and not relying on color alone to convey information."
+    },
+    {
+      "question": "Why should you never convey information using color alone?",
+      "answer": "Approximately 8% of men and 0.5% of women have some form of color blindness. Using color alone for critical information (like form errors or chart data) excludes these users. Always include text labels, icons, or patterns as secondary indicators."
+    },
+    {
+      "question": "What are the three most common types of color blindness?",
+      "answer": "Deuteranopia (green-blind, most common), protanopia (red-blind), and tritanopia (blue-yellow blindness). Deuteranopia and protanopia are both forms of red-green color blindness affecting over 90% of color-blind individuals."
+    },
+    {
+      "question": "What is the difference between WCAG AA and AAA contrast requirements?",
+      "answer": "WCAG AA requires a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text. AAA requires 7:1 for normal text and 4.5:1 for large text. AAA is a higher, optional standard."
+    },
+    {
+      "question": "What tools can you use to check color contrast ratios?",
+      "answer": "WebAIM Contrast Checker, axe DevTools, Lighthouse, Chrome DevTools (rendering tab), Contrast Ratio by Lea Verou, and browser extensions like WCAG Color Contrast Checker."
+    },
+    {
+      "question": "How does the WCAG define 'large text' for contrast requirements?",
+      "answer": "Large text is defined as text that is at least 18 point (24px) bold or 14 point (18.667px) regular. Large text has looser contrast requirements (3:1 for AA) because it is easier to read."
+    },
+    {
+      "question": "What is the purpose of a color blindness simulator?",
+      "answer": "A color blindness simulator shows how your design appears to users with different types of color vision deficiencies. Chrome DevTools includes one under Rendering → Emulate vision deficiencies."
+    },
+    {
+      "question": "What does the term 'perceivable' mean in the context of WCAG color accessibility?",
+      "answer": "'Perceivable' means information must be presented in ways that all users can perceive. For color, this means ensuring sufficient contrast, not using color alone for meaning, and providing text alternatives for color-coded information."
+    },
+    {
+      "question": "What is the role of the `<html>` element's `color-scheme` property?",
+      "answer": "The `color-scheme` CSS property (or `<meta name=\"color-scheme\">`) tells the browser which color schemes the page supports (light, dark, or both), allowing the browser to apply appropriate default form controls and scrollbars."
+    },
+    {
+      "question": "Why is it important to test your designs in grayscale?",
+      "answer": "Viewing a design in grayscale immediately reveals whether information is conveyed through color alone. If anything becomes indistinguishable or confusing in grayscale, it needs a non-color indicator like labels, icons, or patterns."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you calculate relative luminance for WCAG contrast ratios?",
+      "answer": "Relative luminance is calculated using the formula L = 0.2126 * R + 0.7152 * G + 0.0722 * B, where R, G, B are linearized sRGB values (after applying gamma correction). The contrast ratio is then (L1 + 0.05) / (L2 + 0.05)."
+    },
+    {
+      "question": "What is the difference between WCAG 2.0 and WCAG 2.1 contrast requirements?",
+      "answer": "WCAG 2.1 did not change the core contrast ratios from 2.0. However, 2.1 added Success Criterion 1.4.11 (Non-text Contrast) requiring 3:1 for user interface components and graphical objects, and 1.4.12 (Text Spacing)."
+    },
+    {
+      "question": "How do you handle color accessibility in dark mode themes?",
+      "answer": "Dark mode requires careful contrast management because bright text on dark backgrounds can cause halation (blurring) for some users. Use slightly lower contrast than light mode (but still meeting WCAG AA), avoid pure white (#FFF) text on pure black (#000), and test with real devices."
+    },
+    {
+      "question": "What is the 'contrast ratio' minimum for UI components and graphical objects under WCAG 2.1?",
+      "answer": "WCAG 2.1 Success Criterion 1.4.11 (Non-text Contrast) requires a contrast ratio of at least 3:1 for UI components (buttons, form controls) and graphical objects (icons, charts) against adjacent colors."
+    },
+    {
+      "question": "What is APCA (Accessible Perceptual Contrast Algorithm)?",
+      "answer": "APCA is a new contrast method proposed for WCAG 3.0. Unlike the simple luminance-based WCAG 2.x ratio, APCA accounts for spatial frequency, font weight, font size, and perceptual uniformity, providing more context-aware contrast recommendations."
+    },
+    {
+      "question": "How do you make data visualizations accessible for color-blind users?",
+      "answer": "Use patterns or textures in addition to colors, label data points directly, use high-contrast color palettes designed for color blindness (e.g., ColorBrewer), provide interactive tooltips with values, and offer a high-contrast mode."
+    },
+    {
+      "question": "What is the 'SC 1.4.1 Use of Color' success criterion?",
+      "answer": "SC 1.4.1 states: 'Color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.' This means text labels, patterns, or structural markup must supplement color."
+    },
+    {
+      "question": "How does `prefers-contrast: high` affect color accessibility?",
+      "answer": "The `prefers-contrast: high` media query detects when a user has requested higher contrast at the OS level. You can provide enhanced contrast styles to override your default palette and ensure readability for users with low vision."
+    },
+    {
+      "question": "What are the WCAG requirements for focus indicators related to color?",
+      "answer": "WCAG 2.2 SC 2.4.11 (Focus Appearance) requires focus indicators to have a contrast ratio of at least 3:1 between focused and unfocused states, and the focus indicator area must be at least as large as a 2 CSS pixel thick perimeter."
+    },
+    {
+      "question": "How do you choose an accessible color palette from the start?",
+      "answer": "Start with a limited palette, use tools like Accessible Color Palette generators (e.g., Coolors accessibility mode, Material Design color tool), ensure all foreground/background combinations pass WCAG AA, and test every combination with color blindness simulators."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the `color-gamut` media query relate to color accessibility?",
+      "answer": "`color-gamut` queries the approximate range of colors supported by the user agent and output device (srgb, p3, rec2020). While not directly about accessibility, it allows progressive enhancement for wider gamut displays while ensuring fallback colors maintain contrast."
+    },
+    {
+      "question": "What is the 'linearized sRGB' formula used in luminance calculation?",
+      "answer": "For each sRGB channel value v (0-255, normalized to 0-1): if v <= 0.04045, channel = v / 12.92; else channel = ((v + 0.055) / 1.055) ^ 2.4. The linearized values are then used in the luminance formula: L = 0.2126 * R + 0.7152 * G + 0.0722 * B."
+    },
+    {
+      "question": "What is the 'contrast failure' conformance level in WCAG 3.0?",
+      "answer": "WCAG 3.0 (still in draft) replaces the binary pass/fail model with a bronze, silver, gold rating system. Contrast is scored using APCA on a continuous scale. Bronze is the minimum conformance level, representing a significant improvement over baseline."
+    },
+    {
+      "question": "How do you handle brand colors that don't meet contrast requirements?",
+      "answer": "Use brand colors for decorative elements only, not for critical text or UI. For text, use a darker/lighter tint of the brand color that meets contrast requirements. Consider using brand colors as accents rather than backgrounds, and always provide high-contrast alternatives."
+    },
+    {
+      "question": "What is 'CVD (Color Vision Deficiency) simulation' in the rendering pipeline?",
+      "answer": "CVD simulation uses color matrix transformations to approximate how different color vision deficiencies perceive a scene. Chrome DevTools applies these via the Rendering tab using Brettel, Viénot, and Mollon's physiological-based simulation models."
+    },
+    {
+      "question": "How do you implement a custom accessible color scheme that responds to `prefers-color-scheme` and `prefers-contrast` simultaneously?",
+      "answer": "Combine media queries: `@media (prefers-color-scheme: dark) and (prefers-contrast: high) { ... }`. This creates four possible states (light normal, light high contrast, dark normal, dark high contrast), each with appropriate contrast ratios meeting WCAG AA/AAA."
+    },
+    {
+      "question": "What is the 'Flashing' threshold in WCAG and how does it relate to color?",
+      "answer": "WCAG SC 2.3.1 defines a flash as a change in relative luminance of 10% or more (10 cd/m²) that occurs at a rate of 3 flashes per second or more. Certain color combinations (especially saturated red alternations) can trigger seizures even below the luminance threshold."
+    },
+    {
+      "question": "How does CIE Lab color space differ from sRGB for accessibility?",
+      "answer": "CIE Lab is perceptually uniform — a numerical difference in Lab space corresponds to a perceived difference in color. sRGB is not perceptually uniform. Tools like APCA use CIE Lab-based computations to provide more accurate contrast assessment than the simple sRGB WCAG 2.x formula."
+    },
+    {
+      "question": "What considerations exist for selecting accessible colors for virtual and augmented reality?",
+      "answer": "VR/AR adds challenges: extreme brightness ranges, environment light bleed-through, stereoscopic rendering can reduce perceived contrast, and motion sickness can be triggered by high-contrast patterns. Use the `environment-blend-mode` media query and test with actual headsets."
+    },
+    {
+      "question": "How do you automate color accessibility testing in a CI/CD pipeline?",
+      "answer": "Use tools like Pa11y CI, axe-core with Puppeteer/Playwright, or Storybook's accessibility addon. Write automated tests that check every text/background combination against WCAG AA ratios. Tools like Chromatic also offer visual + accessibility regression testing."
+    }
+  ]
+}

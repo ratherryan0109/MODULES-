@@ -1,0 +1,29 @@
+{
+  "module": "71 - Responsive Cards",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Basic Card Grid with Auto-Fit",
+      "description": "Build a responsive card grid with 6 cards that goes from 1 column on mobile to 2-3 on desktop using auto-fit.",
+      "instructions": "Create 6 cards with images, titles, descriptions. Use auto-fit with minmax for responsive layout.",
+      "hints": ["Use grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))", "Set display: flex and flex-direction: column on each card", "Add aspect-ratio on images"],
+      "solution": ".grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } .card { display: flex; flex-direction: column; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); } .card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; } .card-body { padding: 1rem; flex: 1; }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Featured Post + Regular Cards",
+      "description": "Create a blog layout with a featured article that spans full width and 4 regular cards in a responsive grid.",
+      "instructions": "Featured card spans all columns on desktop, shows horizontal layout. Regular cards form a 2x2 grid below.",
+      "hints": ["Use grid-column: 1 / -1 for the featured card", "Use grid-column: span 2 on desktop for featured", "Featured card uses flex-direction: row on desktop"],
+      "solution": ".blog-grid { display: grid; gap: 1.5rem; } @media (min-width: 768px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } .featured { grid-column: 1 / -1; } .featured .card { flex-direction: row; } .featured .card-img { width: 40%; } }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Container Query Cards",
+      "description": "Build cards that change their layout based on their container width using container queries.",
+      "instructions": "Create a card component that shows stacked on narrow containers, horizontal at medium, and expanded at wide.",
+      "hints": ["Use container-type: inline-size on card container", "Define @container rules for different widths", "Adapt font sizes, image sizes, and layout at each container breakpoint"],
+      "solution": ".card-wrapper { container-type: inline-size; } .card { display: flex; flex-direction: column; } @container (min-width: 350px) { .card { flex-direction: row; } .card img { width: 150px; } } @container (min-width: 500px) { .card { padding: 1.5rem; } .card img { width: 200px; } .card h3 { font-size: 1.25rem; } }"
+    }
+  ]
+}

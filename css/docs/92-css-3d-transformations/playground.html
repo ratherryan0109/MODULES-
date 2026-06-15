@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 3D Transformations - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #1e1e2e; color: #cdd6f4; padding: 2rem; }
+    h1 { color: #89b4fa; margin-bottom: 1rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    .panel { background: #313244; border-radius: 12px; padding: 1.5rem; border: 1px solid #45475a; }
+    .preview-panel { display: flex; align-items: center; justify-content: center; min-height: 400px; overflow: hidden; }
+    label { display: block; margin: 0.75rem 0 0.25rem; color: #a6e3a1; font-weight: 700; }
+    input[type="range"] { width: 100%; }
+    .demo-box {
+      width: 150px; height: 150px; border-radius: 12px; background: #89b4fa;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #1e1e2e; transition: transform 0.3s ease;
+    }
+    .code-output { background: #181825; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.85rem; white-space: pre-wrap; border: 1px solid #45475a; }
+    button { background: #89b4fa; color: #1e1e2e; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 700; margin-top: 1rem; }
+    button:hover { background: #b4d0fb; }
+    .row { display: flex; gap: 1rem; }
+    .row > div { flex: 1; }
+  </style>
+</head>
+<body>
+  <h1>CSS 3D Transformations Playground</h1>
+  <div class="container">
+    <div class="panel">
+      <h2 style="color:#a6e3a1;margin-bottom:1rem;">Controls</h2>
+      <label>Parent Perspective</label>
+      <input type="range" id="perspective" min="100" max="2000" step="10" value="800">
+      <span id="perspectiveVal">800px</span>
+
+      <label>Rotate X (deg)</label>
+      <input type="range" id="rotX" min="-180" max="180" value="0">
+      <span id="rotXVal">0deg</span>
+
+      <label>Rotate Y (deg)</label>
+      <input type="range" id="rotY" min="-180" max="180" value="0">
+      <span id="rotYVal">0deg</span>
+
+      <label>Rotate Z (deg)</label>
+      <input type="range" id="rotZ" min="-180" max="180" value="0">
+      <span id="rotZVal">0deg</span>
+
+      <label>Translate Z (px)</label>
+      <input type="range" id="transZ" min="-300" max="300" value="0">
+      <span id="transZVal">0px</span>
+
+      <button id="resetBtn">Reset</button>
+    </div>
+    <div class="panel preview-panel">
+      <div id="scene" style="perspective:800px;">
+        <div id="previewBox" class="demo-box">3D</div>
+      </div>
+    </div>
+  </div>
+  <div class="code-output" id="codeOutput">perspective: 800px; transform: rotateX(0) rotateY(0) rotateZ(0) translateZ(0);</div>
+
+  <script>
+    const scene = document.getElementById('scene');
+    const box = document.getElementById('previewBox');
+    const persp = document.getElementById('perspective');
+    const rotX = document.getElementById('rotX'), rotY = document.getElementById('rotY'), rotZ = document.getElementById('rotZ'), transZ = document.getElementById('transZ');
+    const code = document.getElementById('codeOutput');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function update() {
+      const p = persp.value, x = rotX.value, y = rotY.value, z = rotZ.value, t = transZ.value;
+      document.getElementById('perspectiveVal').textContent = p + 'px';
+      document.getElementById('rotXVal').textContent = x + 'deg';
+      document.getElementById('rotYVal').textContent = y + 'deg';
+      document.getElementById('rotZVal').textContent = z + 'deg';
+      document.getElementById('transZVal').textContent = t + 'px';
+
+      scene.style.perspective = p + 'px';
+      box.style.transform = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg) translateZ(${t}px)`;
+      code.textContent = `perspective: ${p}px;\ntransform: rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg) translateZ(${t}px);`;
+    }
+
+    [persp, rotX, rotY, rotZ, transZ].forEach(el => el.addEventListener('input', update));
+    resetBtn.addEventListener('click', () => {
+      persp.value = 800; rotX.value = 0; rotY.value = 0; rotZ.value = 0; transZ.value = 0; update();
+    });
+    update();
+  </script>
+</body>
+</html>

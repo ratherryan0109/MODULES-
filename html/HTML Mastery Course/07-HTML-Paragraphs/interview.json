@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <p> element used for?",
+      "answer": "The <p> element defines a paragraph of text. It is a block-level element that separates content into blocks with spacing above and below."
+    },
+    {
+      "question": "What is a line break and which tag creates it?",
+      "answer": "A line break moves text to the next line within the same paragraph. It is created using the <br> tag."
+    },
+    {
+      "question": "What is preformatted text and which tag is used?",
+      "answer": "Preformatted text preserves all whitespace and line breaks exactly as written in HTML. It uses the <pre> tag and is displayed in a monospace font."
+    },
+    {
+      "question": "What is the <hr> tag used for?",
+      "answer": "The <hr> tag represents a thematic break between content sections, typically rendered as a horizontal line."
+    },
+    {
+      "question": "Can you nest a <p> inside another <p>?",
+      "answer": "No. A <p> element cannot contain other block-level elements, including another <p>."
+    },
+    {
+      "question": "How do browsers handle spaces and line breaks in HTML source code?",
+      "answer": "Browsers collapse multiple spaces and line breaks into a single space. Use <br> for line breaks and <pre> to preserve whitespace."
+    },
+    {
+      "question": "What is the difference between <br> and <hr>?",
+      "answer": "<br> creates a line break within text. <hr> creates a thematic break between sections, shown as a horizontal line."
+    },
+    {
+      "question": "How do you create an address in HTML?",
+      "answer": "Use the <address> element, often with <br> for line breaks: <address>123 Street<br>City, State</address>."
+    },
+    {
+      "question": "Is the closing </p> tag required?",
+      "answer": "In HTML5, the closing </p> tag is optional but it is best practice to always include it for clarity and to prevent bugs."
+    },
+    {
+      "question": "What is the default font size of a paragraph?",
+      "answer": "The default font size for <p> is 1em (16px in most browsers)."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is text wrapping and how does the browser handle it?",
+      "answer": "Text wrapping is the automatic breaking of lines to fit the container width. The browser wraps text at word boundaries. Line breaks in the source are collapsed."
+    },
+    {
+      "question": "How does the CSS white-space property affect paragraph rendering?",
+      "answer": "The white-space CSS property controls how whitespace is handled. normal collapses spaces, pre preserves them, nowrap prevents wrapping, and pre-line preserves line breaks but collapses spaces."
+    },
+    {
+      "question": "What is the difference between hard wrap and soft wrap in text?",
+      "answer": "Hard wrap uses explicit <br> tags to break lines. Soft wrap is the browser's automatic line breaking based on the container width."
+    },
+    {
+      "question": "How do you create a first-line indent on paragraphs?",
+      "answer": "Use the CSS text-indent property: p { text-indent: 20px; } to indent the first line of each paragraph."
+    },
+    {
+      "question": "What is the word-wrap CSS property used for?",
+      "answer": "word-wrap (now overflow-wrap) controls whether the browser can break long words at any character to prevent overflow. Useful for long URLs or code snippets."
+    },
+    {
+      "question": "How do you control the spacing between paragraphs with CSS?",
+      "answer": "Use the margin property: p { margin-bottom: 20px; } or margin-top. Adjacent margins collapse (take the larger value)."
+    },
+    {
+      "question": "What is the <wbr> element and when should you use it?",
+      "answer": "<wbr> (Word Break Opportunity) suggests a position for a line break if needed. Unlike <br>, it only breaks when the line would overflow. Good for long URLs."
+    },
+    {
+      "question": "How does the <p> element interact with CSS columns?",
+      "answer": "When using CSS multi-column layouts, <p> elements flow naturally into columns. The break-inside property controls whether paragraphs break across columns."
+    },
+    {
+      "question": "What is the difference between text-align: justify and text-align: left?",
+      "answer": "text-align: justify stretches lines to fill the full width, adding space between words. text-align: left aligns text to the left with uneven right edges. Justify can create awkward spacing with narrow columns."
+    },
+    {
+      "question": "How do you add line numbers to a <pre> block?",
+      "answer": "Line numbers can be added by wrapping each line in <span> elements with CSS counters, or by using a <code> block with JavaScript syntax highlighting libraries like Prism.js or Highlight.js."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the CSS line-height property affect paragraph readability?",
+      "answer": "line-height controls the vertical space between lines. A value of 1.5-1.8 is typically optimal for readability. Too tight (1.0) causes lines to blur together; too loose (>2.0) causes eye strain."
+    },
+    {
+      "question": "What is widows and orphans in typography and how do CSS properties handle them?",
+      "answers": "A widow is a single line at the bottom of a column/paragraph. An orphan is a single line at the top. CSS properties widows and orphans control the minimum number of lines that must appear at breaks."
+    },
+    {
+      "question": "How does the CSS hyphens property work with paragraphs?",
+      "answer": "The hyphens property (none, manual, auto) controls hyphenation. auto allows the browser to hyphenate words at line breaks using language-specific dictionaries. Requires the lang attribute on the HTML element."
+    },
+    {
+      "question": "What is the CSS text-overflow property and how does it interact with paragraphs?",
+      "answer": "text-overflow (clip, ellipsis) controls how overflowing text is indicated. ellipsis shows '...' when text overflows. Used with overflow: hidden and white-space: nowrap."
+    },
+    {
+      "question": "How does the browser's intrinsic size algorithm work for paragraph elements?",
+      "answer": "The browser calculates paragraph width based on the containing block. The intrinsic size is the width of the content. min-content is the widest unbreakable word, max-content is the full text without wrapping."
+    },
+    {
+      "question": "What is the difference between the <p> element and a <div> used for text?",
+      "answer": "Semantically, <p> represents a paragraph of text. <div> is a generic container. <p> has default margins and only accepts phrasing content. <div> is more flexible but provides no semantic meaning."
+    },
+    {
+      "question": "How does the CSS font-size-adjust property affect paragraph rendering?",
+      "answer": "font-size-adjust preserves the x-height (height of lowercase letters) when the fallback font is used. This prevents paragraphs from looking too large or small when the preferred font is unavailable."
+    },
+    {
+      "question": "What is the role of the CSS letter-spacing property in paragraph legibility?",
+      "answer": "letter-spacing (tracking) adjusts space between characters. Small positive values (<1px) can improve readability for uppercase text. Large negative values make text harder to read."
+    },
+    {
+      "question": "How does the <p> element behave in a flex or grid layout?",
+      "answer": "In flex/grid layouts, <p> elements are flex/grid items. Their default block behavior can be overridden. The paragraph wraps within its allocated area, and alignment properties control positioning."
+    },
+    {
+      "question": "What is the relationship between paragraph text and the CSS 'ch' unit?",
+      "answer": "The 'ch' unit equals the width of the '0' character in the current font. Setting max-width: 65ch on paragraphs creates an optimal line length for readability by limiting characters per line."
+    }
+  ]
+}

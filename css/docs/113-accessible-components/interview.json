@@ -1,0 +1,130 @@
+{
+  "module": "113-accessible-components",
+  "title": "Accessible Components",
+  "beginner": [
+    {
+      "question": "What is a 'skip link' and why is it important?",
+      "answer": "A skip link is a hidden link at the very top of a page that becomes visible when focused (via Tab). It allows keyboard users to skip directly to the main content, bypassing repetitive navigation. It's a WCAG 2.4.1 (Bypass Blocks) requirement."
+    },
+    {
+      "question": "What ARIA role should a modal dialog use?",
+      "answer": "A modal dialog should use `role=\"dialog\"` (or `role=\"alertdialog\"` for urgent messages) with `aria-modal=\"true\"` to indicate it's a modal, and `aria-labelledby` pointing to the dialog's title element."
+    },
+    {
+      "question": "What is the essential keyboard behavior for an accessible accordion?",
+      "answer": "Each accordion button should be focusable (Tab) and activate on Enter/Space. The associated panel should follow the button in DOM order. Use `aria-expanded=\"true/false\"` on the button and `aria-controls` referencing the panel's `id`."
+    },
+    {
+      "question": "What is a 'tab panel' component and what ARIA patterns does it use?",
+      "answer": "A tab panel consists of tablist, tab, and tabpanel roles. Tabs use `role=\"tab\"` with `aria-selected`, `aria-controls`, and `role=\"tablist\"` for the container. Tab panels use `role=\"tabpanel\"` with `aria-labelledby`. Arrow keys navigate between tabs."
+    },
+    {
+      "question": "What is the 'escape' key behavior for a modal dialog?",
+      "answer": "Pressing the Escape key should close the modal dialog. After closing, focus must return to the element that opened the modal. This is a critical keyboard accessibility requirement."
+    },
+    {
+      "question": "How do you make a custom checkbox accessible?",
+      "answer": "Use `role=\"checkbox\"`, `aria-checked=\"true/false\"`, ensure it's keyboard focusable (`tabindex=\"0\"`), toggle state on Space key, and provide a visible label associated via `aria-labelledby` or wrapping `<label>`."
+    },
+    {
+      "question": "What is 'focus trapping' in a modal context?",
+      "answer": "Focus trapping ensures that Tab and Shift+Tab cycling stays within the modal. When the last focusable element in the modal is reached, Tab moves focus to the first. This prevents users from accidentally tabbing to background content."
+    },
+    {
+      "question": "What ARIA attribute indicates a navigation landmark?",
+      "answer": "Use `<nav aria-label=\"Main navigation\">` or `role=\"navigation\"`. The `aria-label` distinguishes multiple navigation regions. For primary navigation, `<nav>` alone is sufficient. Landmark roles help screen reader users jump to page sections."
+    },
+    {
+      "question": "What is the purpose of `aria-live` regions?",
+      "answer": "`aria-live` regions announce dynamic content changes to screen readers. Use `aria-live=\"polite\"` for non-urgent updates (like chat messages) and `aria-live=\"assertive\"` for urgent updates (like form errors). The browser announces changes in these regions."
+    },
+    {
+      "question": "Why should you avoid `aria-expanded=\"true\"` on non-interactive elements?",
+      "answer": "ARIA attributes should only be used on interactive elements. `aria-expanded` on a `<div>` has no effect because screen readers don't expose states of non-interactive elements. Always use semantic interactive elements like `<button>` for expandable controls."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement a 'hamburger menu' that's accessible?",
+      "answer": "Use a `<button>` (not a `<div>`) with `aria-expanded=\"true/false\"` and `aria-controls=\"menu-id\"`. The button should have accessible text (visually hidden if needed): `<span class=\"sr-only\">Menu</span>`. Focus must move to the menu when opened."
+    },
+    {
+      "question": "What is the WAI-ARIA Authoring Practices pattern for a combobox/autocomplete?",
+      "answer": "The combobox pattern uses `role=\"combobox\"` on the input, `aria-expanded`, `aria-controls=\"listbox-id\"`, `role=\"listbox\"` on the suggestions container, and `role=\"option\"` with `aria-selected` on items. Arrow keys navigate, Enter selects, Escape closes."
+    },
+    {
+      "question": "How do you create an accessible disclosure (show/hide) widget?",
+      "answer": "Use a `<button>` as the trigger with `aria-expanded=\"true/false\"`. The content panel uses `role=\"region\"` with `aria-labelledby` referencing the button's `id`. Content toggles via display or visibility. Focus stays on the button."
+    },
+    {
+      "question": "What is the difference between `aria-label`, `aria-labelledby`, and `aria-describedby`?",
+      "answer": "`aria-label` provides an accessible name directly. `aria-labelledby` references another element(s) for the accessible name (overrides `aria-label`). `aria-describedby` provides additional description, read after the name by screen readers."
+    },
+    {
+      "question": "How do you implement an accessible tooltip?",
+      "answer": "Use `aria-describedby` on the trigger element pointing to the tooltip's `id`. The tooltip should not be keyboard-navigable — it's a description, not interactive. Tooltips trigger on focus and hover. Use `role=\"tooltip\"` on the tooltip element."
+    },
+    {
+      "question": "What is the 'roving tabindex' pattern?",
+      "answer": "Roving tabindex is used in components like tablists, toolbars, and menus. Only one element in the group has `tabindex=\"0\"`; others have `tabindex=\"-1\"`. Arrow key events move `tabindex=\"0\"` to the newly focused item."
+    },
+    {
+      "question": "How do you make a custom radio group accessible?",
+      "answer": "Use `role=\"radiogroup\"` on the container, `role=\"radio\"` on each option with `aria-checked=\"true/false\"`. Implement roving tabindex: Arrow Up/Left moves selection, Space/Enter selects. Use `<fieldset>` and `<legend>` as the semantic foundation."
+    },
+    {
+      "question": "What is an accessible name computation and why does it matter?",
+      "answer": "The accessible name is how a screen reader identifies an element. The browser computes it in order: `aria-labelledby` > `aria-label` > native semantics (e.g., `<label>` for input, element text content for button). A missing name makes elements unrecognizable."
+    },
+    {
+      "question": "How do you implement an accessible carousel/slider?",
+      "answer": "Use `role=\"region\"` with `aria-roledescription=\"carousel\"` and `aria-label`. Items have `role=\"group\"` with `aria-roledescription=\"slide\"`. Provide previous/next buttons (visible), pause button, and slide indicators. Support keyboard navigation."
+    },
+    {
+      "question": "What is the difference between a `status` role and `alert` role?",
+      "answer": "`role=\"status\"` (mapped to `aria-live=\"polite\"`) announces non-urgent updates. `role=\"alert\"` (mapped to `aria-live=\"assertive\"`) announces urgent changes. The `status` role allows interruption while `alert` aggressively announces."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a 'mega menu' that's keyboard accessible?",
+      "answer": "Use `<nav>` with a button for each top-level category (`aria-expanded`, `aria-controls`). The mega menu panel uses `role=\"region\"` and contains links with standard focus handling. Arrow Right/Left navigates between categories; Escape closes the panel."
+    },
+    {
+      "question": "How do you handle dynamically loaded content in an accessible infinite scroll?",
+      "answer": "Insert a `role=\"status\"` or `aria-live=\"polite\"` region that announces new content loading. Use `aria-busy=\"true\"` during loading. Ensure focus management — optionally move focus to the first new item or provide a 'load more' button alternative."
+    },
+    {
+      "question": "What is the 'first focusable element' rule when opening a modal and how do you implement it?",
+      "answer": "When a modal opens, focus should move to the first focusable element inside it (usually the close button or first input). Use JavaScript to find focusable elements with a selector: `'a[href], button, input, textarea, select, [tabindex]:not([tabindex=\"-1\"])'`."
+    },
+    {
+      "question": "How do you create an accessible 'file upload' dropzone component?",
+      "answer": "Use a `<button>` or `<label>` with `<input type=\"file\" hidden>`. The dropzone itself uses `role=\"button\"` with `tabindex=\"0\"`, handles drag-and-drop events, provides keyboard activation (Enter/Space), and announces status via `aria-live`."
+    },
+    {
+      "question": "How do you implement accessible drag-and-drop sorting (reorderable list)?",
+      "answer": "Each item needs `role=\"listitem\"`, `aria-grabbed=\"true/false\"`, and `aria-dropeffect=\"move\"` on the list. Provide keyboard alternatives: use up/down arrow buttons to move items or a native `<select>` for reordering. Announce position changes."
+    },
+    {
+      "question": "What is the WAI-ARIA 'tree view' pattern and its keyboard interactions?",
+      "answer": "Tree view uses `role=\"tree\"`, `role=\"treeitem\"` with `aria-expanded`. Keyboard: Enter to activate, Arrow Right to expand, Arrow Left to collapse, Arrow Up/Down to navigate between items. `aria-setsize` and `aria-posinset` for large dynamic trees."
+    },
+    {
+      "question": "How do you implement an accessible 'toast notification' component?",
+      "answer": "Use `role=\"alert\"` (for important notifications) or `role=\"status\"` (for non-critical). The toast must be keyboard focusable (so users can dismiss it). Provide a visible close button. Don't use `aria-live` if using `role=\"alert\"` (redundant)."
+    },
+    {
+      "question": "What is the difference between `aria-hidden=\"true\"` and `role=\"presentation\"`?",
+      "answer": "`aria-hidden=\"true\"` removes an element from the accessibility tree entirely (not announced, not navigable). `role=\"presentation\"` removes semantic meaning but keeps the element accessible for its content (e.g., text still announced, interactive elements still work)."
+    },
+    {
+      "question": "How do you implement accessible charts and data visualizations?",
+      "answer": "Provide a data table as the primary accessible representation. Use `role=\"img\"` with `aria-label` on the chart element. For interactive charts, ensure keyboard navigation through data points. Add `aria-live` regions for dynamically updated values."
+    },
+    {
+      "question": "How do you test accessible components programmatically?",
+      "answer": "Use axe-core (`axe.run()`), Lighthouse accessibility audits, Playwright's `@axe-core/playwright`, or Pa11y CI. For component libraries, use Storybook's accessibility addon. Run automated checks in CI with assertions like `expect(await new AxeBuilder(page).analyze()).toHaveNoViolations()`."
+    }
+  ]
+}

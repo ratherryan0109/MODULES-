@@ -1,0 +1,29 @@
+{
+  "module": "64 - Media Queries",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Print-Friendly Page",
+      "description": "Create a webpage that looks good on screen but has dedicated print styles.",
+      "instructions": "Add @media print rules to hide navigation, ads, and make text readable in print.",
+      "hints": ["Hide nav, sidebar, and ads with display: none", "Set body font-size to 12pt", "Remove background colors and set black text"],
+      "solution": "@media print { body { font-size: 12pt; color: black; background: white; } nav, .ad, .sidebar { display: none; } a { color: black; text-decoration: underline; } }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Dark Mode Toggle with Media Query Fallback",
+      "description": "Create a page that supports system dark mode via prefers-color-scheme and also has a manual toggle.",
+      "instructions": "Use prefers-color-scheme for automatic dark mode. Add a toggle button that overrides with a class.",
+      "hints": ["Define CSS variables for light and dark themes", "Use prefers-color-scheme to set :root variables", "Use a .dark class on body for manual override"],
+      "solution": ":root { --bg: white; --text: #333; } @media (prefers-color-scheme: dark) { :root { --bg: #1a1a2e; --text: #e0e0e0; } } body.dark { --bg: #1a1a2e; --text: #e0e0e0; } body { background: var(--bg); color: var(--text); }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Adaptive Layout with Multiple Media Features",
+      "description": "Build a layout that changes based on viewport width AND orientation AND hover capability.",
+      "instructions": "Create a grid that is 1 column on portrait mobile, 2 on landscape mobile, 3 on tablet+ with hover effects.",
+      "hints": ["Combine orientation and min-width in media queries", "Use hover: hover for hover effects, hover: none for touch sizing", "Use grid-template-columns at each breakpoint"],
+      "solution": "@media (orientation: portrait) { .grid { grid-template-columns: 1fr; } } @media (orientation: landscape) and (min-width: 480px) { .grid { grid-template-columns: repeat(2, 1fr); } } @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } } @media (hover: hover) { .card:hover { transform: translateY(-4px); } } @media (hover: none) { .card { min-height: 48px; } }"
+    }
+  ]
+}

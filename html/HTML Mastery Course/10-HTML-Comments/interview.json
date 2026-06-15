@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is an HTML comment?",
+      "answer": "An HTML comment is text in the HTML source code that is not displayed in the browser. It is used for documentation and developer notes."
+    },
+    {
+      "question": "How do you write an HTML comment?",
+      "answer": "HTML comments start with <!-- and end with -->. For example: <!-- This is a comment -->."
+    },
+    {
+      "question": "Are HTML comments visible to users?",
+      "answer": "No, comments are not visible in the rendered page. However, anyone can see them by viewing the page source (Ctrl+U)."
+    },
+    {
+      "question": "Can HTML comments be nested?",
+      "answer": "No, HTML comments cannot be nested. The first --> will close the comment."
+    },
+    {
+      "question": "What is the purpose of HTML comments?",
+      "answer": "Comments are used to document code, explain complex logic, organize sections, temporarily disable code, and leave notes for other developers."
+    },
+    {
+      "question": "What should you never put in an HTML comment?",
+      "answer": "Never put passwords, API keys, database credentials, credit card info, or any other sensitive data in HTML comments."
+    },
+    {
+      "question": "What is a TODO comment?",
+      "answer": "A TODO comment marks unfinished work or features that need to be implemented later, like <!-- TODO: Add pagination -->."
+    },
+    {
+      "question": "Can HTML comments span multiple lines?",
+      "answer": "Yes, HTML comments can span multiple lines. Just open with <!-- and close with --> after all lines."
+    },
+    {
+      "question": "How do you temporarily hide HTML code?",
+      "answer": "Wrap the code in HTML comments: <!-- <div>Hidden code</div> -->."
+    },
+    {
+      "question": "What happens if you forget to close a comment?",
+      "answer": "Everything after the opening <!-- is treated as a comment and hidden from the page, potentially breaking the layout."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What are conditional comments in HTML?",
+      "answer": "Conditional comments were a Microsoft Internet Explorer feature that allowed targeting specific IE versions. They are obsolete and should not be used in modern development."
+    },
+    {
+      "question": "How do you create section markers with comments?",
+      "answer": "Use patterns like <!-- ===== HEADER ===== --> and <!-- ===== /HEADER ===== --> to mark the start and end of document sections."
+    },
+    {
+      "question": "What is a FIXME comment and when should you use it?",
+      "answer": "FIXME comments mark known bugs or issues that need to be fixed, like <!-- FIXME: Image not loading on mobile -->."
+    },
+    {
+      "question": "What is a HACK comment?",
+      "answer": "A HACK comment indicates a temporary workaround or non-ideal solution, like <!-- HACK: Using table for layout until CSS grid is ready -->."
+    },
+    {
+      "question": "What is the difference between HTML comments and CSS comments?",
+      "answer": "HTML comments use <!-- -->. CSS comments use /* */. JavaScript uses // for single-line and /* */ for multi-line."
+    },
+    {
+      "question": "Should you leave commented-out code in production?",
+      "answer": "No. Remove commented-out code before deployment to keep the codebase clean, reduce file size, and avoid confusion."
+    },
+    {
+      "question": "How do comments affect page performance?",
+      "answer": "Comments are not rendered but they do add to the file size. For most pages the impact is negligible, but for large-scale applications, minification tools remove comments."
+    },
+    {
+      "question": "How can you view comments on a live website?",
+      "answer": "Press Ctrl+U (Windows) or Cmd+U (Mac) to view the page source, or use browser DevTools to inspect the source."
+    },
+    {
+      "question": "What is the best practice for commenting code?",
+      "answer": "Explain WHY a decision was made, not WHAT the code does (the code itself shows that). Keep comments current and remove obsolete ones."
+    },
+    {
+      "question": "Can you use HTML comments inside JavaScript?",
+      "answer": "No. JavaScript uses // and /* */ for comments. HTML comment syntax is not valid inside JavaScript."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do HTML comments affect the DOM construction during parsing?",
+      "answer": "Comments create Comment nodes in the DOM tree. They are part of the DOM but have no visual presentation. They can be accessed via JavaScript using nodeType 8."
+    },
+    {
+      "question": "How can JavaScript access and manipulate HTML comments?",
+      "answer": "Comments are Comment nodes in the DOM. Use document.createComment(), node.data to read, or iterate through childNodes to find comment nodes."
+    },
+    {
+      "question": "What is the security implication of storing sensitive data in comments?",
+      "answer": "Comments are sent as plain text in the HTML response. Anyone with access to the HTTP response or View Source can read them. They are not encrypted or hidden."
+    },
+    {
+      "question": "How do HTML minification tools handle comments?",
+      "answer": "Minifiers like HTMLMinifier typically remove all HTML comments by default (with exceptions for conditional comments and directives). This reduces file size."
+    },
+    {
+      "question": "What is the difference between server-side and client-side comments?",
+      "answer": "Server-side comments (like <!--#include virtual="...-->) are processed by the server before sending. Client-side HTML comments (<!-- -->) are sent to the browser and visible in source."
+    },
+    {
+      "question": "How do CDATA sections relate to HTML comments?",
+      "answer": "CDATA sections (<![CDATA[...]]>) are used in XML/XHTML to escape text that might be parsed as markup. They are different from HTML comments and not used in HTML5."
+    },
+    {
+      "question": "How do template engines (like Handlebars, Mustache) handle comments?",
+      "answer": "Template engines have their own comment syntax ({{! comment }} in Handlebars). These are stripped during compilation and never reach the client."
+    },
+    {
+      "question": "What is the role of comments in the View Source security model?",
+      "answer": "Comments are part of the response body. Any information in comments is accessible via View Source, making them unsuitable for sensitive data. Web crawlers also index comment content."
+    },
+    {
+      "question": "How can you use comments for testing and debugging purposes?",
+      "answer": "Toggle blocks of HTML on/off for A/B testing, temporarily disable features, add debug information only visible in source, and mark test sections."
+    },
+    {
+      "question": "What is the difference between HTML comments and the hidden attribute?",
+      "answer": "Comments completely remove content from the rendered page and DOM visibility. The hidden attribute hides content visually but the element remains in the DOM. Hidden elements can be shown via JavaScript."
+    }
+  ]
+}

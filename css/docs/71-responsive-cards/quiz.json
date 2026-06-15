@@ -1,0 +1,147 @@
+{
+  "module": "71-responsive-cards",
+  "title": "Responsive Cards",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS Grid setup creates a responsive card grid without media queries?",
+      "options": ["grid-template-columns: repeat(3, 1fr)", "grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))", "grid-template-columns: 1fr 1fr 1fr", "grid-template-columns: auto auto auto"],
+      "correctAnswer": 1,
+      "explanation": "repeat(auto-fit, minmax(280px, 1fr)) creates flexible columns that wrap automatically."
+    },
+    {
+      "id": 2,
+      "question": "What property pushes card footers to the bottom of equal-height cards?",
+      "options": ["align-self: end", "flex: 1 on card-body", "margin-top: auto on footer", "justify-content: space-between"],
+      "correctAnswer": 1,
+      "explanation": "flex: 1 on card-body makes it fill available space, pushing the footer down."
+    },
+    {
+      "id": 3,
+      "question": "Which CSS property prevents images from distorting in cards?",
+      "options": ["object-fit: cover", "background-size: cover", "overflow: hidden", "display: block"],
+      "correctAnswer": 0,
+      "explanation": "object-fit: cover crops images to fill while maintaining aspect ratio."
+    },
+    {
+      "id": 4,
+      "question": "What property reserves space for images to prevent layout shift?",
+      "options": ["min-height", "aspect-ratio", "width: 100%", "object-fit"],
+      "correctAnswer": 1,
+      "explanation": "aspect-ratio sets the image container proportions before the image loads."
+    },
+    {
+      "id": 5,
+      "question": "How do you limit card title text to 2 lines?",
+      "options": ["text-overflow: ellipsis", "line-clamp with -webkit-line-clamp: 2", "max-height: 2em", "overflow: hidden"],
+      "correctAnswer": 1,
+      "explanation": "-webkit-line-clamp: 2 with display: -webkit-box limits text to 2 lines."
+    },
+    {
+      "id": 6,
+      "question": "Which card pattern is best for a blog homepage?",
+      "options": ["Horizontal cards", "Auto-fit card grid with featured post", "Product cards", "Overlay cards"],
+      "correctAnswer": 1,
+      "explanation": "Auto-fit grid with a featured card is ideal for blog layouts."
+    },
+    {
+      "id": 7,
+      "question": "What does 'auto-fit' do differently from 'auto-fill'?",
+      "options": ["Nothing", "auto-fit collapses empty tracks, auto-fill preserves them", "auto-fill collapses empty tracks", "auto-fit creates more tracks"],
+      "correctAnswer": 1,
+      "explanation": "auto-fit collapses empty tracks, auto-fill keeps them (affects layout when fewer items)."
+    },
+    {
+      "id": 8,
+      "question": "How should card hover effects behave on touch devices?",
+      "options": ["Same as desktop", "Should consider no-hover or adjust", "Disabled entirely", "Always enabled"],
+      "correctAnswer": 1,
+      "explanation": "Use @media (hover: hover) for hover effects; touch devices need tap feedback instead."
+    },
+    {
+      "id": 9,
+      "question": "Which element should cards use for semantic meaning?",
+      "options": ["<div>", "<article>", "<section>", "<card>"],
+      "correctAnswer": 1,
+      "explanation": "<article> represents a self-contained composition, perfect for cards."
+    },
+    {
+      "id": 10,
+      "question": "What is a container query's role in card design?",
+      "options": ["Query viewport size", "Adapt card layout based on container width", "Query device type", "Query network speed"],
+      "correctAnswer": 1,
+      "explanation": "Container queries let cards adapt their layout based on their own width."
+    },
+    {
+      "id": 11,
+      "question": "How do you make a card span multiple columns in a grid?",
+      "options": ["width: 200%", "grid-column: span 2", "column-span: 2", "flex: 2"],
+      "correctAnswer": 1,
+      "explanation": "grid-column: span 2 makes a card span 2 grid columns."
+    },
+    {
+      "id": 12,
+      "question": "What is a good use case for overlay cards?",
+      "options": ["Product listings", "Hero sections and featured content", "Article lists", "Dashboard widgets"],
+      "correctAnswer": 1,
+      "explanation": "Overlay cards are great for hero images and featured content where text overlays an image."
+    },
+    {
+      "id": 13,
+      "question": "Why use 'display: flex; flex-direction: column' on cards?",
+      "options": ["For horizontal layout", "To align children vertically and enable flex: 1 on body", "For grid alignment", "For centering"],
+      "correctAnswer": 1,
+      "explanation": "Flex column layout allows card body to use flex: 1 and push footer down."
+    },
+    {
+      "id": 14,
+      "question": "What is the purpose of line-clamping card text?",
+      "options": ["Improve performance", "Maintain consistent card heights with varying content", "Add ellipsis for decoration", "Reduce text size"],
+      "correctAnswer": 1,
+      "explanation": "Line-clamping prevents cards with more content from being taller than others."
+    },
+    {
+      "id": 15,
+      "question": "Which property creates equal-height cards in a Flexbox row?",
+      "options": ["align-items: stretch (default)", "height: 100%", "flex: 1", "align-self: stretch"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox's default align-items: stretch makes all cards equal height."
+    },
+    {
+      "id": 16,
+      "question": "What should a card's shadow look like on hover?",
+      "options": ["No change", "More prominent (elevated)", "Remove shadow", "Color change only"],
+      "correctAnswer": 1,
+      "explanation": "A more prominent shadow on hover suggests the card is being lifted, indicating interactivity."
+    },
+    {
+      "id": 17,
+      "question": "How do you make a card image fill its container without distortion?",
+      "options": ["width: 100%; height: auto", "object-fit: cover; width: 100%; height: 100%", "background-size: contain", "max-width: 100%"],
+      "correctAnswer": 1,
+      "explanation": "object-fit: cover with 100% width/height fills the container while cropping to maintain aspect ratio."
+    },
+    {
+      "id": 18,
+      "question": "What is the recommended gap for card grids?",
+      "options": ["0.5rem", "1rem - 2rem", "3rem", "No gap, use margins"],
+      "correctAnswer": 1,
+      "explanation": "1-2rem gap is typical for card grids, providing clear separation without wasting space."
+    },
+    {
+      "id": 19,
+      "question": "How should product cards display a 'sale' badge?",
+      "options": ["At the bottom", "Absolute positioned overlay", "Replaces the title", "At the end of description"],
+      "correctAnswer": 1,
+      "explanation": "Sale badges are typically absolute-positioned overlays in the corner of the image."
+    },
+    {
+      "id": 20,
+      "question": "What's the advantage of horizontal cards over grid cards for lists?",
+      "options": ["Better for images", "More compact, better for scanning", "Easier to code", "More accessible"],
+      "correctAnswer": 1,
+      "explanation": "Horizontal cards are more compact and work well for search results and lists where quick scanning is important."
+    }
+  ]
+}

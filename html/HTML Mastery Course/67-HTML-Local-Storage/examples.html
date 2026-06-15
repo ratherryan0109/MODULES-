@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 67: HTML Local Storage - Examples</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f8f9fa; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; }
+        .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .example h3 { margin-top: 0; color: #e67e22; }
+        .controls { margin: 15px 0; }
+        button, input, select { padding: 8px 16px; margin: 5px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        button { background: #3498db; color: white; border: none; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #2980b9; }
+        button.danger { background: #e74c3c; }
+        button.danger:hover { background: #c0392b; }
+        button.success { background: #27ae60; }
+        button.success:hover { background: #229954; }
+        .output { background: #f1f1f1; padding: 10px; border-radius: 4px; font-family: monospace; min-height: 20px; margin: 10px 0; white-space: pre-wrap; word-break: break-all; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.5; margin: 15px 0; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #3498db; color: white; }
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 10px; font-size: 12px; font-weight: bold; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        .badge-warn { background: #fff3cd; color: #856404; }
+        .progress-bar { background: #e9ecef; border-radius: 10px; height: 20px; margin: 10px 0; overflow: hidden; }
+        .progress-fill { background: linear-gradient(90deg, #3498db, #2ecc71); height: 100%; border-radius: 10px; transition: width 0.5s; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; }
+        .tabs { display: flex; gap: 2px; margin: 15px 0; }
+        .tab { padding: 10px 20px; background: #e9ecef; border: none; cursor: pointer; border-radius: 4px 4px 0 0; }
+        .tab.active { background: white; border-bottom: 2px solid #3498db; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+
+<h1>HTML Local Storage - Interactive Examples</h1>
+<p>Open your browser's Developer Tools (F12) → Application → Local Storage to see changes in real time.</p>
+
+<!-- EXAMPLE 1: Basic CRUD Operations -->
+<div class="example" id="example1">
+    <h3>Example 1: Basic CRUD Operations</h3>
+    <p>Create, Read, Update, and Delete items in Local Storage.</p>
+    
+    <div class="controls">
+        <input type="text" id="crudKey" placeholder="Key (e.g., username)" value="username">
+        <input type="text" id="crudValue" placeholder="Value (e.g., JohnDoe)" value="JohnDoe">
+        <button onclick="createItem()">➕ Set Item</button>
+        <button onclick="readItem()">👁️ Get Item</button>
+        <button onclick="updateItem()">✏️ Update Item</button>
+        <button class="danger" onclick="deleteItem()">🗑️ Remove Item</button>
+        <button class="danger" onclick="clearAll()">🗑️ Clear All</button>
+    </div>
+    <div class="output" id="crudOutput">Output will appear here...</div>
+    
+    <div class="code-block">
+// Set Item
+localStorage.setItem('username', 'JohnDoe');
+
+// Get Item
+const value = localStorage.getItem('username');
+
+// Update Item
+localStorage.setItem('username', 'JaneDoe');
+
+// Remove Item
+localStorage.removeItem('username');
+
+// Clear All
+localStorage.clear();
+    </div>
+</div>
+
+<!-- EXAMPLE 2: Working with Objects -->
+<div class="example" id="example2">
+    <h3>Example 2: Storing and Retrieving Objects</h3>
+    <p>Local Storage only stores strings. Use JSON.stringify and JSON.parse for objects.</p>
+    
+    <div class="controls">
+        <button onclick="saveUser()">💾 Save User Object</button>
+        <button onclick="loadUser()">📂 Load User Object</button>
+        <button onclick="saveCart()">🛒 Save Shopping Cart</button>
+    </div>
+    <div class="output" id="objectOutput">Click "Save User Object" to store a user profile...</div>
+    
+    <div class="code-block">
+// Storing an object
+const user = {
+    id: 1,
+    name: 'Alice',
+    email: 'alice@example.com',
+    preferences: { theme: 'dark', lang: 'en' }
+};
+localStorage.setItem('user', JSON.stringify(user));
+
+// Retrieving the object
+const storedUser = JSON.parse(localStorage.getItem('user'));
+console.log(storedUser.name); // 'Alice'
+    </div>
+</div>
+
+<!-- EXAMPLE 3: Storage Event (Cross-Tab Communication) -->
+<div class="example" id="example3">
+    <h3>Example 3: Storage Event</h3>
+    <p>Open this page in a <strong>second tab</strong>. Changes made in one tab will appear here automatically.</p>
+    
+    <div class="controls">
+        <input type="text" id="crossTabKey" placeholder="Key" value="sharedData">
+        <input type="text" id="crossTabValue" placeholder="Value" value="Hello from Tab 1">
+        <button onclick="sendCrossTab()">📤 Send to Other Tabs</button>
+    </div>
+    <div class="output" id="crossTabOutput">Waiting for cross-tab communication...</div>
+    
+    <div class="code-block">
+// Listen for storage events (fires on OTHER tabs)
+window.addEventListener('storage', (e) => {
+    console.log(`${e.key} changed from "${e.oldValue}" to "${e.newValue}"`);
+    document.getElementById('crossTabOutput').textContent =
+        `Received: key="${e.key}", value="${e.newValue}"`;
+});
+    </div>
+</div>
+
+<!-- EXAMPLE 4: Data Expiration (TTL Cache) -->
+<div class="example" id="example4">
+    <h3>Example 4: Storage with Expiration (TTL Cache)</h3>
+    <p>Store data that automatically expires after a set time.</p>
+    
+    <div class="controls">
+        <button onclick="cacheWithExpiry()">⏳ Cache Data (10 sec TTL)</button>
+        <button onclick="readCache()">📖 Read Cache</button>
+        <button onclick="clearCache()">🗑️ Clear Cache</button>
+    </div>
+    <div class="output" id="cacheOutput">Click "Cache Data" to store with expiration...</div>
+    
+    <div class="code-block">
+function setWithExpiry(key, value, ttlMs) {
+    const item = {
+        value: value,
+        expiry: Date.now() + ttlMs
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+}
+
+function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) return null;
+    
+    const item = JSON.parse(itemStr);
+    if (Date.now() > item.expiry) {
+        localStorage.removeItem(key);
+        return null;
+    }
+    return item.value;
+}
+    </div>
+</div>
+
+<!-- EXAMPLE 5: Storage Usage Meter -->
+<div class="example" id="example5">
+    <h3>Example 5: Storage Usage Monitor</h3>
+    <p>Track how much of your 5 MB storage quota is being used.</p>
+    
+    <div class="controls">
+        <button onclick="addSampleData()">📦 Add Sample Data (100KB)</button>
+        <button onclick="checkUsage()">📊 Check Usage</button>
+        <button class="danger" onclick="clearStorage()">🗑️ Clear Storage</button>
+    </div>
+    <div class="output" id="meterOutput">
+        <div>Current usage: <span id="usageBytes">0</span> bytes / 5 MB</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="usageBar" style="width: 0%;">0%</div>
+        </div>
+    </div>
+    
+    <div class="code-block">
+function getStorageUsage() {
+    let totalBytes = 0;
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            totalBytes += localStorage[key].length * 2; // UTF-16
+        }
+    }
+    return totalBytes;
+}
+    </div>
+</div>
+
+<!-- EXAMPLE 6: Theme Persistence -->
+<div class="example" id="example6">
+    <h3>Example 6: Persisting User Preferences (Theme)</h3>
+    <p>Change the theme and it persists across page reloads.</p>
+    
+    <div class="controls">
+        <button class="success" onclick="setTheme('light')">☀️ Light Theme</button>
+        <button onclick="setTheme('dark')">🌙 Dark Theme</button>
+        <button onclick="setTheme('sepia')">📜 Sepia Theme</button>
+    </div>
+    <div class="output" id="themeOutput">Current theme: <span id="currentTheme">light</span></div>
+    
+    <div class="code-block">
+// Save preference
+localStorage.setItem('preferredTheme', 'dark');
+
+// Load preference on page load
+window.addEventListener('DOMContentLoaded', () => {
+    const theme = localStorage.getItem('preferredTheme') || 'light';
+    document.body.className = `theme-${theme}`;
+});
+    </div>
+</div>
+
+<!-- EXAMPLE 7: Form Autosave -->
+<div class="example" id="example7">
+    <h3>Example 7: Form Autosave</h3>
+    <p>Fill out the form, refresh the page - your data is restored!</p>
+    
+    <form id="autosaveForm" onsubmit="return false;">
+        <div style="margin: 10px 0;">
+            <label>Name:</label><br>
+            <input type="text" name="name" style="width: 300px;">
+        </div>
+        <div style="margin: 10px 0;">
+            <label>Email:</label><br>
+            <input type="email" name="email" style="width: 300px;">
+        </div>
+        <div style="margin: 10px 0;">
+            <label>Message:</label><br>
+            <textarea name="message" rows="3" style="width: 300px;"></textarea>
+        </div>
+        <div style="margin: 10px 0;">
+            <label>Preferred Language:</label>
+            <select name="language">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+            </select>
+        </div>
+    </form>
+    <div class="output" id="autosaveOutput">Form data autosaves on every keystroke...</div>
+    
+    <div class="code-block">
+// Autosave on input
+document.querySelector('form').addEventListener('input', () => {
+    const formData = new FormData(event.target.form);
+    const data = Object.fromEntries(formData);
+    localStorage.setItem('formDraft', JSON.stringify(data));
+});
+
+// Restore on load
+window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('formDraft');
+    if (saved) {
+        const data = JSON.parse(saved);
+        Object.entries(data).forEach(([name, value]) => {
+            const input = document.querySelector(`[name="${name}"]`);
+            if (input) input.value = value;
+        });
+    }
+});
+    </div>
+</div>
+
+<script>
+// ==========================================
+// EXAMPLE 1: CRUD Operations
+// ==========================================
+function createItem() {
+    const key = document.getElementById('crudKey').value;
+    const value = document.getElementById('crudValue').value;
+    localStorage.setItem(key, value);
+    document.getElementById('crudOutput').textContent = `✅ Set: ${key} = "${value}"`;
+}
+
+function readItem() {
+    const key = document.getElementById('crudKey').value;
+    const value = localStorage.getItem(key);
+    document.getElementById('crudOutput').textContent = value !== null
+        ? `🔍 ${key} = "${value}"`
+        : `❌ Key "${key}" not found`;
+}
+
+function updateItem() {
+    const key = document.getElementById('crudKey').value;
+    const value = document.getElementById('crudValue').value;
+    const oldValue = localStorage.getItem(key);
+    localStorage.setItem(key, value);
+    document.getElementById('crudOutput').textContent = oldValue
+        ? `✏️ Updated: ${key} from "${oldValue}" to "${value}"`
+        : `✏️ Set new: ${key} = "${value}"`;
+}
+
+function deleteItem() {
+    const key = document.getElementById('crudKey').value;
+    const existed = localStorage.getItem(key) !== null;
+    localStorage.removeItem(key);
+    document.getElementById('crudOutput').textContent = existed
+        ? `🗑️ Removed key "${key}"`
+        : `❌ Key "${key}" doesn't exist`;
+}
+
+function clearAll() {
+    localStorage.clear();
+    document.getElementById('crudOutput').textContent = '🗑️ All Local Storage cleared';
+}
+
+// ==========================================
+// EXAMPLE 2: Objects
+// ==========================================
+function saveUser() {
+    const user = {
+        id: Date.now(),
+        name: 'Alice Johnson',
+        email: 'alice@example.com',
+        role: 'Developer',
+        preferences: {
+            theme: 'dark',
+            fontSize: 16,
+            notifications: true
+        },
+        joined: new Date().toISOString()
+    };
+    localStorage.setItem('userProfile', JSON.stringify(user));
+    document.getElementById('objectOutput').textContent =
+        '✅ User saved!\n' + JSON.stringify(user, null, 2);
+}
+
+function loadUser() {
+    const data = localStorage.getItem('userProfile');
+    if (!data) {
+        document.getElementById('objectOutput').textContent =
+            '❌ No user found. Click "Save User Object" first.';
+        return;
+    }
+    const user = JSON.parse(data);
+    document.getElementById('objectOutput').textContent =
+        `📂 User loaded:\nName: ${user.name}\nEmail: ${user.email}\nRole: ${user.role}\nTheme: ${user.preferences.theme}\nFont Size: ${user.preferences.fontSize}`;
+}
+
+function saveCart() {
+    const cart = [
+        { id: 1, name: 'Wireless Mouse', price: 29.99, quantity: 2 },
+        { id: 2, name: 'Mechanical Keyboard', price: 89.99, quantity: 1 },
+        { id: 3, name: 'USB-C Hub', price: 34.99, quantity: 1 }
+    ];
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+    document.getElementById('objectOutput').textContent =
+        `🛒 Cart saved! ${cart.length} items, total: $${total.toFixed(2)}\n` +
+        cart.map(i => `  - ${i.name} × ${i.quantity} = $${(i.price * i.quantity).toFixed(2)}`).join('\n');
+}
+
+// ==========================================
+// EXAMPLE 3: Cross-Tab Storage Event
+// ==========================================
+window.addEventListener('storage', (e) => {
+    document.getElementById('crossTabOutput').textContent =
+        `📩 Received from another tab:\nKey: "${e.key}"\nNew Value: "${e.newValue}"\nOld Value: "${e.oldValue}"\nTime: ${new Date().toLocaleTimeString()}`;
+});
+
+function sendCrossTab() {
+    const key = document.getElementById('crossTabKey').value;
+    const value = document.getElementById('crossTabValue').value;
+    localStorage.setItem(key, value);
+    document.getElementById('crossTabOutput').textContent =
+        `📤 Sent: ${key} = "${value}"\n(Open this page in another tab to see the event)`;
+}
+
+// ==========================================
+// EXAMPLE 4: Cache with Expiry
+// ==========================================
+function setWithExpiry(key, value, ttlMs) {
+    const item = {
+        value: value,
+        expiry: Date.now() + ttlMs
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+}
+
+function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) return null;
+    const item = JSON.parse(itemStr);
+    if (Date.now() > item.expiry) {
+        localStorage.removeItem(key);
+        return null;
+    }
+    return item.value;
+}
+
+function cacheWithExpiry() {
+    const cachedData = {
+        timestamp: new Date().toISOString(),
+        data: 'Sample cached response data',
+        random: Math.random()
+    };
+    setWithExpiry('apiCache', cachedData, 10000);
+    document.getElementById('cacheOutput').textContent =
+        `⏳ Data cached with 10-second TTL\nCached at: ${cachedData.timestamp}\nData expires in 10 seconds...\nYou can read it within 10 seconds.`;
+}
+
+function readCache() {
+    const data = getWithExpiry('apiCache');
+    document.getElementById('cacheOutput').textContent = data
+        ? `📖 Cache hit!\nData: ${JSON.stringify(data, null, 2)}\nCached at: ${data.timestamp}`
+        : '❌ Cache miss - data has expired or does not exist.';
+}
+
+function clearCache() {
+    localStorage.removeItem('apiCache');
+    document.getElementById('cacheOutput').textContent = '🗑️ Cache cleared.';
+}
+
+// ==========================================
+// EXAMPLE 5: Storage Meter
+// ==========================================
+function getStorageUsage() {
+    let totalBytes = 0;
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            totalBytes += localStorage[key].length * 2;
+        }
+    }
+    return totalBytes;
+}
+
+function updateMeter() {
+    const bytes = getStorageUsage();
+    const maxBytes = 5 * 1024 * 1024;
+    const percent = Math.min((bytes / maxBytes) * 100, 100);
+    
+    document.getElementById('usageBytes').textContent = bytes.toLocaleString();
+    document.getElementById('usageBar').style.width = percent + '%';
+    document.getElementById('usageBar').textContent = bytes > 0 ? percent.toFixed(2) + '%' : '0%';
+}
+
+function checkUsage() {
+    updateMeter();
+    const bytes = getStorageUsage();
+    document.getElementById('meterOutput').innerHTML = `
+        <div>Current usage: <strong>${bytes.toLocaleString()} bytes</strong> / 5 MB</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="usageBar" style="width: ${Math.min((bytes / (5*1024*1024)) * 100, 100)}%;">
+                ${bytes > 0 ? (bytes / (5*1024*1024) * 100).toFixed(2) + '%' : '0%'}
+            </div>
+        </div>`;
+}
+
+function addSampleData() {
+    const sample = 'x'.repeat(102400); // 100KB
+    const key = 'sampleData_' + Date.now();
+    localStorage.setItem(key, sample);
+    updateMeter();
+    document.getElementById('meterOutput').innerHTML = `
+        <div>Added 100KB. Current usage: <strong>${getStorageUsage().toLocaleString()} bytes</strong> / 5 MB</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="usageBar" style="width: ${Math.min((getStorageUsage() / (5*1024*1024)) * 100, 100)}%;">
+                ${(getStorageUsage() / (5*1024*1024) * 100).toFixed(2)}%
+            </div>
+        </div>`;
+}
+
+function clearStorage() {
+    // Only clear sample data, not user's real data
+    const keysToRemove = [];
+    for (let key in localStorage) {
+        if (key.startsWith('sampleData_')) {
+            keysToRemove.push(key);
+        }
+    }
+    keysToRemove.forEach(k => localStorage.removeItem(k));
+    updateMeter();
+    document.getElementById('meterOutput').innerHTML = `
+        <div>Cleared sample data. Current usage: <strong>${getStorageUsage().toLocaleString()} bytes</strong> / 5 MB</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="usageBar" style="width: ${Math.min((getStorageUsage() / (5*1024*1024)) * 100, 100)}%;">
+                ${(getStorageUsage() / (5*1024*1024) * 100).toFixed(2)}%
+            </div>
+        </div>`;
+}
+
+// ==========================================
+// EXAMPLE 6: Theme Persistence
+// ==========================================
+function setTheme(themeName) {
+    // Apply theme to the page
+    const themes = {
+        light: { bg: '#f8f9fa', color: '#333', cardBg: 'white' },
+        dark: { bg: '#1a1a2e', color: '#eee', cardBg: '#16213e' },
+        sepia: { bg: '#fbf0d9', color: '#5b4636', cardBg: '#fef9ef' }
+    };
+    const theme = themes[themeName];
+    document.body.style.background = theme.bg;
+    document.body.style.color = theme.color;
+    document.querySelectorAll('.example').forEach(el => {
+        el.style.background = theme.cardBg;
+    });
+    document.getElementById('currentTheme').textContent = themeName;
+    localStorage.setItem('preferredTheme', themeName);
+    document.getElementById('themeOutput').innerHTML =
+        `Current theme: <span id="currentTheme">${themeName}</span><br>✅ Theme "${themeName}" saved to Local Storage. Refresh the page!`;
+}
+
+// Restore theme on load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('preferredTheme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    }
+});
+
+// ==========================================
+// EXAMPLE 7: Form Autosave
+// ==========================================
+const autosaveForm = document.getElementById('autosaveForm');
+const formFields = autosaveForm.querySelectorAll('input, textarea, select');
+
+// Autosave on input
+autosaveForm.addEventListener('input', () => {
+    const formData = new FormData(autosaveForm);
+    const data = Object.fromEntries(formData);
+    localStorage.setItem('formDraft', JSON.stringify(data));
+    document.getElementById('autosaveOutput').textContent =
+        `💾 Autosaved at ${new Date().toLocaleTimeString()}: ${JSON.stringify(data)}`;
+});
+
+// Restore on load
+window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('formDraft');
+    if (saved) {
+        try {
+            const data = JSON.parse(saved);
+            Object.entries(data).forEach(([name, value]) => {
+                const input = autosaveForm.querySelector(`[name="${name}"]`);
+                if (input) input.value = value;
+            });
+            document.getElementById('autosaveOutput').textContent =
+                `🔄 Restored saved form data from ${JSON.stringify(saved).length} bytes`;
+        } catch (e) {
+            console.error('Failed to restore form:', e);
+        }
+    }
+});
+
+// Initialize meter
+checkUsage();
+</script>
+
+</body>
+</html>

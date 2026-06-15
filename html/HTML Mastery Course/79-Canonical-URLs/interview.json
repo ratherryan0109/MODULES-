@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is a canonical URL in simple terms?",
+      "answer": "A canonical URL is the preferred or 'master' version of a web page when the same content is available at multiple URLs. It tells search engines which URL should be treated as the original source for indexing and ranking purposes."
+    },
+    {
+      "question": "How do you implement a canonical tag in HTML?",
+      "answer": "You add a <link> element in the <head> section: <link rel='canonical' href='https://example.com/preferred-url' />. The rel attribute specifies the relationship as canonical, and the href attribute contains the absolute URL of the preferred version."
+    },
+    {
+      "question": "Why are canonical URLs important for SEO?",
+      "answer": "Canonical URLs prevent duplicate content issues by consolidating ranking signals (backlinks, authority) to a single URL. Without them, search engines might split these signals across multiple URL variants, reducing the page's overall search performance."
+    },
+    {
+      "question": "What is duplicate content and how do canonicals help?",
+      "answer": "Duplicate content occurs when identical or very similar content appears at multiple URLs. Canonical tags help by telling search engines which URL is the authoritative source, so the duplicate versions don't compete in search results."
+    },
+    {
+      "question": "Can a page have more than one canonical tag?",
+      "answer": "No, a page should have exactly one canonical tag. Multiple canonical tags with different URLs create ambiguity and search engines may ignore all of them, defeating the purpose."
+    },
+    {
+      "question": "What's the difference between a canonical URL and a redirect?",
+      "answer": "A 301 redirect automatically sends users and search bots to a different URL. A canonical tag is only a hint for search engines - users can still access any version. Redirects are stronger signals but affect user experience, while canonicals are softer signals."
+    },
+    {
+      "question": "Should canonical URLs be absolute or relative?",
+      "answer": "Canonical URLs should always be absolute (including https://domain.com/path, not just /path). Google explicitly recommends absolute URLs to avoid any ambiguity in interpretation."
+    },
+    {
+      "question": "What is a self-referencing canonical?",
+      "answer": "A self-referencing canonical is a canonical tag that points to the same URL as the page it's on. It's a best practice to include one on every page to prevent issues from URL parameters, tracking codes, or other accidental variations."
+    },
+    {
+      "question": "What URL should a syndicated article use for its canonical?",
+      "answer": "A syndicated article should use a cross-domain canonical pointing to the original source. For example, a copy on syndicator.com would include: <link rel='canonical' href='https://original-site.com/original-article' />."
+    },
+    {
+      "question": "What is a canonical chain and why is it bad?",
+      "answer": "A canonical chain occurs when page A's canonical points to page B, and page B's canonical points to page C. This is bad because search engines may not follow the entire chain, diluting the effectiveness and potentially splitting ranking signals."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you handle canonical tags on paginated content?",
+      "answer": "For paginated content, opinions vary. Some recommend canonicalizing each page to itself with rel='next' and rel='prev' for pagination. Others recommend canonicalizing all paginated pages to the first page. The best approach depends on content depth - thin content pages should point to the first page, while substantial content can be self-canonical."
+    },
+    {
+      "question": "What happens when a canonical URL returns a 404 status?",
+      "answer": "When a canonical URL returns a 404, search engines cannot consolidate ranking signals to a non-existent page. The canonical signal is essentially useless, and the duplicate content issues remain. Always ensure canonical URLs resolve to valid, indexable pages."
+    },
+    {
+      "question": "How do canonical tags work with hreflang for international sites?",
+      "answer": "For multilingual sites with hreflang annotations, each language version should have its own self-referencing canonical. The hreflang tags indicate language alternatives, while canonicals identify the preferred URL for each language version. These tags work independently."
+    },
+    {
+      "question": "What should you do if a page with a canonical tag points to a URL that itself redirects?",
+      "answer": "You should fix the canonical to point directly to the final destination URL. A canonical chain (page A → page B → 301 redirect → page C) creates ambiguity and reduces effectiveness. The canonical should always point to the final, direct URL."
+    },
+    {
+      "question": "How do search engines determine the canonical when no canonical tag is present?",
+      "answer": "When no canonical tag is present, search engines use other signals: which URL is in the sitemap, internal linking patterns (which URL is linked most frequently), external backlinks, and 301 redirects. Google may still consolidate duplicate URLs even without explicit canonicals."
+    },
+    {
+      "question": "What is the interaction between canonical tags and the 'noindex' directive?",
+      "answer": "The 'noindex' directive takes precedence over canonical tags. If a page is marked noindex, search engines will not index it regardless of the canonical tag. Using both on the same page sends mixed signals and should be avoided."
+    },
+    {
+      "question": "How do you implement canonical URLs for AMP pages?",
+      "answer": "AMP pages should have a canonical tag pointing to the non-AMP version (the original HTML page). The non-AMP page should have an AMP HTML tag linking to the AMP version. This establishes the relationship: the standard page is canonical, and the AMP version is an alternate."
+    },
+    {
+      "question": "What role do canonical tags play in mobile-first indexing?",
+      "answer": "With mobile-first indexing, Google primarily uses the mobile version of content for ranking. Ensure the mobile version has a proper canonical tag, especially if you have separate mobile URLs (m.example.com). The canonical should point to the preferred version, typically the responsive page."
+    },
+    {
+      "question": "How should you handle canonical tags on faceted navigation pages?",
+      "answer": "Faceted navigation pages (with multiple filters applied) should canonicalize to the parent category page or a clean URL without filters. This prevents search engines from indexing thousands of parameterized combinations. Alternatively, use noindex for low-value filter combinations."
+    },
+    {
+      "question": "What is the 'rel=canonical' HTTP header implementation and when is it used?",
+      "answer": "The HTTP header implementation uses the Link header in HTTP responses: Link: <https://example.com/doc.pdf>; rel='canonical'. It's used for non-HTML documents like PDFs, images, videos, and other resources where you cannot embed HTML tags."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do canonical tags interact with Google's duplicate content clustering algorithm?",
+      "answer": "Google clusters duplicate content and selects a canonical URL for each cluster using multiple signals: explicit canonicals, sitemap URLs, internal linking, external backlinks, and user behavior. Even without explicit canonicals, Google will algorithmically choose a canonical. Explicit canonicals strongly influence this choice but don't guarantee it."
+    },
+    {
+      "question": "What happens when you canonicalize a page to a URL that has a different geographic targeting (hreflang)?",
+      "answer": "This creates a conflict. If a US English page canonicals to a UK English page (or vice versa), it sends mixed signals about geographic targeting. Canonical URLs should generally point to URLs with the same language and regional targeting to avoid confusing search engines."
+    },
+    {
+      "question": "How do you handle canonicalization for JavaScript-rendered content (SPAs)?",
+      "answer": "For SPAs, implement dynamic canonical tags using JavaScript frameworks (React Helmet, Vue Meta, etc.) that update the canonical based on the current route. For SEO-critical content, use server-side rendering (SSR) or prerendering to ensure canonical tags are in the initial HTML response, as search engine crawlers may not execute JavaScript fully."
+    },
+    {
+      "question": "What is the impact of inconsistent canonicalization across internal links?",
+      "answer": "Inconsistent internal linking (some pages linking to URL A while linking to URL B for the same content) weakens the canonical signal and confuses search engines. All internal links should consistently point to the canonical version to provide clear signals and consolidate link equity."
+    },
+    {
+      "question": "How does canonicalization work with URL fragments (#) and hash-based routing?",
+      "answer": "URL fragments are typically ignored by search engines for canonicalization purposes. For hash-based SPAs, use the _escaped_fragment_ protocol or, better yet, implement pushState URLs. Canonical tags in hash-based routing should point to the clean, canonical version of the URL."
+    },
+    {
+      "question": "What strategies exist for handling canonicalization in headless CMS architectures?",
+      "answer": "In headless CMS architectures, canonical URLs must be dynamically generated by the frontend framework based on the content source. The canonical tag can be constructed from the content item's primary URL, while aliases or alternate paths should canonicalize to the primary. Environment-aware logic is needed for staging/production canonical differentiation."
+    },
+    {
+      "question": "How do canonical URLs affect PageRank distribution in a site's link graph?",
+      "answer": "Canonical URLs consolidate PageRank by directing link equity from multiple URL variants to a single destination. Internal pages linking to different URL variants split their link equity. Proper canonicalization ensures all internal equity flows to the canonical URL, maximizing its authority for ranking."
+    },
+    {
+      "question": "What is the relationship between canonical tags and Google's 'inferred canonical' selection process?",
+      "answer": "Google uses an 'inferred canonical' process when no explicit canonical tag exists, or when Google determines a better canonical than the one specified. Google considers sitemaps, internal links, external links, and user signals. If Google's inferred canonical differs from your specified one, Google Search Console will report 'Google chose a different canonical than user.'"
+    },
+    {
+      "question": "How should you handle canonicalization for e-commerce products with multiple variant URLs (size, color, etc.)?",
+      "answer": "For product variants with unique content (e.g., different descriptions, images by color), each variant can be self-canonical. For variants with identical content differentiated only by a parameter, canonicalize to the base product URL. Google recommends self-canonical for substantially different variants and base-canonical for cosmetic-only differences."
+    },
+    {
+      "question": "What are the implications of using canonical tags on paginated comment sections or forum threads?",
+      "answer": "For paginated content with substantial unique content on each page (e.g., forum threads with different comments per page), use self-referencing canonicals plus rel='next'/'prev'. For content where each page is thin, canonicalize to the first page. The key factor is whether each paginated page offers unique value worthy of independent indexing."
+    }
+  ]
+}

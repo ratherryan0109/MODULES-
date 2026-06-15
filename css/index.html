@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Mastery Course</title>
+<meta name="description" content="Interactive CSS Mastery Course - 136 modules covering everything from introduction to advanced CSS projects">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #06b6d4;
+  --primary-dark: #0891b2;
+  --primary-light: #67e8f9;
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --glass-bg: rgba(255,255,255,0.2);
+  --glass-border: rgba(255,255,255,0.3);
+  --glass-shadow: 0 8px 32px rgba(6,182,212,0.08);
+  --radius: 16px;
+  --transition: 0.3s ease;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== BLOBS ===== */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+.blob-1 { width: 500px; height: 500px; background: #b8f1ff; top: -200px; left: -150px; animation: floatBlob 10s ease-in-out infinite 0s; }
+.blob-2 { width: 400px; height: 400px; background: #67e8f9; top: -100px; right: -100px; animation: floatBlob 10s ease-in-out infinite -2.5s; }
+.blob-3 { width: 450px; height: 450px; background: #c9f7ff; bottom: -150px; left: -100px; animation: floatBlob 10s ease-in-out infinite -5s; }
+.blob-4 { width: 350px; height: 350px; background: #67e8f9; bottom: -80px; right: -80px; animation: floatBlob 10s ease-in-out infinite -7.5s; }
+@keyframes floatBlob {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(30px,-50px) scale(1.1); }
+  50% { transform: translate(-20px,20px) scale(0.9); }
+  75% { transform: translate(40px,30px) scale(1.05); }
+}
+
+/* ===== GLASS UTILITIES ===== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+}
+.glass-light {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all var(--transition);
+}
+.glass-card:hover {
+  box-shadow: var(--glass-shadow), 0 0 20px rgba(6,182,212,0.1);
+  border-color: rgba(6,182,212,0.3);
+}
+.glass-card.lift {
+  padding: 1.5rem;
+}
+.glass-card.lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(6,182,212,0.2);
+  border-color: rgba(6,182,212,0.4);
+}
+
+/* ===== LAYOUT ===== */
+.app { display: flex; height: 100vh; position: relative; z-index: 1; }
+
+/* --- HEADER --- */
+.app-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 60px;
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0 1.5rem;
+  background: rgba(248,250,252,0.75);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.app-header h1 {
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--primary-dark); flex: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.app-header .progress-badge {
+  font-size: 0.8rem; color: var(--text-secondary);
+  background: rgba(255,255,255,0.3); padding: 4px 12px;
+  border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
+  white-space: nowrap;
+}
+.hamburger {
+  display: none; background: none; border: none;
+  font-size: 1.5rem; color: var(--text); cursor: pointer;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 300px; flex-shrink: 0;
+  margin-top: 60px;
+  padding: 1rem;
+  overflow-y: auto;
+  height: calc(100vh - 60px);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255,255,255,0.25);
+  transition: transform 0.3s ease;
+  z-index: 50;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.3); border-radius: 3px; }
+.sidebar .sidebar-label {
+  font-size: 0.7rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text-muted);
+  padding: 0.5rem 0.75rem 0.25rem;
+}
+.section-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--primary);
+  padding: 1rem 0.75rem 0.35rem;
+  border-top: 1px solid rgba(6,182,212,0.15);
+  margin-top: 0.25rem;
+}
+.section-label:first-of-type { border-top: none; margin-top: 0; }
+.module-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.6rem 0.75rem; border-radius: 10px;
+  cursor: pointer; transition: all var(--transition);
+  border-left: 3px solid transparent;
+  text-decoration: none; color: var(--text);
+  font-size: 0.88rem; line-height: 1.3;
+}
+.module-item:hover {
+  background: rgba(6,182,212,0.08);
+  transform: translateX(2px);
+}
+.module-item.active {
+  background: rgba(6,182,212,0.12);
+  border-left-color: var(--primary);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+.module-item .num {
+  font-size: 0.7rem; font-weight: 700; color: var(--text-muted);
+  width: 24px; text-align: right; flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.module-item.active .num { color: var(--primary); }
+.module-item .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--text-muted); flex-shrink: 0;
+  transition: all var(--transition);
+}
+.module-item.active .dot { background: var(--primary); box-shadow: 0 0 8px rgba(6,182,212,0.5); }
+.module-item.visited .dot { background: var(--success); }
+
+/* --- CONTENT --- */
+.content {
+  flex: 1; margin-top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  padding: 1.5rem 2rem 4rem;
+}
+.content::-webkit-scrollbar { width: 8px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.25); border-radius: 4px; }
+
+/* --- TABS --- */
+.tab-bar {
+  display: flex; gap: 0.25rem;
+  margin-bottom: 1.5rem; padding: 4px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  overflow-x: auto; white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-bar::-webkit-scrollbar { height: 3px; }
+.tab-bar::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.3); border-radius: 2px; }
+.tab-btn {
+  padding: 0.6rem 1.2rem; border: none; border-radius: 8px;
+  background: transparent; color: var(--text-secondary);
+  font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: all var(--transition);
+  font-family: inherit; flex-shrink: 0;
+}
+.tab-btn:hover { color: var(--primary); background: rgba(6,182,212,0.08); }
+.tab-btn.active {
+  background: rgba(6,182,212,0.15);
+  color: var(--primary-dark);
+  box-shadow: 0 2px 8px rgba(6,182,212,0.15);
+}
+
+/* --- CONTENT PANEL --- */
+.content-panel { display: none; }
+.content-panel.active { display: block; }
+
+/* ===== MARKDOWN RENDERED STYLES ===== */
+.lesson h1 { font-size: clamp(1.8rem,4vw,2.8rem); color: var(--primary-dark); margin-bottom: 0.75rem; font-weight: 800; letter-spacing: -0.02em; }
+.lesson h2 { font-size: 1.4rem; color: var(--text); margin: 1.5rem 0 0.5rem; font-weight: 700; }
+.lesson h3 { font-size: 1.15rem; color: var(--text-secondary); margin: 1.2rem 0 0.4rem; font-weight: 600; }
+.lesson p { margin-bottom: 0.8rem; line-height: 1.7; color: var(--text); }
+.lesson ul, .lesson ol { margin: 0.5rem 0 1rem 1.5rem; line-height: 1.7; }
+.lesson li { margin-bottom: 0.25rem; }
+.lesson strong { font-weight: 700; }
+.lesson em { font-style: italic; }
+.lesson a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.lesson a:hover { color: var(--primary-dark); }
+.lesson blockquote {
+  border-left: 4px solid var(--primary);
+  padding: 0.75rem 1rem; margin: 1rem 0;
+  background: rgba(6,182,212,0.05);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+}
+.lesson pre {
+  background: #f1f5f9;
+  border-radius: 10px; padding: 1rem; overflow-x: auto;
+  margin: 0.75rem 0; border: 1px solid rgba(255,255,255,0.2);
+}
+.lesson code {
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85em;
+}
+.lesson p code, .lesson li code {
+  background: rgba(6,182,212,0.1);
+  padding: 2px 6px; border-radius: 4px;
+  color: var(--primary-dark);
+}
+.lesson table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  margin: 1rem 0; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.lesson th, .lesson td {
+  padding: 0.65rem 1rem; text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.lesson th { background: rgba(6,182,212,0.1); font-weight: 700; color: var(--primary-dark); }
+.lesson tr:last-child td { border-bottom: none; }
+.lesson tr:hover td { background: rgba(255,255,255,0.15); }
+.lesson img { max-width: 100%; border-radius: 10px; margin: 1rem 0; }
+.lesson hr { border: none; height: 1px; background: rgba(255,255,255,0.2); margin: 1.5rem 0; }
+
+/* ===== EXAMPLES TAB ===== */
+.examples-content iframe.example-frame {
+  width: 100%; border: none; border-radius: 10px;
+  background: transparent; min-height: 300px;
+  margin-bottom: 1rem;
+}
+.examples-content .example-container {
+  margin-bottom: 1.5rem;
+}
+
+/* ===== QUIZ TAB ===== */
+.quiz-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.quiz-header .score { font-weight: 700; color: var(--primary-dark); }
+.quiz-question {
+  margin-bottom: 1rem; padding: 1.25rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all var(--transition);
+}
+.quiz-question .q-text { font-weight: 600; margin-bottom: 0.75rem; font-size: 1rem; }
+.quiz-question .q-num { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; margin-right: 0.5rem; }
+.quiz-option {
+  display: block; width: 100%; text-align: left;
+  padding: 0.6rem 1rem; margin-bottom: 0.4rem;
+  border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  cursor: pointer; transition: all var(--transition);
+  font-family: inherit; font-size: 0.9rem; color: var(--text);
+}
+.quiz-option:hover { background: rgba(6,182,212,0.08); border-color: rgba(6,182,212,0.3); }
+.quiz-option.selected { background: rgba(6,182,212,0.15); border-color: var(--primary); }
+.quiz-option.correct { background: rgba(16,185,129,0.15); border-color: var(--success); color: #065f46; }
+.quiz-option.wrong { background: rgba(239,68,68,0.1); border-color: var(--error); color: #991b1b; }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+.quiz-explanation {
+  margin-top: 0.5rem; padding: 0.75rem 1rem;
+  border-radius: 8px; background: rgba(255,255,255,0.1);
+  border-left: 3px solid var(--primary);
+  font-size: 0.85rem; color: var(--text-secondary);
+  display: none;
+}
+.quiz-explanation.show { display: block; }
+
+/* ===== CHALLENGES TAB ===== */
+.challenge-card {
+  margin-bottom: 1.5rem; padding: 1.5rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.challenge-card .challenge-tag {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; margin-bottom: 0.5rem;
+}
+.challenge-card.easy .challenge-tag { background: rgba(16,185,129,0.15); color: #065f46; }
+.challenge-card.medium .challenge-tag { background: rgba(245,158,11,0.15); color: #92400e; }
+.challenge-card.hard .challenge-tag { background: rgba(239,68,68,0.1); color: #991b1b; }
+.challenge-card .c-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.challenge-card .c-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem; line-height: 1.5; }
+.challenge-card pre {
+  background: #f1f5f9; border-radius: 8px; padding: 0.75rem; overflow-x: auto;
+  font-size: 0.82rem; border: 1px solid rgba(255,255,255,0.15);
+  max-height: 200px; overflow-y: auto;
+}
+.challenge-card .solution-btn {
+  margin-top: 0.5rem; padding: 0.4rem 1rem; border: 1px solid var(--primary);
+  background: transparent; color: var(--primary); border-radius: 8px;
+  cursor: pointer; font-weight: 600; font-size: 0.8rem;
+  transition: all var(--transition); font-family: inherit;
+}
+.challenge-card .solution-btn:hover { background: var(--primary); color: white; }
+.challenge-card .solution-content { display: none; margin-top: 0.75rem; }
+.challenge-card .solution-content.show { display: block; }
+
+/* ===== RESOURCES TAB ===== */
+.resources-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.resource-card {
+  padding: 1.2rem; border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all var(--transition);
+  text-decoration: none; color: var(--text); display: block;
+}
+.resource-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(6,182,212,0.12);
+  border-color: rgba(6,182,212,0.3);
+}
+.resource-card .rc-type {
+  display: inline-block; padding: 2px 8px; border-radius: 8px;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  margin-bottom: 0.4rem; letter-spacing: 0.05em;
+}
+.resource-card .rc-type.documentation { background: rgba(6,182,212,0.12); color: var(--primary-dark); }
+.resource-card .rc-type.video { background: rgba(239,68,68,0.1); color: #991b1b; }
+.resource-card .rc-type.article { background: rgba(245,158,11,0.12); color: #92400e; }
+.resource-card .rc-title { font-weight: 600; font-size: 0.9rem; }
+.resource-card .rc-url { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; word-break: break-all; }
+
+/* ===== VIDEOS TAB ===== */
+.videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.25rem; }
+.video-card {
+  border-radius: 12px; overflow: hidden;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all var(--transition);
+}
+.video-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,182,212,0.12); }
+.video-card .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+.video-card .video-wrapper iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border: none;
+}
+.video-card .v-info { padding: 0.75rem 1rem; }
+.video-card .v-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.video-card .v-channel { font-size: 0.8rem; color: var(--text-secondary); }
+.video-card .v-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.4; }
+
+/* ===== NAVIGATION ===== */
+.nav-buttons {
+  display: flex; justify-content: space-between; gap: 1rem;
+  margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.nav-btn {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; border: none; border-radius: 10px;
+  font-weight: 700; font-size: 0.85rem; font-family: inherit;
+  cursor: pointer; transition: all var(--transition);
+  letter-spacing: 0.02em;
+}
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+.nav-btn.primary {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: white;
+}
+.nav-btn.primary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(6,182,212,0.35);
+}
+.nav-btn.secondary {
+  background: rgba(255,255,255,0.2);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.nav-btn.secondary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.3);
+}
+.nav-btn .arrow { font-size: 1.1rem; }
+
+/* ===== LOADING / EMPTY / ERROR ===== */
+.loading-spinner {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem; gap: 1rem;
+  color: var(--text-muted);
+}
+.loading-spinner .spinner {
+  width: 40px; height: 40px; border: 3px solid rgba(6,182,212,0.15);
+  border-top-color: var(--primary);
+  border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-state {
+  text-align: center; padding: 3rem; color: var(--text-muted);
+}
+.error-state .error-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.error-state h3 { color: var(--text); margin-bottom: 0.5rem; }
+.error-state p { font-size: 0.9rem; }
+.error-state .server-hint {
+  margin-top: 0.75rem; padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.15); border-radius: 8px;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.82rem; border: 1px solid rgba(255,255,255,0.15);
+  display: inline-block;
+}
+.empty-state {
+  text-align: center; padding: 3rem; color: var(--text-muted);
+}
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed; left: 0; top: 60px; bottom: 0;
+    transform: translateX(-100%); width: 280px;
+    background: rgba(248,250,252,0.95);
+    backdrop-filter: blur(20px);
+    z-index: 200;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .hamburger { display: block; }
+  .content { padding: 1rem; }
+  .resources-grid { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .tab-btn { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
+  .nav-buttons { flex-direction: column; }
+  .nav-btn { justify-content: center; }
+  .glass-card { padding: 1.25rem; }
+  .sidebar-overlay {
+    display: none; position: fixed; inset: 0; z-index: 199;
+    background: rgba(0,0,0,0.2);
+  }
+  .sidebar-overlay.show { display: block; }
+}
+@media (max-width: 480px) {
+  .content { padding: 0.75rem; }
+  .app-header { padding: 0 0.75rem; }
+  .app-header h1 { font-size: 1rem; }
+  .progress-badge { font-size: 0.7rem; padding: 2px 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- BLOBS -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
+
+<!-- SIDEBAR OVERLAY (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- HEADER -->
+<header class="app-header glass">
+  <button class="hamburger" id="hamburgerBtn" aria-label="Toggle modules menu">☰</button>
+  <h1>CSS Mastery Course</h1>
+  <span class="progress-badge" id="progressBadge">0 / 136</span>
+</header>
+
+<!-- APP -->
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-label">Modules</div>
+    <div id="moduleList"></div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content" id="content">
+
+    <!-- TAB BAR -->
+    <div class="tab-bar" id="tabBar">
+      <button class="tab-btn active" data-tab="lesson">Lesson</button>
+      <button class="tab-btn" data-tab="examples">Examples</button>
+      <button class="tab-btn" data-tab="quiz">Quiz</button>
+      <button class="tab-btn" data-tab="challenges">Challenges</button>
+      <button class="tab-btn" data-tab="cheatsheet">Cheatsheet</button>
+      <button class="tab-btn" data-tab="project">Project</button>
+      <button class="tab-btn" data-tab="resources">Resources</button>
+      <button class="tab-btn" data-tab="videos">Videos</button>
+    </div>
+
+    <!-- PANELS -->
+    <div id="panel-lesson" class="content-panel lesson active"></div>
+    <div id="panel-examples" class="content-panel examples-content"></div>
+    <div id="panel-quiz" class="content-panel"></div>
+    <div id="panel-challenges" class="content-panel"></div>
+    <div id="panel-cheatsheet" class="content-panel lesson"></div>
+    <div id="panel-project" class="content-panel lesson"></div>
+    <div id="panel-resources" class="content-panel"></div>
+    <div id="panel-videos" class="content-panel"></div>
+
+    <!-- NAVIGATION -->
+    <div class="nav-buttons">
+      <button class="nav-btn secondary" id="prevBtn"><span class="arrow">◀</span> Previous</button>
+      <button class="nav-btn primary" id="nextBtn">Next <span class="arrow">▶</span></button>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<script>
+// ===== CONFIGURATION =====
+const COURSE_PATH = 'docs/';
+const modules = [
+{section:"CSS Beginner Level","number":"1","title":"Introduction to CSS","folder":"01-introduction-to-css"},
+{section:"CSS Beginner Level","number":"2","title":"CSS Syntax","folder":"02-css-syntax"},
+{section:"CSS Beginner Level","number":"3","title":"CSS Selectors","folder":"03-css-selectors"},
+{section:"CSS Beginner Level","number":"4","title":"CSS Comments","folder":"04-css-comments"},
+{section:"CSS Beginner Level","number":"5","title":"CSS Colors","folder":"05-css-colors"},
+{section:"CSS Beginner Level","number":"6","title":"CSS Backgrounds","folder":"06-css-backgrounds"},
+{section:"CSS Beginner Level","number":"7","title":"CSS Borders","folder":"07-css-borders"},
+{section:"CSS Beginner Level","number":"8","title":"CSS Margins","folder":"08-css-margins"},
+{section:"CSS Beginner Level","number":"9","title":"CSS Padding","folder":"09-css-padding"},
+{section:"CSS Beginner Level","number":"10","title":"CSS Height & Width","folder":"10-css-height-width"},
+{section:"CSS Beginner Level","number":"11","title":"CSS Box Model","folder":"11-css-box-model"},
+{section:"CSS Beginner Level","number":"12","title":"CSS Outline","folder":"12-css-outline"},
+{section:"CSS Beginner Level","number":"13","title":"CSS Text","folder":"13-css-text"},
+{section:"CSS Beginner Level","number":"14","title":"CSS Fonts","folder":"14-css-fonts"},
+{section:"CSS Beginner Level","number":"15","title":"CSS Icons","folder":"15-css-icons"},
+{section:"CSS Beginner Level","number":"16","title":"CSS Links","folder":"16-css-links"},
+{section:"CSS Beginner Level","number":"17","title":"CSS Lists","folder":"17-css-lists"},
+{section:"CSS Beginner Level","number":"18","title":"CSS Tables","folder":"18-css-tables"},
+{section:"CSS Beginner Level","number":"19","title":"CSS Display","folder":"19-css-display"},
+{section:"CSS Beginner Level","number":"20","title":"CSS Max-Width","folder":"20-css-max-width"},
+{section:"CSS Intermediate","number":"21","title":"CSS Position","folder":"21-css-position"},
+{section:"CSS Intermediate","number":"22","title":"CSS Z-Index","folder":"22-css-z-index"},
+{section:"CSS Intermediate","number":"23","title":"CSS Overflow","folder":"23-css-overflow"},
+{section:"CSS Intermediate","number":"24","title":"CSS Float","folder":"24-css-float"},
+{section:"CSS Intermediate","number":"25","title":"CSS Clear","folder":"25-css-clear"},
+{section:"CSS Intermediate","number":"26","title":"CSS Inline-Block","folder":"26-css-inline-block"},
+{section:"CSS Intermediate","number":"27","title":"CSS Align","folder":"27-css-align"},
+{section:"CSS Intermediate","number":"28","title":"CSS Combinators","folder":"28-css-combinators"},
+{section:"CSS Intermediate","number":"29","title":"CSS Pseudo-Classes","folder":"29-css-pseudo-classes"},
+{section:"CSS Intermediate","number":"30","title":"CSS Pseudo-Elements","folder":"30-css-pseudo-elements"},
+{section:"CSS Intermediate","number":"31","title":"CSS Opacity","folder":"31-css-opacity"},
+{section:"CSS Intermediate","number":"32","title":"CSS Navigation Bar","folder":"32-css-navigation-bar"},
+{section:"CSS Intermediate","number":"33","title":"CSS Dropdowns","folder":"33-css-dropdowns"},
+{section:"CSS Intermediate","number":"34","title":"CSS Image Gallery","folder":"34-css-image-gallery"},
+{section:"CSS Intermediate","number":"35","title":"CSS Image Sprites","folder":"35-css-image-sprites"},
+{section:"CSS Intermediate","number":"36","title":"CSS Attribute Selectors","folder":"36-css-attribute-selectors"},
+{section:"CSS Intermediate","number":"37","title":"CSS Forms","folder":"37-css-forms"},
+{section:"CSS Intermediate","number":"38","title":"CSS Counters","folder":"38-css-counters"},
+{section:"CSS Intermediate","number":"39","title":"CSS Website Layout","folder":"39-css-website-layout"},
+{section:"CSS Intermediate","number":"40","title":"CSS Units","folder":"40-css-units"},
+{section:"Flexbox Mastery","number":"41","title":"Introduction to Flexbox","folder":"41-introduction-to-flexbox"},
+{section:"Flexbox Mastery","number":"42","title":"Flex Container","folder":"42-flex-container"},
+{section:"Flexbox Mastery","number":"43","title":"Flex Direction","folder":"43-flex-direction"},
+{section:"Flexbox Mastery","number":"44","title":"Flex Wrap","folder":"44-flex-wrap"},
+{section:"Flexbox Mastery","number":"45","title":"Justify Content","folder":"45-justify-content"},
+{section:"Flexbox Mastery","number":"46","title":"Align Items","folder":"46-align-items"},
+{section:"Flexbox Mastery","number":"47","title":"Align Content","folder":"47-align-content"},
+{section:"Flexbox Mastery","number":"48","title":"Flex Grow","folder":"48-flex-grow"},
+{section:"Flexbox Mastery","number":"49","title":"Flex Shrink","folder":"49-flex-shrink"},
+{section:"Flexbox Mastery","number":"50","title":"Flex Basis","folder":"50-flex-basis"},
+{section:"Flexbox Mastery","number":"51","title":"Flex Shorthand","folder":"51-flex-shorthand"},
+{section:"Flexbox Mastery","number":"52","title":"Building Layouts with Flexbox","folder":"52-building-layouts-with-flexbox"},
+{section:"Grid Mastery","number":"53","title":"Introduction to CSS Grid","folder":"53-introduction-to-css-grid"},
+{section:"Grid Mastery","number":"54","title":"Grid Container","folder":"54-grid-container"},
+{section:"Grid Mastery","number":"55","title":"Grid Columns","folder":"55-grid-columns"},
+{section:"Grid Mastery","number":"56","title":"Grid Rows","folder":"56-grid-rows"},
+{section:"Grid Mastery","number":"57","title":"Grid Gap","folder":"57-grid-gap"},
+{section:"Grid Mastery","number":"58","title":"Grid Areas","folder":"58-grid-areas"},
+{section:"Grid Mastery","number":"59","title":"Grid Alignment","folder":"59-grid-alignment"},
+{section:"Grid Mastery","number":"60","title":"Grid Auto Flow","folder":"60-grid-auto-flow"},
+{section:"Grid Mastery","number":"61","title":"Grid Responsive Layouts","folder":"61-grid-responsive-layouts"},
+{section:"Grid Mastery","number":"62","title":"Grid vs Flexbox","folder":"62-grid-vs-flexbox"},
+{section:"Responsive Design","number":"63","title":"Responsive Web Design","folder":"63-responsive-web-design"},
+{section:"Responsive Design","number":"64","title":"Media Queries","folder":"64-media-queries"},
+{section:"Responsive Design","number":"65","title":"Mobile First Design","folder":"65-mobile-first-design"},
+{section:"Responsive Design","number":"66","title":"Breakpoints","folder":"66-breakpoints"},
+{section:"Responsive Design","number":"67","title":"Responsive Typography","folder":"67-responsive-typography"},
+{section:"Responsive Design","number":"68","title":"Responsive Images","folder":"68-responsive-images"},
+{section:"Responsive Design","number":"69","title":"Responsive Layout Systems","folder":"69-responsive-layout-systems"},
+{section:"Responsive Design","number":"70","title":"Responsive Navigation","folder":"70-responsive-navigation"},
+{section:"Responsive Design","number":"71","title":"Responsive Cards","folder":"71-responsive-cards"},
+{section:"Responsive Design","number":"72","title":"Responsive Dashboard Design","folder":"72-responsive-dashboard-design"},
+{section:"Advanced Styling","number":"73","title":"CSS Gradients","folder":"73-css-gradients"},
+{section:"Advanced Styling","number":"74","title":"CSS Shadows","folder":"74-css-shadows"},
+{section:"Advanced Styling","number":"75","title":"CSS Filters","folder":"75-css-filters"},
+{section:"Advanced Styling","number":"76","title":"CSS Blend Modes","folder":"76-css-blend-modes"},
+{section:"Advanced Styling","number":"77","title":"CSS Masking","folder":"77-css-masking"},
+{section:"Advanced Styling","number":"78","title":"CSS Clip Path","folder":"78-css-clip-path"},
+{section:"Advanced Styling","number":"79","title":"CSS Object Fit","folder":"79-css-object-fit"},
+{section:"Advanced Styling","number":"80","title":"CSS Variables","folder":"80-css-variables"},
+{section:"Advanced Styling","number":"81","title":"CSS Custom Properties","folder":"81-css-custom-properties"},
+{section:"Advanced Styling","number":"82","title":"CSS Functions","folder":"82-css-functions"},
+{section:"Advanced Styling","number":"83","title":"CSS Calc()","folder":"83-css-calc"},
+{section:"Advanced Styling","number":"84","title":"CSS Min/Max/Clamp","folder":"84-css-min-max-clamp"},
+{section:"Animations & Effects","number":"85","title":"CSS Transitions","folder":"85-css-transitions"},
+{section:"Animations & Effects","number":"86","title":"CSS Transform","folder":"86-css-transform"},
+{section:"Animations & Effects","number":"87","title":"CSS Translate","folder":"87-css-translate"},
+{section:"Animations & Effects","number":"88","title":"CSS Rotate","folder":"88-css-rotate"},
+{section:"Animations & Effects","number":"89","title":"CSS Scale","folder":"89-css-scale"},
+{section:"Animations & Effects","number":"90","title":"CSS Skew","folder":"90-css-skew"},
+{section:"Animations & Effects","number":"91","title":"CSS 2D Transformations","folder":"91-css-2d-transformations"},
+{section:"Animations & Effects","number":"92","title":"CSS 3D Transformations","folder":"92-css-3d-transformations"},
+{section:"Animations & Effects","number":"93","title":"CSS Keyframe Animations","folder":"93-css-keyframe-animations"},
+{section:"Animations & Effects","number":"94","title":"CSS Animation Properties","folder":"94-css-animation-properties"},
+{section:"Animations & Effects","number":"95","title":"CSS Loading Animations","folder":"95-css-loading-animations"},
+{section:"Animations & Effects","number":"96","title":"CSS Hover Effects","folder":"96-css-hover-effects"},
+{section:"Animations & Effects","number":"97","title":"CSS Parallax Effects","folder":"97-css-parallax-effects"},
+{section:"Modern CSS","number":"98","title":"CSS Nesting","folder":"98-css-nesting"},
+{section:"Modern CSS","number":"99","title":"CSS Layers","folder":"99-css-layers"},
+{section:"Modern CSS","number":"100","title":"CSS Container Queries","folder":"100-css-container-queries"},
+{section:"Modern CSS","number":"101","title":"CSS Logical Properties","folder":"101-css-logical-properties"},
+{section:"Modern CSS","number":"102","title":"CSS Aspect Ratio","folder":"102-css-aspect-ratio"},
+{section:"Modern CSS","number":"103","title":"CSS Scroll Snap","folder":"103-css-scroll-snap"},
+{section:"Modern CSS","number":"104","title":"CSS Scroll Behavior","folder":"104-css-scroll-behavior"},
+{section:"Modern CSS","number":"105","title":"CSS Backdrop Filter","folder":"105-css-backdrop-filter"},
+{section:"Modern CSS","number":"106","title":"Modern Layout Techniques","folder":"106-css-modern-layout-techniques"},
+{section:"Modern CSS","number":"107","title":"CSS Architecture","folder":"107-css-architecture"},
+{section:"Modern CSS","number":"108","title":"CSS Design Systems","folder":"108-css-design-systems"},
+{section:"CSS Accessibility","number":"109","title":"Color Accessibility","folder":"109-color-accessibility"},
+{section:"CSS Accessibility","number":"110","title":"Contrast Ratios","folder":"110-contrast-ratios"},
+{section:"CSS Accessibility","number":"111","title":"Focus States","folder":"111-focus-states"},
+{section:"CSS Accessibility","number":"112","title":"Reduced Motion","folder":"112-reduced-motion"},
+{section:"CSS Accessibility","number":"113","title":"Accessible Components","folder":"113-accessible-components"},
+{section:"CSS Accessibility","number":"114","title":"Responsive Accessibility","folder":"114-responsive-accessibility"},
+{section:"Professional CSS","number":"115","title":"CSS Best Practices","folder":"115-css-best-practices"},
+{section:"Professional CSS","number":"116","title":"CSS Performance Optimization","folder":"116-css-performance-optimization"},
+{section:"Professional CSS","number":"117","title":"CSS Debugging","folder":"117-css-debugging"},
+{section:"Professional CSS","number":"118","title":"CSS Maintainability","folder":"118-css-maintainability"},
+{section:"Professional CSS","number":"119","title":"Clean CSS Architecture","folder":"119-clean-css-architecture"},
+{section:"Professional CSS","number":"120","title":"BEM Methodology","folder":"120-bem-methodology"},
+{section:"Professional CSS","number":"121","title":"Utility-First CSS","folder":"121-utility-first-css"},
+{section:"Professional CSS","number":"122","title":"Tailwind CSS Fundamentals","folder":"122-tailwind-css-fundamentals"},
+{section:"Professional CSS","number":"123","title":"SCSS Introduction","folder":"123-scss-introduction"},
+{section:"Professional CSS","number":"124","title":"CSS Modules","folder":"124-css-modules"},
+{section:"CSS Projects","number":"125","title":"Responsive Landing Page","folder":"125-responsive-landing-page"},
+{section:"CSS Projects","number":"126","title":"Portfolio Website","folder":"126-portfolio-website-design"},
+{section:"CSS Projects","number":"127","title":"Blog Website Styling","folder":"127-blog-website-styling"},
+{section:"CSS Projects","number":"128","title":"E-Commerce Store UI","folder":"128-ecommerce-store-ui"},
+{section:"CSS Projects","number":"129","title":"Netflix Clone UI","folder":"129-netflix-clone-ui"},
+{section:"CSS Projects","number":"130","title":"YouTube Clone UI","folder":"130-youtube-clone-ui"},
+{section:"CSS Projects","number":"131","title":"Admin Dashboard","folder":"131-admin-dashboard"},
+{section:"CSS Projects","number":"132","title":"SaaS Website Design","folder":"132-saas-website-design"},
+{section:"CSS Projects","number":"133","title":"Modern Agency Website","folder":"133-modern-agency-website"},
+{section:"CSS Projects","number":"134","title":"Interactive Pricing Page","folder":"134-interactive-pricing-page"},
+{section:"CSS Projects","number":"135","title":"Social Media Profile UI","folder":"135-social-media-profile-ui"},
+{section:"CSS Projects","number":"136","title":"Complete Multi-Page Website","folder":"136-complete-multi-page-website"}
+];
+
+// ===== STATE =====
+let currentIndex = 0;
+let currentTab = 'lesson';
+let cache = {};
+let visited = new Set();
+let quizAnswered = {};
+
+// ===== DOM REFS =====
+const sidebar = document.getElementById('sidebar');
+const moduleList = document.getElementById('moduleList');
+const content = document.getElementById('content');
+const tabBar = document.getElementById('tabBar');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const progressBadge = document.getElementById('progressBadge');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+// ===== RENDER SIDEBAR =====
+function renderSidebar() {
+  let currentSection = '';
+  moduleList.innerHTML = modules.map((m, i) => {
+    let sectionHtml = '';
+    if (m.section && m.section !== currentSection) {
+      currentSection = m.section;
+      sectionHtml = `<div class="section-label">${m.section}</div>`;
+    }
+    return sectionHtml + `
+    <a class="module-item" href="#" data-index="${i}" data-folder="${m.folder}">
+      <span class="num">${m.number.padStart(3,'0')}</span>
+      <span class="dot"></span>
+      <span>${m.title}</span>
+    </a>`;
+  }).join('');
+  updateSidebar();
+}
+
+function updateSidebar() {
+  document.querySelectorAll('.module-item').forEach((el, i) => {
+    el.classList.toggle('active', i === currentIndex);
+    if (visited.has(i)) el.classList.add('visited');
+    else el.classList.remove('visited');
+  });
+  const active = document.querySelector('.module-item.active');
+  if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+// ===== TAB SYSTEM =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTab = btn.dataset.tab;
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + currentTab).classList.add('active');
+    if (currentTab !== 'lesson') loadTabContent(currentTab);
+    saveTabState();
+    updateHashFromState();
+  });
+});
+
+function saveTabState() {
+  try {
+    const tabs = JSON.parse(sessionStorage.getItem('mt') || '{}');
+    tabs[currentIndex] = currentTab;
+    sessionStorage.setItem('mt', JSON.stringify(tabs));
+  } catch(e) {}
+}
+function getSavedTab(idx) {
+  try {
+    const tabs = JSON.parse(sessionStorage.getItem('mt') || '{}');
+    return tabs[idx] || 'lesson';
+  } catch(e) { return 'lesson'; }
+}
+function updateHashFromState() {
+  const m = modules[currentIndex];
+  const base = `module-${m.number}`;
+  const h = currentTab === 'lesson' ? `#${base}` : `#${base}/${currentTab}`;
+  if (window.location.hash !== h) history.replaceState(null, '', h);
+}
+
+function switchTab(tab) {
+  const btn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+  if (btn) btn.click();
+}
+
+// ===== NAVIGATION =====
+prevBtn.addEventListener('click', () => { if (currentIndex > 0) goToModule(currentIndex - 1); });
+nextBtn.addEventListener('click', () => { if (currentIndex < modules.length - 1) goToModule(currentIndex + 1); });
+
+document.addEventListener('keydown', (e) => {
+  const tag = e.target.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'IFRAME') return;
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key === 'ArrowLeft' && currentIndex > 0) { e.preventDefault(); goToModule(currentIndex - 1); }
+  if (e.key === 'ArrowRight' && currentIndex < modules.length - 1) { e.preventDefault(); goToModule(currentIndex + 1); }
+});
+
+// ===== SIDEBAR NAV =====
+moduleList.addEventListener('click', (e) => {
+  const item = e.target.closest('.module-item');
+  if (!item) return;
+  e.preventDefault();
+  const idx = parseInt(item.dataset.index);
+  goToModule(idx);
+  if (window.innerWidth <= 768) closeSidebar();
+});
+
+// ===== HAMBURGER =====
+hamburgerBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  sidebarOverlay.classList.toggle('show');
+});
+sidebarOverlay.addEventListener('click', closeSidebar);
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('show');
+}
+
+// ===== PROGRESS =====
+function updateProgress() {
+  progressBadge.textContent = `${visited.size} / ${modules.length}`;
+}
+
+// ===== FETCH HELPERS =====
+async function fetchText(path) {
+  try {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.text();
+  } catch(e) {
+    throw e;
+  }
+}
+async function fetchJSON(path) {
+  try {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch(e) {
+    throw e;
+  }
+}
+
+// ===== LOAD MODULE =====
+async function goToModule(index) {
+  if (index < 0 || index >= modules.length) return;
+  const targetTab = getSavedTab(index);
+  currentIndex = index;
+  visited.add(index);
+  updateSidebar();
+  updateProgress();
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === modules.length - 1;
+  updateHashFromState();
+
+  // Clear all panels and show loading
+  document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  currentTab = targetTab;
+
+  const m = modules[index];
+  const panels = ['lesson','examples','quiz','challenges','cheatsheet','project','resources','videos'];
+  panels.forEach(p => {
+    const ck = m.folder + '/' + p;
+    if (cache[ck] && p !== targetTab) {
+      document.getElementById('panel-' + p).innerHTML = cache[ck];
+    } else if (p !== targetTab) {
+      document.getElementById('panel-' + p).innerHTML = '<div class="loading-spinner"><div class="spinner"></div><span>Loading...</span></div>';
+    }
+  });
+
+  // Preserve cached content for target tab if available
+  const targetKey = m.folder + '/' + targetTab;
+  if (cache[targetKey]) {
+    document.getElementById('panel-' + targetTab).innerHTML = cache[targetKey];
+  } else {
+    document.getElementById('panel-' + targetTab).innerHTML = '<div class="loading-spinner"><div class="spinner"></div><span>Loading...</span></div>';
+  }
+
+  // Activate target tab
+  document.getElementById('panel-' + targetTab).classList.add('active');
+  const tabBtn = document.querySelector(`.tab-btn[data-tab="${targetTab}"]`);
+  if (tabBtn) tabBtn.classList.add('active');
+
+  // Load target tab content
+  try {
+    if (targetTab === 'lesson') {
+      const md = await fetchText(COURSE_PATH + modules[index].folder + '/lesson.md');
+      const html = marked.parse(md);
+      document.getElementById('panel-lesson').innerHTML = html;
+      document.querySelectorAll('#panel-lesson pre code').forEach(block => {
+        hljs.highlightElement(block);
+      });
+    } else {
+      await loadTabContent(targetTab);
+    }
+  } catch(e) {
+    if (targetTab === 'lesson') {
+      document.getElementById('panel-lesson').innerHTML = serverErrorHTML();
+    }
+  }
+}
+
+function serverErrorHTML() {
+  return `
+    <div class="error-state">
+      <div class="error-icon">🔒</div>
+      <h3>Content Not Accessible</h3>
+      <p>This viewer needs a local server to load module files.</p>
+      <div class="server-hint">
+        npx serve .<br>
+        <span style="color:var(--text-muted)">or</span><br>
+        python -m http.server 8000
+      </div>
+      <p style="margin-top:0.75rem;font-size:0.85rem;">Then open <strong>http://localhost:8000</strong> in your browser.</p>
+    </div>
+  `;
+}
+
+// ===== LOAD TAB CONTENT =====
+async function loadTabContent(tab) {
+  const panel = document.getElementById('panel-' + tab);
+  const m = modules[currentIndex];
+  const cacheKey = m.folder + '/' + tab;
+
+  if (cache[cacheKey] && tab !== 'examples') {
+    panel.innerHTML = cache[cacheKey];
+    if (tab === 'quiz') initQuiz();
+    return;
+  }
+
+  panel.innerHTML = '<div class="loading-spinner"><div class="spinner"></div><span>Loading...</span></div>';
+
+  try {
+    let html = '';
+    switch(tab) {
+      case 'examples': {
+        const text = await fetchText(COURSE_PATH + m.folder + '/examples.html');
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        let styleText = '';
+        doc.querySelectorAll('style').forEach(s => styleText += s.textContent);
+        let headLinks = '';
+        doc.head.querySelectorAll('link[rel="stylesheet"]').forEach(l => headLinks += l.outerHTML);
+        const prefix = (styleText ? '<style>' + styleText + '</style>' : '') + headLinks;
+        const exampleContainers = doc.querySelectorAll('.example, .example-box, .example-card');
+        const items = [];
+        if (exampleContainers.length > 0) {
+          exampleContainers.forEach(el => {
+            const clone = el.cloneNode(true);
+            clone.querySelectorAll('pre code').forEach(code => {
+              try { hljs.highlightElement(code); } catch(e) {}
+            });
+            items.push('<div class="example-container glass-card lift" data-shadow-ex="' + encodeURIComponent(prefix + clone.innerHTML) + '"></div>');
+          });
+        } else {
+          items.push('<div class="glass-card" data-shadow-ex="' + encodeURIComponent(prefix + doc.body.innerHTML) + '"></div>');
+        }
+        html = items.join('');
+        break;
+      }
+      case 'quiz': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/quiz.json');
+        html = renderQuiz(data);
+        break;
+      }
+      case 'challenges': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/challenges.json');
+        html = renderChallenges(data);
+        break;
+      }
+      case 'cheatsheet': {
+        const md = await fetchText(COURSE_PATH + m.folder + '/cheatsheet.md');
+        html = marked.parse(md);
+        break;
+      }
+      case 'project': {
+        const md = await fetchText(COURSE_PATH + m.folder + '/project.md');
+        html = marked.parse(md);
+        break;
+      }
+      case 'resources': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/resources.json');
+        html = renderResources(data);
+        break;
+      }
+      case 'videos': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/video.json');
+        html = renderVideos(data);
+        break;
+      }
+    }
+    if (tab !== 'examples') cache[cacheKey] = html;
+    panel.innerHTML = html;
+    if (tab === 'quiz') initQuiz();
+    if (tab === 'examples') createShadowExamples();
+    panel.querySelectorAll('pre code').forEach(block => {
+      try { hljs.highlightElement(block); } catch(e) {}
+    });
+  } catch(e) {
+    panel.innerHTML = `
+      <div class="error-state">
+        <div class="error-icon">⚠️</div>
+        <h3>Could not load ${tab}</h3>
+        <p>${e.message}</p>
+      </div>
+    `;
+  }
+}
+
+// ===== RENDER: QUIZ =====
+function renderQuiz(data) {
+  const questions = Array.isArray(data) ? data : (data && data.questions ? data.questions : []);
+  if (!questions || questions.length === 0) {
+    return '<div class="empty-state"><div class="empty-icon">📝</div><p>No quiz questions available for this module.</p></div>';
+  }
+  quizAnswered = {};
+  let html = `<div class="quiz-header glass-light" style="padding:0.75rem 1rem;border-radius:10px;margin-bottom:1rem;">
+    <span>📝 Module Quiz</span>
+    <span class="score" id="quizScore">0 / ${questions.length}</span>
+  </div>`;
+  questions.forEach((q, i) => {
+    let correctIdx = -1;
+    if (q.correctAnswer !== undefined) correctIdx = q.correctAnswer;
+    else if (q.answer !== undefined && typeof q.answer === 'number') correctIdx = q.answer;
+    else if (q.correct !== undefined && typeof q.correct === 'number') correctIdx = q.correct;
+    else if (q.answer !== undefined && typeof q.answer === 'string') {
+      correctIdx = q.options ? q.options.indexOf(q.answer) : -1;
+    }
+    html += `
+      <div class="quiz-question" data-q="${i}" data-correct="${correctIdx}">
+        <div class="q-text"><span class="q-num">Q${i+1}.</span> ${q.question}</div>
+        ${q.options.map((opt, oi) => {
+          const letter = String.fromCharCode(97 + oi);
+          return `<button class="quiz-option" data-q="${i}" data-opt="${letter}" data-optidx="${oi}">${letter}) ${opt}</button>`;
+        }).join('')}
+        <div class="quiz-explanation" data-q="${i}">${q.explanation || ''}</div>
+      </div>
+    `;
+  });
+  return html;
+}
+
+function initQuiz() {
+  document.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', () => handleQuizAnswer(btn));
+  });
+}
+
+function handleQuizAnswer(btn) {
+  const qIdx = btn.dataset.q;
+  if (quizAnswered[qIdx]) return;
+  quizAnswered[qIdx] = true;
+
+  const questionDiv = btn.closest('.quiz-question');
+  const allOptions = questionDiv.querySelectorAll('.quiz-option');
+  const explanation = questionDiv.querySelector('.quiz-explanation');
+
+  allOptions.forEach(opt => opt.disabled = true);
+
+  const correct = parseInt(questionDiv.dataset.correct);
+  const selected = parseInt(btn.dataset.optidx);
+
+  if (selected === correct) {
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    allOptions.forEach(opt => {
+      if (parseInt(opt.dataset.optidx) === correct) opt.classList.add('correct');
+    });
+  }
+  explanation.classList.add('show');
+  updateQuizScore();
+}
+
+function updateQuizScore() {
+  const panel = document.getElementById('panel-quiz');
+  const scoreEl = document.getElementById('quizScore');
+  if (!scoreEl) return;
+  const correct = panel.querySelectorAll('.quiz-option.correct').length;
+  const total = panel.querySelectorAll('.quiz-question').length;
+  scoreEl.textContent = `${correct} / ${total}`;
+}
+
+// ===== RENDER: CHALLENGES =====
+function renderChallenges(data) {
+  let byDifficulty = null;
+  if (data && (data.easy || data.medium || data.hard)) {
+    byDifficulty = data;
+  } else if (data && data.challenges && Array.isArray(data.challenges)) {
+    byDifficulty = normalizeChallenges(data.challenges);
+  } else if (Array.isArray(data)) {
+    byDifficulty = normalizeChallenges(data);
+  }
+  if (!byDifficulty) {
+    return '<div class="empty-state"><div class="empty-icon">🏆</div><p>No challenges available for this module.</p></div>';
+  }
+  const levels = ['easy','medium','hard'];
+  return levels.map(level => {
+    const items = byDifficulty[level];
+    if (!items || items.length === 0) return '';
+    return items.map(c => {
+      const starterStr = formatChallengeCode(c.starterCode || c.starter_code || '');
+      const solStr = formatChallengeSolution(c.solution || c.solution_code || '');
+      return `
+      <div class="challenge-card ${level}">
+        <span class="challenge-tag">${level}</span>
+        <div class="c-title">${c.title || level + ' challenge'}</div>
+        <div class="c-desc">${c.description || ''}</div>
+        ${starterStr ? `<pre><code>${escapeHTML(starterStr)}</code></pre>` : ''}
+        ${solStr ? `<button class="solution-btn" data-level="${level}-${c.id || 0}">Show Solution</button>
+        <div class="solution-content" data-level="${level}-${c.id || 0}">
+          <pre><code>${escapeHTML(solStr)}</code></pre>
+        </div>` : ''}
+      </div>`;
+    }).join('');
+  }).join('');
+}
+
+function normalizeChallenges(arr) {
+  const result = { easy: [], medium: [], hard: [] };
+  if (!arr) return result;
+  arr.forEach(item => {
+    const diff = (item.difficulty || 'easy').toLowerCase();
+    if (result[diff]) result[diff].push(item);
+    else result.easy.push(item);
+  });
+  return result;
+}
+
+function formatChallengeCode(code) {
+  if (!code) return '';
+  if (typeof code === 'string') return code;
+  if (typeof code === 'object') {
+    const parts = [];
+    if (code.html) parts.push('<!-- HTML -->\n' + code.html);
+    if (code.css) parts.push('/* CSS */\n' + code.css);
+    if (code.js) parts.push('// JS\n' + code.js);
+    return parts.join('\n\n');
+  }
+  return String(code);
+}
+
+function formatChallengeSolution(sol) {
+  if (!sol) return '';
+  if (typeof sol === 'string') return sol;
+  if (typeof sol === 'object') {
+    const parts = [];
+    if (sol.html) parts.push('<!-- HTML -->\n' + sol.html);
+    if (sol.css) parts.push('/* CSS */\n' + sol.css);
+    if (sol.js) parts.push('// JS\n' + sol.js);
+    if (sol.html_all) parts.push(sol.html_all);
+    if (sol.explanation && parts.length === 0) return sol.explanation;
+    return parts.join('\n\n');
+  }
+  return String(sol);
+}
+
+// ===== RENDER: RESOURCES =====
+function renderResources(data) {
+  const items = Array.isArray(data) ? data : (data && data.resources ? data.resources : []);
+  if (!items || items.length === 0) {
+    return '<div class="empty-state"><div class="empty-icon">📚</div><p>No resources listed for this module.</p></div>';
+  }
+  return `<div class="resources-grid">${items.map(r => `
+    <a class="resource-card" href="${r.url}" target="_blank" rel="noopener">
+      <span class="rc-type ${(r.type||'article')}">${r.type||'article'}</span>
+      <div class="rc-title">${r.title}</div>
+      <div class="rc-url">${r.url}</div>
+    </a>
+  `).join('')}</div>`;
+}
+
+// ===== RENDER: VIDEOS =====
+function renderVideos(data) {
+  const items = Array.isArray(data) ? data : (data && data.videos ? data.videos : []);
+  if (!items || items.length === 0) {
+    return '<div class="empty-state"><div class="empty-icon">🎬</div><p>No video tutorials for this module.</p></div>';
+  }
+  return `<div class="videos-grid">${items.map(v => {
+    const embedUrl = v.url.replace(/^https?:\/\/www\.youtube\.com\/watch\?v=/, 'https://www.youtube.com/embed/').split('&')[0];
+    return `
+    <div class="video-card">
+      <div class="video-wrapper">
+        <iframe src="${embedUrl}" title="${escapeHTML(v.title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="v-info">
+        <div class="v-title">${v.title}</div>
+        <div class="v-channel">${v.channel || ''}</div>
+        ${v.description ? `<div class="v-desc">${v.description}</div>` : ''}
+      </div>
+    </div>
+  `}).join('')}</div>`;
+}
+
+// ===== SHADOW DOM HELPERS =====
+function createShadowExamples() {
+  document.querySelectorAll('[data-shadow-ex]').forEach(host => {
+    if (host.shadowRoot) return;
+    host.attachShadow({mode: 'closed'}).innerHTML = decodeURIComponent(host.getAttribute('data-shadow-ex') || '');
+  });
+}
+
+// ===== UTILITIES =====
+function escapeHTML(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+// ===== HASH ROUTING =====
+function handleHash() {
+  const hash = window.location.hash;
+  if (!hash || !hash.startsWith('#module-')) return false;
+  const parts = hash.replace('#module-', '').split('/');
+  const num = parseInt(parts[0]);
+  const hashTab = parts[1] || 'lesson';
+  const idx = modules.findIndex(m => parseInt(m.number) === num);
+  if (idx < 0) return false;
+  if (idx !== currentIndex) {
+    goToModule(idx);
+  } else if (hashTab !== currentTab) {
+    switchTab(hashTab);
+  }
+  return true;
+}
+
+window.addEventListener('hashchange', handleHash);
+
+// ===== CHALLENGE SOLUTION TOGGLE =====
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('solution-btn')) {
+    const level = e.target.dataset.level;
+    const content = e.target.parentElement.querySelector('.solution-content');
+    if (content) {
+      content.classList.toggle('show');
+      e.target.textContent = content.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+      content.querySelectorAll('pre code').forEach(block => {
+        try { hljs.highlightElement(block); } catch(err) {}
+      });
+    }
+  }
+});
+
+// ===== INIT =====
+renderSidebar();
+
+if (!handleHash()) {
+  goToModule(0);
+}
+
+// Handle sidebar click for closing on mobile
+content.addEventListener('click', () => {
+  if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+    closeSidebar();
+  }
+});
+
+console.log(`CSS Mastery Course loaded — ${modules.length} modules ready`);
+</script>
+</body>
+</html>

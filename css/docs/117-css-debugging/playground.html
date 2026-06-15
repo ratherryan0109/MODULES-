@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Debugging Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { color: #89b4fa; }
+    .controls { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; padding: 1rem; background: #313244; border-radius: 8px; }
+    .controls label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; }
+    .controls button { background: #89b4fa; color: #1e1e2e; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    .controls input[type="text"] { background: #45475a; border: 1px solid #585b70; color: #cdd6f4; padding: 0.35rem; border-radius: 4px; }
+    .playground { background: white; color: #1e1e2e; border-radius: 12px; padding: 2rem; min-height: 300px; margin: 1rem 0; position: relative; }
+    .debug-info { background: #313244; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-size: 0.85rem; }
+    .debug-info span { color: #89b4fa; }
+    .box { width: 100px; height: 100px; background: #0055CC; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin: 0.5rem; }
+    @media (prefers-color-scheme: light) {
+      body { background: #fff; color: #1e1e2e; }
+      .controls, .debug-info { background: #f5f5f5; }
+      .playground { border: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Debugging Playground</h1>
+  <p>Simulate common CSS issues and use DevTools to debug them.</p>
+
+  <div class="controls">
+    <button onclick="addDebugBorders()">Toggle All Borders</button>
+    <button onclick="simulateSpecificity()">Simulate Specificity Bug</button>
+    <button onclick="simulateOverflow()">Simulate Overflow</button>
+    <button onclick="resetPlayground()">Reset</button>
+  </div>
+
+  <div class="playground" id="playground">
+    <h2>Test Area</h2>
+    <div class="flex-demo" style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+      <div class="box">A</div>
+      <div class="box">B</div>
+      <div class="box">C</div>
+    </div>
+    <p id="demoText">This is a sample text for testing CSS styles.</p>
+  </div>
+
+  <div class="debug-info" id="debugInfo">
+    <div><span>🔍</span> Actions: Use Chrome DevTools to inspect elements</div>
+    <div><span>💡</span> Tip: Right-click → Inspect or F12</div>
+    <div><span>📋</span> Computed tab shows final applied styles</div>
+  </div>
+
+  <script>
+    const playground = document.getElementById('playground');
+    const debugInfo = document.getElementById('debugInfo');
+
+    function addDebugBorders() {
+      playground.querySelectorAll('*').forEach(el => {
+        el.style.outline = el.style.outline ? '' : '1px solid red';
+      });
+    }
+
+    function simulateSpecificity() {
+      const p = document.getElementById('demoText');
+      p.setAttribute('style', 'color: green !important');
+      debugInfo.innerHTML += '<div><span>⚠️</span> Specificity issue added: <code>color: green !important</code></div>';
+      debugInfo.innerHTML += '<div><span>💡</span> Check Computed → Styles to see overrides</div>';
+    }
+
+    function simulateOverflow() {
+      const div = document.createElement('div');
+      div.style.width = '150px';
+      div.style.border = '2px solid red';
+      div.style.padding = '0.5rem';
+      div.style.margin = '1rem 0';
+      div.innerHTML = 'This is a very long text that will overflow this container without proper CSS handling.';
+      playground.appendChild(div);
+      debugInfo.innerHTML += '<div><span>⚠️</span> Overflow issue added. Fix with overflow/overflow-wrap</div>';
+    }
+
+    function resetPlayground() {
+      playground.innerHTML = `<h2>Test Area</h2>
+        <div class="flex-demo" style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <div class="box">A</div>
+          <div class="box">B</div>
+          <div class="box">C</div>
+        </div>
+        <p id="demoText">This is a sample text for testing CSS styles.</p>`;
+      debugInfo.innerHTML = `<div><span>🔍</span> Actions: Use Chrome DevTools to inspect elements</div>
+        <div><span>💡</span> Tip: Right-click → Inspect or F12</div>
+        <div><span>📋</span> Computed tab shows final applied styles</div>`;
+    }
+  </script>
+</body>
+</html>

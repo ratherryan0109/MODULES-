@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Elements - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #e67e22; border-bottom: 3px solid #e67e22; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .block-demo { background: #3498db; color: white; padding: 10px; margin: 5px 0; }
+        .inline-demo { background: #e74c3c; color: white; padding: 5px 10px; margin: 2px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>Module 4: HTML Elements — Examples</h1>
+
+    <!-- Example 1: Block vs Inline -->
+    <div class="example">
+        <h2>Example 1: Block-Level vs Inline Elements</h2>
+        <p>Block elements take full width; inline elements flow with text.</p>
+        <pre>
+&lt;!-- Block-level elements --&gt;
+&lt;div style="background: #3498db; color: white; padding: 10px;"&gt;Block 1&lt;/div&gt;
+&lt;div style="background: #3498db; color: white; padding: 10px;"&gt;Block 2&lt;/div&gt;
+
+&lt;!-- Inline elements --&gt;
+&lt;span style="background: #e74c3c; color: white; padding: 5px;"&gt;Inline 1&lt;/span&gt;
+&lt;span style="background: #e74c3c; color: white; padding: 5px;"&gt;Inline 2&lt;/span&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div class="block-demo">Block 1</div>
+            <div class="block-demo">Block 2</div>
+            <span class="inline-demo">Inline 1</span>
+            <span class="inline-demo">Inline 2</span>
+        </div>
+    </div>
+
+    <!-- Example 2: Void Elements -->
+    <div class="example">
+        <h2>Example 2: Void (Self-Closing) Elements</h2>
+        <p>These elements have no content and no closing tag.</p>
+        <pre>
+&lt;p&gt;Line 1&lt;br&gt;Line 2&lt;/p&gt;
+&lt;hr&gt;
+&lt;img src="https://via.placeholder.com/100x50?text=Image" alt="Sample"&gt;
+&lt;input type="text" placeholder="Enter text..."&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>Line 1<br>Line 2</p>
+            <hr>
+            <img src="https://via.placeholder.com/100x50?text=Image" alt="Sample">
+            <input type="text" placeholder="Enter text...">
+        </div>
+    </div>
+
+    <!-- Example 3: Text Elements -->
+    <div class="example">
+        <h2>Example 3: Text Formatting Elements</h2>
+        <p>Various elements for styling and emphasizing text.</p>
+        <pre>
+&lt;p&gt;
+    &lt;strong&gt;Bold text&lt;/strong&gt;,
+    &lt;em&gt;Italic text&lt;/em&gt;,
+    &lt;u&gt;Underlined&lt;/u&gt;,
+    &lt;mark&gt;Highlighted&lt;/mark&gt;,
+    &lt;small&gt;Small text&lt;/small&gt;,
+    &lt;del&gt;Deleted text&lt;/del&gt;,
+    &lt;ins&gt;Inserted text&lt;/ins&gt;,
+    H&lt;sub&gt;2&lt;/sub&gt;O (subscript),
+    E=mc&lt;sup&gt;2&lt;/sup&gt; (superscript)
+&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>
+                <strong>Bold text</strong>,
+                <em>Italic text</em>,
+                <u>Underlined</u>,
+                <mark>Highlighted</mark>,
+                <small>Small text</small>,
+                <del>Deleted text</del>,
+                <ins>Inserted text</ins>,
+                H<sub>2</sub>O (subscript),
+                E=mc<sup>2</sup> (superscript)
+            </p>
+        </div>
+    </div>
+
+    <!-- Example 4: List Elements -->
+    <div class="example">
+        <h2>Example 4: List Elements</h2>
+        <p>Unordered, ordered, and description lists.</p>
+        <pre>
+&lt;h3&gt;Unordered List&lt;/h3&gt;
+&lt;ul&gt;
+    &lt;li&gt;Apples&lt;/li&gt;
+    &lt;li&gt;Oranges&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Ordered List&lt;/h3&gt;
+&lt;ol&gt;
+    &lt;li&gt;Step one&lt;/li&gt;
+    &lt;li&gt;Step two&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Description List&lt;/h3&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <h3>Unordered List</h3>
+            <ul><li>Apples</li><li>Oranges</li></ul>
+            <h3>Ordered List</h3>
+            <ol><li>Step one</li><li>Step two</li></ol>
+            <h3>Description List</h3>
+            <dl>
+                <dt>HTML</dt><dd>HyperText Markup Language</dd>
+                <dt>CSS</dt><dd>Cascading Style Sheets</dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Example 5: Table Elements -->
+    <div class="example">
+        <h2>Example 5: Table Elements</h2>
+        <pre>
+&lt;table border="1"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Alice&lt;/td&gt;&lt;td&gt;30&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Bob&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;&lt;td colspan="2"&gt;Two people total&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <table border="1">
+                <thead><tr><th>Name</th><th>Age</th></tr></thead>
+                <tbody><tr><td>Alice</td><td>30</td></tr><tr><td>Bob</td><td>25</td></tr></tbody>
+                <tfoot><tr><td colspan="2">Two people total</td></tr></tfoot>
+            </table>
+        </div>
+    </div>
+
+    <!-- Example 6: Semantic Elements Page -->
+    <div class="example">
+        <h2>Example 6: Semantic Elements in Action</h2>
+        <p>A mini page layout using only semantic elements.</p>
+        <pre>
+&lt;header&gt;
+    &lt;h1&gt;My Portfolio&lt;/h1&gt;
+    &lt;nav&gt;&lt;a href="#"&gt;Work&lt;/a&gt; | &lt;a href="#"&gt;About&lt;/a&gt;&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h2&gt;Project: Website Redesign&lt;/h2&gt;
+        &lt;p&gt;Completed in 2026&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;aside&gt;
+        &lt;h3&gt;Skills&lt;/h3&gt;
+        &lt;ul&gt;&lt;li&gt;HTML&lt;/li&gt;&lt;li&gt;CSS&lt;/li&gt;&lt;/ul&gt;
+    &lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;&amp;copy; 2026&lt;/footer&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <header><h1>My Portfolio</h1><nav><a href="#">Work</a> | <a href="#">About</a></nav></header>
+            <main><article><h2>Project: Website Redesign</h2><p>Completed in 2026</p></article><aside><h3>Skills</h3><ul><li>HTML</li><li>CSS</li></ul></aside></main>
+            <footer>&copy; 2026</footer>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Use the "Elements" panel in browser DevTools to see how every web page is built from HTML elements.
+    </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+[
+  {
+    "question": "When is sessionStorage data cleared?",
+    "options": ["When the browser is restarted", "When the tab or browser window is closed", "After 24 hours", "When the server sends a clear-cache header"],
+    "answer": "b",
+    "explanation": "sessionStorage data persists for the duration of the page session. It is cleared when the tab or browser window is closed."
+  },
+  {
+    "question": "What is the key difference between sessionStorage and localStorage regarding tab isolation?",
+    "options": ["sessionStorage is shared across tabs, localStorage is isolated", "sessionStorage is isolated per tab, localStorage is shared across tabs", "Both are isolated per tab", "Both are shared across all tabs"],
+    "answer": "b",
+    "explanation": "sessionStorage provides per-tab isolation — data in one tab is not accessible from another. localStorage is shared across all tabs/windows from the same origin."
+  },
+  {
+    "question": "What API method is used to store a value in sessionStorage?",
+    "options": ["sessionStorage.store('key', 'value')", "sessionStorage.put('key', 'value')", "sessionStorage.setItem('key', 'value')", "sessionStorage.add('key', 'value')"],
+    "answer": "c",
+    "explanation": "sessionStorage.setItem('key', 'value') stores a string value under the specified key. It shares the same API as localStorage."
+  },
+  {
+    "question": "What does sessionStorage.getItem('nonexistent') return?",
+    "options": ["undefined", "null", "an empty string", "an error"],
+    "answer": "b",
+    "explanation": "sessionStorage.getItem() returns null if the requested key does not exist. Always check for null before using the returned value."
+  },
+  {
+    "question": "Which of the following is a common use case for sessionStorage?",
+    "options": ["Storing user preferences long-term", "Caching product catalog data", "Multi-step form wizard progress", "Storing authentication tokens"],
+    "answer": "c",
+    "explanation": "sessionStorage is ideal for multi-step form wizard progress because data persists across page reloads but is naturally cleaned up when the tab closes."
+  },
+  {
+    "question": "How do you store a JavaScript object in sessionStorage?",
+    "options": ["sessionStorage.setObject('key', obj)", "sessionStorage.setItem('key', JSON.stringify(obj))", "sessionStorage.setItem('key', obj.toString())", "sessionStorage.setItem('key', obj)"],
+    "answer": "b",
+    "explanation": "sessionStorage only supports string values. Objects must be serialized with JSON.stringify() before storing and parsed with JSON.parse() on retrieval."
+  },
+  {
+    "question": "What is the storage capacity of sessionStorage per origin?",
+    "options": ["1MB", "5-10MB", "Unlimited", "100KB"],
+    "answer": "b",
+    "explanation": "Like localStorage, sessionStorage typically provides 5-10MB of storage per origin. The exact limit varies by browser."
+  },
+  {
+    "question": "What happens to sessionStorage data when a user navigates to a different page on the same site?",
+    "options": ["Data is cleared", "Data persists as long as the tab remains open", "Data is moved to localStorage", "Data is saved to the server"],
+    "answer": "b",
+    "explanation": "sessionStorage data persists across page navigations and reloads within the same tab. It is only cleared when the tab or browser window is closed."
+  },
+  {
+    "question": "Can sessionStorage be accessed from Web Workers?",
+    "options": ["Yes, all web workers", "No, not in any worker type", "Only in Dedicated Workers", "Only in Service Workers"],
+    "answer": "b",
+    "explanation": "sessionStorage (and localStorage) are not available in Web Workers, Service Workers, or Shared Workers. They are window-scoped APIs."
+  },
+  {
+    "question": "How do you remove a single item from sessionStorage?",
+    "options": ["sessionStorage.delete('key')", "sessionStorage.remove('key')", "sessionStorage.removeItem('key')", "sessionStorage.clear('key')"],
+    "answer": "c",
+    "explanation": "sessionStorage.removeItem('key') removes the specified key and its value. To remove all items, use sessionStorage.clear()."
+  },
+  {
+    "question": "What happens if you open the same page in two different browser tabs and set sessionStorage in one?",
+    "options": ["Both tabs see the same data", "Only the tab that set the data can see it", "The data is synced via the storage event", "An error is thrown"],
+    "answer": "b",
+    "explanation": "sessionStorage is isolated per tab. Setting data in one tab does not affect any other tab, even if they load the same URL."
+  },
+  {
+    "question": "Which of the following best describes sessionStorage lifetime?",
+    "options": ["Persistent until cleared by user", "Persistent until server session expires", "Persistent until tab closes", "Persistent for 24 hours"],
+    "answer": "c",
+    "explanation": "sessionStorage data lives only as long as the browser tab or window is open. It is not affected by server-side session expiration."
+  },
+  {
+    "question": "What is the primary advantage of using sessionStorage over localStorage for form draft autosave?",
+    "options": ["sessionStorage is faster", "sessionStorage has larger capacity", "sessionStorage auto-clears when the tab closes, which is more privacy-friendly", "sessionStorage supports encryption"],
+    "answer": "c",
+    "explanation": "sessionStorage auto-clears when the tab closes, making it more privacy-friendly for form drafts. Users don't need to manually clear their drafts, and sensitive data doesn't linger."
+  },
+  {
+    "question": "How do you check how many items are stored in sessionStorage?",
+    "options": ["sessionStorage.size", "sessionStorage.count", "sessionStorage.length", "sessionStorage.total"],
+    "answer": "c",
+    "explanation": "sessionStorage.length returns the number of key-value pairs currently stored. It's used for iteration with sessionStorage.key(i)."
+  },
+  {
+    "question": "What happens when you call sessionStorage.clear()?",
+    "options": ["Removes the most recently added item", "Removes all key-value pairs from sessionStorage", "Clears only items starting with '_'", "Resets sessionStorage to default values"],
+    "answer": "b",
+    "explanation": "sessionStorage.clear() removes all key-value pairs stored in sessionStorage for the current origin, leaving it completely empty."
+  },
+  {
+    "question": "Can sessionStorage data survive a browser crash?",
+    "options": ["Yes, always", "No, never", "Sometimes, depending on the browser", "Only if the crash recovery is enabled"],
+    "answer": "b",
+    "explanation": "sessionStorage data is stored in memory and is lost when the browser process terminates unexpectedly. It does not survive crashes."
+  },
+  {
+    "question": "What is a good use case for sessionStorage in e-commerce?",
+    "options": ["Storing the user's order history", "Storing product inventory data", "Storing the current shopping session's cart before login", "Storing the store's theme settings"],
+    "answer": "c",
+    "explanation": "sessionStorage is ideal for storing a pre-login shopping cart during the current session. The cart can be transferred to the user's account on login and auto-clears when the tab closes."
+  },
+  {
+    "question": "How can you pass data between pages during a user's visit without using URL parameters?",
+    "options": ["Using sessionStorage", "Using file uploads", "Using WebSockets", "Using CSS variables"],
+    "answer": "a",
+    "explanation": "sessionStorage allows passing data between pages during the same session without exposing it in URLs. Data set on page A can be read on page B as long as the tab stays open."
+  },
+  {
+    "question": "What happens if you try to store a non-string value in sessionStorage?",
+    "options": ["It gets converted to a string automatically", "An error is thrown", "The value is stored but corrupted", "It's silently dropped"],
+    "answer": "a",
+    "explanation": "All values passed to sessionStorage.setItem() are automatically converted to strings via .toString(). This is why objects become '[object Object]' without JSON.stringify()."
+  },
+  {
+    "question": "Which statement is true about sessionStorage and private/incognito browsing?",
+    "options": ["sessionStorage always works in private mode", "sessionStorage may be disabled in private mode or cleared when the last tab closes", "sessionStorage has higher capacity in private mode", "sessionStorage is encrypted in private mode"],
+    "answer": "b",
+    "explanation": "In private/incognito mode, sessionStorage behavior varies. Some browsers may disable it entirely, and others may clear it when the last private tab closes. Always use feature detection."
+  }
+]

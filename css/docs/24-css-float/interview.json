@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the float property do in CSS?", "answer": "The float property moves an element to the left or right of its container, allowing text and inline elements to wrap around it." },
+    { "question": "What are the main values of the float property?", "answer": "The main values are left, right, none, and inherit." },
+    { "question": "What was float originally designed for?", "answer": "Float was originally designed to wrap text around images, like in newspaper layouts." },
+    { "question": "What happens to an element when float: left is applied?", "answer": "The element moves to the left edge of its container, and text wraps around its right side." },
+    { "question": "Can you float an element without setting a width?", "answer": "It is recommended to set an explicit width on floated elements, though some elements like images have intrinsic width." },
+    { "question": "What is the default value of float?", "answer": "The default value of float is none." },
+    { "question": "Does a floated element remain in the normal document flow?", "answer": "No, a floated element is removed from the normal flow, but text and inline elements still wrap around it." },
+    { "question": "How do multiple floated elements behave when placed together?", "answer": "Multiple floated elements line up horizontally, wrapping to the next row when there is not enough space." },
+    { "question": "What is a drop cap in CSS?", "answer": "A drop cap is a large capital letter at the start of a paragraph, often created by floating the first letter with float: left." },
+    { "question": "Can block-level elements appear next to a floated element?", "answer": "Block-level elements ignore floated elements and can overlap them, while inline content wraps around." }
+  ],
+  "intermediate": [
+    { "question": "Why does a parent container collapse when all children are floated?", "answer": "Because floated children are removed from the normal flow, the parent has no height to calculate and collapses." },
+    { "question": "What is the clearfix technique?", "answer": "Clearfix is a technique to prevent parent collapse by forcing the parent to contain its floated children using ::after with clear: both." },
+    { "question": "How do you create a multi-column layout with floats?", "answer": "Apply float: left to multiple block elements with percentage widths (e.g., 33.33% for three columns)." },
+    { "question": "What issue arises when combining float with margin?", "answer": "Margins on floated elements can cause unexpected alignment or overflow in the parent container." },
+    { "question": "How does float interact with absolutely positioned elements?", "answer": "Float is ignored on absolutely positioned elements, and they are removed from the flow entirely." },
+    { "question": "Can you float an element to the right and have text wrap on the left?", "answer": "Yes, float: right places the element on the right, and text wraps around its left side." },
+    { "question": "What happens when you float a replaced element like an image?", "answer": "Floating a replaced element works the same as other elements; the image floats and text wraps around it." },
+    { "question": "How do you center a floated element?", "answer": "You cannot center a floated element directly; you would need to use display: inline-block or Flexbox instead." },
+    { "question": "What is the difference between float and absolute positioning?", "answer": "Float keeps the element in the document flow for text wrapping, while absolute positioning removes the element completely from the flow." },
+    { "question": "How does float affect the computed display value of an element?", "answer": "When float is applied to an element, its computed display becomes block or blockified for most elements." }
+  ],
+  "advanced": [
+    { "question": "How does float interact with block formatting contexts?", "answer": "A floated element establishes a new block formatting context, which prevents it from overlapping other elements within the same context." },
+    { "question": "What is the \"float containment\" behavior and how does it affect parent elements?", "answer": "Float containment means a parent with overflow: hidden or display: flow-root establishes a BFC, causing it to contain its floated children without a clearfix." },
+    { "question": "How did float-based layouts handle equal-height columns before Flexbox?", "answer": "Equal-height columns with floats required the faux column technique — using a background image on the parent to fake equal column heights." },
+    { "question": "Explain how float affects the margin collapsing behavior of adjacent elements.", "answer": "Floated elements do not have their margins collapse with other elements, unlike normal block elements in the flow." },
+    { "question": "How does the CSS spec define the float positioning algorithm?", "answer": "The spec positions a float as far to the left or right as possible while keeping its outer top edge below any earlier floats." },
+    { "question": "What is the \"clearance\" concept in the float model?", "answer": "Clearance is extra space added above an element with clear to push it below preceding floats, preventing adjacency." },
+    { "question": "How do you stack floats vertically when they have different heights?", "answer": "When floats have different heights, shorter floats leave gaps; subsequent floats may get stuck beside taller ones before clearing." },
+    { "question": "What performance considerations exist with float-heavy layouts?", "answer": "Float-heavy layouts can trigger more repaints and reflows than modern layout methods like Flexbox or Grid." },
+    { "question": "How did CSS shapes extend the float property?", "answer": "CSS shape-outside allows you to define non-rectangular wrapping shapes around floated elements, creating organic text wrapping." },
+    { "question": "When would you still choose float over Flexbox or Grid in modern CSS?", "answer": "Float is still the best choice for text wrapping around images, pull quotes, and drop caps — things Flexbox and Grid do not handle." }
+  ]
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the primary purpose of the HTML <section> element?",
+    "options": ["To create a generic styling container", "To group thematically related content", "To define navigation links", "To embed external content"],
+    "answer": "b",
+    "explanation": "The <section> element represents a standalone section of content that is thematically related, such as a chapter, tab, or group of related content."
+  },
+  {
+    "question": "Which element should typically always be present inside a <section>?",
+    "options": ["<footer>", "<header>", "<h1>–<h6> heading", "<div>"],
+    "answer": "c",
+    "explanation": "A <section> should always have a heading element (<h1>–<h6>) to describe its purpose and theme."
+  },
+  {
+    "question": "When does a <section> element get an implicit ARIA role of 'region'?",
+    "options": ["Always, regardless of content", "Only when it has an accessible name", "Only when nested inside <article>", "Never; sections don't have ARIA roles"],
+    "answer": "b",
+    "explanation": "A <section> becomes a 'region' landmark only when it has an accessible name, typically via aria-labelledby or aria-label."
+  },
+  {
+    "question": "When should you use <article> instead of <section>?",
+    "options": ["When the content can be independently syndicated or distributed", "When the content needs a heading", "When you need to nest elements", "When the content is part of a larger whole"],
+    "answer": "a",
+    "explanation": "Use <article> when content can stand alone and be independently distributed (e.g., in RSS feeds). Use <section> for thematic groupings within a larger document."
+  },
+  {
+    "question": "What is the key difference between <section> and <div>?",
+    "options": ["<section> has semantic meaning; <div> does not", "<div> has semantic meaning; <section> does not", "They are identical", "<section> is inline; <div> is block"],
+    "answer": "a",
+    "explanation": "<section> has semantic meaning representing a thematic group. <div> is a generic container with no semantic meaning."
+  },
+  {
+    "question": "Which of the following is a valid use of nested <section> elements?",
+    "options": ["<section><h2>Topic</h2><section><h3>Subtopic</h3></section></section>", "<section><section><section></section></section></section>", "<div><section><div><section></div></section>", "Nesting sections is never allowed"],
+    "answer": "a",
+    "explanation": "Sections can be nested to create hierarchical documents. Each nested section should have its own heading at the appropriate level."
+  },
+  {
+    "question": "What is the default display value of the <section> element?",
+    "options": ["inline", "block", "inline-block", "flex"],
+    "answer": "b",
+    "explanation": "Like most semantic HTML5 elements, <section> is a block-level element by default."
+  },
+  {
+    "question": "Which ARIA attribute can give a <section> an accessible name?",
+    "options": ["aria-hidden", "aria-disabled", "aria-labelledby or aria-label", "aria-describedby"],
+    "answer": "c",
+    "explanation": "aria-labelledby (referencing a heading's id) or aria-label (inline text) provides an accessible name, converting the section into a region landmark."
+  },
+  {
+    "question": "What is the relationship between <section> and the HTML5 document outline?",
+    "options": ["<section> creates a new entry in the document outline", "<section> is ignored in the outline", "<section> flattens the outline", "Only <section> with IDs create outline entries"],
+    "answer": "a",
+    "explanation": "The HTML5 outline algorithm defines that <section> elements create new entries in the document outline, though this algorithm is not widely implemented."
+  },
+  {
+    "question": "Can a <section> contain an <article>?",
+    "options": ["No, never", "Yes, an <article> can be inside a <section>", "Only if the section has an ID", "Only in HTML5.1"],
+    "answer": "b",
+    "explanation": "A <section> can contain an <article>, and vice versa. This is common when a section groups related articles."
+  },
+  {
+    "question": "When should you NOT use a <section> element?",
+    "options": ["For thematic groups of content", "For grouping related form controls", "For purely stylistic wrapping with no thematic relationship", "For chapters in a document"],
+    "answer": "c",
+    "explanation": "Use <div> instead of <section> when you only need a container for styling or scripting purposes with no thematic relationship."
+  },
+  {
+    "question": "What happens if you use <section> without a heading?",
+    "options": ["The HTML validator will show a warning", "It causes a JavaScript error", "The page will not render", "It automatically generates a heading"],
+    "answer": "a",
+    "explanation": "While not strictly invalid, using <section> without a heading is considered a best practice violation and the HTML validator may show a warning."
+  },
+  {
+    "question": "Which element can contain a <section>?",
+    "options": ["<main>", "<article>", "<section> itself", "All of the above"],
+    "answer": "d",
+    "explanation": "A <section> can be contained within <main>, <article>, <section> (nested), <aside>, and other flow content containers."
+  },
+  {
+    "question": "How should you provide an accessible name to a <section>?",
+    "options": ["<section name='...'>", "<section title='...'>", "<section aria-labelledby='heading-id'>", "<section label='...'>"],
+    "answer": "c",
+    "explanation": "Use aria-labelledby to reference the id of a heading element, or aria-label to provide an inline accessible name."
+  },
+  {
+    "question": "What is the difference between <section> and <main>?",
+    "options": ["They are identical", "<main> contains the primary content; <section> groups thematic content", "<section> contains the primary content; <main> groups content", "<main> is a sectioning element"],
+    "answer": "b",
+    "explanation": "<main> represents the dominant content of the page. <section> represents a thematic grouping within the content. A page has one <main> but can have many <section> elements."
+  },
+  {
+    "question": "Can a <section> be placed directly inside <body>?",
+    "options": ["No", "Yes", "Only if wrapped in <main>", "Only in older HTML versions"],
+    "answer": "b",
+    "explanation": "A <section> can be a direct child of <body>, though typically it is nested inside <main>, <article>, or another sectioning element."
+  },
+  {
+    "question": "Which global attributes can be used on a <section>?",
+    "options": ["Only id and class", "Only style", "All global attributes", "Only data-* attributes"],
+    "answer": "c",
+    "explanation": "The <section> element supports all global HTML attributes including id, class, style, lang, data-*, aria-*, and more."
+  },
+  {
+    "question": "What is the correct heading hierarchy for nested sections?",
+    "options": ["Always use <h1> regardless of depth", "Use increasing levels: <h1>, <h2>, <h3>, etc.", "Use the same level for all nested sections", "Headings are not needed in nested sections"],
+    "answer": "b",
+    "explanation": "Proper heading hierarchy should use increasing levels (h1 → h2 → h3) as sections are nested deeper, creating a logical document structure."
+  },
+  {
+    "question": "Which situation best calls for a <section> element?",
+    "options": ["A group of three product features on a landing page", "A single copyright line in a footer", "A navigation menu with links", "A logo image"],
+    "answer": "a",
+    "explanation": "A group of product features is a thematically related set of content that belongs in a <section>. Single lines, navigation, and logos belong in their own semantic elements."
+  },
+  {
+    "question": "How do screen readers typically treat a <section> without accessible name?",
+    "options": ["Announce it as a 'region landmark'", "Ignore it as a landmark", "Announce it as a 'section' element", "Treat it as a heading"],
+    "answer": "b",
+    "explanation": "Without an accessible name, a <section> does not become a landmark region. Screen readers may still read its contents but won't announce it as a navigable landmark."
+  }
+]

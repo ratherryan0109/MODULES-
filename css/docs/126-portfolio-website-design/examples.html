@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Alex Chen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --accent: #8b5cf6;
+      --accent-hover: #7c3aed;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
+      --ff: 'Inter', system-ui, sans-serif;
+      --fs-h1: clamp(2.5rem, 6vw, 4.5rem);
+      --fs-h2: clamp(2rem, 4vw, 3rem);
+      --fs-body: 1rem;
+      --radius: 0.75rem;
+      --transition: 0.3s ease;
+      --max-width: 1100px;
+    }
+    [data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --border: #334155;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body {
+      font-family: var(--ff);
+      font-size: var(--fs-body);
+      line-height: 1.7;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      transition: background var(--transition), color var(--transition);
+    }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-hover); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+
+    .skip-link { position: absolute; top: -100%; left: 1rem; padding: 0.5rem 1rem; background: var(--accent); color: white; z-index: 9999; border-radius: 0.5rem; }
+    .skip-link:focus { top: 1rem; }
+
+    /* Header */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 4rem;
+    }
+    .logo {
+      font-size: 1.5rem; font-weight: 800; color: var(--text-primary);
+    }
+    .logo span { color: var(--accent); }
+    .nav-toggle {
+      display: none; background: none; border: none; font-size: 1.5rem;
+      cursor: pointer; color: var(--text-primary);
+    }
+    .nav-menu { display: flex; gap: 1rem; align-items: center; }
+    .nav-menu a {
+      color: var(--text-secondary); font-weight: 500; padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem; transition: color var(--transition), background var(--transition);
+    }
+    .nav-menu a:hover, .nav-menu a:focus-visible { color: var(--text-primary); background: var(--bg-secondary); }
+
+    .theme-toggle {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 50%; width: 40px; height: 40px; display: flex;
+      align-items: center; justify-content: center; cursor: pointer;
+      font-size: 1.25rem; transition: background var(--transition);
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu {
+        display: none; flex-direction: column; position: absolute;
+        top: 4rem; left: 0; right: 0; background: var(--bg-primary);
+        border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.5rem;
+      }
+      .nav-menu.active { display: flex; }
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 90vh; display: flex; align-items: center;
+      padding: 6rem 1.5rem 4rem;
+    }
+    .hero-content { max-width: 800px; }
+    .hero .greeting {
+      font-size: 1.125rem; color: var(--accent); font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 { font-size: var(--fs-h1); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 2rem; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn {
+      display: inline-block; padding: 0.85rem 2rem; border-radius: 0.5rem;
+      font-weight: 600; transition: transform var(--transition), box-shadow var(--transition);
+      border: none; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-outline {
+      background: transparent; color: var(--text-primary);
+      border: 2px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stats dt { font-size: 2rem; font-weight: 800; color: var(--text-primary); }
+    .hero-stats dd { font-size: 0.875rem; color: var(--text-muted); }
+
+    /* Section styling */
+    section { padding: 5rem 0; }
+    .section-label {
+      display: inline-block; font-size: 0.875rem; font-weight: 600;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: var(--fs-h2); font-weight: 700; margin-bottom: 1rem;
+    }
+    .section-desc { color: var(--text-secondary); max-width: 600px; margin-bottom: 3rem; }
+
+    /* About */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .about-image img {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+    }
+    .about-text p { margin-bottom: 1.5rem; color: var(--text-secondary); }
+    .skills { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    .skill-tag {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.875rem;
+      font-weight: 500; color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* Projects */
+    .projects { background: var(--bg-secondary); transition: background var(--transition); }
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      background: var(--bg-primary); border: 1px solid var(--border);
+      padding: 0.5rem 1.25rem; border-radius: 100px; font-size: 0.875rem;
+      font-weight: 500; color: var(--text-secondary); cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent); color: white; border-color: var(--accent);
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      display: none; border-radius: var(--radius); overflow: hidden;
+      background: var(--bg-card); border: 1px solid var(--border);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .project-card.show { display: block; animation: fadeIn 0.4s ease; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .project-image {
+      aspect-ratio: 16/10; overflow: hidden;
+    }
+    .project-image img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .project-card:hover .project-image img { transform: scale(1.05); }
+    .project-info { padding: 1.5rem; }
+    .project-info h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .project-info p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .project-tags span {
+      background: var(--bg-secondary); padding: 0.25rem 0.75rem;
+      border-radius: 100px; font-size: 0.75rem; font-weight: 500;
+    }
+
+    /* Experience */
+    .timeline {
+      position: relative; padding-left: 2rem;
+    }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+    .timeline-item {
+      position: relative; padding-bottom: 2.5rem; padding-left: 1.5rem;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -2.35rem; top: 0.25rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); border: 3px solid var(--bg-primary);
+    }
+    .timeline-item h3 { font-size: 1.125rem; font-weight: 600; }
+    .timeline-item .company { color: var(--accent); font-weight: 500; }
+    .timeline-item .date { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .timeline-item p { color: var(--text-secondary); }
+
+    /* Contact */
+    .contact-form { max-width: 600px; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      display: block; font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--border);
+      border-radius: 0.5rem; background: var(--bg-primary);
+      color: var(--text-primary); font-family: var(--ff);
+      transition: border-color var(--transition);
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border); padding: 2rem 0;
+      text-align: center; color: var(--text-muted);
+    }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
+    .footer-links a { color: var(--text-muted); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--accent); }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-content { animation: fadeInUp 0.8s ease; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  </style>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="#" class="logo"><span>Alex</span>Chen</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle">&#9776;</button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">&#9790;</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-label="Hero section">
+      <div class="container hero-content">
+        <p class="greeting">Hi, I'm</p>
+        <h1>Alex Chen<br><span>Design &amp; Code</span></h1>
+        <p>Full-stack developer and UI designer crafting beautiful, accessible digital experiences.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-outline">Get In Touch</a>
+        </div>
+        <dl class="hero-stats">
+          <div><dt>5+</dt><dd>Years Exp.</dd></div>
+          <div><dt>50+</dt><dd>Projects</dd></div>
+          <div><dt>30+</dt><dd>Clients</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="about" aria-label="About me">
+      <div class="container">
+        <span class="section-label">About</span>
+        <h2 class="section-title">Who I Am</h2>
+        <div class="about-grid">
+          <div class="about-image">
+            <img src="https://placehold.co/500x600/8b5cf6/ffffff?text=Alex+Chen" alt="Alex Chen portrait" loading="lazy">
+          </div>
+          <div class="about-text">
+            <p>I'm a full-stack developer with a passion for creating interfaces that are both beautiful and functional. I believe great design is invisible — it just works.</p>
+            <p>With over 5 years of experience working with startups and agencies, I specialize in React, TypeScript, Node.js, and modern CSS architecture.</p>
+            <div class="skills">
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">CSS Grid</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Tailwind</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects" aria-label="Projects">
+      <div class="container">
+        <span class="section-label">Portfolio</span>
+        <h2 class="section-title">Selected Projects</h2>
+        <p class="section-desc">A collection of projects I've designed and built. Click to see more.</p>
+        <div class="filter-bar" role="group" aria-label="Filter projects">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="web" aria-pressed="false">Web Apps</button>
+          <button class="filter-btn" data-filter="mobile" aria-pressed="false">Mobile</button>
+          <button class="filter-btn" data-filter="design" aria-pressed="false">Design</button>
+        </div>
+        <div class="project-grid">
+          <article class="project-card show" data-category="web">
+            <div class="project-image"><img src="https://placehold.co/600x400/8b5cf6/ffffff?text=E-Commerce+App" alt="E-Commerce App" loading="lazy"></div>
+            <div class="project-info">
+              <h3>ShopFlow</h3>
+              <p>Full-stack e-commerce platform with real-time inventory management.</p>
+              <div class="project-tags"><span>React</span><span>Node.js</span><span>PostgreSQL</span></div>
+            </div>
+          </article>
+          <article class="project-card show" data-category="mobile">
+            <div class="project-image"><img src="https://placehold.co/600x400/7c3aed/ffffff?text=Fitness+App" alt="Fitness App" loading="lazy"></div>
+            <div class="project-info">
+              <h3>FitTrack</h3>
+              <p>Cross-platform fitness tracking app with workout planning.</p>
+              <div class="project-tags"><span>React Native</span><span>Firebase</span></div>
+            </div>
+          </article>
+          <article class="project-card show" data-category="design">
+            <div class="project-image"><img src="https://placehold.co/600x400/6d28d9/ffffff?text=Brand+Identity" alt="Brand Identity" loading="lazy"></div>
+            <div class="project-info">
+              <h3>Bloom Branding</h3>
+              <p>Complete brand identity design for a sustainable beauty startup.</p>
+              <div class="project-tags"><span>Figma</span><span>Illustrator</span></div>
+            </div>
+          </article>
+          <article class="project-card show" data-category="web">
+            <div class="project-image"><img src="https://placehold.co/600x400/5b21b6/ffffff?text=Dashboard" alt="Dashboard" loading="lazy"></div>
+            <div class="project-info">
+              <h3>Analytics Pro</h3>
+              <p>Real-time analytics dashboard with custom reporting.</p>
+              <div class="project-tags"><span>Next.js</span><span>D3.js</span><span>Prisma</span></div>
+            </div>
+          </article>
+          <article class="project-card show" data-category="mobile">
+            <div class="project-image"><img src="https://placehold.co/600x400/4c1d95/ffffff?text=Weather+App" alt="Weather App" loading="lazy"></div>
+            <div class="project-info">
+              <h3>WeatherNow</h3>
+              <p>Minimalist weather app with location-based forecasts.</p>
+              <div class="project-tags"><span>Swift</span><span>OpenWeather API</span></div>
+            </div>
+          </article>
+          <article class="project-card show" data-category="design">
+            <div class="project-image"><img src="https://placehold.co/600x400/3b0764/ffffff?text=UI+Kit" alt="UI Kit" loading="lazy"></div>
+            <div class="project-info">
+              <h3>UI Component Library</h3>
+              <p>200+ accessible components with dark mode support.</p>
+              <div class="project-tags"><span>Storybook</span><span>React</span><span>CSS</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-label="Experience">
+      <div class="container">
+        <span class="section-label">Experience</span>
+        <h2 class="section-title">Where I've Worked</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Senior Frontend Developer</h3>
+            <p class="company">TechCorp Inc.</p>
+            <p class="date">2023 — Present</p>
+            <p>Leading frontend architecture for a SaaS platform serving 50k+ users. Introduced component library reducing dev time by 40%.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Full-Stack Developer</h3>
+            <p class="company">StartupX</p>
+            <p class="date">2021 — 2023</p>
+            <p>Built the MVP and scaled to 10k users. Implemented CI/CD pipeline and automated testing.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Junior Developer</h3>
+            <p class="company">Web Agency Co.</p>
+            <p class="date">2019 — 2021</p>
+            <p>Developed 30+ client websites. Specialized in responsive design and WordPress theming.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Contact">
+      <div class="container">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">Let's Work Together</h2>
+        <p class="section-desc">Have a project in mind? I'd love to hear about it. Send me a message and I'll get back to you.</p>
+        <form class="contact-form" novalidate aria-label="Contact form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a>
+        <a href="https://dribbble.com" target="_blank" rel="noopener" aria-label="Dribbble">Dribbble</a>
+      </div>
+      <p>&copy; 2026 Alex Chen. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' ? false : true;
+      navToggle.setAttribute('aria-expanded', expanded);
+      navMenu.classList.toggle('active');
+      navToggle.innerHTML = expanded ? '&times;' : '&#9776;';
+    });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '\u2600' : '\u260E';
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeToggle.textContent = next === 'dark' ? '\u2600' : '\u260E';
+    });
+
+    // Filter system
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.classList.add('show');
+          } else {
+            card.classList.remove('show');
+          }
+        });
+      });
+    });
+
+    // Form handling
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message! (Demo only)');
+    });
+  </script>
+</body>
+</html>

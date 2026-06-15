@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Playground - Social Profile</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;background:#1e293b;color:#fff;height:100vh;display:flex;flex-direction:column}.toolbar{background:#0f172a;padding:.5rem 1rem;display:flex;align-items:center;gap:1rem}.toolbar h2{font-size:1rem}.toolbar button,.toolbar select{background:#334155;color:#fff;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer}.main-split{display:flex;flex:1;overflow:hidden}.editor-pane{flex:1;display:flex;flex-direction:column;border-right:1px solid #334155}.preview-pane{flex:1;background:#f0f2f5}iframe{width:100%;height:100%;border:none}textarea{width:100%;flex:1;background:#1e293b;color:#e2e8f0;border:none;padding:1rem;font-family:'Consolas',monospace;font-size:.875rem;resize:none;outline:none}.tabs{display:flex;background:#0f172a;border-bottom:1px solid #334155}.tabs button{background:transparent;color:#94a3b8;border:none;padding:.5rem 1rem;cursor:pointer;border-bottom:2px solid transparent}.tabs button.active{color:#fff;border-bottom-color:#1877f2}@media(max-width:768px){.main-split{flex-direction:column}}</style></head>
+<body>
+<div class="toolbar"><h2>Profile Playground</h2><select id="vs"><option value="100%">Responsive</option><option value="375px">Mobile</option></select><button id="run">&#9654; Run</button><button id="reset">&#8635; Reset</button></div>
+<div class="main-split"><div class="editor-pane"><div class="tabs"><button class="active" data-tab="html">HTML</button><button data-tab="css">CSS</button></div>
+<textarea id="html"><div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:1rem">
+  <div style="background:white;border-radius:8px;overflow:hidden">
+    <div style="height:150px;background:#1877f2;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">Cover Photo</div>
+    <div style="text-align:center;padding:1rem;position:relative">
+      <div style="width:96px;height:96px;border-radius:50%;border:4px solid white;margin:-60px auto .5rem;overflow:hidden;background:#1877f2;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">SC</div>
+      <h2 style="font-size:1.25rem">Sarah Chen</h2>
+      <p style="color:#65676b;font-size:.875rem">Full-stack developer & UI designer</p>
+    </div>
+  </div>
+</div></textarea>
+<textarea id="css">body{margin:0;font-family:'Inter',sans-serif;background:#f0f2f5}</textarea>
+</div><div class="preview-pane"><iframe id="preview"></iframe></div></div>
+<script>
+  const h=document.getElementById('html'),c=document.getElementById('css'),p=document.getElementById('preview'),vs=document.getElementById('vs'),r=document.getElementById('run'),rs=document.getElementById('reset'),tb=document.querySelectorAll('[data-tab]');
+  function render(){const d='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><style>*,*::before,*::after{box-sizing:border-box}'+c.value+'</style></head><body>'+h.value+'</body></html>';p.src='data:text/html;charset=utf-8,'+encodeURIComponent(d)}
+  function reset(){h.value='<div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:1rem">\n  <div style="background:white;border-radius:8px;overflow:hidden">\n    <div style="height:150px;background:#1877f2;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">Cover Photo</div>\n    <div style="text-align:center;padding:1rem;position:relative">\n      <div style="width:96px;height:96px;border-radius:50%;border:4px solid white;margin:-60px auto .5rem;overflow:hidden;background:#1877f2;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">SC</div>\n      <h2 style="font-size:1.25rem">Sarah Chen</h2>\n      <p style="color:#65676b;font-size:.875rem">Full-stack developer & UI designer</p>\n    </div>\n  </div>\n</div>';c.value='body{margin:0;font-family:\'Inter\',sans-serif;background:#f0f2f5}';render()}
+  vs.addEventListener('change',()=>{p.style.width=vs.value;p.style.margin=vs.value==='100%'?'0':'0 auto'});r.addEventListener('click',render);rs.addEventListener('click',reset);
+  tb.forEach(b=>{b.addEventListener('click',()=>{tb.forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.editor-pane textarea').forEach(t=>t.style.display='none');if(b.dataset.tab==='html')h.style.display='block';if(b.dataset.tab==='css')c.style.display='block'})});h.style.display='block';c.style.display='none';render();
+</script></body></html>

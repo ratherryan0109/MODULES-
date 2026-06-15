@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Playground - E-Commerce</title>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#1e293b;color:#fff;height:100vh;display:flex;flex-direction:column}.toolbar{background:#0f172a;padding:.5rem 1rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid #334155;flex-wrap:wrap}.toolbar h2{font-size:1rem;font-weight:600}.toolbar button,.toolbar select{background:#334155;color:#fff;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer;font-size:.875rem}.main-split{display:flex;flex:1;overflow:hidden}.editor-pane{flex:1;display:flex;flex-direction:column;border-right:1px solid #334155}.preview-pane{flex:1;background:#fff;position:relative}iframe{width:100%;height:100%;border:none}textarea{width:100%;flex:1;background:#1e293b;color:#e2e8f0;border:none;padding:1rem;font-family:'Consolas','Courier New',monospace;font-size:.875rem;resize:none;outline:none;tab-size:2}.tabs{display:flex;background:#0f172a;border-bottom:1px solid #334155}.tabs button{background:transparent;color:#94a3b8;border:none;padding:.5rem 1rem;cursor:pointer;border-bottom:2px solid transparent}.tabs button.active{color:#fff;border-bottom-color:#2563eb}@media(max-width:768px){.main-split{flex-direction:column}}</style></head>
+<body>
+<div class="toolbar">
+  <h2>E-Commerce Playground</h2>
+  <select id="viewportSelect"><option value="100%">Responsive</option><option value="375px">Mobile</option><option value="768px">Tablet</option></select>
+  <button id="runBtn">&#9654; Run</button>
+  <button id="resetBtn">&#8635; Reset</button>
+</div>
+<div class="main-split">
+  <div class="editor-pane">
+    <div class="tabs"><button class="active" data-tab="html">HTML</button><button data-tab="css">CSS</button></div>
+    <textarea id="htmlEditor"><div style="padding:2rem;font-family:sans-serif">
+  <h1 style="font-size:2rem;font-weight:800">Product Grid</h1>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;margin-top:1.5rem">
+    <div style="border:1px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">
+      <div style="background:#2563eb;color:white;padding:3rem 1rem;border-radius:4px;margin-bottom:1rem">Product</div>
+      <h3 style="font-size:1rem">Item Name</h3>
+      <p style="font-weight:700;color:#2563eb">$24.99</p>
+    </div>
+    <div style="border:1px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">
+      <div style="background:#1d4ed8;color:white;padding:3rem 1rem;border-radius:4px;margin-bottom:1rem">Product</div>
+      <h3 style="font-size:1rem">Item Name</h3>
+      <p style="font-weight:700;color:#2563eb">$34.99</p>
+    </div>
+  </div>
+</div></textarea>
+    <textarea id="cssEditor">body{margin:0;font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}</textarea>
+  </div>
+  <div class="preview-pane"><iframe id="preview"></iframe></div>
+</div>
+<script>
+  const h=document.getElementById('htmlEditor'),c=document.getElementById('cssEditor'),p=document.getElementById('preview'),vs=document.getElementById('viewportSelect'),r=document.getElementById('runBtn'),rs=document.getElementById('resetBtn'),tb=document.querySelectorAll('[data-tab]');
+  function render(){const d='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Preview</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>*,*::before,*::after{box-sizing:border-box}body{margin:0;font-family:\'Inter\',sans-serif}'+c.value+'</style></head><body>'+h.value+'</body></html>';p.src='data:text/html;charset=utf-8,'+encodeURIComponent(d)}
+  function reset(){h.value='<div style="padding:2rem;font-family:sans-serif">\n  <h1 style="font-size:2rem;font-weight:800">Product Grid</h1>\n  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;margin-top:1.5rem">\n    <div style="border:1px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">\n      <div style="background:#2563eb;color:white;padding:3rem 1rem;border-radius:4px;margin-bottom:1rem">Product</div>\n      <h3 style="font-size:1rem">Item Name</h3>\n      <p style="font-weight:700;color:#2563eb">$24.99</p>\n    </div>\n    <div style="border:1px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">\n      <div style="background:#1d4ed8;color:white;padding:3rem 1rem;border-radius:4px;margin-bottom:1rem">Product</div>\n      <h3 style="font-size:1rem">Item Name</h3>\n      <p style="font-weight:700;color:#2563eb">$34.99</p>\n    </div>\n  </div>\n</div>';c.value='body{margin:0;font-family:\'Inter\',sans-serif;background:#f8fafc;color:#0f172a}';render()}
+  vs.addEventListener('change',()=>{p.style.width=vs.value;p.style.margin=vs.value==='100%'?'0':'0 auto'});
+  r.addEventListener('click',render);rs.addEventListener('click',reset);
+  tb.forEach(b=>{b.addEventListener('click',()=>{tb.forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.editor-pane textarea').forEach(t=>t.style.display='none');if(b.dataset.tab==='html')h.style.display='block';if(b.dataset.tab==='css')c.style.display='block'})});
+  h.style.display='block';c.style.display='none';render();
+</script></body></html>

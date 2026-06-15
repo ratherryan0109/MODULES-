@@ -1,0 +1,147 @@
+{
+  "module": "80-css-variables",
+  "title": "CSS Variables (Custom Properties)",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "How are CSS custom properties declared?",
+      "options": ["$variable-name", "--variable-name", "@variable-name", "var(--variable-name)"],
+      "correctAnswer": 1,
+      "explanation": "CSS custom properties use the -- prefix: --my-variable: value;"
+    },
+    {
+      "id": 2,
+      "question": "Which function accesses a custom property's value?",
+      "options": ["get()", "val()", "var()", "prop()"],
+      "correctAnswer": 2,
+      "explanation": "The var() function is used to access custom property values: var(--my-variable)."
+    },
+    {
+      "id": 3,
+      "question": "Where should global design tokens be declared?",
+      "options": ["On the body element", "On the :root selector", "On the html element", "In each component"],
+      "correctAnswer": 1,
+      "explanation": ":root makes variables globally available throughout the document."
+    },
+    {
+      "id": 4,
+      "question": "How do you provide a fallback value for a custom property?",
+      "options": ["var(--var, fallback)", "--var: fallback", "get(--var, fallback)", "fallback(--var)"],
+      "correctAnswer": 0,
+      "explanation": "The second argument to var() is the fallback: var(--unknown, blue)."
+    },
+    {
+      "id": 5,
+      "question": "Can CSS custom properties be modified with JavaScript?",
+      "options": ["No, they are CSS-only", "Yes, using setProperty()", "Only in preprocessors", "Only with inline styles"],
+      "correctAnswer": 1,
+      "explanation": "setProperty('--name', value) modifies custom properties from JavaScript."
+    },
+    {
+      "id": 6,
+      "question": "How do custom properties differ from Sass variables?",
+      "options": ["They are the same", "CSS variables are dynamic and inherit", "Sass variables are more powerful", "CSS variables are faster"],
+      "correctAnswer": 1,
+      "explanation": "CSS custom properties are dynamic and participate in the cascade/inheritance, while Sass variables are compile-time only."
+    },
+    {
+      "id": 7,
+      "question": "Can custom properties be used in media query conditions?",
+      "options": ["Yes, always", "No, not in standard CSS", "Only in Chrome", "Only with JavaScript"],
+      "correctAnswer": 1,
+      "explanation": "Custom properties cannot be used as media query conditions in standard CSS."
+    },
+    {
+      "id": 8,
+      "question": "What happens to a custom property value when it's inherited?",
+      "options": ["It gets converted to pixels", "It inherits naturally like other CSS properties", "It becomes a string", "It gets doubled"],
+      "correctAnswer": 1,
+      "explanation": "Custom properties inherit naturally through the DOM tree like color or font-family."
+    },
+    {
+      "id": 9,
+      "question": "Are CSS custom property names case-sensitive?",
+      "options": ["No", "Yes, --Primary and --primary are different", "Only in Safari", "Only with numbers"],
+      "correctAnswer": 1,
+      "explanation": "Custom property names are case-sensitive -- --Primary and --primary are different variables."
+    },
+    {
+      "id": 10,
+      "question": "What happens when no fallback is provided and the variable is undefined?",
+      "options": ["The property uses its initial/default value", "An error is thrown", "The page crashes", "The element is hidden"],
+      "correctAnswer": 0,
+      "explanation": "If a custom property is undefined and no fallback is provided, the property uses its inherited or initial value."
+    },
+    {
+      "id": 11,
+      "question": "Can custom properties hold any CSS value type?",
+      "options": ["Only colors", "Only lengths", "Yes, any valid CSS value", "Only numbers"],
+      "correctAnswer": 2,
+      "explanation": "Custom properties can hold any valid CSS value including colors, lengths, numbers, strings, and even multiple values."
+    },
+    {
+      "id": 12,
+      "question": "How do you create a theme system with CSS custom properties?",
+      "options": ["Using multiple stylesheets", "Redefining variable values under different class selectors", "Using JavaScript for each theme", "Using @import"],
+      "correctAnswer": 1,
+      "explanation": "Override custom property values under theme classes (e.g., .dark-theme { --bg: black; }) to create themes."
+    },
+    {
+      "id": 13,
+      "question": "What is a design token in the context of CSS custom properties?",
+      "options": ["A CSS animation", "A named value representing design decisions (colors, spacing, etc.)", "A JavaScript object", "A design file format"],
+      "correctAnswer": 1,
+      "explanation": "Design tokens are named values that capture design decisions like colors, spacing, and typography, often stored as custom properties."
+    },
+    {
+      "id": 14,
+      "question": "Can custom properties be used with the calc() function?",
+      "options": ["No", "Yes, custom properties work inside calc()", "Only with numbers", "Only in Chrome"],
+      "correctAnswer": 1,
+      "explanation": "Custom properties can be used inside calc(): width: calc(var(--spacing) * 2);"
+    },
+    {
+      "id": 15,
+      "question": "How do inline styles affect custom property scoping?",
+      "options": ["They are ignored", "Inline styles can set custom properties scoped to that element", "They override :root only", "They create global variables"],
+      "correctAnswer": 1,
+      "explanation": "Setting custom properties via inline style attribute scopes them to that specific element and its children."
+    },
+    {
+      "id": 16,
+      "question": "What is the benefit of scoping custom properties to components?",
+      "options": ["Faster rendering", "Isolation and preventing naming conflicts", "Smaller file size", "Better browser support"],
+      "correctAnswer": 1,
+      "explanation": "Scoping custom properties to component selectors prevents naming collisions and enables component-level theming."
+    },
+    {
+      "id": 17,
+      "question": "How do custom properties interact with the cascade?",
+      "options": ["They bypass the cascade", "They follow standard CSS cascade and specificity rules", "They only use inheritance", "They are always global"],
+      "correctAnswer": 1,
+      "explanation": "Custom properties follow the same cascade and specificity rules as any other CSS property."
+    },
+    {
+      "id": 18,
+      "question": "What is an example of valid custom property naming convention?",
+      "options": ["--2color", "--color-primary", "--color@primary", "--color primary"],
+      "correctAnswer": 1,
+      "explanation": "Custom properties follow identifier naming rules: can contain hyphens, underscores, but not start with a digit."
+    },
+    {
+      "id": 19,
+      "question": "Can custom properties be used in SVG?",
+      "options": ["No", "Yes, custom properties work in SVG presentation attributes", "Only in inline SVGs", "Only in external SVGs"],
+      "correctAnswer": 1,
+      "explanation": "CSS custom properties work in SVG presentation attributes, enabling dynamic theming of SVGs."
+    },
+    {
+      "id": 20,
+      "question": "How do you debug custom property values in DevTools?",
+      "options": ["Cannot be inspected", "Hover over the var() function or check the Computed/Styles panel", "Use console.log", "Use a Sass debugger"],
+      "correctAnswer": 1,
+      "explanation": "Browser DevTools show custom property values in the Styles and Computed panels, including resolved values."
+    }
+  ]
+}

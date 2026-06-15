@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Grid Container Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b}.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px}
+.controls{flex:0 0 250px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:15px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group input,.group select{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px}
+#grid-container{display:grid;background:#2d2d44;border-radius:8px;padding:10px;transition:all .3s;min-height:200px}
+.grid-item{background:#ff6b6b;padding:15px;border-radius:4px;text-align:center;overflow:hidden}
+.grid-item:nth-child(2n){background:#4ecdc4}.grid-item:nth-child(3n){background:#45b7d1}
+#code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf}
+</style>
+</head>
+<body>
+<h1>📦 Grid Container Playground</h1>
+<p class="subtitle">Adjust container and track properties</p>
+<div class="layout">
+<div class="controls">
+<div class="group"><label>display</label><select id="display"><option>grid</option><option>inline-grid</option></select></div>
+<div class="group"><label>Columns</label><input type="range" id="cols" min="1" max="6" value="4"></div>
+<div class="group"><label>Column Size</label><select id="col-size"><option value="1fr">1fr</option><option value="100px">100px</option><option value="minmax(100px,1fr)">minmax(100px, 1fr)</option></select></div>
+<div class="group"><label>gap</label><input type="range" id="gap" min="0" max="30" value="10"></div>
+<div class="group"><label>Container Width</label><input type="range" id="width" min="300" max="900" value="600"></div>
+</div>
+<div class="preview">
+<div id="grid-container"></div>
+<div id="code">display: grid;</div>
+</div>
+</div>
+<script>
+const gc=document.getElementById('grid-container'),code=document.getElementById('code');
+document.querySelectorAll('select,input').forEach(el=>el.addEventListener('input',update));
+function update(){
+const display=document.getElementById('display').value;
+const cols=document.getElementById('cols').value;
+const colSize=document.getElementById('col-size').value;
+const g=document.getElementById('gap').value;
+const w=document.getElementById('width').value;
+gc.style.display=display;
+gc.style.gridTemplateColumns=`repeat(${cols}, ${colSize})`;
+gc.style.gap=g+'px';gc.style.width=w+'px';
+gc.innerHTML='';
+const total=cols*2;
+for(let i=1;i<=total;i++){
+const d=document.createElement('div');d.className='grid-item';d.textContent=`Item ${i}`;gc.appendChild(d);
+}
+code.textContent=`display: ${display};\ngrid-template-columns: repeat(${cols}, ${colSize});\ngap: ${g}px;`;
+}
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "module": "CSS Translate",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Slide-in Navigation",
+      "description": "Create a nav menu that slides in from the left using translate.",
+      "hint": "Use translate with negative X value, then transition to 0.",
+      "expected_outcome": "Menu slides in from the left.",
+      "solution": { "css": ".nav { translate: -100% 0; transition: translate 0.3s ease; } .nav.open { translate: 0 0; }" }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Bouncing Ball",
+      "description": "Create a ball that bounces up and down using translate Y.",
+      "hint": "Alternate translateY between 0 and a negative value with transition.",
+      "expected_outcome": "Ball bounces vertically.",
+      "solution": { "css": ".ball { transition: translate 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); } .ball.up { translate: 0 -50px; }" }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Modal Center Animation",
+      "description": "Create a modal that animates from center with scale and translate.",
+      "hint": "Start with translate (-50%, -50%) for centering, animate opacity and translate.",
+      "expected_outcome": "Modal fades and scales in from center.",
+      "solution": { "css": ".modal { position: fixed; top: 50%; left: 50%; translate: -50% -50%; opacity: 0; transition: opacity 0.3s, translate 0.3s; } .modal.open { opacity: 1; translate: -50% -50%; }" }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Staggered List Items",
+      "description": "Create a list where items slide in from the right with staggered translate delays.",
+      "hint": "Use nth-child for staggered transition delays with translateX.",
+      "expected_outcome": "Items slide in sequentially.",
+      "solution": { "css": ".item { translate: 50px 0; opacity: 0; transition: translate 0.3s, opacity 0.3s; } .item:nth-child(1) { transition-delay: 0.1s; } .item:nth-child(2) { transition-delay: 0.2s; } .item.visible { translate: 0 0; opacity: 1; }" }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "3D Parallax Card Stack",
+      "description": "Create stacked cards that move at different Z depths with translate Z, creating a parallax effect.",
+      "hint": "Use translate with Z values and perspective on the parent container.",
+      "expected_outcome": "Cards appear at different depths with parallax movement.",
+      "solution": { "css": ".scene { perspective: 800px; } .card1 { translate: 0 0 0; } .card2 { translate: 0 0 50px; } .card3 { translate: 0 0 100px; }" }
+    }
+  ]
+}

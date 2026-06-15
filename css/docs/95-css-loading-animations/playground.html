@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Loading Animations - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;padding:30px;background:#0f0f1a;color:#e0e0e0}
+.container{max-width:900px;margin:0 auto}
+h1{color:#ffd700}.subtitle{color:#aaa;margin-bottom:16px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.panel{background:#1a1a2e;border-radius:10px;padding:16px;border:1px solid #2a2a4a}
+.panel h2{color:#00d4ff;font-size:1rem;margin-bottom:8px}
+.ctrl{margin-bottom:10px}
+.ctrl label{display:block;color:#ccc;margin-bottom:2px;font-size:0.8rem}
+.ctrl input,.ctrl select{width:100%;padding:5px 8px;border:1px solid #333;border-radius:5px;background:#0a0a1a;color:#e0e0e0;font-size:0.85rem}
+.ctrl input[type=range]{padding:0}
+.ctrl input[type=color]{height:36px;padding:2px}
+.preview{display:flex;align-items:center;justify-content:center;min-height:250px;background:#12122a;border-radius:8px}
+.loader{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.spinner-ring{width:var(--s);height:var(--s);border:var(--bw) solid var(--c1);border-top-color:var(--c2);border-radius:50%;animation:spin var(--dur) linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dot{width:var(--ds);height:var(--ds);background:var(--dc);border-radius:50%;display:inline-block;animation:dotBounce var(--ddur) ease infinite both}
+.dot:nth-child(1){animation-delay:calc(-1*var(--ddur)/3)}
+.dot:nth-child(2){animation-delay:calc(-2*var(--ddur)/6)}
+@keyframes dotBounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+.bar{width:var(--bw2);height:var(--bh);background:#2a2a4a;border-radius:var(--br2);overflow:hidden}
+.bar-fill{height:100%;background:var(--bfc);border-radius:var(--br2);animation:barAnim var(--bdur) ease infinite}
+@keyframes barAnim{0%{width:0}100%{width:100%}}
+.code{background:#0a0a1a;padding:12px;border-radius:8px;margin-top:12px;font-family:'Fira Code',monospace;font-size:0.8rem;color:#a8e6cf}
+</style>
+</head>
+<body>
+<div class=container>
+<h1>Loading Animations Playground</h1>
+<p class=subtitle>Customize spinner, dots, and progress bar.</p>
+<div class=controls>
+<div class=panel><h2>Spinner</h2>
+<div class=ctrl><label>Size: <span id=spSizeV>40px</span></label><input type=range id=spSize min=20 max=80 value=40></div>
+<div class=ctrl><label>Speed: <span id=spSpeedV>0.8s</span></label><input type=range id=spSpeed min=200 max=3000 value=800></div>
+<div class=ctrl><label>Color 1</label><input type=color id=spC1 value="#2a2a4a"></div>
+<div class=ctrl><label>Color 2</label><input type=color id=spC2 value="#3b82f6"></div>
+</div>
+<div class=panel><h2>Dots</h2>
+<div class=ctrl><label>Dot Size: <span id=dotSizeV>12px</span></label><input type=range id=dotSize min=6 max=24 value=12></div>
+<div class=ctrl><label>Color</label><input type=color id=dotCol value="#3b82f6"></div>
+</div>
+</div>
+<div class=preview><div class=loader id=loader>
+<div class=spinner-ring id=spinnerEl></div>
+<div id=dotContainer><span class=dot></span><span class=dot></span><span class=dot></span></div>
+<div class=bar id=barEl><div class=bar-fill></div></div>
+</div></div>
+<div class=code id=codeOut>Customize the loading elements above.</div>
+</div>
+<script>
+const spSize=document.getElementById('spSize'),spSpeed=document.getElementById('spSpeed'),spC1=document.getElementById('spC1'),spC2=document.getElementById('spC2'),dotSize=document.getElementById('dotSize'),dotCol=document.getElementById('dotCol'),loader=document.getElementById('loader');
+function update(){
+const ss=spSize.value+'px',sd=(spSpeed.value/1000).toFixed(2)+'s',ds=dotSize.value+'px';
+document.getElementById('spSizeV').textContent=ss;document.getElementById('spSpeedV').textContent=sd;document.getElementById('dotSizeV').textContent=ds;
+document.getElementById('spinnerEl').style.setProperty('--s',ss);document.getElementById('spinnerEl').style.setProperty('--bw','4px');document.getElementById('spinnerEl').style.setProperty('--c1',spC1.value);document.getElementById('spinnerEl').style.setProperty('--c2',spC2.value);document.getElementById('spinnerEl').style.setProperty('--dur',sd);
+document.querySelectorAll('.dot').forEach(d=>{d.style.setProperty('--ds',ds);d.style.setProperty('--ddur','1.4s');d.style.setProperty('--dc',dotCol.value)});
+document.getElementById('barEl').style.setProperty('--bw2','200px');document.getElementById('barEl').style.setProperty('--bh','8px');document.getElementById('barEl').style.setProperty('--br2','4px');document.getElementById('barEl').querySelector('.bar-fill').style.setProperty('--bfc',spC2.value);document.getElementById('barEl').querySelector('.bar-fill').style.setProperty('--bdur','2s');
+}
+[spSize,spSpeed,spC1,spC2,dotSize,dotCol].forEach(el=>el.addEventListener('input',update));update();
+</script>
+</body>
+</html>

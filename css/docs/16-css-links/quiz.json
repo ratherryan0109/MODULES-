@@ -1,0 +1,247 @@
+{
+  "module": "16-css-links",
+  "title": "CSS Links",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the correct order for link pseudo-classes?",
+      "options": [
+        "Hover, Link, Visited, Active",
+        "Link, Visited, Hover, Active",
+        "Active, Hover, Link, Visited",
+        "Visited, Link, Hover, Active"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LVHA order: :link → :visited → :hover → :active. Memory trick: LoVe HAte."
+    },
+    {
+      "id": 2,
+      "question": "Why should you never remove focus outlines without providing alternatives?",
+      "options": [
+        "It's invalid CSS",
+        "It makes the site unusable for keyboard users",
+        "It causes JavaScript errors",
+        "It slows down the page"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Removing focus outlines prevents keyboard users from seeing which element is focused, making navigation impossible."
+    },
+    {
+      "id": 3,
+      "question": "Which pseudo-class applies styles to links being clicked?",
+      "options": [
+        ":hover",
+        ":active",
+        ":focus",
+        ":click"
+      ],
+      "correctAnswer": 1,
+      "explanation": ":active applies during the moment a link is being clicked (between mousedown and mouseup)."
+    },
+    {
+      "id": 4,
+      "question": "What does a:link select?",
+      "options": [
+        "All anchor elements",
+        "Unvisited links specifically",
+        "Links with a href attribute",
+        "Visited links only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "a:link selects anchor elements that have an href attribute and have not been visited by the user."
+    },
+    {
+      "id": 5,
+      "question": "What is the default text-decoration for links?",
+      "options": [
+        "none",
+        "underline",
+        "overline",
+        "line-through"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Browsers apply text-decoration: underline to links by default to distinguish them from regular text."
+    },
+    {
+      "id": 6,
+      "question": "How do you change the cursor when hovering over a link?",
+      "options": [
+        "Use the cursor property on the link",
+        "Links automatically show a pointer cursor",
+        "Use hover-cursor: pointer",
+        "Links can't change cursors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Links automatically show a pointer cursor (hand icon) — this is default browser behavior, not a CSS setting."
+    },
+    {
+      "id": 7,
+      "question": "What does a:visited do?",
+      "options": [
+        "Styles links that have been clicked on by the user",
+        "Styles links that are currently being visited",
+        "Styles all links regardless of visit state",
+        "Styles the current page link"
+      ],
+      "correctAnswer": 0,
+      "explanation": "a:visited applies styles to links whose href matches pages in the browser's history."
+    },
+    {
+      "id": 8,
+      "question": "For accessibility, what should indicate a link besides color?",
+      "options": [
+        "Font size",
+        "Underline or other non-color indicator",
+        "Background color",
+        "Border"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Color alone shouldn't distinguish links from regular text. Underline or other non-color cues help color-blind users."
+    },
+    {
+      "id": 9,
+      "question": "How do you remove the underline from a link?",
+      "options": [
+        "text-decoration: none",
+        "underline: none",
+        "text-style: normal",
+        "link-decoration: none"
+      ],
+      "correctAnswer": 0,
+      "explanation": "text-decoration: none removes the underline from links, but consider adding hover underlining for clarity."
+    },
+    {
+      "id": 10,
+      "question": "What is the difference between :focus and :focus-visible?",
+      "options": [
+        ":focus applies always; :focus-visible applies only for keyboard focus",
+        ":focus-visible is the newer name for :focus",
+        ":focus only works on links",
+        "They are identical"
+      ],
+      "correctAnswer": 0,
+      "explanation": ":focus fires on any focus. :focus-visible only shows the focus ring for keyboard navigation, not mouse clicks."
+    },
+    {
+      "id": 11,
+      "question": "How can you style a link that opens in a new tab differently?",
+      "options": [
+        "Use a[target=\"_blank\"] selector",
+        "Use a:new-tab pseudo-class",
+        "Use a[href*=\"blank\"]",
+        "Use a:external selector"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The attribute selector a[target=\"_blank\"] targets links that open in new tabs for custom styling."
+    },
+    {
+      "id": 12,
+      "question": "What does styling a:link with color: inherit do?",
+      "options": [
+        "Makes the link invisible",
+        "Makes the link use the parent element's text color",
+        "Removes the link styling",
+        "Applies the visited link color"
+      ],
+      "correctAnswer": 1,
+      "explanation": "color: inherit makes the link use its parent element's text color, useful for inline links in paragraphs."
+    },
+    {
+      "id": 13,
+      "question": "What is a link button pattern?",
+      "options": [
+        "A link that looks like a button using CSS padding, background, and borders",
+        "A button that navigates like a link",
+        "A link inside a button element",
+        "A button that uses the <a> tag"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Link buttons style anchor elements with button-like padding, background, border-radius, and hover states."
+    },
+    {
+      "id": 14,
+      "question": "Which pseudo-class would you use to style a link when a user hovers over it?",
+      "options": [
+        ":link",
+        ":hover",
+        ":active",
+        ":focus"
+      ],
+      "correctAnswer": 1,
+      "explanation": ":hover applies styles when the user's pointer is over the element."
+    },
+    {
+      "id": 15,
+      "question": "How do you indicate the current page in a navigation menu?",
+      "options": [
+        "Use a class like .active or .current on the current page's link",
+        "Use :current pseudo-class",
+        "Browsers automatically style the current page",
+        "Use :this pseudo-class"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Add an active/current class to the navigation item corresponding to the current page, then style it with CSS."
+    },
+    {
+      "id": 16,
+      "question": "What is the minimum recommended tap target size for links on mobile?",
+      "options": [
+        "16x16px",
+        "44x44px",
+        "24x24px",
+        "100x100px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WCAG recommends interactive targets be at least 44x44px for comfortable touch interaction."
+    },
+    {
+      "id": 17,
+      "question": "How do you create an animated underline effect on hover?",
+      "options": [
+        "Use transition on border-bottom or a pseudo-element",
+        "Use animation: underline",
+        "Use hover-underline: animated",
+        "Use transition on text-decoration"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Animated underlines can be created by transitioning border-bottom width or using a pseudo-element with scaleX animation."
+    },
+    {
+      "id": 18,
+      "question": "What does a[href^=\"https://\"] select?",
+      "options": [
+        "Links with https in any part of the URL",
+        "Links starting with https:// — useful for styling external links",
+        "Links ending with https://",
+        "Secure links only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The ^= attribute selector matches links where the href value starts with the specified string."
+    },
+    {
+      "id": 19,
+      "question": "How do links usually appear by default in most browsers?",
+      "options": [
+        "Blue underlined for unvisited, purple underlined for visited",
+        "Black bold for unvisited, gray for visited",
+        "Blue with no underline for unvisited, purple with underline for visited",
+        "All links are blue with no distinction"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Default browser styles: unvisited links are blue and underlined; visited links are purple and underlined."
+    },
+    {
+      "id": 20,
+      "question": "What does the :any-link pseudo-class do?",
+      "options": [
+        "Matches all links regardless of visit state",
+        "Matches links that are not yet visited",
+        "Matches links to any domain",
+        "Matches links with any href value"
+      ],
+      "correctAnswer": 0,
+      "explanation": ":any-link matches any element with an href attribute, combining both :link and :visited into one selector."
+    }
+  ]
+}

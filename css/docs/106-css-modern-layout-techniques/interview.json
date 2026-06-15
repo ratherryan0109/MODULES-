@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is CSS subgrid?", "answer": "Subgrid allows grid items to inherit the grid tracks from their parent grid container, enabling alignment across nested grid levels." },
+    { "question": "How do you enable subgrid on a grid item?", "answer": "Set display: grid; grid-template-columns: subgrid; on the grid item to inherit column tracks from the parent grid." },
+    { "question": "What is CSS masonry layout?", "answer": "Masonry is a layout where items are placed in columns (or rows) filling gaps below shorter items, creating a Pinterest-style uneven grid." },
+    { "question": "How do you create a masonry layout with CSS Grid?", "answer": "Use grid-template-rows: masonry; on the grid container, though this is experimental; currently masonry is often done with columns or JavaScript." },
+    { "question": "What is intrinsic sizing in CSS?", "answer": "Intrinsic sizing uses the content's natural size through values like min-content, max-content, and fit-content rather than fixed dimensions." },
+    { "question": "What does min-content mean in CSS sizing?", "answer": "min-content is the smallest size an element can be without overflowing, typically based on the longest word or fixed-size content." },
+    { "question": "What does max-content mean in CSS sizing?", "answer": "max-content is the size an element would be if all content were displayed on one line without wrapping." },
+    { "question": "What does fit-content do?", "answer": "fit-content clamps an element's size between min-content and a maximum value: width: fit-content(500px); uses available space up to 500px." },
+    { "question": "What are modern CSS layout best practices?", "answer": "Use Grid for 2D layouts, Flexbox for 1D layouts, container queries for component responsiveness, and logical properties for internationalization." },
+    { "question": "What is the difference between subgrid and nested grids?", "answer": "Subgrid shares the parent's track sizes directly; nested independent grids define their own track sizes and do not align with the parent." }
+  ],
+  "intermediate": [
+    { "question": "How does subgrid align grid items across nested levels?", "answer": "Subgridded items use the parent grid's column/row tracks, so all items across the subgrid align perfectly with the parent grid columns." },
+    { "question": "How do you use subgrid for aligning form labels and inputs?", "answer": "Create a grid for each form row with grid-template-columns: subgrid; so all labels and inputs align across multiple rows." },
+    { "question": "What is the browser support status for masonry layout?", "answer": "CSS masonry via grid-template-rows: masonry is experimental (Firefox only behind a flag); implement masonry using multi-column or JavaScript for production." },
+    { "question": "How do you create a fallback for browsers that do not support subgrid?", "answer": "Use a regular nested grid with explicit column sizes that match the parent grid as a fallback when subgrid is unsupported." },
+    { "question": "How does fit-content differ from using max-width with auto?", "answer": "fit-content is an intrinsic sizing value; it sizes the box based on content up to a maximum, while max-width constrains an otherwise-sized box." },
+    { "question": "How do you combine subgrid with auto-fill and auto-fit?", "answer": "Subgrid works within auto-filled grid tracks; the subgridded item inherits the number of tracks created by auto-fill in its span." },
+    { "question": "How do intrinsic sizing values work with flexbox?", "answer": "In flexbox, min-content and max-content affect flex item sizing; flex-basis with fit-content can control item growth within the flex container." },
+    { "question": "How do you use subgrid for card layouts where cards have aligned content?", "answer": "Make each card a subgrid row so card headers, bodies, and footers align across all cards in the same grid row." },
+    { "question": "What is the difference between min-content and fit-content in grid tracks?", "answer": "min-content makes the track as small as possible based on content; fit-content allows the track to grow but caps it at a maximum value." },
+    { "question": "How do you debug subgrid alignment issues?", "answer": "Use browser DevTools grid overlays to visualize parent and subgrid track lines, checking that subgrid items align to parent grid lines." }
+  ],
+  "advanced": [
+    { "question": "How does subgrid interact with named grid lines and grid areas?", "answer": "Subgridded children can reference named grid lines defined on the parent grid, extending the named line context into the subgrid." },
+    { "question": "How does masonry layout handle items of varying heights?", "answer": "Masonry places items in columns, filling each column sequentially; shorter columns receive the next item, creating an uneven bottom edge." },
+    { "question": "How do you implement a true CSS masonry with multi-column vs Grid?", "answer": "Multi-column fills top-to-bottom then column-to-column; Grid masonry fills left-to-right then row-to-row; choose based on desired content ordering." },
+    { "question": "How do you use subgrid with gap (grid-gap) inheritance?", "answer": "Subgrid inherits the parent's row-gap and column-gap; gaps are consistent across the subgrid and parent grid levels." },
+    { "question": "How do intrinsic sizing values affect the performance of large layouts?", "answer": "Intrinsic sizing requires the browser to calculate content sizes before layout, which can be slower than fixed sizes on very large pages." },
+    { "question": "How does subgrid work with grid-auto-flow and implicit tracks?", "answer": "Subgrid cannot inherit implicit tracks; the parent must define explicit grid tracks for the subgrid to inherit." },
+    { "question": "How do you combine container queries with subgrid for responsive components?", "answer": "Make the component a grid container with subgrid children, then use container queries to adjust the parent grid template at different container sizes." },
+    { "question": "How does subgrid behave with writing modes and logical properties?", "answer": "Subgrid adapts to writing modes; the inherited tracks follow the logical axes (inline/block) of the parent grid, adapting to direction changes." },
+    { "question": "How do you use subgrid for vertical alignment in magazine-style layouts?", "answer": "Use subgrid on rows so headlines, images, and text across multi-column articles align at both the row and column levels." },
+    { "question": "How do intrinsic sizing values interact with aspect-ratio?", "answer": "aspect-ratio can conflict with min-content/max-content; the aspect-ratio may be overridden if intrinsic sizing demands a different dimension." }
+  ]
+}

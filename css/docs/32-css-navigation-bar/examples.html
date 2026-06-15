@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Navigation Bar Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; margin: 0; }
+    section { background: #fff; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+    /* Example 1: Horizontal Nav */
+    .horizontal-nav ul {
+      list-style: none; margin: 0; padding: 0; display: flex; background: #333;
+    }
+    .horizontal-nav li a {
+      display: block; color: #fff; padding: 14px 20px; text-decoration: none; transition: background 0.3s;
+    }
+    .horizontal-nav li a:hover { background: #575757; }
+    .horizontal-nav .active { background: #04aa6d; }
+
+    /* Example 2: Vertical Nav */
+    .vertical-nav ul {
+      list-style: none; margin: 0; padding: 0; width: 220px; background: #f1f1f1; border: 1px solid #ddd;
+    }
+    .vertical-nav li a {
+      display: block; color: #000; padding: 12px 16px; text-decoration: none; border-bottom: 1px solid #ddd;
+    }
+    .vertical-nav li a:hover { background: #ddd; }
+    .vertical-nav .active { background: #04aa6d; color: #fff; }
+
+    /* Example 3: Sticky Nav */
+    .sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+    }
+    .sticky-nav ul {
+      list-style: none; margin: 0; padding: 0; display: flex; background: #007bff;
+    }
+    .sticky-nav li a {
+      display: block; color: #fff; padding: 14px 20px; text-decoration: none;
+    }
+    .sticky-nav li a:hover { background: rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+  <h1>CSS Navigation Bar Examples</h1>
+
+  <section>
+    <h2>Horizontal Navigation</h2>
+    <nav class="horizontal-nav">
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Vertical Navigation</h2>
+    <nav class="vertical-nav">
+      <ul>
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section style="min-height: 300px;">
+    <h2>Sticky Navigation</h2>
+    <nav class="sticky-nav">
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <p style="margin-top: 20px;">Scroll down to see the sticky nav in action.</p>
+    <div style="height: 500px; background: linear-gradient(#f4f4f4, #ddd); padding: 20px;">
+      <p>Keep scrolling...</p>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Keyframe Animations - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;padding:30px;background:#0f0f1a;color:#e0e0e0}
+.container{max-width:1000px;margin:0 auto}
+h1{color:#ffd700}.subtitle{color:#aaa;margin-bottom:20px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.panel{background:#1a1a2e;border-radius:12px;padding:20px;border:1px solid #2a2a4a}
+.panel h2{color:#00d4ff;font-size:1.1rem;margin-bottom:12px}
+.ctrl{margin-bottom:14px}
+.ctrl label{display:block;color:#ccc;margin-bottom:3px;font-size:0.85rem}
+.ctrl input,.ctrl select{width:100%;padding:7px 10px;border:1px solid #333;border-radius:6px;background:#0a0a1a;color:#e0e0e0}
+.ctrl input[type=range]{padding:0}
+.ctrl textarea{width:100%;padding:7px;border:1px solid #333;border-radius:6px;background:#0a0a1a;color:#a8e6cf;font-family:'Fira Code',monospace;font-size:0.8rem;min-height:100px}
+.preview{display:flex;align-items:center;justify-content:center;min-height:250px;background:#12122a;border-radius:8px}
+.target{width:100px;height:100px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:16px;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold}
+.code{background:#0a0a1a;padding:14px;border-radius:8px;font-family:'Fira Code',monospace;font-size:0.85rem;color:#a8e6cf;margin-top:16px}
+</style>
+</head>
+<body>
+<div class=container>
+<h1>Keyframe Animation Playground</h1>
+<p class=subtitle>Adjust animation properties in real-time.</p>
+<div class=row>
+<div class=panel><h2>Animation Controls</h2>
+<div class=ctrl><label>Duration: <span id=durVal>1s</span></label><input type=range id=dur min=100 max=5000 value=1000></div>
+<div class=ctrl><label>Delay: <span id=delVal>0s</span></label><input type=range id=del min=0 max=3000 value=0></div>
+<div class=ctrl><label>Iterations: <span id=iterVal>∞</span></label><input type=range id=iter min=1 max=20 value=5></div>
+<div class=ctrl><label>Direction</label><select id=dir><option value=normal>normal</option><option value=reverse>reverse</option><option value=alternate>alternate</option><option value=alternate-reverse>alternate-reverse</option></select></div>
+<div class=ctrl><label>Fill Mode</label><select id=fill><option value=none>none</option><option value=forwards>forwards</option><option value=backwards>backwards</option><option value=both>both</option></select></div>
+<div class=ctrl><label>Timing Function</label><select id=timing><option value=ease>ease</option><option value=linear>linear</option><option value=ease-in>ease-in</option><option value=ease-out>ease-out</option><option value=ease-in-out>ease-in-out</option></select></div>
+</div>
+<div class=panel><h2>Preview & Code</h2>
+<div class=ctrl>
+<label>Keyframes</label>
+<textarea id=keyframeCode>@keyframes demo {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-60px); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 1; }
+}</textarea>
+<button onclick="applyAnimation()" style="margin-top:8px;padding:6px 16px;background:#3b82f6;color:white;border:none;border-radius:6px;cursor:pointer">Apply</button>
+</div>
+</div>
+</div>
+<div class=preview><div class=target id=target>animate</div></div>
+<div class=code id=codeOut>animation: demo 1s ease 0s 5 normal none;</div>
+</div>
+<script>
+const target=document.getElementById('target'),dur=document.getElementById('dur'),del=document.getElementById('del'),iter=document.getElementById('iter'),dir=document.getElementById('dir'),fill=document.getElementById('fill'),timing=document.getElementById('timing'),keyframeCode=document.getElementById('keyframeCode'),codeOut=document.getElementById('codeOut');
+let styleEl=document.createElement('style');document.head.appendChild(styleEl);
+function applyAnimation(){
+const d=(dur.value/1000).toFixed(2)+'s',de=(del.value/1000).toFixed(2)+'s',i=iter.value==20?'infinite':iter.value;
+document.getElementById('durVal').textContent=d;document.getElementById('delVal').textContent=de;document.getElementById('iterVal').textContent=iter.value==20?'∞':iter.value;
+styleEl.textContent=keyframeCode.value;
+target.style.animation=`demo ${d} ${timing.value} ${de} ${i} ${dir.value} ${fill.value}`;
+codeOut.textContent=`animation: demo ${d} ${timing.value} ${de} ${i} ${dir.value} ${fill.value};`;
+}
+[dur,del,iter,dir,fill,timing].forEach(el=>el.addEventListener('input',applyAnimation));
+applyAnimation();
+</script>
+</body>
+</html>

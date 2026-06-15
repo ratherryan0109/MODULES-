@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inline Elements Examples</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; background: #f5f7fa; color: #333; }
+    h1 { text-align: center; color: #2c3e50; }
+    h2 { color: #2980b9; border-bottom: 2px solid #2980b9; padding-bottom: 6px; margin: 40px 0 20px; }
+    .example-box { background: white; border-radius: 10px; padding: 25px; margin: 25px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .example-box h3 { margin: 0 0 15px; color: #e67e22; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; font-size: 14px; }
+    .code { background: #2d2d2d; color: #f8f8f2; padding: 14px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 13px; overflow-x: auto; margin: 10px 0; white-space: pre; }
+
+    /* Example 1: Basic inline */
+    .ex1-inline-demo span { background: #e8f4fd; padding: 4px 8px; border-radius: 3px; margin: 2px; border: 1px solid #2980b9; }
+
+    /* Example 2: Box model on inline */
+    .ex2-box { background: #d5f5e3; padding: 20px; border: 2px solid #27ae60; margin: 10px; }
+
+    /* Example 3: Inline-block */
+    .ex3-ib { display: inline-block; width: 150px; height: 60px; background: #3498db; color: white; text-align: center; line-height: 60px; margin: 8px; border-radius: 6px; }
+
+    /* Example 4: Whitespace demo */
+    .ex4-gap { background: #f0f0f0; padding: 16px; font-size: 20px; }
+    .ex4-gap span { background: #e74c3c; color: white; padding: 8px 16px; }
+
+    /* Example 5: Replaced inline */
+    .ex5-img { vertical-align: middle; border-radius: 50%; }
+
+    /* Example 6: Text formatting */
+    .ex6-formatting { line-height: 2; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>Inline Elements Examples</h1>
+
+  <div class="example-box">
+    <h3>Example 1: Basic Inline Element Behavior</h3>
+    <p>Inline elements flow within text and do not break the line:</p>
+    <p class="ex1-inline-demo">
+      This sentence contains
+      <span>multiple</span>
+      <span>inline</span>
+      <span>elements</span>
+      that flow within the text.
+    </p>
+    <p>Notice how the inline elements stay on the same line and only take as much width as their content.</p>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 2: Box Model on Inline Elements</h3>
+    <p>Inline elements <strong>ignore width and height</strong>. Padding and borders apply but may overlap:</p>
+    <p>
+      Text before
+      <span class="ex2-box">This inline span has padding, border, and margin</span>
+      text after.
+    </p>
+    <div class="note">The margin-top/bottom has no visual effect. Padding extends the background but does not increase line height.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 3: Inline-Block for Box Model Control</h3>
+    <p>Using <code>display: inline-block</code> to create elements that flow inline but respect the box model:</p>
+    <div>
+      <div class="ex3-ib">Home</div>
+      <div class="ex3-ib" style="background:#e67e22;">About</div>
+      <div class="ex3-ib" style="background:#2ecc71;">Services</div>
+      <div class="ex3-ib" style="background:#9b59b6;">Contact</div>
+    </div>
+    <div class="note">Each box has width: 150px, height: 60px, and margin — made possible by inline-block.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 4: Whitespace Between Inline Elements</h3>
+    <p>Notice the gaps between the red boxes below — these are caused by whitespace in the HTML:</p>
+    <div class="ex4-gap">
+      <span>A</span>
+      <span>B</span>
+      <span>C</span>
+    </div>
+    <p>To remove gaps, either remove whitespace in HTML, use <code>font-size: 0</code> on parent, or use flexbox.</p>
+    <div class="code">&lt;span&gt;A&lt;/span&gt;&lt;span&gt;B&lt;/span&gt;&lt;span&gt;C&lt;/span&gt;  &lt;!-- No gaps --&gt;</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 5: Replaced Inline Elements (img, input)</h3>
+    <p>Images and inputs are replaced inline elements — they DO respect width and height:</p>
+    <p>
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%233498db'/%3E%3Ctext x='30' y='38' text-anchor='middle' fill='white' font-size='20'%3Eimg%3C/text%3E%3C/svg%3E"
+           alt="Demo image" class="ex5-img" width="60" height="60">
+      This text flows around the image. Unlike non-replaced inline elements, <code>&lt;img&gt;</code> respects width and height.
+      <input type="text" value="Input field" style="padding:4px;border:1px solid #ccc;border-radius:4px;">
+    </p>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 6: Text Formatting Elements</h3>
+    <div class="ex6-formatting">
+      <p><strong>Strong</strong> — <em>Emphasized</em> — <mark>Marked</mark> — <small>Small</small></p>
+      <p><b>Bold</b> — <i>Italic</i> — <u>Underlined</u> — <s>Strikethrough</s></p>
+      <p>Subscript: H<sub>2</sub>O — Superscript: E=mc<sup>2</sup></p>
+      <p><code>Code</code> — <kbd>Ctrl+S</kbd> — <samp>Output</samp> — <var>x</var></p>
+      <p><abbr title="HyperText Markup Language">HTML</abbr> — <cite>MDN Web Docs</cite></p>
+      <p><q>Short inline quote</q> — <dfn>HTML</dfn> is the standard markup language.</p>
+      <p><del>Deleted</del> <ins>Inserted</ins> — <time datetime="2025-03-15">March 15</time></p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 7: Links as Inline Elements</h3>
+    <p>
+      This is a paragraph with
+      <a href="#" style="color:#2980b9;font-weight:bold;">an inline link</a>
+      that flows naturally within the text. Links can also be
+      <a href="#" style="background:#3498db;color:white;padding:4px 8px;border-radius:4px;text-decoration:none;">styled as buttons</a>
+      while remaining inline.
+    </p>
+    <p>
+      Navigation links displayed as inline-block:
+    </p>
+    <nav style="background:#2c3e50;padding:12px 16px;border-radius:6px;">
+      <a href="#" style="color:white;margin-right:16px;text-decoration:none;">Home</a>
+      <a href="#" style="color:white;margin-right:16px;text-decoration:none;">About</a>
+      <a href="#" style="color:white;margin-right:16px;text-decoration:none;">Services</a>
+      <a href="#" style="color:white;text-decoration:none;">Contact</a>
+    </nav>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 8: Inline vs Block Comparison</h3>
+    <table style="width:100%;border-collapse:collapse;">
+      <tr><th style="background:#2c3e50;color:white;padding:12px;">Feature</th><th style="background:#2c3e50;color:white;padding:12px;">Inline</th><th style="background:#2c3e50;color:white;padding:12px;">Block</th></tr>
+      <tr><td style="border:1px solid #ddd;padding:10px;">New line</td><td style="border:1px solid #ddd;padding:10px;">No</td><td style="border:1px solid #ddd;padding:10px;">Yes</td></tr>
+      <tr><td style="border:1px solid #ddd;padding:10px;">Width</td><td style="border:1px solid #ddd;padding:10px;">Content-based</td><td style="border:1px solid #ddd;padding:10px;">100% of parent</td></tr>
+      <tr><td style="border:1px solid #ddd;padding:10px;">Height</td><td style="border:1px solid #ddd;padding:10px;">Ignored</td><td style="border:1px solid #ddd;padding:10px;">Respected</td></tr>
+      <tr><td style="border:1px solid #ddd;padding:10px;">Vertical margin</td><td style="border:1px solid #ddd;padding:10px;">Ignored</td><td style="border:1px solid #ddd;padding:10px;">Works</td></tr>
+      <tr><td style="border:1px solid #ddd;padding:10px;">Can contain block</td><td style="border:1px solid #ddd;padding:10px;">No</td><td style="border:1px solid #ddd;padding:10px;">Yes</td></tr>
+      <tr><td style="border:1px solid #ddd;padding:10px;">Examples</td><td style="border:1px solid #ddd;padding:10px;">span, a, strong</td><td style="border:1px solid #ddd;padding:10px;">div, p, h1</td></tr>
+    </table>
+  </div>
+</body>
+</html>

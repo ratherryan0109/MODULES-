@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "How do you create a navigation bar with Flexbox?", "answer": "Use display: flex on the nav container and gap for spacing; each link is a flex item." },
+    { "question": "How do you create a card grid with Flexbox?", "answer": "Use display: flex; flex-wrap: wrap on the container, with flex: 0 0 calc(33.33% - gap) on each card." },
+    { "question": "How do you create a sticky footer with Flexbox?", "answer": "Set body { display: flex; flex-direction: column; min-height: 100vh; } and main { flex: 1; }." },
+    { "question": "What is the Holy Grail layout in Flexbox?", "answer": "The Holy Grail has header, three-column middle (nav, main, sidebar), and footer, all using flex properties." },
+    { "question": "How do you create a media object with Flexbox?", "answer": "A media object has a fixed-width image on the left and flexible content on the right using display: flex." },
+    { "question": "How do you center content with Flexbox?", "answer": "Use display: flex; justify-content: center; align-items: center on the container." },
+    { "question": "How do you create equal-height columns with Flexbox?", "answer": "Use display: flex on the row container; columns automatically have equal height due to align-items: stretch." },
+    { "question": "How do you create a horizontal scrollable container with Flexbox?", "answer": "Use display: flex; overflow-x: auto; flex-wrap: nowrap on the container." },
+    { "question": "How do you create a centered content wrapper with Flexbox?", "answer": "Use display: flex; justify-content: center on the container with a max-width child." },
+    { "question": "How do you reverse the order of items in Flexbox?", "answer": "Use flex-direction: row-reverse or column-reverse to reverse item order." }
+  ],
+  "intermediate": [
+    { "question": "How do you build the Holy Grail layout with min-height: 100vh?", "answer": "Use body { display: flex; flex-direction: column; min-height: 100vh; }, a main row with flex: 1, and a footer." },
+    { "question": "How do you create a responsive navbar that becomes vertical on mobile?", "answer": "Use flex-direction: row on desktop and switch to column in a media query at the mobile breakpoint." },
+    { "question": "How do you create a centered card grid that wraps?", "answer": "Use display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; with fixed-width or minmax cards." },
+    { "question": "How do you build a media object with the image on the right?", "answer": "Use display: flex on the container and order: 1 on the image, or use flex-direction: row-reverse." },
+    { "question": "How do you create a sidebar layout that collapses on mobile?", "answer": "Use flex: 0 0 250px for the sidebar and flex: 1 for content; hide sidebar in media queries." },
+    { "question": "How do you create a dashboard layout with Flexbox?", "answer": "Use nested flex containers: a main vertical stack with header/content/footer and a horizontal content area with sidebar." },
+    { "question": "How do you distribute navigation items evenly across the bar?", "answer": "Use justify-content: space-between or space-evenly on the flex nav container." },
+    { "question": "How do you create a form with Flexbox row layout?", "answer": "Use display: flex; gap: 10px; on the form, with the submit button having flex: 0 0 auto and inputs flex: 1." },
+    { "question": "How do you create a flexible pricing card layout?", "answer": "Use display: flex; justify-content: center; gap: 20px; with individual cards as flex items and flex: 1." },
+    { "question": "How do you create a split content layout (50/50)?", "answer": "Use display: flex with two children, each having flex: 1 or width: 50%." }
+  ],
+  "advanced": [
+    { "question": "How do you build a pinned header and sidebar using Flexbox?", "answer": "Use position: sticky with top: 0 on the header and sidebar within a flex layout for pinned behavior." },
+    { "question": "How do you create a responsive layout that switches from column to row at a breakpoint?", "answer": "Use flex-direction: column by default and @media (min-width: 768px) { .container { flex-direction: row; } }." },
+    { "question": "How do you implement a CSS-only tab layout using Flexbox?", "answer": "Use flexbox for tabs (equal distribution) and :target or checkbox hack to show/hide tab content panels." },
+    { "question": "How do you create a dashboard with cards that have different flex-grow values?", "answer": "Assign different flex: values to cards based on importance (e.g., flex: 2 for primary, flex: 1 for secondary)." },
+    { "question": "How do you create a footer that stays at the bottom but scrolls with long content?", "answer": "Use flex: 1 on main and min-height: 100vh on body; the footer sits at bottom when content is short." },
+    { "question": "How do you build a complex navigation with nested flex containers?", "answer": "Use an outer flex container for the full navbar, inner flex containers for menu sections, and absolute flex for dropdowns." },
+    { "question": "How do you implement a responsive media object that stacks on mobile?", "answer": "Use flex-direction: row on desktop and flex-direction: column in a media query to stack image above text." },
+    { "question": "How do you create a flex-based layout that respects reading order for accessibility?", "answer": "Keep DOM order logical and use flex properties for visual arrangement; avoid reordering with the order property." },
+    { "question": "How do you create an auto-filling gallery using flex shorthand?", "answer": "Use flex: 0 0 300px; flex-wrap: wrap; gap: 10px; items will auto-fill rows with 300px items and wrap." },
+    { "question": "How do you build a complete page layout with header, hero, content, sidebar, and footer using nested flexes?", "answer": "Use a top-level column flex for page sections, row flex for content+sidebar, and individual flex containers for each section." }
+  ]
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Lists - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .demo-flex { display: flex; gap: 2rem; flex-wrap: wrap; margin: 0.75rem 0; }
+    .demo-flex > * { flex: 1; min-width: 150px; }
+    .custom-list { list-style: none; padding: 0; }
+    .custom-list li { padding: 0.6rem 0.8rem; margin: 0.3rem 0; background: #f0f9ff; border-left: 4px solid #06b6d4; border-radius: 0 6px 6px 0; font-weight: 500; }
+    .horizontal-list { list-style: none; padding: 0; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .horizontal-list li { background: #06b6d4; color: white; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 600; }
+    .image-bullet { list-style: none; padding: 0; }
+    .image-bullet li { padding: 0.4rem 0; padding-left: 1.5rem; position: relative; }
+    .image-bullet li::before { content: 'âœ“'; position: absolute; left: 0; color: #22c55e; font-weight: bold; }
+    .nested-demo ol ol { list-style-type: lower-alpha; }
+    .nested-demo ol ol ol { list-style-type: lower-roman; }
+    .pos-demo { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .pos-demo > div { flex: 1; min-width: 200px; }
+  </style>
+</head>
+<body>
+  <h1>CSS Lists - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: List-Style-Type Values</h2>
+    <p>Change bullet/number style with <code>list-style-type</code>. Unordered and ordered lists both support many values.</p>
+    <div class="demo-output">
+      <div class="demo-flex">
+        <div><strong>Unordered</strong><ul><li>disc (default)</li></ul><ul style="list-style-type:circle"><li>circle</li></ul><ul style="list-style-type:square"><li>square</li></ul><ul style="list-style-type:none"><li>none</li></ul></div>
+        <div><strong>Ordered</strong><ol><li>decimal</li></ol><ol style="list-style-type:decimal-leading-zero"><li>decimal-leading</li></ol><ol style="list-style-type:lower-alpha"><li>lower-alpha</li></ol><ol style="list-style-type:lower-roman"><li>lower-roman</li></ol></div>
+        <div><strong>More ordered</strong><ol style="list-style-type:upper-alpha"><li>upper-alpha</li></ol><ol style="list-style-type:upper-roman"><li>upper-roman</li></ol><ol style="list-style-type:lower-greek"><li>lower-greek</li></ol><ol style="list-style-type:georgian"><li>georgian</li></ol></div>
+      </div>
+    </div>
+    <pre><code>ul { list-style-type: square; }
+ol { list-style-type: lower-alpha; }
+ul { list-style-type: none; }  /* Hides bullets */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Custom Bullets with list-style-image</h2>
+    <p>Replace bullets with a custom image using <code>list-style-image</code>.</p>
+    <div class="demo-output">
+      <ul style="list-style-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22><circle cx=%228%22 cy=%228%22 r=%224%22 fill=%22%2306b6d4%22/></svg>');padding-left:1.5rem">
+        <li>Custom bullet image</li>
+        <li>Blue circle from SVG</li>
+        <li>Scales with font size</li>
+      </ul>
+    </div>
+    <pre><code>ul {
+  list-style-image: url('bullet.svg');
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Fully Custom Styled List (No Bullets)</h2>
+    <p>Remove default bullets and add custom styling for a modern card-like list appearance.</p>
+    <div class="demo-output">
+      <ul class="custom-list">
+        <li>Custom styled list item with left border accent</li>
+        <li>Clean, modern appearance without bullets</li>
+        <li>Hover effect can be added for interactivity</li>
+        <li>Great for navigation menus or feature lists</li>
+      </ul>
+    </div>
+    <pre><code>.custom-list {
+  list-style: none;   /* Remove bullets */
+  padding: 0;
+}
+.custom-list li {
+  padding: 0.6rem 0.8rem;
+  background: #f0f9ff;
+  border-left: 4px solid #06b6d4;
+  border-radius: 0 6px 6px 0;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Horizontal Navigation List</h2>
+    <p>Use <code>display: flex</code> on a list to create a horizontal navigation bar.</p>
+    <div class="demo-output">
+      <ul class="horizontal-list">
+        <li>Home</li>
+        <li>About</li>
+        <li>Services</li>
+        <li>Portfolio</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+    <pre><code>.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+.nav-list li {
+  background: #06b6d4;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: List-Style Position</h2>
+    <p><code>list-style-position</code> controls whether the bullet is inside or outside the content flow.</p>
+    <div class="demo-output">
+      <div class="pos-demo">
+        <div>
+          <strong>outside (default)</strong>
+          <ul style="list-style-position:outside;width:180px;border:1px solid #e2e8f0;padding:0.5rem 1.5rem">
+            <li>Text wraps under the bullet on long lines</li>
+            <li>Bullet hangs left of content</li>
+          </ul>
+        </div>
+        <div>
+          <strong>inside</strong>
+          <ul style="list-style-position:inside;width:180px;border:1px solid #e2e8f0;padding:0.5rem;list-style-position:inside">
+            <li>Text wraps to same indent as bullet</li>
+            <li>Bullet is inline with content</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <pre><code>.outside { list-style-position: outside; }
+.inside  { list-style-position: inside; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Nested List Styling</h2>
+    <p>Style nested lists differently at each level using descendant selectors.</p>
+    <div class="demo-output">
+      <ol class="nested-demo">
+        <li>First level (decimal)
+          <ol>
+            <li>Second level (lower-alpha)
+              <ol>
+                <li>Third level (lower-roman)</li>
+                <li>Another third</li>
+              </ol>
+            </li>
+            <li>Second level item</li>
+          </ol>
+        </li>
+        <li>First level item</li>
+      </ol>
+    </div>
+    <pre><code>ol { list-style-type: decimal; }
+ol ol { list-style-type: lower-alpha; }
+ol ol ol { list-style-type: lower-roman; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Checkmark Bullets with Pseudo-Elements</h2>
+    <p>Use <code>::before</code> to create custom checkmark or icon bullets.</p>
+    <div class="demo-output">
+      <ul class="image-bullet">
+        <li>Complete task — checked off</li>
+        <li>Another completed item</li>
+        <li>CSS-only checkmark bullets</li>
+      </ul>
+    </div>
+    <pre><code>.check-list {
+  list-style: none;
+  padding: 0;
+}
+.check-list li::before {
+  content: 'âœ“';
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-weight: bold;
+}
+.check-list li {
+  padding-left: 1.5rem;
+  position: relative;
+}</code></pre>
+  </div>
+
+</body>
+</html>

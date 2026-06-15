@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <nav> element used for in HTML?",
+      "answer": "The <nav> element represents a section of a page that contains navigation links to other pages or parts within the same page."
+    },
+    {
+      "question": "What is the difference between <nav> and a regular <div> with links?",
+      "answer": "<nav> is a semantic element that communicates its role to browsers, search engines, and assistive technologies. A <div> has no semantic meaning."
+    },
+    {
+      "question": "What is the implicit ARIA role of <nav>?",
+      "answer": "The <nav> element has an implicit ARIA role of 'navigation', which makes it a landmark region for screen readers."
+    },
+    {
+      "question": "Should every link on a page be inside a <nav>?",
+      "answer": "No. Only major navigation blocks should use <nav>. Links within article content, individual sidebar widgets, or legal text in footers do not need <nav>."
+    },
+    {
+      "question": "What HTML structure is commonly used inside <nav>?",
+      "answer": "An unordered list (<ul>) with list items (<li>) containing anchor tags (<a>) is the most common and accessible structure."
+    },
+    {
+      "question": "Write a simple navigation with three links.",
+      "answer": "<nav aria-label='Main'><ul><li><a href='/'>Home</a></li><li><a href='/about'>About</a></li><li><a href='/contact'>Contact</a></li></ul></nav>"
+    },
+    {
+      "question": "Is <nav> a block-level element?",
+      "answer": "Yes, <nav> is a block-level element by default."
+    },
+    {
+      "question": "Can you put a <nav> inside a <header>?",
+      "answer": "Yes, placing <nav> inside <header> is the most common pattern for primary site navigation."
+    },
+    {
+      "question": "What does aria-label do on a <nav> element?",
+      "answer": "aria-label provides a descriptive name for the navigation (e.g., 'Main navigation', 'Footer links') that screen readers announce."
+    },
+    {
+      "question": "What is the default visual appearance of <nav>?",
+      "answer": "The <nav> element has no default visual styling beyond being a block-level element. It is a generic container for navigation links."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you mark the current page in a navigation menu?",
+      "answer": "Use aria-current='page' on the <a> element representing the current page. This tells screen readers that this link points to the current page."
+    },
+    {
+      "question": "How is a breadcrumb navigation structured with HTML?",
+      "answer": "Use <nav aria-label='Breadcrumb'> containing an <ol> (ordered list) where each item is a link, and the last item uses aria-current='page'."
+    },
+    {
+      "question": "Can you have multiple <nav> elements on a single page?",
+      "answer": "Yes, a page can have multiple <nav> elements (e.g., main nav, sidebar nav, footer nav). Each should have a unique aria-label."
+    },
+    {
+      "question": "What is the difference between using <ul> and <ol> inside <nav>?",
+      "answer": "Use <ul> when order does not matter (main navigation). Use <ol> when order matters (breadcrumbs, pagination, step-by-step navigation)."
+    },
+    {
+      "question": "How do you create a horizontal navigation bar with CSS?",
+      "answer": "Set the <ul> to display: flex or inline-block; apply padding to <a> elements; use hover effects for interactivity."
+    },
+    {
+      "question": "How do you create a responsive hamburger menu without JavaScript?",
+      "answer": "Use a CSS checkbox hack: a hidden checkbox input with a <label> as the toggle, and use :checked selector to show/hide the navigation list."
+    },
+    {
+      "question": "What is the purpose of aria-current='page' in pagination?",
+      "answer": "It identifies the current page number in a paginated list, helping screen reader users understand which page they are viewing."
+    },
+    {
+      "question": "Can <nav> contain a heading element like <h2>?",
+      "answer": "Yes, <nav> can contain a heading to label the navigation. However, using aria-label on <nav> is more common and screen-reader friendly."
+    },
+    {
+      "question": "How does <nav> interact with the document outline?",
+      "answer": "<nav> is a sectioning element that creates a new entry in the document outline. If <nav> has no heading, the outline entry may be labeled 'Untitled'."
+    },
+    {
+      "question": "Should footer links always be wrapped in <nav>?",
+      "answer": "No. If the footer links are a small collection (e.g., privacy, terms, sitemap), they can remain directly in <footer>. Use <nav> only if it's a significant navigation section."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you handle deeply nested dropdown navigation accessibly?",
+      "answer": "Use nested <ul> elements, add aria-haspopup='true' to parent links, use aria-expanded to indicate open/closed state, and ensure all sub-items are keyboard navigable."
+    },
+    {
+      "question": "What is the correct way to handle a 'skip to navigation' link?",
+      "answer": "Place a skip link as the first focusable element: <a href='#main-nav' class='skip-link'>Skip to navigation</a>. The target <nav> should have id='main-nav'."
+    },
+    {
+      "question": "How do search engines use the <nav> element?",
+      "answer": "Search engines use <nav> to identify site structure and navigation patterns. Links within <nav> may be weighted differently for crawl prioritization and site structure understanding."
+    },
+    {
+      "question": "What is the difference between <nav role='navigation'> and just <nav>?",
+      "answer": "There is no difference. <nav> implicitly has role='navigation'. Adding it explicitly is redundant but not harmful."
+    },
+    {
+      "question": "How would you implement a mega-menu navigation with accessibility?",
+      "answer": "Use <nav> with nested <ul>, wrap dropdown content in <div> or <li>, use aria-label on column headings, ensure keyboard navigation with Tab and Arrow keys, and use aria-expanded on parent triggers."
+    },
+    {
+      "question": "What aria attributes are needed for an accessible mobile hamburger menu?",
+      "answer": "aria-expanded (true/false) on the toggle button, aria-controls pointing to the menu ID, aria-label on the toggle, and role='navigation' on the menu container."
+    },
+    {
+      "question": "How does the <nav> landmark interact with other landmarks in accessibility APIs?",
+      "answer": "The navigation landmark allows screen reader users to jump directly to navigation using landmark navigation keys. Multiple navigation landmarks require distinct labels for differentiation."
+    },
+    {
+      "question": "What are the implications of using display: none on a <nav> for mobile?",
+      "answer": "display: none removes content from the accessibility tree. Screen readers cannot access hidden navigation. Use a combination of visibility: hidden/clipping for off-screen content instead."
+    },
+    {
+      "question": "How do you create a 'skip to content' link that only appears on focus?",
+      "answer": "Use CSS: .skip-link { position: absolute; top: -100%; } .skip-link:focus { top: 0; background: white; padding: 8px; z-index: 10000; }"
+    },
+    {
+      "question": "What is the correct way to handle active link styling in a single-page application (SPA)?",
+      "answer": "Use aria-current='page' on the active link, update it dynamically via JavaScript as the route changes, and use CSS attribute selectors for styling: [aria-current='page'] { font-weight: bold; }"
+    }
+  ]
+}

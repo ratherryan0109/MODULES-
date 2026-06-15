@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Filters — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; padding: 2rem; color: #eee; }
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: #aaa; margin-bottom: 2rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .controls { background: #16213e; border-radius: 12px; padding: 1.5rem; }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .checkbox-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .checkbox-group label { font-size: 0.85rem; color: #aaa; display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+    .preview-area { background: #16213e; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; }
+    .preview-area img { max-width: 100%; border-radius: 12px; }
+    .preview-img { width: 300px; height: 300px; object-fit: cover; border-radius: 16px; transition: filter 0.1s; }
+    .code-output { background: #0a0a1a; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #a8d8ea; white-space: pre-wrap; word-break: break-all; width: 100%; }
+    .preset-btn { padding: 0.4rem 0.8rem; border: 1px solid #333; border-radius: 6px; background: #0f3460; color: #aaa; cursor: pointer; font-size: 0.75rem; }
+    .preset-btn:hover { background: #e94560; color: white; }
+    .preset-btn.active { background: #e94560; color: white; }
+    .presets { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Filters Playground</h1>
+  <p class="subtitle">Experiment with CSS filter functions in real time</p>
+
+  <div class="container">
+    <div class="controls">
+      <h2>Filters</h2>
+      <div class="presets">
+        <button class="preset-btn" onclick="applyPreset('normal')">Normal</button>
+        <button class="preset-btn" onclick="applyPreset('grayscale')">Grayscale</button>
+        <button class="preset-btn" onclick="applyPreset('sepia')">Sepia</button>
+        <button class="preset-btn" onclick="applyPreset('vintage')">Vintage</button>
+        <button class="preset-btn" onclick="applyPreset('vibrant')">Vibrant</button>
+        <button class="preset-btn" onclick="applyPreset('invert')">Invert</button>
+        <button class="preset-btn" onclick="applyPreset('blur')">Blur</button>
+      </div>
+
+      <div class="control-group">
+        <label>Blur <span class="value" id="valBlur">0</span></label>
+        <input type="range" id="blur" min="0" max="20" value="0" step="0.5" oninput="updateFilter()">
+      </div>
+      <div class="control-group">
+        <label>Brightness <span class="value" id="valBright">1.0</span></label>
+        <input type="range" id="bright" min="0" max="3" value="1" step="0.05" oninput="updateFilter()">
+      </div>
+      <div class="control-group">
+        <label>Contrast <span class="value" id="valContrast">1.0</span></label>
+        <input type="range" id="contrast" min="0" max="3" value="1" step="0.05" oninput="updateFilter()">
+      </div>
+      <div class="control-group">
+        <label>Grayscale <span class="value" id="valGray">0</span></label>
+        <input type="range" id="gray" min="0" max="1" value="0" step="0.01" oninput="updateFilter()">
+      </div>
+      <div class="control-group">
+        <label>Sepia <span class="value" id="valSepia">0</span></label>
+        <input type="range" id="sepia" min="0" max="1" value="0" step="0.01" oninput="updateFilter()">
+      </div>
+      <div class="control-group">
+        <label>Hue Rotate <span class="value" id="valHue">0°</span></label>
+        <input type="range" id="hue" min="0" max="360" value="0" oninput="updateFilter()">
+      </div>
+      <div class="control-group">
+        <label>Saturate <span class="value" id="valSaturate">1.0</span></label>
+        <input type="range" id="saturate" min="0" max="5" value="1" step="0.05" oninput="updateFilter()">
+      </div>
+      <div class="control-group">
+        <label>Invert <span class="value" id="valInvert">0</span></label>
+        <input type="range" id="invert" min="0" max="1" value="0" step="0.01" oninput="updateFilter()">
+      </div>
+      <div class="control-group">
+        <label>Opacity <span class="value" id="valOpacity">1.0</span></label>
+        <input type="range" id="opacity" min="0" max="1" value="1" step="0.01" oninput="updateFilter()">
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <img class="preview-img" id="previewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23e74c3c'/%3E%3Cstop offset='50%25' stop-color='%233498db'/%3E%3Cstop offset='100%25' stop-color='%232ecc71'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23g)'/%3E%3Ccircle cx='150' cy='120' r='70' fill='white' opacity='0.2'/%3E%3Ctext x='50' y='250' fill='white' font-size='24' font-weight='bold'%3EFilter%3C/text%3E%3Ctext x='50' y='280' fill='white' font-size='14' opacity='0.7'%3EInteractive Demo%3C/text%3E%3C/svg%3E" alt="Preview">
+      </div>
+      <div class="code-output" id="codeOutput">filter: none;</div>
+    </div>
+  </div>
+
+  <script>
+    function updateFilter() {
+      const blur = document.getElementById('blur').value;
+      const bright = document.getElementById('bright').value;
+      const contrast = document.getElementById('contrast').value;
+      const gray = document.getElementById('gray').value;
+      const sepia = document.getElementById('sepia').value;
+      const hue = document.getElementById('hue').value;
+      const saturate = document.getElementById('saturate').value;
+      const invert = document.getElementById('invert').value;
+      const opacity = document.getElementById('opacity').value;
+
+      document.getElementById('valBlur').textContent = blur + 'px';
+      document.getElementById('valBright').textContent = bright;
+      document.getElementById('valContrast').textContent = contrast;
+      document.getElementById('valGray').textContent = gray;
+      document.getElementById('valSepia').textContent = sepia;
+      document.getElementById('valHue').textContent = hue + '°';
+      document.getElementById('valSaturate').textContent = saturate;
+      document.getElementById('valInvert').textContent = invert;
+      document.getElementById('valOpacity').textContent = opacity;
+
+      const filterStr = `blur(${blur}px) brightness(${bright}) contrast(${contrast}) grayscale(${gray}) sepia(${sepia}) hue-rotate(${hue}deg) saturate(${saturate}) invert(${invert}) opacity(${opacity})`;
+      document.getElementById('previewImg').style.filter = filterStr;
+      document.getElementById('codeOutput').textContent = 'filter: ' + filterStr + ';';
+    }
+
+    function applyPreset(name) {
+      const sets = {
+        normal: { blur:0, bright:1, contrast:1, gray:0, sepia:0, hue:0, saturate:1, invert:0, opacity:1 },
+        grayscale: { blur:0, bright:1, contrast:1, gray:1, sepia:0, hue:0, saturate:1, invert:0, opacity:1 },
+        sepia: { blur:0, bright:1, contrast:1, gray:0, sepia:0.8, hue:0, saturate:1, invert:0, opacity:1 },
+        vintage: { blur:0, bright:0.9, contrast:1.1, gray:0, sepia:0.5, hue:0, saturate:0.8, invert:0, opacity:1 },
+        vibrant: { blur:0, bright:1.1, contrast:1.1, gray:0, sepia:0, hue:0, saturate:1.8, invert:0, opacity:1 },
+        invert: { blur:0, bright:1, contrast:1, gray:0, sepia:0, hue:180, saturate:1, invert:1, opacity:1 },
+        blur: { blur:5, bright:1, contrast:1, gray:0, sepia:0, hue:0, saturate:1, invert:0, opacity:1 }
+      };
+      const s = sets[name];
+      if (!s) return;
+      document.getElementById('blur').value = s.blur;
+      document.getElementById('bright').value = s.bright;
+      document.getElementById('contrast').value = s.contrast;
+      document.getElementById('gray').value = s.gray;
+      document.getElementById('sepia').value = s.sepia;
+      document.getElementById('hue').value = s.hue;
+      document.getElementById('saturate').value = s.saturate;
+      document.getElementById('invert').value = s.invert;
+      document.getElementById('opacity').value = s.opacity;
+      updateFilter();
+    }
+
+    updateFilter();
+  </script>
+</body>
+</html>

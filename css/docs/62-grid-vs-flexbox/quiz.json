@@ -1,0 +1,147 @@
+{
+  "module": "62-grid-vs-flexbox",
+  "title": "Grid vs Flexbox",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the fundamental difference between Flexbox and Grid?",
+      "options": ["Flexbox is one-dimensional; Grid is two-dimensional", "Flexbox is newer than Grid", "Grid only works with columns", "Flexbox is for mobile; Grid is for desktop"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox operates along one axis (row or column), while Grid works with rows and columns simultaneously."
+    },
+    {
+      "id": 2,
+      "question": "Which tool is content-first (items drive sizing)?",
+      "options": ["Flexbox", "CSS Grid", "Both", "Neither"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox is content-first — items decide their size based on content. Grid is layout-first — tracks define available space."
+    },
+    {
+      "id": 3,
+      "question": "Which tool is best for a page-level layout with header, sidebar, main, and footer?",
+      "options": ["CSS Grid", "Flexbox", "Either works the same", "Neither"],
+      "correctAnswer": 0,
+      "explanation": "Page layouts are two-dimensional by nature (rows AND columns), making Grid the better choice for defining the overall page structure."
+    },
+    {
+      "id": 4,
+      "question": "When should you use Flexbox instead of Grid?",
+      "options": ["When you need to distribute items along a single axis", "When you need both rows and columns", "When you need strict alignment", "When you need overlapping elements"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox excels at single-axis distribution. If you only need a row or a column, Flexbox is simpler than Grid."
+    },
+    {
+      "id": 5,
+      "question": "True or False: You should choose either Grid or Flexbox and use it for your entire layout.",
+      "options": ["False — most production layouts combine both", "True — pick one and stick with it", "Only if the layout is simple", "Flexbox is always preferred"],
+      "correctAnswer": 0,
+      "explanation": "The best CSS developers use Grid for overall page structure and Flexbox inside grid cells for component layouts."
+    },
+    {
+      "id": 6,
+      "question": "What is the recommended pattern for combining Grid and Flexbox?",
+      "options": ["Grid for the page layout structure, Flexbox inside cells for components", "Flexbox for the page layout, Grid for components", "Use whichever your framework supports", "Never combine them"],
+      "correctAnswer": 0,
+      "explanation": "The standard pattern: Grid defines the overall layout (two-dimensional), and Flexbox handles component internals (one-dimensional)."
+    },
+    {
+      "id": 7,
+      "question": "Which tool is better for creating a navigation bar?",
+      "options": ["Flexbox — one dimension, content-driven widths", "Grid — because it is newer", "Either — they are identical for nav bars", "Neither — use floats"],
+      "correctAnswer": 0,
+      "explanation": "Navigation bars are one-dimensional (horizontal or vertical). Flexbox handles content-driven widths and alignment naturally."
+    },
+    {
+      "id": 8,
+      "question": "Which tool is better for a card grid where cards must align perfectly in both directions?",
+      "options": ["Grid — items align to rows AND columns", "Flexbox with flex-wrap — creates natural wrapping", "Flexbox with gaps — same result", "Neither — use a JavaScript library"],
+      "correctAnswer": 0,
+      "explanation": "Grid creates a true two-dimensional grid where items align in both directions. Flexbox with flex-wrap leaves uneven last rows."
+    },
+    {
+      "id": 9,
+      "question": "What problem does Flexbox have for card grids that Grid solves?",
+      "options": ["Last row items stretch to fill the row, creating uneven sizes", "Flexbox cannot have gaps", "Flexbox does not support wrap", "Flexbox cannot align items"],
+      "correctAnswer": 0,
+      "explanation": "When using flex-wrap, items on the last row stretch to fill available space, creating awkward visual unevenness. Grid keeps all items properly aligned."
+    },
+    {
+      "id": 10,
+      "question": "Which tool is more appropriate for a tag list with different length labels?",
+      "options": ["Flexbox — handles content wrapping naturally", "Grid — creates fixed-size cells", "Either works equally well", "Neither — use inline-block"],
+      "correctAnswer": 0,
+      "explanation": "Tag lists need items to size to their content and wrap naturally — Flexbox handles this perfectly. Grid would over-constrain the items."
+    },
+    {
+      "id": 11,
+      "question": "Which is the simpler tool for centering content both horizontally and vertically?",
+      "options": ["Flexbox (align-items + justify-content)", "Grid (place-items)", "Both are equally simple", "Neither — use margin auto"],
+      "correctAnswer": 0,
+      "explanation": "While Grid has `place-items: center` (shorter syntax), Flexbox is the more conventional and widely used tool for centering single items."
+    },
+    {
+      "id": 12,
+      "question": "When would you choose Grid over Flexbox for a two-column layout?",
+      "options": ["When you need precise column alignment and spanning", "When you have only two items", "When the layout is responsive", "Never — Flexbox is always better for two columns"],
+      "correctAnswer": 0,
+      "explanation": "Both work for two-column layouts, but Grid gives you more control over column spanning and alignment."
+    },
+    {
+      "id": 13,
+      "question": "What is the main strength of Flexbox compared to Grid?",
+      "options": ["Better for one-dimensional, content-driven layouts", "It is always faster", "It supports more browsers", "It uses less CSS"],
+      "correctAnswer": 0,
+      "explanation": "Flexbox's main strength is one-dimensional layouts where items drive sizing based on their content — navigation, button groups, and wrapping lists."
+    },
+    {
+      "id": 14,
+      "question": "What is the main strength of Grid compared to Flexbox?",
+      "options": ["True two-dimensional layout with explicit row and column control", "It is newer so it must be better", "It replaces all uses of Flexbox", "It works without CSS"],
+      "correctAnswer": 0,
+      "explanation": "Grid's main strength is two-dimensional layout where you control both rows and columns explicitly."
+    },
+    {
+      "id": 15,
+      "question": "Which tool should you use to create overlapping elements?",
+      "options": ["CSS Grid — items can occupy the same grid cells", "Flexbox — with negative margins", "Neither — use absolute positioning", "Grid — only with JavaScript"],
+      "correctAnswer": 0,
+      "explanation": "Grid's explicit cell model allows multiple items to occupy the same grid area, making overlap trivial. Flexbox cannot do this naturally."
+    },
+    {
+      "id": 16,
+      "question": "For a form where labels and inputs must align across multiple rows, which tool is better?",
+      "options": ["CSS Grid — grid-template-columns aligns label + input columns", "Flexbox — with fixed widths on labels", "Either works equally", "Form elements cannot use CSS Grid"],
+      "correctAnswer": 0,
+      "explanation": "Forms need two-dimensional alignment — labels in one column, inputs in another, aligned across multiple rows. Grid handles this perfectly."
+    },
+    {
+      "id": 17,
+      "question": "What happens with `flex: 1 1 280px` on items in a flex-wrap container?",
+      "options": ["Items are at least 280px, can grow, and wrap to new rows when the container is too narrow", "Items are exactly 280px and overflow if needed", "Items are 280px and cannot grow", "Items shrink to 0"],
+      "correctAnswer": 0,
+      "explanation": "`flex: 1 1 280px` = grow (1), shrink (1), basis (280px). Items start at 280px, grow to fill space, shrink if needed, and wrap when the container is too narrow."
+    },
+    {
+      "id": 18,
+      "question": "Which layout pattern is NOT possible with Flexbox alone?",
+      "options": ["Elements spanning multiple rows and columns simultaneously", "A responsive card grid", "A centered login form", "A navigation bar with a logo and links"],
+      "correctAnswer": 0,
+      "explanation": "Items spanning both rows and columns simultaneously (e.g., featured article spanning 2 cols × 2 rows) is a two-dimensional pattern that requires Grid."
+    },
+    {
+      "id": 19,
+      "question": "What is a good rule of thumb for choosing Grid vs Flexbox?",
+      "options": ["Count the dimensions: 1 → Flexbox, 2 → Grid", "Always use Grid for everything", "Always use Flexbox for everything", "Use whichever requires fewer lines of CSS"],
+      "correctAnswer": 0,
+      "explanation": "The simplest heuristic: if you need only a row or column, use Flexbox. If you need both rows and columns, use Grid."
+    },
+    {
+      "id": 20,
+      "question": "True or False: Grid and Flexbox cannot be nested inside each other.",
+      "options": ["False — they nest perfectly. Grid can contain Flexbox items and vice versa.", "True — they cannot be mixed", "Only Flexbox inside Grid works", "Only Grid inside Flexbox works"],
+      "correctAnswer": 0,
+      "explanation": "Grid and Flexbox nest seamlessly. A Grid item can be a Flexbox container, and a Flexbox item can be a Grid container. This is the standard pattern for production layouts."
+    }
+  ]
+}

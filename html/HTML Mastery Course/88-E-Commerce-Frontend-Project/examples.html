@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Frontend Project - Examples</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #e74c3c; padding-bottom: 10px; margin-bottom: 30px; }
+        h2 { color: #2c3e50; margin: 30px 0 15px; }
+        .component { background: white; border-radius: 10px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .component-header { background: #2c3e50; color: white; padding: 12px 20px; font-weight: bold; }
+        .component-demo { padding: 30px; }
+        .component-code { background: #1e1e1e; color: #d4d4d4; padding: 20px; overflow-x: auto; font-size: 14px; line-height: 1.5; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .tag { display: inline-block; background: #3498db; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin: 2px; }
+        .product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 280px; }
+        .product-card .image { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 3em; }
+        .product-card .info { padding: 15px; }
+        .product-card .info h3 { margin-bottom: 5px; font-size: 1em; }
+        .product-card .price { font-weight: bold; color: #e74c3c; font-size: 1.2em; }
+        .product-card .rating { color: #f39c12; }
+        .product-card button { background: #3498db; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>E-Commerce Frontend Project — Component Examples</h1>
+
+        <!-- Example 1: Product Card -->
+        <div class="component">
+            <div class="component-header">Example 1: Product Card Component</div>
+            <div class="component-demo">
+                <div style="display:flex;gap:20px;flex-wrap:wrap;">
+                    <article class="product-card">
+                        <div class="image" style="background:#3498db;">&#128187;</div>
+                        <div class="info">
+                            <h3>Laptop Pro</h3>
+                            <div class="rating">★★★★☆</div>
+                            <p class="price">$1,299.99</p>
+                            <button>Add to Cart</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="image" style="background:#e74c3c;">&#128241;</div>
+                        <div class="info">
+                            <h3>SmartPhone X</h3>
+                            <div class="rating">★★★★★</div>
+                            <p class="price">$899.99</p>
+                            <button>Add to Cart</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="image" style="background:#2ecc71;">&#127911;</div>
+                        <div class="info">
+                            <h3>Wireless Buds</h3>
+                            <div class="rating">★★★☆☆</div>
+                            <p class="price">$149.99</p>
+                            <button>Add to Cart</button>
+                        </div>
+                    </article>
+                </div>
+<pre>&lt;article class="product-card"&gt;
+    &lt;div class="product-image"&gt;
+        &lt;img src="laptop.jpg" alt="Laptop Pro"&gt;
+    &lt;/div&gt;
+    &lt;div class="product-info"&gt;
+        &lt;h3&gt;&lt;a href="product.html"&gt;Laptop Pro&lt;/a&gt;&lt;/h3&gt;
+        &lt;div class="rating"&gt;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9734;&lt;/div&gt;
+        &lt;p class="price"&gt;$1,299.99&lt;/p&gt;
+        &lt;button class="add-to-cart"&gt;Add to Cart&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Example 2: Product Grid with Sidebar -->
+        <div class="component">
+            <div class="component-header">Example 2: Product Grid Layout with Sidebar Filters</div>
+            <div class="component-demo">
+                <div style="display:grid;grid-template-columns:220px 1fr;gap:20px;background:#f5f5f5;padding:15px;border-radius:8px;">
+                    <aside style="background:white;padding:15px;border-radius:8px;">
+                        <h4 style="margin-bottom:10px;color:#2c3e50;">Categories</h4>
+                        <label style="display:block;margin:5px 0;"><input type="checkbox"> Electronics</label>
+                        <label style="display:block;margin:5px 0;"><input type="checkbox"> Clothing</label>
+                        <label style="display:block;margin:5px 0;"><input type="checkbox"> Home</label>
+                        <h4 style="margin:15px 0 10px;color:#2c3e50;">Price</h4>
+                        <input type="range" min="0" max="1000" style="width:100%;">
+                        <h4 style="margin:15px 0 10px;color:#2c3e50;">Rating</h4>
+                        <label style="display:block;margin:3px 0;"><input type="radio" name="r"> ★★★★ & up</label>
+                        <label style="display:block;margin:3px 0;"><input type="radio" name="r"> ★★★ & up</label>
+                    </aside>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
+                            <span>Showing 1-9 of 24 items</span>
+                            <select style="padding:5px;">
+                                <option>Sort: Featured</option>
+                                <option>Price: Low to High</option>
+                            </select>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:15px;">
+                            <div class="product-card"><div class="image" style="background:#3498db;height:120px;font-size:2em;">&#128187;</div><div class="info" style="padding:10px;"><h3 style="font-size:0.9em;">Product</h3><p class="price" style="font-size:1em;">$49</p><button style="font-size:0.85em;">Add</button></div></div>
+                            <div class="product-card"><div class="image" style="background:#e74c3c;height:120px;font-size:2em;">&#128241;</div><div class="info" style="padding:10px;"><h3 style="font-size:0.9em;">Product</h3><p class="price" style="font-size:1em;">$89</p><button style="font-size:0.85em;">Add</button></div></div>
+                            <div class="product-card"><div class="image" style="background:#2ecc71;height:120px;font-size:2em;">&#127911;</div><div class="info" style="padding:10px;"><h3 style="font-size:0.9em;">Product</h3><p class="price" style="font-size:1em;">$149</p><button style="font-size:0.85em;">Add</button></div></div>
+                        </div>
+                        <nav style="display:flex;justify-content:center;gap:5px;margin-top:15px;">
+                            <a href="#" style="padding:5px 10px;background:#3498db;color:white;text-decoration:none;border-radius:3px;">1</a>
+                            <a href="#" style="padding:5px 10px;background:#ddd;color:#333;text-decoration:none;border-radius:3px;">2</a>
+                            <a href="#" style="padding:5px 10px;background:#ddd;color:#333;text-decoration:none;border-radius:3px;">3</a>
+                        </nav>
+                    </div>
+                </div>
+<pre>&lt;div class="product-layout"&gt;
+    &lt;aside class="sidebar"&gt;
+        &lt;h3&gt;Categories&lt;/h3&gt;
+        &lt;label&gt;&lt;input type="checkbox"&gt; Electronics&lt;/label&gt;
+        &lt;h3&gt;Price Range&lt;/h3&gt;
+        &lt;input type="range"&gt;
+    &lt;/aside&gt;
+    &lt;main class="product-grid"&gt;
+        &lt;div class="grid-controls"&gt;...&lt;/div&gt;
+        &lt;div class="grid"&gt;&lt;!-- Product cards --&gt;&lt;/div&gt;
+        &lt;nav class="pagination"&gt;...&lt;/nav&gt;
+    &lt;/main&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Example 3: Shopping Cart Table -->
+        <div class="component">
+            <div class="component-header">Example 3: Shopping Cart Table</div>
+            <div class="component-demo">
+                <table style="width:100%;border-collapse:collapse;background:white;border-radius:8px;overflow:hidden;">
+                    <thead style="background:#2c3e50;color:white;">
+                        <tr><th style="padding:12px;text-align:left;">Product</th><th style="padding:12px;">Price</th><th style="padding:12px;">Qty</th><th style="padding:12px;">Subtotal</th><th style="padding:12px;"></th></tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid #eee;">
+                            <td style="padding:12px;display:flex;align-items:center;gap:10px;">
+                                <div style="width:60px;height:60px;background:#3498db;border-radius:5px;display:flex;align-items:center;justify-content:center;color:white;">&#128187;</div>
+                                <span>Laptop Pro</span>
+                            </td>
+                            <td style="padding:12px;text-align:center;">$1,299.99</td>
+                            <td style="padding:12px;text-align:center;"><input type="number" value="1" min="1" style="width:50px;padding:5px;"></td>
+                            <td style="padding:12px;text-align:center;font-weight:bold;">$1,299.99</td>
+                            <td style="padding:12px;text-align:center;"><button style="background:#e74c3c;color:white;border:none;padding:5px 10px;border-radius:3px;cursor:pointer;">✕</button></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px;display:flex;align-items:center;gap:10px;">
+                                <div style="width:60px;height:60px;background:#2ecc71;border-radius:5px;display:flex;align-items:center;justify-content:center;color:white;">&#127911;</div>
+                                <span>Wireless Buds</span>
+                            </td>
+                            <td style="padding:12px;text-align:center;">$149.99</td>
+                            <td style="padding:12px;text-align:center;"><input type="number" value="2" min="1" style="width:50px;padding:5px;"></td>
+                            <td style="padding:12px;text-align:center;font-weight:bold;">$299.98</td>
+                            <td style="padding:12px;text-align:center;"><button style="background:#e74c3c;color:white;border:none;padding:5px 10px;border-radius:3px;cursor:pointer;">✕</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+<pre>&lt;table class="cart-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Price&lt;/th&gt;
+            &lt;th&gt;Quantity&lt;/th&gt;&lt;th&gt;Subtotal&lt;/th&gt;&lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;img src="product.jpg" alt=""&gt;
+                &lt;a href="product.html"&gt;Product Name&lt;/a&gt;
+            &lt;/td&gt;
+            &lt;td&gt;$49.99&lt;/td&gt;
+            &lt;td&gt;&lt;input type="number" value="1" min="1"&gt;&lt;/td&gt;
+            &lt;td&gt;$49.99&lt;/td&gt;
+            &lt;td&gt;&lt;button class="remove"&gt;&amp;#10005;&lt;/button&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Example 4: Cart Summary -->
+        <div class="component">
+            <div class="component-header">Example 4: Cart Summary with Coupon</div>
+            <div class="component-demo">
+                <div style="max-width:400px;margin:0 auto;background:white;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <div style="display:flex;gap:5px;margin-bottom:15px;">
+                        <input type="text" placeholder="Coupon code" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:4px;">
+                        <button style="background:#3498db;color:white;border:none;padding:8px 15px;border-radius:4px;cursor:pointer;">Apply</button>
+                    </div>
+                    <div style="border-top:1px solid #eee;padding-top:15px;">
+                        <div style="display:flex;justify-content:space-between;margin:5px 0;"><span>Subtotal:</span><span>$1,599.97</span></div>
+                        <div style="display:flex;justify-content:space-between;margin:5px 0;"><span>Shipping:</span><span>$5.99</span></div>
+                        <div style="display:flex;justify-content:space-between;margin:5px 0;"><span>Tax (8%):</span><span>$127.99</span></div>
+                        <div style="display:flex;justify-content:space-between;margin:10px 0;padding-top:10px;border-top:2px solid #333;font-size:1.2em;font-weight:bold;">
+                            <span>Total:</span><span>$1,733.95</span>
+                        </div>
+                        <button style="background:#2ecc71;color:white;border:none;padding:15px;border-radius:5px;width:100%;font-size:1.1em;cursor:pointer;margin-top:10px;">Proceed to Checkout</button>
+                    </div>
+                </div>
+<pre>&lt;div class="cart-summary"&gt;
+    &lt;div class="coupon"&gt;
+        &lt;input type="text" placeholder="Coupon code"&gt;
+        &lt;button&gt;Apply&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="totals"&gt;
+        &lt;p&gt;Subtotal: &lt;span&gt;$1,599.97&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;Shipping: &lt;span&gt;$5.99&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;Total: &lt;span&gt;$1,605.96&lt;/span&gt;&lt;/p&gt;
+        &lt;a href="checkout.html"&gt;Proceed to Checkout&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Example 5: Checkout Form -->
+        <div class="component">
+            <div class="component-header">Example 5: Checkout Form</div>
+            <div class="component-demo">
+                <form style="max-width:700px;margin:0 auto;background:white;padding:20px;border-radius:8px;">
+                    <fieldset style="border:1px solid #ddd;border-radius:5px;padding:15px;margin-bottom:15px;">
+                        <legend style="font-weight:bold;color:#2c3e50;">Shipping Information</legend>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                            <input type="text" placeholder="First Name" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                            <input type="text" placeholder="Last Name" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                            <input type="email" placeholder="Email" style="grid-column:1/-1;padding:10px;border:1px solid #ddd;border-radius:4px;">
+                            <input type="text" placeholder="Street Address" style="grid-column:1/-1;padding:10px;border:1px solid #ddd;border-radius:4px;">
+                            <input type="text" placeholder="City" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                            <select style="padding:10px;border:1px solid #ddd;border-radius:4px;"><option>State</option></select>
+                            <input type="text" placeholder="ZIP Code" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                            <select style="padding:10px;border:1px solid #ddd;border-radius:4px;"><option>Country</option></select>
+                        </div>
+                    </fieldset>
+                    <fieldset style="border:1px solid #ddd;border-radius:5px;padding:15px;margin-bottom:15px;">
+                        <legend style="font-weight:bold;color:#2c3e50;">Payment</legend>
+                        <div style="display:grid;gap:10px;">
+                            <input type="text" placeholder="Card Number" pattern="[0-9]{16}" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                                <input type="text" placeholder="MM" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                                <input type="text" placeholder="YY" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                                <input type="password" placeholder="CVV" maxlength="4" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                            </div>
+                            <input type="text" placeholder="Cardholder Name" style="padding:10px;border:1px solid #ddd;border-radius:4px;">
+                        </div>
+                    </fieldset>
+                    <button style="background:#2ecc71;color:white;border:none;padding:15px;border-radius:5px;width:100%;font-size:1.1em;cursor:pointer;">Place Order</button>
+                </form>
+<pre>&lt;form action="/checkout" method="POST"&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Shipping Information&lt;/legend&gt;
+        &lt;input type="text" name="firstName" required autocomplete="given-name"&gt;
+        &lt;input type="text" name="address" required autocomplete="street-address"&gt;
+    &lt;/fieldset&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Payment&lt;/legend&gt;
+        &lt;input type="text" name="cardNumber" pattern="[0-9]{16}" required&gt;
+        &lt;input type="password" name="cvv" maxlength="4" required&gt;
+    &lt;/fieldset&gt;
+    &lt;button type="submit"&gt;Place Order&lt;/button&gt;
+&lt;/form&gt;</pre>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>Project Summary:</strong> Combine these components into separate pages. Home has hero + featured products. Category page has sidebar filters + grid + pagination. Product detail page has full product info. Cart page has table + summary. Checkout page has shipping + payment forms. Confirmation page shows order success. Share header and footer across all pages.
+        </div>
+    </div>
+</body>
+</html>

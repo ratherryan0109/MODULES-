@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does justify-content do in Flexbox?", "answer": "justify-content aligns flex items along the main axis, distributing space between or around items." },
+    { "question": "What are the values of justify-content?", "answer": "The values are flex-start, flex-end, center, space-between, space-around, space-evenly." },
+    { "question": "What does justify-content: flex-start do?", "answer": "flex-start aligns items at the start of the main axis (left by default in row direction)." },
+    { "question": "What does justify-content: flex-end do?", "answer": "flex-end aligns items at the end of the main axis (right by default in row direction)." },
+    { "question": "What does justify-content: center do?", "answer": "center aligns items in the center of the main axis." },
+    { "question": "What does justify-content: space-between do?", "answer": "space-between distributes items evenly, with the first item at the start and the last item at the end." },
+    { "question": "What does justify-content: space-around do?", "answer": "space-around distributes items with equal space around each item, but the edge spaces are half the size." },
+    { "question": "What does justify-content: space-evenly do?", "answer": "space-evenly distributes items with equal space around each item, including equal space at the edges." },
+    { "question": "What is the default value of justify-content?", "answer": "The default value is flex-start." },
+    { "question": "Does justify-content work on the cross axis?", "answer": "No, justify-content always aligns along the main axis; use align-items or align-content for the cross axis." }
+  ],
+  "intermediate": [
+    { "question": "How does justify-content interact with flex-direction: column?", "answer": "In column direction, justify-content distributes space vertically along the column axis." },
+    { "question": "What happens when justify-content is used with flex-wrap: wrap?", "answer": "justify-content distributes items within each flex line; it does not affect spacing between wrapped lines." },
+    { "question": "How does justify-content: space-between differ from space-around?", "answer": "space-between puts first and last items at edges; space-around gives half-size space at edges." },
+    { "question": "How does justify-content: space-evenly differ from space-around?", "answer": "space-evenly gives equal space at both edges and between items; space-around gives half spaces at edges." },
+    { "question": "Does justify-content work when there is no free space?", "answer": "No, justify-content only has an effect when there is extra space to distribute after items are laid out." },
+    { "question": "How does justify-content interact with margins on flex items?", "answer": "If a flex item has margin: auto, it absorbs free space and overrides justify-content alignment." },
+    { "question": "How does justify-content affect the start edge in RTL layouts?", "answer": "In RTL, flex-start aligns to the right and flex-end aligns to the left." },
+    { "question": "How does justify-content work with absolutely positioned flex items?", "answer": "Absolutely positioned children are not flex items, so justify-content does not affect them." },
+    { "question": "How do you center items in the middle of a flex container?", "answer": "Use justify-content: center to center items along the main axis." },
+    { "question": "What is the visual difference between space-around and space-evenly?", "answer": "space-around: edge spacing is half the interior spacing; space-evenly: all spacing (edge and interior) is equal." }
+  ],
+  "advanced": [
+    { "question": "How does justify-content interact with the gap property?", "answer": "gap adds fixed spacing between items on top of what justify-content distributes; justify-content only distributes remaining free space." },
+    { "question": "How does justify-content: flex-end affect the order property?", "answer": "flex-end places items at the end regardless of their order value; items with higher order values appear further from the end." },
+    { "question": "How does justify-content behave in a multi-line flex container when lines have different widths?", "answer": "Each flex line is justified independently, so items in a shorter line will have different spacing than a full line." },
+    { "question": "What is the difference between justify-content and justify-items in Grid vs Flexbox?", "answer": "Justify-content exists in both; however, Flexbox lacks justify-items/justify-self because the main-axis has only one item per line." },
+    { "question": "How does justify-content: center interact with overflow?", "answer": "If items overflow the container with center, items at both ends are clipped equally; the center remains centered." },
+    { "question": "How does the safe keyword modify justify-content behavior?", "answer": "safe ensures items never overflow the container by falling back to flex-start if center would cause overflow." },
+    { "question": "How does justify-content: space-between behave with a single item?", "answer": "With one item, space-between has no effect (no space to distribute), and the item stays at flex-start." },
+    { "question": "How does justify-content work with different writing modes?", "answer": "In vertical writing modes, flex-direction: row follows the vertical inline axis, so justify-content distributes vertically." },
+    { "question": "How does justify-content distribute space when items have different flex-grow values?", "answer": "justify-content distributes free space before flex-grow is applied; growing items may modify the distribution." },
+    { "question": "How does the CSS Box Alignment spec unify justify-content across Flexbox and Grid?", "answer": "Both use the same justify-content property with identical values, following the Box Alignment specification for consistency." }
+  ]
+}

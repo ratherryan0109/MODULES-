@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Text Formatting - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #c0392b; border-bottom: 3px solid #c0392b; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .demo-box { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Module 8: HTML Text Formatting — Examples</h1>
+
+    <!-- Example 1: Semantic vs Presentational -->
+    <div class="example">
+        <h2>Example 1: Semantic vs Presentational Formatting</h2>
+        <div class="demo-box">
+            <p><strong>Strong</strong> has semantic meaning (importance). <b>Bold</b> is purely visual.</p>
+            <p><em>Emphasis</em> has semantic meaning. <i>Italic</i> is purely visual.</p>
+        </div>
+        <pre>
+&lt;p&gt;
+    &lt;strong&gt;Strong&lt;/strong&gt; has semantic meaning.
+    &lt;b&gt;Bold&lt;/b&gt; is purely visual.
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;em&gt;Emphasis&lt;/em&gt; has semantic meaning.
+    &lt;i&gt;Italic&lt;/i&gt; is purely visual.
+&lt;/p&gt;</pre>
+    </div>
+
+    <!-- Example 2: All Formatting Elements -->
+    <div class="example">
+        <h2>Example 2: Complete Formatting Elements Demo</h2>
+        <pre>
+&lt;p&gt;
+    &lt;strong&gt;Bold importance&lt;/strong&gt;,
+    &lt;em&gt;Italic emphasis&lt;/em&gt;,
+    &lt;mark&gt;Highlighted&lt;/mark&gt;,
+    &lt;small&gt;small text&lt;/small&gt;,
+    &lt;del&gt;deleted&lt;/del&gt; &lt;ins&gt;inserted&lt;/ins&gt;,
+    H&lt;sub&gt;2&lt;/sub&gt;O, E=mc&lt;sup&gt;2&lt;/sup&gt;
+&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p><strong>Bold importance</strong>, <em>Italic emphasis</em>, <mark>Highlighted</mark>, <small>small text</small>, <del>deleted</del> <ins>inserted</ins>, H<sub>2</sub>O, E=mc<sup>2</sup></p>
+        </div>
+    </div>
+
+    <!-- Example 3: Technical Elements -->
+    <div class="example">
+        <h2>Example 3: Technical Formatting Elements</h2>
+        <pre>
+&lt;p&gt;Use &lt;code&gt;document.getElementById()&lt;/code&gt; in JavaScript.&lt;/p&gt;
+&lt;p&gt;Press &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;S&lt;/kbd&gt; to save.&lt;/p&gt;
+&lt;p&gt;The server returned: &lt;samp&gt;Error 404: Not Found&lt;/samp&gt;&lt;/p&gt;
+&lt;p&gt;The variable &lt;var&gt;userName&lt;/var&gt; stores the user's name.&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>Use <code>document.getElementById()</code> in JavaScript.</p>
+            <p>Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save.</p>
+            <p>The server returned: <samp>Error 404: Not Found</samp></p>
+            <p>The variable <var>userName</var> stores the user's name.</p>
+        </div>
+    </div>
+
+    <!-- Example 4: Quotations and Citations -->
+    <div class="example">
+        <h2>Example 4: Quotations and Citations</h2>
+        <pre>
+&lt;p&gt;
+    As Shakespeare wrote in &lt;cite&gt;Hamlet&lt;/cite&gt;:
+    &lt;q&gt;To be, or not to be, that is the question.&lt;/q&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    The &lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt;
+    published new guidelines today.
+&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>As Shakespeare wrote in <cite>Hamlet</cite>: <q>To be, or not to be, that is the question.</q></p>
+            <p>The <abbr title="World Health Organization">WHO</abbr> published new guidelines today.</p>
+        </div>
+    </div>
+
+    <!-- Example 5: <del> and <ins> for Changes -->
+    <div class="example">
+        <h2>Example 5: Document Changes with &lt;del&gt; and &lt;ins&gt;</h2>
+        <pre>
+&lt;p&gt;Original price: &lt;del&gt;$49.99&lt;/del&gt; &lt;ins&gt;$29.99&lt;/ins&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;This content has been removed.&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;ins&gt;This new content has been added.&lt;/ins&gt;&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p>Original price: <del>$49.99</del> <ins>$29.99</ins></p>
+            <p><del>This content has been removed.</del></p>
+            <p><ins>This new content has been added.</ins></p>
+        </div>
+    </div>
+
+    <!-- Example 6: Bi-directional Text -->
+    <div class="example">
+        <h2>Example 6: Bi-directional Text Elements</h2>
+        <pre>
+&lt;p&gt;&lt;bdo dir="rtl"&gt;This text is right-to-left&lt;/bdo&gt;&lt;/p&gt;
+&lt;p&gt;User name: &lt;bdi&gt;أحمد&lt;/bdi&gt; (isolated from direction)&lt;/p&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <p><bdo dir="rtl">This text is right-to-left</bdo></p>
+            <p>User name: <bdi>أحمد</bdi> (isolated from direction)</p>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>💡 Tip:</strong> Always use semantic elements like &lt;strong&gt; and &lt;em&gt; over presentational &lt;b&gt; and &lt;i&gt; for better accessibility and SEO.
+    </div>
+</body>
+</html>

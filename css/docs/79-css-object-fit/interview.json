@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the object-fit property in CSS?", "answer": "object-fit controls how a replaced element (like <img> or <video>) resizes to fill its container." },
+    { "question": "What does object-fit: fill do?", "answer": "fill stretches the element to completely fill its container, potentially distorting the aspect ratio." },
+    { "question": "What does object-fit: contain do?", "answer": "contain scales the element to fit within the container while preserving its aspect ratio, potentially leaving empty space." },
+    { "question": "What does object-fit: cover do?", "answer": "cover scales the element to cover the entire container while preserving aspect ratio, potentially cropping parts of the element." },
+    { "question": "What does object-fit: none do?", "answer": "none displays the element at its original size, ignoring the container dimensions, which may cause overflow." },
+    { "question": "What does object-fit: scale-down do?", "answer": "scale-down selects the smaller of contain or none, ensuring the element is never larger than its original size." },
+    { "question": "What is the default value of object-fit?", "answer": "The default value is fill, which stretches the element to fill the container dimensions." },
+    { "question": "What is object-position in CSS?", "answer": "object-position adjusts the position of the content within the element's box, similar to background-position." },
+    { "question": "How is object-position used with object-fit: cover?", "answer": "object-position determines which part of the image is visible when object-fit: cover crops it. Default is 50% 50% (center)." },
+    { "question": "Can object-fit be used on videos?", "answer": "Yes, object-fit works on <video> elements, allowing video content to be cropped or contained within its display area." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a centered, cropped image thumbnail?", "answer": "Use object-fit: cover with object-position: center on an image sized to the thumbnail dimensions via width and height." },
+    { "question": "What is the difference between object-fit and background-size?", "answer": "object-fit applies to replaced elements (img, video); background-size applies to background images of any element." },
+    { "question": "How do you maintain image aspect ratio without object-fit?", "answer": "Set only width or height (not both) and the image auto-scales. Or use aspect-ratio property with width: 100%." },
+    { "question": "What happens when object-fit: contain leaves empty space?", "answer": "The empty space shows the element's background (or parent background if transparent), similar to letterboxing." },
+    { "question": "How does object-fit interact with the aspect-ratio property?", "answer": "aspect-ratio sets the container's aspect ratio, then object-fit controls how the image fills that box. They work well together." },
+    { "question": "How do you create a square image crop with object-fit?", "answer": "Set width and height to the same value with object-fit: cover on the image." },
+    { "question": "Can object-fit be animated?", "answer": "No, object-fit is not animatable. To animate between crop states, use transitions on width/height or clip-path." },
+    { "question": "How does object-fit: scale-down differ from max-width: 100%?", "answer": "scale-down never scales the image larger than its intrinsic size, similar to max-width + height auto, but works in both dimensions." },
+    { "question": "How does object-fit work with the <picture> element?", "answer": "object-fit applies to the <img> fallback inside <picture>, controlling how the selected source image fits its container." },
+    { "question": "What is the default object-position value?", "answer": "The default is 50% 50%, centering the content within the element's box." }
+  ],
+  "advanced": [
+    { "question": "How does object-fit interact with CSS Grid and Flexbox layouts?", "answer": "In grid/flexbox, images with object-fit: cover maintain aspect ratio while filling their allocated cell, preventing distortion." },
+    { "question": "How do you create a parallax effect with object-fit: cover?", "answer": "Use object-fit: cover on an image within a container with overflow: hidden, and animate object-position vertically on scroll." },
+    { "question": "What are the performance implications of object-fit: cover on large images?", "answer": "object-fit requires the browser to decode the image at full resolution first, then scale it. Use srcset to serve appropriately sized images." },
+    { "question": "How does object-fit interact with the loading='lazy' attribute?", "answer": "object-fit is applied after lazy-loaded images decode. The clipping/cropping is calculated once the image dimensions are known." },
+    { "question": "How do you use object-position with CSS custom properties for dynamic alignment?", "answer": "Set object-position using custom properties: object-position: var(--image-focus-x, 50%) var(--image-focus-y, 50%), adjustable per image." },
+    { "question": "How does object-fit work with transform: scale() on the same element?", "answer": "transform: scale() scales the entire element after object-fit has sized the content. The two effects compound." },
+    { "question": "What is the behavior of object-fit on SVG images?", "answer": "SVG images respect viewBox and preserveAspectRatio. object-fit applies if the SVG does not have a viewBox, or as a fallback." },
+    { "question": "How do you handle object-fit with CSS aspect-ratio and dynamic container sizes?", "answer": "Set aspect-ratio on the container, width to 100%, and object-fit: cover on the image for responsive, cropped images with correct aspect ratios." },
+    { "question": "How does object-fit interact with the will-change property for performance optimization?", "answer": "will-change: transform or opacity on the image container can promote it to a compositor layer, improving object-fit rendering performance." },
+    { "question": "How do you achieve responsive object-position based on container aspect ratio?", "answer": "Use CSS container queries to adjust object-position values when the container's aspect ratio changes, keeping the focal point visible." }
+  ]
+}

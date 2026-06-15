@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does align-items do in Flexbox?", "answer": "align-items aligns flex items along the cross axis of the flex container." },
+    { "question": "What are the values of align-items?", "answer": "The values are stretch, flex-start, flex-end, center, baseline." },
+    { "question": "What is the default value of align-items?", "answer": "The default value is stretch." },
+    { "question": "What does align-items: stretch do?", "answer": "stretch stretches items to fill the full cross-axis size of the container." },
+    { "question": "What does align-items: flex-start do?", "answer": "flex-start aligns items at the start of the cross axis (top by default in row direction)." },
+    { "question": "What does align-items: center do?", "answer": "center aligns items in the center of the cross axis." },
+    { "question": "What does align-items: flex-end do?", "answer": "flex-end aligns items at the end of the cross axis (bottom by default in row direction)." },
+    { "question": "What does align-items: baseline do?", "answer": "baseline aligns items so their text baselines line up with each other." },
+    { "question": "What does the align-self property do?", "answer": "align-self overrides the align-items value for a specific flex item, allowing individual cross-axis alignment." },
+    { "question": "What is the default value of align-self?", "answer": "The default value is auto, which inherits the container's align-items value." }
+  ],
+  "intermediate": [
+    { "question": "How does align-items: stretch affect items without a set height?", "answer": "Items stretch to fill the container's cross-axis size; items with a set height/width are not stretched." },
+    { "question": "How does align-items: baseline work with different font sizes?", "answer": "Items are positioned so their text baselines align, which shifts items vertically when they have different font sizes." },
+    { "question": "How do align-items and justify-content work together to center content?", "answer": "align-items: center (cross-axis) and justify-content: center (main-axis) together center items both ways." },
+    { "question": "How does align-items behave with flex-direction: column?", "answer": "In column direction, the cross axis is horizontal, so align-items controls horizontal alignment." },
+    { "question": "How does align-self override align-items for individual items?", "answer": "Set align-self: center on one item to center it on the cross axis, while other items follow the container's align-items." },
+    { "question": "How does align-items interact with min-height constraints?", "answer": "min-height on the container sets the minimum cross-axis size; stretch will expand items to at least that height." },
+    { "question": "What is the difference between align-items: center and justify-content: center?", "answer": "align-items: center works on the cross axis; justify-content: center works on the main axis." },
+    { "question": "How does align-items work when items have different heights?", "answer": "With stretch, all items expand to the tallest item's height; with flex-start/center/flex-end, items keep their natural heights." },
+    { "question": "How does align-items: baseline differ between row and column direction?", "answer": "In row direction, baseline aligns text baselines horizontally; in column, it aligns text baselines vertically (less common)." },
+    { "question": "Can align-items apply to non-flex items?", "answer": "No, align-items only works within a flex or grid formatting context." }
+  ],
+  "advanced": [
+    { "question": "How does align-items: baseline work when items have nested content?", "answer": "The baseline is taken from the inline content of each flex item; items with different nested structures may align unpredictably." },
+    { "question": "How does align-items interact with the margin: auto on the cross axis?", "answer": "margin-top: auto or margin-bottom: auto on a flex item overrides align-items for that item, pushing it to the edge." },
+    { "question": "How does the safe and unsafe keywords affect align-items?", "answer": "safe prevents data loss by avoiding alignment that causes overflow; unsafe allows overflow for strict alignment." },
+    { "question": "How does align-items behave with replaced elements (images) as flex items?", "answer": "Images have an intrinsic aspect ratio; stretch may distort them without additional constraints like object-fit." },
+    { "question": "How does align-items differ from align-content?", "answer": "align-items aligns individual items within a flex line; align-content distributes multiple flex lines along the cross axis." },
+    { "question": "How does align-self: auto resolve to different values in different contexts?", "answer": "auto takes the parent's align-items value; if no parent has align-items set, it defaults to stretch." },
+    { "question": "How does the CSS Box Alignment Module define align-items in Grid vs Flexbox?", "answer": "Both use the same property with identical values; in Grid, it aligns items within their grid area; in Flexbox, within the flex line." },
+    { "question": "How does align-items interact with writing modes?", "answer": "In vertical writing modes, the cross axis rotates; align-items adapts to the logical block direction automatically." },
+    { "question": "How do you create a vertically centered row of items with different heights using align-items?", "answer": "Use align-items: center on the flex container to vertically center items of varying heights." },
+    { "question": "How does align-items: stretch behave when the container has no explicit height?", "answer": "The cross-axis size is determined by the tallest item, so stretch has no visible effect (items already fill the line)." }
+  ]
+}

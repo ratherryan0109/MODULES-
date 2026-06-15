@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 57: HTML Video Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #fafafa; color: #222; }
+    h1 { border-bottom: 3px solid #e94560; padding-bottom: 10px; }
+    h2 { color: #e94560; margin-top: 30px; }
+    .example-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; margin: 10px 0; }
+    .output { background: #f5f5f5; border: 1px dashed #999; border-radius: 6px; padding: 15px; margin: 10px 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    video { max-width: 100%; display: block; }
+    .custom-player { position: relative; background: #000; border-radius: 8px; overflow: hidden; }
+    .custom-player video { width: 100%; display: block; }
+    .custom-controls { display: flex; align-items: center; gap: 10px; padding: 10px 15px; background: rgba(0,0,0,0.8); color: white; position: absolute; bottom: 0; left: 0; right: 0; transform: translateY(100%); transition: transform 0.3s; }
+    .custom-player:hover .custom-controls { transform: translateY(0); }
+    .custom-controls button { background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 5px; }
+    .custom-controls input[type="range"] { flex: 1; }
+    .time { font-size: 13px; color: rgba(255,255,255,0.7); min-width: 35px; }
+    .bg-video { position: relative; height: 300px; overflow: hidden; border-radius: 8px; }
+    .bg-video video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; object-fit: cover; }
+    .bg-content { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; height: 100%; background: rgba(0,0,0,0.4); color: white; font-size: 24px; }
+    .track-demo { display: flex; gap: 10px; }
+    .track-demo track { display: none; }
+  </style>
+</head>
+<body>
+
+<h1>HTML Video — Interactive Examples</h1>
+<p>All examples use freely available demo videos from the web.</p>
+
+<!-- Example 1: Basic Video -->
+<h2>1. Basic Video with Controls</h2>
+<div class="example-box">
+  <p>The simplest way to embed video — the <code>controls</code> attribute provides native play/pause, seek, and volume.</p>
+  <div class="code-block">
+    &lt;video controls width="640" height="360"&gt;<br>
+    &nbsp;&nbsp;&lt;source src="video.mp4" type="video/mp4"&gt;<br>
+    &nbsp;&nbsp;&lt;source src="video.webm" type="video/webm"&gt;<br>
+    &nbsp;&nbsp;Your browser does not support video.<br>
+    &lt;/video&gt;
+  </div>
+  <div class="output">
+    <video controls width="100%" poster="https://picsum.photos/seed/vid1/640/360">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+      Your browser does not support the video element.
+    </video>
+  </div>
+</div>
+
+<!-- Example 2: Poster Image -->
+<h2>2. Video with Poster Image</h2>
+<div class="example-box">
+  <p>The <code>poster</code> attribute displays an image before the user plays the video.</p>
+  <div class="code-block">
+    &lt;video controls poster="thumbnail.jpg" width="640" height="360"&gt;
+  </div>
+  <div class="output">
+    <video controls width="100%" poster="https://picsum.photos/seed/poster1/640/360">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<!-- Example 3: Background Video -->
+<h2>3. Background Video (Autoplay, Loop, Muted)</h2>
+<div class="example-box">
+  <p>Use <code>autoplay loop muted playsinline</code> for background videos that play without sound.</p>
+  <div class="code-block">
+    &lt;video autoplay loop muted playsinline class="bg-video"&gt;<br>
+    &nbsp;&nbsp;&lt;source src="bg.mp4" type="video/mp4"&gt;<br>
+    &lt;/video&gt;
+  </div>
+  <div class="output">
+    <div class="bg-video">
+      <video autoplay loop muted playsinline>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      </video>
+      <div class="bg-content">
+        <span>🌊 Scenic Background Video</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Example 4: Custom Video Player -->
+<h2>4. Custom Video Player Controls</h2>
+<div class="example-box">
+  <p>Custom overlay controls that appear on hover.</p>
+  <div class="output">
+    <div class="custom-player" id="customPlayerDemo">
+      <video id="customVideo" width="100%">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      </video>
+      <div class="custom-controls">
+        <button id="cvPlayBtn">▶</button>
+        <input type="range" id="cvSeek" value="0" min="0" max="100" step="0.1">
+        <span class="time" id="cvCurrent">0:00</span>
+        <span class="time">/</span>
+        <span class="time" id="cvDuration">0:00</span>
+        <button id="cvFullscreenBtn">⛶</button>
+      </div>
+    </div>
+    <script>
+      (function() {
+        const video = document.getElementById('customVideo');
+        const playBtn = document.getElementById('cvPlayBtn');
+        const seek = document.getElementById('cvSeek');
+        const current = document.getElementById('cvCurrent');
+        const duration = document.getElementById('cvDuration');
+        const fsBtn = document.getElementById('cvFullscreenBtn');
+        let isSeeking = false;
+
+        playBtn.addEventListener('click', () => {
+          if (video.paused) { video.play().catch(() => {}); } else { video.pause(); }
+        });
+        video.addEventListener('play', () => { playBtn.textContent = '⏸'; });
+        video.addEventListener('pause', () => { playBtn.textContent = '▶'; });
+        video.addEventListener('timeupdate', () => {
+          if (!isSeeking) {
+            seek.value = (video.currentTime / video.duration) * 100 || 0;
+            current.textContent = formatTime(video.currentTime);
+          }
+        });
+        video.addEventListener('loadedmetadata', () => {
+          duration.textContent = formatTime(video.duration);
+        });
+        seek.addEventListener('input', () => { isSeeking = true; });
+        seek.addEventListener('change', () => {
+          video.currentTime = (seek.value / 100) * video.duration;
+          isSeeking = false;
+        });
+        fsBtn.addEventListener('click', () => {
+          if (!document.fullscreenElement) {
+            document.querySelector('.custom-player').requestFullscreen();
+          } else {
+            document.exitFullscreen();
+          }
+        });
+        function formatTime(s) { if (isNaN(s)) return '0:00'; const m = Math.floor(s / 60); const sec = Math.floor(s % 60).toString().padStart(2, '0'); return `${m}:${sec}`; }
+      })();
+    </script>
+  </div>
+</div>
+
+<!-- Example 5: Multiple Quality Sources -->
+<h2>5. Responsive Video Sources</h2>
+<div class="example-box">
+  <p>Use the <code>media</code> attribute on <code>&lt;source&gt;</code> to serve different qualities based on screen width.</p>
+  <div class="code-block">
+    &lt;video controls&gt;<br>
+    &nbsp;&nbsp;&lt;source src="high.mp4" type="video/mp4" media="(min-width: 1200px)"&gt;<br>
+    &nbsp;&nbsp;&lt;source src="medium.mp4" type="video/mp4" media="(min-width: 768px)"&gt;<br>
+    &nbsp;&nbsp;&lt;source src="low.mp4" type="video/mp4"&gt;<br>
+    &lt;/video&gt;
+  </div>
+  <div class="output">
+    <p>Resize your browser window to see different sources load (conceptual — same video used here).</p>
+    <video controls width="100%">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" media="(min-width: 1px)">
+      Your browser does not support video.
+    </video>
+  </div>
+</div>
+
+<!-- Example 6: Tracks / Captions -->
+<h2>6. Video with Subtitles (WebVTT Tracks)</h2>
+<div class="example-box">
+  <p>The <code>&lt;track&gt;</code> element provides captions, subtitles, and chapters using WebVTT files.</p>
+  <div class="code-block">
+    &lt;video controls&gt;<br>
+    &nbsp;&nbsp;&lt;source src="video.mp4" type="video/mp4"&gt;<br>
+    &nbsp;&nbsp;&lt;track src="captions.vtt" kind="captions" srclang="en" label="English" default&gt;<br>
+    &lt;/video&gt;
+  </div>
+  <div class="note">WebVTT captions require an actual .vtt file. This example shows the markup pattern.</div>
+  <div class="output">
+    <video controls width="100%">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      <track src="data:text/vtt;base64,V0VCVlRUCgoxCjAwOjAwOjAxLjUwMCAtLT4gMDA6MDA6MDQuMDAwCldlbGNvbWUgdG8gdGhlIHZpZGVvIQoKMgowMDowMDowNS4wMDAgLS0+IDAwOjAwOjA4LjAwMApUaGlzIGlzIGEgZGVtbyB2aWRlbyB3aXRoIGNhcHRpb25zLg==" kind="captions" srclang="en" label="English" default>
+    </video>
+    <p><small>Inline WebVTT captions are embedded. Enable captions from the video controls.</small></p>
+  </div>
+</div>
+
+<!-- Example 7: JavaScript Video API -->
+<h2>7. JavaScript Video API Controls</h2>
+<div class="example-box">
+  <p>Programmatic control of video with buttons.</p>
+  <div class="output">
+    <video id="jsVideo" width="100%">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+      <button onclick="jsVideo.play()">▶ Play</button>
+      <button onclick="jsVideo.pause()">⏸ Pause</button>
+      <button onclick="jsVideo.currentTime = 0">⏹ Stop</button>
+      <button onclick="jsVideo.playbackRate = 0.5">0.5x</button>
+      <button onclick="jsVideo.playbackRate = 1">1x</button>
+      <button onclick="jsVideo.playbackRate = 2">2x</button>
+      <button onclick="jsVideo.muted = !jsVideo.muted">🔇 Toggle Mute</button>
+      <button onclick="if (!document.fullscreenElement) { jsVideo.requestFullscreen(); } else { document.exitFullscreen(); }">⛶ Fullscreen</button>
+    </div>
+    <p id="jsVideoInfo" style="margin-top:8px;font-size:14px;color:#666;"></p>
+    <script>
+      const jsVideo = document.getElementById('jsVideo');
+      jsVideo.addEventListener('play', () => document.getElementById('jsVideoInfo').textContent = 'Playing');
+      jsVideo.addEventListener('pause', () => document.getElementById('jsVideoInfo').textContent = 'Paused');
+      jsVideo.addEventListener('ended', () => document.getElementById('jsVideoInfo').textContent = 'Finished');
+      jsVideo.addEventListener('timeupdate', () => {
+        document.getElementById('jsVideoInfo').textContent = `Position: ${Math.floor(jsVideo.currentTime)}s / ${Math.floor(jsVideo.duration)}s`;
+      });
+    </script>
+  </div>
+</div>
+
+<!-- Example 8: Picture-in-Picture -->
+<h2>8. Picture-in-Picture Mode</h2>
+<div class="example-box">
+  <p>Enable floating video that stays on top of other windows.</p>
+  <div class="code-block">
+    video.requestPictureInPicture();<br>
+    document.exitPictureInPicture();
+  </div>
+  <div class="output">
+    <video id="pipVideo" width="100%">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div style="margin-top:8px;display:flex;gap:8px;">
+      <button onclick="document.getElementById('pipVideo').requestPictureInPicture().catch(e => alert('PiP failed: ' + e.message))">📌 Enter PiP</button>
+      <button onclick="document.exitPictureInPicture().catch(() => {})">Exit PiP</button>
+    </div>
+    <p id="pipStatus" style="font-size:13px;color:#666;margin-top:5px;"></p>
+    <script>
+      const pipVideo = document.getElementById('pipVideo');
+      pipVideo.addEventListener('enterpictureinpicture', () => document.getElementById('pipStatus').textContent = 'Picture-in-Picture active');
+      pipVideo.addEventListener('leavepictureinpicture', () => document.getElementById('pipStatus').textContent = 'Exited Picture-in-Picture');
+    </script>
+  </div>
+</div>
+
+<!-- Example 9: Format Detection -->
+<h2>9. Video Format Support Detection</h2>
+<div class="example-box">
+  <p>Check which video formats your browser supports.</p>
+  <div class="code-block">
+    const v = document.createElement('video');<br>
+    v.canPlayType('video/mp4');
+  </div>
+  <div class="output" id="videoSupportOutput">
+    <script>
+      (function() {
+        const v = document.createElement('video');
+        const formats = [
+          { fmt: 'MP4/H.264', type: 'video/mp4; codecs="avc1.42E01E"' },
+          { fmt: 'WebM/VP8', type: 'video/webm; codecs="vp8"' },
+          { fmt: 'WebM/VP9', type: 'video/webm; codecs="vp9"' },
+          { fmt: 'OGG/Theora', type: 'video/ogg; codecs="theora"' },
+          { fmt: 'HEVC/H.265', type: 'video/mp4; codecs="hev1"' },
+        ];
+        let html = '<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%">';
+        html += '<tr><th>Format</th><th>Codec String</th><th>Support</th></tr>';
+        formats.forEach(f => {
+          const support = v.canPlayType(f.type);
+          const icon = support === 'probably' ? '✅' : support === 'maybe' ? '⚠️' : '❌';
+          const color = support === 'probably' ? '#4caf50' : support === 'maybe' ? '#ff9800' : '#f44336';
+          html += `<tr><td>${f.fmt}</td><td>${f.type}</td><td style="color:${color}">${icon} ${support || 'not supported'}</td></tr>`;
+        });
+        html += '</table>';
+        document.getElementById('videoSupportOutput').innerHTML = html;
+      })();
+    </script>
+  </div>
+</div>
+
+<!-- Example 10: Video with Canvas Thumbnail Scrubber -->
+<h2>10. Canvas Thumbnail Scrubber</h2>
+<div class="example-box">
+  <p>Hover over the seek bar to preview video frames on a canvas.</p>
+  <div class="output">
+    <video id="scrubVideo" width="100%">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div style="position:relative;">
+      <canvas id="scrubCanvas" width="160" height="90" style="position:absolute;bottom:30px;left:0;border:2px solid white;border-radius:4px;display:none;box-shadow:0 2px 10px rgba(0,0,0,0.5);"></canvas>
+      <input type="range" id="scrubBar" value="0" min="0" max="100" step="0.1" style="width:100%;">
+    </div>
+    <script>
+      (function() {
+        const video = document.getElementById('scrubVideo');
+        const scrubBar = document.getElementById('scrubBar');
+        const canvas = document.getElementById('scrubCanvas');
+        const ctx = canvas.getContext('2d');
+        let isScrubbing = false;
+
+        video.addEventListener('loadedmetadata', () => {
+          canvas.width = 160;
+          canvas.height = 90;
+        });
+
+        video.addEventListener('timeupdate', () => {
+          if (!isScrubbing) scrubBar.value = (video.currentTime / video.duration) * 100 || 0;
+        });
+
+        scrubBar.addEventListener('mouseenter', () => { canvas.style.display = 'block'; });
+        scrubBar.addEventListener('mouseleave', () => { canvas.style.display = 'none'; });
+
+        scrubBar.addEventListener('input', (e) => {
+          const pct = parseFloat(scrubBar.value) / 100;
+          const time = pct * video.duration;
+          video.currentTime = time;
+          canvas.style.display = 'block';
+          // Draw frame on canvas
+          ctx.drawImage(video, 0, 0, 160, 90);
+        });
+
+        scrubBar.addEventListener('change', () => { isScrubbing = false; });
+        scrubBar.addEventListener('mousedown', () => { isScrubbing = true; });
+      })();
+    </script>
+  </div>
+</div>
+
+</body>
+</html>

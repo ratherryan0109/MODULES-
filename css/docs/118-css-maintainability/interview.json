@@ -1,0 +1,130 @@
+{
+  "module": "118-css-maintainability",
+  "title": "CSS Maintainability",
+  "beginner": [
+    {
+      "question": "What does 'maintainable CSS' mean?",
+      "answer": "Maintainable CSS is stylesheet code that is easy to understand, modify, and extend over time without causing unintended side effects. It's predictable, well-organized, uses consistent patterns, and minimizes specificity wars."
+    },
+    {
+      "question": "Why is modular CSS important for maintainability?",
+      "answer": "Modular CSS breaks styles into self-contained, reusable pieces that can be developed, tested, and updated independently. Changes to one module (e.g., `.card`) don't accidentally affect other components (e.g., `.button`)."
+    },
+    {
+      "question": "How do CSS comments improve maintainability?",
+      "answer": "Comments clarify the purpose of complex selectors, explain workarounds for browser bugs, document design decisions, and help new team members understand the code structure. Use section headers (`/* Card Component */`) and inline notes for non-obvious values."
+    },
+    {
+      "question": "What is the role of consistent formatting in CSS maintainability?",
+      "answer": "Consistent formatting (indentation, property ordering, spacing) makes CSS predictable and easier to scan. Teams using automated formatters (Prettier, Stylelint --fix) avoid formatting debates and can focus on logic and architecture."
+    },
+    {
+      "question": "Why should you avoid deep nesting in preprocessors for maintainability?",
+      "answer": "Deep nesting (4+ levels) generates overly specific selectors that are hard to override, increases CSS bundle size, and makes the relationship between HTML and CSS less clear. Follow the 'Inception Rule' — never nest more than 3 levels deep."
+    },
+    {
+      "question": "What is the benefit of a CSS naming convention for maintainability?",
+      "answer": "A naming convention (BEM, SUIT, etc.) makes it obvious what a class represents, its relationship to other classes, and how it should be used. It acts as self-documenting code — `.card__title` clearly means 'title element inside a card component'."
+    },
+    {
+      "question": "How does the 'Single Source of Truth' principle apply to CSS?",
+      "answer": "Define values (colors, fonts, spacing) in one place — CSS custom properties, SCSS variables, or design tokens — and reference them everywhere. Change the value once and it updates everywhere. This prevents inconsistencies and hunting through files."
+    },
+    {
+      "question": "What is 'CSS Debt' and how does it accumulate?",
+      "answer": "CSS debt accumulates when quick fixes are added without refactoring the underlying structure: `!important` flags, increasing specificity, duplicate rules, dead code that's no longer used, and inline overrides. Over time, the CSS becomes fragile and hard to change."
+    },
+    {
+      "question": "How can you tell if CSS is not maintainable?",
+      "answer": "Signs: changing one style breaks something unrelated, developers add `!important` regularly, CSS files are thousands of lines long, no one understands the cascade order, new features require extensive specificity battles, and adding a new developer takes weeks of ramp-up."
+    },
+    {
+      "question": "Why is it important to remove unused CSS?",
+      "answer": "Unused CSS increases file size (slower downloads), increases CSSOM build time (slower rendering), and creates confusion (developers wonder if a class is still in use). Regular audits with PurgeCSS or Chrome Coverage tab keep stylesheets lean and maintainable."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the 'Strangler Fig' pattern for CSS refactoring?",
+      "answer": "Gradually replace old CSS with new implementation alongside it. Build new components with the new architecture while old code remains. Once all consumers are migrated, remove the old code. This allows incremental refactoring without breaking production."
+    },
+    {
+      "question": "How do you organize CSS custom properties for maximum maintainability?",
+      "answer": "Group by purpose: `--color-*` for colors, `--space-*` for spacing, `--font-*` for typography, `--shadow-*` for shadows. Use semantic names (`--color-primary` not `--color-blue`). Document each variable's purpose. Use a scale system (`--space-xs`, `--space-sm`, `--space-md`)."
+    },
+    {
+      "question": "What is the 'Open/Closed' principle for CSS components?",
+      "answer": "Components should be open for extension (adding modifier classes) but closed for modification (avoid changing base class styles per use case). Create `.card--featured` instead of modifying `.card` for a special case. This prevents cascade side effects."
+    },
+    {
+      "question": "How do you handle CSS design tokens for maintainability across teams?",
+      "answer": "Store design tokens in a platform-agnostic format (JSON, YAML) and generate CSS custom properties/variables from them. Tools like Style Dictionary or Theo automate this. Teams edit tokens, not CSS variables, ensuring consistency across all platforms."
+    },
+    {
+      "question": "What is the role of a CSS linter in maintainability?",
+      "answer": "A CSS linter (Stylelint) enforces team conventions automatically: property ordering, selector naming (regex patterns), `!important` bans, hex color length, unit whitelisting, and more. It catches maintainability issues before code review."
+    },
+    {
+      "question": "How do you balance DRY (Don't Repeat Yourself) with readable CSS?",
+      "answer": "Extract repeated values (colors, spacing) into custom properties. For repeated patterns, use `@extend` (in preprocessors) or utility classes. However, don't over-engineer: some repetition is acceptable if it makes the code clearer. A utility class for one-time use is overkill."
+    },
+    {
+      "question": "What is the 'CSS File Splitting' strategy for large projects?",
+      "answer": "Split CSS by: (1) Entry point — one main file `@use`s partials, (2) Function — base, layout, components, pages, utilities, (3) Route — page-specific CSS loaded only on that page. Use a build tool to concatenate and minify for production."
+    },
+    {
+      "question": "How do you handle third-party CSS overrides without compromising maintainability?",
+      "answer": "Keep overrides in a separate file (`overrides.css` or `vendor-overrides.css`), scoped to the third-party component's container class. Add comments linking to the upstream version and explaining why each override is needed. Review during library upgrades."
+    },
+    {
+      "question": "What is 'CSS code review' looking for from a maintainability perspective?",
+      "answer": "Are class names clear and consistent? Are there hardcoded values that should be variables? Is specificity creeping up? Are there duplicate rules? Is there dead code? Does the structure follow the project's architecture? Is there deep preprocessor nesting?"
+    },
+    {
+      "question": "How do you maintain CSS when a design system changes?",
+      "answer": "Keep design tokens as the single source of truth. When a token value changes (e.g., `--color-primary`), it propagates to all consumers. Use a versioned design token package. Deprecate old tokens with warnings before removing them."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a CSS 'feature flag' system for maintainability?",
+      "answer": "Use CSS custom properties as feature flags: `:root { --feature-new-layout: 0; }`. In CSS: `.layout { display: var(--feature-new-layout) ? 'grid' : 'flex'; }`. (In practice, use SCSS mixins or PostCSS plugins to conditionally compile different code paths.)"
+    },
+    {
+      "question": "What is the 'CSS API' concept and how does it improve maintainability?",
+      "answer": "A CSS API exposes custom properties that users can set to configure a component's appearance, like a function API. Example: `.button { --btn-bg: #333; background: var(--btn-bg); }`. Users set `--btn-bg` without worrying about the selector specificity."
+    },
+    {
+      "question": "How do you maintain CSS across multiple products or micro-frontends?",
+      "answer": "Use a shared design token package and a shared base stylesheet (reset, typography). Each micro-frontend has its own scoped CSS (via CSS Modules, Shadow DOM, or namespacing). Avoid cross-micro-frontend style leakage with `all: initial` or Shadow DOM isolation."
+    },
+    {
+      "question": "What is the 'CSS Monolith' problem and how do you escape it?",
+      "answer": "A CSS monolith is a single huge file (10,000+ lines) where everything depends on everything else. Escape by: (1) Identifying independent components and extracting them, (2) Setting up a build system for modular imports, (3) Adding CSS Modules for new features, (4) Incrementally migrating old code."
+    },
+    {
+      "question": "How do you use 'CSS Layers' (@layer) for architecture-level maintainability?",
+      "answer": "Define layers in order of priority: `@layer reset, base, components, utilities, overrides;`. This gives architectural control over cascade order without depending on load order or specificity tricks. Layers prevent utility classes from needing `!important`."
+    },
+    {
+      "question": "What is 'Design Token-driven CSS' and how does it improve maintainability?",
+      "answer": "Design tokens are the atoms of a design system: colors, spacing, typography, shadows. Stored in JSON/YAML, they generate CSS custom properties. When a designer updates a value, only the token changes, and all CSS updates automatically. Tools: Style Dictionary, Diez."
+    },
+    {
+      "question": "How do you handle CSS for component libraries used across multiple projects?",
+      "answer": "Publish compiled CSS + source design tokens. Do NOT publish SCSS source (creates dependency issues). Use CSS custom properties for theming so consumers can override tokens. Version your CSS. Use semantic versioning for breaking visual changes."
+    },
+    {
+      "question": "What is the 'CSS Tree Shaking' problem and how do build tools solve it?",
+      "answer": "Tree shaking unused CSS is harder than unused JS because CSS selectors have no import/export syntax. Tools like PurgeCSS analyze HTML/JS template files to find which selectors are actually used, then remove unused ones. Vite uses this by default."
+    },
+    {
+      "question": "How do you approach CSS maintainability in a monorepo?",
+      "answer": "Use a shared package for design tokens and base styles. Each app/package has its own CSS Modules or scoped styles. The shared package exports CSS custom properties. Use consistent linting across all packages. Add visual regression testing (Chromatic, Percy) to catch cross-package style issues."
+    },
+    {
+      "question": "What metrics can you use to measure CSS maintainability?",
+      "answer": "Keep track of: (1) total CSS file size (per page), (2) number of unique selectors, (3) max specificity level, (4) `!important` count, (5) number of !important overrides, (6) duplicate property count, (7) Stylelint warning count, (8) time to implement a new component."
+    }
+  ]
+}

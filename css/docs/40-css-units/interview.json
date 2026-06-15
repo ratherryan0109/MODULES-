@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the px unit represent in CSS?", "answer": "px represents a CSS pixel, which corresponds to one device pixel on standard displays or multiple on high-DPI screens." },
+    { "question": "What does the em unit represent?", "answer": "em is relative to the font-size of the element itself (or the parent for font-size)." },
+    { "question": "What does the rem unit represent?", "answer": "rem is relative to the font-size of the root element (<html>), typically 16px by default." },
+    { "question": "What does the % unit represent?", "answer": "% is relative to the same property of the parent element (e.g., width: 50% means half the parent's width)." },
+    { "question": "What does the vw unit represent?", "answer": "vw is relative to 1% of the viewport width, so 100vw equals the full viewport width." },
+    { "question": "What does the vh unit represent?", "answer": "vh is relative to 1% of the viewport height, so 100vh equals the full viewport height." },
+    { "question": "What is the difference between em and rem?", "answer": "em is relative to the parent's or element's font-size; rem is always relative to the root font-size, avoiding compounding." },
+    { "question": "What does the ch unit represent?", "answer": "ch is relative to the width of the '0' (zero) character in the element's font, useful for monospace text measure." },
+    { "question": "What does the ex unit represent?", "answer": "ex is relative to the x-height of the element's font, roughly the height of the lowercase 'x'." },
+    { "question": "What absolute length units are available in CSS?", "answer": "Absolute units include cm (centimeters), mm (millimeters), in (inches), pt (points, 1/72 of an inch), and pc (picas, 12pt)." }
+  ],
+  "intermediate": [
+    { "question": "Why is rem preferred for font sizes in accessible design?", "answer": "rem respects the user's browser font-size settings, allowing users to scale text up or down for readability." },
+    { "question": "What is the difference between vw and % for width?", "answer": "vw is relative to the viewport width regardless of parent; % is relative to the parent element's width." },
+    { "question": "How does em compound when used for nested elements?", "answer": "em values compound because each nested element calculates em relative to its parent, causing unintended scaling." },
+    { "question": "What is vmin and vmax?", "answer": "vmin is 1% of the smaller dimension (width or height); vmax is 1% of the larger dimension." },
+    { "question": "How do you create a full-viewport square using vw and vh?", "answer": "Use width: 100vw; height: 100vh, though min(100vw, 100vh) creates a square that fits in the viewport." },
+    { "question": "What is the svw, svh, lvw, lvh, dvw, dvh group of units?", "answer": "These are dynamic viewport units: small (sv*), large (lv*), and dynamic (dv*) that account for mobile browser chrome changes." },
+    { "question": "How does the calc() function work with different units?", "answer": "calc() allows mathematical operations between mixed units, e.g., calc(100% - 20px) or calc(50vw - 2rem)." },
+    { "question": "What is the difference between pt and px?", "answer": "pt is a physical unit (1/72 inch), while px is a CSS pixel; 1pt equals approximately 1.333px." },
+    { "question": "When would you use cm or mm in CSS?", "answer": "cm and mm are used in print stylesheets for physical page dimensions and margins." },
+    { "question": "How do you set a maximum readable line length using ch?", "answer": "Set max-width: 65ch on a text container to limit line length to about 65 characters for optimal readability." }
+  ],
+  "advanced": [
+    { "question": "How does the browser convert relative units to absolute pixels during rendering?", "answer": "The browser computes relative units into absolute pixels by traversing the DOM tree and calculating each value based on its reference (root, parent, viewport)." },
+    { "question": "What is the difference between the ic unit and the ch unit?", "answer": "ic is relative to the width of the full-width glyph '水' in CJK fonts, while ch is relative to the '0' character width." },
+    { "question": "How do container query units (cqw, cqh, cqi, cqb, cqmin, cqmax) work?", "answer": "Container query units are relative to the size of a query container, e.g., 1cqw equals 1% of the container's width." },
+    { "question": "How does font-size: 62.5% on the root element simplify rem calculations?", "answer": "62.5% of 16px equals 10px, making 1rem = 10px for easy mental conversion (1.2rem = 12px)." },
+    { "question": "How do sub-pixel rounding issues affect layouts using percentage widths?", "answer": "Sub-pixel rounding can cause elements to overflow or leave 1px gaps; flexbox and grid handle this better than floats." },
+    { "question": "What are the accessibility implications of using vw for font-size?", "answer": "vw font-size does not scale with user zoom settings; combine with clamp() to set min/max sizes for accessibility." },
+    { "question": "How does the lh unit work and where is it useful?", "answer": "lh equals the computed line-height of the element, useful for vertically aligning elements to text baselines." },
+    { "question": "How does the rlh (root line-height) unit differ from lh?", "answer": "rlh uses the root element's line-height instead of the current element's, useful for consistent vertical rhythm." },
+    { "question": "How do you use the cap unit in CSS?", "answer": "cap is relative to the nominal height of capital letters in the current font, useful for aligning elements to uppercase text height." },
+    { "question": "What is the difference between dvh, svh, and lvh for handling mobile viewports?", "answer": "svh uses the smallest possible viewport (with expanded browser chrome), lvh uses the largest, and dvh dynamically updates as the chrome retracts." }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is semantic HTML?",
+      "answer": "Semantic HTML uses elements that describe their meaning, like <article>, <nav>, <section>, instead of generic <div> tags."
+    },
+    {
+      "question": "What is the <main> element used for?",
+      "answer": "<main> represents the dominant content of the page. It should be unique and not nested within article, aside, footer, header, or nav."
+    },
+    {
+      "question": "What is the difference between <article> and <section>?",
+      "answer": "<article> is self-contained content that can be syndicated (blog post, news story). <section> groups thematically related content within a page."
+    },
+    {
+      "question": "What does <nav> represent?",
+      "answer": "<nav> represents a section of a page that links to other pages or parts within the page, typically a navigation menu."
+    },
+    {
+      "question": "What is the purpose of <aside>?",
+      "answer": "<aside> represents content indirectly related to the main content, such as sidebars, callout boxes, or related links."
+    },
+    {
+      "question": "When should you use <header>?",
+      "answer": "<header> represents introductory content. Use it for page headers, article headers, or section introductions."
+    },
+    {
+      "question": "When should you use <footer>?",
+      "answer": "<footer> represents footer information like copyright, links, and author info. Use at page level or within article/section."
+    },
+    {
+      "question": "What is the <figure> element?",
+      "answer": "<figure> represents self-contained content like images, diagrams, or code listings, optionally with a <figcaption>."
+    },
+    {
+      "question": "What is the <time> element?",
+      "answer": "<time> represents a date or time. The datetime attribute provides a machine-readable format for better SEO and accessibility."
+    },
+    {
+      "question": "What does <address> represent?",
+      "answer": "<address> provides contact information for its nearest <article> or <body> ancestor, like a physical address or email."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do semantic elements improve accessibility?",
+      "answer": "Semantic elements create ARIA landmarks automatically, allowing screen reader users to navigate by regions (banner, navigation, main, complementary, contentinfo)."
+    },
+    {
+      "question": "What is the correct heading hierarchy?",
+      "answer": "Use one <h1> per page, followed by <h2>, <h3>, etc., without skipping levels. Headings should match the content structure."
+    },
+    {
+      "question": "Can a page have multiple <header> elements?",
+      "answer": "Yes. A page can have one top-level <header> and additional <header> elements inside <article> or <section> elements."
+    },
+    {
+      "question": "How does semantic HTML improve SEO?",
+      "answer": "Search engines use semantic structure to understand content hierarchy, identify main content, and extract metadata like dates and authors."
+    },
+    {
+      "question": "What is the difference between <b> and <strong>?",
+      "answer": "<strong> has semantic meaning (strong importance). <b> is presentational bold without semantic meaning."
+    },
+    {
+      "question": "How should <section> be used?",
+      "answer": "<section> should group thematically related content and typically have a heading. Do not use it purely as a styling wrapper."
+    },
+    {
+      "question": "What is the cite attribute on <blockquote>?",
+      "answer": "The cite attribute specifies the URL of the source document from which the quotation was taken."
+    },
+    {
+      "question": "What is the difference between <article> and <div>?",
+      "answer": "<article> has semantic meaning (self-contained content). <div> has no semantic meaning. Screen readers treat them differently."
+    },
+    {
+      "question": "Can <main> be used multiple times on a page?",
+      "answer": "No. The <main> element should be unique per page. Use role='main' only once as well."
+    },
+    {
+      "question": "What is the purpose of <figcaption>?",
+      "answer": "<figcaption> provides a caption for the parent <figure> element. It is semantically linked to the figure content."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the document outline algorithm for semantic HTML.",
+      "answer": "The HTML5 outline algorithm creates a document outline from heading elements and sectioning content (article, section, nav, aside). Each sectioning element creates a new section in the outline."
+    },
+    {
+      "question": "How does the implicit ARIA role of <header> change when nested?",
+      "answer": "When <header> is a top-level element (direct child of body), it has role='banner'. When nested inside <article> or <section>, it has no landmark role."
+    },
+    {
+      "question": "What happens when you nest <section> inside <article> vs <article> inside <section>?",
+      "answer": "Both are valid. <section> inside <article> creates thematic sections within an article. <article> inside <section> groups independent articles under a theme."
+    },
+    {
+      "question": "How does the outline algorithm differ in practice between browsers?",
+      "answer": "No browser fully implements the HTML5 outline algorithm. The actual accessibility tree uses ARIA roles and heading levels, not the document outline."
+    },
+    {
+      "question": "How do you test if your semantic HTML is correct for screen readers?",
+      "answer": "Use a screen reader (NVDA, VoiceOver, JAWS) to navigate by landmarks. Use the Accessibility Tree in DevTools. Use axe DevTools or Lighthouse for automated testing."
+    },
+    {
+      "question": "What is the relationship between <article> and the RSS feed?",
+      "answer": "<article> represents content suitable for syndication in feeds like RSS. This is its original semantic purpose — each article can be a feed item."
+    },
+    {
+      "question": "How do semantic elements interact with CSS grid and flexbox?",
+      "answer": "Semantic elements are block-level by default and work identically to <div> in CSS layouts. They can be flex or grid items without issues."
+    },
+    {
+      "question": "What is the 'heading content' category in HTML?",
+      "answer": "Heading content defines the heading of a section. Elements: <h1> through <h6> and <hgroup>. They are used to label sections in the document outline."
+    },
+    {
+      "question": "How does the <hgroup> element work and why was it redefined in HTML 5.3?",
+      "answer": "<hgroup> groups multiple heading levels (e.g., a title and subtitle). In HTML 5.3, it was redefined to be a heading content element that contributes one heading to the outline."
+    },
+    {
+      "question": "What is the difference between <section> and <article> in terms of syndication?",
+      "answer": "<article> is specifically designed for syndication (RSS, social media embeds). <section> is a thematic group but not intended for independent distribution."
+    }
+  ]
+}

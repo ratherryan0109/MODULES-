@@ -1,0 +1,38 @@
+[
+  {
+    "id": "vars-theme-switcher",
+    "title": "Theme Switcher",
+    "difficulty": "beginner",
+    "description": "Create a theme switcher that toggles between light and dark themes by updating CSS custom properties via JavaScript.",
+    "hint": "Declare all colors as variables on :root, then use setProperty() to switch them.",
+    "criteria": ["Light and dark themes", "All colors use CSS variables", "JavaScript toggle to switch themes"],
+    "starter": ":root {\n  --bg: #ffffff;\n  --text: #333333;\n  --primary: #3498db;\n}\n[data-theme=\"dark\"] {\n  --bg: #1a1a2e;\n  --text: #eeeeee;\n  --primary: #8e44ad;\n}"
+  },
+  {
+    "id": "vars-scoped-component",
+    "title": "Scoped Component Variables",
+    "difficulty": "intermediate",
+    "description": "Build a reusable card component that uses scoped CSS variables, allowing each instance to customize its appearance via inline style or data attributes.",
+    "hint": "Use default variables in the component, then override them on individual instances.",
+    "criteria": ["Reusable component class", "Component uses variables with defaults", "Instances override variables"],
+    "starter": ".card {\n  --card-bg: white;\n  --card-accent: #3498db;\n  --card-radius: 8px;\n  background: var(--card-bg);\n  border-top: 4px solid var(--card-accent);\n  border-radius: var(--card-radius);\n}\n.card.custom {\n  --card-accent: #e74c3c;\n}"
+  },
+  {
+    "id": "vars-responsive-spacing",
+    "title": "Responsive Spacing System",
+    "difficulty": "intermediate",
+    "description": "Create a responsive spacing system where spacing variables change based on viewport size using media queries.",
+    "hint": "Override spacing variables inside media query blocks to scale all spacing proportionally.",
+    "criteria": ["Spacing variables on :root", "Media queries override spacing values", "Multiple elements use the spacing variables"],
+    "starter": ":root {\n  --spacing-sm: 0.5rem;\n  --spacing-md: 1rem;\n  --spacing-lg: 2rem;\n}\n@media (max-width: 768px) {\n  :root {\n    --spacing-sm: 0.25rem;\n    --spacing-md: 0.5rem;\n    --spacing-lg: 1rem;\n  }\n}"
+  },
+  {
+    "id": "vars-color-palette",
+    "title": "Dynamic Color Palette Generator",
+    "difficulty": "advanced",
+    "description": "Build a tool that generates a full color palette from a single primary color variable, using CSS calc() and hsl() to derive complementary, lighter, and darker shades.",
+    "hint": "Store hue as a variable and use calc() with hsl() to generate the palette dynamically.",
+    "criteria": ["Single primary color variable", "Derived colors using calc() and hsl()", "Live preview with hue slider"],
+    "starter": ":root {\n  --hue: 200;\n  --primary: hsl(var(--hue), 70%, 50%);\n  --primary-light: hsl(var(--hue), 70%, 70%);\n  --primary-dark: hsl(var(--hue), 70%, 30%);\n  --complement: hsl(calc(var(--hue) + 180), 70%, 50%);\n}"
+  }
+]

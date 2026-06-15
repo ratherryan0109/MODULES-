@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Scroll Snap - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .example-card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; }
+    .pre { font-family: monospace; background: #181825; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; white-space: pre-wrap; border-left: 3px solid #89b4fa; }
+    code { background: #45475a; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+
+    /* Example 1: Horizontal Carousel */
+    .carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; border-radius: 8px; }
+    .carousel-item { flex: 0 0 100%; scroll-snap-align: start; padding: 40px; text-align: center; font-size: 1.5rem; font-weight: 700; min-height: 150px; display: flex; align-items: center; justify-content: center; }
+    .carousel-item:nth-child(1) { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .carousel-item:nth-child(2) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .carousel-item:nth-child(3) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .carousel-item:nth-child(4) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+
+    /* Example 2: Full-screen sections */
+    .sections-container { height: 300px; overflow-y: scroll; scroll-snap-type: y mandatory; border-radius: 8px; }
+    .section { height: 300px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; padding: 24px; }
+    .section:nth-child(1) { background: #1e1e2e; color: #89b4fa; }
+    .section:nth-child(2) { background: #181825; color: #a6e3a1; }
+    .section:nth-child(3) { background: #11111b; color: #f38ba8; }
+    .section p { font-size: 1rem; font-weight: 400; margin-top: 8px; }
+
+    /* Example 3: Center-aligned snap */
+    .center-carousel { display: flex; overflow-x: auto; scroll-snap-type: x proximity; gap: 16px; padding: 16px; border-radius: 8px; background: #181825; }
+    .center-item { flex: 0 0 200px; height: 200px; scroll-snap-align: center; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
+    .center-item:nth-child(1) { background: #f38ba8; }
+    .center-item:nth-child(2) { background: #a6e3a1; }
+    .center-item:nth-child(3) { background: #fab387; }
+    .center-item:nth-child(4) { background: #89b4fa; }
+    .center-item:nth-child(5) { background: #cba6f7; }
+    .center-item:nth-child(6) { background: #89dceb; }
+    .center-item:nth-child(7) { background: #f5c2e7; }
+
+    /* Example 4: With scroll-padding */
+    .padded-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 40px; gap: 16px; background: #181825; border-radius: 8px; padding: 8px; }
+    .padded-item { flex: 0 0 250px; height: 180px; scroll-snap-align: start; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .padded-item:nth-child(odd) { background: #45475a; color: #a6e3a1; }
+    .padded-item:nth-child(even) { background: #585b70; color: #89b4fa; }
+
+    /* Example 5: Grid scroll snap */
+    .grid-scroll { display: grid; grid-auto-flow: column; grid-template-columns: repeat(5, 280px); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 24px; border-radius: 8px; padding-block: 8px; }
+    .grid-item { scroll-snap-align: start; background: #45475a; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+
+    /* Example 6: With scroll-margin */
+    .margin-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 0; background: #181825; border-radius: 8px; }
+    .margin-item { flex: 0 0 80%; scroll-snap-align: start; scroll-margin-inline: 16px; border-radius: 10px; padding: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; min-height: 120px; }
+    .margin-item:nth-child(1) { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .margin-item:nth-child(2) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .margin-item:nth-child(3) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .margin-item:nth-child(4) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+  </style>
+</head>
+<body>
+  <h1>CSS Scroll Snap — Interactive Examples</h1>
+
+  <div class="example-card">
+    <h2>1. Horizontal Carousel (mandatory, start-aligned)</h2>
+    <p>Full-width items snap to the <code>start</code> edge using <code>scroll-snap-type: x mandatory</code>. Scroll horizontally.</p>
+    <div class="carousel">
+      <div class="carousel-item">Slide 1</div>
+      <div class="carousel-item">Slide 2</div>
+      <div class="carousel-item">Slide 3</div>
+      <div class="carousel-item">Slide 4</div>
+    </div>
+    <div class="pre">.carousel {\n  overflow-x: auto;\n  scroll-snap-type: x mandatory;\n  scroll-behavior: smooth;\n}\n.carousel-item {\n  flex: 0 0 100%;\n  scroll-snap-align: start;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>2. Vertical Full-Screen Sections</h2>
+    <p>Each section fills the container height. Uses <code>scroll-snap-type: y mandatory</code> with <code>scroll-snap-align: start</code>. Scroll vertically.</p>
+    <div class="sections-container">
+      <div class="section">
+        <h3>Section 1</h3>
+        <p>Introduction content here</p>
+      </div>
+      <div class="section">
+        <h3>Section 2</h3>
+        <p>Main content area</p>
+      </div>
+      <div class="section">
+        <h3>Section 3</h3>
+        <p>Conclusion and next steps</p>
+      </div>
+    </div>
+    <div class="pre">.container { overflow-y: scroll; scroll-snap-type: y mandatory; }\n.section { height: 100%; scroll-snap-align: start; }</div>
+  </div>
+
+  <div class="example-card">
+    <h2>3. Center-Aligned Snap (proximity)</h2>
+    <p>Items snap to <code>center</code> with <code>scroll-snap-type: x proximity</code>. Notice you can stop between items when not near a snap point.</p>
+    <div class="center-carousel">
+      <div class="center-item">1</div>
+      <div class="center-item">2</div>
+      <div class="center-item">3</div>
+      <div class="center-item">4</div>
+      <div class="center-item">5</div>
+      <div class="center-item">6</div>
+      <div class="center-item">7</div>
+    </div>
+    <div class="pre">scroll-snap-type: x proximity;\nscroll-snap-align: center;</div>
+  </div>
+
+  <div class="example-card">
+    <h2>4. With scroll-padding for Offset</h2>
+    <p><code>scroll-padding-inline: 40px</code> offsets the snap position, adding space at the start edge. Items snap 40px from the container edge.</p>
+    <div class="padded-carousel">
+      <div class="padded-item">Item 1</div>
+      <div class="padded-item">Item 2</div>
+      <div class="padded-item">Item 3</div>
+      <div class="padded-item">Item 4</div>
+      <div class="padded-item">Item 5</div>
+      <div class="padded-item">Item 6</div>
+    </div>
+    <div class="pre">.container {\n  scroll-padding-inline: 40px;\n  scroll-snap-type: x mandatory;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>5. CSS Grid Scroll Snap</h2>
+    <p>Using <code>grid-auto-flow: column</code> with scroll snap for a grid-based horizontal scroller.</p>
+    <div class="grid-scroll">
+      <div class="grid-item"><strong>Card 1</strong><p>Grid-based scroll snap item with content.</p></div>
+      <div class="grid-item"><strong>Card 2</strong><p>Each card is 280px wide with 16px gap.</p></div>
+      <div class="grid-item"><strong>Card 3</strong><p>Scroll-snap-align: start ensures clean snapping.</p></div>
+      <div class="grid-item"><strong>Card 4</strong><p>Items maintain consistent sizing.</p></div>
+      <div class="grid-item"><strong>Card 5</strong><p>Ideal for card-based horizontal layouts.</p></div>
+    </div>
+    <div class="pre">.grid-scroll {\n  display: grid;\n  grid-auto-flow: column;\n  grid-template-columns: repeat(5, 280px);\n  overflow-x: auto;\n  scroll-snap-type: x mandatory;\n}</div>
+  </div>
+
+  <div class="example-card">
+    <h2>6. Partial Visibility with scroll-margin</h2>
+    <p>Items are 80% wide and use <code>scroll-margin-inline: 16px</code> to create visible gaps between snapped positions. Scroll horizontally to peek at adjacent items.</p>
+    <div class="margin-carousel">
+      <div class="margin-item">Peek at me →</div>
+      <div class="margin-item">← Peek at me →</div>
+      <div class="margin-item">← Peek at me →</div>
+      <div class="margin-item">← Peek at me</div>
+    </div>
+    <div class="pre">.item {\n  flex: 0 0 80%;\n  scroll-snap-align: start;\n  scroll-margin-inline: 16px;\n}</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+{
+    "beginner": [
+        {
+            "question": "What is a Web Worker and why was it introduced?",
+            "answer": "A Web Worker is a JavaScript feature that allows script execution in background threads, separate from the main UI thread. It was introduced because JavaScript is single-threaded, meaning heavy computations block the UI, causing unresponsiveness. Workers solve this by running tasks in parallel without freezing the page."
+        },
+        {
+            "question": "How do you create a basic Web Worker?",
+            "answer": "Create a new Worker instance, passing the URL of the JavaScript file: const worker = new Worker('worker.js'). The browser loads and executes this file in a separate thread. Check support first: if (typeof Worker !== 'undefined') { ... }."
+        },
+        {
+            "question": "How does communication between main thread and worker work?",
+            "answer": "Communication uses message passing. The main thread sends messages via worker.postMessage(data). The worker receives them via self.onmessage = function(e) { ... }. The worker sends responses via self.postMessage(data) and the main thread receives them via worker.onmessage = function(e) { ... }."
+        },
+        {
+            "question": "What is the 'self' keyword inside a Web Worker?",
+            "answer": "'self' is the global scope object inside a Web Worker, similar to how 'window' is the global scope in the main thread. It provides access to worker-specific APIs and is the context for onmessage, postMessage, importScripts, etc."
+        },
+        {
+            "question": "Can a Web Worker access the DOM?",
+            "answer": "No, Web Workers cannot access the DOM, window, document, or parent objects. They operate in a completely separate context with no access to the page's UI. This is by design to ensure thread safety and prevent race conditions."
+        },
+        {
+            "question": "How do you terminate a Web Worker?",
+            "answer": "From the main thread, call worker.terminate(). From inside the worker, call self.close(). Once terminated, the worker cannot be restarted; you must create a new Worker instance. Always terminate workers when they are no longer needed to free resources."
+        },
+        {
+            "question": "What is importScripts() in Web Workers?",
+            "answer": "importScripts() is a function available inside workers to load external JavaScript files synchronously. Example: importScripts('library.js', 'utils.js'). The function blocks until all scripts are loaded and executed. Scripts are loaded in order."
+        },
+        {
+            "question": "Can you use setTimeout() inside a Web Worker?",
+            "answer": "Yes, setTimeout(), setInterval(), and clearTimeout/clearInterval are all available inside Web Workers. They work the same way as in the main thread, allowing you to schedule tasks or create polling mechanisms in the background."
+        },
+        {
+            "question": "What happens if a worker script has a syntax error?",
+            "answer": "If a worker script has a syntax error, the worker fails to initialize and an error event is fired on the main thread's worker object. The worker.onerror handler receives the error details including message, filename, and line number."
+        },
+        {
+            "question": "Can a Web Worker send AJAX requests?",
+            "answer": "Yes, Web Workers support both XMLHttpRequest and the Fetch API for making network requests. This is useful for fetching data or uploading results without blocking the UI thread."
+        }
+    ],
+    "intermediate": [
+        {
+            "question": "What are Transferable Objects and why are they important?",
+            "answer": "Transferable Objects (like ArrayBuffer, MessagePort) enable zero-copy data transfer between threads. Instead of cloning data (which takes time proportional to size), ownership is transferred. After transfer, the original buffer is empty/neutered. This is critical for performance when moving large binary data (e.g., images, audio) between threads."
+        },
+        {
+            "question": "How do you handle errors in Web Workers?",
+            "answer": "There are two levels: (1) In the main thread, attach worker.onerror handler to catch unhandled worker errors. Call error.preventDefault() to suppress the default error dialog. (2) Inside the worker, use try-catch blocks and send structured error messages via postMessage({ status: 'error', message: ... }). This allows graceful error recovery."
+        },
+        {
+            "question": "What is the difference between Dedicated Workers, Shared Workers, and Service Workers?",
+            "answer": "Dedicated Workers are linked to a single script/context. Shared Workers can be accessed by multiple scripts from different windows/tabs on the same origin. Service Workers act as proxy servers between the application and network, enabling offline support, push notifications, and caching strategies for Progressive Web Apps."
+        },
+        {
+            "question": "How can you create a Web Worker from inline code without an external file?",
+            "answer": "Create a Blob containing the worker code, generate a URL with URL.createObjectURL(), and pass it to the Worker constructor: const blob = new Blob([workerCode], { type: 'application/javascript' }); const worker = new Worker(URL.createObjectURL(blob)). Use URL.revokeObjectURL() to clean up."
+        },
+        {
+            "question": "What is the optimal number of workers to create for parallel processing?",
+            "answer": "Use navigator.hardwareConcurrency which returns the number of logical CPU cores. Creating more workers than cores can cause context switching overhead. A good rule is to create navigator.hardwareConcurrency - 1 workers, leaving one core for the main thread. For I/O-bound tasks, more workers can be beneficial."
+        },
+        {
+            "question": "How do you implement a work queue or task pool with multiple workers?",
+            "answer": "Create a pool of pre-initialized workers. Maintain a task queue. Assign tasks to idle workers. Track which workers are busy. When a worker completes its task, assign the next pending task. This pattern maximizes parallelism and minimizes worker creation overhead. Libraries like workerpool.js implement this pattern."
+        },
+        {
+            "question": "Can Web Workers use ES Modules?",
+            "answer": "Yes, with the { type: 'module' } option: new Worker('worker.js', { type: 'module' }). Module workers support import/export syntax. However, they have limitations: importScripts() is not available in module workers, and they are subject to CORS when loading cross-origin."
+        },
+        {
+            "question": "How do you debug Web Workers in browser DevTools?",
+            "answer": "In Chrome, open DevTools → Sources tab → look for the worker script in the Threads panel or under 'Workers' in the Sources tree. You can set breakpoints in worker code, inspect variables, and step through execution. Firefox and Edge have similar debugging support for worker threads."
+        },
+        {
+            "question": "What are the memory implications of using Web Workers?",
+            "answer": "Each worker has its own JavaScript context with separate memory heap. This means more total memory usage compared to running code on the main thread. However, workers enable better responsiveness by moving CPU-heavy work off the main thread. Use Transferable Objects to minimize memory overhead when passing large data."
+        },
+        {
+            "question": "How do you handle progress reporting from a long-running worker task?",
+            "answer": "Send periodic messages from the worker to the main thread: self.postMessage({ type: 'progress', percent: currentProgress }). The main thread updates a progress bar or UI element. This works well because message passing is asynchronous and doesn't significantly impact the worker's performance. Batch progress updates to avoid overwhelming the message channel."
+        }
+    ],
+    "advanced": [
+        {
+            "question": "How would you design a fault-tolerant worker system that handles worker crashes?",
+            "answer": "Implement a WorkerManager class that: (1) Wraps each worker in a supervisor that listens for error/exit events, (2) On crash, logs the error, increments a retry counter, and recreates the worker with the pending task, (3) After N consecutive failures, moves the task to a dead-letter queue, (4) Maintains worker health checks via heartbeat messages, (5) Gracefully degrades to main-thread execution if workers repeatedly fail."
+        },
+        {
+            "question": "Explain the structured clone algorithm and its limitations in message passing.",
+            "answer": "The structured clone algorithm is used by postMessage() to serialize data between threads. It supports: objects, arrays, Maps, Sets, RegExp, Date, Blob, File, ImageData, ArrayBuffer, and typed arrays. It does NOT support: Functions, DOM elements, Error objects, Symbols, WeakMaps/WeakSets, or objects with circular references. The algorithm recursively clones all properties, which can be slow for very large objects."
+        },
+        {
+            "question": "How would you implement a parallel sorting algorithm using Web Workers?",
+            "answer": "Implement a parallel merge sort: (1) Divide the array into chunks equal to the number of workers, (2) Each worker sorts its chunk using a standard sorting algorithm, (3) Send sorted chunks back and merge them on the main thread. For better performance, use a tournament tree for merging multiple sorted arrays. Optionally, implement a multi-level merge where workers also handle the merging phase."
+        },
+        {
+            "question": "What are the security considerations when using Web Workers?",
+            "answer": "Workers execute in a restricted environment but can still pose risks: (1) Workers must be same-origin as the parent page (unless using CORS-enabled scripts), (2) Workers can make network requests that could be used for DDoS or data exfiltration, (3) importScripts() loads and executes arbitrary code, (4) Workers share the same authentication context as the page, (5) Be cautious about passing sensitive data to workers."
+        },
+        {
+            "question": "How can you share state between multiple workers without race conditions?",
+            "answer": "Use SharedArrayBuffer with atomic operations for true shared memory between workers. SharedArrayBuffer allows multiple workers to read/write the same memory. Use Atomics.add(), Atomics.store(), Atomics.load(), and Atomics.wait() for synchronization. For simpler cases, route all shared state through the main thread acting as a coordinator. For complex state, consider using a dedicated worker as a state server."
+        },
+        {
+            "question": "How would you implement a web-based video processing pipeline using workers?",
+            "answer": "Use the Canvas API to capture video frames as ImageData, transfer them to workers via Transferable Objects. Workers apply per-frame processing (filters, color correction, object detection). Use OffscreenCanvas in workers for rendering operations. Implement a frame pipeline: (1) Demux video frames, (2) Distribute across worker pool, (3) Workers process frames in parallel, (4) Return processed frames for display. Use requestAnimationFrame for smooth playback."
+        },
+        {
+            "question": "What is the 'MessageChannel' API and how does it relate to Web Workers?",
+            "answer": "MessageChannel creates a two-way communication channel with two ports (port1 and port2). One port can be transferred to a worker, enabling direct worker-to-worker communication without going through the main thread. This is useful for worker mesh networks where multiple workers need to exchange data. MessageChannels support Transferable Objects and are more efficient than routing all messages through the main thread."
+        },
+        {
+            "question": "How do you handle large datasets that don't fit in worker memory?",
+            "answer": "Implement streaming/chunked processing: (1) Read data in chunks from IndexedDB or the network, (2) Send chunks to workers as Transferable Objects, (3) Process incrementally, (4) Write results back to IndexedDB or send to the main thread in batches. Use the Streams API when available. For extremely large datasets, consider using WebAssembly SIMD within workers for maximum performance."
+        },
+        {
+            "question": "What are the performance characteristics of postMessage() with different data sizes?",
+            "answer": "postMessage() performance depends on data size and type: (1) Small messages (< 1 KB) have negligible overhead (~0.01-0.1ms), (2) Large objects (1-10 MB) require significant cloning time (10-100ms+), (3) Transferable ArrayBuffers of any size are effectively instant (ownership transfer), (4) Typed arrays backed by ArrayBuffers can also be transferred. For performance-critical applications, always use Transferable Objects for large data."
+        },
+        {
+            "question": "How would you implement a Web Worker-based code sandbox for executing untrusted code?",
+            "answer": "Create a worker sandbox by: (1) Creating a worker from a Blob URL with restricted capabilities, (2) Not passing any references to sensitive APIs, (3) Using a message-based protocol where the worker only receives and returns data, (4) Implementing a timeout mechanism using worker.terminate() plus setTimeout(), (5) Limiting resource usage by monitoring execution time and message frequency, (6) Using Content Security Policy headers to restrict what the worker can do, (7) Never passing DOM elements, authentication tokens, or sensitive application state."
+        }
+    ]
+}

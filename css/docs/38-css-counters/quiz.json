@@ -1,0 +1,147 @@
+{
+    "module": "38-css-counters",
+    "title": "CSS Counters",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "Which property initializes or creates a CSS counter?",
+            "options": ["counter-reset", "counter-increment", "counter()", "counter-set"],
+            "correctAnswer": 0,
+            "explanation": "counter-reset creates a new counter (or resets an existing one) to a specified initial value, typically 0."
+        },
+        {
+            "id": 2,
+            "question": "Where must counter() be used to display a value?",
+            "options": ["In the content property of ::before or ::after", "In any CSS property", "In a data attribute", "In the style attribute"],
+            "correctAnswer": 0,
+            "explanation": "counter() and counters() functions can only be used inside the content property of ::before or ::after pseudo-elements."
+        },
+        {
+            "id": 3,
+            "question": "What does counters(name, '.') do differently from counter(name)?",
+            "options": ["Displays nested counter hierarchy with separator", "Resets all nested counters", "Increments all counters", "Displays only the top-level counter"],
+            "correctAnswer": 0,
+            "explanation": "counters() joins all counter instances from the current element up through its ancestors using the specified separator (e.g., '1.2.3')."
+        },
+        {
+            "id": 4,
+            "question": "What value does counter-increment add by default if no increment is specified?",
+            "options": ["1", "0", "10", "Depends on counter-reset"],
+            "correctAnswer": 0,
+            "explanation": "counter-increment increases the counter by 1 by default. You can specify a different increment: counter-increment: section 2."
+        },
+        {
+            "id": 5,
+            "question": "Can CSS counters work on elements with display: none?",
+            "options": ["No, they are ignored", "Yes, they still increment", "Only on block elements", "Only if explicitly enabled"],
+            "correctAnswer": 0,
+            "explanation": "Elements with display: none are not rendered, so their counters are not incremented. visibility: hidden elements DO increment counters."
+        },
+        {
+            "id": 6,
+            "question": "What is the default starting value of a counter created by counter-reset?",
+            "options": ["0", "1", "undefined", "Depends on the element"],
+            "correctAnswer": 0,
+            "explanation": "By default, counter-reset initializes a counter to 0. You can specify a different starting value: counter-reset: section 5."
+        },
+        {
+            "id": 7,
+            "question": "Which CSS function produces output like '1.1.1' for deep nesting?",
+            "options": ["counter()", "counters()", "calc()", "counter-join()"],
+            "correctAnswer": 1,
+            "explanation": "counters(counter-name, '.') automatically walks up the DOM tree, collecting the counter value at each level and joining with dots."
+        },
+        {
+            "id": 8,
+            "question": "How do you display a counter in Roman numerals?",
+            "options": ["counter(section, upper-roman)", "counter(section, roman)", "counter(section, decimal)", "counter(section, number-style)"],
+            "correctAnswer": 0,
+            "explanation": "The second parameter of counter() specifies the display style. counter(section, upper-roman) displays as I, II, III."
+        },
+        {
+            "id": 9,
+            "question": "What happens to counter scope when a nested element uses counter-reset?",
+            "options": ["The parent counter is overwritten", "A new counter instance is created for that subtree", "An error occurs", "The counter stops incrementing"],
+            "correctAnswer": 1,
+            "explanation": "Each element with counter-reset creates a new counter instance scoped to that element and its descendants. The parent counter is still accessible via counters()."
+        },
+        {
+            "id": 10,
+            "question": "How do you create a countdown using CSS counters?",
+            "options": ["counter-reset: 10; counter-increment: -1", "counter-reset: item 11; counter-increment: item -1", "counter-decrement: item", "Countdowns are not possible with CSS"],
+            "correctAnswer": 1,
+            "explanation": "Set counter-reset to 11 (one more than desired start), then use counter-increment: -1 to count down from 10."
+        },
+        {
+            "id": 11,
+            "question": "Which is the correct CSS to number headings as 'Section 1:', 'Section 2:', etc.?",
+            "options": ["h2::before { counter-increment: section; content: 'Section ' counter(section) ': '; }", "h2 { counter-increment: section; }", "h2::before { content: counter(section); }", "h2::after { counter-increment: section; }"],
+            "correctAnswer": 0,
+            "explanation": "The counter is incremented on h2 and displayed via ::before with custom text formatting in the content property."
+        },
+        {
+            "id": 12,
+            "question": "What property prevents a list item's default marker from appearing when using custom counters?",
+            "options": ["list-style: none", "marker: none", "counter-style: none", "display: none"],
+            "correctAnswer": 0,
+            "explanation": "list-style: none removes the default list markers (bullets or numbers), allowing custom counter-based numbering without interference."
+        },
+        {
+            "id": 13,
+            "question": "How can you number figures as 'Figure 1', 'Figure 2', etc. in a document?",
+            "options": ["counter-reset on body, counter-increment on figure::before", "Use an ordered list for figures", "Number them manually in HTML", "Use the <ol> element"],
+            "correctAnswer": 0,
+            "explanation": "Set counter-reset: figure on the body, then use figure figcaption::before { counter-increment: figure; content: 'Figure ' counter(figure) ': '; }."
+        },
+        {
+            "id": 14,
+            "question": "What browser support do CSS counters have?",
+            "options": ["Modern browsers only (2015+)", "Excellent support since Internet Explorer 8", "Chrome and Firefox only", "Only with CSS Grid support"],
+            "correctAnswer": 1,
+            "explanation": "CSS counters have been supported since Internet Explorer 8 and all modern browsers, making them one of the most widely supported CSS features."
+        },
+        {
+            "id": 15,
+            "question": "What happens when two counters use the same name in different parts of the page?",
+            "options": ["They interfere with each other", "They remain independent if scoped by different counter-reset elements", "The page throws an error", "Only the first counter works"],
+            "correctAnswer": 1,
+            "explanation": "Each element with counter-reset creates a new scoped instance. Counters with the same name in different scope trees are independent."
+        },
+        {
+            "id": 16,
+            "question": "What is the @counter-style rule used for?",
+            "options": ["Creating custom counter display patterns", "Resetting all counters", "Setting counter increment values", "Defining counter scope"],
+            "correctAnswer": 0,
+            "explanation": "@counter-style allows you to define fully custom numbering patterns (symbols, cyclic, etc.) for use with CSS counters and list-style-type."
+        },
+        {
+            "id": 17,
+            "question": "How do you skip numbering on specific items in a counter sequence?",
+            "options": ["Use counter-increment: 0 on the skipped item", "Set display: none on the item", "Remove the ::before pseudo-element", "Use counter-skip property"],
+            "correctAnswer": 0,
+            "explanation": "Setting counter-increment: 0 on an item keeps it from advancing the counter while still displaying the current value."
+        },
+        {
+            "id": 18,
+            "question": "What is the key advantage of CSS counters over manual numbering in HTML?",
+            "options": ["Counters are faster to render", "Numbers automatically adjust when content is added or removed", "Counters work in all browsers", "Counters support more numbering styles"],
+            "correctAnswer": 1,
+            "explanation": "CSS counters automatically renumber when content is inserted, removed, or reordered, eliminating manual HTML updates."
+        },
+        {
+            "id": 19,
+            "question": "What does counter-increment do when applied to the ::before pseudo-element?",
+            "options": ["Increments the counter before displaying it", "Increments the counter after displaying it", "Doesn't work on pseudo-elements", "Resets the counter"],
+            "correctAnswer": 0,
+            "explanation": "Counter increment in ::before happens before the element content renders, ensuring the displayed value includes the current increment."
+        },
+        {
+            "id": 20,
+            "question": "What is the CSS output of counter(section, lower-greek)?",
+            "options": ["1, 2, 3", "α, β, γ", "A, B, C", "i, ii, iii"],
+            "correctAnswer": 1,
+            "explanation": "lower-greek displays the counter using lowercase Greek letters (α, β, γ). This is one of many counter styles available."
+        }
+    ]
+}

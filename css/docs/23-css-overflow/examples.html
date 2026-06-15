@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Overflow - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; padding: 30px; background: #f5f5f5; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 { margin-bottom: 30px; color: #333; }
+    h2 { margin: 30px 0 15px; color: #555; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; font-family: 'Consolas', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 20px 0; }
+
+    .over-box { width: 220px; height: 100px; border: 2px solid #333; margin: 10px 0; padding: 10px; }
+    .over-box p { width: 300px; /* Forces overflow */ }
+    .vis { overflow: visible; background: #e3f2fd; }
+    .hid { overflow: hidden; background: #c8e6c9; }
+    .scr { overflow: scroll; background: #fff9c4; }
+    .aut { overflow: auto; background: #fce4ec; }
+
+    /* Text Overflow */
+    .text-demo { width: 250px; border: 2px solid #333; padding: 10px; margin: 10px 0; }
+    .ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* Custom Scrollbar */
+    .custom-scroll { height: 150px; overflow-y: auto; padding: 10px; border: 2px solid #6c5ce7; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar { width: 8px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #6c5ce7; border-radius: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #5a4bd1; }
+
+    /* Overflow Wrap */
+    .word-break { width: 200px; border: 2px solid #e94560; padding: 10px; }
+    .break-word { overflow-wrap: break-word; }
+
+    /* Long content for scroll */
+    .scroll-content p { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Overflow - Examples</h1>
+
+    <div class="example">
+      <h2>1. Overflow Values Comparison</h2>
+      <div class="demo-grid">
+        <div>
+          <strong>overflow: visible</strong>
+          <div class="over-box vis"><p>This long text overflows the container box visibly because overflow is set to visible (default).</p></div>
+        </div>
+        <div>
+          <strong>overflow: hidden</strong>
+          <div class="over-box hid"><p>This long text is clipped and hidden because overflow is set to hidden.</p></div>
+        </div>
+        <div>
+          <strong>overflow: scroll</strong>
+          <div class="over-box scr"><p>Scrollbars always appear even if content fits, because overflow is scroll.</p></div>
+        </div>
+        <div>
+          <strong>overflow: auto</strong>
+          <div class="over-box aut"><p>Scrollbars appear only when needed with overflow: auto.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>2. Text Overflow with Ellipsis</h2>
+      <div class="code">.ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }</div>
+      <div class="text-demo ellipsis">This is a very long text that will be truncated with an ellipsis at the end because it exceeds the container width.</div>
+      <div class="note">Ellipsis requires three properties: white-space: nowrap, overflow: hidden, and text-overflow: ellipsis.</div>
+    </div>
+
+    <div class="example">
+      <h2>3. Overflow Wrap (Long Words)</h2>
+      <div class="code">.word-break { overflow-wrap: break-word; }</div>
+      <div class="demo-grid">
+        <div>
+          <strong>Without overflow-wrap:</strong>
+          <div class="word-break" style="overflow-wrap:normal;">This text contains a verylongwordthatwilloverflowthecontainerwithoutbreaking</div>
+        </div>
+        <div>
+          <strong>With overflow-wrap: break-word:</strong>
+          <div class="word-break break-word">This text contains a verylongwordthatwillbreakproperlyinsidethecontainer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>4. Scrollable Container with Custom Scrollbar</h2>
+      <div class="code">.custom-scroll::-webkit-scrollbar { width: 8px; }<br>.custom-scroll::-webkit-scrollbar-thumb { background: #6c5ce7; }</div>
+      <div class="note">Custom scrollbars enhance visual design. Use ::-webkit-scrollbar for WebKit browsers and scrollbar-width for Firefox.</div>
+      <div class="custom-scroll">
+        <div class="scroll-content">
+          <p>Line 1: Lorem ipsum dolor sit amet.</p>
+          <p>Line 2: Consectetur adipiscing elit.</p>
+          <p>Line 3: Sed do eiusmod tempor incididunt.</p>
+          <p>Line 4: Ut labore et dolore magna aliqua.</p>
+          <p>Line 5: Ut enim ad minim veniam.</p>
+          <p>Line 6: Quis nostrud exercitation ullamco.</p>
+          <p>Line 7: Laboris nisi ut aliquip ex ea.</p>
+          <p>Line 8: Commodo consequat duis aute.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>5. Horizontal Overflow Prevention</h2>
+      <div class="code">img { max-width: 100%; height: auto; }</div>
+      <div style="width: 300px; border: 2px solid #4a90d9; padding: 10px;">
+        <p>Responsive image (max-width: 100%):</p>
+        <div style="background: #e94560; height: 100px; display: flex; align-items: center; justify-content: center; color: white; max-width: 100%;">Image placeholder (responsive)</div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>6. Scroll Behavior and Overscroll</h2>
+      <div class="code">.container { overscroll-behavior: contain; }</div>
+      <div style="display:flex; gap:20px;">
+        <div class="over-box scr" style="height:150px;">
+          <p>Default overscroll (scroll past boundary shows bounce):</p>
+          <p>Content line 2</p>
+          <p>Content line 3</p>
+          <p>Content line 4</p>
+          <p>Content line 5</p>
+        </div>
+        <div class="over-box scr" style="height:150px; overscroll-behavior: contain;">
+          <p>overscroll-behavior: contain (no bounce/scroll chaining):</p>
+          <p>Content line 2</p>
+          <p>Content line 3</p>
+          <p>Content line 4</p>
+          <p>Content line 5</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

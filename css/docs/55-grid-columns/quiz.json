@@ -1,0 +1,147 @@
+{
+  "module": "55-grid-columns",
+  "title": "Grid Columns",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `grid-template-columns: 1fr 2fr 1fr` create?",
+      "options": ["3 columns where the middle is twice as wide as the others", "3 equal columns", "2 columns where the second is twice as wide", "1 column with flexible width"],
+      "correctAnswer": 0,
+      "explanation": "With three values, you get three columns. The `2fr` in the middle will be twice as wide as each `1fr` column, distributing remaining space in a 1:2:1 ratio."
+    },
+    {
+      "id": 2,
+      "question": "How many columns does `grid-template-columns: repeat(4, 1fr 2fr)` produce?",
+      "options": ["8 columns", "4 columns", "6 columns", "2 columns"],
+      "correctAnswer": 0,
+      "explanation": "`repeat(4, 1fr 2fr)` repeats the pattern `1fr 2fr` four times, producing 4 × 2 = 8 columns."
+    },
+    {
+      "id": 3,
+      "question": "In a grid with `grid-template-columns: 200px 1fr`, what does `1fr` get?",
+      "options": ["Remaining space after 200px and gaps", "Half the container width", "The same as 200px", "100% of the container"],
+      "correctAnswer": 0,
+      "explanation": "The `fr` unit distributes only the remaining space after fixed-size columns and gaps are subtracted. The `1fr` column gets whatever space is left."
+    },
+    {
+      "id": 4,
+      "question": "What does `minmax(200px, 1fr)` mean when used in column definition?",
+      "options": ["Column is at least 200px but can grow to 1fr of remaining space", "Column is exactly 200px on mobile and 1fr on desktop", "Column shrinks to 200px minimum and 1fr maximum", "Column is between 200px and 1fr wide regardless of context"],
+      "correctAnswer": 0,
+      "explanation": "`minmax(200px, 1fr)` sets a minimum size of 200px and allows the column to grow up to 1fr of the available space."
+    },
+    {
+      "id": 5,
+      "question": "What is the difference between `auto-fill` and `auto-fit` in `repeat(auto-fill/auto-fit, minmax(200px, 1fr))`?",
+      "options": ["auto-fill preserves empty track space; auto-fit collapses empty tracks", "They are exactly the same", "auto-fit is for rows only", "auto-fill is deprecated"],
+      "correctAnswer": 0,
+      "explanation": "`auto-fill` keeps the space reserved for empty track slots; `auto-fit` collapses empty tracks to 0, allowing remaining items to expand."
+    },
+    {
+      "id": 6,
+      "question": "What does `grid-column: 1 / -1` do?",
+      "options": ["Spans from the first column line to the last line", "Spans 1 column", "Creates a gap of 1px", "Removes the item from the grid"],
+      "correctAnswer": 0,
+      "explanation": "Line 1 is the first column line; line -1 is the last column line. Together `1 / -1` spans the entire grid width."
+    },
+    {
+      "id": 7,
+      "question": "How many grid lines exist in a grid with 4 columns?",
+      "options": ["5 lines", "4 lines", "8 lines", "3 lines"],
+      "correctAnswer": 0,
+      "explanation": "A grid with N columns has N+1 grid lines. With 4 columns, you have lines 1, 2, 3, 4, and 5."
+    },
+    {
+      "id": 8,
+      "question": "What does `grid-column: span 3` do?",
+      "options": ["Makes the item span across 3 columns", "Inserts 3 empty columns", "Adds 3px padding", "Creates 3 grid lines"],
+      "correctAnswer": 0,
+      "explanation": "`grid-column: span 3` makes the item stretch across 3 column tracks from its starting position."
+    },
+    {
+      "id": 9,
+      "question": "Which of the following is NOT a valid value for `grid-template-columns`?",
+      "options": ["`max-content 1fr min-content`", "`repeat(3, auto-fill, 200px)`", "`repeat(3, 1fr)`", "`200px auto 1fr`"],
+      "correctAnswer": 1,
+      "explanation": "`repeat(3, auto-fill, 200px)` is invalid. `auto-fill` is used in place of the count, not as part of the pattern: `repeat(auto-fill, 200px)` is correct."
+    },
+    {
+      "id": 10,
+      "question": "What is the purpose of named grid lines like `[sidebar] 250px [content] 1fr`?",
+      "options": ["To reference lines by name for readability", "To create CSS variables", "To add IDs to grid items", "To define media query breakpoints"],
+      "correctAnswer": 0,
+      "explanation": "Named grid lines (e.g., `[sidebar]`, `[content]`) let you reference positions by name instead of numbers, making code more readable."
+    },
+    {
+      "id": 11,
+      "question": "In `grid-template-columns: repeat(3, 1fr)`, how much space does each column get?",
+      "options": ["1/3 of the remaining space after gaps", "Exactly 33.33% including gaps", "The full container width divided by 3", "1fr of the total container"],
+      "correctAnswer": 0,
+      "explanation": "Each `1fr` gets an equal share of the remaining space after all gaps are subtracted. The total is split into 3 equal parts."
+    },
+    {
+      "id": 12,
+      "question": "What happens when grid items don't fit in the explicit columns defined by `grid-template-columns`?",
+      "options": ["New implicit columns are created using grid-auto-columns", "Items overflow the container", "Extra items are hidden", "The grid breaks"],
+      "correctAnswer": 0,
+      "explanation": "CSS Grid automatically creates implicit tracks for items that exceed the explicit definition. `grid-auto-columns` controls their size."
+    },
+    {
+      "id": 13,
+      "question": "Which of these values causes the column to size based on its largest content without wrapping?",
+      "options": ["`max-content`", "`min-content`", "`auto`", "`fit-content`"],
+      "correctAnswer": 0,
+      "explanation": "`max-content` sizes the column to fit the largest content without any line breaking."
+    },
+    {
+      "id": 14,
+      "question": "What does `grid-template-columns: 1fr 1fr 1fr` do that is different from `grid-template-columns: repeat(3, 1fr)`?",
+      "options": ["Nothing — they produce the exact same result", "The first creates 3 columns, the second creates 3 rows", "The repeat version is more efficient", "Both A and C"],
+      "correctAnswer": 3,
+      "explanation": "Both declarations produce identical results. `repeat(3, 1fr)` is simply more concise and less repetitive."
+    },
+    {
+      "id": 15,
+      "question": "When using `min-content`, what determines the column width?",
+      "options": ["The width of the longest unbreakable word or element", "The container width", "The parent element's width", "The viewport width"],
+      "correctAnswer": 0,
+      "explanation": "`min-content` sizes the column to the smallest possible width without overflow, typically determined by the longest word or fixed-width element."
+    },
+    {
+      "id": 16,
+      "question": "How do negative line numbers work in `grid-column: 2 / -1`?",
+      "options": ["-1 is the last line; spans from line 2 to the end", "-1 is the first line; goes backwards", "Negative numbers are not supported", "-1 means subtract 1 from the span"],
+      "correctAnswer": 0,
+      "explanation": "Negative line numbers count from the end of the grid. Line -1 is always the last line, -2 is second-to-last, etc."
+    },
+    {
+      "id": 17,
+      "question": "What is the minimum number of items needed to fill a 3-column grid with `grid-template-columns: repeat(3, 1fr)`?",
+      "options": ["3 items to fill one row", "1 item", "2 items", "6 items"],
+      "correctAnswer": 0,
+      "explanation": "With 3 columns, each row can hold 3 items. You need at least 3 items to fill one complete row."
+    },
+    {
+      "id": 18,
+      "question": "What does `fit-content(300px)` do in a column definition?",
+      "options": ["Sizes between min-content and 300px, never exceeding 300px", "Always sizes to exactly 300px", "Sizes to 300px then shrinks if needed", "Sizes to min-content plus 300px"],
+      "correctAnswer": 0,
+      "explanation": "`fit-content(300px)` behaves like `minmax(min-content, max-content)` but clamped at 300px maximum."
+    },
+    {
+      "id": 19,
+      "question": "What is the effect of `grid-template-columns: 1fr` alone?",
+      "options": ["Creates one column that fills the container width", "Creates one row for each item", "Does nothing without grid-template-rows", "Creates a 1px column"],
+      "correctAnswer": 0,
+      "explanation": "`grid-template-columns: 1fr` creates exactly one column that takes all available space, equivalent to `width: 100%`."
+    },
+    {
+      "id": 20,
+      "question": "Which of these declarations creates a Holy Grail layout sidebar/content/sidebar pattern?",
+      "options": ["`grid-template-columns: 250px 1fr 250px`", "`grid-template-columns: 1fr 1fr 1fr`", "`grid-template-columns: 250px 250px 250px`", "`grid-template-columns: repeat(3, 250px)`"],
+      "correctAnswer": 0,
+      "explanation": "`250px 1fr 250px` creates two fixed-width sidebars (250px each) and a flexible content area in the middle, which is the classic Holy Grail layout pattern."
+    }
+  ]
+}

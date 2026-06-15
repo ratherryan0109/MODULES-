@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the difference between `disabled` and `readonly`?",
+    "options": ["disabled submits value, readonly does not", "readonly submits value, disabled does not", "Both submit values", "Neither submits values"],
+    "answer": "b",
+    "explanation": "`readonly` prevents editing but the value IS submitted with the form. `disabled` prevents editing AND the value is NOT submitted."
+  },
+  {
+    "question": "Which attribute specifies the minimum number of characters for a text input?",
+    "options": ["min", "min-chars", "minlength", "minlen"],
+    "answer": "c",
+    "explanation": "`minlength` specifies the minimum number of characters required for text-based inputs. Works with `required` to enforce empty-field rejection."
+  },
+  {
+    "question": "What is the purpose of the `pattern` attribute?",
+    "options": ["Sets a CSS background pattern", "Defines a regex for validation", "Creates repeated form fields", "Sets the input's display pattern"],
+    "answer": "b",
+    "explanation": "The `pattern` attribute accepts a JavaScript regular expression that the entire input value must match for the form to submit."
+  },
+  {
+    "question": "Which attribute associates an input placed outside a `<form>` element with that form?",
+    "options": ["connect", "form", "belongs", "linked"],
+    "answer": "b",
+    "explanation": "The `form` attribute on an input takes the `id` of a `<form>` element, associating the input with that form even if placed outside the form tags."
+  },
+  {
+    "question": "What does `autocomplete=\"new-password\"` do on a password field?",
+    "options": ["Auto-fills the password from browser storage", "Prevents autofill and suggests a new password", "Clears the password field on submit", "Encrypts the password in transit"],
+    "answer": "b",
+    "explanation": "`autocomplete=\"new-password\"` tells the browser not to autofill an existing password and to suggest a new one, commonly used on registration forms."
+  },
+  {
+    "question": "Which attribute provides a hint to mobile browsers about which virtual keyboard to show?",
+    "options": ["keyboard", "virtualkeyboard", "inputmode", "mobilekb"],
+    "answer": "c",
+    "explanation": "`inputmode` hints at the type of data for virtual keyboard optimization. Values include `none`, `text`, `decimal`, `numeric`, `tel`, `search`, `email`, `url`."
+  },
+  {
+    "question": "What happens if you include multiple elements with `autofocus` on a page?",
+    "options": ["All get focus sequentially", "The last one gets focus", "Only the first autofocus element gets focus", "None get focus"],
+    "answer": "c",
+    "explanation": "Only the first element with `autofocus` in the DOM gets focus. Multiple `autofocus` attributes are ignored after the first."
+  },
+  {
+    "question": "What is the purpose of the `step` attribute on `<input type=\"range\">`?",
+    "options": ["Sets the slider's visual increment", "Controls the value granularity", "Sets the animation step", "Defines the step function"],
+    "answer": "b",
+    "explanation": "`step` controls the value granularity — the value will always be a multiple of the step value."
+  },
+  {
+    "question": "Which attribute customizes the label of the Enter key on mobile keyboards?",
+    "options": ["enterkey", "enterkeyhint", "keyboardlabel", "actionlabel"],
+    "answer": "b",
+    "explanation": "`enterkeyhint` customizes the label of the virtual keyboard's Enter key. Values: `enter`, `done`, `go`, `next`, `previous`, `search`, `send`."
+  },
+  {
+    "question": "What does the `title` attribute do when used with `pattern`?",
+    "options": ["Sets the input's heading", "Provides the error message hint for pattern mismatch", "Creates a tooltip with instructions", "Both b and c"],
+    "answer": "d",
+    "explanation": "The `title` attribute both provides a tooltip and is included in the browser's validation error message when the pattern doesn't match."
+  },
+  {
+    "question": "Which attribute overrides the form's action URL on a submit button?",
+    "options": ["action", "formaction", "override", "redirect"],
+    "answer": "b",
+    "explanation": "`formaction` on a `<button type=\"submit\">` or `<input type=\"submit\">` overrides the `action` attribute of the button's parent form."
+  },
+  {
+    "question": "What does the `novalidate` attribute do on a form element?",
+    "options": ["Removes all validation attributes", "Disables browser-native validation", "Ignores required fields", "Allows empty submissions"],
+    "answer": "b",
+    "explanation": "`novalidate` on a `<form>` disables all browser-native validation when the form is submitted. Individual inputs' validation is still accessible via the Constraint Validation API."
+  },
+  {
+    "question": "How does `maxlength` differ from `minlength`?",
+    "options": ["maxlength is for numbers, minlength for text", "maxlength prevents more than N characters, minlength requires at least N", "They are identical", "minlength is for text only"],
+    "answer": "b",
+    "explanation": "`maxlength` limits the number of characters the user can enter. `minlength` requires at least N characters before the form can submit."
+  },
+  {
+    "question": "Which attribute allows an email input to accept multiple addresses?",
+    "options": ["multi", "multiple", "several", "bulk"],
+    "answer": "b",
+    "explanation": "The `multiple` attribute on `<input type=\"email\">` allows comma-separated email addresses. It also works with file inputs for multi-file selection."
+  },
+  {
+    "question": "What is the effect of `formnovalidate` on a submit button?",
+    "options": ["Validates the form before submitting", "Skips validation only for that button's submission", "Disables the button", "Shows all validation errors"],
+    "answer": "b",
+    "explanation": "`formnovalidate` on a submit button overrides any `novalidate` setting, skipping validation only when that specific button is used to submit."
+  },
+  {
+    "question": "Which ARIA attribute indicates that a form field has a validation error?",
+    "options": ["aria-error", "aria-invalid", "aria-wrong", "aria-failed"],
+    "answer": "b",
+    "explanation": "`aria-invalid=\"true\"` tells screen readers that the field contains an invalid value. It should be paired with `aria-errormessage` referencing the error element."
+  },
+  {
+    "question": "What happens when you use `step=\"2\"` on a date input?",
+    "options": ["Only even-numbered days are valid", "The date picker skips every other day", "The step is in days, so every 2 days", "The month increments by 2"],
+    "answer": "c",
+    "explanation": "On date inputs, `step` is in days. `step=\"2\"` means only every other day is selectable."
+  },
+  {
+    "question": "What is the purpose of `aria-describedby` on an input?",
+    "options": ["Provides a label when label is hidden", "References an element containing descriptive help text", "Describes the input type", "Sets the input description for search engines"],
+    "answer": "b",
+    "explanation": "`aria-describedby` references the ID of an element that contains descriptive help text for the input. Screen readers announce this after the label."
+  },
+  {
+    "question": "What happens to an input with `readonly` when the form is submitted?",
+    "options": ["The value is not submitted", "The value is submitted normally", "An error is thrown", "The input is cleared"],
+    "answer": "b",
+    "explanation": "Readonly inputs cannot be edited by the user, but their values are still submitted with the form. This is the key difference from `disabled`."
+  },
+  {
+    "question": "Which attribute controls whether the field must be filled before submission?",
+    "options": ["mandatory", "required", "must", "obligatory"],
+    "answer": "b",
+    "explanation": "The `required` boolean attribute specifies that the input must have a value before the form can be submitted."
+  }
+]

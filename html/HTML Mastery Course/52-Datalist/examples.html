@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datalist Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f0f2f5; color: #1a1a2e; padding: 30px; }
+    h1 { text-align: center; margin-bottom: 8px; font-size: 28px; }
+    .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 15px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .card h2 { font-size: 16px; margin-bottom: 4px; color: #4a6cf7; }
+    .card .desc { font-size: 13px; color: #888; margin-bottom: 14px; }
+    label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    input, select { width: 100%; padding: 10px 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-family: inherit; }
+    input:focus { border-color: #4a6cf7; outline: none; }
+    .result { margin-top: 8px; font-size: 13px; color: #666; background: #f7f8fc; padding: 8px 12px; border-radius: 6px; }
+    code { background: #f1f1f1; padding: 2px 5px; border-radius: 3px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>📋 Datalist Examples</h1>
+  <p class="subtitle">The <code>&lt;datalist&gt;</code> element provides autocomplete suggestions without restricting free-text input.</p>
+
+  <div class="grid">
+    <!-- Basic Text -->
+    <div class="card">
+      <h2>Basic Text Autocomplete</h2>
+      <p class="desc">Browser names — type to see suggestions</p>
+      <label for="browser">Your Browser</label>
+      <input list="browsers" id="browser" name="browser" placeholder="Type a browser name...">
+      <datalist id="browsers">
+        <option value="Chrome"><option value="Firefox"><option value="Edge"><option value="Safari"><option value="Opera"><option value="Brave"><option value="Vivaldi"><option value="Tor">
+      </datalist>
+    </div>
+
+    <!-- With Labels -->
+    <div class="card">
+      <h2>Options with Labels</h2>
+      <p class="desc">Values with descriptive labels shown alongside</p>
+      <label for="country">Country Code</label>
+      <input list="countries" id="country" name="country" placeholder="e.g. US">
+      <datalist id="countries">
+        <option value="US" label="United States">
+        <option value="CA" label="Canada">
+        <option value="GB" label="United Kingdom">
+        <option value="DE" label="Germany">
+        <option value="FR" label="France">
+        <option value="JP" label="Japan">
+        <option value="AU" label="Australia">
+      </datalist>
+    </div>
+
+    <!-- Email -->
+    <div class="card">
+      <h2>Email Autocomplete</h2>
+      <p class="desc">Common email domains as suggestions</p>
+      <label for="email">Email Address</label>
+      <input type="email" list="emails" id="email" name="email" placeholder="you@example.com">
+      <datalist id="emails">
+        <option value="alice@gmail.com"><option value="bob@outlook.com"><option value="carol@yahoo.com"><option value="dan@proton.me"><option value="eve@icloud.com">
+      </datalist>
+    </div>
+
+    <!-- URL -->
+    <div class="card">
+      <h2>URL Suggestions</h2>
+      <p class="desc">Frequently visited URLs as suggestions</p>
+      <label for="site">Website</label>
+      <input type="url" list="sites" id="site" name="site" placeholder="https://">
+      <datalist id="sites">
+        <option value="https://github.com"><option value="https://stackoverflow.com"><option value="https://developer.mozilla.org"><option value="https://codepen.io"><option value="https://youtube.com">
+      </datalist>
+    </div>
+
+    <!-- Number -->
+    <div class="card">
+      <h2>Number Suggestions</h2>
+      <p class="desc">Common quantities as suggestions</p>
+      <label for="qty">Quantity</label>
+      <input type="number" list="qtys" id="qty" name="qty" placeholder="0">
+      <datalist id="qtys">
+        <option value="1"><option value="5"><option value="10"><option value="25"><option value="50"><option value="100">
+      </datalist>
+    </div>
+
+    <!-- Color -->
+    <div class="card">
+      <h2>Color Suggestions</h2>
+      <p class="desc">Common colors as hex suggestions</p>
+      <label for="color">Pick a Color</label>
+      <input type="color" list="colors" id="color" name="color" value="#4a6cf7">
+      <datalist id="colors">
+        <option value="#ff0000"><option value="#00ff00"><option value="#0000ff"><option value="#ffff00"><option value="#ff00ff"><option value="#00ffff"><option value="#000000"><option value="#ffffff">
+      </datalist>
+    </div>
+
+    <!-- Range with Datalist -->
+    <div class="card">
+      <h2>Range with Tick Marks</h2>
+      <p class="desc">Datalist adds labeled tick marks to range inputs</p>
+      <label for="volume">Volume</label>
+      <input type="range" list="ticks" id="volume" name="volume" min="0" max="10" step="1" style="width:100%">
+      <datalist id="ticks">
+        <option value="0" label="0"><option value="5" label="5"><option value="10" label="10">
+      </datalist>
+      <div>Value: <span id="volumeDisplay">5</span></div>
+    </div>
+
+    <!-- Dynamic Datalist -->
+    <div class="card">
+      <h2>Dynamic Suggestions</h2>
+      <p class="desc">JavaScript-updated suggestions based on input</p>
+      <label for="fruit">Type a fruit</label>
+      <input list="fruits" id="fruit" name="fruit" placeholder="Start typing...">
+      <datalist id="fruits"></datalist>
+      <div class="result" id="fruitResult">Matching: <span id="matchCount">0</span></div>
+    </div>
+
+    <!-- Time -->
+    <div class="card">
+      <h2>Time Suggestions</h2>
+      <p class="desc">Common meeting times as suggestions</p>
+      <label for="meeting">Meeting Time</label>
+      <input type="time" list="times" id="meeting" name="meeting">
+      <datalist id="times">
+        <option value="09:00"><option value="10:00"><option value="11:00"><option value="12:00"><option value="13:00"><option value="14:00"><option value="15:00"><option value="16:00">
+      </datalist>
+    </div>
+
+    <!-- Date -->
+    <div class="card">
+      <h2>Date Suggestions</h2>
+      <p class="desc">Important dates as suggestions</p>
+      <label for="event">Event Date</label>
+      <input type="date" list="dates" id="event" name="event">
+      <datalist id="dates">
+        <option value="2026-06-12"><option value="2026-07-04"><option value="2026-10-31"><option value="2026-12-25">
+      </datalist>
+    </div>
+
+    <!-- Phone -->
+    <div class="card">
+      <h2>Phone Number Suggestions</h2>
+      <p class="desc">Contact numbers as suggestions</p>
+      <label for="phone">Phone</label>
+      <input type="tel" list="phones" id="phone" name="phone" placeholder="+1 555-">
+      <datalist id="phones">
+        <option value="+1 555-0100"><option value="+1 555-0123"><option value="+1 555-0456"><option value="+1 555-0789">
+      </datalist>
+    </div>
+
+    <!-- Search -->
+    <div class="card">
+      <h2>Search Suggestions</h2>
+      <p class="desc">Recent search queries as suggestions</p>
+      <label for="search">Search</label>
+      <input type="search" list="searches" id="search" name="search" placeholder="Type to search...">
+      <datalist id="searches">
+        <option value="HTML forms tutorial"><option value="CSS grid layout"><option value="JavaScript arrays"><option value="React hooks guide"><option value="Python web scraping">
+      </datalist>
+    </div>
+  </div>
+
+  <script>
+    const volumeInput = document.getElementById('volume');
+    const volumeDisplay = document.getElementById('volumeDisplay');
+    volumeInput.addEventListener('input', () => { volumeDisplay.textContent = volumeInput.value; });
+
+    const allFruits = ['Apple','Apricot','Avocado','Banana','Blackberry','Blueberry','Cherry','Coconut','Cranberry','Date','Elderberry','Fig','Grape','Grapefruit','Guava','Kiwi','Lemon','Lime','Mango','Melon','Nectarine','Orange','Papaya','Peach','Pear','Pineapple','Plum','Pomegranate','Raspberry','Strawberry','Watermelon'];
+    const fruitInput = document.getElementById('fruit');
+    const fruitDatalist = document.getElementById('fruits');
+    const matchSpan = document.getElementById('matchCount');
+
+    function updateFruits() {
+      const val = fruitInput.value.toLowerCase();
+      const filtered = allFruits.filter(f => f.toLowerCase().includes(val));
+      fruitDatalist.innerHTML = filtered.map(f => `<option value="${f}">`).join('');
+      matchSpan.textContent = filtered.length;
+    }
+    fruitInput.addEventListener('input', updateFruits);
+    updateFruits();
+  </script>
+</body>
+</html>

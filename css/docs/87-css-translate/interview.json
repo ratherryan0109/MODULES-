@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the translate() function do in CSS?", "answer": "translate(x, y) moves an element from its current position by x units horizontally and y units vertically." },
+    { "question": "How is translate() different from left/top positioning?", "answer": "translate() does not affect layout flow, runs on the compositor thread, and does not trigger repaints like left/top do." },
+    { "question": "What does translateX() do?", "answer": "translateX(value) moves an element horizontally by the specified length or percentage." },
+    { "question": "What does translateY() do?", "answer": "translateY(value) moves an element vertically by the specified length or percentage." },
+    { "question": "What does translateZ() do?", "answer": "translateZ(value) moves an element forward or backward along the Z-axis in 3D space, requiring a perspective context." },
+    { "question": "What units can translate functions accept?", "answer": "All CSS length units (px, em, rem, percentage) and calc() expressions are valid for translate functions." },
+    { "question": "Does translate affect the position of sibling elements?", "answer": "No, translate only visually moves the element; siblings retain their original layout positions." },
+    { "question": "How do percentages work in translate()?", "answer": "Percentage values in translate() are relative to the element's own dimensions: width for X, height for Y." },
+    { "question": "What is the default value for translation?", "answer": "The default is translate(0, 0) or no translation, meaning the element stays in its original position." },
+    { "question": "Can translate be combined with other transform functions?", "answer": "Yes, translate can be combined with rotate, scale, and skew in a single transform property." }
+  ],
+  "intermediate": [
+    { "question": "How does translate() compare to using margin for positioning?", "answer": "translate() uses GPU compositing, avoids layout recalculations, and is better for animations; margin affects layout flow." },
+    { "question": "What happens when you translate by more than 100% of element size?", "answer": "The element moves completely off its original position; there is no limit and it can be translated entirely off-screen." },
+    { "question": "Why does translateZ require perspective to work visually?", "answer": "Without perspective, translateZ has no visible effect; perspective creates the vanishing point that makes Z-movement appear as scaling." },
+    { "question": "How do you center an element using translate?", "answer": "position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); centers precisely regardless of element size." },
+    { "question": "What is the difference between translate() and translate3d()?", "answer": "translate3d(x, y, z) forces 3D rendering and GPU acceleration, while translate() uses 2D compositing." },
+    { "question": "How does translate behave on elements with position: fixed?", "answer": "translate moves the fixed element relative to its original fixed position; it does not change the containing block." },
+    { "question": "How does translate handle calc() expressions?", "answer": "translate(calc(100% - 40px), 0) moves the element to 40px from the right edge of its original position." },
+    { "question": "Can negative values be used with translate functions?", "answer": "Yes, negative values move the element left (translateX) or up (translateY) from its original position." },
+    { "question": "How does translate interact with overflow: hidden on parents?", "answer": "translate does not change the layout box, so overflow: hidden clips based on the original position unless the element moves out." },
+    { "question": "How do you translate an element along a diagonal path?", "answer": "Use translate(x, y) with both values non-zero, or chain translateX + translateY: transform: translateX(100px) translateY(50px)." }
+  ],
+  "advanced": [
+    { "question": "How does translate interact with CSS containment?", "answer": "contain: layout isolates the element's layout; translate inside such a container still visually moves it but may limit repaint regions." },
+    { "question": "How can you detect the exact visual position of a translated element?", "answer": "getBoundingClientRect() returns the visual bounding box including translation; offsetLeft/offsetTop reflect the original layout position." },
+    { "question": "How do translate and absolute positioning interact in nested transformed contexts?", "answer": "In a transformed parent, absolutely positioned children use the parent's transformed bounding box as their containing block." },
+    { "question": "What happens during transform-style: preserve-3d with translateZ?", "answer": "Children with translateZ move along the Z-axis relative to the parent's 3D space, maintaining depth relationships." },
+    { "question": "How does translate performance compare to left/top in animations?", "answer": "Translate is GPU-accelerated and avoids layout thrashing, making it significantly smoother than animating left/top." },
+    { "question": "How can translate be used for scroll-driven animations?", "answer": "Combine translate with scroll-driven animation controls to move elements based on scroll position, creating parallax without JavaScript." },
+    { "question": "What edge cases exist with percentage translation in flex/grid layouts?", "answer": "Percentage translate uses the element's own size, which may be 0 in some flex/grid scenarios without explicit sizing, causing no visible translation." },
+    { "question": "How does translateZ interact with the perspective() function?", "answer": "perspective() on the parent with translateZ on children creates depth scaling; larger translateZ values make elements appear closer." },
+    { "question": "How does transform-origin affect translation behavior?", "answer": "transform-origin defines the reference point; most pure translations are unaffected since the whole element moves uniformly." },
+    { "question": "How does translate interact with backface-visibility?", "answer": "If an element is rotated 180deg, backface-visibility: hidden hides it; translate after rotation moves along the rotated axes." }
+  ]
+}

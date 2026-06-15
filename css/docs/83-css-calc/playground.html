@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS calc() — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; padding: 2rem; color: #eee; }
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: #aaa; margin-bottom: 2rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .controls { background: #16213e; border-radius: 12px; padding: 1.5rem; }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group input[type="number"] { width: 80px; padding: 0.3rem; border-radius: 4px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .preview-area { background: #16213e; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; }
+    .preview-box { background: linear-gradient(135deg, #e74c3c, #3498db); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; font-weight: bold; text-align: center; padding: 1rem; min-height: 80px; transition: width 0.2s, height 0.2s; }
+    .result-display { font-size: 1.5rem; font-weight: bold; color: #a8d8ea; margin: 1rem 0; }
+    .code-output { background: #0a0a1a; border-radius: 8px; padding: 1rem; margin-top: 1rem; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #a8d8ea; white-space: pre-wrap; word-break: break-all; width: 100%; }
+    .preset-btn { padding: 0.3rem 0.6rem; border: 1px solid #333; border-radius: 4px; background: #0f3460; color: #aaa; cursor: pointer; font-size: 0.7rem; }
+    .preset-btn:hover { background: #e94560; color: white; }
+    .presets { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS calc() Playground</h1>
+  <p class="subtitle">Build and test calc() expressions interactively</p>
+
+  <div class="container">
+    <div class="controls">
+      <h2>calc() Builder</h2>
+      <div class="presets">
+        <button class="preset-btn" onclick="loadPreset('full-minus')">100% - 40px</button>
+        <button class="preset-btn" onclick="loadPreset('half-gap')">50% - 10px</button>
+        <button class="preset-btn" onclick="loadPreset('third')">100% / 3</button>
+        <button class="preset-btn" onclick="loadPreset('fluid')">1rem + 1vw</button>
+        <button class="preset-btn" onclick="loadPreset('vh-minus')">100vh - 60px</button>
+      </div>
+
+      <div class="control-group">
+        <label>Expression Type</label>
+        <select id="exprType" onchange="updateCalc()">
+          <option value="width">Width</option>
+          <option value="height">Height</option>
+          <option value="fontsize">Font Size</option>
+          <option value="padding">Padding</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Left Operand <span class="value" id="valLeft">100</span></label>
+        <input type="range" id="leftVal" min="0" max="500" value="100" oninput="updateCalc()">
+      </div>
+      <div class="control-group">
+        <label>Left Unit</label>
+        <select id="leftUnit" onchange="updateCalc()">
+          <option value="%">%</option>
+          <option value="px">px</option>
+          <option value="vw">vw</option>
+          <option value="vh">vh</option>
+          <option value="rem">rem</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Operator</label>
+        <select id="operator" onchange="updateCalc()">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Right Operand <span class="value" id="valRight">40</span></label>
+        <input type="range" id="rightVal" min="0" max="500" value="40" oninput="updateCalc()">
+      </div>
+      <div class="control-group">
+        <label>Right Unit</label>
+        <select id="rightUnit" onchange="updateCalc()">
+          <option value="px">px</option>
+          <option value="%">%</option>
+          <option value="vw">vw</option>
+          <option value="vh">vh</option>
+          <option value="rem">rem</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <div class="result-display" id="resultDisplay">calc(100% - 40px)</div>
+        <div class="preview-box" id="previewBox">Preview</div>
+        <p style="margin-top:0.5rem;color:#666;font-size:0.8rem">Width may appear as pixels; calc() computes in the browser.</p>
+      </div>
+      <div class="code-output" id="codeOutput">width: calc(100% - 40px);</div>
+    </div>
+  </div>
+
+  <script>
+    const presets = {
+      'full-minus': { leftVal: 100, leftUnit: '%', op: '-', rightVal: 40, rightUnit: 'px', type: 'width' },
+      'half-gap': { leftVal: 50, leftUnit: '%', op: '-', rightVal: 10, rightUnit: 'px', type: 'width' },
+      'third': { leftVal: 100, leftUnit: '%', op: '/', rightVal: 3, rightUnit: '', type: 'width' },
+      'fluid': { leftVal: 1, leftUnit: 'rem', op: '+', rightVal: 1, rightUnit: 'vw', type: 'fontsize' },
+      'vh-minus': { leftVal: 100, leftUnit: 'vh', op: '-', rightVal: 60, rightUnit: 'px', type: 'height' }
+    };
+
+    function loadPreset(name) {
+      const p = presets[name];
+      if (!p) return;
+      document.getElementById('leftVal').value = p.leftVal;
+      document.getElementById('leftUnit').value = p.leftUnit;
+      document.getElementById('operator').value = p.op;
+      document.getElementById('rightVal').value = p.rightVal;
+      document.getElementById('rightUnit').value = p.rightUnit;
+      document.getElementById('exprType').value = p.type;
+      updateCalc();
+    }
+
+    function updateCalc() {
+      const type = document.getElementById('exprType').value;
+      const leftVal = document.getElementById('leftVal').value;
+      const leftUnit = document.getElementById('leftUnit').value;
+      const op = document.getElementById('operator').value;
+      const rightVal = document.getElementById('rightVal').value;
+      const rightUnit = document.getElementById('rightUnit').value;
+
+      document.getElementById('valLeft').textContent = leftVal;
+      document.getElementById('valRight').textContent = rightVal;
+
+      // Build expression
+      let left = leftVal + (leftUnit || '');
+      let right = (op === '*' || op === '/') ? rightVal : rightVal + (rightUnit || '');
+      if (op === '*' || op === '/') {
+        right = rightVal + (rightVal > 0 ? '' : '');
+      }
+
+      const expr = `calc(${left} ${op} ${right})`;
+      const box = document.getElementById('previewBox');
+      const resultDisplay = document.getElementById('resultDisplay');
+
+      resultDisplay.textContent = expr;
+
+      // Apply to appropriate property
+      let cssProperty = '';
+      switch (type) {
+        case 'width': box.style.width = expr; box.style.removeProperty('height'); box.style.removeProperty('font-size'); box.style.removeProperty('padding'); cssProperty = 'width'; break;
+        case 'height': box.style.height = expr; box.style.removeProperty('width'); box.style.removeProperty('font-size'); box.style.removeProperty('padding'); cssProperty = 'height'; break;
+        case 'fontsize': box.style.fontSize = expr; box.style.removeProperty('width'); box.style.removeProperty('height'); box.style.removeProperty('padding'); cssProperty = 'font-size'; break;
+        case 'padding': box.style.padding = expr; box.style.removeProperty('width'); box.style.removeProperty('height'); box.style.removeProperty('font-size'); cssProperty = 'padding'; break;
+      }
+
+      // Restore default width/height for non-width/height types
+      if (type !== 'width') box.style.width = '';
+      if (type !== 'height') box.style.height = '';
+
+      document.getElementById('codeOutput').textContent = `${cssProperty}: ${expr};`;
+    }
+
+    updateCalc();
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "module": "CSS Logical Properties",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "RTL-Aware Info Card",
+      "description": "Create a simple info card component that uses logical properties for padding, margin, and border. The card should have a left accent border (in LTR) that automatically moves to the right side in RTL. Use margin-inline: auto to center it.",
+      "hint": "Focus on border-inline-start for the accent — it automatically swaps sides in RTL. Use padding-inline and padding-block for inside spacing.",
+      "starter_code": {
+        "html": "<div class=\"info-card\">\n  <h2>Module Title</h2>\n  <p>This card should work in both LTR and RTL without any CSS overrides.</p>\n</div>",
+        "css": ".info-card {\n  /* Add your styles here */\n  \n}"
+      },
+      "solution": {
+        "html": "<div class=\"info-card\">\n  <h2>Module Title</h2>\n  <p>This card works in both LTR and RTL without any CSS overrides!</p>\n</div>",
+        "css": ".info-card {\n  margin-inline: auto;\n  margin-block: 16px;\n  padding-inline: 24px;\n  padding-block: 20px;\n  border-inline-start: 4px solid #3b82f6;\n  background: #f8fafc;\n  border-radius: 0 8px 8px 0;\n  max-inline-size: 400px;\n}\n\n[dir=\"rtl\"] .info-card {\n  /* No changes needed! border-inline-start automatically moves to right */\n  border-radius: 8px 0 0 8px;\n}"
+      },
+      "expected_outcome": "A card centered with margin-inline: auto, with correct padding and a left accent in LTR that becomes a right accent in RTL."
+    },
+    {
+      "id": 2,
+      "difficulty": "medium",
+      "title": "Multi-Direction Navigation Bar",
+      "description": "Build a horizontal navigation bar that works correctly in LTR and RTL. Use logical properties for spacing between nav items, the logo positioning, and the active indicator. The nav items should be evenly spaced using justify-content: end or similar logical approaches.",
+      "hint": "Use margin-inline-end for spacing between nav items (adds space after each item in LTR, before each item in RTL). Use padding-inline for the nav container.",
+      "starter_code": {
+        "html": "<nav class=\"navbar\">\n  <a href=\"#\" class=\"logo\">Logo</a>\n  <div class=\"nav-links\">\n    <a href=\"#\" class=\"active\">Home</a>\n    <a href=\"#\">Products</a>\n    <a href=\"#\">About</a>\n    <a href=\"#\">Contact</a>\n  </div>\n</nav>",
+        "css": ".navbar {\n  display: flex;\n  align-items: center;\n  /* Add your logical properties here */\n}\n\n.logo {\n  /* Logo positioning */\n}\n\n.nav-links {\n  display: flex;\n  /* Spacing for nav items */\n}\n\n.nav-links a {\n  /* Link styles with logical margins */\n}\n\n.nav-links .active {\n  /* Active indicator with logical border */\n}"
+      },
+      "solution": {
+        "html": "<nav class=\"navbar\">\n  <a href=\"#\" class=\"logo\">Logo</a>\n  <div class=\"nav-links\">\n    <a href=\"#\" class=\"active\">Home</a>\n    <a href=\"#\">Products</a>\n    <a href=\"#\">About</a>\n    <a href=\"#\">Contact</a>\n  </div>\n</nav>",
+        "css": ".navbar {\n  display: flex;\n  align-items: center;\n  padding-inline: 24px;\n  padding-block: 12px;\n  background: #1e293b;\n}\n\n.logo {\n  margin-inline-end: auto;  /* Pushes nav links away in LTR, pulls in RTL */\n  font-weight: 700;\n  color: white;\n  text-decoration: none;\n  font-size: 1.25rem;\n}\n\n.nav-links {\n  display: flex;\n  gap: 4px;\n}\n\n.nav-links a {\n  color: #94a3b8;\n  text-decoration: none;\n  padding-inline: 12px;\n  padding-block: 8px;\n  border-radius: 6px;\n  transition: background 0.2s;\n}\n\n.nav-links a:hover {\n  background: #334155;\n  color: white;\n}\n\n.nav-links .active {\n  color: white;\n  background: #3b82f6;\n}\n\n[dir=\"rtl\"] .nav-links a {\n  /* No direction changes needed — margin-inline-end and padding-inline handle it */\n}"
+      },
+      "expected_outcome": "A fully functional navigation bar that works correctly in both LTR and RTL, with the logo on the start side and items properly spaced."
+    },
+    {
+      "id": 3,
+      "difficulty": "hard",
+      "title": "International Article Layout with Grid",
+      "description": "Build an article page layout that uses CSS Grid combined with logical properties. The layout should have: a sticky sidebar on the inline-start side, main content in the center, and an aside on the inline-end side. Include logical sizing, positioning, and border radii. The layout must work correctly in LTR, RTL, and vertical writing modes.",
+      "hint": "Use grid-template-areas with logical-aware naming. Use inline-size instead of width, block-size instead of height. For sticky positioning, use inset-block-start. Remember that border-start-start-radius changes meaning in RTL and vertical modes.",
+      "starter_code": {
+        "html": "<div class=\"article-layout\">\n  <aside class=\"sidebar\">\n    <h3>Table of Contents</h3>\n    <ul>\n      <li><a href=\"#\">Introduction</a></li>\n      <li><a href=\"#\">Background</a></li>\n      <li><a href=\"#\">Methodology</a></li>\n    </ul>\n  </aside>\n  <main class=\"content\">\n    <h1>Article Title</h1>\n    <p>Main article content goes here...</p>\n  </main>\n  <aside class=\"related\">\n    <h3>Related Articles</h3>\n    <ul>\n      <li><a href=\"#\">Related 1</a></li>\n      <li><a href=\"#\">Related 2</a></li>\n    </ul>\n  </aside>\n</div>",
+        "css": ".article-layout {\n  display: grid;\n  /* Create a logical-aware grid */\n}\n\n.sidebar {\n  /* Logical positioning for sticky */\n}\n\n.content {\n  /* Logical padding and sizing */\n}\n\n.related {\n  /* Logical border on inline-start */\n}"
+      },
+      "solution": {
+        "html": "<div class=\"article-layout\">\n  <aside class=\"sidebar\">\n    <h3>Table of Contents</h3>\n    <ul>\n      <li><a href=\"#\">Introduction</a></li>\n      <li><a href=\"#\">Background</a></li>\n      <li><a href=\"#\">Methodology</a></li>\n    </ul>\n  </aside>\n  <main class=\"content\">\n    <h1>Article Title</h1>\n    <p>Main article content goes here. This layout uses logical properties so the sidebar stays on the correct side in all writing modes.</p>\n  </main>\n  <aside class=\"related\">\n    <h3>Related Articles</h3>\n    <ul>\n      <li><a href=\"#\">Related 1</a></li>\n      <li><a href=\"#\">Related 2</a></li>\n    </ul>\n  </aside>\n</div>",
+        "css": ".article-layout {\n  display: grid;\n  grid-template-columns: 220px 1fr 200px;\n  gap: 24px;\n  padding-inline: 32px;\n  margin-inline: auto;\n  max-inline-size: 1200px;\n}\n\n.sidebar {\n  position: sticky;\n  inset-block-start: 20px;\n  block-size: fit-content;\n  padding-inline: 16px;\n  padding-block: 20px;\n  border-inline-end: 1px solid #e5e7eb;\n}\n\n.content {\n  padding-inline: 16px;\n}\n\n.related {\n  padding-inline: 16px;\n  padding-block: 20px;\n  border-inline-start: 1px solid #e5e7eb;\n}\n\n/* For RTL and vertical modes, the grid reorders automatically */\n/* and border-inline-start/end swap sides */\n\n@media (max-width: 768px) {\n  .article-layout {\n    grid-template-columns: 1fr;\n  }\n  .sidebar, .related {\n    border-inline: none;\n    border-block: 1px solid #e5e7eb;\n  }\n}"
+      },
+      "expected_outcome": "A three-column article layout that works correctly in LTR, RTL, and vertical writing modes without any direction-specific CSS overrides."
+    }
+  ]
+}

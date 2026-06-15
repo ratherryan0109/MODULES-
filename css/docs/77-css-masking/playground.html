@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Masking — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; padding: 2rem; color: #eee; }
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: #aaa; margin-bottom: 2rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .controls { background: #16213e; border-radius: 12px; padding: 1.5rem; }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .preview-area { background: #16213e; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; }
+    .preview-box { width: 100%; max-width: 400px; height: 300px; background: linear-gradient(135deg, #e74c3c, #f39c12, #2ecc71, #3498db, #9b59b6); border-radius: 12px; transition: mask 0.2s; }
+    .code-output { background: #0a0a1a; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #a8d8ea; white-space: pre-wrap; word-break: break-all; width: 100%; }
+    .preset-btn { padding: 0.3rem 0.6rem; border: 1px solid #333; border-radius: 4px; background: #0f3460; color: #aaa; cursor: pointer; font-size: 0.7rem; }
+    .preset-btn:hover { background: #e94560; color: white; }
+    .preset-btn.active { background: #e94560; color: white; }
+    .presets { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Masking Playground</h1>
+  <p class="subtitle">Experiment with CSS masks and see the results in real time</p>
+
+  <div class="container">
+    <div class="controls">
+      <h2>Mask Controls</h2>
+      <div class="presets">
+        <button class="preset-btn" onclick="applyPreset('none')">None</button>
+        <button class="preset-btn" onclick="applyPreset('fade-right')">Fade Right</button>
+        <button class="preset-btn" onclick="applyPreset('fade-bottom')">Fade Bottom</button>
+        <button class="preset-btn" onclick="applyPreset('radial')">Radial</button>
+        <button class="preset-btn" onclick="applyPreset('diamond')">Diamond</button>
+        <button class="preset-btn" onclick="applyPreset('checker')">Checker</button>
+        <button class="preset-btn" onclick="applyPreset('circle-svg')">Circle SVG</button>
+      </div>
+
+      <div class="control-group">
+        <label>Mask Type</label>
+        <select id="maskType" onchange="updateMask()">
+          <option value="none">None</option>
+          <option value="linear" selected>Linear Gradient</option>
+          <option value="radial">Radial Gradient</option>
+          <option value="svg">SVG Mask</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Direction / Angle <span class="value" id="valAngle">90</span></label>
+        <input type="range" id="angle" min="0" max="360" value="90" oninput="updateMask()">
+      </div>
+      <div class="control-group">
+        <label>Transition Point <span class="value" id="valPoint">50</span></label>
+        <input type="range" id="point" min="0" max="100" value="50" oninput="updateMask()">
+      </div>
+      <div class="control-group">
+        <label>Hard Edge <span class="value" id="valHardness">10</span></label>
+        <input type="range" id="hardness" min="1" max="50" value="10" oninput="updateMask()">
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <div class="preview-box" id="previewBox"></div>
+      </div>
+      <div class="code-output" id="codeOutput">mask: none;</div>
+    </div>
+  </div>
+
+  <script>
+    function getMaskStyle(maskType, angle, point, hardness) {
+      const p1 = Math.max(0, point - hardness);
+      const p2 = Math.min(100, point + hardness);
+      switch (maskType) {
+        case 'none': return 'none';
+        case 'linear': {
+          const dir = (angle % 360) + 'deg';
+          return `linear-gradient(${dir}, transparent ${p1}%, black ${p2}%)`;
+        }
+        case 'radial': {
+          const r1 = Math.max(0, point - hardness) / 100;
+          const r2 = Math.min(100, point + hardness) / 100;
+          return `radial-gradient(circle, transparent ${r1 * 100}%, black ${r2 * 100}%)`;
+        }
+        case 'svg':
+          return `url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Ccircle cx="100" cy="100" r="${point}" fill="white"/%3E%3C/svg%3E') center/cover`;
+        default: return 'none';
+      }
+    }
+
+    function updateMask() {
+      const maskType = document.getElementById('maskType').value;
+      const angle = parseInt(document.getElementById('angle').value);
+      const point = parseInt(document.getElementById('point').value);
+      const hardness = parseInt(document.getElementById('hardness').value);
+
+      document.getElementById('valAngle').textContent = angle;
+      document.getElementById('valPoint').textContent = point;
+      document.getElementById('valHardness').textContent = hardness;
+
+      const maskVal = getMaskStyle(maskType, angle, point, hardness);
+      const box = document.getElementById('previewBox');
+
+      if (maskVal === 'none') {
+        box.style.maskImage = 'none';
+        box.style.webkitMaskImage = 'none';
+        box.style.mask = '';
+        box.style.webkitMask = '';
+        document.getElementById('codeOutput').textContent = 'mask: none;';
+      } else {
+        box.style.maskImage = maskVal;
+        box.style.webkitMaskImage = maskVal;
+        box.style.mask = '';
+        box.style.webkitMask = '';
+        document.getElementById('codeOutput').textContent = `mask-image: ${maskVal};\n-webkit-mask-image: ${maskVal};`;
+      }
+    }
+
+    function applyPreset(name) {
+      const presets = {
+        'none': ['none', 90, 50, 10],
+        'fade-right': ['linear', 90, 50, 10],
+        'fade-bottom': ['linear', 0, 50, 10],
+        'radial': ['radial', 0, 50, 10],
+        'diamond': ['linear', 45, 50, 10],
+        'checker': ['linear', 0, 50, 10],
+        'circle-svg': ['svg', 0, 50, 10]
+      };
+      const p = presets[name];
+      if (!p) return;
+      document.getElementById('maskType').value = p[0];
+      document.getElementById('angle').value = p[1];
+      document.getElementById('point').value = p[2];
+      document.getElementById('hardness').value = p[3];
+      updateMask();
+    }
+
+    updateMask();
+  </script>
+</body>
+</html>

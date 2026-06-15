@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the HTML <audio> element and how do you use it?",
+      "answer": "The <audio> element is an HTML5 tag used to embed sound content in web pages. You use it by providing one or more <source> elements with different audio formats, and optionally the controls attribute for native playback controls. The basic syntax is: <audio controls><source src='file.mp3' type='audio/mpeg'>Fallback text</audio>."
+    },
+    {
+      "question": "What are the supported audio formats in HTML5?",
+      "answer": "The three most widely supported audio formats are: MP3 (audio/mpeg) — universal support across all browsers; OGG (audio/ogg) — supported by Firefox, Chrome, Opera; and WAV (audio/wav) — supported by most browsers. Modern browsers also support AAC, FLAC, and WebM/Opus."
+    },
+    {
+      "question": "What does the controls attribute do on an audio element?",
+      "answer": "The controls attribute is a boolean attribute that, when present, displays the browser's native audio playback controls. These typically include play/pause button, seek bar, volume control, and time display. It requires no value — just including the word 'controls' is sufficient."
+    },
+    {
+      "question": "How do you add multiple audio source formats for fallback?",
+      "answer": "You use multiple <source> elements within the <audio> element, each with a different src and type attribute. The browser selects the first format it can play. Example: <audio controls><source src='song.mp3' type='audio/mpeg'><source src='song.ogg' type='audio/ogg'>Fallback text</audio>."
+    },
+    {
+      "question": "What is the purpose of the preload attribute?",
+      "answer": "The preload attribute hints to the browser about what data to download before playback. 'none' skips preloading, 'metadata' loads only basic info (duration, sample rate), and 'auto' (default) downloads the entire audio file. This helps balance bandwidth usage against playback responsiveness."
+    },
+    {
+      "question": "How do you autoplay audio when a page loads?",
+      "answer": "Add the autoplay attribute to the <audio> tag. However, modern browsers require the muted attribute alongside autoplay to prevent unwanted sound. Without muted, autoplay is blocked. Example: <audio autoplay muted><source src='bg.mp3' type='audio/mpeg'></audio>."
+    },
+    {
+      "question": "What fallback content should you provide inside the audio element?",
+      "answer": "You should provide text or HTML content that displays when the browser cannot play any of the provided audio sources. Common fallbacks include: a simple text message ('Your browser does not support audio'), a download link to the audio file, or an embedded fallback like a Flash player for legacy support."
+    },
+    {
+      "question": "How do you loop audio in HTML?",
+      "answer": "Add the loop attribute to the <audio> tag. This is a boolean attribute that causes the audio to restart from the beginning each time it finishes. Example: <audio controls loop><source src='loop.mp3' type='audio/mpeg'></audio>."
+    },
+    {
+      "question": "What is the difference between the src attribute on <audio> and nested <source> elements?",
+      "answer": "The src attribute directly on the <audio> element specifies a single audio source. Nested <source> elements allow multiple format options, with each having its own src and type. Using <source> elements is preferred because it provides format fallbacks for broader browser compatibility."
+    },
+    {
+      "question": "How do you set audio volume using HTML attributes?",
+      "answer": "There is no HTML attribute to set volume. Volume is controlled either through the native controls UI (if the controls attribute is present) or programmatically via JavaScript using the volume property (0.0 to 1.0)."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does the JavaScript Audio() constructor differ from document.createElement('audio')?",
+      "answer": "new Audio('src.mp3') is a convenience constructor that creates an HTMLAudioElement and immediately sets the src attribute. document.createElement('audio') creates the element without any attributes. Both return the same HTMLAudioElement object. The constructor is shorter syntax but does not append the element to the DOM."
+    },
+    {
+      "question": "Explain the audio.play() Promise and why error handling is important.",
+      "answer": "audio.play() returns a Promise that resolves when playback starts and rejects if it fails. Rejection occurs when autoplay is blocked by browser policies, the audio source fails to load, or the user hasn't interacted with the page. Always use .catch() to handle rejection gracefully and inform users: audio.play().catch(err => console.warn('Play failed:', err))."
+    },
+    {
+      "question": "How do you create custom audio controls in HTML/CSS/JavaScript?",
+      "answer": "To create custom controls: (1) Remove or hide the controls attribute, (2) Build custom UI elements (play/pause button, seek bar, volume slider), (3) Wire them using JavaScript events. Key event handlers include click for play/pause, input for seek bars (with isSeeking flag to avoid conflicts with timeupdate), and volume change listeners. Use the timeupdate event to sync seek bar position."
+    },
+    {
+      "question": "What is the Media Session API and how does it enhance audio playback?",
+      "answer": "The Media Session API allows web applications to integrate with system-level media controls like the lock screen, notification shade, and keyboard media keys. It uses navigator.mediaSession.metadata to set track info (title, artist, artwork) and setActionHandler() to respond to play, pause, next, and previous commands. This provides a native-app-like experience."
+    },
+    {
+      "question": "How do you use the Web Audio API alongside an <audio> element?",
+      "answer": "Create an AudioContext, then use audioContext.createMediaElementSource(audioElement) to connect the <audio> element to the Web Audio API graph. This allows you to route audio through nodes like AnalyserNode (visualization), BiquadFilterNode (equalization), and GainNode (volume control), while still using the <audio> element for playback control."
+    },
+    {
+      "question": "What is the difference between AudioContext and HTMLAudioElement?",
+      "answer": "HTMLAudioElement is a DOM element for basic audio playback with play, pause, seek, and volume control. AudioContext is part of the Web Audio API and provides a graph-based audio processing system with nodes for real-time manipulation, synthesis, visualization, and spatial audio. AudioContext is more powerful but requires more code and must be resumed after user interaction."
+    },
+    {
+      "question": "How do you detect which audio formats a browser supports?",
+      "answer": "Use audio.canPlayType(type) method on any HTMLAudioElement. It returns 'probably' if the format is well-supported, 'maybe' if support is uncertain, or an empty string if not supported. Test multiple MIME types like 'audio/mpeg', 'audio/ogg; codecs=\"vorbis\"', 'audio/wav', etc., to determine the best format to serve."
+    },
+    {
+      "question": "What is the 'timeupdate' event and how often does it fire?",
+      "answer": "The timeupdate event fires whenever the currentTime property changes. It typically fires 4-60 times per second depending on the browser and system load. It's used to update UI elements like seek bars and time displays. The frequency is not guaranteed, so for precise timing, consider using requestAnimationFrame or the Web Audio API's currentTime."
+    },
+    {
+      "question": "How would you implement an audio playlist with automatic track advancement?",
+      "answer": "Create an array of track sources. When a track ends (listening for the 'ended' event), increment the track index and set audio.src to the next track before calling audio.play(). Handle edge cases: looping back to the first track after the last, pausing after the final track, and updating the UI to show the current track. Use error handling to skip to the next track if one fails."
+    },
+    {
+      "question": "What is AudioContext.resume() and why is it needed?",
+      "answer": "AudioContext.resume() is needed because most browsers create AudioContexts in a 'suspended' state, preventing audio playback until a user gesture (click, keypress, touch). This policy prevents websites from playing audio without user interaction. You must call .resume() inside a user event handler to activate the context."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the complete audio autoplay policy across different browsers.",
+      "answer": "Chrome allows autoplay if: (a) the user has interacted with the domain, (b) the user has added the site to their home screen on mobile, or (c) the audio is muted. Safari requires user interaction for any autoplay with sound. Firefox follows similar policies to Chrome. Edge mirrors Chrome's policy. All browsers allow muted autoplay. The Media Engagement Score (MES) influences autoplay permissions — sites the user frequently plays media on get autoplay privileges."
+    },
+    {
+      "question": "How do you implement gapless audio playback between tracks?",
+      "answer": "Gapless playback is challenging with HTMLAudioElement due to the gap between tracks when changing .src. Solutions include: (1) Use two audio elements and crossfade between them, (2) Use the Web Audio API with AudioBuffer for pre-decoded tracks for zero-latency switching, (3) For streaming, use MediaSourceExtensions with a single audio element. The Web Audio API approach is most reliable — decode all tracks upfront and schedule playback with AudioBufferSourceNode."
+    },
+    {
+      "question": "What is AudioBuffer and how do you decode audio data for visualization?",
+      "answer": "AudioBuffer represents short audio data held in memory, containing PCM data for each channel. You obtain it by fetching a file as ArrayBuffer and using audioContext.decodeAudioData(arrayBuffer). Once decoded, you can access the raw PCM data via .getChannelData(), analyze frequency content with an AnalyserNode, or play it with AudioBufferSourceNode. This is the foundation for offline audio processing and visualization."
+    },
+    {
+      "question": "How would you implement real-time audio effects like reverb or echo?",
+      "answer": "Use the Web Audio API's routing graph. For echo: use a DelayNode connected to a GainNode (for feedback), feeding back into itself via a cycle. For reverb: use a ConvolverNode with an impulse response (IR) file. For equalization: chain BiquadFilterNodes for different frequency bands. Always handle feedback loops with a GainNode to prevent runaway oscillation and use destination.channelCount to manage output channels."
+    },
+    {
+      "question": "Explain the AudioWorklet API and how it differs from ScriptProcessorNode.",
+      "answer": "AudioWorklet is the modern replacement for ScriptProcessorNode. It runs audio processing code on a separate thread (AudioWorkletGlobalScope) with deterministic, low-latency execution. Unlike ScriptProcessorNode (deprecated), which ran on the main thread and caused glitches, AudioWorklet provides reliable real-time processing. It uses addModule() to load a processor script and creates AudioWorkletNode instances for the audio graph."
+    },
+    {
+      "question": "How do you handle Audio Lifecycle events for proper cleanup?",
+      "answer": "Proper cleanup involves: (1) Calling audio.pause() before removing elements, (2) Disconnecting all Web Audio API nodes with node.disconnect(), (3) Closing AudioContext with audioContext.close() to free system resources, (4) Removing event listeners to prevent memory leaks, (5) Canceling requestAnimationFrame loops used for visualization. Use the 'beforeunload' event or lifecycle hooks (in frameworks) to trigger cleanup."
+    },
+    {
+      "question": "How would you implement adaptive bitrate streaming for audio?",
+      "answer": "Use the MediaSource Extensions (MSE) API with an HTMLAudioElement. Create a MediaSource object, attach it to the audio element via URL.createObjectURL(mediaSource). SourceBuffer segments of varying quality/bitrate. Monitor the audio element's buffered ranges and network conditions to dynamically switch between quality levels. For a production solution, consider using the HLS.js library (for HLS streams) or the Dash.js library (for MPEG-DASH)."
+    },
+    {
+      "question": "What are the privacy implications of the Media Session API and how do you handle them?",
+      "answer": "Media Session metadata (title, artist, artwork) is displayed on the lock screen and in notification centers, which could leak listening habits. For privacy-sensitive content: (1) Use generic metadata when the device is locked (if detectable), (2) Implement session management to clear metadata on logout, (3) Consider using platform-specific APIs for private browsing modes, and (4) Provide user settings to disable Media Session integration."
+    },
+    {
+      "question": "How do you synchronize multiple audio elements for multi-track playback?",
+      "answer": "Precise synchronization using multiple HTMLAudioElements is unreliable due to independent clocks. The correct approach uses the Web Audio API: create one AudioContext, fetch and decode all tracks into AudioBuffers, then schedule them using AudioBufferSourceNode.start(when) with the same 'when' parameter (audioContext.currentTime + a small offset). For sample-accurate sync, schedule all tracks on the same rendering quantum using a single AudioContext."
+    },
+    {
+      "question": "Explain how to process microphone input and analyze it in real-time.",
+      "answer": "Use navigator.mediaDevices.getUserMedia({ audio: true }) to obtain a MediaStream. Create an AudioContext, then use audioContext.createMediaStreamSource(stream) to create a source node. Connect this to an AnalyserNode for frequency/time-domain analysis, and optionally to audioContext.destination for monitoring. For recording, create MediaRecorder from the stream. Remember to stop tracks (stream.getTracks().forEach(t => t.stop())) when done and handle the 'secure context' requirement (HTTPS or localhost)."
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "module": "77-css-masking",
+  "title": "CSS Masking",
+  "difficulty": "advanced",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS property applies a mask to an element?",
+      "options": ["clip-path", "mask", "overflow", "visibility"],
+      "correctAnswer": 1,
+      "explanation": "The mask property (and its sub-properties) applies masking to elements."
+    },
+    {
+      "id": 2,
+      "question": "What color in a mask image reveals the element?",
+      "options": ["Black", "White/opaque", "Red", "Transparent"],
+      "correctAnswer": 1,
+      "explanation": "White or opaque areas in a mask reveal the element; black/transparent areas hide it."
+    },
+    {
+      "id": 3,
+      "question": "Which mask-mode uses color brightness to determine visibility?",
+      "options": ["alpha", "luminance", "brightness", "auto"],
+      "correctAnswer": 1,
+      "explanation": "luminance mode uses the brightness of colors to determine which parts are visible."
+    },
+    {
+      "id": 4,
+      "question": "How do you reference an SVG <mask> element in CSS?",
+      "options": ["mask: svg(#id)", "mask: element(#id)", "mask: url(#id)", "mask: ref(#id)"],
+      "correctAnswer": 2,
+      "explanation": "SVG masks are referenced using the URL function: mask: url(#myMask);"
+    },
+    {
+      "id": 5,
+      "question": "Which technique creates gradient text by cutting text out of a background?",
+      "options": ["mask-image on text", "background-clip: text", "-webkit-text-mask", "font-mask"],
+      "correctAnswer": 1,
+      "explanation": "background-clip: text with -webkit-text-fill-color: transparent reveals the background through text characters."
+    },
+    {
+      "id": 6,
+      "question": "What does mask-composite: subtract do?",
+      "options": ["Adds masks together", "Subtracts one mask from another", "Keeps overlapping areas only", "Keeps non-overlapping areas"],
+      "correctAnswer": 1,
+      "explanation": "mask-composite: subtract removes the areas of the second mask from the first mask."
+    },
+    {
+      "id": 7,
+      "question": "Which property controls how a mask image repeats?",
+      "options": ["mask-repeat", "mask-tile", "background-repeat", "mask-mode"],
+      "correctAnswer": 0,
+      "explanation": "mask-repeat controls tiling behavior, similar to background-repeat."
+    },
+    {
+      "id": 8,
+      "question": "Which browser prefix is often needed for mask properties?",
+      "options": ["-moz-", "-webkit-", "-o-", "-ms-"],
+      "correctAnswer": 1,
+      "explanation": "Many mask properties require the -webkit- prefix for broad browser support."
+    },
+    {
+      "id": 9,
+      "question": "What does mask-size: cover do?",
+      "options": ["Repeats the mask", "Scales mask to cover the entire element", "Sets mask to original size", "Centers the mask"],
+      "correctAnswer": 1,
+      "explanation": "mask-size: cover scales the mask image to cover the entire element, potentially cropping it."
+    },
+    {
+      "id": 10,
+      "question": "Which masking approach creates a smooth fade-out effect on an image?",
+      "options": ["SVG mask reference", "Gradient mask using mask-image: linear-gradient()", "mask-repeat: no-repeat", "mask-clip: border-box"],
+      "correctAnswer": 1,
+      "explanation": "A linear-gradient mask from black to transparent creates a smooth fade-out effect."
+    },
+    {
+      "id": 11,
+      "question": "What is the key difference between mask and clip-path?",
+      "options": ["mask uses alpha/luminance for soft edges; clip-path creates hard edges", "They are identical", "clip-path uses alpha; mask creates hard edges", "Both work the same way"],
+      "correctAnswer": 0,
+      "explanation": "mask uses alpha/luminance for soft edges and partial transparency; clip-path creates hard-edged clipping only."
+    },
+    {
+      "id": 12,
+      "question": "How does mask-mode: alpha differ from mask-mode: luminance?",
+      "options": ["They are the same", "alpha uses transparency channel; luminance uses color brightness", "alpha uses grayscale; luminance uses alpha", "alpha is faster"],
+      "correctAnswer": 1,
+      "explanation": "alpha mode uses the mask's alpha/transparency channel; luminance mode uses the brightness of colors."
+    },
+    {
+      "id": 13,
+      "question": "What is the mask shorthand property order?",
+      "options": ["mask: image position / size repeat", "mask: image repeat position / size clip", "mask: repeat image position size", "mask: position size image repeat"],
+      "correctAnswer": 1,
+      "explanation": "The mask shorthand follows: mask: image repeat position / size clip similar to background shorthand."
+    },
+    {
+      "id": 14,
+      "question": "Can mask animations be performance-friendly?",
+      "options": ["No, always slow", "Yes, especially when using transform and opacity with masks", "Only in Chrome", "Only with SVG masks"],
+      "correctAnswer": 1,
+      "explanation": "Masks combined with GPU-accelerated properties like transform and opacity can animate performantly."
+    },
+    {
+      "id": 15,
+      "question": "What happens when you apply a partially transparent mask?",
+      "options": ["Element is fully visible", "Element is partially revealed with matching opacity", "Element becomes invisible", "Mask is ignored"],
+      "correctAnswer": 1,
+      "explanation": "A partially transparent mask (e.g., 50% gray) reveals the element at that opacity level."
+    },
+    {
+      "id": 16,
+      "question": "Which value of mask-clip defines the area affected by the mask?",
+      "options": ["mask-clip: border-box", "mask-clip: content-box", "mask-clip: padding-box", "All of the above"],
+      "correctAnswer": 3,
+      "explanation": "mask-clip accepts border-box, padding-box, content-box, and margin-box to define the mask area."
+    },
+    {
+      "id": 17,
+      "question": "How does CSS masking differ from opacity?",
+      "options": ["They work identically", "opacity affects the whole element uniformly; masks can selectively reveal/hide per-pixel", "mask is faster", "opacity is CSS-only"],
+      "correctAnswer": 1,
+      "explanation": "opacity uniformly fades the entire element; masks can create complex patterns of visibility across the element."
+    },
+    {
+      "id": 18,
+      "question": "What is the purpose of mask-position?",
+      "options": ["Sets the element position", "Positions the mask image within the element", "Sets the mask origin", "Defines the clipping area"],
+      "correctAnswer": 1,
+      "explanation": "mask-position positions the mask image relative to the element, similar to background-position."
+    },
+    {
+      "id": 19,
+      "question": "Which modern CSS feature is mask-border used for?",
+      "options": ["Masking the border area only", "Creating image-based border masks that tile around the border", "Hiding borders", "Making borders transparent"],
+      "correctAnswer": 1,
+      "explanation": "mask-border slices a mask image into 9 parts and applies them to the border edges and corners."
+    },
+    {
+      "id": 20,
+      "question": "What does mask-composite: add do?",
+      "options": ["Replaces the mask", "Combines multiple masks by adding their visible areas", "Subtracts masks", "Keeps only overlapping areas"],
+      "correctAnswer": 1,
+      "explanation": "mask-composite: add combines multiple mask layers so the visible areas of all masks are shown."
+    }
+  ]
+}

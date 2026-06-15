@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a responsive layout system?", "answer": "A responsive layout system combines CSS Grid, Flexbox, and other CSS features to create flexible, adaptable page structures." },
+    { "question": "How do CSS Grid and Flexbox work together in a layout?", "answer": "Use Grid for the overall page layout (2D) and Flexbox within grid items for component-level alignment (1D)." },
+    { "question": "What is a component-driven layout?", "answer": "A component-driven layout builds pages from self-contained components that each handle their own responsive behavior." },
+    { "question": "How do you create a responsive page layout with Grid?", "answer": "Define grid-template-areas for header, nav, main, sidebar, footer, and use auto-fill/minmax for the main content columns." },
+    { "question": "What is a mixed grid and flexbox layout pattern?", "answer": "An example: Grid creates the page structure (header, sidebar, main, footer), and Flexbox arranges items inside the header (logo, nav links, button)." },
+    { "question": "Why combine Grid and Flexbox instead of using just one?", "answer": "Grid excels at 2D page layouts; Flexbox excels at 1D component alignment. Using both leverages each tool's strengths." },
+    { "question": "What is a fluid layout?", "answer": "A fluid layout uses relative units that stretch and shrink with the viewport, adapting continuously to any screen width." },
+    { "question": "What is a hybrid layout approach?", "answer": "A hybrid approach uses Grid for macro layout, Flexbox for micro layout, and media queries for adjustments at specific breakpoints." },
+    { "question": "How do you make a grid container responsive?", "answer": "Use grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) to automatically adjust column count based on container width." },
+    { "question": "What is the macro vs micro layout distinction?", "answer": "Macro layout is the overall page structure (Grid); micro layout is the internal arrangement of elements within components (Flexbox)." }
+  ],
+  "intermediate": [
+    { "question": "How do you build a responsive holy grail layout with Grid and Flexbox?", "answer": "Grid defines the three-row, three-column structure; Flexbox handles alignment within the header (logo, nav) and footer (links). Media queries stack columns." },
+    { "question": "How do you handle nested responsiveness in component-driven layouts?", "answer": "Each component manages its own responsive behavior using container queries or internal media queries, independent of the page layout." },
+    { "question": "What are the benefits of component-driven responsive systems?", "answer": "Components are reusable, independently testable, and can be moved between pages without breaking their responsive behavior." },
+    { "question": "How do you combine grid-auto-flow with flexbox for complex layouts?", "answer": "Use grid-auto-flow: dense at the macro level for efficient packing, then Flexbox inside grid items for content alignment." },
+    { "question": "What is the role of container queries in component-driven layouts?", "answer": "Container queries allow components to respond to their own container size, making them truly reusable across different layout contexts." },
+    { "question": "How do you create a responsive sidebar layout with Grid and Flexbox?", "answer": "Grid defines the sidebar/main columns, collapsing to single column on mobile. Inside the sidebar, Flexbox arranges navigation items." },
+    { "question": "What is the relationship between CSS Grid template areas and component encapsulation?", "answer": "Grid template areas define named regions; components placed in those regions manage their own internal responsive behavior independently." },
+    { "question": "How do you handle overflow in combined Grid and Flexbox layouts?", "answer": "Grid tracks contain overflow with overflow properties; Flexbox items inside can wrap or scroll independently as needed." },
+    { "question": "What is the best practice for spacing in combined layouts?", "answer": "Use gap on the grid container for macro spacing and gap on flex containers for micro spacing, maintaining consistent spacing throughout." },
+    { "question": "How do you create a responsive card grid with mixed content?", "answer": "Grid creates the card columns with auto-fill; each card uses Flexbox to arrange its internal content (image, title, description, button) vertically." }
+  ],
+  "advanced": [
+    { "question": "How do you design a layout system that handles both viewport and container-based responsiveness simultaneously?", "answer": "Use media queries for macro layout changes (sidebar collapse) and container queries for component internal adjustments (card layout within sections)." },
+    { "question": "How does the component-driven approach affect CSS specificity and the cascade?", "answer": "Components with scoped styles avoid specificity conflicts. Container queries and shadow DOM further isolate component styles from global styles." },
+    { "question": "What are the performance implications of deeply nested Grid and Flexbox layouts?", "answer": "Deeply nested layout contexts increase layout calculation time. Prefer flat grid structures with subgrid and minimize unnecessary flex containers." },
+    { "question": "How do you create a responsive design system with Grid and Flexbox tokens?", "answer": "Define layout tokens (spacing, breakpoints, column counts) as CSS custom properties, then use them consistently across grid and flexbox components." },
+    { "question": "How do you handle horizontal scrolling sections within a Grid layout?", "answer": "Use a Flexbox container with overflow-x: auto inside a Grid cell for horizontal scrolling sections, while the Grid maintains vertical page structure." },
+    { "question": "How do responsive layout systems handle dynamic content loading and shifting?", "answer": "Grid's auto-placement handles new items without shifting existing ones if grid-auto-flow is well-configured; Flexbox may cause layout shifts on content changes." },
+    { "question": "What is the interaction between CSS Grid subgrid and component-driven Flexbox layouts?", "answer": "Subgrid aligns nested grid items with parent tracks, while Flexbox inside those subgrid items handles content alignment independently." },
+    { "question": "How do you implement a responsive dashboard with mixed Grid and Flexbox components?", "answer": "Grid defines the dashboard panel layout; each panel uses Flexbox for internal organization. Panel components use container queries for internal responsiveness." },
+    { "question": "How does CSS Layers (@layer) help organize responsive layout systems?", "answer": "@layer organizes styles by priority (base, layout, components, utilities), ensuring responsive overrides cascade predictably across grid and flexbox rules." },
+    { "question": "What are the testing strategies for combined Grid and Flexbox responsive layouts?", "answer": "Test at each breakpoint for both macro and micro layout integrity, verify component isolation, check for overflow, and validate visual reordering is accessible." }
+  ]
+}

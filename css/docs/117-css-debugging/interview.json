@@ -1,0 +1,130 @@
+{
+  "module": "117-css-debugging",
+  "title": "CSS Debugging",
+  "beginner": [
+    {
+      "question": "How do you open Chrome DevTools for CSS debugging?",
+      "answer": "Right-click any element and select 'Inspect', or press F12 (Windows/Linux) or Cmd+Option+I (Mac). The Elements panel shows HTML and applied CSS rules in the Styles pane on the right."
+    },
+    {
+      "question": "What is the 'Computed' tab in DevTools used for?",
+      "answer": "The Computed tab shows the final computed (resolved) values for all CSS properties of the selected element, including inherited values. It shows which properties are inherited vs explicitly set, and helps identify unexpected cascade resolution."
+    },
+    {
+      "question": "How do you temporarily test a CSS change without editing the source file?",
+      "answer": "In DevTools Elements panel, in the Styles pane, click any property to edit its value, or click the `+` icon to add a new declaration. Changes are visual only and reset on page reload. Copy your successful edits back to the source file."
+    },
+    {
+      "question": "What is the 'Box Model' view in DevTools?",
+      "answer": "The Box Model view in DevTools displays a visual diagram of the element's content, padding, border, and margin areas with computed pixel values. It helps identify unexpected spacing, overflow, or sizing issues."
+    },
+    {
+      "question": "How do you force a pseudo-class state in DevTools for debugging?",
+      "answer": "In the Styles pane, click `:hov` (or the target icon) to toggle pseudo-class states like `:hover`, `:focus`, `:active`, `:visited`, and `:focus-visible`. This lets you inspect and debug styles that only appear on interaction."
+    },
+    {
+      "question": "What is the 'Styles' pane in DevTools showing when properties are crossed out?",
+      "answer": "Crossed-out properties in the Styles pane indicate that the declaration was overridden by a higher-specificity rule or a later rule with equal specificity. The strikethrough shows the cascade working — helpful for diagnosing override issues."
+    },
+    {
+      "question": "How do you use `outline` to debug CSS layout issues?",
+      "answer": "Adding `outline: 1px solid red` (or any color) to an element shows its border edge without affecting layout (unlike `border`). This is useful for visualizing element boundaries, detecting overflow, and identifying hidden elements."
+    },
+    {
+      "question": "What is the difference between `outline` and `border` for debugging?",
+      "answer": "`outline` does not take up space in the box model — it's drawn outside the element without affecting dimensions or layout. `border` affects sizing. For debugging, `outline` can be applied without shifting everything around."
+    },
+    {
+      "question": "How do you test responsive CSS in Chrome DevTools?",
+      "answer": "Toggle the Device Toolbar (Ctrl+Shift+M / Cmd+Shift+M) to simulate mobile devices, tablets, and custom viewport sizes. You can set DPR (Device Pixel Ratio) and emulate `prefers-color-scheme` and `prefers-reduced-motion` in the Rendering tab."
+    },
+    {
+      "question": "What is the 'Sources' panel useful for in CSS debugging?",
+      "answer": "The Sources panel shows the actual CSS source files with line numbers. You can set breakpoints in CSS (on property/value lines), view the file in the Network tab's context, and edit local overrides to persist changes across page reloads."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you use 'CSS Overview' in Chrome DevTools?",
+      "answer": "Chrome DevTools CSS Overview (Cmd+Shift+P → 'Show CSS Overview') provides a summary of colors, fonts, contrast issues, media queries, and unused declarations. It's useful for auditing a page's CSS health and spotting inconsistencies."
+    },
+    {
+      "question": "What is the 'Rendering' tab in DevTools used for?",
+      "answer": "The Rendering tab provides debugging tools: 'Paint flashing' (highlights repainted areas), 'Layer borders' (shows composited layers), 'FPS meter' (frame rate), 'Emulate CSS media type', 'Emulate vision deficiencies', and scrolling performance tools."
+    },
+    {
+      "question": "How do you debug CSS Grid layout issues?",
+      "answer": "Chrome DevTools highlights grid lines, gaps, and areas when you inspect a grid container. Edge DevTools has a Grid overlay tool. Firefox DevTools has excellent Grid inspector showing line numbers, track sizes, and area names."
+    },
+    {
+      "question": "How do you debug CSS Flexbox alignment problems?",
+      "answer": "Chrome DevTools shows flex container icon badges. Clicking reveals flex item sizing, alignment details, and cross-axis/size information. The 'Flexbox' overlay highlights gaps and alignment axes."
+    },
+    {
+      "question": "What is 'CSS sourcemaps' and how do they help with debugging?",
+      "answer": "CSS sourcemaps map compiled CSS (from Sass, PostCSS, etc.) back to the original source files. DevTools shows the original `.scss` file, line number, and variable names instead of the compiled output. Enable with `devtool: 'source-map'` in webpack."
+    },
+    {
+      "question": "How do you debug CSS specificity conflicts?",
+      "answer": "In DevTools Styles pane, the rules are ordered by specificity (highest first). Elements with strikethrough show overridden properties. Hover over a property to see which rule wins. Use the `Computed` tab to see the final value and which rule 'won'."
+    },
+    {
+      "question": "How do you debug CSS animation performance issues?",
+      "answer": "Use the Performance panel to record animation and inspect frames. Look for red bars (dropped frames) and long 'Recalculate Style' / 'Paint' events. The 'Rendering' → 'FPS meter' shows real-time frame rate. Check if animations use `transform`/`opacity`."
+    },
+    {
+      "question": "What is the 'Coverage' tab useful for in CSS debugging?",
+      "answer": "The Coverage tab (Cmd+Shift+P → 'Show Coverage') shows which CSS (and JS) lines are used vs unused. Red-highlighted CSS is unused — it can be removed to reduce file size. Helps identify dead code and bloat in CSS frameworks."
+    },
+    {
+      "question": "How do you debug cross-browser CSS differences?",
+      "answer": "Use browser comparison tools like BrowserStack or Sauce Labs. For specific features, check caniuse.com. Use `@supports` for feature detection. Normalize.css or a CSS reset reduces baseline differences. Test early and often across target browsers."
+    },
+    {
+      "question": "What is the 'Changes' tab in Chrome DevTools?",
+      "answer": "The Changes tab (Appears under Sources after editing) records all CSS modifications made during a DevTools session. It shows a diff of all property changes — useful for copying all your tweaks back to source files at once."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you use 'Performance Monitor' for CSS debugging?",
+      "answer": "The Performance Monitor (Cmd+Shift+P → 'Show Performance monitor') provides real-time charts of CPU usage, JS heap, DOM nodes, JS event listeners, layout/sec, and style recalcs/sec. Spikes in style recalcs or layout indicate CSS performance issues."
+    },
+    {
+      "question": "How do you debug 'forced reflow' or 'layout thrashing' caused by CSS interactions?",
+      "answer": "Use the Performance panel to record interactions and look for 'Layout' events marked in yellow/red. Expand them to see which properties triggered the recalculation. The warning 'Forced reflow' appears when JS reads layout properties (offsetTop, clientHeight) after modifying styles."
+    },
+    {
+      "question": "How do you debug CSS font loading issues?",
+      "answer": "In the Network tab, filter by 'font' to see font file loading. The Rendering tab shows font rendering timings. In the Computed → Rendered Fonts, you can see which font is actually used. Check `@font-face` URLs, CORS (`crossorigin`), and `font-display` behavior."
+    },
+    {
+      "question": "How do you use 'CSS Custom State' debugging for custom elements?",
+      "answer": "Custom elements with `:state()` pseudo-classes (CustomStateSet) can be debugged by inspecting the element's `states` property in the Console. Use `element.states.has('--loading')` to check states. DevTools now shows custom states in the element's badge."
+    },
+    {
+      "question": "How do you debug 'CSS Cascade Layers' (@layer) conflicts?",
+      "answer": "In Chrome DevTools Styles pane, layered styles show which layer they belong to. Click the layer name to see the layer order and priority. Use `@layer` debugging in the Elements panel to understand which layer wins when conflicting rules exist."
+    },
+    {
+      "question": "How do you debug paint/compositing issues in the rendering pipeline?",
+      "answer": "Enable 'Layer borders' in Rendering to see composited layers (blue borders). 'Paint flashing' highlights repainted areas. 'FPS meter' shows real-time performance. Use `will-change: transform` to promote problematic elements to their own layer."
+    },
+    {
+      "question": "What is the 'Console' panel console for CSS debugging?",
+      "answer": "The Console panel supports CSS inspection commands: `getComputedStyle(element)` returns all computed styles, `$0.style` shows inline styles, `$0.classList` shows class list, and DOM breakpoints can be set for attribute modifications."
+    },
+    {
+      "question": "How do you debug accessibility-related CSS issues (focus, contrast, reduced motion)?",
+      "answer": "Use the Accessibility panel in DevTools to inspect focus order, ARIA attributes, and computed accessibility properties. The Rendering tab emulates vision deficiencies. Use the Issues tab (Console menu) to find auto-detected accessibility problems."
+    },
+    {
+      "question": "How do you debug CSS in printed media / print stylesheets?",
+      "answer": "Use DevTools rendering emulation: Rendering → 'Emulate CSS media type print'. View the print layout without actually printing. Check `@page` rules, page breaks (`page-break-before`, `page-break-inside`), and visible URLs in printed links."
+    },
+    {
+      "question": "How do you use `@supports` to debug progressive enhancement?",
+      "answer": "Wrap experimental CSS in `@supports` to test if the browser supports a feature. In DevTools Console, test `CSS.supports('property', 'value')`. Use `@supports not (property: value)` to provide fallbacks and debug unsupported browsers."
+    }
+  ]
+}

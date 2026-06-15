@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS image sprite?", "answer": "An image sprite is a single composite image containing multiple smaller images, used to reduce HTTP requests." },
+    { "question": "Why are image sprites used?", "answer": "Image sprites reduce the number of HTTP requests, improving page load performance." },
+    { "question": "How do you display a single image from a sprite?", "answer": "Use background-image with background-position to shift the visible area to the correct icon within the sprite." },
+    { "question": "What CSS property controls which part of a sprite is visible?", "answer": "background-position shifts the sprite image so the desired icon is visible within the element's background area." },
+    { "question": "What size should the element displaying a sprite icon be?", "answer": "The element width and height should match the individual icon dimensions inside the sprite." },
+    { "question": "How do you set up background for a sprite?", "answer": "Set background-image to the sprite URL, background-repeat: no-repeat, and width/height to the icon dimensions." },
+    { "question": "What is background-position: -20px 0 doing in a sprite?", "answer": "It shifts the sprite 20px to the left, hiding the first icon and showing the icon at position x=20px." },
+    { "question": "How do sprites improve performance?", "answer": "One HTTP request loads many images at once instead of multiple separate requests." },
+    { "question": "Are CSS sprites still relevant with HTTP/2?", "answer": "HTTP/2 multiplexing reduces the need for sprites, but they are still useful for very small icons and game assets." },
+    { "question": "What is a common use case for image sprites?", "answer": "Common uses include icon sets, social media buttons, flags, and game sprite sheets." }
+  ],
+  "intermediate": [
+    { "question": "How do you calculate background-position for a sprite?", "answer": "Multiply the icon index (0-based) by the icon width and use negative value: background-position: -32px 0 for the second 32px icon." },
+    { "question": "How do you create a hover effect with sprites?", "answer": "Use the same sprite but change background-position on hover to show the hover-state icon located adjacent in the sprite." },
+    { "question": "How does background-size work with responsive sprites?", "answer": "Set background-size to a percentage that scales the entire sprite proportionally to the element." },
+    { "question": "How do you create a sprite animation?", "answer": "Use @keyframes animating background-position to step through sprite frames, creating a frame-by-frame animation." },
+    { "question": "How do you handle retina/high-DPI sprites?", "answer": "Use a sprite at double resolution and set background-size to 50% to scale it down to the correct display size." },
+    { "question": "What is the difference between horizontal and vertical sprite layouts?", "answer": "Horizontal sprites tile icons left to right, vertical sprites top to bottom; mixed grids use both axes." },
+    { "question": "How do you include a sprite as base64 in CSS?", "answer": "Use a data URI: background-image: url('data:image/png;base64,...'); to inline the sprite in the stylesheet." },
+    { "question": "How do you prevent sprite background from repeating?", "answer": "Set background-repeat: no-repeat to prevent the sprite from tiling across the element." },
+    { "question": "What tools generate CSS sprite sheets?", "answer": "Tools like SpriteSmith, Compass, Glue, and online generators combine individual images into sprites with CSS output." },
+    { "question": "How do you manage sprites in a large project?", "answer": "Use build tools (Webpack, Gulp) with sprite plugins that auto-generate sprites and their CSS classes." }
+  ],
+  "advanced": [
+    { "question": "How does the sprite technique differ from icon fonts and SVG symbols?", "answer": "Sprites use raster images with background-position; icon fonts use character glyphs; SVG symbols use inline <use> references. Each has different scaling and color capabilities." },
+    { "question": "How do you create a responsive sprite with percentage positioning?", "answer": "Use background-size as a percentage and calculate background-position as iconIndex / totalIcons * 100%." },
+    { "question": "How do you handle sprite positioning in RTL layouts for background-position?", "answer": "In RTL, background-position percentages behave differently; use absolute pixel values or CSS logical properties." },
+    { "question": "How do you implement sprite stepping animation with steps() timing function?", "answer": "Use animation-timing-function: steps(N) where N is the number of sprite frames, and animate background-position from 0 to -100%." },
+    { "question": "What is the memory cost of loading a large sprite vs individual images?", "answer": "A large sprite decodes entirely into memory even if only a small part is visible, potentially using more memory than individual images." },
+    { "question": "How does the sprite technique interact with browser caching?", "answer": "All icons in a sprite are cached as a single resource, providing instant display of any icon once the sprite is cached." },
+    { "question": "How do you combine sprites with CSS variables for dynamic theming?", "answer": "Use CSS variables to toggle the sprite URL or background-position for different theme variants dynamically." },
+    { "question": "What are the accessibility implications of using sprites for meaningful icons?", "answer": "Sprites should be decorative; meaningful icons need alt text or ARIA labels that are not naturally supported with background images." },
+    { "question": "How do SVGs compare to raster sprites for modern web development?", "answer": "SVG sprites (SVG stacks) use <view> or fragment identifiers, scale infinitely, and can be colored with CSS, making them superior for most icon use cases." },
+    { "question": "How does content-visibility: auto affect sprite rendering performance?", "answer": "content-visibility: auto defers rendering of offscreen elements, which can skip sprite background painting until the element approaches the viewport." }
+  ]
+}

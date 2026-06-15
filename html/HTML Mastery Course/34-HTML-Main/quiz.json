@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the primary purpose of the HTML <main> element?",
+    "options": ["To represent the dominant content of the document body", "To create a sidebar navigation menu", "To define footer content", "To group form elements together"],
+    "answer": "a",
+    "explanation": "The <main> element represents the dominant content of the <body> of a document, directly related to the central topic or functionality."
+  },
+  {
+    "question": "How many visible <main> elements can a single HTML document contain?",
+    "options": ["As many as needed", "Exactly one", "Two maximum", "None; it's deprecated"],
+    "answer": "b",
+    "explanation": "A document must not contain more than one visible <main> element. Multiple instances are only allowed if the extras have the hidden attribute."
+  },
+  {
+    "question": "Which of the following elements must NOT contain a <main> element?",
+    "options": ["<div>", "<section>", "<article>", "<body>"],
+    "answer": "c",
+    "explanation": "The <main> element must not be a descendant of <article>, <aside>, <footer>, <header>, or <nav>."
+  },
+  {
+    "question": "What is the implicit ARIA role of the <main> element?",
+    "options": ["region", "main", "contentinfo", "document"],
+    "answer": "b",
+    "explanation": "The <main> element implicitly has a role of 'main' in the accessibility tree."
+  },
+  {
+    "question": "When would it be valid to have two <main> elements in a document?",
+    "options": ["When they are in different sections", "When one has the hidden attribute", "When they have different ids", "Never, it's always invalid"],
+    "answer": "b",
+    "explanation": "Multiple <main> elements are valid only when the additional instances are hidden using the hidden attribute."
+  },
+  {
+    "question": "Where should the <main> element typically be placed in the document structure?",
+    "options": ["Inside the <head> section", "Between <header> and <footer>", "Inside <article>", "After <footer>"],
+    "answer": "b",
+    "explanation": "The <main> element is typically placed directly after the <header> and before the <footer> in the document body."
+  },
+  {
+    "question": "What is a skip-navigation link used for?",
+    "options": ["To skip to the next page", "To bypass repetitive navigation and jump to main content", "To skip CSS styles", "To skip JavaScript execution"],
+    "answer": "b",
+    "explanation": "A skip-navigation link targets the <main> element, allowing keyboard and screen reader users to bypass repetitive navigation links."
+  },
+  {
+    "question": "Which attribute should be added to <main> in single-page applications to improve screen reader announcements?",
+    "options": ["aria-live", "aria-hidden", "role", "hidden"],
+    "answer": "a",
+    "explanation": "Adding aria-live='polite' to <main> helps screen readers announce dynamic content changes in SPAs."
+  },
+  {
+    "question": "What is the default display value of the <main> element?",
+    "options": ["inline", "inline-block", "block", "flex"],
+    "answer": "c",
+    "explanation": "The <main> element is a block-level element by default."
+  },
+  {
+    "question": "Should you add role='main' to a <main> element?",
+    "options": ["Always required", "Only if you have multiple <main> elements", "Not necessary in modern browsers", "Only on the second <main>"],
+    "answer": "c",
+    "explanation": "The <main> element already has an implicit role of 'main', so adding role='main' is unnecessary in modern browsers."
+  },
+  {
+    "question": "What happens when a screen reader encounters a <main> element?",
+    "options": ["It ignores it", "It announces 'main landmark' or 'main content start'", "It reads it as a regular div", "It throws an error"],
+    "answer": "b",
+    "explanation": "Screen readers typically announce 'main landmark' or 'main content start' when they encounter the <main> element."
+  },
+  {
+    "question": "Which of these is a valid use of the hidden attribute with multiple <main> elements?",
+    "options": ["<main hidden>Fallback</main> <main>Primary</main>", "<main>First</main> <main>Second</main>", "<main hidden>First</main> <main hidden>Second</main>", "Both A and C"],
+    "answer": "d",
+    "explanation": "Both A and C are valid — as long as only one <main> is visible at a time, the others must have the hidden attribute."
+  },
+  {
+    "question": "Which of the following is NOT an allowed ancestor for the <main> element?",
+    "options": ["<body>", "<div>", "<header>", "Both B and C"],
+    "answer": "c",
+    "explanation": "The <main> element must not be inside <header>, <nav>, <footer>, <article>, or <aside>. It can be inside <div> or <body>."
+  },
+  {
+    "question": "What tabindex value should a skip-link target typically have?",
+    "options": ["tabindex='1'", "tabindex='0'", "tabindex='-1'", "tabindex='auto'"],
+    "answer": "c",
+    "explanation": "tabindex='-1' allows the element to be programmatically focused (via JavaScript or anchor links) but removes it from the natural tab order."
+  },
+  {
+    "question": "What is the purpose of aria-atomic='true' on a dynamic <main>?",
+    "options": ["To make the element atomic size", "To announce the entire region content when any part changes", "To prevent changes", "To speed up JavaScript"],
+    "answer": "b",
+    "explanation": "aria-atomic='true' tells screen readers to announce the entire region content when any part of it changes, not just the changed portion."
+  },
+  {
+    "question": "Which browsers support the <main> element?",
+    "options": ["Chrome and Firefox only", "All modern browsers including IE with shiv", "Only mobile browsers", "No browsers support it natively"],
+    "answer": "b",
+    "explanation": "All modern browsers support <main>. IE 9-11 have partial support and require an HTML5 shiv."
+  },
+  {
+    "question": "What content should go inside the <main> element?",
+    "options": ["Primary page content only", "Navigation menus", "Copyright notices", "Sidebar advertisements"],
+    "answer": "a",
+    "explanation": "The <main> element should contain only the primary content of the page. Navigation, sidebars, and copyright info belong in other semantic elements."
+  },
+  {
+    "question": "Which element should NOT be a child of <main>?",
+    "options": ["<article>", "<section>", "<aside>", "<p>"],
+    "answer": "c",
+    "explanation": "While <aside> can technically be inside <main>, it's semantically more appropriate to place sidebars outside <main>."
+  },
+  {
+    "question": "What CSS pseudo-class can style the skip link when focused?",
+    "options": [":hover", ":active", ":focus", ":visited"],
+    "answer": "c",
+    "explanation": "The :focus pseudo-class is used to style elements when they receive keyboard focus, commonly used for skip links."
+  },
+  {
+    "question": "What landmark role do screen readers assign to the <main> element?",
+    "options": ["navigation", "banner", "main", "contentinfo"],
+    "answer": "c",
+    "explanation": "The <main> element maps to the 'main' landmark role, which helps screen reader users navigate to the primary content."
+  }
+]

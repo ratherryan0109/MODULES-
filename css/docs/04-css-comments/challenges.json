@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Add Comments to a Stylesheet",
+    "description": "Add appropriate comments to the given CSS: add a section header comment, an inline explanation for one property, and temporarily disable one rule with comments.",
+    "starterCode": "<style>\nbody { font-family: Arial, sans-serif; margin: 0; padding: 20px; }\nh1 { color: navy; font-size: 2em; }\n.card { background: white; padding: 20px; border-radius: 8px; }\n.btn { background: blue; color: white; padding: 10px 20px; }\n.btn:hover { background: darkblue; }\n</style>",
+    "solution": "<style>\n/* ===== BASE STYLES ===== */\nbody { font-family: Arial, sans-serif; margin: 0; padding: 20px; }\nh1 { color: navy; font-size: 2em; }\n\n/* ===== COMPONENTS ===== */\n.card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle depth */ }\n.btn { background: blue; color: white; padding: 10px 20px; border: none; }\n/* Disabled temporarily - needs accessibility review\n.btn:hover { background: darkblue; }\n*/\n</style>"
+  },
+  "medium": {
+    "title": "Document Complex CSS Techniques",
+    "description": "Add comprehensive comments to this CSS explaining the purpose of each section and non-obvious techniques including the media query, the auto-fill grid pattern, and the GPU acceleration technique.",
+    "starterCode": "<style>\n@media (max-width: 768px) { .container { flex-direction: column; } }\n.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }\n.card { transform: translateZ(0); backface-visibility: hidden; }\n</style>",
+    "solution": "<style>\n/* ===== RESPONSIVE ===== */\n/* Stack containers vertically on mobile devices */\n@media (max-width: 768px) { .container { flex-direction: column; } }\n\n/* ===== GRID ===== */\n/* auto-fill creates columns based on available space; minmax ensures 250px minimum */\n.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }\n\n/* ===== PERFORMANCE ===== */\n/* Forces GPU acceleration for smoother animations */\n.card { transform: translateZ(0); backface-visibility: hidden; }\n</style>"
+  },
+  "hard": {
+    "title": "Create a Self-Documenting Stylesheet",
+    "description": "Create a complete CSS file for a landing page that is fully self-documenting through comments. Include a file header, section headers for each component, inline explanations on at least 3 non-obvious properties, TODO comments for future improvements, and commented-out fallback code.",
+    "starterCode": "<style>\n/* Add your self-documenting stylesheet here with:\n   - File header comment\n   - Section headers\n   - Inline explanations\n   - TODO comments\n   - Commented-out fallback code\n*/\n</style>",
+    "solution": "<style>\n/*!\n * Landing Styles v1.0\n * Description: Main stylesheet for product landing page\n */\n:root { --primary: #4299e1; --secondary: #2d3748; }\n* { margin: 0; padding: 0; box-sizing: border-box; }\n\n/* ===== HERO ===== */\n.hero {\n  background: linear-gradient(135deg, var(--primary), #667eea);\n  background-color: #4299e1; /* Fallback for old browsers */\n  min-height: 80vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n/* ===== FEATURES ===== */\n.features {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 30px;\n  /* TODO: Test gap support for older grid implementations */\n}\n\n/* ===== BUTTONS ===== */\n.btn {\n  display: inline-block;\n  padding: 12px 24px;\n  border-radius: 6px;\n  transition: all 0.3s ease; /* Smooth hover transition */\n}\n.btn:hover {\n  transform: translateY(-2px); /* Slight lift effect */\n  box-shadow: 0 4px 12px rgba(0,0,0,0.15);\n}\n\n/* FIXME: Hover doesn't work on touch devices */\n\n/* Flexbox fallback when grid not supported\n.features { display: flex; flex-wrap: wrap; }\n.features > * { flex: 1 1 300px; }\n*/\n</style>"
+  }
+}

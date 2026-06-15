@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is an iframe and how do you create one?",
+      "answer": "An iframe (inline frame) is an HTML element that embeds another HTML document within the current page. Create it with: <iframe src='url' width='600' height='400' title='Description'></iframe>. The src attribute specifies the URL to embed."
+    },
+    {
+      "question": "What attributes are essential for an iframe?",
+      "answer": "Essential attributes: src (the URL to embed), width and height (dimensions), and title (accessibility label — required for WCAG compliance). Optional but important: allow, sandbox, loading, and referrerpolicy."
+    },
+    {
+      "question": "What is the purpose of the title attribute on an iframe?",
+      "answer": "The title attribute provides a descriptive label for screen readers and assistive technology users. It's required for WCAG 2.0 compliance. Without it, users cannot identify the purpose of the iframe."
+    },
+    {
+      "question": "How do you make an iframe responsive?",
+      "answer": "Wrap the iframe in a container with position: relative and padding-bottom: 56.25% (for 16:9 ratio). Set the iframe to position: absolute with 100% width and height. Alternatively, use CSS aspect-ratio: 16/9 on the iframe with width: 100%."
+    },
+    {
+      "question": "What is the sandbox attribute?",
+      "answer": "The sandbox attribute applies security restrictions to iframe content. When present with no tokens, it disables scripts, forms, popups, navigation, and same-origin access. You can selectively enable features with tokens like allow-scripts, allow-forms, or allow-popups."
+    },
+    {
+      "question": "What is the difference between src and srcdoc?",
+      "answer": "src loads an external URL into the iframe. srcdoc contains inline HTML that is rendered directly in the iframe without an HTTP request. If both are specified, srcdoc takes priority and src serves as a fallback for unsupported browsers."
+    },
+    {
+      "question": "How do you set iframe dimensions?",
+      "answer": "Use the width and height attributes in pixels: <iframe width='600' height='400'>. For responsive sizing, use CSS with percentage values and aspect ratio containers."
+    },
+    {
+      "question": "What is the name attribute used for on an iframe?",
+      "answer": "The name attribute gives the iframe a target name. Links with target='framename' and forms with target='framename' will load their results in the named iframe."
+    },
+    {
+      "question": "Can you style an iframe with CSS?",
+      "answer": "Yes, you can style the iframe element itself (border, dimensions, border-radius, box-shadow). However, you cannot style the content inside the iframe from the parent page's CSS due to the same-origin policy."
+    },
+    {
+      "question": "What happens if the iframe source fails to load?",
+      "answer": "The browser displays the fallback content placed between the <iframe> tags, if any. The load event may not fire, and you can handle failures with the error event listener."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does postMessage work for cross-origin iframe communication?",
+      "answer": "parentWindow.postMessage(data, targetOrigin) sends a message. The receiving window listens with addEventListener('message', handler). Always check event.origin in the handler to verify the sender's origin. The targetOrigin parameter restricts which origin can receive the message."
+    },
+    {
+      "question": "What is the difference between frame-src and frame-ancestors in CSP?",
+      "answer": "frame-src restricts which sources the current page can embed as iframes (outgoing). frame-ancestors restricts which parent pages can embed the current page in iframes (incoming, anti-clickjacking). frame-src replaces the deprecated child-src directive."
+    },
+    {
+      "question": "How do you detect if an iframe loaded successfully cross-origin?",
+      "answer": "You cannot access the iframe's contentDocument cross-origin. Instead: (1) Listen for the load event on the iframe element, (2) Use postMessage to have the iframe report its ready state, (3) Use a load event combined with a timeout as a fallback. For error detection, listen for the error event."
+    },
+    {
+      "question": "What are the security implications of the allow-scripts and allow-same-origin sandbox combination?",
+      "answer": "Combining allow-scripts with allow-same-origin effectively nullifies the sandbox. Scripts within the iframe can access the parent page's origin (cookies, localStorage, DOM access via opener). This combination should only be used for trusted content."
+    },
+    {
+      "question": "How do you implement lazy loading for iframes?",
+      "answer": "Use the loading='lazy' attribute on the iframe. For older browsers, implement Intersection Observer: set data-src instead of src, observe the iframe, and copy data-src to src when it enters the viewport. This improves page load performance."
+    },
+    {
+      "question": "What is the Permissions Policy (allow) attribute and how do you use it?",
+      "answer": "The allow attribute controls feature access for the iframe: camera, microphone, fullscreen, geolocation, etc. Example: allow='camera; microphone; fullscreen' grants these features. Use 'none' and 'src' tokens: allow='camera \"none\"; fullscreen \"src\"'. It replaces the older Feature Policy."
+    },
+    {
+      "question": "How does X-Frame-Options interact with CSP frame-ancestors?",
+      "answer": "X-Frame-Options is the older HTTP header (DENY, SAMEORIGIN, ALLOW-FROM). CSP frame-ancestors is the modern replacement. When both are present, frame-ancestors takes priority. However, ALWAYS specify X-Frame-Options for older browser support."
+    },
+    {
+      "question": "What is clickjacking and how do iframes relate to it?",
+      "answer": "Clickjacking tricks users into clicking hidden elements by loading a transparent target page in an iframe overlaid on deceptive UI. Defenses include: X-Frame-Options: DENY, CSP frame-ancestors, and JavaScript frame-breaking code (if (top !== self) parent.location = self.location)."
+    },
+    {
+      "question": "How do you handle iframe loading errors gracefully?",
+      "answer": "Use multiple strategies: (1) Fallback content between iframe tags, (2) Error event listener: iframe.addEventListener('error', handler), (3) Timeout detection — if the load event doesn't fire within X seconds, show an error, (4) For critical embeds, have a retry mechanism."
+    },
+    {
+      "question": "What is the referrerpolicy attribute and what values does it support?",
+      "answer": "referrerpolicy controls the Referer header sent when the iframe navigates. Values: no-referrer (no header sent), no-referrer-when-downgrade (default — omit on HTTPS→HTTP), origin (only send origin), origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url (full URL sent)."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How would you build a secure payment iframe that communicates with the parent page?",
+      "answer": "Use sandbox='allow-scripts' (minimum required), set a strict allow attribute limiting features, use postMessage with origin validation, implement CSP frame-src and frame-ancestors, use HTTPS, validate all messages, use the origin parameter in postMessage, implement a timeout for message responses, and consider using the Payment Request API as an alternative."
+    },
+    {
+      "question": "Explain the browser's cross-origin isolation requirements for using features like SharedArrayBuffer with iframes.",
+      "answer": "Cross-origin isolation requires two HTTP headers: Cross-Origin-Opener-Policy: same-origin and Cross-Origin-Embedder-Policy: require-corp. This allows the page to use powerful features like SharedArrayBuffer. For iframes, the embedded content must send a Cross-Origin-Resource-Policy header or the page must send a CORP header. Without isolation, iframes can block these features."
+    },
+    {
+      "question": "How do you implement an iframe-based widget system that third-party sites can embed, with styling isolation?",
+      "answer": "Create a lightweight JavaScript SDK that inserts an iframe into the host page. Use postMessage for communication. The iframe loads all CSS and JS internally, providing full style isolation. The SDK exposes methods (init, config, events) and manages responsive sizing by measuring the iframe's contentHeight and adjusting dimensions via postMessage. Use sandbox='allow-scripts allow-popups' for security."
+    },
+    {
+      "question": "What are the performance implications of multiple iframes on a page and how do you optimize?",
+      "answer": "Each iframe creates a separate browsing context with its own JavaScript runtime, DOM, and resource loading. Optimization strategies: (1) Lazy load off-screen iframes, (2) Limit concurrent iframes, (3) Use srcdoc for simple inline content instead of HTTP requests, (4) Set the importance attribute (importance='low'), (5) Remove iframes from the DOM when not visible, (6) Use a single iframe with dynamic content swapping instead of multiple static iframes."
+    },
+    {
+      "question": "How would you implement a cross-origin iframe resizer that adjusts the iframe height to fit its content?",
+      "answer": "In the iframe (child): measure document.body.scrollHeight, then postMessage({ type: 'resize', height: scrollHeight }) to parent. In the parent: listen for messages, validate origin, then set iframe.style.height = data.height + 'px'. Use a debounce mechanism to avoid excessive resize events. For Observers: use ResizeObserver in the iframe for more reliable height tracking."
+    },
+    {
+      "question": "Explain the security model of the Credential Management API and how it interacts with iframes.",
+      "answer": "The Credential Management API (navigator.credentials) requires a secure context (HTTPS). Cross-origin iframes cannot access the parent's credentials. Each iframe has its own credential store based on its origin. The mediation parameter controls user prompting. For cross-origin credential sharing, use Credential Manager with federated identity or the proposed FedCM API."
+    },
+    {
+      "question": "How do you handle state management (cookies, localStorage) across parent and iframe contexts?",
+      "answer": "Same-origin iframes share cookies and localStorage with the parent. Cross-origin iframes have isolated storage. To share state cross-origin: (1) Use postMessage to pass data, (2) Use a shared backend with token-based auth, (3) For cookies, set SameSite=None; Secure (cross-origin), (4) Use BroadcastChannel for same-origin cross-tab communication, (5) Consider using the Storage Access API for embedding scenarios."
+    },
+    {
+      "question": "What techniques prevent clickjacking beyond X-Frame-Options?",
+      "answer": "Techniques: (1) CSP frame-ancestors 'self' or specific origins, (2) Frame-breaking JavaScript (if (top !== self) top.location.href = self.location.href), (3) Set-Cookie with SameSite=Lax or Strict, (4) Use the Sec-Fetch-Dest HTTP header (server checks if it equals 'iframe'), (5) Opt-in via the 'Cross-Origin-Opener-Policy' header, (6) Use CSP report-only mode for monitoring framing attempts."
+    },
+    {
+      "question": "How does the Trusted Types API interact with iframe content and postMessage?",
+      "answer": "Trusted Types prevents DOM XSS by requiring sanitized values for dangerous sinks. For iframes: (1) Setting iframe.srcdoc requires a TrustedHTML object, (2) postMessage data bypasses Trusted Types (must be validated manually), (3) The iframe itself is subject to its own Trusted Types policy, (4) When embedding third-party content, Trusted Types can prevent injection via iframe attributes by enforcing Content Security Policy."
+    },
+    {
+      "question": "How would you architect a multi-tenant dashboard where each tenant's content loads in a sandboxed iframe?",
+      "answer": "Use a dedicated subdomain per tenant (tenant1.app.com) for same-origin iframe access. Set sandbox='allow-scripts allow-forms allow-same-origin' with careful security auditing. Use a postMessage bridge for tenant-to-parent communication. Implement a shared authentication token passed via postMessage (never via URL). Use a resize observer for dynamic heights. Apply strict CSP headers. Load tenant-specific CSS/JS only within their iframe for complete style isolation."
+    }
+  ]
+}

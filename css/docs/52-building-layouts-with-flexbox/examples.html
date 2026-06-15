@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Layouts with Flexbox - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .label { font-size: 0.8rem; color: #64748b; font-weight: 600; margin-bottom: 0.25rem; }
+  </style>
+  <style>
+    /* Navigation */
+    .navbar { display: flex; align-items: center; justify-content: space-between; background: #1e293b; padding: 0.75rem 1.25rem; border-radius: 8px; color: white; }
+    .navbar .logo { font-weight: 700; font-size: 1.2rem; }
+    .navbar .nav-links { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+    .navbar .nav-links a { color: #cbd5e1; text-decoration: none; }
+    .navbar .nav-links a:hover { color: white; }
+    .navbar .btn { background: #06b6d4; color: white; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; }
+
+    /* Hero */
+    .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; background: linear-gradient(135deg, #06b6d4, #8b5cf6); border-radius: 8px; color: white; text-align: center; gap: 0.75rem; }
+    .hero h2 { margin: 0; font-size: 2rem; }
+    .hero p { margin: 0; opacity: 0.85; }
+    .hero .cta { background: white; color: #0f172a; border: none; padding: 0.6rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer; }
+
+    /* Card Grid */
+    .card-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .card-grid .card { flex: 1 1 220px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; display: flex; flex-direction: column; }
+    .card-grid .card h3 { margin: 0 0 0.5rem; color: #0f172a; }
+    .card-grid .card p { margin: 0 0 1rem; color: #64748b; font-size: 0.9rem; flex: 1; }
+    .card-grid .card button { background: #06b6d4; color: white; border: none; padding: 0.5rem; border-radius: 4px; cursor: pointer; margin-top: auto; font-weight: 600; }
+
+    /* Sticky Footer */
+    .page-layout { display: flex; flex-direction: column; min-height: 300px; background: #f1f5f9; border-radius: 8px; overflow: hidden; }
+    .page-layout header { background: #1e293b; color: white; padding: 0.75rem 1.25rem; }
+    .page-layout main { flex: 1; padding: 1.25rem; }
+    .page-layout footer { background: #334155; color: #cbd5e1; padding: 0.75rem 1.25rem; text-align: center; font-size: 0.85rem; }
+
+    /* Media Object */
+    .media { display: flex; gap: 1rem; align-items: flex-start; background: #f1f5f9; padding: 1rem; border-radius: 8px; }
+    .media .media-img { flex: 0 0 80px; height: 80px; background: linear-gradient(135deg, #06b6d4, #8b5cf6); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
+    .media .media-body { flex: 1; }
+    .media .media-body h3 { margin: 0 0 0.25rem; }
+    .media .media-body p { margin: 0; color: #64748b; font-size: 0.9rem; }
+
+    /* Holy Grail */
+    .holy-grail { display: flex; flex-wrap: wrap; min-height: 250px; background: #f1f5f9; border-radius: 8px; overflow: hidden; }
+    .holy-grail header, .holy-grail footer { width: 100%; background: #1e293b; color: white; padding: 0.75rem 1.25rem; text-align: center; }
+    .holy-grail nav { width: 150px; background: #e2e8f0; padding: 1rem; }
+    .holy-grail main { flex: 1; padding: 1rem; min-width: 200px; }
+    .holy-grail aside { width: 150px; background: #e2e8f0; padding: 1rem; }
+
+    /* Centered Layout */
+    .centered-content { display: flex; justify-content: center; align-items: center; height: 180px; background: #f1f5f9; border-radius: 8px; }
+    .centered-content div { background: #06b6d4; color: white; padding: 1rem 2rem; border-radius: 8px; text-align: center; }
+
+    /* Two Column */
+    .two-col { display: flex; gap: 1rem; }
+    .two-col .sidebar { flex: 0 0 200px; background: #8b5cf7; color: white; padding: 1rem; border-radius: 6px; }
+    .two-col .content { flex: 1; background: #f1f5f9; padding: 1rem; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Building Layouts with Flexbox - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Navigation Bar</h2>
+    <p>Logo left, links center, CTA right — all vertically centered.</p>
+    <div class="demo-output">
+      <nav class="navbar">
+        <div class="logo">MyApp</div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+        <button class="btn">Sign Up</button>
+      </nav>
+    </div>
+    <pre><code>.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Hero Section (Centered)</h2>
+    <p>Perfect centering with <code>flex-direction: column</code> + <code>justify-content: center</code>.</p>
+    <div class="demo-output">
+      <div class="hero">
+        <h2>Build with Flexbox</h2>
+        <p>Modern, responsive layouts made simple.</p>
+        <button class="cta">Get Started →</button>
+      </div>
+    </div>
+    <pre><code>.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Responsive Card Grid</h2>
+    <p>Cards automatically wrap and resize using <code>flex-wrap: wrap</code> + <code>flex: 1 1 220px</code>.</p>
+    <div class="demo-output">
+      <div class="card-grid">
+        <div class="card">
+          <h3>Card One</h3>
+          <p>Short description for the first card.</p>
+          <button>Read More</button>
+        </div>
+        <div class="card">
+          <h3>Card Two</h3>
+          <p>This card has a longer description that takes up more vertical space before the button.</p>
+          <button>Read More</button>
+        </div>
+        <div class="card">
+          <h3>Card Three</h3>
+          <p>Medium length content here.</p>
+          <button>Read More</button>
+        </div>
+      </div>
+    </div>
+    <pre><code>.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.card {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+}
+.card button { margin-top: auto; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Sticky Footer Layout</h2>
+    <p>The footer stays at the bottom even when content is short.</p>
+    <div class="demo-output">
+      <div class="page-layout">
+        <header>Site Header</header>
+        <main>
+          <p>Main content area. The footer stays pinned to the bottom because <code>main { flex: 1 }</code> fills all remaining space.</p>
+        </main>
+        <footer>© 2026 Flexbox Layouts. All rights reserved.</footer>
+      </div>
+    </div>
+    <pre><code>.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page main { flex: 1; }
+/* Footer is pushed to the bottom */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Media Object</h2>
+    <p>Image left, content right — a classic UI pattern.</p>
+    <div class="demo-output">
+      <div class="media">
+        <div class="media-img">IMG</div>
+        <div class="media-body">
+          <h3>Media Object Title</h3>
+          <p>This is a flexible media object. The image stays at a fixed size while the text content fills the remaining space and wraps naturally below the image.</p>
+        </div>
+      </div>
+      <div class="media" style="margin-top:0.75rem;">
+        <div class="media-img" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">IMG</div>
+        <div class="media-body">
+          <h3>Another Media Item</h3>
+          <p>The media object pattern is useful for comments, articles, and listing pages.</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>.media {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.media-img { flex: 0 0 80px; }
+.media-body { flex: 1; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Holy Grail Layout</h2>
+    <p>Header + footer spanning full width, with nav, main, and aside in between.</p>
+    <div class="demo-output">
+      <div class="holy-grail">
+        <header>Header</header>
+        <nav>Left Nav</nav>
+        <main><h3 style="margin-top:0;">Main Content</h3><p>This is the main content area. It expands to fill available space.</p></main>
+        <aside>Right Sidebar</aside>
+        <footer>Footer</footer>
+      </div>
+    </div>
+    <pre><code>.layout { display: flex; flex-wrap: wrap; }
+.layout header,
+.layout footer { width: 100%; }
+.layout nav,
+.layout aside { width: 150px; }
+.layout main { flex: 1; min-width: 200px; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Two-Column Sidebar Layout</h2>
+    <p>Fixed sidebar + flexible content area — the most common dashboard pattern.</p>
+    <div class="demo-output">
+      <div class="two-col">
+        <div class="sidebar">
+          <strong>Sidebar</strong>
+          <ul style="list-style:none; padding:0; margin-top:0.75rem;">
+            <li style="padding:0.3rem 0;">Dashboard</li>
+            <li style="padding:0.3rem 0;">Analytics</li>
+            <li style="padding:0.3rem 0;">Settings</li>
+          </ul>
+        </div>
+        <div class="content">
+          <h3 style="margin-top:0;">Dashboard Content</h3>
+          <p>The sidebar stays at 200px while the content fills the rest of the space.</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>.layout { display: flex; gap: 1rem; }
+.sidebar { flex: 0 0 200px; }  /* Fixed 200px */
+.content { flex: 1; }           /* Fills remaining space */</code></pre>
+  </div>
+</body>
+</html>

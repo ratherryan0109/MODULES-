@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does flex-basis do in Flexbox?", "answer": "flex-basis sets the initial main-axis size of a flex item before flex-grow and flex-shrink are applied." },
+    { "question": "What is the default value of flex-basis?", "answer": "The default value of flex-basis is auto." },
+    { "question": "What does flex-basis: auto mean?", "answer": "flex-basis: auto looks at the item's width or height property or defaults to content size." },
+    { "question": "What does flex-basis: 0 mean?", "answer": "flex-basis: 0 sets the starting size to 0, so all space is distributed by flex-grow proportionally." },
+    { "question": "Can flex-basis use percentage values?", "answer": "Yes, flex-basis can be a percentage, relative to the parent container's main axis size." },
+    { "question": "How does flex-basis differ from width?", "answer": "flex-basis overrides width on the main axis when set to a non-auto value; width applies to the cross axis." },
+    { "question": "What does flex-basis: 200px do?", "answer": "flex-basis: 200px sets the item's initial main-axis size to 200px before any growing or shrinking." },
+    { "question": "How does flex-basis interact with flex-grow?", "answer": "flex-grow adds extra space on top of flex-basis to determine the final item size." },
+    { "question": "How does flex-basis interact with flex-shrink?", "answer": "flex-shrink reduces the item's size from its flex-basis when the container has insufficient space." },
+    { "question": "What happens when flex-basis is set on a column-direction container?", "answer": "In column direction, flex-basis controls the initial height instead of width." }
+  ],
+  "intermediate": [
+    { "question": "What is the difference between flex-basis: auto and flex-basis: content?", "answer": "auto checks width/height property first, then content; content always sizes to the content's intrinsic size." },
+    { "question": "How does flex-basis interact with min-width and max-width?", "answer": "min-width and max-width clamp the final size; flex-basis is just the starting point before grow/shrink." },
+    { "question": "How does flex-basis: 0 differ from flex-basis: 0px?", "answer": "They are functionally the same; flex-basis accepts length values, and 0 is interpreted as 0px." },
+    { "question": "How does flex-basis affect items with intrinsic aspect ratio?", "answer": "flex-basis sets the main-axis size; the cross-axis size is adjusted to maintain the aspect ratio if no explicit cross-axis size is set." },
+    { "question": "How does flex-basis work with replaced elements like images?", "answer": "For replaced elements, flex-basis: auto uses the element's intrinsic size (the image's natural width)." },
+    { "question": "What is the difference between setting width: 50% and flex-basis: 50%?", "answer": "In row direction, width: 50% sets cross-axis width; flex-basis: 50% sets initial main-axis width before grow/shrink." },
+    { "question": "How does flex-basis: auto interact with box-sizing?", "answer": "flex-basis: auto with box-sizing: border-box includes padding and border in the basis calculation." },
+    { "question": "How does flex-basis behave in a multi-line flex container?", "answer": "flex-basis sets the item's starting size on the main axis within each flex line; it does not affect line distribution." },
+    { "question": "How do you use flex-basis to create flexible grids?", "answer": "Set flex-basis: 33.333% on three items to create equal thirds, with flex-grow: 0 to prevent expansion." },
+    { "question": "What happens to flex-basis when display: flex is applied to an inline element?", "answer": "The inline element becomes blockified, and flex-basis applies as normal along the main axis." }
+  ],
+  "advanced": [
+    { "question": "How does the flex-basis algorithm resolve auto when width/height is set?", "answer": "If width is set (in row direction) and flex-basis is auto, the flex-basis equals the computed width value." },
+    { "question": "How does flex-basis interact with the writing-mode property?", "answer": "In vertical writing modes, flex-basis follows the block direction, so it controls the inline size rather than block size." },
+    { "question": "How does the auto value resolve when the item has only min-content size?", "answer": "If no width/height is set and content has no intrinsic size, auto resolves to min-content (shrink-to-fit)." },
+    { "question": "How does flex-basis interact with max-content and min-content sizing keywords?", "answer": "flex-basis accepts max-content and min-content values, sizing the item to its maximum or minimum content size." },
+    { "question": "How does flex-basis affect the flex shorthands like flex: 1?", "answer": "flex: 1 sets flex-basis: 0, meaning the item starts at 0 and grows proportionally to fill the container." },
+    { "question": "How does flex-basis interact with the aspect-ratio property on flex items?", "answer": "When both are set, flex-basis determines the main axis size, and aspect-ratio determines the cross-axis size." },
+    { "question": "How does flex-basis work with the fit-content function?", "answer": "flex-basis: fit-content(300px) uses the content size but clamped to 300px maximum." },
+    { "question": "How does flex-basis behave with absolutely positioned flex children?", "answer": "Absolutely positioned children are not flex items, so flex-basis does not apply to them." },
+    { "question": "How does the CSS specification define the resolution of flex-basis for different display types?", "answer": "Flex-basis resolves based on the item's main-axis size; for blockified flex items, it uses the block-level width/height depending on direction." },
+    { "question": "How does flex-basis interact with the gap property in the total calculation?", "answer": "Gap is subtracted from the container before flex-bases are summed; the remaining space is distributed based on flex-grow." }
+  ]
+}

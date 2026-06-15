@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is an HTML attribute?",
+      "answer": "An HTML attribute provides additional information about an element. It is placed inside the opening tag as a name=\"value\" pair."
+    },
+    {
+      "question": "What is the difference between id and class attributes?",
+      "answer": "An id must be unique within the page and identifies one specific element. A class can be reused on multiple elements for grouping."
+    },
+    {
+      "question": "What does the href attribute on an <a> tag do?",
+      "answer": "The href attribute specifies the URL that the hyperlink points to. It is the most important attribute for anchor tags."
+    },
+    {
+      "question": "What does the src attribute on an <img> tag do?",
+      "answer": "The src attribute specifies the URL (source) of the image to display. It is required for images to work."
+    },
+    {
+      "question": "What does the alt attribute do and why is it important?",
+      "answer": "The alt attribute provides alternative text for an image. It is displayed if the image fails to load and is read by screen readers for accessibility."
+    },
+    {
+      "question": "What is a boolean attribute?",
+      "answer": "A boolean attribute does not require a value — its presence means 'true' and its absence means 'false'. Example: <input disabled>."
+    },
+    {
+      "question": "What does the title attribute do?",
+      "answer": "The title attribute provides extra information about an element, displayed as a tooltip when the user hovers over it."
+    },
+    {
+      "question": "What does target='_blank' do?",
+      "answer": "target='_blank' on an <a> tag causes the linked page to open in a new browser tab or window."
+    },
+    {
+      "question": "What is the style attribute used for?",
+      "answer": "The style attribute applies inline CSS directly to an element, like style='color: red;'."
+    },
+    {
+      "question": "What does the placeholder attribute do?",
+      "answer": "The placeholder attribute shows a hint or example text inside an input field that disappears when the user begins typing."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the purpose of rel='noopener' with target='_blank'?",
+      "answer": "rel='noopener' prevents the newly opened page from accessing the window.opener property, which is a security vulnerability. It also improves performance."
+    },
+    {
+      "question": "What are data-* attributes and how are they used?",
+      "answer": "data-* attributes store custom data in HTML elements. They are accessed via dataset in JavaScript. Example: <div data-id='123'> accessed as element.dataset.id."
+    },
+    {
+      "question": "What is the difference between disabled and readonly attributes?",
+      "answer": "disabled prevents interaction and the value is NOT submitted with the form. readonly prevents editing but the value IS submitted."
+    },
+    {
+      "question": "What are ARIA attributes used for?",
+      "answer": "ARIA (Accessible Rich Internet Applications) attributes improve accessibility for assistive technologies, providing roles, states, and properties."
+    },
+    {
+      "question": "What is the difference between the name and id attributes on form elements?",
+      "answer": "The name attribute is used for form submission — it is the key sent to the server. The id attribute is used for CSS/JavaScript targeting."
+    },
+    {
+      "question": "What does the loading='lazy' attribute do on images and iframes?",
+      "answer": "loading='lazy' defers loading of off-screen images/iframes until the user scrolls near them, improving initial page load performance."
+    },
+    {
+      "question": "What is the purpose of the aria-label attribute?",
+      "answer": "aria-label provides an invisible label for screen readers on elements that lack a visible text label, improving accessibility."
+    },
+    {
+      "question": "What does the download attribute on an <a> tag do?",
+      "answer": "The download attribute forces the browser to download the linked resource instead of navigating to it, with an optional filename."
+    },
+    {
+      "question": "What is the difference between inline styles and external CSS in terms of specificity?",
+      "answer": "Inline styles have the highest specificity (except for !important), overriding both external and internal stylesheets."
+    },
+    {
+      "question": "What does the autofocus attribute do on a form element?",
+      "answer": "The autofocus boolean attribute automatically focuses the input field when the page loads, so the user can start typing immediately."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the HTML parser handle attributes with missing or duplicate quotes?",
+      "answer": "Without quotes, the attribute value ends at the first space. Single and double quotes are both valid. Duplicate quotes can break parsing — the browser's error recovery may misinterpret the attribute."
+    },
+    {
+      "question": "What is the purpose of the referrerpolicy attribute and what values does it accept?",
+      "answer": "referrerpolicy controls how much referrer information is sent when following a link. Values: no-referrer, no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url."
+    },
+    {
+      "question": "How do custom attributes interact with the HTML specification?",
+      "answer": "Custom attributes that are not data-* are technically invalid but browsers typically ignore them. However, they can cause HTML validation errors and may conflict with future specification additions. Use data-* for custom attributes."
+    },
+    {
+      "question": "What is the difference between attribute and property in the DOM?",
+      "answer": "Attributes are defined in HTML and are always strings. Properties are defined in the DOM and can be any type. They are often synced (like id), but not always (like input.value vs value attribute)."
+    },
+    {
+      "question": "How does the crossorigin attribute work on <img>, <script>, and <link> elements?",
+      "answer": "The crossorigin attribute configures CORS (Cross-Origin Resource Sharing) requests. Values: anonymous (no credentials), use-credentials (with credentials). Required for canvas/tainted canvas scenarios."
+    },
+    {
+      "question": "What is the decoding attribute on images and what values does it accept?",
+      "answer": "The decoding attribute hints to the browser whether to decode the image synchronously or asynchronously. Values: sync, async, auto. It affects perceived performance during image loading."
+    },
+    {
+      "question": "How does the sizes attribute work with the srcset attribute on <img>?",
+      "answer": "sizes defines the media conditions and slot sizes for responsive images. Combined with srcset, the browser selects the best image source based on viewport width and device pixel ratio."
+    },
+    {
+      "question": "What is the role of the nonce attribute in Content Security Policy?",
+      "answer": "The nonce attribute provides a cryptographic nonce (number used once) that allows specific inline scripts or styles to execute under CSP restrictions. The server generates a new nonce for each page load."
+    },
+    {
+      "question": "How does the ismap attribute differ from usemap on <img>?",
+      "answer": "ismap creates a server-side image map — clicking sends coordinates to the server. usemap creates a client-side image map linked to a <map> element, handling navigation entirely in the browser."
+    },
+    {
+      "question": "What is the purpose of the inputmode attribute and how does it differ from type?",
+      "answer": "inputmode hints at the type of data input expected, helping mobile browsers show the appropriate keyboard. Unlike type, it does not validate or format the input. Values: none, text, decimal, numeric, tel, search, email, url."
+    }
+  ]
+}

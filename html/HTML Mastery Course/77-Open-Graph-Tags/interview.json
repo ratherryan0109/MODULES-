@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What are Open Graph tags?",
+      "answer": "Open Graph tags are HTML meta tags that control how web pages appear when shared on social media platforms. They define a title, description, image, and URL for the shared content preview."
+    },
+    {
+      "question": "What attribute is used for Open Graph meta tags?",
+      "answer": "Open Graph tags use the 'property' attribute, not 'name'. For example: <meta property='og:title' content='My Title'>."
+    },
+    {
+      "question": "What are the five essential Open Graph tags?",
+      "answer": "The five essential OG tags are: og:title, og:description, og:image, og:url, and og:type. Together they create a complete social sharing preview."
+    },
+    {
+      "question": "What does og:title do?",
+      "answer": "og:title defines the headline that appears in the social media share card. It should be 40-60 characters and match the page content."
+    },
+    {
+      "question": "What is the recommended size for og:image?",
+      "answer": "The recommended og:image size is 1200×630 pixels with a 1.91:1 aspect ratio. The minimum size is 600×315 pixels."
+    },
+    {
+      "question": "Can og:image use a relative URL?",
+      "answer": "No. og:image must use an absolute URL (starting with https://). Social media crawlers need absolute URLs to fetch the image from their own servers."
+    },
+    {
+      "question": "What does og:type define?",
+      "answer": "og:type defines the type of content being shared, such as 'article' for blog posts, 'website' for general pages, 'profile' for user profiles, or 'video.movie' for movies."
+    },
+    {
+      "question": "What is og:site_name used for?",
+      "answer": "og:site_name specifies the name of the website. It typically appears above the title in social share cards and helps users identify the source."
+    },
+    {
+      "question": "Where are Open Graph tags placed in HTML?",
+      "answer": "Open Graph tags are placed inside the <head> section of an HTML document, along with other meta tags."
+    },
+    {
+      "question": "Do Open Graph tags affect SEO?",
+      "answer": "Open Graph tags do not directly affect search rankings, but they improve click-through rates from social media, which can indirectly benefit SEO through increased engagement."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the difference between og:title and the HTML <title> tag?",
+      "answer": "The HTML <title> tag sets the browser tab title and is used by search engines. og:title is specifically for social sharing previews. They should be consistent but og:title can be slightly more compelling for social audiences."
+    },
+    {
+      "question": "How do you specify multiple og:images?",
+      "answer": "Use multiple <meta property='og:image' content='...'> tags. Include og:image:width and og:image:height for each so the platform can choose the best match based on the user's screen and context."
+    },
+    {
+      "question": "What additional OG tags are available for articles?",
+      "answer": "Article-specific OG tags include: article:published_time (ISO 8601 date), article:modified_time, article:author (Facebook profile URL), article:section (category), and article:tag (can be repeated for multiple tags)."
+    },
+    {
+      "question": "How do Open Graph and Twitter Cards interact?",
+      "answer": "Twitter Cards (using <meta name='twitter:...'>) override Open Graph tags on Twitter. If Twitter-specific tags are missing, Twitter falls back to og:title, og:description, and og:image for the card preview."
+    },
+    {
+      "question": "What is the purpose of og:locale and og:locale:alternate?",
+      "answer": "og:locale specifies the language and region of the content (e.g., en_US for US English). og:locale:alternate lists other available language versions, helping social platforms direct users to the appropriate language."
+    },
+    {
+      "question": "How do you clear Facebook's cache of OG tags after updating them?",
+      "answer": "Use the Facebook Sharing Debugger (developers.facebook.com/tools/debug), enter the URL, and click 'Scrape Again'. This forces Facebook to re-fetch the page and update its cached OG data."
+    },
+    {
+      "question": "What is the correct way to specify og:image dimensions?",
+      "answer": "Use og:image:width and og:image:height as separate meta tags: <meta property='og:image:width' content='1200'> and <meta property='og:image:height' content='630'>. These values should match the actual image dimensions."
+    },
+    {
+      "question": "What og:type should be used for a product page?",
+      "answer": "While not officially part of the core OG spec, many platforms support 'product' as an og:type. For e-commerce, include additional properties like product:price:amount, product:price:currency, and product:availability."
+    },
+    {
+      "question": "How do you add a video to Open Graph?",
+      "answer": "Use og:video with the video URL, og:video:width, og:video:height, og:video:type (MIME type), and og:video:secure_url for the HTTPS version. Social platforms may use og:video to inline-play or link to the video."
+    },
+    {
+      "question": "What platforms read Open Graph tags?",
+      "answer": "Facebook, LinkedIn, Pinterest, Slack, Discord, WhatsApp, Telegram, Signal, Google+ (defunct), and Twitter (as fallback). Most modern messaging apps and social platforms support OG tags."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement dynamic Open Graph tags in a single-page application (SPA) built with React?",
+      "answer": "SPAs require server-side rendering (SSR) or prerendering for dynamic OG tags because social crawlers do not execute JavaScript. Solutions include: Next.js with getServerSideProps or getStaticProps for per-page OG tags, React Helmet for client-side <head> management (only works with SSR), or prerender.io for pre-rendering static HTML for crawlers."
+    },
+    {
+      "question": "What is the Open Graph namespace and how does it relate to RDFa?",
+      "answer": "Open Graph uses RDFa (Resource Description Framework in Attributes) syntax. The OG namespace is defined at the xmlns level: <html xmlns:og='http://ogp.me/ns#'>. This tells parsers that properties prefixed with 'og:' follow the Open Graph vocabulary. While the namespace attribute is optional, it ensures proper RDFa parsing."
+    },
+    {
+      "question": "How do different social platforms handle og:image differently, and how can you optimize for each?",
+      "answer": "Facebook requires minimum 600×315px, prefers 1200×630px at 1.91:1, and may crop images for different placements (feed, link page). LinkedIn uses similar specs but may apply rounded corners and a gradient overlay. Twitter's summary_large_image card uses 1200×675px at 16:9. Use multiple og:image tags at different aspect ratios and test each platform's debugger to ensure proper rendering."
+    },
+    {
+      "question": "What is the interaction between og:url and canonical URLs for SEO and duplicate content?",
+      "answer": "og:url should match the <link rel='canonical'> URL to prevent duplicate content issues. When a page is accessed via multiple URLs (e.g., with tracking parameters), og:url tells social platforms which URL to share and display, while canonical URLs tell search engines the preferred version for indexing."
+    },
+    {
+      "question": "How do you debug OG tag rendering issues when a platform shows incorrect data?",
+      "answer": "First, use the platform's debugger (Facebook Sharing Debugger, LinkedIn Post Inspector, Twitter Card Validator). These tools show exactly what OG tags were fetched and any errors. If the issue persists, check for: caching (use the debugger to scrape again), relative URLs instead of absolute, blocked crawlers (robots.txt), JavaScript-dependent content, HTTP vs HTTPS mismatches, and image size/format issues."
+    },
+    {
+      "question": "What are the limitations of og:video and how do platforms handle video content?",
+      "answer": "Most platforms do not inline-play og:video directly in the feed. Instead, they typically use og:image as the thumbnail and link to the video. Some platforms (like Facebook) check the page for embedded video players using schema.org markup or video tags. For proper video sharing, combine og:video with og:image (fallback thumbnail) and consider using schema.org VideoObject structured data."
+    },
+    {
+      "question": "How do you handle Open Graph for paginated content or infinite scroll?",
+      "answer": "For paginated content (e.g., article page 2), set og:url to the canonical URL of the first page or the specific page URL. Use og:type 'article' with article:published_time for the original publication date. For infinite scroll pages, the initial HTML should include OG tags for the first item; consider updating OG tags dynamically using history.pushState and server-side rendering for deep-linked items."
+    },
+    {
+      "question": "What are the privacy implications of Open Graph tags and how do you handle sensitive content?",
+      "answer": "Open Graph tags are public metadata — anyone can view them by inspecting the page source. Do not include personal information (email, phone numbers) in og:description or og:image. For member-only content, still provide general OG tags that do not reveal the specific content. Social platforms will cache and may distribute OG images, so ensure images do not contain sensitive information."
+    },
+    {
+      "question": "How does the Open Graph protocol handle structured data for rich objects like recipes or events?",
+      "answer": "The core OG protocol is limited to basic metadata. For rich objects (recipes, events, products), combine OG tags with schema.org structured data (JSON-LD). Platforms like Pinterest and Google use schema.org for enhanced displays (recipe cards, event listings), while Facebook uses OG tags primarily. A comprehensive page includes both: OG tags for social sharing and JSON-LD for search engines and rich snippets."
+    },
+    {
+      "question": "How do you test OG tags in a local development environment before deploying?",
+      "answer": "Social platform crawlers cannot access localhost. Solutions include: use ngrok to create a public HTTPS tunnel to your local server, deploy to a staging environment with a public URL, use tools like localtunnel or serveo for temporary public URLs, or use the Facebook Sharing Debugger with a publicly accessible staging URL. Some debuggers accept raw HTML input for testing without fetching a live URL."
+    }
+  ]
+}

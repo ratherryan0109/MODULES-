@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a responsive card grid?", "answer": "A grid layout of cards that automatically adjusts the number of columns based on the screen or container width." },
+    { "question": "How do you create fluid cards with CSS Grid?", "answer": "Use grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) to create a responsive card grid without media queries." },
+    { "question": "What is equal height in card layouts?", "answer": "Cards in the same row automatically have equal height because grid items stretch to fill their row by default." },
+    { "question": "How do you make cards that look good on all screen sizes?", "answer": "Use flexible widths (%, fr), consistent padding, responsive images, and min/max widths to ensure cards adapt smoothly." },
+    { "question": "What is content priority in card design?", "answer": "Content priority means placing the most important information (title, key stats) first in the card, ensuring it appears on all screen sizes." },
+    { "question": "What is a card component?", "answer": "A self-contained UI unit that combines an image, title, description, and action elements in a bordered container." },
+    { "question": "How does Flexbox create equal height cards?", "answer": "Use display: flex with align-items: stretch on the card row, and flex-direction: column on each card to stretch them to the same height." },
+    { "question": "What is a fluid card width?", "answer": "A card width that uses percentages or fr units so it adapts to the container width rather than being fixed." },
+    { "question": "Why use minmax() for card grids?", "answer": "minmax(280px, 1fr) ensures cards are at least 280px wide (readable) and can grow to fill available space equally." },
+    { "question": "What is a card grid breakpoint?", "answer": "The point at which the number of card columns changes, such as going from 3 columns to 2 columns on smaller screens." }
+  ],
+  "intermediate": [
+    { "question": "How do you handle card content that varies in length?", "answer": "Use flex-grow on the content area within each card to push the action button to the bottom, keeping cards visually balanced." },
+    { "question": "How do you create a masonry-style card layout?", "answer": "Use CSS columns for a simple masonry effect, or CSS Grid with grid-auto-rows and spanning. For true masonry, use JavaScript libraries or CSS Grid's masonry experimental feature." },
+    { "question": "How do you handle card image aspect ratios in responsive grids?", "answer": "Use aspect-ratio property on images and object-fit: cover to maintain consistent image proportions across different card sizes." },
+    { "question": "How do you implement a featured card that spans multiple columns?", "answer": "Use grid-column: span 2 on the featured card item to make it wider than other cards in the grid." },
+    { "question": "What is content priority in a card?", "answer": "Content priority arranges card content so the most important information appears first, ensuring it is visible even when cards are narrow." },
+    { "question": "How do you add hover effects to responsive cards?", "answer": "Use CSS transitions on transform, box-shadow, and opacity. Ensure effects are touch-friendly and respect prefers-reduced-motion." },
+    { "question": "How do you create a card grid with different card sizes?", "answer": "Assign different grid-column-span values to cards (e.g., span 1, span 2) and use grid-auto-flow: dense for efficient packing." },
+    { "question": "How do you handle long text in responsive cards?", "answer": "Use text-overflow: ellipsis with white-space: nowrap for single-line truncation, or line-clamp for multi-line truncation." },
+    { "question": "What is the best approach for card spacing in a responsive grid?", "answer": "Use gap on the grid container for consistent spacing, and internal padding on cards for content breathing room." },
+    { "question": "How do you create clickable cards with proper accessibility?", "answer": "Make the entire card clickable with an <a> tag or use a CSS pseudo-element overlay. Ensure keyboard navigation and focus states are visible." }
+  ],
+  "advanced": [
+    { "question": "How do you implement a card grid that maintains alignment across different content heights?", "answer": "Use Grid with align-items: stretch (default) so all cards in a row have the same height. Inside each card, use Flexbox column to push actions to the bottom." },
+    { "question": "How do you create a responsive card grid with subgrid for aligned internal elements?", "answer": "Use subgrid to align internal card elements (titles, buttons) across rows, ensuring consistent vertical alignment even with varying content." },
+    { "question": "How do you handle card grid performance with large datasets?", "answer": "Virtualize the grid with IntersectionObserver for lazy rendering, or use pagination/infinite scroll to limit DOM size." },
+    { "question": "What is the interaction between container queries and card grids?", "answer": "Container queries allow cards to adjust their internal layout based on the card's own width, enabling truly responsive card designs." },
+    { "question": "How do you implement a card grid with both horizontal and vertical spanning?", "answer": "Use CSS Grid with explicit column/row spans on specific cards, combined with auto-fill for the base grid structure." },
+    { "question": "How do you create an accessible card carousel for mobile?", "answer": "Use horizontal scroll snap with overflow-x: auto and scroll-snap-type: x mandatory for a touch-friendly carousel that is keyboard accessible." },
+    { "question": "How do you design a card grid that works with right-to-left (RTL) languages?", "answer": "Use logical CSS properties (margin-inline, padding-inline) and let the grid auto-place items respecting the writing direction." },
+    { "question": "How do you implement a card grid with dynamic loading and responsive recalculation?", "answer": "Use CSS Grid with auto-fill so the grid recalculates automatically as new cards are loaded, no JavaScript recalculation needed." },
+    { "question": "What are the best practices for card images in responsive grids?", "answer": "Use srcset for resolution switching, aspect-ratio for consistent sizing, lazy loading for performance, and object-fit for cropping control." },
+    { "question": "How do you handle card grid layouts in hybrid Grid+Flexbox architectures?", "answer": "Grid manages the card column layout; each card uses Flexbox internally. Container queries can further adjust internal card layout at component-level breakpoints." }
+  ]
+}

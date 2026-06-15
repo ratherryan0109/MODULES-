@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What are CSS @keyframes used for?", "answer": "@keyframes defines a sequence of animation steps by specifying property values at various points during the animation." },
+    { "question": "What is the animation-name property?", "answer": "animation-name specifies which @keyframes animation to apply to an element, matching the keyframe block's identifier." },
+    { "question": "What are keyframe selectors?", "answer": "Keyframe selectors are percentage values (0% to 100%) that define at which point in the animation each style change occurs." },
+    { "question": "What do 0% and 100% represent in keyframes?", "answer": "0% is the start of the animation and 100% is the end; they can also be written using the keywords 'from' and 'to'." },
+    { "question": "How do you define a simple fade-in animation using @keyframes?", "answer": "@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } } and apply it with animation-name: fadeIn." },
+    { "question": "Can you have multiple keyframe selectors in one @keyframes rule?", "answer": "Yes, you can use any percentage values like 0%, 25%, 50%, 75%, 100% to create multi-step animations." },
+    { "question": "What happens if you omit the 0% or 100% keyframe?", "answer": "If omitted, the browser uses the element's computed styles as the start (0%) or end (100%) values." },
+    { "question": "Can multiple properties be animated in one @keyframes rule?", "answer": "Yes, you can animate multiple CSS properties within a single @keyframes block by declaring them at each keyframe selector." },
+    { "question": "What is the syntax for defining two keyframe selectors with the same styles?", "answer": "You can group selectors: 0%, 100% { opacity: 1; } 50% { opacity: 0; } to apply the same styles at multiple points." },
+    { "question": "Can @keyframes be defined inside media queries?", "answer": "No, @keyframes rules cannot be nested inside other at-rules like @media; they must be defined at the top level." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a bounce animation using @keyframes?", "answer": "Define keyframes at 0%, 50%, and 100% with translateY moving up and down, using ease-in/out timing for realistic bounce." },
+    { "question": "Can you use CSS custom properties inside @keyframes?", "answer": "Standard CSS custom properties work inside @keyframes; registered custom properties (via @property) can animate smoothly." },
+    { "question": "What happens if two @keyframes have the same name?", "answer": "The last defined @keyframes with that name in the cascade order takes precedence, overriding earlier definitions." },
+    { "question": "How do keyframes interact with the will-change property?", "answer": "will-change hints the browser about which properties will animate, allowing optimization before the keyframe animation starts." },
+    { "question": "Can you use transform functions inside @keyframes?", "answer": "Yes, transform is commonly animated in @keyframes, including multiple transform functions at different keyframe points." },
+    { "question": "How do you create a color cycling animation with @keyframes?", "answer": "Define keyframes at 0%, 33%, 66%, 100% with different color values; the browser interpolates between them smoothly." },
+    { "question": "What is the best practice for vendor prefixes with @keyframes?", "answer": "Modern browsers do not require prefixes; for legacy support, duplicate rules with -webkit- prefixes for the @keyframes rule." },
+    { "question": "How many keyframe selectors should you use for smooth motion?", "answer": "For simple animations, from/to is sufficient; for complex motion, use 3-5 keyframe points; more than 10 rarely improves quality." },
+    { "question": "Can you use the !important keyword inside @keyframes?", "answer": "Yes, !important is allowed but ignored in @keyframes rules; it does not affect the animation values." },
+    { "question": "How do you reference a @keyframes animation from multiple elements?", "answer": "Use the same animation-name value on multiple selectors; each element animates independently using the same keyframe definition." }
+  ],
+  "advanced": [
+    { "question": "How does the cascade apply to @keyframes in terms of specificity?", "answer": "@keyframes have no specificity; the animation property cascade determines which animation applies, but keyframe values override the element's inline styles during animation." },
+    { "question": "Can @keyframes be dynamically injected via JavaScript?", "answer": "Yes, you can inject @keyframes using CSSStyleSheet.insertRule() or constructible stylesheets with adoptedStyleSheets." },
+    { "question": "How do keyframes with pseudo-elements (::before, ::after) work?", "answer": "Apply animation to the pseudo-element selector: .element::before { animation: pulse 2s; } with matching @keyframes." },
+    { "question": "How do you detect when a keyframe animation reaches a specific point?", "answer": "Use the animationiteration event for repeating animations or the animationstart/animationend events for start and completion." },
+    { "question": "How does the Web Animations API relate to CSS @keyframes?", "answer": "The WAAPI can replicate @keyframes behavior: element.animate([{opacity: 0}, {opacity: 1}], {duration: 1000}); provides programmatic control." },
+    { "question": "How do @keyframes interact with the animation-fill-mode property?", "answer": "fill-mode determines whether the element retains keyframe styles before the animation starts (backwards), after it ends (forwards), or both." },
+    { "question": "Can you nest @keyframes inside other CSS at-rules?", "answer": "@keyframes cannot be nested inside @media or @supports; they must be top-level rules in stylesheets." },
+    { "question": "How do you create a staggered animation effect with @keyframes?", "answer": "Use animation-delay with increasing values on multiple elements, or use the same keyframes with different start times via negative delays." },
+    { "question": "How does the browser optimize @keyframes animations for performance?", "answer": "Browsers promote animated elements to compositor layers when animating transform or opacity, running the animation on the compositor thread." },
+    { "question": "How do you handle @keyframes in shadow DOM contexts?", "answer": "@keyframes defined inside shadow DOM are scoped to that shadow tree and do not leak to the light DOM or other shadow roots." }
+  ]
+}

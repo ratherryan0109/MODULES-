@@ -1,0 +1,128 @@
+﻿{
+  "beginner": [
+    {
+      "question": "What HTML elements are essential for an e-commerce product listing page?",
+      "answer": "Essential elements: <nav> for categories, <article> for product cards, <aside> for filters, <img> for product images, and <button> for Add to Cart."
+    },
+    {
+      "question": "How do you structure a product card?",
+      "answer": "Use <article> with: product image (<img>), product name (<h3>), price (<span>), rating (<div>), and an Add to Cart button."
+    },
+    {
+      "question": "What is the purpose of a shopping cart page?",
+      "answer": "The cart page shows selected products, quantities, prices, and allows users to update quantities or remove items before checkout."
+    },
+    {
+      "question": "How do you create a product grid?",
+      "answer": "Use CSS Grid with grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) on a container <div> of <article> cards."
+    },
+    {
+      "question": "What is a product detail page?",
+      "answer": "A product detail page shows full product information: title, description, price, images, specifications, reviews, and an Add to Cart button."
+    },
+    {
+      "question": "How do you implement a category filter sidebar?",
+      "answer": "Use <aside> with checkbox or link-based category lists. Combine with CSS or JavaScript to show/hide products."
+    },
+    {
+      "question": "What information belongs in the checkout form?",
+      "answer": "Shipping address, billing address, payment information, order summary, and a submit button."
+    },
+    {
+      "question": "How do you display product prices with discounts?",
+      "answer": "Use <del> for the original price and <ins> for the sale price: <del>$69.99</del> <ins>$49.99</ins>."
+    },
+    {
+      "question": "What is the purpose of product ratings?",
+      "answer": "Ratings show customer satisfaction (1-5 stars) and help users make purchase decisions."
+    },
+    {
+      "question": "How do you create a search bar for products?",
+      "answer": "Use a <form> with <input type='search'> and a submit button, pointing to a search results page."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement filter functionality without JavaScript?",
+      "answer": "Use URL query parameters to navigate to filtered pages: <a href='category.html?cat=electronics'>."
+    },
+    {
+      "question": "What is the role of structured data (Schema.org) for e-commerce?",
+      "answer": "Structured data helps search engines display rich snippets with product price, availability, ratings, and reviews in search results."
+    },
+    {
+      "question": "How do you create a responsive product grid?",
+      "answer": "Use CSS Grid with auto-fill: grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)). This automatically adjusts columns to container width."
+    },
+    {
+      "question": "How do you handle quantity updates in a static cart page?",
+      "answer": "Use <input type='number'> with min='1' for each item. Real updates require JavaScript. For static demo, show the initial state."
+    },
+    {
+      "question": "What is the proper way to display stock availability?",
+      "answer": "Use a <span> with class indicating status: 'In Stock' (green), 'Low Stock' (orange), 'Out of Stock' (red)."
+    },
+    {
+      "question": "How do you structure payment form fields securely?",
+      "answer": "Use <input type='text'> with pattern for card number, expiry as month/year selects, and CVV as password input with maxlength='4'."
+    },
+    {
+      "question": "What is the purpose of the order confirmation page?",
+      "answer": "The confirmation page displays the order summary, order number, estimated delivery, and next steps after successful checkout."
+    },
+    {
+      "question": "How do you implement a coupon code field?",
+      "answer": "Use an <input type='text'> with placeholder='Coupon Code' and an 'Apply' <button> alongside the cart summary."
+    },
+    {
+      "question": "What accessibility considerations apply to e-commerce sites?",
+      "answer": "Descriptive alt text on product images, proper heading hierarchy, keyboard-navigable product cards, form labels, and ARIA labels for cart status."
+    },
+    {
+      "question": "How do you create a product comparison feature?",
+      "answer": "Use a <table> with products as columns and features as rows, or use checkboxes to select products for comparison."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement client-side shopping cart using localStorage?",
+      "answer": "Use localStorage.setItem('cart', JSON.stringify(items)) to store cart data. HTML provides the structure; JavaScript handles add/remove/update operations."
+    },
+    {
+      "question": "What is the correct way to handle form validation for credit card numbers using the Luhn algorithm?",
+      "answer": "HTML pattern attribute can validate format, but the Luhn algorithm requires JavaScript. Use pattern='[0-9]{16}' for format, then JS for the checksum."
+    },
+    {
+      "question": "How does schema.org Product type work with nested Offer and Review types?",
+      "answer": "Product contains properties like name and image. Offers are nested objects with price, currency, availability. Reviews are nested with author, rating, and description."
+    },
+    {
+      "question": "What are the security implications of client-side cart storage?",
+      "answer": "Client-side cart data is visible and modifiable by users. Never store prices or discounts client-side; always validate on the server."
+    },
+    {
+      "question": "How do you implement a wishlist feature with HTML and CSS?",
+      "answer": "Add a heart/favorite button on each product card. Use a checkbox hack to toggle visual state. Link to a wishlist page for full list."
+    },
+    {
+      "question": "What are the best practices for product image optimization?",
+      "answer": "Use responsive images with srcset and sizes. Provide WebP format with JPEG fallback. Lazy-load below-the-fold images. Keep thumbnails under 50KB."
+    },
+    {
+      "question": "How do you implement infinite scroll for product listings?",
+      "answer": "HTML provides the product card structure. JavaScript detects when user scrolls near bottom and appends more cards. Fallback pagination for no-JS users."
+    },
+    {
+      "question": "What is the role of microformat hProduct in e-commerce?",
+      "answer": "hProduct is a microformat for marking up products with class names like h-product, p-name, p-price for machine readability."
+    },
+    {
+      "question": "How do you transform a static e-commerce HTML site into a PWA?",
+      "answer": "Add a manifest.json, a service worker for offline caching, and ensure all pages are accessible offline. The HTML structure stays the same."
+    },
+    {
+      "question": "How do you implement breadcrumb structured data for an e-commerce site?",
+      "answer": "Use schema.org BreadcrumbList with ListItem and position properties. Each breadcrumb item has a name and URL."
+    }
+  ]
+}

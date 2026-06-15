@@ -1,0 +1,93 @@
+{
+  "module": "CSS Inline-Block",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Horizontal Navigation with Inline-Block",
+      "description": "Create a horizontal navigation bar using inline-block. The nav should have 5 items with hover effects.",
+      "requirements": [
+        "Unordered list with 5 items",
+        "Items displayed horizontally using inline-block",
+        "Each item has padding for click area",
+        "Hover effect changes background color",
+        "Dark background, white text"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; }\n  .nav { list-style: none; margin: 0; padding: 0; background: #1a1a2e; }\n  .nav li { display: inline-block; }\n  .nav a { display: inline-block; padding: 15px 25px; color: white; text-decoration: none; }\n  .nav a:hover { background: #e94560; }\n</style>\n</head>\n<body>\n  <ul class=\"nav\">\n    <li><a href=\"#\">Home</a></li>\n    <li><a href=\"#\">About</a></li>\n    <li><a href=\"#\">Services</a></li>\n    <li><a href=\"#\">Portfolio</a></li>\n    <li><a href=\"#\">Contact</a></li>\n  </ul>\n  <p style=\"margin-top:20px;\">A horizontal navigation bar using display: inline-block.</p>\n</body>\n</html>",
+        "explanation": "The list items use display: inline-block to sit horizontally. Anchor tags also use inline-block for full padding click area."
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Centered Button Group",
+      "description": "Create a centered group of buttons using inline-block. Buttons should be adjacent without gaps.",
+      "requirements": [
+        "3 buttons in a group",
+        "Buttons centered horizontally",
+        "No whitespace gaps between buttons",
+        "Active/hover styles",
+        "Buttons have rounded outer corners only"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { font-family: sans-serif; text-align: center; padding: 40px; }\n  .btn-group { font-size: 0; display: inline-block; }\n  .btn {\n    display: inline-block;\n    font-size: 14px;\n    padding: 12px 24px;\n    border: 1px solid #4a90d9;\n    background: white;\n    color: #4a90d9;\n    cursor: pointer;\n  }\n  .btn:first-child { border-radius: 6px 0 0 6px; }\n  .btn:last-child { border-radius: 0 6px 6px 0; }\n  .btn.active { background: #4a90d9; color: white; }\n  .btn:hover:not(.active) { background: #e8f0fe; }\n</style>\n</head>\n<body>\n  <div class=\"btn-group\">\n    <button class=\"btn active\">Left</button><button class=\"btn\">Center</button><button class=\"btn\">Right</button>\n  </div>\n</body>\n</html>",
+        "explanation": "font-size: 0 on the group removes whitespace gaps. text-align: center on body centers the group. Buttons use no whitespace between them."
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Responsive Card Grid with Inline-Block",
+      "description": "Create a responsive card grid using inline-block. Cards should display in rows and wrap on smaller screens.",
+      "requirements": [
+        "6 cards with title and description",
+        "Cards displayed in 3 columns using inline-block",
+        "Cards centered in the container",
+        "Responsive: 2 columns at 768px, 1 column at 480px",
+        "No clearfix needed"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }\n  .grid {\n    text-align: center;\n    font-size: 0;\n  }\n  .card {\n    display: inline-block;\n    vertical-align: top;\n    width: 30%;\n    min-width: 200px;\n    margin: 1.66%;\n    padding: 20px;\n    background: white;\n    border-radius: 8px;\n    font-size: 16px;\n    text-align: left;\n    box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n  }\n  .card h3 { margin-bottom: 10px; color: #333; }\n  .card p { color: #666; line-height: 1.5; }\n  @media (max-width: 768px) {\n    .card { width: 45%; }\n  }\n  @media (max-width: 480px) {\n    .card { width: 90%; }\n  }\n</style>\n</head>\n<body>\n  <div class=\"grid\">\n    <div class=\"card\"><h3>Card 1</h3><p>Description for card 1.</p></div>\n    <div class=\"card\"><h3>Card 2</h3><p>Description for card 2.</p></div>\n    <div class=\"card\"><h3>Card 3</h3><p>Description for card 3.</p></div>\n    <div class=\"card\"><h3>Card 4</h3><p>Description for card 4.</p></div>\n    <div class=\"card\"><h3>Card 5</h3><p>Description for card 5.</p></div>\n    <div class=\"card\"><h3>Card 6</h3><p>Description for card 6.</p></div>\n  </div>\n</body>\n</html>",
+        "explanation": "font-size: 0 on grid removes gaps, restored on cards. text-align: center centers the grid. percentage widths with min-width create responsive columns."
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Social Media Profile with Inline-Block",
+      "description": "Create a user profile card that uses inline-block for the avatar, stats, and social media links.",
+      "requirements": [
+        "Profile card with avatar, name, and bio",
+        "Stats (posts, followers, following) displayed inline-block",
+        "Social media icon links (inline-block)",
+        "Avatar floated left or inline-block with text",
+        "Stats should be centered below bio"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; }\n  body { font-family: sans-serif; padding: 40px; background: #f0f0f0; }\n  .profile {\n    max-width: 500px;\n    margin: 0 auto;\n    background: white;\n    border-radius: 16px;\n    padding: 30px;\n    box-shadow: 0 4px 20px rgba(0,0,0,0.1);\n    text-align: center;\n  }\n  .avatar {\n    display: inline-block;\n    width: 100px;\n    height: 100px;\n    border-radius: 50%;\n    background: #4a90d9;\n    color: white;\n    font-size: 40px;\n    line-height: 100px;\n    margin-bottom: 15px;\n  }\n  .name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }\n  .bio { color: #666; margin-bottom: 20px; }\n  .stats { font-size: 0; margin-bottom: 20px; }\n  .stat {\n    display: inline-block;\n    font-size: 14px;\n    padding: 0 25px;\n    vertical-align: top;\n  }\n  .stat-value { font-size: 20px; font-weight: bold; display: block; }\n  .stat-label { color: #999; }\n  .social { font-size: 0; }\n  .social-link {\n    display: inline-block;\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: #f0f0f0;\n    margin: 0 5px;\n    font-size: 18px;\n    line-height: 40px;\n    color: #555;\n    text-decoration: none;\n  }\n  .social-link:hover { background: #4a90d9; color: white; }\n</style>\n</head>\n<body>\n  <div class=\"profile\">\n    <div class=\"avatar\">JD</div>\n    <div class=\"name\">John Doe</div>\n    <div class=\"bio\">Full-stack developer &amp; CSS enthusiast</div>\n    <div class=\"stats\">\n      <div class=\"stat\"><span class=\"stat-value\">42</span><span class=\"stat-label\">Posts</span></div>\n      <div class=\"stat\"><span class=\"stat-value\">850</span><span class=\"stat-label\">Followers</span></div>\n      <div class=\"stat\"><span class=\"stat-value\">320</span><span class=\"stat-label\">Following</span></div>\n    </div>\n    <div class=\"social\">\n      <a href=\"#\" class=\"social-link\">T</a>\n      <a href=\"#\" class=\"social-link\">F</a>\n      <a href=\"#\" class=\"social-link\">I</a>\n      <a href=\"#\" class=\"social-link\">G</a>\n    </div>\n  </div>\n</body>\n</html>",
+        "explanation": "Inline-block is used for: avatar (with sizing), stat items (horizontal layout with vertical-align), social links (horizontal with gaps managed by font-size: 0)."
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Inline-Block Magazine Layout with All Techniques",
+      "description": "Build a complete magazine layout using inline-block for all horizontal positioning. Include navigation, card grid, sidebar, button groups, and a gallery. Use font-size: 0 technique and vertical-align throughout.",
+      "requirements": [
+        "Horizontal navigation bar (inline-block)",
+        "Featured article with inline-block image and text",
+        "3-column card grid using inline-block with font-size: 0",
+        "Inline-block sidebar and main content columns",
+        "Button group with font-size: 0 technique",
+        "Gallery with inline-block items",
+        "All parents properly structured (no clearfix needed)",
+        "Vertical-align used appropriately"
+      ],
+      "solution": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; }\n\n  .header { background: #1a1a2e; color: white; padding: 20px; text-align: center; }\n  .header h1 { margin-bottom: 20px; }\n  .nav { font-size: 0; }\n  .nav a {\n    display: inline-block;\n    padding: 12px 30px;\n    color: white;\n    text-decoration: none;\n    font-size: 16px;\n  }\n  .nav a:hover { background: #e94560; }\n\n  .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }\n\n  .featured {\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    margin-bottom: 20px;\n    font-size: 0;\n  }\n  .featured-img {\n    display: inline-block;\n    width: 280px;\n    height: 180px;\n    background: #4a90d9;\n    border-radius: 8px;\n    vertical-align: top;\n    font-size: 16px;\n    color: white;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .featured-text {\n    display: inline-block;\n    width: calc(100% - 300px);\n    padding-left: 20px;\n    font-size: 16px;\n    vertical-align: top;\n  }\n\n  .card-grid { font-size: 0; margin-bottom: 20px; }\n  .card {\n    display: inline-block;\n    width: 31.33%;\n    margin: 1%;\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    font-size: 16px;\n    vertical-align: top;\n  }\n\n  .columns { font-size: 0; margin-bottom: 20px; }\n  .main-content {\n    display: inline-block;\n    width: 65%;\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    font-size: 16px;\n    vertical-align: top;\n  }\n  .sidebar {\n    display: inline-block;\n    width: 33%;\n    margin-left: 2%;\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    font-size: 16px;\n    vertical-align: top;\n  }\n\n  footer {\n    background: #1a1a2e;\n    color: white;\n    text-align: center;\n    padding: 20px;\n    margin-top: 20px;\n  }\n\n  @media (max-width: 768px) {\n    .featured-img, .featured-text { width: 100%; padding: 0; }\n    .card { width: 48%; }\n    .main-content, .sidebar { width: 100%; margin: 0; }\n  }\n  @media (max-width: 480px) {\n    .card { width: 98%; }\n  }\n</style>\n</head>\n<body>\n  <div class=\"header\">\n    <h1>Inline-Block Magazine</h1>\n    <div class=\"nav\">\n      <a href=\"#\">Home</a><a href=\"#\">Articles</a><a href=\"#\">Gallery</a><a href=\"#\">About</a>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"featured\">\n      <div class=\"featured-img\">Featured Image</div>\n      <div class=\"featured-text\">\n        <h2>Featured Article</h2>\n        <p>This layout uses display: inline-block for horizontal positioning. No floats needed!</p>\n      </div>\n    </div>\n\n    <div class=\"card-grid\">\n      <div class=\"card\"><h3>Card 1</h3><p>Content</p></div>\n      <div class=\"card\"><h3>Card 2</h3><p>Content</p></div>\n      <div class=\"card\"><h3>Card 3</h3><p>Content</p></div>\n    </div>\n\n    <div class=\"columns\">\n      <div class=\"main-content\">\n        <h2>Main Content</h2>\n        <p>This column uses inline-block with vertical-align: top.</p>\n      </div>\n      <div class=\"sidebar\">\n        <h3>Sidebar</h3>\n        <p>Side content here.</p>\n      </div>\n    </div>\n  </div>\n\n  <footer>&copy; 2026 Inline-Block Magazine</footer>\n</body>\n</html>",
+        "explanation": "This layout uses inline-block everywhere: nav links, featured image+text, card grid (with font-size: 0), and main+sidebar columns. No floats or clearfix needed. Responsive breakpoints convert columns to full width."
+      }
+    }
+  ]
+}

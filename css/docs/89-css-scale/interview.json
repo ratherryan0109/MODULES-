@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the scale() function do in CSS?", "answer": "scale(sx, sy) enlarges or shrinks an element by the specified factor in the x and y directions." },
+    { "question": "What is the default scale value (identity)?", "answer": "The default scale value is 1, meaning no scaling is applied to the element." },
+    { "question": "What does scaleX() do?", "answer": "scaleX(factor) scales an element horizontally by the specified factor along the X-axis." },
+    { "question": "What does scaleY() do?", "answer": "scaleY(factor) scales an element vertically by the specified factor along the Y-axis." },
+    { "question": "What happens when scale is set to 0?", "answer": "The element becomes invisible as it collapses to zero size in the scaled dimensions." },
+    { "question": "What does a scale value greater than 1 do?", "answer": "Values greater than 1 enlarge the element by the specified factor, e.g., scale(2) doubles the size." },
+    { "question": "What does a scale value between 0 and 1 do?", "answer": "Values between 0 and 1 shrink the element, e.g., scale(0.5) halves the size." },
+    { "question": "Does scaling affect the element's layout dimensions?", "answer": "No, scaling is visual only; the element's layout box remains the original size in the document flow." },
+    { "question": "How do you scale an element uniformly on both axes?", "answer": "Use scale(factor) with a single value, e.g., scale(1.5), which applies the same factor to both X and Y axes." },
+    { "question": "Can you combine scale with other transform functions?", "answer": "Yes, scale can be paired with translate, rotate, and skew in a single transform declaration." }
+  ],
+  "intermediate": [
+    { "question": "What does a negative scale value do to an element?", "answer": "A negative scale value flips or mirrors the element; scaleX(-1) mirrors horizontally, scaleY(-1) mirrors vertically." },
+    { "question": "How does transform-origin affect scaling behavior?", "answer": "transform-origin determines the anchor point for scaling; scaling from top-left vs center produces different positioning results." },
+    { "question": "What is the difference between scale and width/height changes?", "answer": "scale is visual only and GPU-accelerated; width/height changes trigger layout recalculation for the element and its surroundings." },
+    { "question": "How do you scale only in one direction?", "answer": "Use scaleX(factor) for horizontal-only or scaleY(factor) for vertical-only scaling." },
+    { "question": "How does scale affect child elements?", "answer": "Child elements are scaled along with their parent; their own transform values compound with the parent's scale through matrix multiplication." },
+    { "question": "Can scale be animated smoothly with transitions?", "answer": "Yes, scale can be smoothly transitioned: transition: transform 0.3s; then toggle transform: scale(1.2) on hover." },
+    { "question": "How does scale affect text rendering?", "answer": "Scaled text may appear blurry or pixelated at non-integer scales; sub-pixel rendering quality depends on the browser and scaling factor." },
+    { "question": "What happens when you scale an element with a border or outline?", "answer": "Borders and outlines scale visually with the element, becoming thicker or thinner proportionally to the scale factor." },
+    { "question": "How does scale interact with overflow on the parent?", "answer": "Scale does not change the element's layout box, so parent overflow: hidden clips based on the original size, potentially cutting off scaled content." },
+    { "question": "What is the visual effect of scaleZ() in 3D space?", "answer": "scaleZ(factor) scales the element's depth along the Z-axis, affecting perceived thickness but only visible in a 3D perspective context." }
+  ],
+  "advanced": [
+    { "question": "How does scaling affect the element's stacking context?", "answer": "Any transform value other than none creates a new stacking context, which can affect how the element renders relative to siblings." },
+    { "question": "How do you create a hover zoom effect on images without layout shift?", "answer": "Use transform: scale(1.1) inside a container with overflow: hidden; the image scales visually without affecting surrounding content." },
+    { "question": "How does scale interact with container queries?", "answer": "Scale does not change the element's containment box, so container queries respond to the unscaled layout dimensions." },
+    { "question": "How can you use scale for a minimize or collapse animation?", "answer": "Animate from scale(1) to scale(0) combined with opacity for a smooth collapse effect, optionally with transform-origin: top center." },
+    { "question": "What performance benefits does scale offer over width/height animation?", "answer": "Scale runs on the compositor thread via GPU without triggering layout or paint, making it significantly more performant." },
+    { "question": "How does scale behave with SVG elements compared to HTML elements?", "answer": "Scale on SVG elements uses the SVG viewport coordinate system, which may differ from HTML elements' behavior, especially with percentage origins." },
+    { "question": "How do you maintain 1px borders when scaling an element?", "answer": "Borders scale visually, so at scale(2) a 1px border appears as 2px; use outline or box-shadow with fixed values as alternatives." },
+    { "question": "How does scale affect cursor and hit-test areas?", "answer": "Hit-test areas scale with the visual representation; getBoundingClientRect returns the scaled dimensions for pointer event calculations." },
+    { "question": "How does scale interact with CSS custom properties?", "answer": "CSS custom properties can store scale values and be updated dynamically, enabling theme-based scaling without JavaScript." },
+    { "question": "How do you scale only the background of an element without scaling content?", "answer": "Use a pseudo-element with its own transform: scale() for the background, keeping the main element's content at normal scale." }
+  ]
+}

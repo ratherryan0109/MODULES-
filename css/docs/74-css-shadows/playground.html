@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Shadows — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; padding: 2rem; color: #eee; }
+    h1 { margin-bottom: 0.5rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .controls { background: #16213e; border-radius: 12px; padding: 1.5rem; }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group input[type="color"] { width: 100%; height: 40px; border: none; border-radius: 6px; cursor: pointer; background: transparent; }
+    .control-group select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .preview-area { background: #16213e; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; }
+    .preview-box { width: 250px; height: 250px; background: #e94560; border-radius: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.1s; }
+    .preview-box p { font-size: 1.2rem; font-weight: bold; color: white; text-align: center; }
+    .preview-text { font-size: 3rem; font-weight: bold; margin-top: 1rem; }
+    .code-output { background: #0a0a1a; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; font-family: 'Courier New', monospace; font-size: 0.8rem; color: #a8d8ea; white-space: pre-wrap; word-break: break-all; }
+    .tab-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .tab-bar button { padding: 0.5rem 1rem; border: none; border-radius: 6px; background: #0f3460; color: #aaa; cursor: pointer; }
+    .tab-bar button.active { background: #e94560; color: white; }
+    .checkbox-group { display: flex; gap: 1rem; margin-top: 0.5rem; }
+    .checkbox-group label { font-size: 0.85rem; color: #aaa; display: flex; align-items: center; gap: 0.4rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Shadows Playground</h1>
+  <p style="margin-bottom:2rem;color:#aaa">Adjust the controls to explore box-shadow and text-shadow in real time.</p>
+
+  <div class="container">
+    <div class="controls">
+      <div class="tab-bar">
+        <button id="tabBox" class="active" onclick="switchTab('box')">Box Shadow</button>
+        <button id="tabText" onclick="switchTab('text')">Text Shadow</button>
+      </div>
+
+      <div id="boxControls">
+        <div class="control-group">
+          <label>Offset X <span class="value" id="valOx">10</span></label>
+          <input type="range" id="ox" min="-50" max="50" value="10" oninput="updateBox()">
+        </div>
+        <div class="control-group">
+          <label>Offset Y <span class="value" id="valOy">10</span></label>
+          <input type="range" id="oy" min="-50" max="50" value="10" oninput="updateBox()">
+        </div>
+        <div class="control-group">
+          <label>Blur <span class="value" id="valBlur">20</span></label>
+          <input type="range" id="blur" min="0" max="100" value="20" oninput="updateBox()">
+        </div>
+        <div class="control-group">
+          <label>Spread <span class="value" id="valSpread">0</span></label>
+          <input type="range" id="spread" min="-50" max="50" value="0" oninput="updateBox()">
+        </div>
+        <div class="control-group">
+          <label>Shadow Color</label>
+          <input type="color" id="shadowColor" value="#000000" oninput="updateBox()">
+        </div>
+        <div class="control-group">
+          <label>Opacity <span class="value" id="valOpacity">0.3</span></label>
+          <input type="range" id="opacity" min="0" max="100" value="30" oninput="updateBox()">
+        </div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" id="inset" onchange="updateBox()"> Inset</label>
+          <label><input type="checkbox" id="neon" onchange="updateBox()"> Neon Glow</label>
+        </div>
+        <div class="control-group">
+          <label>Box Shape</label>
+          <select id="boxShape" onchange="updateBox()">
+            <option value="0">Square</option>
+            <option value="8">Rounded (8px)</option>
+            <option value="16">Rounded (16px)</option>
+            <option value="50">Circle</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="textControls" style="display:none">
+        <div class="control-group">
+          <label>Offset X <span class="value" id="valTx">2</span></label>
+          <input type="range" id="tx" min="-20" max="20" value="2" oninput="updateText()">
+        </div>
+        <div class="control-group">
+          <label>Offset Y <span class="value" id="valTy">2</span></label>
+          <input type="range" id="ty" min="-20" max="20" value="2" oninput="updateText()">
+        </div>
+        <div class="control-group">
+          <label>Blur <span class="value" id="valTBlur">4</span></label>
+          <input type="range" id="tblur" min="0" max="40" value="4" oninput="updateText()">
+        </div>
+        <div class="control-group">
+          <label>Shadow Color</label>
+          <input type="color" id="textShadowColor" value="#000000" oninput="updateText()">
+        </div>
+        <div class="control-group">
+          <label>Opacity <span class="value" id="valTOpacity">0.3</span></label>
+          <input type="range" id="topacity" min="0" max="100" value="30" oninput="updateText()">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <div class="preview-box" id="previewBox">
+          <p>Preview</p>
+        </div>
+        <div class="preview-text" id="previewText">Shadow</div>
+      </div>
+      <div class="code-output" id="codeOutput">box-shadow: 10px 10px 20px rgba(0,0,0,0.3);</div>
+    </div>
+  </div>
+
+  <script>
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? `${parseInt(result[1],16)},${parseInt(result[2],16)},${parseInt(result[3],16)}` : '0,0,0';
+    }
+
+    function updateBox() {
+      const ox = document.getElementById('ox').value;
+      const oy = document.getElementById('oy').value;
+      const blur = document.getElementById('blur').value;
+      const spread = document.getElementById('spread').value;
+      const color = document.getElementById('shadowColor').value;
+      const opacity = document.getElementById('opacity').value / 100;
+      const inset = document.getElementById('inset').checked;
+      const neon = document.getElementById('neon').checked;
+      const radius = document.getElementById('boxShape').value;
+
+      document.getElementById('valOx').textContent = ox;
+      document.getElementById('valOy').textContent = oy;
+      document.getElementById('valBlur').textContent = blur;
+      document.getElementById('valSpread').textContent = spread;
+      document.getElementById('valOpacity').textContent = opacity.toFixed(1);
+
+      const rgb = hexToRgb(color);
+      let shadow = '';
+      if (neon) {
+        shadow = `0 0 5px rgba(${rgb},${opacity}), 0 0 10px rgba(${rgb},${opacity}), 0 0 20px rgba(${rgb},${opacity}), 0 0 40px rgba(${rgb},${opacity})`;
+        if (inset) shadow = `inset ${shadow}`;
+      } else {
+        shadow = `${inset ? 'inset ' : ''}${ox}px ${oy}px ${blur}px ${spread}px rgba(${rgb},${opacity})`;
+      }
+
+      document.getElementById('previewBox').style.boxShadow = shadow;
+      document.getElementById('previewBox').style.borderRadius = radius + 'px';
+      document.getElementById('codeOutput').textContent = 'box-shadow: ' + shadow + ';\nborder-radius: ' + radius + 'px;';
+    }
+
+    function updateText() {
+      const tx = document.getElementById('tx').value;
+      const ty = document.getElementById('ty').value;
+      const tblur = document.getElementById('tblur').value;
+      const color = document.getElementById('textShadowColor').value;
+      const opacity = document.getElementById('topacity').value / 100;
+      const rgb = hexToRgb(color);
+
+      document.getElementById('valTx').textContent = tx;
+      document.getElementById('valTy').textContent = ty;
+      document.getElementById('valTBlur').textContent = tblur;
+      document.getElementById('valTOpacity').textContent = opacity.toFixed(1);
+
+      const shadow = `${tx}px ${ty}px ${tblur}px rgba(${rgb},${opacity})`;
+      document.getElementById('previewText').style.textShadow = shadow;
+      document.getElementById('codeOutput').textContent = 'text-shadow: ' + shadow + ';';
+    }
+
+    function switchTab(tab) {
+      document.getElementById('boxControls').style.display = tab === 'box' ? 'block' : 'none';
+      document.getElementById('textControls').style.display = tab === 'text' ? 'block' : 'none';
+      document.getElementById('tabBox').className = tab === 'box' ? 'active' : '';
+      document.getElementById('tabText').className = tab === 'text' ? 'active' : '';
+      if (tab === 'box') updateBox();
+      else updateText();
+    }
+
+    updateBox();
+  </script>
+</body>
+</html>

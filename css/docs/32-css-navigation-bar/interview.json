@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS navigation bar?", "answer": "A CSS navigation bar is a styled set of links, typically using an unordered list, that allows users to navigate a website." },
+    { "question": "How do you create a horizontal navigation bar?", "answer": "Set li { display: inline-block; } or li { float: left; } and style the anchor tags as block elements." },
+    { "question": "How do you create a vertical navigation bar?", "answer": "Set li { display: block; } or display: block on anchor tags inside the list items stacked vertically." },
+    { "question": "Why are unordered lists commonly used for navigation bars?", "answer": "Unordered lists provide semantic structure for lists of links, improving accessibility and SEO." },
+    { "question": "What CSS properties are used to style navigation links?", "answer": "Common properties include color, background-color, padding, text-decoration, display: block, and font-weight." },
+    { "question": "How do you remove bullet points from a navigation list?", "answer": "Use list-style: none on the ul element to remove bullet points." },
+    { "question": "How do you make navigation links fill the full width of the nav bar?", "answer": "Set display: block on the anchor tags and width: 100% on the list items." },
+    { "question": "What is a responsive hamburger menu?", "answer": "A hamburger menu is a collapsible navigation icon (three horizontal lines) that reveals links on small screens." },
+    { "question": "How do you change the background color of a navigation bar?", "answer": "Set background-color on the nav or ul element to apply a background color to the entire navigation." },
+    { "question": "How do you highlight the current page in navigation?", "answer": "Add an active class (e.g., class='active') to the current page link and style it with a distinct color or background." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a sticky navigation bar?", "answer": "Use position: sticky; top: 0; on the nav element to make it stick at the top when scrolling." },
+    { "question": "How do you create a fixed navigation bar?", "answer": "Use position: fixed; top: 0; width: 100%; on the nav element to keep it at the top of the viewport." },
+    { "question": "How do you add hover effects to navigation links?", "answer": "Use a:hover { background-color: ...; color: ...; } to change link appearance on hover." },
+    { "question": "How do you build a responsive navigation with media queries?", "answer": "Use @media (max-width: 768px) to switch from horizontal to vertical layout or show/hide the hamburger menu." },
+    { "question": "How do you create a full-width navigation bar?", "answer": "Set nav { width: 100%; } and remove any padding/margin defaults on body and ul." },
+    { "question": "How do you style dropdown items in a navigation bar?", "answer": "Use nested unordered lists with absolute positioning and visibility toggle on hover for dropdown submenus." },
+    { "question": "How do you add icons between navigation links?", "answer": "Add icons using ::before pseudo-elements or include icon markup inside the anchor tags." },
+    { "question": "How do you distribute navigation items evenly?", "answer": "Use Flexbox with justify-content: space-around or space-between on the ul." },
+    { "question": "How do you make navigation links accessible for keyboard users?", "answer": "Ensure :focus styles are visible, use proper tabindex order, and make links focusable with a:focus outline." },
+    { "question": "What is the purpose of skip-to-content links?", "answer": "Skip-to-content links allow keyboard users to bypass navigation and jump directly to the main content area." }
+  ],
+  "advanced": [
+    { "question": "How do you implement a hamburger menu with CSS-only (no JavaScript)?", "answer": "Use a hidden checkbox input and the :checked pseudo-class to toggle a submenu's max-height or transform." },
+    { "question": "How do you handle sub-navigation depth in multi-level menus?", "answer": "Use nested lists with increasing left positioning or transform offsets for each level, with z-index management to prevent overlap." },
+    { "question": "How do you create a mega-menu navigation?", "answer": "A mega-menu uses absolute positioning with columns (CSS columns or Grid) inside a hover-triggered dropdown container." },
+    { "question": "How do you implement a progress-indicating navigation bar?", "answer": "Use JavaScript to track scroll position and adjust active states, or use Intersection Observer to highlight sections as they scroll into view." },
+    { "question": "How do you make a navigation bar accessible with ARIA attributes?", "answer": "Use role='navigation', aria-label, aria-current='page' for active links, and aria-expanded for hamburger toggles." },
+    { "question": "How do you implement a breadcrumb navigation bar?", "answer": "Use an ordered list with ::before pseudo-elements (content: '/') between items, styled with flexbox or inline-block." },
+    { "question": "How do you create a tab bar navigation similar to mobile apps?", "answer": "Use Flexbox with flex: 1 on each item, fixed bottom positioning, and icon + label pairs." },
+    { "question": "How does sub-pixel rendering affect navigation item widths?", "answer": "Sub-pixel rounding can cause the last item to wrap or leave a gap; using flexbox with flex: 1 prevents this." },
+    { "question": "How do you optimize navigation performance with will-change?", "answer": "Use will-change: transform on sticky/fixed navs to promote them to their own compositor layers, reducing repaint cost on scroll." },
+    { "question": "How do you implement a collapsible sidebar navigation using CSS Grid?", "answer": "Use grid-template-columns with a toggleable value (e.g., 250px vs 0) and overflow: hidden on the sidebar container." }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a pseudo-class in CSS?", "answer": "A pseudo-class is a keyword added to a selector that styles elements based on their state or position, not just their attributes." },
+    { "question": "What does :hover do?", "answer": ":hover applies styles when a user hovers their pointer over an element." },
+    { "question": "What does :focus do?", "answer": ":focus applies styles when an element receives focus, typically through keyboard tabbing or clicking into a form field." },
+    { "question": "What does :visited do?", "answer": ":visited styles links that the user has already visited." },
+    { "question": "What does :active do?", "answer": ":active styles an element at the moment it is being activated by the user (e.g., clicking on it)." },
+    { "question": "What does :first-child do?", "answer": ":first-child selects an element that is the first child of its parent." },
+    { "question": "What does :last-child do?", "answer": ":last-child selects an element that is the last child of its parent." },
+    { "question": "What does :nth-child() do?", "answer": ":nth-child() selects elements based on their position among siblings, using an+b notation." },
+    { "question": "What does :not() do?", "answer": ":not() selects elements that do not match the selector passed as its argument." },
+    { "question": "What is the difference between :first-child and :first-of-type?", "answer": ":first-child selects the first child regardless of type; :first-of-type selects the first child of its element type." }
+  ],
+  "intermediate": [
+    { "question": "How do you style every even row in a table with :nth-child()?", "answer": "Use tr:nth-child(even) or tr:nth-child(2n) to select all even rows." },
+    { "question": "What does the :is() pseudo-class do?", "answer": ":is() takes a selector list and applies styles to any element matching any selector in the list, with the highest argument specificity." },
+    { "question": "What does the :where() pseudo-class do?", "answer": ":where() is like :is(), but its specificity is always zero, making it easy to override later." },
+    { "question": "What form state pseudo-classes are available?", "answer": "Common form pseudo-classes include :enabled, :disabled, :checked, :required, :optional, :valid, :invalid, :in-range, and :out-of-range." },
+    { "question": "What does :focus-within do?", "answer": ":focus-within applies styles to a parent element when any of its children have focus." },
+    { "question": "What does :target do?", "answer": ":target styles the element whose ID matches the current URL hash fragment (e.g., #section1)." },
+    { "question": "What does :empty do?", "answer": ":empty selects elements that have no children (including text nodes and whitespace)." },
+    { "question": "How do you select the third item in a list?", "answer": "Use li:nth-child(3) to select the third list item." },
+    { "question": "How do you select all items except those with a specific class using :not()?", "answer": "Use :not(.classname) to select all elements that do not have that class." },
+    { "question": "What is the :focus-visible pseudo-class?", "answer": ":focus-visible applies styles only when the browser determines focus should be visible (e.g., keyboard navigation, not mouse click)." }
+  ],
+  "advanced": [
+    { "question": "How does an+b notation work in :nth-child()?", "answer": "a is the cycle size, b is the offset. For 3n+2, it starts at 2 and selects every 3rd item (2, 5, 8, 11...)." },
+    { "question": "What is the specificity difference between :is() and :where()?", "answer": ":is() takes the specificity of its most specific argument; :where() always has zero specificity, regardless of arguments." },
+    { "question": "How does :nth-child(an+b of S) differ from regular :nth-child()?", "answer": "The of S syntax filters the sibling count to only elements matching selector S, selecting the nth among filtered elements." },
+    { "question": "What accessibility considerations apply to :hover-only interactions?", "answer": "Hover-only interactions exclude touch and keyboard users; always pair :hover with :focus for accessible interactions." },
+    { "question": "How does :indeterminate work for checkboxes and radio buttons?", "answer": ":indeterminate applies to checkboxes in an undetermined state (set via JS) and radio buttons in a group where none are selected." },
+    { "question": "How do you use :has() as a parent selector with pseudo-classes?", "answer": "parent:has(:focus) selects a parent when a child inside it is focused, enabling container-level focus styling." },
+    { "question": "How does :focus-visible differ from :focus in browser implementation?", "answer": ":focus-visible shows a focus ring only for keyboard/accessibility focus, while :focus shows it for any focus method including mouse clicks." },
+    { "question": "What is the difference between :valid/:invalid and :user-valid/:user-invalid?", "answer": ":valid/:invalid apply immediately based on constraints; :user-valid/:user-invalid wait until the user has interacted with the field." },
+    { "question": "How do you combine :nth-child() with selectors for complex patterns?", "answer": "You can chain :nth-child(odd):nth-last-child(3) to select items that are odd-numbered and among the last 3, enabling size-aware filters." },
+    { "question": "What is the :modal pseudo-class and when is it used?", "answer": ":modal selects elements that are in a modal state (e.g., <dialog> when opened with showModal()), excluding non-modal overlays." }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS linear gradient?", "answer": "A linear gradient transitions colors along a straight line, created with the linear-gradient() function." },
+    { "question": "What is the syntax for a basic linear gradient?", "answer": "background: linear-gradient(direction, color1, color2). For example: linear-gradient(to right, red, blue)." },
+    { "question": "What is a radial gradient in CSS?", "answer": "A radial gradient radiates from a center point outward in a circular or elliptical shape, created with radial-gradient()." },
+    { "question": "What is a conic gradient?", "answer": "A conic gradient rotates colors around a center point, like a color wheel, created with conic-gradient()." },
+    { "question": "How do you create a repeating gradient in CSS?", "answer": "Use repeating-linear-gradient(), repeating-radial-gradient(), or repeating-conic-gradient() for tiling gradient patterns." },
+    { "question": "How do you add multiple gradients to a single element?", "answer": "Separate gradient functions with commas in the background property: background: linear-gradient(...), radial-gradient(...)." },
+    { "question": "What is a gradient color stop?", "answer": "A color stop is a point in the gradient where a specific color appears, defined as color [position]. Example: red 50%." },
+    { "question": "What is the default direction of linear-gradient()?", "answer": "The default direction is to bottom (top to bottom), equivalent to 180deg." },
+    { "question": "How do you create a diagonal gradient?", "answer": "Use angle values like 45deg or corner keywords like to top right in the gradient direction." },
+    { "question": "Can you use transparency in gradients?", "answer": "Yes, use rgba() or hsla() colors with alpha values (e.g., rgba(255,0,0,0.5)) to create fading transparency effects." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a gradient with more than two colors?", "answer": "Add additional color stops separated by commas: linear-gradient(90deg, red, yellow, green, blue)." },
+    { "question": "What is the difference between radial-gradient(circle) and radial-gradient(ellipse)?", "answer": "circle creates a perfect circle; ellipse (default) stretches to fill the element's dimensions, creating an oval." },
+    { "question": "How do you create a hard stop gradient (no blending)?", "answer": "Place two color stops at the same position: linear-gradient(90deg, red 50%, blue 50%) creates a hard edge at 50%." },
+    { "question": "How does conic-gradient differ from radial-gradient in angular distribution?", "answer": "Conic gradient applies colors around a center point by angle (like a pie chart); radial gradient applies colors outward by distance." },
+    { "question": "How do you create a striped pattern with repeating-linear-gradient?", "answer": "Repeating-linear-gradient(90deg, red 0px, red 10px, white 10px, white 20px) creates vertical stripes every 20px." },
+    { "question": "How do you position radial gradients?", "answer": "Use the at keyword: radial-gradient(circle at top left, red, blue) positions the gradient center at top-left." },
+    { "question": "Can gradients be used on borders?", "answer": "Yes, using border-image with gradient functions, or by using a pseudo-element with a gradient background behind the border." },
+    { "question": "How do you animate gradients?", "answer": "Gradients themselves cannot be animated directly, but you can animate background-position or use @keyframes with larger background sizes." },
+    { "question": "How do you create a smooth gradient across multiple elements?", "answer": "Use the same gradient on each element with consistent positioning, or use a single gradient on a parent element." },
+    { "question": "What is the color interpolation method in gradients?", "answer": "Use interpolation hints or color space keywords like in srgb, hsl, or lab for different color blending results." }
+  ],
+  "advanced": [
+    { "question": "How do you create complex gradient patterns with multiple overlapping gradients?", "answer": "Stack multiple gradients in a single background property, using different directions, sizes, and positions to create layered patterns." },
+    { "question": "How does gradient color space interpolation work in modern CSS?", "answer": "Modern CSS supports interpolation in different color spaces via the color-interpolation-method: linear-gradient(in hsl, red, blue)." },
+    { "question": "How do you create a conic gradient that functions as a pie chart?", "answer": "Use conic-gradient() with hard stops at specific percentages: conic-gradient(red 0%, red 25%, blue 25%, blue 50%, green 50%, green 100%)." },
+    { "question": "What are the performance considerations for CSS gradients?", "answer": "Gradients are generated on-the-fly by the browser and can impact paint time, especially complex repeating or multi-layer gradients. Prefer simpler gradients." },
+    { "question": "How do you create a gradient that masks from solid to transparent using mask-image?", "answer": "Use mask-image: linear-gradient(to bottom, black, transparent) on an element to fade it out from top to bottom." },
+    { "question": "Can CSS gradients be used in SVG? How do they differ?", "answer": "Yes, SVG has its own gradient elements (<linearGradient>, <radialGradient>) with different syntax but similar concepts to CSS gradients." },
+    { "question": "How do you create a dithering effect with gradients to prevent banding?", "answer": "Add small amounts of noise or use a wider color range. Modern CSS interpolation in wider gamuts (display-p3) also reduces banding." },
+    { "question": "How do you implement a gradient that respects prefers-color-scheme?", "answer": "Use CSS custom properties for gradient colors and swap their values inside prefers-color-scheme media queries." },
+    { "question": "How do you create a gradient text effect?", "answer": "Use background-image with a gradient, then background-clip: text and color: transparent on the text element." },
+    { "question": "How do you create a smooth gradient between two images using CSS blend modes?", "answer": "Use background-image with multiple gradients and images, combined with background-blend-mode to create composite effects." }
+  ]
+}

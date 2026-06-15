@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <article> element in HTML?",
+      "answer": "The <article> element represents a self-contained composition in a document that is independently distributable or reusable, such as a blog post, news story, or comment."
+    },
+    {
+      "question": "How is <article> different from <section>?",
+      "answer": "An <article> is self-contained and could stand alone (e.g., in an RSS feed). A <section> is a thematic grouping that requires its surrounding context to make sense."
+    },
+    {
+      "question": "Do I need a heading inside every <article>?",
+      "answer": "While not strictly required, it's strongly recommended. Headings provide structure, accessibility, and clarity about the article's topic."
+    },
+    {
+      "question": "Can I put an <article> inside another <article>?",
+      "answer": "Yes. This is commonly done for comments on a blog post. The outer article is the blog post, and inner articles are the comments."
+    },
+    {
+      "question": "What is the default display style of <article>?",
+      "answer": "The <article> element is a block-level element by default, similar to <div> and <p>."
+    },
+    {
+      "question": "What kind of content belongs in an <article>?",
+      "answer": "Blog posts, news articles, forum posts, user comments, product cards, interactive widgets, and any content that could be independently distributed."
+    },
+    {
+      "question": "Is <article> a semantic or non-semantic element?",
+      "answer": "It's a semantic element. It conveys meaning about the type of content it contains, unlike non-semantic elements like <div>."
+    },
+    {
+      "question": "Can I use CSS to style an <article>?",
+      "answer": "Yes, <article> can be fully styled with CSS like any block-level element using element, class, or ID selectors."
+    },
+    {
+      "question": "Does the <article> element support global attributes?",
+      "answer": "Yes, <article> supports all global HTML attributes including id, class, style, data-*, aria-*, and more."
+    },
+    {
+      "question": "What does 'self-contained' mean for an <article>?",
+      "answer": "Self-contained means the content should make sense even if taken out of context. Someone reading just the article should still understand its message."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Should I use <article> or <div> for a product card?",
+      "answer": "Use <article> because each product card is self-contained. It could be featured in a comparison tool, wishlist, or email independently."
+    },
+    {
+      "question": "What is the role of <header> and <footer> inside an <article>?",
+      "answer": "<header> typically contains the title, author, and publication date. <footer> contains tags, categories, sharing links, and other metadata specific to that article."
+    },
+    {
+      "question": "How does the <article> element interact with RSS feed syndication?",
+      "answer": "Content within <article> elements is ideal for RSS syndication because it's self-contained. CMS platforms often extract <article> content for feed generation."
+    },
+    {
+      "question": "Can an <article> contain both <header> and <footer>?",
+      "answer": "Yes, an <article> can have its own <header> and <footer>. These are scoped to the article and independent of the page-level header/footer."
+    },
+    {
+      "question": "What is the implicit ARIA role of <article> and how does it affect accessibility?",
+      "answer": "The implicit role is 'article'. Screen readers allow users to navigate between article landmarks, making it easier to jump between distinct content items."
+    },
+    {
+      "question": "When marking up comments, should each comment be an <article>?",
+      "answer": "Yes, each comment should be an <article> because each comment is a self-contained composition by a user, independent of other comments."
+    },
+    {
+      "question": "What is the difference between <article> and <main> in terms of purpose?",
+      "answer": "<main> contains the primary content of the entire page (one per page). <article> represents a self-contained item (multiple per page). <main> can contain multiple <article> elements."
+    },
+    {
+      "question": "How should you handle heading levels within nested <article> elements?",
+      "answer": "Maintain proper heading hierarchy. If the outer article uses <h2>, inner articles (comments) should use <h3> to maintain a logical structure."
+    },
+    {
+      "question": "Can an <article> be placed directly inside <body>?",
+      "answer": "Yes, an <article> can be a direct child of <body>, though typically it is inside <main> or <section>."
+    },
+    {
+      "question": "What is the syndication use case for <article> in a news website?",
+      "answer": "News websites use <article> for each story. Syndication services (Google News, RSS readers) can extract these articles for distribution across platforms."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the <article> element relate to the HTML5 document outline?",
+      "answer": "<article> is a sectioning element that creates a new entry in the HTML5 document outline. It starts its own sectioning context, similar to <section>."
+    },
+    {
+      "question": "Explain the difference between <article> and role='article' on a <div>.",
+      "answer": "Using <article> provides native semantic meaning and implicit ARIA role. A <div role='article'> provides the same ARIA role but lacks the native semantics, document outline contribution, and default styling."
+    },
+    {
+      "question": "What are the implications of using <article> in a web component or Shadow DOM?",
+      "answer": "In Shadow DOM, each <article> creates its own sectioning context within the shadow tree. The document outline scoping is separate from the light DOM, which can affect accessibility tree composition."
+    },
+    {
+      "question": "How does the <article> element affect search engine optimization compared to nested <div> elements?",
+      "answer": "Search engines use <article> to identify primary content for featured snippets, rich results, and news carousels. Google's algorithms recognize <article> for structured data extraction."
+    },
+    {
+      "question": "What accessibility issues arise from using <article> without proper heading structure?",
+      "answer": "Without headings, screen readers cannot identify the article's topic or navigate between articles efficiently. The article landmark exists but lacks context, reducing its usefulness."
+    },
+    {
+      "question": "How can you use <article> with structured data (JSON-LD or microdata) for rich snippets?",
+      "answer": "You can combine <article> with itemscope and itemtype attributes for schema.org/Article markup, or use JSON-LD in <script> tags. Both help search engines display rich results."
+    },
+    {
+      "question": "What happens to the document outline when you nest <article> inside <article>?",
+      "answer": "Each nested <article> creates a nested sectioning entry. The outer article's outline contains the inner articles, creating a hierarchical structure in the outline algorithm."
+    },
+    {
+      "question": "How should you handle the <article> element in a print stylesheet?",
+      "answer": "In print stylesheets, you might add page-break-before to each <article> to ensure they start on new pages. You may also hide navigation and comments to focus on the main article."
+    },
+    {
+      "question": "What is the interaction between <article> and the CSS content-visibility property?",
+      "answer": "Applying 'content-visibility: auto' to <article> elements can improve performance by deferring rendering of off-screen articles until they are near the viewport."
+    },
+    {
+      "question": "How do social media platforms use the <article> element for link previews?",
+      "answer": "While social media platforms primarily use Open Graph meta tags for previews, the <article> element can help web scrapers identify the primary content for generating link summaries."
+    }
+  ]
+}

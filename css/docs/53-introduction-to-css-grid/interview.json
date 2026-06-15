@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is CSS Grid Layout?", "answer": "CSS Grid Layout is a two-dimensional layout system that allows you to control both rows and columns simultaneously to create complex web layouts." },
+    { "question": "What is the difference between a grid container and grid items?", "answer": "A grid container is the parent element with display:grid, and grid items are its direct child elements that are placed within the grid." },
+    { "question": "What are grid lines in CSS Grid?", "answer": "Grid lines are the dividing lines that make up the grid structure. They can be horizontal or vertical and are numbered starting from 1." },
+    { "question": "What is a grid cell?", "answer": "A grid cell is the smallest unit in a grid, defined by the intersection of a row and a column." },
+    { "question": "What is a grid track?", "answer": "A grid track is the space between two adjacent grid lines, forming either a column or a row." },
+    { "question": "What does display:grid do?", "answer": "It defines a block-level grid container, making its direct children grid items and enabling grid layout properties." },
+    { "question": "What is a grid area?", "answer": "A grid area is a rectangular region of the grid defined by any set of grid lines, which can span multiple rows and columns." },
+    { "question": "What is the fr unit in CSS Grid?", "answer": "The fr unit represents a fraction of the available space in the grid container, distributing free space proportionally among tracks." },
+    { "question": "Can you nest grids in CSS Grid?", "answer": "Yes, a grid item can itself become a grid container by setting display:grid on it, creating a nested grid." },
+    { "question": "What is the implicit grid?", "answer": "The implicit grid is created automatically when grid items are placed outside the defined explicit grid tracks, with sizes defined by grid-auto-rows and grid-auto-columns." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a grid with three equal-width columns?", "answer": "Use grid-template-columns: 1fr 1fr 1fr or grid-template-columns: repeat(3, 1fr)." },
+    { "question": "What is the difference between grid-template and grid-auto properties?", "answer": "grid-template defines the explicit grid tracks, while grid-auto controls the sizing of implicit tracks created when items exceed the defined grid." },
+    { "question": "How can you make a grid item span multiple columns?", "answer": "Use grid-column: span N or grid-column: start-line / end-line to make an item span multiple columns." },
+    { "question": "What is the difference between a line-based placement and named areas?", "answer": "Line-based placement uses grid line numbers (e.g., grid-column: 1 / 3), while named areas use grid-template-areas with string names for visual placement." },
+    { "question": "How does the implicit grid size auto rows when content overflows?", "answer": "By default, implicit rows are sized auto, meaning they expand to fit their content. You can control this with grid-auto-rows." },
+    { "question": "What happens when you use grid-template-columns with no grid-template-rows?", "answer": "Rows are created implicitly based on the number of items, and their heights default to auto unless grid-auto-rows is set." },
+    { "question": "Can you mix fixed and flexible track sizes in a grid?", "answer": "Yes, you can mix px, em, %, fr, and other units in grid-template-columns or grid-template-rows to create hybrid layouts." },
+    { "question": "What are gutter lines in CSS Grid?", "answer": "Gutters are the spaces between grid tracks (rows and columns), created using the gap, row-gap, and column-gap properties." },
+    { "question": "How does grid item placement work by default?", "answer": "Grid items are placed automatically row by row, filling each row completely before moving to the next, following the order of source HTML." },
+    { "question": "What are named grid lines?", "answer": "Named grid lines allow you to assign names to grid lines in the template definition, e.g., grid-template-columns: [start] 1fr [middle] 1fr [end], for easier reference." }
+  ],
+  "advanced": [
+    { "question": "How does grid item placement interact with writing modes like vertical-rl?", "answer": "Grid respects the writing mode, so in vertical-rl the block axis becomes horizontal, swapping the roles of row and column directions." },
+    { "question": "What is the subgrid feature and when would you use it?", "answer": "Subgrid allows a nested grid to inherit the track definitions of its parent grid, enabling alignment across nested levels. It is defined with grid-template-columns: subgrid." },
+    { "question": "Explain how grid placement algorithm resolves overlapping items with z-index.", "answer": "When items overlap in a grid, stacking is controlled by z-index. Items with higher z-index appear on top; by default, later items stack above earlier ones." },
+    { "question": "How does the automatic placement algorithm handle grid-auto-flow: dense?", "answer": "Dense packing fills holes in the grid by moving later items earlier to fill gaps, which changes the visual order but not the source order." },
+    { "question": "What is the actual difference between grid and table layouts at the rendering level?", "answer": "Grid separates visual structure from source order, allows overlapping items, supports flexible track sizing with fr, and can reflow independently of document order, unlike tables." },
+    { "question": "How do you create a masonry-style layout with CSS Grid?", "answer": "CSS Grid does not natively support masonry, but you can approximate it with grid-auto-rows: min-content and column-based placement, or use the newer masonry value for grid-template-rows in Firefox." },
+    { "question": "How does grid interact with CSS containment and subgrid for performance?", "answer": "Using contain: layout on grid containers can optimize rendering, and subgrid avoids unnecessary nesting of track definitions, improving performance in complex layouts." },
+    { "question": "What are the minimum and maximum contributions in minmax() and how do they affect grid sizing?", "answer": "The min contribution is the smallest size a track can shrink to (often based on content), and the max is the largest size it can grow to. minmax(min, max) clamps track size between these." },
+    { "question": "How does the grid placement algorithm resolve items with both explicit placement and auto-flow?", "answer": "Items with explicit placement (grid-column/grid-row) are placed first, then auto-flow items fill remaining space according to grid-auto-flow direction." },
+    { "question": "What are the accessibility implications of reordering grid items visually vs source order?", "answer": "Visual reordering with grid properties does not change DOM order, so screen readers and keyboard navigation follow source order, which can create accessibility issues if order diverges significantly." }
+  ]
+}

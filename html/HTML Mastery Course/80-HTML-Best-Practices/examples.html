@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 80: HTML Best Practices Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h2 { color: #2c3e50; border-bottom: 2px solid #27ae60; padding-bottom: 8px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    code { font-family: 'Courier New', monospace; }
+    .note { background: #e8f5e9; border-left: 4px solid #27ae60; padding: 10px 15px; margin: 10px 0; }
+    .bad { background: #ffebee; border-left: 4px solid #e53935; padding: 10px 15px; margin: 5px 0; }
+    .good { background: #e8f5e9; border-left: 4px solid #43a047; padding: 10px 15px; margin: 5px 0; }
+    .demo-box { border: 2px solid #e0e0e0; padding: 15px; border-radius: 5px; margin: 10px 0; }
+    .skip-link { position: absolute; top: -40px; left: 0; background: #000; color: #fff; padding: 8px; z-index: 100; }
+    .skip-link:focus { top: 0; }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<h1>HTML Best Practices - Live Examples</h1>
+
+<main id="main-content">
+
+<!-- Example 1: Semantic Layout -->
+<div class="example">
+  <h2>Example 1: Semantic vs Non-Semantic Layout</h2>
+  
+  <div class="bad">
+    <strong>❌ Non-Semantic (Div Soup):</strong>
+    <div class="demo-box">
+      <div class="header">
+        <div class="title">My Website</div>
+        <div class="nav">
+          <div class="menu-item">Home</div>
+          <div class="menu-item">About</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="article">
+          <div class="article-title">Article Title</div>
+          <div class="article-body">Content here...</div>
+        </div>
+      </div>
+      <div class="footer">&copy; 2026</div>
+    </div>
+  </div>
+  
+  <div class="good">
+    <strong>✅ Semantic HTML:</strong>
+    <header style="background: #e3f2fd; padding: 10px; border-radius: 4px;">
+      <h1>My Website</h1>
+      <nav>
+        <a href="#">Home</a> | <a href="#">About</a>
+      </nav>
+    </header>
+    <main style="padding: 10px;">
+      <article>
+        <h2>Article Title</h2>
+        <p>Content here...</p>
+      </article>
+    </main>
+    <footer style="background: #f5f5f5; padding: 10px; border-radius: 4px;">
+      <p>&copy; 2026</p>
+    </footer>
+  </div>
+  
+  <pre>&lt;!-- Non-semantic --&gt;
+&lt;div class="header"&gt;...&lt;/div&gt;
+
+&lt;!-- Semantic (preferred) --&gt;
+&lt;header&gt;
+  &lt;h1&gt;My Website&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Article Title&lt;/h2&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</pre>
+  
+  <div class="note">
+    <strong>Why it matters:</strong> Semantic elements improve accessibility (screen readers understand the structure), SEO (search engines identify content areas), and code readability.
+  </div>
+</div>
+
+<!-- Example 2: Image Accessibility -->
+<div class="example">
+  <h2>Example 2: Image Alt Text Best Practices</h2>
+  
+  <div class="bad">
+    <strong>❌ Bad - Missing or poor alt text:</strong><br>
+    <img src="https://via.placeholder.com/200x100/ff0000/ffffff?text=Chart" style="border: 1px solid #ccc; margin: 10px 0;">
+    <p><code>&lt;img src="chart.jpg"&gt;</code> - No alt text at all</p>
+  </div>
+  
+  <div class="good">
+    <strong>✅ Good - Descriptive alt text:</strong><br>
+    <img src="https://via.placeholder.com/200x100/00aa00/ffffff?text=Chart" alt="Bar chart showing 40% increase in Q1 2026 revenue compared to Q4 2025" style="border: 1px solid #ccc; margin: 10px 0;">
+    <p><code>&lt;img src="chart.jpg" alt="Bar chart showing 40% increase in Q1 2026 revenue"&gt;</code></p>
+  </div>
+  
+  <div class="good">
+    <strong>✅ Decorative image - empty alt:</strong><br>
+    <img src="https://via.placeholder.com/50x50/cccccc/666666?text=~" alt="" role="presentation" style="margin: 10px 0;">
+    <p><code>&lt;img src="decoration.png" alt="" role="presentation"&gt;</code></p>
+  </div>
+  
+  <pre>&lt;!-- Informative image --&gt;
+&lt;img src="chart.png" alt="Bar chart showing 40% increase in Q1 2026 revenue"&gt;
+
+&lt;!-- Decorative image --&gt;
+&lt;img src="border.png" alt="" role="presentation"&gt;
+
+&lt;!-- Linked logo --&gt;
+&lt;a href="/"&gt;
+  &lt;img src="logo.png" alt="Company Name - Home"&gt;
+&lt;/a&gt;</pre>
+</div>
+
+<!-- Example 3: Accessible Forms -->
+<div class="example">
+  <h2>Example 3: Accessible Form Implementation</h2>
+  
+  <div class="bad">
+    <strong>❌ Bad Form:</strong>
+    <div class="demo-box">
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <button>Submit</button>
+    </div>
+    <p>Missing labels, relies on placeholders only</p>
+  </div>
+  
+  <div class="good">
+    <strong>✅ Good Form (Accessible):</strong>
+    <form class="demo-box" style="display: flex; flex-direction: column; gap: 10px;" action="#">
+      <div>
+        <label for="full-name">Full Name:</label>
+        <input type="text" id="full-name" name="full-name" required aria-describedby="name-help">
+        <small id="name-help">Enter your first and last name</small>
+      </div>
+      <div>
+        <label for="email-address">Email:</label>
+        <input type="email" id="email-address" name="email" required aria-describedby="email-help">
+        <small id="email-help">We will never share your email</small>
+      </div>
+      <fieldset>
+        <legend>Contact preference</legend>
+        <div>
+          <input type="radio" id="pref-email" name="preference" value="email">
+          <label for="pref-email">Email</label>
+        </div>
+        <div>
+          <input type="radio" id="pref-phone" name="preference" value="phone">
+          <label for="pref-phone">Phone</label>
+        </div>
+      </fieldset>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  <pre>&lt;!-- Each input needs a label --&gt;
+&lt;label for="full-name"&gt;Full Name:&lt;/label&gt;
+&lt;input type="text" id="full-name" name="full-name" required&gt;
+
+&lt;!-- Fieldset groups related inputs --&gt;
+&lt;fieldset&gt;
+  &lt;legend&gt;Contact preference&lt;/legend&gt;
+  &lt;input type="radio" id="pref-email" name="preference"&gt;
+  &lt;label for="pref-email"&gt;Email&lt;/label&gt;
+&lt;/fieldset&gt;</pre>
+</div>
+
+<!-- Example 4: Link Best Practices -->
+<div class="example">
+  <h2>Example 4: Link Best Practices</h2>
+  
+  <div class="bad">
+    <strong>❌ Bad Links:</strong>
+    <div class="demo-box">
+      <a href="#">Click here</a> for more information.<br>
+      <a href="#" target="_blank">External Link</a>
+    </div>
+  </div>
+  
+  <div class="good">
+    <strong>✅ Good Links:</strong>
+    <div class="demo-box">
+      <a href="#">Read our complete guide to semantic HTML</a><br>
+      <a href="#" target="_blank" rel="noopener noreferrer">External Resource (opens in new tab)</a><br>
+      <a href="#" aria-label="Download PDF version of the guide">Download PDF (2.4 MB)</a>
+    </div>
+  </div>
+  
+  <pre>&lt;!-- Descriptive link text --&gt;
+&lt;a href="/guide"&gt;Read our complete guide to semantic HTML&lt;/a&gt;
+
+&lt;!-- External link safety --&gt;
+&lt;a href="https://external.com" target="_blank" rel="noopener noreferrer"&gt;
+  External Resource
+&lt;/a&gt;
+
+&lt;!-- Skip link for keyboard users --&gt;
+&lt;a href="#main-content" class="skip-link"&gt;Skip to main content&lt;/a&gt;</pre>
+</div>
+
+<!-- Example 5: Proper Document Structure -->
+<div class="example">
+  <h2>Example 5: Complete Document Structure</h2>
+  
+  <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Page Title - Site Name&lt;/title&gt;
+  &lt;meta name="description" content="Brief page description"&gt;
+  &lt;meta name="author" content="Author Name"&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;nav aria-label="Primary"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h1&gt;Main Title&lt;/h1&gt;
+      &lt;section&gt;
+        &lt;h2&gt;Section Title&lt;/h2&gt;
+        &lt;p&gt;Content...&lt;/p&gt;
+      &lt;/section&gt;
+    &lt;/article&gt;
+    
+    &lt;aside&gt;
+      &lt;h2&gt;Related Content&lt;/h2&gt;
+    &lt;/aside&gt;
+  &lt;/main&gt;
+  
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2026 Company Name&lt;/p&gt;
+  &lt;/footer&gt;
+  
+  &lt;script src="scripts.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+  
+  <div class="note">
+    <strong>Structure rules:</strong> One &lt;h1&gt; per page, &lt;main&gt; is unique, &lt;nav&gt; for navigation, &lt;aside&gt; for tangentially related content. Always validate with W3C validator.
+  </div>
+</div>
+
+<!-- Example 6: Performance Optimization -->
+<div class="example">
+  <h2>Example 6: Performance Best Practices</h2>
+  
+  <div class="bad">
+    <strong>❌ Performance Issues:</strong>
+    <div class="demo-box">
+      <p>JavaScript in &lt;head&gt; blocks rendering</p>
+      <p>No lazy loading on images</p>
+      <p>Missing dimension attributes on images</p>
+    </div>
+  </div>
+  
+  <div class="good">
+    <strong>✅ Performance Optimized:</strong>
+    <div class="demo-box">
+      <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=Optimized" 
+           alt="Example image" 
+           width="300" height="200"
+           loading="lazy"
+           decoding="async"
+           style="max-width: 100%; height: auto;">
+    </div>
+  </div>
+  
+  <pre>&lt;!-- Optimized image loading --&gt;
+&lt;img src="photo.jpg" 
+     alt="Description" 
+     width="800" 
+     height="600" 
+     loading="lazy" 
+     decoding="async"&gt;
+
+&lt;!-- Deferred JavaScript --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- Async third-party script --&gt;
+&lt;script src="analytics.js" async&gt;&lt;/script&gt;</pre>
+</div>
+
+<!-- Example 7: Heading Hierarchy -->
+<div class="example">
+  <h2>Example 7: Proper Heading Hierarchy</h2>
+  
+  <div class="bad">
+    <strong>❌ Bad Hierarchy (skipping levels):</strong>
+    <div class="demo-box">
+      <h1>Page Title</h1>
+      <h3>Sub-section</h3>  <!-- Missing h2 -->
+      <h5>Detail</h5>       <!-- Missing h3, h4 -->
+    </div>
+  </div>
+  
+  <div class="good">
+    <strong>✅ Proper Hierarchy:</strong>
+    <div class="demo-box">
+      <h1>Page Title</h1>
+      <h2>Major Section</h2>
+      <h3>Sub-section</h3>
+      <h4>Detail</h4>
+      <h2>Another Major Section</h2>
+    </div>
+  </div>
+  
+  <pre>&lt;!-- Correct heading outline --&gt;
+h1 Page Title
+├── h2 Major Section
+│   ├── h3 Sub-section
+│   │   └── h4 Detail
+│   └── h3 Another sub-section
+└── h2 Another Major Section</pre>
+</div>
+
+<!-- Example 8: Meta Tags -->
+<div class="example">
+  <h2>Example 8: Essential Meta Tags</h2>
+  
+  <pre>&lt;!-- Character encoding --&gt;
+&lt;meta charset="UTF-8"&gt;
+
+&lt;!-- Viewport for responsive design --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+&lt;!-- Page title (essential for SEO) --&gt;
+&lt;title&gt;Descriptive Page Title | Site Name&lt;/title&gt;
+
+&lt;!-- Meta description (appears in search results) --&gt;
+&lt;meta name="description" content="A concise description of this page's content, ideally 150-160 characters."&gt;
+
+&lt;!-- Open Graph (social sharing) --&gt;
+&lt;meta property="og:title" content="Page Title"&gt;
+&lt;meta property="og:description" content="Description for social sharing"&gt;
+&lt;meta property="og:image" content="https://example.com/social-image.jpg"&gt;
+&lt;meta property="og:url" content="https://example.com/page"&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+
+&lt;!-- Favicon --&gt;
+&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</pre>
+</div>
+
+</main>
+
+<footer style="margin-top: 40px; padding: 20px; background: #2c3e50; color: white; text-align: center; border-radius: 8px;">
+  <p>HTML Best Practices — Write clean, accessible, maintainable HTML</p>
+</footer>
+
+</body>
+</html>

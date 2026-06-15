@@ -1,0 +1,207 @@
+{
+  "module": "104-css-scroll-behavior",
+  "title": "CSS Scroll Behavior",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does 'scroll-behavior: smooth' do?",
+      "options": [
+        "Animates navigational scrolling between positions",
+        "Makes mouse wheel scrolling smooth",
+        "Disables all scrolling animations",
+        "Smooths touch scrolling on mobile"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scroll-behavior: smooth enables animated scrolling for navigational actions like anchor links and scrollIntoView(). It does NOT affect user-initiated scrolling."
+    },
+    {
+      "id": 2,
+      "question": "Which element should you apply scroll-behavior to for page-level smooth scrolling?",
+      "options": ["html", "body", "*", "main"],
+      "correctAnswer": 0,
+      "explanation": "Apply scroll-behavior: smooth to the html element for page-level smooth scrolling. Some browsers require the property on html specifically to work correctly."
+    },
+    {
+      "id": 3,
+      "question": "Which type of scrolling is affected by scroll-behavior: smooth?",
+      "options": ["Anchor link clicks", "Mouse wheel scrolling", "Touchpad gestures", "Scrollbar dragging"],
+      "correctAnswer": 0,
+      "explanation": "Only navigational scrolling is affected — anchor links, scrollIntoView(), scrollTo(), and scrollBy(). User-initiated scrolling (wheel, touch, scrollbar) is not affected."
+    },
+    {
+      "id": 4,
+      "question": "Can you customize the duration or easing of the smooth scroll animation?",
+      "options": [
+        "No, the browser controls timing for consistency and performance",
+        "Yes, using scroll-behavior-duration and scroll-behavior-timing-function",
+        "Only in Chrome, using experimental flags",
+        "Yes, using JavaScript to override the CSS property"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The browser controls the duration and timing of smooth scroll animations. There is no CSS API to customize these parameters."
+    },
+    {
+      "id": 5,
+      "question": "What CSS property should you combine with smooth scrolling to prevent fixed headers from covering anchor targets?",
+      "options": ["scroll-margin-top", "margin-top", "padding-top", "position: sticky"],
+      "correctAnswer": 0,
+      "explanation": "scroll-margin-top on the target section adds a margin that offsets the scroll position, preventing the fixed header from covering the section."
+    },
+    {
+      "id": 6,
+      "question": "Which media query should you use to disable smooth scrolling for users with motion sensitivity?",
+      "options": [
+        "@media (prefers-reduced-motion: reduce)",
+        "@media (prefers-contrast: high)",
+        "@media (inverted-colors: inverted)",
+        "@media (prefers-color-scheme: dark)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "prefers-reduced-motion: reduce targets users who have requested minimal motion in their system settings. Override scroll-behavior to auto for these users."
+    },
+    {
+      "id": 7,
+      "question": "What JavaScript method triggers smooth scrolling when scroll-behavior: smooth is set?",
+      "options": ["element.scrollIntoView()", "element.click()", "window.alert()", "element.focus()"],
+      "correctAnswer": 0,
+      "explanation": "scrollIntoView() respects the CSS scroll-behavior property. You can also specify behavior: 'smooth' in the options parameter for programmatic control."
+    },
+    {
+      "id": 8,
+      "question": "In which Safari version was scroll-behavior support added?",
+      "options": ["Safari 15.4", "Safari 12.0", "Safari 10.0", "Safari 5.0"],
+      "correctAnswer": 0,
+      "explanation": "Safari added scroll-behavior support in version 15.4 (2022). This was the last major browser to implement the property."
+    },
+    {
+      "id": 9,
+      "question": "What event fires when a smooth scroll animation completes?",
+      "options": ["scrollend", "scrollfinish", "scrollcomplete", "scrollstop"],
+      "correctAnswer": 0,
+      "explanation": "The scrollend event fires when a scroll animation completes, whether it was smooth or instant."
+    },
+    {
+      "id": 10,
+      "question": "Does scroll-behavior affect browser Find in Page functionality?",
+      "options": ["It can affect it, browser-dependent", "No, never", "Yes, always", "Only on Firefox"],
+      "correctAnswer": 0,
+      "explanation": "Whether smooth scrolling affects Find in Page is browser-dependent. Some browsers respect the CSS property, others don't."
+    },
+    {
+      "id": 11,
+      "question": "What is the default value of scroll-behavior?",
+      "options": ["auto", "smooth", "instant", "none"],
+      "correctAnswer": 0,
+      "explanation": "The default value is auto, meaning navigational scrolling happens instantly without animation."
+    },
+    {
+      "id": 12,
+      "question": "Can scroll-behavior be applied to any scrollable element, or only the document?",
+      "options": [
+        "Any scrollable element with overflow: auto/scroll",
+        "Only the document (html element)",
+        "Only elements with position: relative",
+        "Only block-level elements"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scroll-behavior can be applied to any scrollable element that has overflow: auto or overflow: scroll, not just the document."
+    },
+    {
+      "id": 13,
+      "question": "What happens when you use scroll-behavior: smooth on an element without overflow?",
+      "options": [
+        "Nothing — scroll-behavior only affects scrollable elements",
+        "It creates a smooth animation effect on the element",
+        "It causes a CSS error",
+        "It applies smooth scrolling to the parent"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scroll-behavior has no effect on non-scrollable elements. The element must have overflow content and overflow: auto or scroll."
+    },
+    {
+      "id": 14,
+      "question": "What is a key performance advantage of CSS smooth scrolling over JavaScript scroll libraries?",
+      "options": [
+        "It runs on the compositor thread, not the main JavaScript thread",
+        "It uses requestAnimationFrame for better performance",
+        "It's faster because it skips rendering",
+        "It uses Web Workers for scroll calculations"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS smooth scrolling runs on the browser's compositor thread, separate from the main JavaScript thread, preventing jank and ensuring smooth 60fps animation."
+    },
+    {
+      "id": 15,
+      "question": "How do you programmatically scroll to the top of a page with smooth animation?",
+      "options": [
+        "window.scrollTo({ top: 0, behavior: 'smooth' })",
+        "window.scrollTop(0)",
+        "document.body.scrollToTop()",
+        "window.moveTo(0, 0)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "window.scrollTo() with the behavior: 'smooth' option scrolls to coordinates with smooth animation. Setting top: 0 scrolls to the top."
+    },
+    {
+      "id": 16,
+      "question": "Which CSS approach correctly disables all animations for users who prefer reduced motion?",
+      "options": [
+        "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }",
+        "@media (motion: reduce) { * { animation: none !important; } }",
+        "@media (prefers-reduced-motion: no-preference) { * { animation: none; } }",
+        "* { animation: none; }"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Setting extremely small durations (0.01ms) effectively disables animations while still allowing the animation end events to fire, preventing bugs in animation-dependent code."
+    },
+    {
+      "id": 17,
+      "question": "What is a use case where scroll-behavior: auto is preferred over smooth?",
+      "options": [
+        "Rapid navigation UI (tabs, accordions) where smooth feels sluggish",
+        "Documentation pages with anchor links",
+        "Single-page applications with section navigation",
+        "Blog posts with table of contents"
+      ],
+      "correctAnswer": 0,
+      "explanation": "For rapid-interaction UI elements like tab panels or accordions, smooth scrolling can feel sluggish and unresponsive. auto provides instant feedback."
+    },
+    {
+      "id": 18,
+      "question": "What CSS feature helps users orient themselves after smooth scrolling to an anchor?",
+      "options": [
+        ":target pseudo-class with highlight animation",
+        "::before pseudo-element",
+        "scroll-padding property",
+        "CSS Transitions on the body element"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The :target pseudo-class applies styles to the element whose ID matches the URL hash. Adding a highlight animation to :target helps users locate the scrolled-to section."
+    },
+    {
+      "id": 19,
+      "question": "Which browsers support scroll-behavior?",
+      "options": [
+        "Chrome 61+, Firefox 60+, Safari 15.4+, Edge 79+",
+        "Chrome 49+, Firefox 52+, Safari 10+, Edge 12+",
+        "All browsers including IE11",
+        "Only Chrome and Firefox"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Chrome 61+ (2017), Firefox 60+ (2018), Safari 15.4+ (2022), and Edge 79+ (2020) support scroll-behavior. IE does not support it."
+    },
+    {
+      "id": 20,
+      "question": "What is the relationship between scroll-behavior and CSS Scroll Snap?",
+      "options": [
+        "They are complementary — scroll-behavior controls the animation, scroll snap controls the landing position",
+        "They are mutually exclusive — using both causes conflicts",
+        "Scroll snap overrides scroll-behavior",
+        "Scroll-behavior is a subset of scroll snap"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scroll-behavior controls HOW the scroll animates (smooth vs instant), while scroll snap controls WHERE the scroll lands (snap positions). They work together perfectly."
+    }
+  ]
+}

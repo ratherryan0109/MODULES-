@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Modules - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    /* Simulated CSS Modules hashed class names */
+    .Card_root_a1b2 { padding: 1.5rem; background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    .Card_title_c3d4 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: #0f172a; }
+    .Card_body_e5f6 { color: #64748b; margin-bottom: 1rem; font-size: 0.875rem; }
+    .Card_meta_g7h8 { font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.5rem; }
+
+    .Button_primary_i9j0 { display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer; min-height: 44px; background: #06b6d4; color: #fff; text-decoration: none; }
+    .Button_primary_i9j0:hover { background: #0891b2; }
+    .Button_secondary_k1l2 { display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer; min-height: 44px; background: #fff; color: #334155; text-decoration: none; }
+
+    .Layout_container_m3n4 { max-width: 900px; margin: 0 auto; font-family: system-ui, sans-serif; }
+    .Badge_o5p6 { display: inline-flex; align-items: center; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    .Badge_active_q7r8 { background: #dcfce7; color: #166534; }
+    .Badge_pending_s9t0 { background: #fef9c3; color: #854d0e; }
+    .Badge_inactive_u1v2 { background: #f1f5f9; color: #475569; }
+
+    .Nav_link_w3x4 { color: #64748b; text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; }
+    .Nav_link_w3x4:hover { background: #f1f5f9; color: #0f172a; }
+    .Nav_active_y5z6 { background: #06b6d4; color: #fff; }
+    .Nav_active_y5z6:hover { background: #0891b2; color: #fff; }
+  </style>
+</head>
+<body>
+  <h1>CSS Modules</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: What CSS Modules Do</h2>
+    <p>CSS Modules automatically scope class names to components by adding a unique hash. This prevents naming conflicts.</p>
+    <div class="demo-output">
+      <pre style="background:#f1f5f9;color:#0f172a;font-size:0.85rem;">/* Card.module.css (your source) */
+.root { padding: 1.5rem; }
+.title { font-size: 1.25rem; }
+
+/* Compiled output (automatic) */
+.Card_root_a1b2 { padding: 1.5rem; }
+.Card_title_c3d4 { font-size: 1.25rem; }
+
+/* React usage */
+import styles from './Card.module.css';
+&lt;div className={styles.root}&gt;
+  &lt;h2 className={styles.title}&gt;Title&lt;/h2&gt;
+&lt;/div&gt;</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Scoped Card Component</h2>
+    <p>Each class is automatically scoped to the component. <code>Card_root_a1b2</code> won't clash with <code>Button_root_...</code>.</p>
+    <div class="demo-output">
+      <div class="Card_root_a1b2">
+        <h3 class="Card_title_c3d4">Scoped Card Component</h3>
+        <p class="Card_meta_g7h8">Posted 2 hours ago &middot; 3 min read</p>
+        <p class="Card_body_e5f6">This card's styles are locally scoped. The class names include a unique hash generated from the file path and contents.</p>
+        <button class="Button_primary_i9j0">Read More</button>
+      </div>
+    </div>
+    <pre><code>/* Card.module.css */
+.root { padding: 1.5rem; border-radius: 8px; }
+.title { font-size: 1.25rem; font-weight: 600; }
+.body { color: #64748b; }
+
+/* React */
+import styles from './Card.module.css';
+export function Card() {
+  return (
+    &lt;div className={styles.root}&gt;
+      &lt;h3 className={styles.title}&gt;Title&lt;/h3&gt;
+      &lt;p className={styles.body}&gt;Content&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Composing Classes with composes</h2>
+    <p>CSS Modules support a <code>composes</code> keyword to inherit styles from another class within the same module.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div class="Badge_o5p6 Badge_active_q7r8">Active</div>
+        <div class="Badge_o5p6 Badge_pending_s9t0">Pending</div>
+        <div class="Badge_o5p6 Badge_inactive_u1v2">Inactive</div>
+      </div>
+    </div>
+    <pre><code>/* Badge.module.css */
+.base {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+.active {
+  composes: base;
+  background: #dcfce7;
+  color: #166534;
+}
+.pending {
+  composes: base;
+  background: #fef9c3;
+  color: #854d0e;
+}</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Global Styles in CSS Modules</h2>
+    <p>Use <code>:global()</code> to opt out of scoping for specific selectors that need to be global.</p>
+    <div class="demo-output">
+      <pre style="background:#1e293b;color:#e2e8f0;font-size:0.85rem;">/* Typography.module.css */
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Global reset — not scoped */
+:global(body) {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+/* Global utility — not scoped */
+:global(.sr-only) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Nav Component with Active State</h2>
+    <p>A navigation component where the active link uses a composed BEM-like structure.</p>
+    <div class="demo-output">
+      <nav style="background:#f8fafc;padding:0.75rem 1rem;border-radius:8px;border:1px solid #e2e8f0;display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <a href="#" class="Nav_link_w3x4 Nav_active_y5z6">Home</a>
+        <a href="#" class="Nav_link_w3x4">Products</a>
+        <a href="#" class="Nav_link_w3x4">Services</a>
+        <a href="#" class="Nav_link_w3x4">About</a>
+      </nav>
+    </div>
+    <pre><code>/* Nav.module.css */
+.link {
+  color: #64748b;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+.link:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+.active {
+  composes: link;
+  background: #06b6d4;
+  color: #fff;
+}
+
+/* React */
+&lt;a className={${styles.link} }&gt;
+  {label}
+&lt;/a&gt;</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Multiple Components, No Conflicts</h2>
+    <p>Two similar components with the same internal class names won't conflict because each has a unique hash.</p>
+    <div class="demo-output">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="Card_root_a1b2">
+          <h3 class="Card_title_c3d4">Product Card</h3>
+          <p class="Card_body_e5f6">Styles are scoped to ProductCard.module.css.</p>
+          <button class="Button_primary_i9j0">Buy Now</button>
+        </div>
+        <div class="Card_root_a1b2" style="border-color:#06b6d4;">
+          <h3 class="Card_title_c3d4">Profile Card</h3>
+          <p class="Card_body_e5f6">Styles are scoped to ProfileCard.module.css.</p>
+          <button class="Button_secondary_k1l2">View Profile</button>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* ProductCard.module.css and ProfileCard.module.css
+   can both use .root, .title, .body —
+   the build tool generates unique hashes for each */</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: CSS Modules in Build Tools</h2>
+    <p>CSS Modules work with Webpack (css-loader), Vite, Parcel, and Next.js. Enable with <code>modules: true</code>.</p>
+    <div class="demo-output">
+      <pre style="background:#f1f5f9;color:#0f172a;font-size:0.85rem;">// webpack.config.js
+module.exports = {
+  module: {
+    rules: [{
+      test: /\.module\.css$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: { modules: true }
+        }
+      ]
+    }]
+  }
+};
+
+// vite.config.js (auto-enabled for *.module.css)
+// Next.js (auto-enabled for *.module.css)</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: Dev vs Production Class Names</h2>
+    <p>In development, class names include the file path for debugging. In production, they're short hashes.</p>
+    <div class="demo-output">
+      <pre style="background:#1e293b;color:#e2e8f0;font-size:0.85rem;">/* Development (readable) */
+.Card_root_a1b2 { }
+.Card_title_c3d4 { }
+
+/* Production (short) */
+._1a2b3c4d { }
+._5e6f7g8h { }</pre>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+{
+  "beginner": [
+    {
+      "question": "What is clean code in HTML development?",
+      "answer": "Clean HTML code is well-structured, consistently formatted, semantically correct, and easy to read and maintain. It follows established conventions (indentation, naming, commenting), uses semantic elements appropriately, separates concerns (no inline styles/scripts), and validates against W3C standards."
+    },
+    {
+      "question": "Why is consistent indentation important in HTML?",
+      "answer": "Consistent indentation makes code structure visually apparent, showing nesting levels and element relationships at a glance. It improves readability, reduces errors from mismatched tags, and is essential for team collaboration. Most teams standardize on 2-space indentation."
+    },
+    {
+      "question": "What is 'div soup' and why should it be avoided?",
+      "answer": "Div soup refers to HTML documents that use excessive nested <div> elements instead of semantic HTML5 elements. It should be avoided because it reduces code readability, impairs accessibility (screen readers get no structural cues), and hurts SEO (search engines can't identify content areas). Use <header>, <main>, <section>, <article>, <nav>, <aside>, and <footer> instead."
+    },
+    {
+      "question": "What is the difference between classes and IDs in HTML?",
+      "answer": "Classes can be reused across multiple elements, have lower CSS specificity (easier to override), and are best for styling and component identification. IDs must be unique per page, have very high CSS specificity, and are best for JavaScript hooks, anchor links, and form label associations."
+    },
+    {
+      "question": "Why should you avoid inline styles in HTML?",
+      "answer": "Inline styles mix presentation with structure (violating separation of concerns), cannot be reused across elements, override external stylesheets (causing specificity issues), increase HTML file size, and make global styling changes difficult. Always use external CSS with classes."
+    },
+    {
+      "question": "What is the BEM naming convention?",
+      "answer": "BEM (Block, Element, Modifier) is a CSS naming methodology. Block represents a standalone component (card), Element represents a part of the block (card__title), and Modifier represents a variant (card--featured). Names are written as block__element--modifier."
+    },
+    {
+      "question": "What are data-* attributes used for?",
+      "answer": "data-* attributes store custom data directly in HTML elements. They are commonly used as JavaScript hooks (document.querySelector('[data-modal]')), for storing state information, and for passing data between HTML and JavaScript without inline event handlers."
+    },
+    {
+      "question": "What is the KISS principle in coding?",
+      "answer": "KISS (Keep It Simple, Stupid) advocates for simplicity over complexity. Avoid unnecessary nesting, over-engineering, and premature abstraction. Simple code is easier to read, debug, test, and maintain. Write the simplest solution that works."
+    },
+    {
+      "question": "Why should HTML be validated with W3C Validator?",
+      "answer": "W3C validation ensures HTML follows web standards, catches syntax errors (unclosed tags, invalid nesting), identifies deprecated elements, and helps ensure cross-browser compatibility. Valid code is more likely to render consistently across browsers."
+    },
+    {
+      "question": "What is separation of concerns in web development?",
+      "answer": "Separation of concerns means keeping HTML (structure), CSS (presentation), and JavaScript (behavior) in separate layers. HTML should define structure, CSS should handle styling, and JavaScript should manage interactivity. Avoid inline styles, inline event handlers, and presentational HTML elements."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you organize HTML code for a large project with multiple pages?",
+      "answer": "Organize by component rather than page. Use consistent file structure (component-based directories), share partials (headers, footers, navigation) across pages, use a template engine or build tool (Pug, Handlebars, Nunjucks), follow BEM naming for CSS scoping, and maintain a pattern library or design system."
+    },
+    {
+      "question": "What is the role of linting tools like HTMLHint in maintaining code quality?",
+      "required": false,
+      "answer": "HTMLHint is a static analysis tool that checks HTML for errors, best practice violations, and style inconsistencies. It enforces rules like lowercase tags, proper attribute quoting, unique IDs, DOCTYPE presence, and tag pairing. Integrate into CI/CD pipelines to automatically catch issues before code review."
+    },
+    {
+      "question": "How do you implement a component-based HTML architecture?",
+      "answer": "Create reusable, self-contained HTML components with their own structure, BEM-named classes, and associated styles/scripts. Use comments to mark component boundaries (<!-- Card Component --> ... <!-- /Card Component -->). Store component HTML in partial files and include them using templating or build tools."
+    },
+    {
+      "question": "What is the best way to handle comments in production HTML?",
+      "answer": "Use build tools to strip HTML comments in production builds, reducing file size. Development comments should explain WHY (architectural decisions, browser workarounds), not WHAT (which should be obvious from code). Avoid TODO comments in committed code - use issue trackers instead."
+    },
+    {
+      "question": "How do you structure HTML forms for maintainability?",
+      "answer": "Use consistent form structure: <form> with <fieldset> grouping, <legend> for each group, <label> for every input with matching for/id, consistent class naming (form__group, form__label, form__input, form__error), and data-* attributes for JavaScript validation hooks."
+    },
+    {
+      "question": "What is the relationship between clean HTML and accessibility?",
+      "answer": "Clean HTML directly supports accessibility: semantic elements provide structure for screen readers, proper heading hierarchy enables navigation, labeled forms are accessible, and ARIA attributes supplement native semantics. Valid, well-organized HTML is the foundation of an accessible web."
+    },
+    {
+      "question": "How do you handle conditional comments or feature detection in clean HTML?",
+      "answer": "Avoid conditional comments (IE-specific) as they are deprecated and messy. Use feature detection with JavaScript (Modernizr) and framework capabilities. Apply classes to <html> via JS: <html class='no-js'> (updated to <html class='js'> by Modernizr), then style based on these classes."
+    },
+    {
+      "question": "What is the difference between a code style guide and a linter?",
+      "answer": "A style guide documents conventions (naming, formatting, patterns) as a reference document. A linter (HTMLHint, ESLint) automatically enforces these rules during development, catching violations in real-time. Both work together: the guide defines standards, the linter enforces them."
+    },
+    {
+      "question": "How do you write clean HTML for email templates?",
+      "answer": "Email HTML requires different standards: use table-based layouts (not div/CSS), inline styles (many email clients strip external CSS), use inline CSS for all styling, avoid JavaScript entirely, use semantic elements sparingly (limited support), and test across major email clients."
+    },
+    {
+      "question": "What practices help make HTML code review more effective?",
+      "answer": "Use consistent formatting (auto-formatter), keep changes focused (one feature per PR), use comments to explain non-obvious decisions, follow team conventions documented in a style guide, use linting to catch basic issues automatically, and review for semantic correctness, accessibility, and performance."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you design a scalable HTML architecture for a design system?",
+      "answer": "Start with an atomic design methodology (atoms, molecules, organisms, templates, pages). Define component slots and variations using BEM modifiers. Create a component library with documented HTML partials. Use a template engine for composition. Implement CSS custom properties for theming. Maintain a living style guide with all component states."
+    },
+    {
+      "question": "How do you handle internationalization (i18n) in clean HTML?",
+      "answer": "Use the lang attribute on <html> and on content sections that differ. Avoid text in images. Use dir='rtl' for right-to-left languages. Store all translatable strings in JavaScript objects or server-side locale files. Use data-* attributes for locale-specific content insertion. Avoid concatenating strings in HTML."
+    },
+    {
+      "question": "What is the impact of Shadow DOM on HTML clean code practices?",
+      "answer": "Shadow DOM encapsulates HTML, CSS, and JS within custom elements, enabling true component isolation. It affects clean code by: scoping styles (no BEM needed), encapsulating HTML structure (cleaner page source), but potentially duplicating code across components. Best practice: use Shadow DOM for truly isolated components, but maintain semantic HTML internally."
+    },
+    {
+      "question": "How do you implement progressive enhancement while maintaining clean HTML?",
+      "answer": "Start with a solid semantic HTML foundation that works without CSS or JavaScript. Layer CSS for presentation and JavaScript for interactivity using feature detection (not browser sniffing). Use <noscript> for critical fallbacks. The HTML should be self-sufficient; CSS and JS only enhance. This results in cleaner, more resilient HTML."
+    },
+    {
+      "question": "What is the role of Microdata/RDFa in clean HTML architecture?",
+      "answer": "Microdata and RDFa embed structured data directly into HTML elements, but they can clutter markup. JSON-LD is preferred for clean HTML as it places structured data in a separate <script> tag, keeping HTML semantically clean while still providing rich search results."
+    },
+    {
+      "question": "How do you maintain clean HTML when using server-side template engines (Pug, Handlebars, Twig)?",
+      "answer": "Use template inheritance and partials to avoid duplication. Keep logic minimal in templates (filters, simple conditionals only). Use clear variable naming. Maintain consistent indentation in template files. Use the engine's commenting syntax for development comments. Strip comments in production builds."
+    },
+    {
+      "question": "What are the clean code considerations for HTML in a Single Page Application (SPA)?",
+      "answer": "SPAs generate HTML via JavaScript, requiring different clean code approaches: use JSX/Hyperscript that enforces structure consistency, follow component naming conventions, keep template logic minimal, use conditional rendering for clarity, maintain proper heading hierarchies in dynamically generated content, and ensure accessibility attributes are applied in JSX."
+    },
+    {
+      "question": "How do you handle dead code removal in large HTML projects?",
+      "answer": "Use component inventory tools to identify unused HTML partials, CSS classes (PurgeCSS), and JavaScript. Regularly audit HTML output in production. Maintain a component library as the single source of truth. Use build-time tree-shaking for template files. Remove legacy code rather than commenting it out."
+    },
+    {
+      "question": "What strategies ensure HTML maintainability in a team of 10+ developers?",
+      "answer": "Mandatory standards: EditorConfig for formatting, Prettier for auto-formatting, HTMLHint for linting, BEM for naming, Git hooks (husky) for pre-commit enforcement. Use automated code review checks. Maintain a living style guide. Use component libraries (web components, React, Vue). Document architecture decisions in ADRs (Architecture Decision Records)."
+    },
+    {
+      "question": "How do you balance clean code with the practical need for quick iteration and prototyping?",
+      "answer": "Allow intentional technical debt with clear marking (// TODO: Refactor after prototype phase). Use progressive enhancement approach: prototype with minimal HTML/CSS, refactor into clean components before production. Maintain a separate 'spike' branch for experiments. Use linters with relaxed rules for prototypes. Always clean up before merging to main."
+    }
+  ]
+}

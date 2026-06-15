@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contrast Ratios Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 0 auto; padding: 2rem; background: #0d1117; color: #c9d1d9; }
+    h1 { color: #58a6ff; margin-bottom: 0.25rem; }
+    .subtitle { color: #8b949e; margin-bottom: 2rem; }
+    .playground-container { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    h2 { color: #58a6ff; margin-bottom: 1rem; }
+    .controls-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .control-group label { display: block; margin-bottom: 0.25rem; font-weight: 600; color: #8b949e; font-size: 0.875rem; }
+    .control-group input[type="color"] { width: 100%; height: 50px; border: 2px solid #30363d; border-radius: 6px; cursor: pointer; background: transparent; }
+    .control-group input[type="text"] { width: 100%; padding: 0.5rem; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-family: monospace; }
+    .control-group select { width: 100%; padding: 0.5rem; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; }
+
+    .ratio-display { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 1.5rem; text-align: center; margin: 1.5rem 0; }
+    .ratio-number { font-size: 3rem; font-weight: 800; }
+    .ratio-number.aaa { color: #3fb950; }
+    .ratio-number.aa { color: #d29922; }
+    .ratio-number.fail { color: #f85149; }
+    .ratio-label { font-size: 1rem; color: #8b949e; margin-top: 0.5rem; }
+    .wcag-badges { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
+    .badge { padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.875rem; }
+    .badge.pass { background: #3fb95033; color: #3fb950; border: 1px solid #3fb950; }
+    .badge.fail { background: #f8514933; color: #f85149; border: 1px solid #f85149; }
+
+    .preview-box { padding: 2rem; border-radius: 8px; margin: 1rem 0; text-align: center; min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .preview-box .sample { font-size: var(--sample-size, 1rem); font-weight: var(--sample-weight, 400); }
+    .sample-controls { display: flex; gap: 1rem; margin: 1rem 0; flex-wrap: wrap; }
+    .sample-controls button { padding: 0.5rem 1rem; border: 1px solid #30363d; border-radius: 6px; background: #21262d; color: #c9d1d9; cursor: pointer; }
+    .sample-controls button.active { background: #1f6feb; border-color: #1f6feb; }
+
+    .palette-section { margin-top: 2rem; }
+    .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+    .color-card { padding: 1.5rem; border-radius: 8px; text-align: center; border: 1px solid #30363d; }
+    .color-card .hex { font-family: monospace; font-size: 0.875rem; margin-top: 0.5rem; }
+
+    .output-section { margin-top: 2rem; }
+    .output-area { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem; font-family: monospace; font-size: 0.875rem; white-space: pre-wrap; min-height: 80px; }
+
+    .text-settings { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+    .text-settings label { display: flex; align-items: center; gap: 0.5rem; color: #8b949e; font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Contrast Ratio Calculator & Playground</h1>
+  <p class="subtitle">Test, analyze, and visualize WCAG contrast ratios in real-time</p>
+
+  <div class="playground-container">
+    <h2>📐 Contrast Calculator</h2>
+    <div class="controls-row">
+      <div class="control-group">
+        <label for="fg-color">Foreground (Text) Color</label>
+        <input type="color" id="fg-color" value="#c9d1d9">
+        <input type="text" id="fg-hex" value="#c9d1d9" style="margin-top:0.5rem;">
+      </div>
+      <div class="control-group">
+        <label for="bg-color">Background Color</label>
+        <input type="color" id="bg-color" value="#0d1117">
+        <input type="text" id="bg-hex" value="#0d1117" style="margin-top:0.5rem;">
+      </div>
+    </div>
+
+    <div class="ratio-display">
+      <div class="ratio-number" id="ratio-value">13.5:1</div>
+      <div class="ratio-label">Contrast Ratio</div>
+      <div class="wcag-badges" id="wcag-badges">
+        <span class="badge pass" id="aa-normal">AA Normal</span>
+        <span class="badge pass" id="aaa-normal">AAA Normal</span>
+        <span class="badge pass" id="aa-large">AA Large</span>
+        <span class="badge pass" id="aaa-large">AAA Large</span>
+      </div>
+    </div>
+
+    <div class="preview-box" id="preview-box">
+      <div class="sample" id="sample-text">
+        <span style="font-size:2rem;font-weight:700;">The quick brown fox</span><br>
+        <span style="font-size:1.25rem;">jumps over the lazy dog. 1234567890</span><br>
+        <span style="font-size:0.875rem;">Small text sample for contrast verification.</span>
+      </div>
+    </div>
+
+    <div class="text-settings">
+      <label><input type="checkbox" id="bold-text"> Bold text</label>
+      <label><input type="checkbox" id="italic-text"> Italic text</label>
+      <label>
+        Font size:
+        <select id="font-size-select">
+          <option value="16">16px (normal)</option>
+          <option value="18">18px (border)</option>
+          <option value="24">24px (large)</option>
+          <option value="36">36px</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="output-area" id="css-output">/* CSS */
+.element {
+  color: #c9d1d9;
+  background-color: #0d1117;
+  /* Contrast ratio: 13.5:1 */
+}</div>
+  </div>
+
+  <div class="playground-container">
+    <h2>🎨 Accessible Palette Builder</h2>
+    <p style="color:#8b949e;margin-bottom:1rem;">Generate colors with guaranteed contrast against a base background.</p>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+      <div class="control-group" style="flex:1;">
+        <label for="base-bg">Base Background</label>
+        <input type="color" id="base-bg" value="#0d1117">
+      </div>
+      <div class="control-group" style="flex:1;">
+        <label for="base-hue-palette">Hue</label>
+        <input type="range" id="base-hue-palette" min="0" max="360" value="210" style="width:100%;">
+      </div>
+    </div>
+    <div class="palette-grid" id="palette-grid"></div>
+  </div>
+
+  <div class="playground-container">
+    <h2>📊 Real-World Examples</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:#fff;padding:1rem;border-radius:8px;">
+        <p style="color:#999;font-size:0.875rem;">❌ Fail: #999 on #fff (2.8:1)</p>
+        <p style="color:#767676;font-size:0.875rem;">✅ AA: #767676 on #fff (4.5:1)</p>
+        <p style="color:#595959;font-size:0.875rem;">✅ AAA: #595959 on #fff (7:1)</p>
+      </div>
+      <div style="background:#000;padding:1rem;border-radius:8px;">
+        <p style="color:#999;font-size:0.875rem;">❌ Fail: #999 on #000 (2.8:1)</p>
+        <p style="color:#ccc;font-size:0.875rem;">✅ AA: #ccc on #000 (8.6:1)</p>
+        <p style="color:#fff;font-size:0.875rem;">✅ AAA: #fff on #000 (21:1)</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Core contrast calculation
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : { r: 0, g: 0, b: 0 };
+    }
+
+    function luminance(r, g, b) {
+      const [rs, gs, bs] = [r, g, b].map(v => {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+    }
+
+    function getContrastRatio(hex1, hex2) {
+      const c1 = hexToRgb(hex1);
+      const c2 = hexToRgb(hex2);
+      const l1 = luminance(c1.r, c1.g, c1.b);
+      const l2 = luminance(c2.r, c2.g, c2.b);
+      const lighter = Math.max(l1, l2);
+      const darker = Math.min(l1, l2);
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    // DOM refs
+    const fgColor = document.getElementById('fg-color');
+    const bgColor = document.getElementById('bg-color');
+    const fgHex = document.getElementById('fg-hex');
+    const bgHex = document.getElementById('bg-hex');
+    const ratioValue = document.getElementById('ratio-value');
+    const previewBox = document.getElementById('preview-box');
+    const cssOutput = document.getElementById('css-output');
+    const aaNorm = document.getElementById('aa-normal');
+    const aaaNorm = document.getElementById('aaa-normal');
+    const aaLarge = document.getElementById('aa-large');
+    const aaaLarge = document.getElementById('aaa-large');
+    const boldCheck = document.getElementById('bold-text');
+    const italicCheck = document.getElementById('italic-text');
+    const fontSizeSelect = document.getElementById('font-size-select');
+
+    function updateContrast() {
+      const fg = fgColor.value;
+      const bg = bgColor.value;
+      fgHex.value = fg;
+      bgHex.value = bg;
+
+      const ratio = getContrastRatio(fg, bg);
+      ratioValue.textContent = ratio.toFixed(2) + ':1';
+
+      const aaNormPass = ratio >= 4.5;
+      const aaaNormPass = ratio >= 7;
+      const aaLargePass = ratio >= 3;
+      const aaaLargePass = ratio >= 4.5;
+
+      aaNorm.textContent = `AA Normal: ${aaNormPass ? '✅' : '❌'}`;
+      aaNorm.className = `badge ${aaNormPass ? 'pass' : 'fail'}`;
+      aaaNorm.textContent = `AAA Normal: ${aaaNormPass ? '✅' : '❌'}`;
+      aaaNorm.className = `badge ${aaaNormPass ? 'pass' : 'fail'}`;
+      aaLarge.textContent = `AA Large: ${aaaLargePass ? '✅' : '❌'}`;
+      aaLarge.className = `badge ${aaaLargePass ? 'pass' : 'fail'}`;
+      aaaLarge.textContent = `AAA Large: ${aaaLargePass ? '✅' : '❌'}`;
+      aaaLarge.className = `badge ${aaaLargePass ? 'pass' : 'fail'}`;
+
+      ratioValue.className = 'ratio-number' + (aaaNormPass ? ' aaa' : aaNormPass ? ' aa' : ' fail');
+
+      previewBox.style.backgroundColor = bg;
+      previewBox.style.color = fg;
+
+      const bold = boldCheck.checked;
+      const italic = italicCheck.checked;
+      const size = fontSizeSelect.value;
+      previewBox.style.fontWeight = bold ? '700' : '400';
+      previewBox.style.fontStyle = italic ? 'italic' : 'normal';
+      previewBox.style.fontSize = size + 'px';
+
+      cssOutput.textContent = `/* Contrast Analysis */\n` +
+        `color: ${fg};\n` +
+        `background: ${bg};\n` +
+        `/* Ratio: ${ratio.toFixed(2)}:1 */\n` +
+        `/* AA Normal: ${aaNormPass ? 'PASS' : 'FAIL'} (≥4.5:1) */\n` +
+        `/* AAA Normal: ${aaaNormPass ? 'PASS' : 'FAIL'} (≥7:1) */\n` +
+        `/* AA Large: ${aaaLargePass ? 'PASS' : 'FAIL'} (≥3:1) */\n` +
+        `/* AAA Large: ${aaaLargePass ? 'PASS' : 'FAIL'} (≥4.5:1) */`;
+    }
+
+    fgColor.addEventListener('input', updateContrast);
+    bgColor.addEventListener('input', updateContrast);
+    fgHex.addEventListener('input', () => { fgColor.value = fgHex.value; updateContrast(); });
+    bgHex.addEventListener('input', () => { bgColor.value = bgHex.value; updateContrast(); });
+    boldCheck.addEventListener('change', updateContrast);
+    italicCheck.addEventListener('change', updateContrast);
+    fontSizeSelect.addEventListener('change', updateContrast);
+
+    // Palette Builder
+    const baseBg = document.getElementById('base-bg');
+    const baseHuePalette = document.getElementById('base-hue-palette');
+    const paletteGrid = document.getElementById('palette-grid');
+
+    function hslToHex(h, s, l) {
+      s /= 100;
+      l /= 100;
+      const a = s * Math.min(l, 1 - l);
+      const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+      };
+      return `#${f(0)}${f(8)}${f(4)}`;
+    }
+
+    function buildAccessiblePalette() {
+      const bg = baseBg.value;
+      const hue = parseInt(baseHuePalette.value);
+      paletteGrid.innerHTML = '';
+
+      const lightnesses = [15, 25, 35, 45, 55, 65, 75, 85];
+      lightnesses.forEach(l => {
+        const hex = hslToHex(hue, 60, l);
+        const ratio = getContrastRatio(hex, bg);
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        card.style.background = hex;
+        card.style.color = l > 50 ? '#000' : '#fff';
+        const aaOk = ratio >= 4.5;
+        card.innerHTML = `
+          <div style="font-size:1.5rem;font-weight:700;">Aa</div>
+          <div class="hex">${hex}</div>
+          <div style="font-size:0.75rem;">Ratio: ${ratio.toFixed(2)}:1</div>
+          <div style="font-size:0.75rem;color:${aaOk ? '#3fb950' : '#f85149'};">${aaOk ? '✅ AA' : '❌ Fail'}</div>
+        `;
+        paletteGrid.appendChild(card);
+      });
+    }
+
+    baseBg.addEventListener('input', buildAccessiblePalette);
+    baseHuePalette.addEventListener('input', buildAccessiblePalette);
+
+    // Initialize
+    updateContrast();
+    buildAccessiblePalette();
+  </script>
+</body>
+</html>

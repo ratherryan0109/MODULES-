@@ -1,0 +1,247 @@
+{
+  "module": "20-css-max-width",
+  "title": "CSS Max-Width",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does max-width: 800px do?",
+      "options": [
+        "Sets the width to exactly 800px",
+        "Sets the maximum width; element can be smaller",
+        "Sets the minimum width",
+        "Limits the width to never be under 800px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-width sets an upper limit on width. The element can be smaller than this value on narrow screens."
+    },
+    {
+      "id": 2,
+      "question": "Why should you pair width: 100% with max-width?",
+      "options": [
+        "It's required syntax",
+        "Without width: 100%, the element won't shrink on small screens",
+        "It centers the element",
+        "It makes the element responsive to height"
+      ],
+      "correctAnswer": 1,
+      "explanation": "width: 100% allows the element to shrink on small screens; max-width caps the growth on large screens."
+    },
+    {
+      "id": 3,
+      "question": "What does max-width: 65ch accomplish?",
+      "options": [
+        "Sets width to 65 pixels",
+        "Sets the optimal line length for readability (about 65 characters)",
+        "Sets width to 65%",
+        "Sets max width to 65 viewport widths"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The ch unit equals the width of the '0' character. 65ch is approximately 65 characters per line — the ideal for readability."
+    },
+    {
+      "id": 4,
+      "question": "What happens when width is larger than max-width?",
+      "options": [
+        "width wins and max-width is ignored",
+        "max-width overrides width and limits the element",
+        "The browser uses the average of both values",
+        "An error is thrown"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-width overrides width when the computed width exceeds the max-width value."
+    },
+    {
+      "id": 5,
+      "question": "What does max-width: 100% do for images?",
+      "options": [
+        "Makes the image exactly 100px wide",
+        "Prevents the image from exceeding its container width",
+        "Stretches the image to fill the screen",
+        "Makes the image 100% of its original size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-width: 100% on images ensures they never overflow their container, scaling down on smaller screens."
+    },
+    {
+      "id": 6,
+      "question": "How do you center an element with max-width?",
+      "options": [
+        "max-width: center",
+        "max-width: 800px; margin: 0 auto",
+        "max-width: 800px; text-align: center",
+        "center: max-width 800px"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Combine max-width with margin: 0 auto to create a centered, responsive container."
+    },
+    {
+      "id": 7,
+      "question": "What is the relationship between min-width and max-width when both are set?",
+      "options": [
+        "The element stays between both values, respecting both constraints",
+        "min-width is ignored when max-width is set",
+        "max-width is ignored when min-width is set",
+        "The values are added together"
+      ],
+      "correctAnswer": 0,
+      "explanation": "When both are set, the element will be at least min-width and at most max-width, adapting within that range."
+    },
+    {
+      "id": 8,
+      "question": "What's the difference between width: 100% and max-width: 100%?",
+      "options": [
+        "They are identical",
+        "width: 100% forces the element to be 100%; max-width: 100% allows smaller sizes",
+        "max-width: 100% forces the element to be 100%",
+        "width: 100% only works on images"
+      ],
+      "correctAnswer": 1,
+      "explanation": "width: 100% always fills the container. max-width: 100% prevents overflow but allows smaller sizing."
+    },
+    {
+      "id": 9,
+      "question": "What is a common use case for max-width on a container div?",
+      "options": [
+        "Creating a fixed-width layout",
+        "Creating a responsive container that works on all screen sizes",
+        "Hiding content on mobile",
+        "Adding borders"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-width on containers creates fluid layouts that expand to a limit on large screens and shrink on small ones."
+    },
+    {
+      "id": 10,
+      "question": "What does max-width: 1200px; width: 100%; achieve?",
+      "options": [
+        "A fixed 1200px width that doesn't change",
+        "A flexible container that fills small screens but caps at 1200px on large ones",
+        "A container that is always 100% width regardless of screen size",
+        "A container that is 1200px wide on all devices"
+      ],
+      "correctAnswer": 1,
+      "explanation": "This pattern creates a container that's fluid on small screens but constrained to 1200px on large screens."
+    },
+    {
+      "id": 11,
+      "question": "What is 'min-width' used for in responsive design?",
+      "options": [
+        "Setting a fixed minimum size to prevent elements from becoming too small",
+        "Setting the preferred width",
+        "Setting the maximum width",
+        "Centering the element"
+      ],
+      "correctAnswer": 0,
+      "explanation": "min-width sets a lower bound on element width, preventing it from shrinking below a usable size."
+    },
+    {
+      "id": 12,
+      "question": "Can max-width be specified in percentage?",
+      "options": [
+        "Yes, max-width accepts percentages, viewport units, and all length units",
+        "No, max-width only accepts pixel values",
+        "Yes, but only for images",
+        "No, percentages are invalid for max-width"
+      ],
+      "correctAnswer": 0,
+      "explanation": "max-width accepts all length units including px, em, rem, %, vw, ch, etc."
+    },
+    {
+      "id": 13,
+      "question": "How does the browser prioritize min-width, width, and max-width?",
+      "options": [
+        "The browser uses min-width > width > max-width in priority order",
+        "The browser uses the most restrictive value",
+        "The browser adds them together",
+        "The last declared property wins"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Priority: min-width wins if larger than width; max-width wins if smaller than width. The actual width is constrained between min and max."
+    },
+    {
+      "id": 14,
+      "question": "What does max-inline-size refer to?",
+      "options": [
+        "The maximum height of an element",
+        "The maximum size in the inline direction (logical property for max-width)",
+        "The maximum size of an inline element",
+        "The maximum line height"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-inline-size is the logical property equivalent of max-width, adapting to writing direction."
+    },
+    {
+      "id": 15,
+      "question": "What is the purpose of max-width in media queries?",
+      "options": [
+        "To define the maximum width of a media feature",
+        "To apply styles when the viewport is AT or BELOW a certain width",
+        "To set the maximum width of the viewport",
+        "To limit which devices the styles apply to"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In media queries, max-width acts as an upper bound: @media (max-width: 768px) applies styles at 768px and below."
+    },
+    {
+      "id": 16,
+      "question": "Can max-width be used on inline elements?",
+      "options": [
+        "Yes, max-width works on all elements including inline",
+        "No, inline elements ignore width properties",
+        "Yes, but only on replaced inline elements like images",
+        "No, max-width only works on block elements"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Regular inline elements ignore width-based properties including max-width, but replaced inline elements (images, inputs) respect them."
+    },
+    {
+      "id": 17,
+      "question": "What is the initial/default value of max-width?",
+      "options": [
+        "0",
+        "100%",
+        "none",
+        "auto"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The default value of max-width is 'none', meaning no upper limit is imposed on the element's width."
+    },
+    {
+      "id": 18,
+      "question": "How does max-width interact with box-sizing: border-box?",
+      "options": [
+        "max-width is calculated including padding and border",
+        "max-width is calculated on content only",
+        "max-width is ignored with border-box",
+        "max-width doubles when border-box is used"
+      ],
+      "correctAnswer": 0,
+      "explanation": "max-width includes padding and border in its limit when box-sizing: border-box is applied."
+    },
+    {
+      "id": 19,
+      "question": "Why is max-width considered essential for responsive design?",
+      "options": [
+        "It's the only way to set width in CSS",
+        "It allows elements to adapt to different screen sizes without media queries",
+        "It automatically centers all content",
+        "It prevents horizontal scrolling"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max-width creates baked-in responsiveness — elements automatically adapt to available space without requiring media queries."
+    },
+    {
+      "id": 20,
+      "question": "What happens when max-width is smaller than min-width?",
+      "options": [
+        "The browser uses max-width",
+        "The element becomes unresponsive",
+        "The browser uses min-width (it's more restrictive)",
+        "The element uses both values averaged"
+      ],
+      "correctAnswer": 2,
+      "explanation": "When max-width conflicts with min-width, the browser uses the more restrictive value — min-width wins."
+    }
+  ]
+}

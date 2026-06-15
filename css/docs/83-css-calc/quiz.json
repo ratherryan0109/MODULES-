@@ -1,0 +1,147 @@
+{
+  "module": "83-css-calc",
+  "title": "CSS calc() Function",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is required around + and - operators in calc()?",
+      "options": ["Commas", "Spaces", "Parentheses", "Nothing special"],
+      "correctAnswer": 1,
+      "explanation": "Spaces are required around + and - operators in calc(): calc(100% - 20px)."
+    },
+    {
+      "id": 2,
+      "question": "Can calc() combine different CSS units?",
+      "options": ["No", "Yes, it excels at mixing units", "Only percentages and pixels", "Only with JavaScript"],
+      "correctAnswer": 1,
+      "explanation": "calc() can combine any compatible CSS units, such as percentages with pixels or viewport units."
+    },
+    {
+      "id": 3,
+      "question": "What is the right operand restriction for division in calc()?",
+      "options": ["Must be a percentage", "Must be unitless", "Must be pixels", "Must be zero"],
+      "correctAnswer": 1,
+      "explanation": "In calc(A / B), B must be unitless. calc(100px / 2) works, calc(100px / 2px) does not."
+    },
+    {
+      "id": 4,
+      "question": "Which multiplication rule is correct?",
+      "options": ["Both operands can have units", "One operand must be unitless", "Both must be unitless", "Only the left can have a unit"],
+      "correctAnswer": 1,
+      "explanation": "In calc(A * B), at least one operand must be unitless."
+    },
+    {
+      "id": 5,
+      "question": "What does calc(100% - 250px - 1rem) achieve?",
+      "options": ["Subtracts 250px and 1rem from 100%", "Adds them together", "Divides them", "Invalid expression"],
+      "correctAnswer": 0,
+      "explanation": "This expression subtracts both 250px and 1rem from the full width, useful for sidebar layouts."
+    },
+    {
+      "id": 6,
+      "question": "Which pattern creates fluid typography with calc()?",
+      "options": ["font-size: calc(1rem + 1vw)", "font-size: calc(100% - 1rem)", "font-size: calc(16px * 1.5)", "font-size: calc(1rem / 2)"],
+      "correctAnswer": 0,
+      "explanation": "calc(1rem + 1vw) combines a fixed base with a viewport-relative increment for fluid scaling."
+    },
+    {
+      "id": 7,
+      "question": "Can calc() be nested inside another calc()?",
+      "options": ["No, never", "Yes, modern browsers support nested calc()", "Only in Firefox", "Only with --prefix"],
+      "correctAnswer": 1,
+      "explanation": "Modern browsers support nested calc() functions, though a single calc() expression is usually sufficient."
+    },
+    {
+      "id": 8,
+      "question": "What does calc(100vh - 60px) do?",
+      "options": ["Fluid font size", "Fills viewport height minus 60px (e.g., header)", "Creates a 60px margin", "Invalid expression"],
+      "correctAnswer": 1,
+      "explanation": "This sets an element's height to the viewport minus 60px, commonly used for header compensation."
+    },
+    {
+      "id": 9,
+      "question": "Why must spaces be included around + and - in calc()?",
+      "options": ["To improve readability", "To prevent parsing ambiguity (e.g., 100%-20 could be misinterpreted)", "It's optional in modern browsers", "For performance"],
+      "correctAnswer": 1,
+      "explanation": "Spaces prevent the parser from misinterpreting negative numbers or units (e.g., 100%-20 vs 100% - 20)."
+    },
+    {
+      "id": 10,
+      "question": "How can calc() be used with CSS custom properties?",
+      "options": ["calc() cannot use custom properties", "Custom properties work directly inside calc()", "Only with -- numbers", "Only in Safari"],
+      "correctAnswer": 1,
+      "explanation": "Custom properties can be used in calc(): width: calc(100% - var(--sidebar-width));"
+    },
+    {
+      "id": 11,
+      "question": "What is the result of calc(100px + 2em)?",
+      "options": ["Invalid", "100px + the computed value of 2em", "102px", "100px total"],
+      "correctAnswer": 1,
+      "explanation": "The browser adds the computed pixel value of 2em to 100px, resolving at computed-value time."
+    },
+    {
+      "id": 12,
+      "question": "What is a practical use of calc() in CSS Grid?",
+      "options": ["Defining column widths", "Setting grid gap", "Cannot be used in Grid", "Creating grid areas"],
+      "correctAnswer": 0,
+      "explanation": "calc() defines column widths: grid-template-columns: calc(25% - 10px) calc(75% - 10px);"
+    },
+    {
+      "id": 13,
+      "question": "Can calc() be used in media queries?",
+      "options": ["Yes, fully supported", "No, media query conditions don't support calc()", "Only in width queries", "Only in Chrome"],
+      "correctAnswer": 1,
+      "explanation": "calc() is not supported inside media query feature conditions per the CSS specification."
+    },
+    {
+      "id": 14,
+      "question": "What does calc(50% + 50%) evaluate to?",
+      "options": ["50%", "100%", "100% of the element width", "Depends on the context"],
+      "correctAnswer": 2,
+      "explanation": "calc(50% + 50%) equals 100% of the containing block's width in the given dimension."
+    },
+    {
+      "id": 15,
+      "question": "How would you create a full-width element with fixed padding using calc()?",
+      "options": ["width: calc(100% + 20px)", "width: calc(100% - 40px)", "width: calc(100% * 2)", "width: calc(100% / 2)"],
+      "correctAnswer": 1,
+      "explanation": "width: calc(100% - 40px) accounts for 20px padding on each side to prevent overflow."
+    },
+    {
+      "id": 16,
+      "question": "Is calc() supported in all modern browsers?",
+      "options": ["Only Chrome", "Yes, calc() is universally supported in modern browsers", "Only with -webkit prefix", "Only Firefox"],
+      "correctAnswer": 1,
+      "explanation": "calc() is supported in all modern browsers including IE11 (with some restrictions)."
+    },
+    {
+      "id": 17,
+      "question": "What does calc(3 * 20px) produce?",
+      "options": ["23px", "60px", "Invalid (needs spaces)", "23%"],
+      "correctAnswer": 1,
+      "explanation": "calc(3 * 20px) = 60px. Multiplication doesn't require spaces around * in modern browsers."
+    },
+    {
+      "id": 18,
+      "question": "How does calc() interact with the box-sizing property?",
+      "options": ["It doesn't consider box-sizing", "With border-box, calc() includes padding and border in the calculation", "calc() only works with content-box", "box-sizing breaks calc()"],
+      "correctAnswer": 1,
+      "explanation": "With border-box, calc() percentages are relative to the border-box, making calculations more predictable."
+    },
+    {
+      "id": 19,
+      "question": "What is the benefit of calc() over preprocessor math?",
+      "options": ["Calc is faster", "Calc resolves at runtime with actual computed values", "Calc supports more operations", "Calc is easier to write"],
+      "correctAnswer": 1,
+      "explanation": "calc() evaluates at computed-value time with real context values, unlike preprocessor math which uses compile-time values."
+    },
+    {
+      "id": 20,
+      "question": "How would you create a fluid line height with calc()?",
+      "options": ["line-height: calc(1.2em + 0.5vw)", "line-height: calc(100% - 20px)", "line-height: calc(1.2 * 16px)", "line-height: calc(auto)"],
+      "correctAnswer": 0,
+      "explanation": "line-height: calc(1.2em + 0.5vw) creates a fluid line height that scales with both font-size and viewport."
+    }
+  ]
+}

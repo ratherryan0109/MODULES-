@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout Systems Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #f8fafc; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { color: #2563eb; margin-bottom: 1rem; }
+    h2 { color: #1e40af; margin: 2rem 0 0.5rem; font-size: 1.15rem; }
+    .demo { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; }
+    .badge { background: #dbeafe; color: #1e40af; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem; }
+
+    /* 1. Holy Grail Layout */
+    .holy-grail { display: grid; min-height: 300px; gap: 0.5rem; }
+    .holy-grail > * { padding: 1rem; border-radius: 6px; color: white; text-align: center; }
+    .holy-grail .header { background: #3b82f6; }
+    .holy-grail .nav { background: #8b5cf6; }
+    .holy-grail .main { background: #10b981; }
+    .holy-grail .aside { background: #f59e0b; }
+    .holy-grail .footer { background: #1e293b; }
+    @media (min-width: 768px) { .holy-grail { grid-template-columns: 150px 1fr 150px; grid-template-rows: auto 1fr auto; } .holy-grail .header { grid-column: 1 / -1; } .holy-grail .footer { grid-column: 1 / -1; } }
+
+    /* 2. Auto-fit Grid */
+    .auto-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .auto-grid > div { background: #3b82f6; color: white; padding: 2rem; text-align: center; border-radius: 6px; }
+
+    /* 3. Named Grid Areas */
+    .named-layout { display: grid; grid-template-areas: 'header' 'nav' 'main' 'aside' 'footer'; gap: 0.5rem; min-height: 300px; }
+    .named-layout > * { padding: 1rem; border-radius: 6px; color: white; text-align: center; }
+    .named-layout .hdr { grid-area: header; background: #3b82f6; }
+    .named-layout .nav { grid-area: nav; background: #8b5cf6; }
+    .named-layout .main { grid-area: main; background: #10b981; }
+    .named-layout .asd { grid-area: aside; background: #f59e0b; }
+    .named-layout .ftr { grid-area: footer; background: #1e293b; }
+    @media (min-width: 768px) { .named-layout { grid-template-areas: 'header header' 'nav    main' 'nav    aside' 'footer footer'; grid-template-columns: 150px 1fr; } }
+    @media (min-width: 1024px) { .named-layout { grid-template-areas: 'header header header' 'nav    main   aside' 'footer footer footer'; grid-template-columns: 150px 1fr 200px; } }
+
+    /* 4. Flexbox Card */
+    .flex-cards { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .flex-card { display: flex; flex-direction: column; flex: 1 1 250px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
+    .flex-card .card-img { height: 150px; background: linear-gradient(135deg, #667eea, #764ba2); }
+    .flex-card .card-body { padding: 1rem; flex: 1; }
+    .flex-card .card-footer { padding: 1rem; background: #f8fafc; border-top: 1px solid #e2e8f0; }
+
+    /* 5. Multi-column */
+    .multi-col { column-gap: 2rem; column-rule: 1px solid #e2e8f0; }
+    .multi-col p { margin-bottom: 1rem; line-height: 1.6; }
+    @media (min-width: 768px) { .multi-col { column-count: 2; } }
+    @media (min-width: 1024px) { .multi-col { column-count: 3; } }
+
+    /* 6. Container Queries Demo */
+    .cq-container { container-type: inline-size; container-name: card; }
+    .cq-card { display: flex; flex-direction: column; gap: 1rem; padding: 1rem; background: #f1f5f9; border-radius: 8px; }
+    .cq-card .cq-img { height: 120px; background: linear-gradient(135deg, #4facfe, #00f2fe); border-radius: 6px; }
+    @container card (min-width: 400px) { .cq-card { flex-direction: row; } .cq-card .cq-img { width: 200px; height: auto; min-height: 120px; } }
+    @container card (min-width: 600px) { .cq-card { padding: 2rem; } }
+
+    /* 7. Grid + Flex combo */
+    .combo-page { display: grid; gap: 1rem; }
+    .combo-page .hero { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 3rem; text-align: center; border-radius: 8px; }
+    .combo-nav { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .combo-nav a { color: #333; text-decoration: none; padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 4px; }
+    .combo-content { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .combo-content > * { flex: 1 1 300px; background: #f1f5f9; padding: 1.5rem; border-radius: 6px; }
+    @media (min-width: 768px) { .combo-page { max-width: 1200px; margin: 0 auto; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Responsive Layout Systems Examples</h1>
+    <p style="margin-bottom:2rem;color:#64748b;">Each example demonstrates a different responsive layout technique.</p>
+
+    <div class="demo">
+      <span class="badge">Example 1</span>
+      <h2>Holy Grail Layout (CSS Grid)</h2>
+      <div class="holy-grail">
+        <div class="header">Header</div>
+        <div class="nav">Nav</div>
+        <div class="main">Main Content</div>
+        <div class="aside">Aside</div>
+        <div class="footer">Footer</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 2</span>
+      <h2>Auto-Fit Grid (no media queries)</h2>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:0.5rem;">Using <code>repeat(auto-fit, minmax(180px, 1fr))</code></p>
+      <div class="auto-grid">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 3</span>
+      <h2>Named Grid Areas</h2>
+      <div class="named-layout">
+        <div class="hdr">Header</div>
+        <div class="nav">Nav</div>
+        <div class="main">Main Content</div>
+        <div class="asd">Aside</div>
+        <div class="ftr">Footer</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 4</span>
+      <h2>Flexbox Cards (equal height)</h2>
+      <div class="flex-cards">
+        <div class="flex-card">
+          <div class="card-img"></div>
+          <div class="card-body"><h3>Card 1</h3><p>Flexbox makes all cards the same height regardless of content.</p></div>
+          <div class="card-footer">Footer</div>
+        </div>
+        <div class="flex-card">
+          <div class="card-img"></div>
+          <div class="card-body"><h3>Card 2</h3><p>This card has more content to demonstrate equal height behavior.</p><p>Additional paragraph to make it taller.</p></div>
+          <div class="card-footer">Footer</div>
+        </div>
+        <div class="flex-card">
+          <div class="card-img"></div>
+          <div class="card-body"><h3>Card 3</h3><p>All cards align bottom footers.</p></div>
+          <div class="card-footer">Footer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 5</span>
+      <h2>Multi-Column Layout</h2>
+      <div class="multi-col">
+        <p>Multi-column layout makes text flow naturally between columns, like a newspaper. This is ideal for article content.</p>
+        <p>The number of columns changes with viewport width: 1 column on mobile, 2 on tablet, 3 on desktop.</p>
+        <p>Use <code>column-gap</code> and <code>column-rule</code> to style the space between columns.</p>
+        <p>Multi-column is great for long-form content where you want to maximize readability.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 6</span>
+      <h2>Container Queries</h2>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:0.5rem;">The card layout changes based on its container width, not viewport.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;">
+        <div class="cq-container"><div class="cq-card"><div class="cq-img"></div><div><h3>Card A</h3><p>Container query adapts layout within each container.</p></div></div></div>
+        <div class="cq-container" style="max-width:500px;"><div class="cq-card"><div class="cq-img"></div><div><h3>Card B</h3><p>This container is constrained, so the card stays stacked.</p></div></div></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 7</span>
+      <h2>Grid + Flexbox Combo</h2>
+      <div class="combo-page">
+        <div class="hero">Hero Section</div>
+        <nav class="combo-nav">
+          <a href="#">Link 1</a><a href="#">Link 2</a><a href="#">Link 3</a><a href="#">Link 4</a>
+        </nav>
+        <div class="combo-content">
+          <div>Content 1 - Flexbox handles the wrapping</div>
+          <div>Content 2 - Grid handles the page structure</div>
+          <div>Content 3 - Best of both worlds</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

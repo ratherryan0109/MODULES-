@@ -1,0 +1,147 @@
+{
+  "module": "42-flex-container",
+  "title": "Flex Container",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS property creates a flex container?",
+      "options": ["position: flex", "display: flex", "display: block", "float: flex"],
+      "correctAnswer": 1,
+      "explanation": "display: flex (or inline-flex) creates a flex container."
+    },
+    {
+      "id": 2,
+      "question": "What is the default value of display for a flex container if not specified?",
+      "options": ["block", "flex", "inline-flex", "inline-block"],
+      "correctAnswer": 0,
+      "explanation": "display: flex makes the container block-level, but the initial value of display is still block. The flex value must be explicitly set."
+    },
+    {
+      "id": 3,
+      "question": "What happens to float on flex items inside a flex container?",
+      "options": ["They float as usual", "They are ignored", "They become absolute", "They stack"],
+      "correctAnswer": 1,
+      "explanation": "Floats are ignored on flex items; flex formatting context overrides them."
+    },
+    {
+      "id": 4,
+      "question": "What is the difference between display: flex and display: inline-flex?",
+      "options": ["flex items are vertical in inline-flex", "inline-flex makes container an inline-level element", "flex is only for rows", "There is no difference"],
+      "correctAnswer": 1,
+      "explanation": "inline-flex makes the container behave like an inline element while keeping flex behavior."
+    },
+    {
+      "id": 5,
+      "question": "Which property adds spacing between flex items?",
+      "options": ["margin", "padding", "gap", "border-spacing"],
+      "correctAnswer": 2,
+      "explanation": "The gap property adds spacing specifically between flex items."
+    },
+    {
+      "id": 6,
+      "question": "What is the initial value of gap on a flex container?",
+      "options": ["0", "1rem", "normal (effectively 0)", "undefined"],
+      "correctAnswer": 2,
+      "explanation": "The initial value of gap is normal, which computes to 0 in flex layouts."
+    },
+    {
+      "id": 7,
+      "question": "Do margins collapse in a flex container?",
+      "options": ["Yes, like block elements", "No, they do not collapse", "Only horizontal margins collapse", "Only vertical margins collapse"],
+      "correctAnswer": 1,
+      "explanation": "Margins on flex items do NOT collapse."
+    },
+    {
+      "id": 8,
+      "question": "Which of the following is NOT a flex container property?",
+      "options": ["flex-direction", "align-items", "justify-content", "flex-grow"],
+      "correctAnswer": 3,
+      "explanation": "flex-grow is a flex item property, not a container property."
+    },
+    {
+      "id": 9,
+      "question": "What effect does vertical-align have on flex items?",
+      "options": ["Aligns items vertically", "Has no effect", "Aligns items to top", "Overrides align-items"],
+      "correctAnswer": 1,
+      "explanation": "vertical-align has no effect on flex items."
+    },
+    {
+      "id": 10,
+      "question": "What happens if you apply display: flex to an element with float?",
+      "options": ["The element floats", "Float is ignored on the container", "Both apply", "It becomes a grid"],
+      "correctAnswer": 1,
+      "explanation": "The flex formatting context overrides float on the container itself in some cases."
+    },
+    {
+      "id": 11,
+      "question": "Which gap value creates 16px spacing between flex items?",
+      "options": ["gap: 1em", "gap: 1rem", "gap: 16px", "gap: 100%"],
+      "correctAnswer": 1,
+      "explanation": "gap: 1rem equals 16px (based on root font-size)."
+    },
+    {
+      "id": 12,
+      "question": "Can images be flex items?",
+      "options": ["No, only block elements", "Yes, any direct child can be a flex item", "Only if wrapped in a div", "Only inline elements"],
+      "correctAnswer": 1,
+      "explanation": "Any direct child of a flex container becomes a flex item, including images, buttons, etc."
+    },
+    {
+      "id": 13,
+      "question": "How does display: inline-flex differ from display: flex?",
+      "options": ["Main axis is vertical", "Container width shrinks to content", "Items stack vertically", "Gap property doesn't work"],
+      "correctAnswer": 1,
+      "explanation": "inline-flex makes the container shrink-to-fit like an inline element."
+    },
+    {
+      "id": 14,
+      "question": "What is the default initial value of align-items?",
+      "options": ["flex-start", "center", "stretch", "baseline"],
+      "correctAnswer": 2,
+      "explanation": "align-items has an initial value of stretch."
+    },
+    {
+      "id": 15,
+      "question": "Can you have a flex container nested inside another flex container?",
+      "options": ["No", "Yes, nesting is allowed", "Only with display: block", "Only with inline-flex"],
+      "correctAnswer": 1,
+      "explanation": "Flex containers can be nested (a flex item can also be a flex container)."
+    },
+    {
+      "id": 16,
+      "question": "What does gap: 2rem do inside a flex container?",
+      "options": ["Adds 2rem padding", "Adds 2rem margin", "Adds 2rem space between items", "Sets width to 2rem"],
+      "correctAnswer": 2,
+      "explanation": "gap adds spacing BETWEEN flex items, not around them."
+    },
+    {
+      "id": 17,
+      "question": "Which of these creates a flex container that stays on the same line as surrounding text?",
+      "options": ["display: flex", "display: inline-flex", "display: block", "display: inline-block"],
+      "correctAnswer": 1,
+      "explanation": "display: inline-flex creates an inline-level flex container."
+    },
+    {
+      "id": 18,
+      "question": "What happens to ::first-line pseudo-element on a flex container?",
+      "options": ["Works normally", "Does not apply to flex containers", "Applies to first flex item", "Applies to all items"],
+      "correctAnswer": 1,
+      "explanation": "::first-line pseudo-element does not apply to elements with display: flex."
+    },
+    {
+      "id": 19,
+      "question": "What is the default value of flex-wrap on a flex container?",
+      "options": ["wrap", "nowrap", "wrap-reverse", "inherit"],
+      "correctAnswer": 1,
+      "explanation": "The initial value of flex-wrap is nowrap."
+    },
+    {
+      "id": 20,
+      "question": "How do you create a flex container that takes full width of its parent?",
+      "options": ["display: flex", "display: inline-flex", "display: block", "display: flex; width: 100%"],
+      "correctAnswer": 0,
+      "explanation": "display: flex creates a block-level container that takes full width by default."
+    }
+  ]
+}

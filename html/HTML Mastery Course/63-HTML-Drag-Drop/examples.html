@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Drag & Drop API Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f5f6fa;
+      color: #333;
+    }
+    h1 { color: #2c3e50; }
+    h2 { color: #34495e; margin-top: 40px; border-bottom: 2px solid #bdc3c7; padding-bottom: 8px; }
+    h3 { color: #555; }
+    section {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    /* Draggable Items */
+    .draggable {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 8px;
+      background: #3498db;
+      color: white;
+      border-radius: 8px;
+      cursor: grab;
+      user-select: none;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .draggable:active { cursor: grabbing; }
+    .draggable.dragging {
+      opacity: 0.5;
+      transform: scale(0.95);
+    }
+    .draggable[data-color="red"] { background: #e74c3c; }
+    .draggable[data-color="blue"] { background: #3498db; }
+    .draggable[data-color="green"] { background: #2ecc71; }
+    .draggable[data-color="yellow"] { background: #f1c40f; color: #333; }
+    .draggable[data-color="purple"] { background: #9b59b6; }
+    .draggable[data-color="orange"] { background: #e67e22; }
+
+    /* Drop Zones */
+    .drop-zone {
+      min-height: 100px;
+      border: 2px dashed #bdc3c7;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 10px 0;
+      background: #f8f9fa;
+      transition: all 0.3s;
+    }
+    .drop-zone.drag-over {
+      border-color: #3498db;
+      background: rgba(52, 152, 219, 0.05);
+    }
+    .drop-zone.active {
+      border-color: #2ecc71;
+      background: rgba(46, 204, 113, 0.05);
+    }
+    .drop-zone.has-items {
+      border-style: solid;
+      border-color: #2ecc71;
+    }
+    .drop-zone-label {
+      font-size: 0.85em;
+      color: #999;
+      text-align: center;
+      padding: 20px;
+    }
+    .drop-zone.drag-over .drop-zone-label { color: #3498db; }
+
+    /* List styles for sortable */
+    .sortable-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sortable-list li {
+      padding: 14px 20px;
+      margin: 6px 0;
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+    .sortable-list li:active { cursor: grabbing; }
+    .sortable-list li.dragging {
+      opacity: 0.4;
+      border-color: #3498db;
+    }
+    .sortable-list li.drag-over {
+      border-color: #2ecc71;
+      background: #e8f8f0;
+    }
+    .sortable-list li .handle {
+      cursor: grab;
+      color: #999;
+      font-size: 18px;
+    }
+    .sortable-list li .badge {
+      margin-left: auto;
+      background: #3498db;
+      color: white;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    /* File drop zone */
+    .file-drop-zone {
+      border: 2px dashed #bdc3c7;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      background: #f8f9fa;
+    }
+    .file-drop-zone.drag-over {
+      border-color: #27ae60;
+      background: rgba(39, 174, 96, 0.05);
+    }
+    .file-drop-zone .icon { font-size: 48px; margin-bottom: 10px; }
+    .file-drop-zone .text { color: #666; font-size: 16px; }
+    .file-drop-zone .hint { color: #999; font-size: 13px; margin-top: 5px; }
+
+    .file-list {
+      margin-top: 15px;
+    }
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      margin: 5px 0;
+    }
+    .file-item .name { flex: 1; font-weight: 500; }
+    .file-item .size { color: #999; font-size: 13px; }
+    .file-item .type { color: #666; font-size: 12px; background: #eee; padding: 2px 8px; border-radius: 4px; }
+
+    .file-item .preview {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* Grid examples */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .grid-container .drop-zone { min-height: 80px; }
+
+    /* Column layouts */
+    .columns {
+      display: flex;
+      gap: 20px;
+    }
+    .columns .drop-zone { flex: 1; min-height: 200px; }
+
+    /* Buttons */
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 5px;
+      transition: background 0.2s;
+    }
+    button:hover { background: #2980b9; }
+    button:active { transform: scale(0.98); }
+    button.reset { background: #e74c3c; }
+    button.reset:hover { background: #c0392b; }
+    button.copy { background: #2ecc71; }
+    button.copy:hover { background: #27ae60; }
+
+    .controls { margin: 10px 0; }
+
+    .status {
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .status.info { background: #d5f4e6; color: #1a7a4a; }
+    .status.error { background: #fce4ec; color: #c62828; }
+  </style>
+</head>
+<body>
+
+<h1>HTML Drag & Drop API Examples</h1>
+
+<!-- ============================================================ -->
+<section>
+  <h2>1. Basic Draggable Items to Drop Zone</h2>
+  <p>Drag the colored boxes into the drop zone below.</p>
+
+  <div id="sourceContainer1" style="margin-bottom: 10px;">
+    <div class="draggable" draggable="true" data-color="red">Red</div>
+    <div class="draggable" draggable="true" data-color="blue">Blue</div>
+    <div class="draggable" draggable="true" data-color="green">Green</div>
+    <div class="draggable" draggable="true" data-color="yellow">Yellow</div>
+  </div>
+
+  <div id="dropZone1" class="drop-zone">
+    <div class="drop-zone-label">Drop items here</div>
+  </div>
+
+  <div class="controls">
+    <button onclick="resetExample1()" class="reset">Reset</button>
+  </div>
+
+  <div id="status1" class="status" style="display:none;"></div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>2. Sortable List (Drag to Reorder)</h2>
+  <p>Drag list items up and down to reorder them.</p>
+
+  <ul id="sortableList" class="sortable-list">
+    <li draggable="true" data-id="1"><span class="handle">⠿</span> Apple <span class="badge">Fruit</span></li>
+    <li draggable="true" data-id="2"><span class="handle">⠿</span> Banana <span class="badge">Fruit</span></li>
+    <li draggable="true" data-id="3"><span class="handle">⠿</span> Carrot <span class="badge">Vegetable</span></li>
+    <li draggable="true" data-id="4"><span class="handle">⠿</span> Donut <span class="badge">Pastry</span></li>
+    <li draggable="true" data-id="5"><span class="handle">⠿</span> Eggplant <span class="badge">Vegetable</span></li>
+    <li draggable="true" data-id="6"><span class="handle">⠿</span> Fig <span class="badge">Fruit</span></li>
+  </ul>
+
+  <div class="controls">
+    <button onclick="showListOrder()">Show Order</button>
+    <button onclick="resetListOrder()" class="reset">Reset</button>
+  </div>
+  <pre id="listOrderOutput" style="display:none;"></pre>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>3. Multiple Drop Zones (Categorize)</h2>
+  <p>Drag items into the correct category columns.</p>
+
+  <div id="sourceContainer3" style="margin-bottom: 10px;">
+    <div class="draggable" draggable="true" data-category="animal">🐶 Dog</div>
+    <div class="draggable" draggable="true" data-category="animal">🐱 Cat</div>
+    <div class="draggable" draggable="true" data-category="animal">🐦 Bird</div>
+    <div class="draggable" draggable="true" data-category="plant">🌹 Rose</div>
+    <div class="draggable" draggable="true" data-category="plant">🌻 Sunflower</div>
+    <div class="draggable" draggable="true" data-category="plant">🌵 Cactus</div>
+    <div class="draggable" draggable="true" data-category="mineral">💎 Diamond</div>
+    <div class="draggable" draggable="true" data-category="mineral">🪨 Rock</div>
+    <div class="draggable" draggable="true" data-category="mineral">🧊 Ice</div>
+  </div>
+
+  <div class="columns">
+    <div id="catAnimals" class="drop-zone" data-category="animal">
+      <div class="drop-zone-label">🐾 Animals</div>
+    </div>
+    <div id="catPlants" class="drop-zone" data-category="plant">
+      <div class="drop-zone-label">🌱 Plants</div>
+    </div>
+    <div id="catMinerals" class="drop-zone" data-category="mineral">
+      <div class="drop-zone-label">⛰️ Minerals</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="resetExample3()" class="reset">Reset</button>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>4. File Drag and Drop</h2>
+  <p>Drag image files from your computer and drop them here.</p>
+
+  <div id="fileDropZone" class="file-drop-zone">
+    <div class="icon">📁</div>
+    <div class="text">Drag & drop image files here</div>
+    <div class="hint">Supports: PNG, JPG, GIF, WebP (max 5MB each)</div>
+  </div>
+
+  <div id="fileList" class="file-list"></div>
+  <div id="fileStatus" class="status" style="display:none;"></div>
+
+  <div class="controls">
+    <button onclick="clearFiles()" class="reset">Clear Files</button>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>5. Grid Drag and Drop</h2>
+  <p>Drag items into grid cells. Each cell accepts one item.</p>
+
+  <div id="sourceContainer5" style="margin-bottom: 10px;">
+    <div class="draggable" draggable="true" data-color="red" style="display:inline-block;">A</div>
+    <div class="draggable" draggable="true" data-color="blue" style="display:inline-block;">B</div>
+    <div class="draggable" draggable="true" data-color="green" style="display:inline-block;">C</div>
+    <div class="draggable" draggable="true" data-color="purple" style="display:inline-block;">D</div>
+    <div class="draggable" draggable="true" data-color="orange" style="display:inline-block;">E</div>
+    <div class="draggable" draggable="true" data-color="yellow" style="display:inline-block;">F</div>
+  </div>
+
+  <div class="grid-container">
+    <div class="drop-zone" data-grid="1"><div class="drop-zone-label">Cell 1</div></div>
+    <div class="drop-zone" data-grid="2"><div class="drop-zone-label">Cell 2</div></div>
+    <div class="drop-zone" data-grid="3"><div class="drop-zone-label">Cell 3</div></div>
+    <div class="drop-zone" data-grid="4"><div class="drop-zone-label">Cell 4</div></div>
+    <div class="drop-zone" data-grid="5"><div class="drop-zone-label">Cell 5</div></div>
+    <div class="drop-zone" data-grid="6"><div class="drop-zone-label">Cell 6</div></div>
+  </div>
+
+  <div class="controls">
+    <button onclick="resetExample5()" class="reset">Reset Grid</button>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>6. Drag Between Lists</h2>
+  <p>Drag items between the "To Do", "In Progress", and "Done" lists.</p>
+
+  <div class="columns">
+    <div id="todoList" class="drop-zone" data-list="todo">
+      <div class="drop-zone-label" style="font-weight: bold; color: #e74c3c;">📋 To Do</div>
+      <div class="draggable" draggable="true" data-color="red" style="display:block; margin:6px 0;">Write documentation</div>
+      <div class="draggable" draggable="true" data-color="blue" style="display:block; margin:6px 0;">Design mockup</div>
+      <div class="draggable" draggable="true" data-color="green" style="display:block; margin:6px 0;">Review PRs</div>
+    </div>
+    <div id="progressList" class="drop-zone" data-list="progress">
+      <div class="drop-zone-label" style="font-weight: bold; color: #f39c12;">⚡ In Progress</div>
+    </div>
+    <div id="doneList" class="drop-zone" data-list="done">
+      <div class="drop-zone-label" style="font-weight: bold; color: #2ecc71;">✅ Done</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="resetExample6()" class="reset">Reset Lists</button>
+  </div>
+</section>
+
+<script>
+// ===== Helper: make draggable =====
+function makeDraggable(element) {
+  element.setAttribute('draggable', 'true');
+
+  element.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('text/plain', element.outerHTML);
+    event.dataTransfer.setData('text/id', element.dataset.color || element.dataset.category || element.dataset.id || '');
+    event.dataTransfer.effectAllowed = 'move';
+    element.classList.add('dragging');
+  });
+
+  element.addEventListener('dragend', (event) => {
+    element.classList.remove('dragging');
+  });
+}
+
+// ===== Helper: setup drop zone =====
+function setupDropZone(zone, options = {}) {
+  const acceptCallback = options.accept || (() => true);
+  const onDropCallback = options.onDrop || ((zone, element) => {
+    zone.appendChild(element);
+  });
+
+  zone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+    zone.classList.add('drag-over');
+  });
+
+  zone.addEventListener('dragenter', (event) => {
+    event.preventDefault();
+    zone.classList.add('active');
+  });
+
+  zone.addEventListener('dragleave', (event) => {
+    // Only remove if actually leaving the zone (not entering a child)
+    const rect = zone.getBoundingClientRect();
+    const x = event.clientX;
+    const y = event.clientY;
+    if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+      zone.classList.remove('drag-over', 'active');
+    }
+  });
+
+  zone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    zone.classList.remove('drag-over', 'active');
+
+    const html = event.dataTransfer.getData('text/plain');
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    const draggedElement = temp.firstChild;
+
+    if (draggedElement && acceptCallback(draggedElement, zone)) {
+      // Remove from original location
+      const original = findOriginalElement(draggedElement);
+      if (original && original.parentNode) {
+        original.remove();
+      }
+
+      // Clear label if present
+      const label = zone.querySelector('.drop-zone-label');
+      if (label && zone.children.length === 1) {
+        label.style.display = 'none';
+      }
+
+      onDropCallback(zone, draggedElement);
+      makeDraggable(draggedElement);
+      zone.classList.add('has-items');
+    }
+  });
+}
+
+// ===== Helper: find original element from dragged clone data =====
+function findOriginalElement(clone) {
+  const color = clone.dataset.color;
+  const category = clone.dataset.category;
+  const id = clone.dataset.id;
+  const text = clone.textContent.trim();
+
+  // Search by data attributes
+  if (color) {
+    const orig = document.querySelector(`.draggable[data-color="${color}"]`);
+    if (orig) return orig;
+  }
+  if (category) {
+    const orig = document.querySelector(`.draggable[data-category="${category}"]`);
+    if (orig) return orig;
+  }
+  if (id) {
+    const orig = document.querySelector(`.draggable[data-id="${id}"]`);
+    if (orig) return orig;
+  }
+  // Fallback: search by text content
+  const allDraggables = document.querySelectorAll('.draggable');
+  for (const el of allDraggables) {
+    if (el.textContent.trim() === text) return el;
+  }
+  return null;
+}
+
+// ===== 1. Basic Drag and Drop =====
+(function() {
+  const zone = document.getElementById('dropZone1');
+  const status = document.getElementById('status1');
+
+  setupDropZone(zone, {
+    onDrop: (zone, element) => {
+      zone.appendChild(element);
+      status.style.display = 'block';
+      status.className = 'status info';
+      status.textContent = `✅ Dropped "${element.textContent.trim()}"`;
+    }
+  });
+})();
+
+function resetExample1() {
+  const zone = document.getElementById('dropZone1');
+  const container = document.getElementById('sourceContainer1');
+  const status = document.getElementById('status1');
+
+  // Move items back
+  const items = zone.querySelectorAll('.draggable');
+  items.forEach(item => container.appendChild(item));
+
+  // Show label
+  const label = zone.querySelector('.drop-zone-label');
+  if (label) label.style.display = '';
+  zone.classList.remove('has-items');
+
+  status.style.display = 'none';
+}
+
+// ===== 2. Sortable List =====
+(function() {
+  const list = document.getElementById('sortableList');
+  const items = list.querySelectorAll('li');
+
+  items.forEach(item => {
+    item.addEventListener('dragstart', (event) => {
+      event.dataTransfer.setData('text/plain', item.dataset.id);
+      event.dataTransfer.effectAllowed = 'move';
+      item.classList.add('dragging');
+    });
+
+    item.addEventListener('dragend', (event) => {
+      item.classList.remove('dragging');
+      list.querySelectorAll('li').forEach(li => li.classList.remove('drag-over'));
+    });
+
+    item.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+    });
+
+    item.addEventListener('dragenter', (event) => {
+      event.preventDefault();
+      const dragging = list.querySelector('.dragging');
+      if (dragging && dragging !== item) {
+        item.classList.add('drag-over');
+      }
+    });
+
+    item.addEventListener('dragleave', (event) => {
+      item.classList.remove('drag-over');
+    });
+
+    item.addEventListener('drop', (event) => {
+      event.preventDefault();
+      item.classList.remove('drag-over');
+
+      const draggingId = event.dataTransfer.getData('text/plain');
+      const dragging = list.querySelector(`[data-id="${draggingId}"]`);
+      if (dragging && dragging !== item) {
+        const rect = item.getBoundingClientRect();
+        const midY = rect.top + rect.height / 2;
+        const insertBefore = event.clientY < midY;
+        if (insertBefore) {
+          list.insertBefore(dragging, item);
+        } else {
+          list.insertBefore(dragging, item.nextSibling);
+        }
+      }
+    });
+  });
+})();
+
+function showListOrder() {
+  const list = document.getElementById('sortableList');
+  const items = list.querySelectorAll('li');
+  const order = [];
+  items.forEach((item, idx) => {
+    order.push(`${idx + 1}. ${item.textContent.trim().split('\n')[0].trim()}`);
+  });
+  const output = document.getElementById('listOrderOutput');
+  output.style.display = 'block';
+  output.textContent = order.join('\n');
+}
+
+function resetListOrder() {
+  const list = document.getElementById('sortableList');
+  const defaultOrder = [
+    { id: 1, text: 'Apple', badge: 'Fruit' },
+    { id: 2, text: 'Banana', badge: 'Fruit' },
+    { id: 3, text: 'Carrot', badge: 'Vegetable' },
+    { id: 4, text: 'Donut', badge: 'Pastry' },
+    { id: 5, text: 'Eggplant', badge: 'Vegetable' },
+    { id: 6, text: 'Fig', badge: 'Fruit' },
+  ];
+  list.innerHTML = '';
+  defaultOrder.forEach(item => {
+    const li = document.createElement('li');
+    li.draggable = true;
+    li.dataset.id = item.id;
+    li.innerHTML = `<span class="handle">⠿</span> ${item.text} <span class="badge">${item.badge}</span>`;
+    list.appendChild(li);
+  });
+  // Reinitialize events
+  const event = new Event('DOMContentLoaded');
+  document.getElementById('sortableList').querySelectorAll('li').forEach(item => {
+    item.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', item.dataset.id);
+      e.dataTransfer.effectAllowed = 'move';
+      item.classList.add('dragging');
+    });
+    item.addEventListener('dragend', (e) => {
+      item.classList.remove('dragging');
+      list.querySelectorAll('li').forEach(li => li.classList.remove('drag-over'));
+    });
+    item.addEventListener('dragover', (e) => e.preventDefault());
+    item.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      const dragging = list.querySelector('.dragging');
+      if (dragging && dragging !== item) item.classList.add('drag-over');
+    });
+    item.addEventListener('dragleave', (e) => item.classList.remove('drag-over'));
+    item.addEventListener('drop', (e) => {
+      e.preventDefault();
+      item.classList.remove('drag-over');
+      const draggingId = e.dataTransfer.getData('text/plain');
+      const dragging = list.querySelector(`[data-id="${draggingId}"]`);
+      if (dragging && dragging !== item) {
+        const rect = item.getBoundingClientRect();
+        const midY = rect.top + rect.height / 2;
+        list.insertBefore(dragging, e.clientY < midY ? item : item.nextSibling);
+      }
+    });
+  });
+  document.getElementById('listOrderOutput').style.display = 'none';
+}
+
+// ===== 3. Multiple Drop Zones (Categorize) =====
+(function() {
+  const zones = document.querySelectorAll('#catAnimals, #catPlants, #catMinerals');
+
+  zones.forEach(zone => {
+    setupDropZone(zone, {
+      accept: (element, zone) => {
+        const itemCat = element.dataset.category;
+        const zoneCat = zone.dataset.category;
+        return itemCat === zoneCat;
+      },
+      onDrop: (zone, element) => {
+        zone.appendChild(element);
+      }
+    });
+  });
+})();
+
+function resetExample3() {
+  const container = document.getElementById('sourceContainer3');
+  const zones = document.querySelectorAll('#catAnimals, #catPlants, #catMinerals');
+
+  zones.forEach(zone => {
+    const items = zone.querySelectorAll('.draggable');
+    items.forEach(item => container.appendChild(item));
+    const label = zone.querySelector('.drop-zone-label');
+    if (label) label.style.display = '';
+    zone.classList.remove('has-items');
+  });
+}
+
+// ===== 4. File Drag and Drop =====
+(function() {
+  const zone = document.getElementById('fileDropZone');
+  const fileList = document.getElementById('fileList');
+  const status = document.getElementById('fileStatus');
+
+  zone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    zone.classList.add('drag-over');
+  });
+
+  zone.addEventListener('dragleave', (event) => {
+    zone.classList.remove('drag-over');
+  });
+
+  zone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    zone.classList.remove('drag-over');
+
+    const files = event.dataTransfer.files;
+    if (files.length === 0) return;
+
+    Array.from(files).forEach(file => {
+      if (!file.type.startsWith('image/')) {
+        showFileStatus('Only image files are accepted', 'error');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        showFileStatus(`"${file.name}" exceeds the 5MB limit`, 'error');
+        return;
+      }
+      processFile(file);
+    });
+  });
+
+  function processFile(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const div = document.createElement('div');
+      div.className = 'file-item';
+      div.innerHTML = `
+        <img src="${e.target.result}" class="preview" alt="${file.name}">
+        <span class="name">${file.name}</span>
+        <span class="size">${formatSize(file.size)}</span>
+        <span class="type">${file.type}</span>
+      `;
+      fileList.appendChild(div);
+      showFileStatus(`Loaded ${file.name}`, 'info');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function showFileStatus(msg, type) {
+    status.style.display = 'block';
+    status.className = 'status ' + type;
+    status.textContent = msg;
+    setTimeout(() => { status.style.display = 'none'; }, 3000);
+  }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / 1048576).toFixed(1) + ' MB';
+  }
+
+  window.clearFiles = function() {
+    fileList.innerHTML = '';
+    status.style.display = 'none';
+  };
+})();
+
+function clearFiles() {
+  // Defined inside IIFE above
+  // Will be overridden by the window assignment
+}
+
+// ===== 5. Grid Drag and Drop =====
+(function() {
+  const gridZones = document.querySelectorAll('.grid-container .drop-zone');
+
+  gridZones.forEach(zone => {
+    setupDropZone(zone, {
+      accept: (element, zone) => {
+        return zone.querySelectorAll('.draggable').length === 0;
+      },
+      onDrop: (zone, element) => {
+        zone.appendChild(element);
+      }
+    });
+  });
+})();
+
+function resetExample5() {
+  const container = document.getElementById('sourceContainer5');
+  const zones = document.querySelectorAll('.grid-container .drop-zone');
+
+  zones.forEach(zone => {
+    const items = zone.querySelectorAll('.draggable');
+    items.forEach(item => container.appendChild(item));
+    const label = zone.querySelector('.drop-zone-label');
+    if (label) label.style.display = '';
+    zone.classList.remove('has-items');
+  });
+}
+
+// ===== 6. Drag Between Lists =====
+(function() {
+  const kanbanZones = document.querySelectorAll('[data-list]');
+
+  kanbanZones.forEach(zone => {
+    // Make existing draggables work
+    zone.querySelectorAll('.draggable').forEach(makeDraggable);
+
+    setupDropZone(zone, {
+      onDrop: (zone, element) => {
+        zone.appendChild(element);
+      }
+    });
+  });
+})();
+
+function resetExample6() {
+  const todo = document.getElementById('todoList');
+  const progress = document.getElementById('progressList');
+  const done = document.getElementById('doneList');
+
+  // Clear progress and done
+  [progress, done].forEach(list => {
+    const items = list.querySelectorAll('.draggable');
+    items.forEach(item => item.remove());
+    const label = list.querySelector('.drop-zone-label');
+    if (label) label.style.display = '';
+    list.classList.remove('has-items');
+  });
+
+  // Restore todo items
+  const todoItems = todo.querySelectorAll('.draggable');
+  if (todoItems.length < 3) {
+    const defaultItems = [
+      { color: 'red', text: 'Write documentation' },
+      { color: 'blue', text: 'Design mockup' },
+      { color: 'green', text: 'Review PRs' },
+    ];
+    defaultItems.forEach((item, idx) => {
+      const div = document.createElement('div');
+      div.className = 'draggable';
+      div.draggable = true;
+      div.dataset.color = item.color;
+      div.textContent = item.text;
+      div.style.display = 'block';
+      div.style.margin = '6px 0';
+      todo.appendChild(div);
+      makeDraggable(div);
+    });
+  }
+}
+</script>
+</body>
+</html>

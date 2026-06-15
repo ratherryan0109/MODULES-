@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 81: HTML Performance Optimization Examples</title>
+  
+  <!-- Resource hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.example.com">
+  
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h2 { color: #2c3e50; border-bottom: 2px solid #e67e22; padding-bottom: 8px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 0.9em; }
+    code { font-family: 'Courier New', monospace; }
+    .note { background: #e8f5e9; border-left: 4px solid #27ae60; padding: 10px 15px; margin: 10px 0; }
+    .bad { background: #ffebee; border-left: 4px solid #e53935; padding: 10px 15px; margin: 5px 0; }
+    .good { background: #e8f5e9; border-left: 4px solid #43a047; padding: 10px 15px; margin: 5px 0; }
+    .metric { display: inline-block; background: #e3f2fd; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; margin: 2px; }
+    img.demo-img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>HTML Performance Optimization - Live Examples</h1>
+<p>Open DevTools Network tab to see the performance impact of these techniques.</p>
+
+<div class="note">
+  <strong>Note:</strong> These examples demonstrate HTML patterns. Actual performance gains depend on your server, network, and specific implementation.
+</div>
+
+<!-- Example 1: Resource Hints -->
+<div class="example">
+  <h2>Example 1: Resource Hints</h2>
+  <p>Resource hints tell the browser to perform actions early, improving perceived performance.</p>
+
+  <pre>&lt;!-- Preconnect: Establish early connections to origins --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://cdn.example.com" crossorigin&gt;
+
+&lt;!-- DNS-Prefetch: Resolve DNS early (broader support) --&gt;
+&lt;link rel="dns-prefetch" href="https://analytics.example.com"&gt;
+
+&lt;!-- Preload: Load critical resources urgently --&gt;
+&lt;link rel="preload" href="hero.webp" as="image"&gt;
+&lt;link rel="preload" href="font.woff2" as="font" type="font/woff2" crossorigin&gt;
+
+&lt;!-- Prefetch: Load resources for next page (idle time) --&gt;
+&lt;link rel="prefetch" href="/next-page/" as="document"&gt;</pre>
+
+  <div class="note">
+    <strong>When to use each:</strong> preload = critical current page resources, preconnect = third-party origins, dns-prefetch = fallback for older browsers, prefetch = likely next page resources.
+  </div>
+</div>
+
+<!-- Example 2: Critical CSS Inlining -->
+<div class="example">
+  <h2>Example 2: Critical CSS Inlining</h2>
+  <p>Inline above-the-fold CSS to eliminate render-blocking requests.</p>
+
+  <div class="bad">
+    <strong>❌ Bad: All CSS is render-blocking:</strong>
+    <pre>&lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;link rel="stylesheet" href="components.css"&gt;
+&lt;link rel="stylesheet" href="utilities.css"&gt;</pre>
+  </div>
+
+  <div class="good">
+    <strong>✅ Good: Critical CSS inlined, rest loaded async:</strong>
+    <pre>&lt;style&gt;
+  /* Critical above-the-fold styles */
+  header { background: #2c3e50; color: white; padding: 1rem; }
+  .hero { font-size: 2rem; text-align: center; padding: 4rem 1rem; }
+  .hero h1 { margin-bottom: 1rem; }
+&lt;/style&gt;
+
+&lt;!-- Load non-critical CSS asynchronously --&gt;
+&lt;link rel="preload" href="styles.css" as="style" 
+      onload="this.onload=null;this.rel='stylesheet'"&gt;
+&lt;noscript&gt;&lt;link rel="stylesheet" href="styles.css"&gt;&lt;/noscript&gt;</pre>
+  </div>
+
+  <style>
+    .demo-header { background: #2c3e50; color: white; padding: 1rem; text-align: center; }
+    .demo-hero { font-size: 1.5rem; text-align: center; padding: 2rem 1rem; background: #ecf0f1; border-radius: 4px; }
+  </style>
+  <div class="good">
+    <div class="demo-header"><strong>Header</strong> (critical CSS - renders immediately)</div>
+    <div class="demo-hero"><h1 style="margin: 0 0 0.5rem 0;">Hero Title</h1><p>Above-the-fold content is visible immediately while full CSS loads.</p></div>
+  </div>
+</div>
+
+<!-- Example 3: Image Optimization -->
+<div class="example">
+  <h2>Example 3: Image Optimization Techniques</h2>
+  
+  <div class="bad">
+    <strong>❌ Bad: No dimensions, no lazy loading:</strong>
+    <pre>&lt;img src="photo.jpg" alt="Photo"&gt;</pre>
+    <p>❌ Causes CLS (no dimensions), loads immediately (even offscreen), no optimization</p>
+  </div>
+  
+  <div class="good">
+    <strong>✅ Good: Fully optimized:</strong>
+    <pre>&lt;img src="photo.webp" 
+     srcset="photo-400.webp 400w, photo-800.webp 800w, photo-1200.webp 1200w"
+     sizes="(max-width: 600px) 100vw, 800px"
+     alt="Descriptive text"
+     width="800" height="600"
+     loading="lazy" 
+     decoding="async"&gt;</pre>
+    <p>✅ Prevents CLS, lazy loads, responsive, modern format</p>
+  </div>
+
+  <!-- Demo image with proper attributes -->
+  <div style="position: relative; background: #f0f0f0; min-height: 150px; display: flex; align-items: center; justify-content: center;">
+    <img src="https://via.placeholder.com/800x450/3498db/ffffff?text=Optimized+Image" 
+         alt="Demo image showing proper width and height attributes"
+         width="800" height="450"
+         loading="lazy"
+         decoding="async"
+         style="max-width: 100%; height: auto;">
+  </div>
+  <p style="font-size: 0.85em; color: #666;">Notice: space is reserved even before image loads (no layout shift)</p>
+</div>
+
+<!-- Example 4: Script Loading Strategies -->
+<div class="example">
+  <h2>Example 4: Script Loading Comparison</h2>
+
+  <pre>&lt;!-- Blocking: Parses, downloads, and executes before continuing --&gt;
+&lt;script src="heavy.js"&gt;&lt;/script&gt;
+
+&lt;!-- Defer: Downloads while parsing, executes after parsing (in order) --&gt;
+&lt;script src="vendor.js" defer&gt;&lt;/script&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- Async: Downloads while parsing, executes as soon as available (out of order) --&gt;
+&lt;script src="analytics.js" async&gt;&lt;/script&gt;
+&lt;script src="widget.js" async&gt;&lt;/script&gt;
+
+&lt;!-- Module: ES6 module, deferred by default --&gt;
+&lt;script type="module" src="main.mjs"&gt;&lt;/script&gt;</pre>
+
+  <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%;">
+    <tr style="background: #2c3e50; color: white;">
+      <th>Method</th>
+      <th>Download</th>
+      <th>Execution</th>
+      <th>Order</th>
+      <th>Use Case</th>
+    </tr>
+    <tr>
+      <td>No attribute</td>
+      <td>Blocks HTML parsing</td>
+      <td>Immediately when ready</td>
+      <td>In order</td>
+      <td>Avoid unless necessary</td>
+    </tr>
+    <tr>
+      <td><code>defer</code></td>
+      <td>Parallel with parsing</td>
+      <td>After HTML parsed</td>
+      <td>In order</td>
+      <td>Scripts that need DOM</td>
+    </tr>
+    <tr>
+      <td><code>async</code></td>
+      <td>Parallel with parsing</td>
+      <td>As soon as downloaded</td>
+      <td>Any order</td>
+      <td>Independent scripts (analytics)</td>
+    </tr>
+    <tr>
+      <td><code>type="module"</code></td>
+      <td>Parallel with parsing</td>
+      <td>After HTML parsed</td>
+      <td>In order</td>
+      <td>ES6 modules</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Example 5: Font Optimization -->
+<div class="example">
+  <h2>Example 5: Font Optimization</h2>
+
+  <div class="bad">
+    <strong>❌ Bad: Synchronous font loading causes FOIT (Flash of Invisible Text):</strong>
+    <pre>&lt;link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet"&gt;</pre>
+  </div>
+
+  <div class="good">
+    <strong>✅ Good: Preload fonts + font-display: swap:</strong>
+    <pre>&lt;!-- Preconnect to Google Fonts --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+
+&lt;!-- Preload the woff2 file --&gt;
+&lt;link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin&gt;
+
+&lt;style&gt;
+  @font-face {
+    font-family: 'Inter';
+    src: url('/fonts/inter-var.woff2') format('woff2');
+    font-display: swap; /* Show fallback text immediately, swap when font loads */
+    font-weight: 400 700;
+  }
+&lt;/style&gt;</pre>
+  </div>
+
+  <div class="note">
+    <strong>font-display options:</strong> auto (browser default), block (short FOIT), swap (use fallback, swap when ready), fallback (short FOIT + swap), optional (short FOIT, no swap).
+  </div>
+</div>
+
+<!-- Example 6: Preventing Layout Shift -->
+<div class="example">
+  <h2>Example 6: Preventing Cumulative Layout Shift (CLS)</h2>
+
+  <div class="bad">
+    <strong>❌ Causes CLS:</strong>
+    <pre>&lt;img src="image.jpg" alt="Description"&gt;
+&lt;!-- Browser doesn't know dimensions until image loads --&gt;
+&lt;!-- Content below shifts down when image loads --&gt;</pre>
+    <div style="background: #e0e0e0; padding: 10px;">
+      <img src="https://via.placeholder.com/400x200/ff0000/ffffff?text=CLS+Example" style="width: 100%;">
+      <p>Text that shifts when image loads (no dimensions set)</p>
+    </div>
+  </div>
+
+  <div class="good">
+    <strong>✅ No CLS:</strong>
+    <pre>&lt;img src="image.jpg" alt="Description" width="800" height="450" style="max-width: 100%; height: auto;"&gt;</pre>
+    <div style="background: #e0e0e0; padding: 10px;">
+      <img src="https://via.placeholder.com/800x150/00aa00/ffffff?text=No+CLS" 
+           width="800" height="150" 
+           style="max-width: 100%; height: auto;">
+      <p>Text stays in place (browser reserves space from width/height)</p>
+    </div>
+  </div>
+</div>
+
+<!-- Example 7: Responsive Images with srcset -->
+<div class="example">
+  <h2>Example 7: Responsive Images with srcset</h2>
+  <p>Serve different image sizes based on screen width to save bandwidth.</p>
+
+  <pre>&lt;img src="photo-800.jpg"
+     srcset="photo-400.jpg 400w, 
+             photo-800.jpg 800w, 
+             photo-1200.jpg 1200w,
+             photo-1600.jpg 1600w"
+     sizes="(max-width: 600px) 100vw, 
+            (max-width: 1024px) 50vw, 
+            800px"
+     alt="Landscape photo"
+     width="800" height="600"
+     loading="lazy"&gt;</pre>
+
+  <div class="note">
+    <strong>How it works:</strong> Browser chooses the best image based on screen width, pixel density, and network conditions. 400w = 400 pixels wide. sizes tells the browser how much space the image will take.
+  </div>
+</div>
+
+<!-- Example 8: The Performance Checklist -->
+<div class="example">
+  <h2>Example 8: Performance Optimized HTML Skeleton</h2>
+
+  <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Performance Optimized&lt;/title&gt;
+  &lt;meta name="description" content="..."&gt;
+  
+  &lt;!-- Preconnect to origins --&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://cdn.example.com" crossorigin&gt;
+  
+  &lt;!-- Preload critical hero image &amp; fonts --&gt;
+  &lt;link rel="preload" href="hero.webp" as="image"&gt;
+  &lt;link rel="preload" href="font.woff2" as="font" type="font/woff2" crossorigin&gt;
+  
+  &lt;!-- Inlined critical CSS --&gt;
+  &lt;style&gt;
+    /* Above-the-fold styles only */
+    body { margin: 0; font-family: sans-serif; }
+    header { background: #333; color: #fff; padding: 1rem; }
+    .hero { max-width: 1200px; margin: 0 auto; padding: 4rem 1rem; }
+  &lt;/style&gt;
+  
+  &lt;!-- Async non-critical CSS --&gt;
+  &lt;link rel="preload" href="styles.css" as="style" 
+        onload="this.onload=null;this.rel='stylesheet'"&gt;
+  &lt;noscript&gt;&lt;link rel="stylesheet" href="styles.css"&gt;&lt;/noscript&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;img src="logo.svg" alt="Logo" width="100" height="40"&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+  &lt;/header&gt;
+  
+  &lt;main&gt;
+    &lt;section class="hero"&gt;
+      &lt;h1&gt;Optimized Page&lt;/h1&gt;
+      &lt;img src="hero.webp" alt="Hero" width="1200" height="600"
+           srcset="hero-600.webp 600w, hero-1200.webp 1200w"
+           sizes="100vw"
+           loading="eager" decoding="async"&gt;
+    &lt;/section&gt;
+    
+    &lt;section&gt;
+      &lt;img src="gallery-1.webp" alt="Gallery" width="400" height="300"
+           loading="lazy" decoding="async"&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  
+  &lt;!-- Deferred scripts --&gt;
+  &lt;script src="vendor.js" defer&gt;&lt;/script&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+
+<!-- Summary Metrics -->
+<div class="example">
+  <h2>Performance Budget Reference</h2>
+  <div>
+    <span class="metric">LCP: &lt; 2.5s</span>
+    <span class="metric">FID: &lt; 100ms</span>
+    <span class="metric">CLS: &lt; 0.1</span>
+    <span class="metric">TTFB: &lt; 800ms</span>
+    <span class="metric">FCP: &lt; 1.8s</span>
+    <span class="metric">TBT: &lt; 200ms</span>
+    <span class="metric">SI: &lt; 3.4s</span>
+    <span class="metric">DOM Nodes: &lt; 1500</span>
+    <span class="metric">DOM Depth: &lt; 32</span>
+    <span class="metric">Requests: &lt; 50</span>
+    <span class="metric">Page Size: &lt; 500KB</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+{
+  "module": "18-css-tables",
+  "title": "CSS Tables",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does border-collapse: collapse do?",
+      "options": [
+        "Removes all table borders",
+        "Merges adjacent cell borders into one",
+        "Adds more space between cells",
+        "Makes borders invisible"
+      ],
+      "correctAnswer": 1,
+      "explanation": "border-collapse: collapse merges the borders of adjacent cells into a single border."
+    },
+    {
+      "id": 2,
+      "question": "How do you create zebra-striped table rows?",
+      "options": [
+        "tr:even { background: gray; }",
+        "tr:nth-child(even) { background: #f0f0f0; }",
+        "tr:zebra { background: gray; }",
+        "table:stripe { background: gray; }"
+      ],
+      "correctAnswer": 1,
+      "explanation": "tr:nth-child(even) selects even-numbered rows for zebra striping."
+    },
+    {
+      "id": 3,
+      "question": "How do you make a table responsive on mobile?",
+      "options": [
+        "Set width: 100% and overflow-x: auto on wrapper",
+        "Tables are always responsive",
+        "Use table-layout: responsive",
+        "Set display: block on table"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Wrap the table in a container with overflow-x: auto and set width: 100% on the table for horizontal scrolling on small screens."
+    },
+    {
+      "id": 4,
+      "question": "What does table-layout: fixed do?",
+      "options": [
+        "Makes the table width fixed",
+        "Sets column widths based on the first row rather than content",
+        "Prevents the table from being resized",
+        "Fixes the table position on the page"
+      ],
+      "correctAnswer": 1,
+      "explanation": "table-layout: fixed forces column widths based on the first row or specified widths, improving performance."
+    },
+    {
+      "id": 5,
+      "question": "Which HTML element represents the table header?",
+      "options": [
+        "<th>",
+        "<thead>",
+        "<header>",
+        "<caption>"
+      ],
+      "correctAnswer": 0,
+      "explanation": "<th> (table header) defines a header cell, typically rendered bold and centered by default."
+    },
+    {
+      "id": 6,
+      "question": "What does border-spacing control?",
+      "options": [
+        "The space between table cells when borders are separate",
+        "The space between table rows only",
+        "The padding inside cells",
+        "The width of table borders"
+      ],
+      "correctAnswer": 0,
+      "explanation": "border-spacing sets the distance between cell borders when border-collapse is separate (not collapsed)."
+    },
+    {
+      "id": 7,
+      "question": "How do you style table rows on hover?",
+      "options": [
+        "tr:hover { background: #f0f0f0; }",
+        "tr:over { background: #f0f0f0; }",
+        "table:hover tr { background: #f0f0f0; }",
+        "td:hover { background: #f0f0f0; }"
+      ],
+      "correctAnswer": 0,
+      "explanation": "tr:hover applies styles when any part of a table row is hovered over."
+    },
+    {
+      "id": 8,
+      "question": "What does the <caption> element do?",
+      "options": [
+        "Adds a title or description to a table",
+        "Creates a caption for images",
+        "Adds a header row to the table",
+        "Captures table data"
+      ],
+      "correctAnswer": 0,
+      "explanation": "<caption> provides a title or description for a table, similar to a figcaption for images."
+    },
+    {
+      "id": 9,
+      "question": "What is the difference between auto and fixed table layout?",
+      "options": [
+        "auto adjusts columns based on content; fixed uses first row or explicit widths",
+        "fixed is faster but may overflow; auto is slower but respects content",
+        "Both work the same",
+        "auto is only for responsive tables"
+      ],
+      "correctAnswer": 0,
+      "explanation": "table-layout: auto adjusts column widths based on content (slower). fixed uses first-row widths (faster, more predictable)."
+    },
+    {
+      "id": 10,
+      "question": "How do you add padding inside table cells?",
+      "options": [
+        "Use padding on td and th elements",
+        "Use cellpadding attribute",
+        "Use border-spacing",
+        "Use cell-spacing"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS padding on td and th creates internal spacing in table cells, preferred over the HTML cellpadding attribute."
+    },
+    {
+      "id": 11,
+      "question": "What does empty-cells: hide do?",
+      "options": [
+        "Hides all empty cells in a table",
+        "Hides borders and background of empty cells",
+        "Removes empty cells from the layout",
+        "Hides the table if it's empty"
+      ],
+      "correctAnswer": 1,
+      "explanation": "empty-cells: hide hides the borders and background of cells with no content when border-collapse is separate."
+    },
+    {
+      "id": 12,
+      "question": "How do you align text to the top of a table cell?",
+      "options": [
+        "vertical-align: top",
+        "text-align: top",
+        "align: top",
+        "valign: top"
+      ],
+      "correctAnswer": 0,
+      "explanation": "vertical-align (not text-align) controls the vertical positioning of content within table cells."
+    },
+    {
+      "id": 13,
+      "question": "What is the purpose of the scope attribute on <th>?",
+      "options": [
+        "Defines whether the header applies to a row or column for accessibility",
+        "Sets the scope of table sorting",
+        "Controls which cells are visible",
+        "Defines the table's width scope"
+      ],
+      "correctAnswer": 0,
+      "explanation": "scope=\"col\" or scope=\"row\" on <th> associates headers with data cells, helping screen readers navigate tables."
+    },
+    {
+      "id": 14,
+      "question": "What does the <colgroup> element do?",
+      "options": [
+        "Groups columns for styling without applying to each cell",
+        "Creates a group of table cells",
+        "Groups table rows together",
+        "Combines multiple tables"
+      ],
+      "correctAnswer": 0,
+      "explanation": "<colgroup> with <col> elements allows applying styles (like background) to entire columns at once."
+    },
+    {
+      "id": 15,
+      "question": "How do you create a full-width table?",
+      "options": [
+        "width: 100% on the table",
+        "width: full on the table",
+        "max-width: 100% on the table",
+        "table-layout: full"
+      ],
+      "correctAnswer": 0,
+      "explanation": "width: 100% on the table element stretches it to fill the full width of its container."
+    },
+    {
+      "id": 16,
+      "question": "What is the default border-collapse value?",
+      "options": [
+        "collapse",
+        "separate",
+        "auto",
+        "none"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default border-collapse value is 'separate', meaning each cell has its own borders with space between them."
+    },
+    {
+      "id": 17,
+      "question": "How can you highlight the first column of a table?",
+      "options": [
+        "td:first-child or col:first-child",
+        "table:first-column",
+        "tr:first",
+        "table:first-col"
+      ],
+      "correctAnswer": 0,
+      "explanation": "td:first-child or the <col> element with :first-child can be used to style the first column."
+    },
+    {
+      "id": 18,
+      "question": "What is the recommended approach for sorting indicators in tables?",
+      "options": [
+        "Use CSS arrows/rotated icons to show sort direction",
+        "Use complex JavaScript for sorting",
+        "Sorting can't be indicated with CSS alone",
+        "Use the :sorted pseudo-class"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS can add arrows or rotate icons to indicate sort direction, often with ::after pseudo-elements on sortable headers."
+    },
+    {
+      "id": 19,
+      "question": "What does vertical-align: middle do in a table cell?",
+      "options": [
+        "Aligns content to the middle of the cell vertically",
+        "Centers text horizontally",
+        "Centers the cell in the row",
+        "Aligns the cell in the middle of the table"
+      ],
+      "correctAnswer": 0,
+      "explanation": "vertical-align: middle centers the content vertically within the table cell."
+    },
+    {
+      "id": 20,
+      "question": "How do you style thead, tbody, and tfoot differently?",
+      "options": [
+        "Use thead { }, tbody { }, tfoot { } selectors",
+        "Use tr:header, tr:body, tr:footer",
+        "Use table:header, table:body, table:footer",
+        "They can't be styled separately"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CSS selectors for thead, tbody, and tfoot elements allow separate styling for header, body, and footer sections."
+    }
+  ]
+}

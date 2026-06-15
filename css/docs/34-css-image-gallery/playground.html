@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Image Gallery Playground</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .controls { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .controls label { display: flex; flex-direction: column; gap: 5px; }
+    .gallery {
+      display: grid;
+      gap: var(--gap, 16px);
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .gallery img {
+      width: 100%;
+      height: var(--img-height, 200px);
+      object-fit: var(--object-fit, cover);
+      border-radius: var(--radius, 8px);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(var(--hover-scale, 1.05));
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Image Gallery Playground</h1>
+    <div class="controls">
+      <label>
+        Columns (min width):
+        <input type="range" id="colSlider" min="150" max="400" step="10" value="200">
+        <span id="colValue">200px</span>
+      </label>
+      <label>
+        Gap:
+        <input type="range" id="gapSlider" min="4" max="40" step="2" value="16">
+        <span id="gapValue">16px</span>
+      </label>
+      <label>
+        Image Height:
+        <input type="range" id="heightSlider" min="100" max="350" step="10" value="200">
+        <span id="heightValue">200px</span>
+      </label>
+      <label>
+        Hover Scale:
+        <input type="range" id="scaleSlider" min="1" max="1.5" step="0.05" value="1.05">
+        <span id="scaleValue">1.05</span>
+      </label>
+      <label>
+        Border Radius:
+        <input type="range" id="radiusSlider" min="0" max="20" step="1" value="8">
+        <span id="radiusValue">8px</span>
+      </label>
+    </div>
+    <div class="gallery" id="gallery">
+      <img src="https://placehold.co/300x200/007bff/fff?text=1" alt="1">
+      <img src="https://placehold.co/300x200/6610f2/fff?text=2" alt="2">
+      <img src="https://placehold.co/300x200/e83e8c/fff?text=3" alt="3">
+      <img src="https://placehold.co/300x200/fd7e14/fff?text=4" alt="4">
+      <img src="https://placehold.co/300x200/20c997/fff?text=5" alt="5">
+      <img src="https://placehold.co/300x200/6f42c1/fff?text=6" alt="6">
+      <img src="https://placehold.co/300x200/dc3545/fff?text=7" alt="7">
+      <img src="https://placehold.co/300x200/28a745/fff?text=8" alt="8">
+    </div>
+  </div>
+  <script>
+    const gallery = document.getElementById('gallery');
+    document.getElementById('colSlider').addEventListener('input', e => {
+      const val = e.target.value + 'px';
+      document.getElementById('colValue').textContent = val;
+      gallery.style.gridTemplateColumns = `repeat(auto-fill, minmax(${val}, 1fr))`;
+    });
+    document.getElementById('gapSlider').addEventListener('input', e => {
+      const val = e.target.value + 'px';
+      document.getElementById('gapValue').textContent = val;
+      gallery.style.setProperty('--gap', val);
+    });
+    document.getElementById('heightSlider').addEventListener('input', e => {
+      const val = e.target.value + 'px';
+      document.getElementById('heightValue').textContent = val;
+      gallery.style.setProperty('--img-height', val);
+    });
+    document.getElementById('scaleSlider').addEventListener('input', e => {
+      const val = parseFloat(e.target.value);
+      document.getElementById('scaleValue').textContent = val.toFixed(2);
+      gallery.style.setProperty('--hover-scale', val);
+    });
+    document.getElementById('radiusSlider').addEventListener('input', e => {
+      const val = e.target.value + 'px';
+      document.getElementById('radiusValue').textContent = val;
+      gallery.style.setProperty('--radius', val);
+    });
+  </script>
+</body>
+</html>

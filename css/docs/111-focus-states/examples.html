@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus States Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #f8f9fa; color: #222; }
+    h1 { margin-bottom: 0.5rem; }
+    .subtitle { color: #666; margin-bottom: 2rem; }
+    section { background: #fff; border: 1px solid #dee2e6; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+    h2 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #eee; }
+    .demo-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin: 1rem 0; }
+    .demo-card { display: flex; flex-direction: column; gap: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; min-width: 250px; }
+
+    /* Bad: no focus */
+    .bad-btn:focus { outline: none; }
+    .bad-btn { padding: 0.75rem 1.5rem; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; }
+
+    /* Good: focus-visible */
+    .good-btn:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
+    .good-btn { padding: 0.75rem 1.5rem; border: 2px solid #0066cc; background: #0066cc; color: #fff; border-radius: 6px; cursor: pointer; }
+
+    /* Custom box-shadow ring */
+    .shadow-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px #0066cc, 0 0 0 6px #fff; }
+    .shadow-btn { padding: 0.75rem 1.5rem; border: none; background: #28a745; color: #fff; border-radius: 8px; cursor: pointer; }
+
+    /* Card focus-within */
+    .card { display: inline-block; padding: 1.5rem; border: 2px solid #dee2e6; border-radius: 8px; transition: box-shadow 0.2s; }
+    .card:focus-within { border-color: #0066cc; box-shadow: 0 0 0 3px #0066cc40; }
+    .card a { color: #0066cc; }
+
+    /* Navigation example */
+    nav.demo-nav { display: flex; gap: 0.5rem; padding: 1rem; background: #343a40; border-radius: 8px; }
+    nav.demo-nav a { color: #adb5bd; text-decoration: none; padding: 0.5rem 1rem; border-radius: 4px; }
+    nav.demo-nav a:focus-visible { outline: 2px solid #ffc107; outline-offset: 2px; color: #fff; }
+
+    /* Skip link */
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: #0066cc; color: #fff; padding: 0.75rem 1.5rem; border-radius: 4px; z-index: 1000; text-decoration: none; }
+    .skip-link:focus { top: 1rem; }
+
+    /* Form inputs */
+    .form-group { margin: 1rem 0; }
+    .form-group label { display: block; margin-bottom: 0.25rem; font-weight: 600; }
+    .form-group input { width: 100%; padding: 0.75rem; border: 2px solid #ced4da; border-radius: 6px; font-size: 1rem; }
+    .form-group input:focus-visible { outline: none; border-color: #0066cc; box-shadow: 0 0 0 3px #0066cc40; }
+
+    /* Link focus */
+    .link-demo a { color: #0066cc; text-decoration: underline; padding: 2px; border-radius: 2px; }
+    .link-demo a:focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; background: #e8f0fe; }
+
+    /* Toggle switch */
+    .toggle-group { display: flex; align-items: center; gap: 0.75rem; }
+    .toggle-group input[type="checkbox"] { width: 1.25rem; height: 1.25rem; }
+    .toggle-group input[type="checkbox"]:focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+
+    /* Focus within dropdown */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-trigger { padding: 0.75rem 1.5rem; background: #0066cc; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+    .dropdown-trigger:focus-visible { outline: 3px solid #ffc107; outline-offset: 2px; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #dee2e6; border-radius: 6px; min-width: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .dropdown-menu a { display: block; padding: 0.75rem 1rem; color: #333; text-decoration: none; }
+    .dropdown-menu a:focus-visible { background: #e8f0fe; outline: 2px solid #0066cc; }
+    .dropdown:focus-within .dropdown-menu { display: block; }
+
+    /* Badge focus */
+    .badge-focus { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .badge-focus button { border: none; background: transparent; cursor: pointer; padding: 2px; border-radius: 50%; }
+    .badge-focus button:focus-visible { outline: 2px solid #e74c3c; outline-offset: 2px; }
+
+    @media (forced-colors: active) {
+      :focus-visible { outline: 2px solid Highlight; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <h1>🎯 Focus States: Accessible Keyboard Navigation</h1>
+  <p class="subtitle">Demonstrating correct and incorrect focus state patterns</p>
+
+  <main id="main-content">
+    <section>
+      <h2>1. Bad vs Good: Focus Removal</h2>
+      <div class="demo-row">
+        <div class="demo-card">
+          <h3 style="color:#e74c3c;">❌ Bad: outline: none</h3>
+          <button class="bad-btn">Click or Tab to me</button>
+          <p style="font-size:0.875rem;color:#888;">No focus ring — keyboard users can't see focus.</p>
+        </div>
+        <div class="demo-card">
+          <h3 style="color:#28a745;">✅ Good: :focus-visible</h3>
+          <button class="good-btn">Click or Tab to me</button>
+          <p style="font-size:0.875rem;color:#888;">Clear focus ring on keyboard navigation only.</p>
+        </div>
+        <div class="demo-card">
+          <h3 style="color:#28a745;">✅ Box-shadow Ring</h3>
+          <button class="shadow-btn">Click or Tab</button>
+          <p style="font-size:0.875rem;color:#888;">Custom ring that respects border-radius.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Navigation Focus</h2>
+      <nav class="demo-nav">
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Services</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+      <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">Tab through the navigation items. Focus ring is yellow on dark background for contrast.</p>
+    </section>
+
+    <section>
+      <h2>3. Card Focus-within</h2>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div class="card" tabindex="0">
+          <h3>Card Title 1</h3>
+          <p>Content with a <a href="#">link inside</a>.</p>
+          <p>Focus on any element inside highlights the card.</p>
+        </div>
+        <div class="card" tabindex="0">
+          <h3>Card Title 2</h3>
+          <p>More content with <a href="#">another link</a>.</p>
+          <p>Tab into the card to see the effect.</p>
+        </div>
+      </div>
+      <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">:focus-within highlights the card when any child has focus.</p>
+    </section>
+
+    <section>
+      <h2>4. Form Input Focus</h2>
+      <div style="max-width:400px;">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="3" style="width:100%;padding:0.75rem;border:2px solid #ced4da;border-radius:6px;font-size:1rem;"></textarea>
+        </div>
+      </div>
+      <p style="font-size:0.875rem;color:#888;">Inputs show blue border + box-shadow on focus.</textarea>
+    </section>
+
+    <section>
+      <h2>5. Link Focus</h2>
+      <p class="link-demo">
+        Read our <a href="#">privacy policy</a> and <a href="#">terms of service</a>.
+        Also check <a href="#">accessibility statement</a>.
+      </p>
+      <p style="font-size:0.875rem;color:#888;">Links have background highlight on focus for greater visibility.</p>
+    </section>
+
+    <section>
+      <h2>6. Checkbox and Radio Focus</h2>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;">
+        <label class="toggle-group">
+          <input type="checkbox" checked> Remember me
+        </label>
+        <label class="toggle-group">
+          <input type="checkbox"> Subscribe to newsletter
+        </label>
+        <label class="toggle-group">
+          <input type="radio" name="option" checked> Option A
+        </label>
+        <label class="toggle-group">
+          <input type="radio" name="option"> Option B
+        </label>
+      </div>
+    </section>
+
+    <section>
+      <h2>7. Dropdown with Focus Management</h2>
+      <div class="dropdown">
+        <button class="dropdown-trigger">More Actions ▼</button>
+        <div class="dropdown-menu">
+          <a href="#">Edit</a>
+          <a href="#">Duplicate</a>
+          <a href="#">Delete</a>
+          <a href="#">Share</a>
+        </div>
+      </div>
+      <p style="margin-top:0.5rem;font-size:0.875rem;color:#888;">:focus-within keeps the dropdown open while any child is focused.</p>
+    </section>
+
+    <section>
+      <h2>8. Tabbable vs Non-tabbable</h2>
+      <div style="display:flex;gap:2rem;">
+        <div>
+          <h3>tabindex="0"</h3>
+          <div tabindex="0" style="padding:1rem;border:2px dashed #ccc;border-radius:6px;">
+            I am focusable with Tab
+          </div>
+        </div>
+        <div>
+          <h3>tabindex="-1"</h3>
+          <div tabindex="-1" style="padding:1rem;border:2px dashed #ccc;border-radius:6px;">
+            I am programmatically focusable only
+          </div>
+        </div>
+        <div>
+          <h3>No tabindex</h3>
+          <div style="padding:1rem;border:2px dashed #ccc;border-radius:6px;">
+            I am NOT focusable
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>9. Focus Trap Demo (Conceptual)</h2>
+      <div style="padding:1rem;background:#fff3cd;border:2px solid #ffc107;border-radius:8px;">
+        <p><strong>Note:</strong> Focus traps are used in modals and dialogs. When a modal opens, focus is trapped inside until it closes. This requires JavaScript.</p>
+        <p style="font-size:0.875rem;color:#888;">Always provide a way to close the modal (Escape key + close button).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:0.875rem;color:#888;">
+    <p>Press Tab to navigate through all interactive elements. Use Shift+Tab to go backwards.</p>
+  </footer>
+
+  <script>
+    // For the dropdown to close on Escape
+    document.querySelectorAll('.dropdown-trigger').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const menu = this.nextElementSibling;
+        const isVisible = menu.style.display === 'block';
+        menu.style.display = isVisible ? 'none' : 'block';
+      });
+    });
+  </script>
+</body>
+</html>

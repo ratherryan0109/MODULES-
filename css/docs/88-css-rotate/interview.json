@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does the rotate() function do in CSS?", "answer": "rotate(angle) spins an element around its transform-origin point by the specified angle." },
+    { "question": "What units can be used for rotation angles?", "answer": "Degrees (deg), radians (rad), gradians (grad), and turns (turn) are all valid rotation units." },
+    { "question": "How much rotation is one full turn?", "answer": "One full turn equals 360 degrees, 6.28319 radians, 400 gradians, or 1 turn." },
+    { "question": "What does rotateX() do?", "answer": "rotateX(angle) rotates an element around its horizontal X-axis, tilting it forward or backward in 3D space." },
+    { "question": "What does rotateY() do?", "answer": "rotateY(angle) rotates an element around its vertical Y-axis, creating a horizontal spin in 3D space." },
+    { "question": "What does rotateZ() do?", "answer": "rotateZ(angle) rotates an element around its Z-axis, which is the same as the 2D rotate() function." },
+    { "question": "What is transform-origin?", "answer": "transform-origin sets the pivot point for rotation, defaulting to the center (50% 50%) of the element." },
+    { "question": "What is the default value of transform-origin?", "answer": "The default is 50% 50%, representing the exact center of the element." },
+    { "question": "Can you use negative rotation values?", "answer": "Yes, negative values rotate counter-clockwise instead of clockwise." },
+    { "question": "Does rotation affect the element's layout box?", "answer": "No, rotation is purely visual and does not change the element's layout dimensions or document flow position." }
+  ],
+  "intermediate": [
+    { "question": "How does 3D rotation differ from 2D rotation?", "answer": "3D rotation (rotateX/Y) requires perspective to show depth; rotateZ is equivalent to 2D rotation and works without perspective." },
+    { "question": "What perspective values create realistic 3D rotation?", "answer": "Values between 400px and 1000px create realistic depth; lower values exaggerate depth, higher values flatten the effect." },
+    { "question": "How do you create a card flip animation using rotateY?", "answer": "Use rotateY(180deg) on the card's back face with backface-visibility: hidden and a parent with perspective, then toggle a class." },
+    { "question": "What is backface-visibility and when is it used?", "answer": "backface-visibility: hidden hides the element when rotated beyond 90deg, preventing mirrored content from showing during 3D rotations." },
+    { "question": "How does transform-origin affect rotation behavior?", "answer": "Setting transform-origin: top left rotates around the top-left corner; transform-origin: 100% 100% rotates around the bottom-right corner." },
+    { "question": "Can you chain rotateX and rotateY on the same element?", "answer": "Yes: transform: rotateX(30deg) rotateY(45deg) creates a compound 3D rotation around both axes simultaneously." },
+    { "question": "How does rotate interact with transform-style: preserve-3d?", "answer": "preserve-3d ensures children maintain their 3D positions relative to the parent's rotation, enabling nested 3D scenes." },
+    { "question": "What is the rotate property vs the rotate() function?", "answer": "The rotate property is an individual transform property applied separately; rotate() is a function used within the transform property." },
+    { "question": "How do you rotate a background image without rotating content?", "answer": "You cannot directly rotate a background, but you can use a pseudo-element with its own rotation while keeping content unrotated." },
+    { "question": "What happens when you rotate an element with overflow: hidden?", "answer": "The overflow clipping rectangle rotates with the element, clipping content based on the rotated bounding box." }
+  ],
+  "advanced": [
+    { "question": "How does rotate3d(x, y, z, angle) work?", "answer": "rotate3d takes a vector (x, y, z) and an angle, rotating the element around that axis vector in 3D space." },
+    { "question": "How do you calculate the effective rotation of nested transformed elements?", "answer": "Each rotation matrix multiplies; the final orientation is the cumulative matrix product in the local coordinate system of each level." },
+    { "question": "How do rotations interact with pointer events?", "answer": "Pointer event coordinates are adjusted for the visual bounding box, so clickable areas follow the rotated visual shape." },
+    { "question": "How can you animate a continuous spinning rotation efficiently?", "answer": "Use an infinite animation: @keyframes spin { to { transform: rotate(360deg); } } with linear timing for jank-free spinning." },
+    { "question": "What is gimbal lock in CSS 3D rotations?", "answer": "Gimbal lock occurs when two rotation axes align, losing a degree of freedom; using rotate3d avoids this issue." },
+    { "question": "How do you rotate around a custom diagonal axis?", "answer": "Use rotate3d(x, y, z, angle) with the vector defining the axis, e.g., rotate3d(1, 1, 0, 45deg) for a diagonal rotation." },
+    { "question": "How does perspective on parent vs perspective() function differ?", "answer": "perspective on the parent creates a shared 3D space for children; perspective() on the element creates a vanishing point at its center." },
+    { "question": "How do rotation animations affect browser compositing?", "answer": "Rotations promote elements to compositor layers; 3D rotations use GPU rasterization through the compositor thread." },
+    { "question": "Can you rotate gradient or box-shadow independently of content?", "answer": "No, but you can rotate a pseudo-element containing the gradient, or use conic-gradient with angle control for rotation effects." },
+    { "question": "How does will-change: transform optimize rotation performance?", "answer": "will-change: transform promotes the element to its own layer before the animation starts, preventing paint-related jank." }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "module": "131-admin-dashboard",
+  "title": "Admin Dashboard",
+  "beginner": [
+    {
+      "question": "What is the typical layout of an admin dashboard?",
+      "answer": "A sidebar (navigation) on the left, a top header bar, and the main content area. The main area contains widgets, data tables, charts, and action panels. Layout uses CSS Grid or Flexbox with the sidebar fixed at 240-280px."
+    },
+    {
+      "question": "What is a 'dashboard widget'?",
+      "answer": "A widget is a card-like container displaying a piece of information: stats (revenue, users, orders), charts, recent activity, or to-do lists. Widgets are arranged in a responsive grid. Each widget has a title, content, and optional actions."
+    },
+    {
+      "question": "How do you style an admin sidebar?",
+      "answer": "Fixed position, left side, full viewport height: `position: fixed; top: 0; left: 0; width: 260px; height: 100vh; overflow-y: auto; z-index: 100;`. Contains logo, navigation links (with icons), and sometimes user info at the bottom."
+    },
+    {
+      "question": "What is a 'data table' in an admin dashboard?",
+      "answer": "A data table displays structured data in rows and columns with sortable headers, search, and pagination. Responsive data tables may convert to stacked cards on mobile. Use `<table>` or CSS Grid for the table structure."
+    },
+    {
+      "question": "How do you make a data table responsive?",
+      "answer": "Options: (1) Horizontal scroll with `overflow-x: auto`, (2) Convert to stacked cards (each row becomes a card with label:value pairs), (3) Hide less important columns on small screens using media queries and `display: none`."
+    },
+    {
+      "question": "What is a 'stat card' in a dashboard?",
+      "answer": "A stat card displays a single metric: value (large, bold), label, icon, and trend indicator (up/down arrow with percentage). Example: '12,847' with 'Total Users' label, user icon, and '+12.5%' green arrow."
+    },
+    {
+      "question": "How do you build a responsive widgets grid?",
+      "answer": "Use CSS Grid: `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))`. Stat cards are 1fr each. Charts might span 2 columns on desktop. On mobile, everything becomes 1fr single column."
+    },
+    {
+      "question": "What is the role of the top header bar in an admin dashboard?",
+      "answer": "The header contains: hamburger menu (to toggle sidebar), page title, search bar, notifications, user avatar/dropdown, and settings. Fixed at top (`position: sticky; top: 0; z-index: 50;`)."
+    },
+    {
+      "question": "How do you style navigation links in an admin sidebar?",
+      "answer": "Each link: `display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 8px; color: var(--text-secondary);`. Active link: `background: var(--primary-light); color: var(--primary); font-weight: 600;`."
+    },
+    {
+      "question": "What is the 'breadcrumb' navigation in a dashboard?",
+      "answer": "Breadcrumbs show the current page location (e.g., Dashboard > Users > Edit User). Use `aria-label=\"Breadcrumb\"` with `<nav>` and `aria-current=\"page\"` on the current item. Helpful for deep navigation in admin sections."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement a collapsible sidebar?",
+      "answer": "Use a CSS class toggle: `.sidebar { width: 260px; transition: width 0.3s; } .sidebar--collapsed { width: 72px; }`. In collapsed mode, show only icons. Main content adjusts: `margin-left: 260px;` or use CSS Grid with `grid-template-columns: auto 1fr`."
+    },
+    {
+      "question": "How do you create a responsive dashboard sidebar on mobile?",
+      "answer": "On mobile (< 768px), hide the sidebar off-screen: `transform: translateX(-100%);`. Show an overlay backdrop. A hamburger button toggles it. The sidebar becomes a slide-out drawer. Use `transition: transform 0.3s ease;`."
+    },
+    {
+      "question": "How do you implement a 'theme/skin switcher' for an admin dashboard?",
+      "answer": "Define multiple theme CSS custom property bundles. Users select a theme (light, dark, or preset colors like 'purple', 'green'). Apply via a `data-theme` attribute. Persist in localStorage. Animate transitions with `transition: background 0.3s, color 0.3s`."
+    },
+    {
+      "question": "How do you create a 'progress bar' component for dashboard metrics?",
+      "answer": "A container div with `background: #e5e7eb; border-radius: 8px; overflow: hidden;`. Inner fill div: `width: 72%; height: 8px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 8px; transition: width 1s ease;`."
+    },
+    {
+      "question": "How do you design a 'notification dropdown' for the header?",
+      "answer": "A dropdown panel from the bell icon. Desktop: `position: absolute; top: 100%; right: 0; width: 360px; max-height: 480px; overflow-y: auto;`. Each notification: avatar/icon, message text, timestamp. Mark-as-read dot indicator."
+    },
+    {
+      "question": "How do you implement 'inline editing' in a data table?",
+      "answer": "Click a cell to enter edit mode: show an input/select instead of text. Use `<input>` or `<select>` with `border: none; background: transparent;` for seamless look. Confirm on Enter/Blur. Cancel on Escape. Announce changes with `aria-live`."
+    },
+    {
+      "question": "How do you create a 'Kanban board' panel in a dashboard?",
+      "answer": "A horizontal scrollable container with columns (To Do, In Progress, Review, Done). Each column has a title, item count, and card list. Cards are draggable. Use `overflow-x: auto;` with `scroll-snap-type: x mandatory;`."
+    },
+    {
+      "question": "How do you implement responsive dashboard charts?",
+      "answer": "Use a library (Chart.js, ApexCharts) that supports responsive resizing. Set `max-width: 100%` on chart containers. Charts redraw on window resize. On mobile, simplify chart data (fewer data points, remove legends if needed)."
+    },
+    {
+      "question": "How do you create a 'recent activity' feed widget?",
+      "answer": "A vertical list with timeline-like styling. Each item: icon/avatar, action description, relative timestamp. Use `::before` pseudo-element for a timeline line connecting items. `flex-direction: row; gap: 12px;` for each activity row."
+    },
+    {
+      "question": "How do you design a 'filter bar' for dashboard tables?",
+      "answer": "A horizontal bar above the table with: search input, date range picker, status dropdown, and 'Apply Filters' button. On mobile, filters collapse into a toggleable panel. Active filter shown as removable chips."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a 'dynamic dashboard' where users can add/remove/rearrange widgets?",
+      "answer": "Use CSS Grid with `grid-area` assignments stored in user preferences. Users drag widgets to rearrange (via a library like GridStack or custom drag-and-drop). Persist widget layout in localStorage. Each widget has a 'remove' button."
+    },
+    {
+      "question": "How do you implement 'real-time updates' in dashboard widgets (live data)?",
+      "answer": "Use Server-Sent Events or WebSockets to push updates. Update widget content with CSS transitions for smooth visual updates. Add a pulsing indicator for live connections. Use `aria-live=\"polite\"` for screen reader announcements."
+    },
+    {
+      "question": "How do you create a responsive 'pivot table' or complex data grid?",
+      "answer": "Use a library like AG Grid or Tabulator, which handle responsive behavior. For custom: use CSS Grid with sticky headers and first column. On mobile, provide a 'details' expandable row instead of showing all columns."
+    },
+    {
+      "question": "How do you implement 'bulk actions' in a data table (select multiple rows)?",
+      "answer": "Checkbox column with `role=\"checkbox\"`. Selected rows get `aria-selected=\"true\"`. Show an action bar with count and actions (Delete, Export, Change Status). The bar appears fixed at bottom or top of the table."
+    },
+    {
+      "question": "How do you implement 'drag-and-drop' file upload area in a dashboard?",
+      "answer": "A dropzone with dashed border, icon, and 'Drag & drop or click to upload' text. Use `:hover` and `:focus-visible` states. On drag-over, highlight with `border-color: var(--primary); background: var(--primary-light);`."
+    },
+    {
+      "question": "How do you create a responsive 'multi-level dropdown' in the sidebar?",
+      "answer": "Expandable sub-menus: click a parent item to toggle children. Use `max-height` transition for smooth expand/collapse. Desktop: expand inline. Mobile: expand with slide animation. Use `aria-expanded` on parent toggle."
+    },
+    {
+      "question": "How do you implement 'user impersonation' UI in an admin dashboard?",
+      "answer": "A prominent banner at the top: 'You are viewing as [username]'. Use `position: sticky; top: 0; z-index: 1000; background: #f59e0b;`. Provide 'Exit Impersonation' button. Style differs from the normal header."
+    },
+    {
+      "question": "How do you design a responsive 'settings page' with tab navigation?",
+      "answer": "Desktop: vertical tabs (left sidebar) with content (right). Mobile: horizontal scrollable tabs or accordion sections. Each tab/section has form fields. Use `role=\"tablist\"`, `role=\"tab\"`, `role=\"tabpanel\"` for accessibility."
+    },
+    {
+      "question": "How do you implement 'activity log' with infinite scroll and filtering?",
+      "answer": "A virtualized list (or paginated) showing timestamped events. Each event: icon, user, action, target, timestamp. Use IntersectionObserver for infinite scroll. Filters: date range, user, action type. URL-based filter state."
+    },
+    {
+      "question": "How do you handle CSS for dashboard printing (export to PDF)?",
+      "answer": "Add `@media print { ... }`. Hide sidebar, header, and interactive elements. Show tables, charts (as images), and widgets. Use `page-break-before: auto; page-break-inside: avoid;`. Convert charts to canvas images before print."
+    }
+  ]
+}

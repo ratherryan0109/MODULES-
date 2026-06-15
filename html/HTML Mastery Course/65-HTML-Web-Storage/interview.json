@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the Web Storage API and how does it differ from cookies?",
+    "answer": "The Web Storage API provides two mechanisms (localStorage and sessionStorage) for storing key-value pairs in the browser. Unlike cookies, Web Storage data is never sent to the server automatically, has a much larger storage limit (~5-10MB vs 4KB), and has a cleaner programmatic API. Cookies are sent with every HTTP request, while Web Storage stays client-side only."
+  },
+  {
+    "question": "Explain the difference between localStorage and sessionStorage.",
+    "answer": "localStorage persists data until explicitly deleted by the user or code — it survives browser restarts, tab closures, and system reboots. sessionStorage only persists for the duration of the page session — data is cleared when the tab or browser window is closed. Additionally, sessionStorage is isolated per tab (opening a new tab creates a new session), while localStorage is shared across all tabs/windows from the same origin."
+  },
+  {
+    "question": "What is the storage limit for localStorage in modern browsers?",
+    "answer": "Most modern browsers provide 5MB of storage per origin for localStorage, though some implementations allow up to 10MB. This limit applies to the total data across all keys for a given origin. The limit can vary slightly between browsers (Chrome: ~5-10MB, Firefox: ~5-10MB, Safari: ~5MB). Unlike IndexedDB, there's no way to request more quota for localStorage."
+  },
+  {
+    "question": "How do you store and retrieve JavaScript objects using localStorage?",
+    "answer": "localStorage only supports string values. To store objects, use JSON.stringify(): localStorage.setItem('key', JSON.stringify(obj)). To retrieve and parse, use: const obj = JSON.parse(localStorage.getItem('key')). Always wrap this in a try/catch block because JSON.parse can throw if the stored value is invalid JSON, and localStorage operations can throw QuotaExceededError."
+  },
+  {
+    "question": "What is the QuotaExceededError and how do you handle it?",
+    "answer": "QuotaExceededError is thrown when an operation exceeds the storage limit (e.g., trying to store more than 5MB). It's a DOMException with the name 'QuotaExceededError'. Handle it by wrapping storage operations in try/catch blocks. When caught, you can notify the user, clear old data, or fall back to a different storage mechanism. Example: try { localStorage.setItem('key', val); } catch (e) { if (e.name === 'QuotaExceededError') { /* handle full storage */ } }"
+  },
+  {
+    "question": "Explain the storage event and its use cases.",
+    "answer": "The 'storage' event fires on the window object when localStorage or sessionStorage changes in another tab or window of the same origin. It provides a StorageEvent object with properties: key, oldValue, newValue, url, and storageArea. Use cases include synchronizing UI state across tabs (e.g., theme changes, user logout, cart updates). The event does NOT fire on the tab that made the change — this prevents infinite loops."
+  },
+  {
+    "question": "Is Web Storage synchronous or asynchronous? Why does this matter?",
+    "answer": "Web Storage operations are synchronous — they block the main thread while reading/writing. For small amounts of data (< 100KB), this is typically unnoticeable. However, for large data operations, synchronous storage can cause performance issues and jank. For large datasets, IndexedDB (asynchronous) or the Cache API are better choices. The synchronous nature of Web Storage can also cause issues in service workers, where synchronous operations are limited."
+  },
+  {
+    "question": "What are the security concerns with localStorage?",
+    "answer": "localStorage is accessible to any JavaScript running on the same origin, making it vulnerable to XSS (Cross-Site Scripting) attacks. Sensitive data like authentication tokens, passwords, or personal information should never be stored in localStorage because injected scripts can read it. Additionally, localStorage has no built-in encryption, no protection against CSRF, and no expiration mechanism. For sensitive data, use HttpOnly cookies (for server-side token validation) or encrypted storage solutions."
+  },
+  {
+    "question": "How do you check if localStorage is available in a user's browser?",
+    "answer": "Availability checking requires a try/catch approach because browsers may throw errors or define the objects but disable them (e.g., in private/incognito mode). A common feature detection function: function storageAvailable(type) { try { const storage = window[type]; const x = '__storage_test__'; storage.setItem(x, x); storage.removeItem(x); return true; } catch (e) { return e instanceof DOMException && (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') && storage && storage.length > 0; } }. Usage: storageAvailable('localStorage')."
+  },
+  {
+    "question": "What is the same-origin policy in the context of Web Storage?",
+    "answer": "Web Storage is scoped per origin, defined by the protocol (http/https), hostname, and port. For example, http://example.com and https://example.com are different origins and cannot access each other's storage. Similarly, http://example.com:8080 cannot access http://example.com:3000's storage. This security boundary is enforced by the browser and prevents cross-origin data leaks."
+  },
+  {
+    "question": "How would you implement a TTL (time-to-live) pattern with localStorage since it has no built-in expiry?",
+    "answer": "Since localStorage has no native TTL, implement it by storing an object with both the value and an expiry timestamp. On retrieval, check the timestamp and remove/return null if expired. Example: setWithExpiry(key, value, ttlMs) { const item = { value, expiry: Date.now() + ttlMs }; localStorage.setItem(key, JSON.stringify(item)); }. getWithExpiry(key) { const raw = localStorage.getItem(key); if (!raw) return null; const item = JSON.parse(raw); if (Date.now() > item.expiry) { localStorage.removeItem(key); return null; } return item.value; }."
+  },
+  {
+    "question": "How is Web Storage data organized in terms of key naming conventions?",
+    "answer": "Best practices include using a namespace prefix to avoid collisions (e.g., 'myApp_user_prefs'), camelCase or snake_case for readability, and avoiding keys that could conflict with other scripts or libraries on the same origin. A structured approach like 'appName:feature:key' helps organize storage. Also important: keep keys short to save space since storage is limited."
+  },
+  {
+    "question": "Can Web Storage be used in Web Workers?",
+    "answer": "No, localStorage and sessionStorage are not available in Web Workers (including Dedicated Workers, Shared Workers, and Service Workers). They are defined on the window object, which doesn't exist in worker contexts. For storage needs in workers, use the Cache API, IndexedDB, or postMessage to communicate with a main thread that has storage access."
+  },
+  {
+    "question": "What is the difference between Web Storage and IndexedDB?",
+    "answer": "Web Storage (localStorage/sessionStorage) is a simple synchronous key-value store with 5-10MB limit, string-only values, and no indexing or querying. IndexedDB is an asynchronous NoSQL database with much larger storage limits (usually > 50% of disk space), supports structured data, indexes, transactions, cursors, and complex queries. IndexedDB is better for large datasets, offline apps, and complex data structures, while Web Storage is better for small amounts of simple data."
+  },
+  {
+    "question": "How do you iterate over all keys and values in localStorage?",
+    "answer": "Use the length property and key() method: for (let i = 0; i < localStorage.length; i++) { const key = localStorage.key(i); const value = localStorage.getItem(key); console.log(key, value); }. Alternatively, use Object.keys(localStorage) to get an array of all keys. Note that Object.keys(localStorage) is non-standard but widely supported."
+  },
+  {
+    "question": "What happens to localStorage data when the user clears their browsing data?",
+    "answer": "localStorage data is typically cleared when the user clears 'cookies and site data' or 'cached data' in their browser settings. The data is stored by the browser on the user's filesystem, so it's subject to browser data management policies. Users should be informed that clearing browsing data may delete their locally stored preferences or offline data."
+  },
+  {
+    "question": "Can you share sessionStorage data between two tabs from the same origin?",
+    "answer": "No, each tab or window gets its own separate sessionStorage instance. However, there are exceptions: if a page opens a new tab using window.open() or an <a target='_blank'> link, the new tab may inherit the opener's sessionStorage in some browsers (Chrome does this for window.open). For intentional cross-tab communication with session-like isolation, consider using session cookies or a combination of localStorage with a session identifier."
+  },
+  {
+    "question": "How would you build a simple caching layer using localStorage?",
+    "answer": "Create a cache utility that stores API responses with timestamps, then checks expiry before returning cached data: const cache = { set(key, data, ttlMs = 300000) { localStorage.setItem('cache_' + key, JSON.stringify({ data, timestamp: Date.now(), ttl: ttlMs })); }, get(key) { const raw = localStorage.getItem('cache_' + key); if (!raw) return null; const entry = JSON.parse(raw); if (Date.now() - entry.timestamp > entry.ttl) { localStorage.removeItem('cache_' + key); return null; } return entry.data; }, clear() { Object.keys(localStorage).filter(k => k.startsWith('cache_')).forEach(k => localStorage.removeItem(k)); } }."
+  },
+  {
+    "question": "What is the Privacy Sandbox and how does it affect Web Storage?",
+    "answer": "The Privacy Sandbox is Google's initiative to phase out third-party cookies and improve privacy. Web Storage (localStorage/sessionStorage) is first-party storage and is not directly affected by third-party cookie deprecation. However, Chrome has proposed partitioning all storage (including Web Storage) by top-level site, which would prevent embedded third-party iframes from accessing storage across different sites they're embedded on. This is already implemented in Safari (Intelligent Tracking Prevention) and Firefox (Total Cookie Protection)."
+  },
+  {
+    "question": "How do you handle the scenario where multiple tabs need to share a Web Storage key without conflicts?",
+    "answer": "Use the 'storage' event for cross-tab synchronization. When one tab updates a shared key, other tabs listen for the event and update their UI accordingly. For prevention of race conditions, implement a locking pattern: store a lock key with a timeout, check the lock before writing, and release the lock after the operation. For more complex multi-tab scenarios, consider using the Broadcast Channel API or a SharedWorker alongside Web Storage."
+  },
+  {
+    "question": "What is the difference between localStorage and sessionStorage regarding form data persistence?",
+    "answer": "localStorage is better for long-term draft persistence (data survives browser restarts, so users can come back hours later). sessionStorage is useful for short-term form state (e.g., preventing data loss on accidental navigation within a single session). sessionStorage auto-clears when the tab closes, which can be more privacy-friendly for sensitive form data."
+  },
+  {
+    "question": "How would you migrate from localStorage to IndexedDB?",
+    "answer": "Read all localStorage data using Object.keys() or iteration, map it to IndexedDB object store records, write them in an IndexedDB transaction, then optionally clear localStorage. Use a version-based migration flag (store 'migration_version' in localStorage) to detect if migration is needed. Use the IDBWrapper library or native IndexedDB API with a wrapper pattern. Keep localStorage as a fallback for simple preferences while moving large data to IndexedDB."
+  },
+  {
+    "question": "Explain the concept of storage partitioning as implemented by Safari ITP.",
+    "answer": "Storage partitioning (enforced by Safari's Intelligent Tracking Prevention) means that third-party iframes get a separate, partitioned storage area for each top-level site they're embedded on. For example, a Facebook embed on siteA.com gets different localStorage access than the same Facebook embed on siteB.com. This prevents cross-site tracking via shared storage. This behavior is now being adopted by other browsers, including Chrome (as part of the Privacy Sandbox)."
+  },
+  {
+    "question": "How can you observe changes to localStorage from a service worker?",
+    "answer": "Service workers cannot directly read localStorage (it's not available in the ServiceWorkerGlobalScope). However, a service worker can intercept requests and communicate with the main thread via postMessage to read/write localStorage. Alternatively, use the Cache API or IndexedDB within the service worker for offline storage needs. The service worker can also respond to storage events by listening on the Client interface."
+  },
+  {
+    "question": "What are the performance implications of frequent localStorage writes?",
+    "answer": "Each localStorage write is synchronous and blocks the main thread. Frequent writes (e.g., on every keystroke in a text editor) can cause UI jank and poor responsiveness. Best practice: debounce writes (e.g., save every 500ms instead of every keystroke), batch multiple changes into a single write, and avoid writing in animation loops. For high-frequency storage, consider using IndexedDB (async) or in-memory state with periodic persistence."
+  },
+  {
+    "question": "How would you implement a storage quota warning system?",
+    "answer": "Estimate current usage by summing the byte length of all keys and values (each UTF-16 character = 2 bytes). Periodically check if usage exceeds a threshold (e.g., 80% of the 5MB limit). When the threshold is exceeded, notify the user, suggest clearing old data, or automatically evict least-recently-used items. Example: const estimateSize = () => { let size = 0; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); const v = localStorage.getItem(k); size += (k.length + v.length) * 2; } return size; }."
+  },
+  {
+    "question": "Can you use localStorage in server-side rendering (SSR) frameworks like Next.js?",
+    "answer": "No, localStorage is a browser API and is not available in server-side environments like Node.js or during SSR. Attempting to access localStorage in an SSR context will throw a ReferenceError. In frameworks like Next.js, wrap storage access in useEffect (client-side) or check typeof window !== 'undefined' before accessing storage. Many SSR frameworks provide abstractions to conditionally access browser APIs."
+  },
+  {
+    "question": "What is the 'CookieStore' API and how does it compare to Web Storage?",
+    "answer": "The CookieStore API (part of the Cookie Store proposal) provides an async, promise-based interface for cookies, accessible from both main thread and service workers. Unlike Web Storage, CookieStore supports path/domain scoping, HttpOnly flag, SameSite attribute, and cookies are sent with requests. CookieStore is currently experimental and only available in Chromium browsers with a flag. Web Storage remains the simpler, more universally supported option for client-only data."
+  },
+  {
+    "question": "How would you handle storage corruption in localStorage?",
+    "answer": "localStorage can become corrupted due to disk errors, incomplete writes, or browser bugs. To handle this: 1) Validate data on read with schema checking or JSON.parse wrapped in try/catch. 2) Use checksums: store 'data_checksum' alongside 'data' and verify on read. 3) Implement redundancy: store critical data in two separate keys. 4) Provide a 'reset to defaults' mechanism. 5) Always use try/catch around all localStorage operations. 6) Consider a wrapper that returns default values on validation failure."
+  },
+  {
+    "question": "What is the future of localStorage and its alternatives?",
+    "answer": "localStorage is a stable, well-supported API that won't be removed, but its role is diminishing for complex applications. Modern alternatives include: 1) IndexedDB for large/structured data, 2) Cache API for HTTP request caching, 3) Origin Private File System (OPFS) for file-level operations, 4) the Storage API for quota management. The W3C and browser vendors recommend IndexedDB for new applications that need more than simple key-value storage. However, localStorage remains excellent for simple preferences, lightweight caching, and legacy browser support."
+  }
+]

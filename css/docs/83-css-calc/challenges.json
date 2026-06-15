@@ -1,0 +1,38 @@
+[
+  {
+    "id": "calc-sidebar-layout",
+    "title": "Sidebar + Main Layout",
+    "difficulty": "beginner",
+    "description": "Create a two-column layout with a fixed-width sidebar and fluid main content using calc().",
+    "hint": "Set the sidebar to a fixed width and use calc(100% - sidebarWidth - gap) for main content.",
+    "criteria": ["Fixed-width sidebar (250px)", "Fluid main content using calc()", "Gap between columns"],
+    "starter": ".layout { display: flex; gap: 1rem; }\n.sidebar { width: 250px; flex-shrink: 0; }\n.main { width: calc(100% - 250px - 1rem); }"
+  },
+  {
+    "id": "calc-fluid-grid",
+    "title": "Fluid Grid with calc()",
+    "difficulty": "intermediate",
+    "description": "Build a responsive grid where column widths are calculated using calc() with variables for column count and gap.",
+    "hint": "Use width: calc(100% / var(--columns) - var(--gap)).",
+    "criteria": ["CSS variables for columns and gap", "calc() for column width", "Responsive without media queries"],
+    "starter": ":root { --columns: 3; --gap: 1rem; }\n.column {\n  width: calc(100% / var(--columns) - var(--gap));\n  margin: calc(var(--gap) / 2);\n}"
+  },
+  {
+    "id": "calc-full-bleed",
+    "title": "Full-Bleed Container",
+    "difficulty": "intermediate",
+    "description": "Create a full-bleed (edge-to-edge) section within a constrained container using calc() and negative margins.",
+    "hint": "Use margin-left: calc(-50vw + 50%) and width: calc(100vw - (100vw - 100%) / 2) or similar.",
+    "criteria": ["Content constrained to max-width", "Background/imagery bleeds to viewport edges", "calc() used for negative margins or width"],
+    "starter": ".full-bleed {\n  width: 100vw;\n  margin-left: calc(-50vw + 50%);\n  padding: 2rem;\n}"
+  },
+  {
+    "id": "calc-fluid-spacing-system",
+    "title": "Fluid Spacing System",
+    "difficulty": "advanced",
+    "description": "Design a complete fluid spacing system where margins and paddings scale with viewport using calc() and CSS variables.",
+    "hint": "Define spacing variables using calc() with viewport units, and compose them for different spacing sizes.",
+    "criteria": ["Spacing scale (xs, sm, md, lg, xl)", "Each scale uses calc() with viewport units", "Consistent ratio between sizes"],
+    "starter": ":root {\n  --spacing-unit: calc(0.25rem + 0.25vw);\n  --spacing-sm: calc(var(--spacing-unit) * 1);\n  --spacing-md: calc(var(--spacing-unit) * 2);\n  --spacing-lg: calc(var(--spacing-unit) * 4);\n}"
+  }
+]

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Architecture - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #1e1e2e; color: #cdd6f4; padding: 1.5rem; }
+    h1 { color: #89b4fa; margin-bottom: 1rem; }
+    .container { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 800px) { .container { grid-template-columns: 1fr; } }
+    .panel { background: #313244; border-radius: 12px; padding: 1.5rem; border: 1px solid #45475a; }
+    .control-group { margin-bottom: 0.75rem; }
+    .control-group label { display: block; color: #a6e3a1; font-weight: 700; margin-bottom: 0.25rem; font-size: 0.85rem; }
+    .control-group input[type="range"], .control-group select, .control-group input[type="color"] { width: 100%; padding: 0.4rem; border-radius: 6px; border: 1px solid #45475a; background: #181825; color: #cdd6f4; font-family: monospace; }
+    .control-group textarea { width: 100%; min-height: 80px; padding: 0.4rem; border-radius: 6px; border: 1px solid #45475a; background: #181825; color: #cdd6f4; font-family: monospace; font-size: 0.8rem; resize: vertical; }
+    button.primary { background: #89b4fa; color: #1e1e2e; border: none; padding: 0.5rem; border-radius: 6px; cursor: pointer; font-weight: 700; width: 100%; margin-top: 0.5rem; }
+    .code-output { background: #181825; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.8rem; white-space: pre-wrap; border: 1px solid #45475a; max-height: 200px; overflow-y: auto; }
+
+    /* Demo card component using custom properties */
+    :root {
+      --card-bg: #313244;
+      --card-border: #45475a;
+      --card-radius: 12px;
+      --card-padding: 24px;
+      --btn-bg: #667eea;
+      --btn-color: #fff;
+      --btn-radius: 8px;
+    }
+    .play-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--card-radius);
+      padding: var(--card-padding);
+      max-width: 350px;
+    }
+    .play-card h2 { color: #cdd6f4; margin-bottom: 8px; }
+    .play-card p { color: #a6adc8; margin-bottom: 16px; }
+    .play-card button {
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--btn-radius);
+      cursor: pointer;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Architecture — Custom Properties Playground</h1>
+  <div class="container">
+    <div class="panel">
+      <h2 style="color:#a6e3a1;margin-bottom:1rem;">Design Tokens</h2>
+
+      <div class="control-group">
+        <label>Card Background</label>
+        <input type="color" id="cardBg" value="#313244">
+      </div>
+
+      <div class="control-group">
+        <label>Card Border Color</label>
+        <input type="color" id="cardBorder" value="#45475a">
+      </div>
+
+      <div class="control-group">
+        <label>Border Radius (px)</label>
+        <input type="range" id="cardRadius" min="0" max="24" value="12">
+        <span id="radiusVal">12px</span>
+      </div>
+
+      <div class="control-group">
+        <label>Padding (px)</label>
+        <input type="range" id="cardPadding" min="8" max="48" step="4" value="24">
+        <span id="paddingVal">24px</span>
+      </div>
+
+      <div class="control-group">
+        <label>Button Background</label>
+        <input type="color" id="btnBg" value="#667eea">
+      </div>
+
+      <div class="control-group">
+        <label>Button Text Color</label>
+        <input type="color" id="btnColor" value="#ffffff">
+      </div>
+
+      <div class="control-group">
+        <label>Button Border Radius (px)</label>
+        <input type="range" id="btnRadius" min="0" max="20" value="8">
+        <span id="btnRadiusVal">8px</span>
+      </div>
+
+      <button class="primary" id="resetBtn">Reset to Defaults</button>
+    </div>
+
+    <div class="panel">
+      <h2 style="color:#a6e3a1;margin-bottom:1rem;">Live Preview</h2>
+      <div class="play-card" id="playCard">
+        <h2>Design Token Demo</h2>
+        <p>This card is styled entirely through CSS custom properties. Changing the tokens on the left updates this card in real time.</p>
+        <button>Component Button</button>
+      </div>
+
+      <div class="code-output" id="codeOutput">:root {\n  --card-bg: #313244;\n  --card-border: #45475a;\n  --card-radius: 12px;\n  --card-padding: 24px;\n  --btn-bg: #667eea;\n  --btn-color: #fff;\n  --btn-radius: 8px;\n}</div>
+
+      <div style="margin-top:1rem;padding:1rem;background:#181825;border-radius:8px;">
+        <h3 style="color:#f9e2af;margin-bottom:0.5rem;">Why This Matters</h3>
+        <p style="font-size:0.85rem;color:#a6adc8;">By centralizing design tokens as CSS custom properties, you can theme entire systems by changing only the token values. This is the foundation of CSS Architecture — maintainable, scalable, predictable stylesheets.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('playCard');
+    const cardBg = document.getElementById('cardBg');
+    const cardBorder = document.getElementById('cardBorder');
+    const cardRadius = document.getElementById('cardRadius');
+    const radiusVal = document.getElementById('radiusVal');
+    const cardPadding = document.getElementById('cardPadding');
+    const paddingVal = document.getElementById('paddingVal');
+    const btnBg = document.getElementById('btnBg');
+    const btnColor = document.getElementById('btnColor');
+    const btnRadius = document.getElementById('btnRadius');
+    const btnRadiusVal = document.getElementById('btnRadiusVal');
+    const codeOutput = document.getElementById('codeOutput');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function update() {
+      const root = document.documentElement;
+      root.style.setProperty('--card-bg', cardBg.value);
+      root.style.setProperty('--card-border', cardBorder.value);
+      root.style.setProperty('--card-radius', cardRadius.value + 'px');
+      root.style.setProperty('--card-padding', cardPadding.value + 'px');
+      root.style.setProperty('--btn-bg', btnBg.value);
+      root.style.setProperty('--btn-color', btnColor.value);
+      root.style.setProperty('--btn-radius', btnRadius.value + 'px');
+
+      radiusVal.textContent = cardRadius.value + 'px';
+      paddingVal.textContent = cardPadding.value + 'px';
+      btnRadiusVal.textContent = btnRadius.value + 'px';
+
+      codeOutput.textContent = `:root {\n  --card-bg: ${cardBg.value};\n  --card-border: ${cardBorder.value};\n  --card-radius: ${cardRadius.value}px;\n  --card-padding: ${cardPadding.value}px;\n  --btn-bg: ${btnBg.value};\n  --btn-color: ${btnColor.value};\n  --btn-radius: ${btnRadius.value}px;\n}`;
+    }
+
+    [cardBg, cardBorder, cardRadius, cardPadding, btnBg, btnColor, btnRadius].forEach(el => el.addEventListener('input', update));
+
+    resetBtn.addEventListener('click', () => {
+      cardBg.value = '#313244';
+      cardBorder.value = '#45475a';
+      cardRadius.value = '12';
+      cardPadding.value = '24';
+      btnBg.value = '#667eea';
+      btnColor.value = '#ffffff';
+      btnRadius.value = '8';
+      update();
+    });
+
+    update();
+  </script>
+</body>
+</html>

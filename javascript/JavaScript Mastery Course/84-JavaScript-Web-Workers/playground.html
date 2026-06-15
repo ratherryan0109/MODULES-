@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Web Workers - Playground</title>
+  <style>
+    :root { --primary: #d97706; --primary-hover: #b45309; --bg: #f8fafc; --surface: #fff; --text: #334155; --text-muted: #64748b; --border: #e2e8f0; --code-bg: #1e293b; --code-color: #f8fafc; --panel-header: #f1f5f9; --shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; }
+    .header { background: var(--surface); padding: 14px 24px; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow); }
+    .header h1 { color: var(--primary); font-size: 1.4rem; font-weight: 700; }
+    .header h1 small { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; }
+    .header-actions { display: flex; gap: 8px; }
+    .header-actions button { background: var(--primary); color: #fff; border: none; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: background 0.15s; }
+    .header-actions button:hover { background: var(--primary-hover); }
+    .header-actions button.reset { background: #e2e8f0; color: #475569; }
+    .header-actions button.reset:hover { background: #cbd5e1; }
+    .container { display: flex; flex: 1; overflow: hidden; }
+    .editor-panel { flex: 1; display: flex; flex-direction: column; border-right: 1px solid var(--border); }
+    .output-panel { flex: 1; display: flex; flex-direction: column; }
+    .panel-header { background: var(--panel-header); padding: 10px 16px; font-weight: 600; color: var(--text); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+    .panel-header button { background: #e2e8f0; color: #475569; border: none; padding: 5px 14px; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 12px; transition: background 0.15s; }
+    .panel-header button:hover { background: #cbd5e1; }
+    textarea { flex: 1; background: var(--code-bg); color: #e2e8f0; font-family: "Cascadia Code", "Fira Code", "Consolas", monospace; font-size: 14px; padding: 20px; border: none; outline: none; resize: none; tab-size: 2; line-height: 1.6; }
+    #output { flex: 1; background: var(--surface); padding: 16px; overflow-y: auto; font-family: "Cascadia Code", "Fira Code", monospace; font-size: 14px; white-space: pre-wrap; line-height: 1.5; }
+    #output .error { color: #dc2626; }
+    #output .success { color: #16a34a; }
+    #output .info { color: #2563eb; }
+    #output .warn { color: #d97706; }
+    .snippets { display: flex; gap: 6px; padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .snippets button { background: #f1f5f9; color: #475569; border: 1px solid var(--border); padding: 5px 14px; border-radius: 16px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.15s; }
+    .snippets button:hover { background: #fef3c7; border-color: var(--primary); color: var(--primary-hover); }
+    .snippets button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    footer { background: var(--surface); padding: 8px 24px; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); }
+    @media (max-width: 768px) { .container { flex-direction: column; } .editor-panel { border-right: none; border-bottom: 1px solid var(--border); } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>JavaScript Web Workers <small>Playground</small></h1>
+    <div class="header-actions">
+      <button onclick="resetCode()" class="reset">Reset</button>
+      <button onclick="runCode()">Run Code</button>
+    </div>
+  </div>
+  <div class="snippets" id="snippets"></div>
+  <div class="container">
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span>Code Editor</span>
+        <span style="font-weight:400;font-size:0.8rem;color:var(--text-muted);">Ctrl+Enter to run</span>
+      </div>
+      <textarea id="code" spellcheck="false">// JavaScript Web Workers - Playground
+// Explore javascript web workers by editing this code
+
+console.log("=== Welcome to JavaScript Web Workers Playground ===");
+
+const topic = "JavaScript Web Workers";
+const concepts = ["Web Worker creation", "postMessage communication", "onmessage event handler", "Worker termination"];
+console.log("Module:", topic);
+console.log("Concepts:", concepts);
+
+// Try implementing your own examples below
+const data = [1, 2, 3, 4, 5];
+console.log("Data:", data);
+</textarea>
+    </div>
+    <div class="output-panel">
+      <div class="panel-header">
+        <span>Console Output</span>
+        <button onclick="clearOutput()">Clear</button>
+      </div>
+      <div id="output"></div>
+    </div>
+  </div>
+  <footer>JavaScript Mastery Course &mdash; Module 84: JavaScript Web Workers</footer>
+  <script>
+    const textarea = document.getElementById("code");
+    const outputDiv = document.getElementById("output");
+    const snippetsBar = document.getElementById("snippets");
+
+    const defaultCode = "// JavaScript Web Workers - Playground\n// Explore javascript web workers by editing this code\n\nconsole.log(\"=== Welcome to JavaScript Web Workers Playground ===\");\n\nconst topic = \"JavaScript Web Workers\";\nconst concepts = [\"Web Worker creation\", \"postMessage communication\", \"onmessage event handler\", \"Worker termination\"];\nconsole.log(\"Module:\", topic);\nconsole.log(\"Concepts:\", concepts);\n\n// Try implementing your own examples below\nconst data = [1, 2, 3, 4, 5];\nconsole.log(\"Data:\", data);\n";
+
+    const snippets = [{"label":"1. Web Worker creation","code":"// Example: Web Worker creation\nconsole.log(\"=== Web Worker creation ===\");\n\nconst data = [\"Web Worker creation\", \"postMessage communication\", \"onmessage event handler\"];\nconsole.log(\"Concepts:\", data);\n\n// Try implementing web worker creation here\nconst result = data.map(d => d.toUpperCase());\nconsole.log(\"Result:\", result);\n"},{"label":"2. postMessage communication","code":"// Example: postMessage communication\nconsole.log(\"=== postMessage communication ===\");\n\nconst data = [\"Web Worker creation\", \"postMessage communication\", \"onmessage event handler\"];\nconsole.log(\"Concepts:\", data);\n\n// Try implementing postmessage communication here\nconst result = data.map(d => d.toUpperCase());\nconsole.log(\"Result:\", result);\n"},{"label":"3. onmessage event handler","code":"// Example: onmessage event handler\nconsole.log(\"=== onmessage event handler ===\");\n\nconst data = [\"Web Worker creation\", \"postMessage communication\", \"onmessage event handler\"];\nconsole.log(\"Concepts:\", data);\n\n// Try implementing onmessage event handler here\nconst result = data.map(d => d.toUpperCase());\nconsole.log(\"Result:\", result);\n"},{"label":"4. Worker termination","code":"// Example: Worker termination\nconsole.log(\"=== Worker termination ===\");\n\nconst data = [\"Web Worker creation\", \"postMessage communication\", \"onmessage event handler\"];\nconsole.log(\"Concepts:\", data);\n\n// Try implementing worker termination here\nconst result = data.map(d => d.toUpperCase());\nconsole.log(\"Result:\", result);\n"},{"label":"5. Dedicated vs Shared Workers","code":"// Example: Dedicated vs Shared Workers\nconsole.log(\"=== Dedicated vs Shared Workers ===\");\n\nconst data = [\"Web Worker creation\", \"postMessage communication\", \"onmessage event handler\"];\nconsole.log(\"Concepts:\", data);\n\n// Try implementing dedicated vs shared workers here\nconst result = data.map(d => d.toUpperCase());\nconsole.log(\"Result:\", result);\n"}];
+
+    function renderSnippets() {
+      snippets.forEach(function(s, i) {
+        var btn = document.createElement("button");
+        btn.textContent = s.label;
+        btn.onclick = function() { loadSnippet(i); };
+        snippetsBar.appendChild(btn);
+      });
+    }
+    renderSnippets();
+
+    function loadSnippet(index) {
+      textarea.value = snippets[index].code;
+      clearOutput();
+    }
+
+    textarea.addEventListener("keydown", function(e) {
+      if (e.ctrlKey && e.key === "Enter") { e.preventDefault(); runCode(); }
+      if (e.key === "Tab") { e.preventDefault(); var start = this.selectionStart; var end = this.selectionEnd; this.value = this.value.substring(0, start) + "  " + this.value.substring(end); this.selectionStart = this.selectionEnd = start + 2; }
+    });
+
+    function runCode() {
+      var code = textarea.value;
+      outputDiv.innerHTML = "";
+      var origLog = console.log;
+      var origWarn = console.warn;
+      var origError = console.error;
+
+      console.log = function() {
+        var args = Array.prototype.slice.call(arguments);
+        outputDiv.innerHTML += "<span class=\"success\">" + args.map(formatValue).join(" ") + "</span>\n";
+      };
+      console.warn = function() {
+        var args = Array.prototype.slice.call(arguments);
+        outputDiv.innerHTML += "<span class=\"warn\">\u26a0 " + args.map(formatValue).join(" ") + "</span>\n";
+      };
+      console.error = function() {
+        var args = Array.prototype.slice.call(arguments);
+        outputDiv.innerHTML += "<span class=\"error\">\u2716 " + args.map(formatValue).join(" ") + "</span>\n";
+      };
+
+      try {
+        var result = eval(code);
+        if (result !== undefined) {
+          outputDiv.innerHTML += "<span class=\"info\">\u21d2 " + formatValue(result) + "</span>\n";
+        }
+      } catch (e) {
+        outputDiv.innerHTML += "<span class=\"error\">\u2716 Error: " + e.message + "</span>\n";
+      } finally {
+        console.log = origLog;
+        console.warn = origWarn;
+        console.error = origError;
+      }
+    }
+
+    function formatValue(val) {
+      if (val === null) return "null";
+      if (val === undefined) return "undefined";
+      if (typeof val === "string") return val;
+      if (typeof val === "object") { try { return JSON.stringify(val, null, 2); } catch(e) { return String(val); } }
+      return String(val);
+    }
+
+    function clearOutput() { outputDiv.innerHTML = ""; }
+
+    function resetCode() {
+      textarea.value = defaultCode;
+      clearOutput();
+    }
+  </script>
+</body>
+</html>

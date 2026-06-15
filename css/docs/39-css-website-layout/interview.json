@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a website layout in CSS?", "answer": "A website layout is the structural arrangement of page elements such as header, navigation, main content, sidebar, and footer." },
+    { "question": "What is the Holy Grail layout?", "answer": "The Holy Grail layout has a header, footer, and three columns (nav, main content, sidebar) where the center column is flexible." },
+    { "question": "How do you create a header-footer layout?", "answer": "Use a div for header, main content, and footer with the main area using flex: 1 and min-height: 100vh on the container." },
+    { "question": "What is a sidebar + main content layout?", "answer": "It is a two-column layout where a fixed-width sidebar sits beside a flexible main content area." },
+    { "question": "How do you create a multi-section page layout?", "answer": "Use full-width section elements, each with padding and max-width containers for centered content." },
+    { "question": "What CSS properties create column layouts?", "answer": "Use Flexbox (display: flex) or CSS Grid (display: grid) to create multi-column page layouts." },
+    { "question": "How do you create a centered content container?", "answer": "Use .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }." },
+    { "question": "What is a sticky footer?", "answer": "A sticky footer stays at the bottom of the viewport when content is short and moves down when content is long." },
+    { "question": "What is the difference between fixed-width and fluid layouts?", "answer": "Fixed-width layouts use px values and do not change with viewport; fluid layouts use % or other relative units." },
+    { "question": "How do you create a full-viewport hero section?", "answer": "Use .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; }." }
+  ],
+  "intermediate": [
+    { "question": "How do you create the Holy Grail layout with Flexbox?", "answer": "Use display: flex on body, flex-direction: column, min-height: 100vh, and a main row with flex: 1 using display: flex." },
+    { "question": "How do you create the Holy Grail layout with CSS Grid?", "answer": "Use grid-template-rows: auto 1fr auto; grid-template-columns: 200px 1fr 200px; for the page structure." },
+    { "question": "How do you create a fixed sidebar with scrollable content?", "answer": "Set the sidebar to position: sticky; top: 0; height: 100vh; with overflow-y: auto for scrollable sidebar links." },
+    { "question": "How do you create a full-width banner section?", "answer": "Use width: 100% with a background that spans the full viewport, with an inner container for centered content." },
+    { "question": "How do you create a card grid layout?", "answer": "Use CSS Grid: grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) with gap for evenly spaced cards." },
+    { "question": "How do you create an asymmetrical layout with CSS Grid?", "answer": "Use explicit grid-template-areas with named areas for an asymmetrical design, placing items across different column spans." },
+    { "question": "How do you create a magazine-style layout?", "answer": "Combine a main grid for the overall structure with nested grids for article sections, using varied column spans." },
+    { "question": "How do you handle overflow in page layouts?", "answer": "Use overflow: auto or hidden on specific containers, and ensure content doesn't exceed 100vw." },
+    { "question": "How do you create overlapping layout sections?", "answer": "Use negative margins or relative positioning with z-index to overlap sections for modern design effects." },
+    { "question": "How do you create a split-screen layout?", "answer": "Use display: flex with two 50% width sections, or use CSS Grid with two equal columns." }
+  ],
+  "advanced": [
+    { "question": "How do you create a layout with multiple sticky sections that stack?", "answer": "Use position: sticky with different top offsets for each section, creating a stacking effect as each sticks at its respective position." },
+    { "question": "How do you implement a full-height sidebar with CSS Grid?", "answer": "Use grid-template-rows: 1fr on the sidebar row, and ensure the grid container has a defined height (e.g., 100vh)." },
+    { "question": "How do you create a CSS-only tabbed layout?", "answer": "Use :target pseudo-class or the checkbox hack to toggle visibility of content panels stacked in the same position." },
+    { "question": "How do you build a layout that works without JavaScript for core structure?", "answer": "Use CSS Grid for the page skeleton so the layout renders correctly even if JavaScript fails to load." },
+    { "question": "How do you create a content-out layout (content defines column sizes)?", "answer": "Use grid-template-columns: auto 1fr auto where side columns size to their content and the middle column fills remaining space." },
+    { "question": "How do you implement a responsive page layout without media queries?", "answer": "Use auto-fill/auto-fit with minmax() in CSS Grid to create layouts that automatically adjust column counts." },
+    { "question": "How do you create a layout using CSS Container Queries?", "answer": "Define a container with container-type: inline-size, then use @container queries to adjust children based on container width." },
+    { "question": "How do you handle layout shifts from dynamic content?", "answer": "Reserve space with min-height, use aspect-ratio for media, and set explicit sizes to prevent Cumulative Layout Shift." },
+    { "question": "How do you create a print-optimized layout?", "answer": "Use @media print to hide navigation, sidebars, and ads; use page-break properties to control content flow across pages." },
+    { "question": "How do you implement a layout with both horizontal and vertical scrolling sections?", "answer": "Use a combination of sticky positioning, CSS scroll snap, and flex-direction: row on sections for horizontal scroll within a vertical page." }
+  ]
+}

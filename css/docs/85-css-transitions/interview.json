@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS transition?", "answer": "A CSS transition allows property changes to occur smoothly over a specified duration instead of changing instantaneously." },
+    { "question": "Which property specifies the CSS properties to animate?", "answer": "The transition-property property specifies which CSS properties should be transitioned when their values change." },
+    { "question": "How do you set the duration of a CSS transition?", "answer": "The transition-duration property sets the length of time a transition takes to complete in seconds (s) or milliseconds (ms)." },
+    { "question": "What does transition-delay do?", "answer": "transition-delay sets a waiting time before a transition begins, specified in seconds or milliseconds." },
+    { "question": "What is the shorthand syntax for CSS transitions?", "answer": "transition: property duration timing-function delay; e.g., transition: opacity 0.3s ease-in 0.1s;" },
+    { "question": "What is the default value for transition-property?", "answer": "The default value is 'all', meaning all animatable properties will transition when changed." },
+    { "question": "What happens when transition-duration is set to 0s?", "answer": "The transition happens instantly with no animation effect, appearing as an immediate change." },
+    { "question": "How do you apply a transition to only the opacity property?", "answer": "Set transition-property: opacity; to limit the transition effect to just opacity changes." },
+    { "question": "What timing function keywords are available for transitions?", "answer": "Common keywords include ease (default), linear, ease-in, ease-out, and ease-in-out." },
+    { "question": "Which properties are animatable with CSS transitions?", "answer": "Most visual properties like color, background-color, opacity, transform, width, height, margin, and padding are animatable." }
+  ],
+  "intermediate": [
+    { "question": "How does transition-timing-function affect the animation?", "answer": "It defines the acceleration curve of a transition using a cubic-bezier function, controlling how speed changes throughout the duration." },
+    { "question": "How do you create a custom cubic-bezier timing function?", "answer": "Use cubic-bezier(x1, y1, x2, y2) with two control points, e.g., cubic-bezier(0.25, 0.1, 0.25, 1)." },
+    { "question": "What is the steps() timing function used for?", "answer": "steps(n) divides the transition into n discrete steps, creating a stop-motion effect without smooth interpolation." },
+    { "question": "How do you transition multiple properties with different durations?", "answer": "List comma-separated transitions: transition: opacity 0.3s, transform 0.5s ease-out 0.1s;" },
+    { "question": "What does a negative transition-delay value do?", "answer": "A negative delay starts the transition immediately as if it were already in progress for that amount of time." },
+    { "question": "Can you transition gradients directly?", "answer": "Standard background gradients are not directly animatable, but you can transition background-position or use pseudo-elements with opacity transitions." },
+    { "question": "How do you handle transitions for elements entering the DOM?", "answer": "Use requestAnimationFrame or a tiny delay to let the browser compute the initial state before adding the transition class." },
+    { "question": "What properties should you prefer for smooth 60fps transitions?", "answer": "Prefer transform and opacity as they run on the compositor thread and avoid layout or paint triggers." },
+    { "question": "How do multiple transitions on the same element work?", "answer": "Each property transitions independently with its own duration, timing, and delay as defined in the comma-separated list." },
+    { "question": "What is the difference between transition and animation?", "answer": "Transitions animate between two states implicitly on state change; animations use @keyframes for multi-step sequences with explicit control." }
+  ],
+  "advanced": [
+    { "question": "How does the FLIP animation technique use transitions?", "answer": "FLIP (First, Last, Invert, Play) records start/end positions, computes the delta, inverts the element, then transitions transform to zero for smooth layout animations." },
+    { "question": "What is transition-behavior and how does it work?", "answer": "transition-behavior allows discrete properties like display to animate by transitioning at the midpoint, enabling entry/exit animations with display: none." },
+    { "question": "How do you detect transition completion with JavaScript?", "answer": "Listen for the transitionend event on the element, which fires once per transitioned property after completion." },
+    { "question": "Can you create asymmetric transitions that reverse differently?", "answer": "Yes, define separate transitions on the base state and the hover state with different durations or timing functions for asymmetric effects." },
+    { "question": "How does the browser optimize transition animations for performance?", "answer": "Browsers promote elements to their own compositor layer for transform and opacity transitions, offloading animation to the GPU." },
+    { "question": "How do you transition to and from auto dimensions?", "answer": "Use max-width/max-height transitions, or the newer interpolate-size property, to animate between fixed and intrinsic sizes." },
+    { "question": "What is the Web Animations API equivalent of a CSS transition?", "answer": "element.animate([{opacity: 1}, {opacity: 0}], {duration: 300, fill: 'both'}) provides programmatic control similar to transitions." },
+    { "question": "How do transitions behave with dynamically added CSS custom properties?", "answer": "Custom properties registered with @property can be animated; unregistered custom properties change instantaneously without transitioning." },
+    { "question": "How does the cascade affect transition properties?", "answer": "Transition properties are inherited and the cascade applies normally; more specific selectors can override transition settings." },
+    { "question": "How can you debug transition performance issues in DevTools?", "answer": "Use the Performance tab to check for forced reflows and paint flashing; the Animations panel shows timeline and timing function visualization." }
+  ]
+}

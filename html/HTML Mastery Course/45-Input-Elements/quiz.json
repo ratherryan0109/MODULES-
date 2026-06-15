@@ -1,0 +1,222 @@
+[
+  {
+    "question": "What is the purpose of the `name` attribute on an `<input>` element?",
+    "options": [
+      "It specifies the type of input control",
+      "It provides a unique identifier for CSS styling",
+      "It defines the key in the key-value pair sent during form submission",
+      "It sets the default value of the input"
+    ],
+    "answer": "c",
+    "explanation": "The `name` attribute defines the key portion of the key-value pair when form data is submitted. Without it, the input's value won't be sent to the server."
+  },
+  {
+    "question": "Which attribute on an `<input>` element shows hint text inside the field before the user types?",
+    "options": [
+      "label",
+      "hint",
+      "placeholder",
+      "alt"
+    ],
+    "answer": "c",
+    "explanation": "The `placeholder` attribute displays hint text inside the input field. It disappears when the user starts typing and is not a substitute for a proper label."
+  },
+  {
+    "question": "What happens when an `<input>` element has the `disabled` attribute?",
+    "options": [
+      "The input cannot be edited but its value is submitted",
+      "The input cannot be edited and its value is NOT submitted",
+      "The input is hidden from view",
+      "The input shows a validation error"
+    ],
+    "answer": "b",
+    "explanation": "A disabled input cannot be edited, clicked, or focused, and its value is excluded from form submission. For read-only behavior that still submits data, use `readonly` instead."
+  },
+  {
+    "question": "Which input type is most appropriate for collecting an email address?",
+    "options": [
+      "type=\"text\"",
+      "type=\"email\"",
+      "type=\"tel\"",
+      "type=\"url\""
+    ],
+    "answer": "b",
+    "explanation": "`type=\"email\"` provides built-in email format validation and triggers an email-optimized keyboard on mobile devices."
+  },
+  {
+    "question": "How do you properly associate a `<label>` with an `<input>` element?",
+    "options": [
+      "Wrap the input inside the label without any attributes",
+      "Use matching `for` on label and `id` on input",
+      "Use matching `name` on both elements",
+      "Place the label after the input in the DOM"
+    ],
+    "answer": "b",
+    "explanation": "The label's `for` attribute must match the input's `id` attribute. This association makes the label clickable and is critical for screen reader accessibility."
+  },
+  {
+    "question": "What is the default value of the `type` attribute on an `<input>` element?",
+    "options": [
+      "button",
+      "text",
+      "string",
+      "auto"
+    ],
+    "answer": "b",
+    "explanation": "If no `type` attribute is specified, the `<input>` element defaults to `type=\"text\"`, creating a single-line text input field."
+  },
+  {
+    "question": "Which attribute prevents editing but still submits the input value?",
+    "options": [
+      "disabled",
+      "readonly",
+      "static",
+      "locked"
+    ],
+    "answer": "b",
+    "explanation": "The `readonly` attribute prevents user editing but the value is still submitted with the form. `disabled` prevents both editing and submission."
+  },
+  {
+    "question": "What does the `autofocus` attribute do?",
+    "options": [
+      "Automatically fills the input with saved data",
+      "Sets the input as the required field",
+      "Gives focus to the input when the page loads",
+      "Enables auto-completion suggestions"
+    ],
+    "answer": "c",
+    "explanation": "`autofocus` specifies that an input should automatically get focus when the page loads. Only one element per page should have this attribute."
+  },
+  {
+    "question": "Which attribute is used to specify that an input must be filled before submitting the form?",
+    "options": [
+      "mandatory",
+      "required",
+      "validate",
+      "must"
+    ],
+    "answer": "b",
+    "explanation": "The `required` boolean attribute specifies that the input must have a value before the form can be submitted. It triggers browser-native validation."
+  },
+  {
+    "question": "What is the difference between `type=\"submit\"` and `type=\"button\"`?",
+    "options": [
+      "They are identical; submit is deprecated",
+      "submit triggers form submission; button does nothing by default",
+      "button triggers form submission; submit resets the form",
+      "submit is for images; button is for text"
+    ],
+    "answer": "b",
+    "explanation": "`type=\"submit\"` automatically submits the enclosing form. `type=\"button\"` does nothing by default and requires JavaScript for any action."
+  },
+  {
+    "question": "Which input type provides a color picker interface?",
+    "options": [
+      "type=\"picker\"",
+      "type=\"colour\"",
+      "type=\"color\"",
+      "type=\"palette\""
+    ],
+    "answer": "c",
+    "explanation": "`type=\"color\"` renders a color picker control in supported browsers. It returns a 7-character hex color string (e.g., #ff0000)."
+  },
+  {
+    "question": "What does the `accept` attribute do on a file input?",
+    "options": [
+      "Accepts only the first file selected",
+      "Specifies which file types the server will accept",
+      "Hints at the expected file types in the file picker",
+      "Auto-accepts files without confirmation"
+    ],
+    "answer": "c",
+    "explanation": "The `accept` attribute on `<input type=\"file\">` hints to the browser which file types to show in the file picker (e.g., `accept=\"image/*\"` or `accept=\".pdf,.doc\"`)."
+  },
+  {
+    "question": "Which attribute provides a hint to the browser about the expected input for autofill?",
+    "options": [
+      "autocomplete",
+      "autofill",
+      "suggest",
+      "data-hint"
+    ],
+    "answer": "a",
+    "explanation": "The `autocomplete` attribute tells the browser what kind of data the input expects (e.g., `autocomplete=\"email\"`, `autocomplete=\"tel\"`). This enables autofill from saved browser data."
+  },
+  {
+    "question": "What is the purpose of the `inputmode` attribute?",
+    "options": [
+      "It sets the input type on unsupported browsers",
+      "It hints at the type of data to help the browser show the appropriate virtual keyboard",
+      "It defines the input's interaction mode (click vs. tap)",
+      "It specifies the input's CSS display mode"
+    ],
+    "answer": "b",
+    "explanation": "`inputmode` provides a hint to the browser about which virtual keyboard to show on mobile devices. For example, `inputmode=\"numeric\"` shows a numeric keypad."
+  },
+  {
+    "question": "When using `<input type=\"radio\">`, how do you group radio buttons so only one can be selected?",
+    "options": [
+      "Give them all the same `id` attribute",
+      "Give them all the same `name` attribute",
+      "Wrap them in a <fieldset> element",
+      "Give them all the same `class` attribute"
+    ],
+    "answer": "b",
+    "explanation": "Radio buttons with the same `name` attribute belong to the same group, allowing only one to be selected at a time. Different `name` values create separate groups."
+  },
+  {
+    "question": "What happens when a form containing an `<input type=\"hidden\">` is submitted?",
+    "options": [
+      "The hidden input's value is NOT submitted",
+      "The hidden input's value IS submitted as part of the form data",
+      "The hidden input causes an error",
+      "The hidden input is shown briefly during submission"
+    ],
+    "answer": "b",
+    "explanation": "Hidden inputs are submitted with the form data just like visible inputs. They are commonly used for CSRF tokens, session identifiers, and other metadata that users don't need to see."
+  },
+  {
+    "question": "Which CSS pseudo-class targets an input that has failed validation?",
+    "options": [
+      ":error",
+      ":invalid",
+      ":bad",
+      ":failed"
+    ],
+    "answer": "b",
+    "explanation": "The `:invalid` CSS pseudo-class matches input elements whose value fails validation (e.g., when `required` is empty or `type=\"email\"` has an invalid format)."
+  },
+  {
+    "question": "What is the HTML5 attribute that provides auto-completion suggestions from a predefined list?",
+    "options": [
+      "autocomplete",
+      "datalist",
+      "suggestions",
+      "options"
+    ],
+    "answer": "b",
+    "explanation": "A `<datalist>` element provides a list of predefined options that appear as suggestions in a text input. The input uses the `list` attribute to reference the datalist's `id`."
+  },
+  {
+    "question": "Which attribute specifies the minimum and maximum values for a numeric input?",
+    "options": [
+      "low and high",
+      "minlength and maxlength",
+      "min and max",
+      "minimum and maximum"
+    ],
+    "answer": "c",
+    "explanation": "The `min` and `max` attributes specify the allowed range for numeric, date, and range inputs. The browser enforces these limits natively."
+  },
+  {
+    "question": "What does `step=\"2\"` do on an `<input type=\"number\">`?",
+    "options": [
+      "Limits input to 2 characters",
+      "Increments the value by 2 when using the arrow buttons",
+      "Requires the value to be a multiple of 2",
+      "Divides the input into 2 columns"
+    ],
+    "answer": "c",
+    "explanation": "The `step` attribute specifies the granularity that the value must conform to. `step=\"2\"` means only even numbers (..., -2, 0, 2, 4, ...) are valid values."
+  }
+]

@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is an inline element in HTML?",
+      "answer": "An inline element is an element that does not start on a new line and only takes up as much width as its content. It flows within the text content."
+    },
+    {
+      "question": "Give five examples of inline elements.",
+      "answer": "span, a, strong, em, img, code, mark, small, sub, sup, input, label, button, q, cite, abbr."
+    },
+    {
+      "question": "What is the difference between <strong> and <b>?",
+      "answer": "<strong> has semantic meaning (strong importance). <b> is purely presentational bold text with no extra meaning."
+    },
+    {
+      "question": "What does the <em> element represent?",
+      "answer": "<em> represents emphasized text, typically displayed in italic. It has semantic meaning beyond presentation."
+    },
+    {
+      "question": "What is the <span> element used for?",
+      "answer": "<span> is a generic inline container with no semantic meaning. It is used for styling fragments of text or grouping inline content."
+    },
+    {
+      "question": "How does an inline element handle width and height?",
+      "answer": "Non-replaced inline elements ignore the width and height CSS properties. Their size is determined by their content."
+    },
+    {
+      "question": "What is a void inline element?",
+      "answer": "A void inline element is self-closing and cannot contain content. Examples: <br>, <img>, <input>, <wbr>."
+    },
+    {
+      "question": "What does the <sub> element do?",
+      "answer": "<sub> displays subscript text, typically rendered below the baseline in smaller font (e.g., H₂O)."
+    },
+    {
+      "question": "What is the difference between <q> and <blockquote>?",
+      "answer": "<q> is an inline quotation element. <blockquote> is a block-level quotation. <q> typically renders with quotation marks."
+    },
+    {
+      "question": "Can you set padding on an inline element?",
+      "answer": "Yes, padding is applied visually but does not affect the element's line height. The background extends but may overlap adjacent content."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Explain the box model limitations of inline elements.",
+      "answer": "Inline elements ignore width and height, ignore vertical margins (margin-top/bottom), and only apply horizontal margins (margin-left/right). Padding and borders are visible but do not affect line height."
+    },
+    {
+      "question": "What is the difference between inline and inline-block?",
+      "answer": "Both flow inline with text. But inline-block respects width, height, margin (all sides), and padding fully. Inline elements ignore width, height, and vertical margins."
+    },
+    {
+      "question": "How do you style a link to look like a button while keeping it inline?",
+      "answer": "Use display: inline-block or display: block with appropriate padding, background, color, border-radius, and text-decoration: none."
+    },
+    {
+      "question": "What causes whitespace gaps between inline elements and how do you fix them?",
+      "answer": "Whitespace in HTML (spaces, newlines) between inline elements renders as a visible gap. Fix by: removing whitespace in HTML, setting font-size: 0 on parent, using flexbox, or using negative margins."
+    },
+    {
+      "question": "What is the difference between replaced and non-replaced inline elements?",
+      "answer": "Replaced elements (img, input, textarea, select) have intrinsic dimensions and respect width/height. Non-replaced elements (span, strong, em) ignore width/height and are sized by content."
+    },
+    {
+      "question": "Can you nest block elements inside <span>?",
+      "answer": "No. Block elements cannot be nested inside inline elements. The <span> can only contain phrasing content (inline elements)."
+    },
+    {
+      "question": "What is the purpose of the <abbr> element?",
+      "answer": "<abbr> represents an abbreviation or acronym. The title attribute provides the full expansion, which screen readers announce."
+    },
+    {
+      "question": "How does vertical-align work on inline elements?",
+      "answer": "vertical-align controls the alignment of inline elements relative to surrounding text. Values: baseline (default), top, middle, bottom, sub, super, text-top, text-bottom."
+    },
+    {
+      "question": "What is the <mark> element and when should it be used?",
+      "answer": "<mark> represents text highlighted for reference purposes, such as search results or key passages. It is semantic, not presentational."
+    },
+    {
+      "question": "How do you add a tooltip to an inline element?",
+      "answer": "Use the title attribute on any inline element. For example: <abbr title=\"HyperText Markup Language\">HTML</abbr>."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the concept of an inline formatting context in CSS.",
+      "answer": "An inline formatting context (IFC) is formed by block containers that contain only inline-level boxes. In an IFC, boxes are laid out horizontally, aligned by vertical-align, and line boxes are stacked vertically."
+    },
+    {
+      "question": "How do inline elements and the line-height property interact?",
+      "answer": "line-height determines the height of the line box. Inline elements are placed within line boxes. The line box height is determined by the tallest inline element and the line-height setting."
+    },
+    {
+      "question": "What happens to inline elements when they overflow the line box?",
+      "answer": "Inline elements that overflow the line box split across multiple lines. The line box wraps, and the inline element is broken into fragments. Padding and borders may look broken across lines."
+    },
+    {
+      "question": "How does the CSS display: contents affect inline elements?",
+      "answer": "display: contents removes the element's box from the formatting tree. For inline elements, the content becomes part of the parent's inline content, potentially changing text flow and alignment."
+    },
+    {
+      "question": "Explain how the white-space property affects inline elements.",
+      "answer": "white-space: normal collapses whitespace and wraps text. nowrap prevents wrapping. pre preserves whitespace and line breaks. pre-wrap and pre-line offer combinations."
+    },
+    {
+      "question": "How do you handle inline elements with different font sizes on the same line?",
+      "answer": "Different font sizes on the same line create different line heights. vertical-align and line-height need careful adjustment. Using display: inline-block with explicit heights can help."
+    },
+    {
+      "question": "What is the interaction between inline elements and the clear property?",
+      "answer": "The clear property does not work on inline elements. It only applies to block-level elements. To clear floats, the element must be block-level."
+    },
+    {
+      "question": "How does text-align: justify affect inline elements?",
+      "answer": "text-align: justify distributes inline elements evenly across the line width, adding space between words/elements. This can cause unexpected gaps when using inline-block navigation."
+    },
+    {
+      "question": "Explain how the CSS text-decoration property works on inline text formatting elements.",
+      "answer": "text-decoration propagates to all inline children. Each inline box renders its own decoration. The decoration may break across lines, appearing on each line fragment separately."
+    },
+    {
+      "question": "What are the accessibility implications of using inline elements for visual formatting?",
+      "answer": "Using <b> and <i> instead of <strong> and <em> reduces semantic meaning for screen readers. <mark>, <abbr>, and <cite> provide useful semantics. Always prefer semantic elements over presentational ones."
+    }
+  ]
+}

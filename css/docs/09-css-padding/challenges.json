@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Create a Button with Proper Padding",
+    "description": "Style a button with comfortable padding — 12px vertical and 24px horizontal — and add rounded corners and a hover effect.",
+    "starterCode": "<button class=\"btn\">Click Me</button>\n\n<style>\n  /* Add padding, border-radius, and hover */\n</style>",
+    "solution": "<button class=\"btn\">Click Me</button>\n\n<style>\nbody { padding: 40px; font-family: Arial; }\n.btn {\n  background: #4299e1;\n  color: white;\n  border: none;\n  padding: 12px 24px;\n  border-radius: 6px;\n  font-size: 16px;\n  cursor: pointer;\n}\n.btn:hover { background: #2b6cb0; }\n</style>"
+  },
+  "medium": {
+    "title": "Build a Card with Asymmetric Padding",
+    "description": "Create an article card with asymmetric padding — extra padding on the left to accommodate an accent bar, and proper vertical spacing inside the card for the title, meta, and content.",
+    "starterCode": "<div class=\"article-card\">\n  <div class=\"accent-bar\"></div>\n  <h2>Article Title</h2>\n  <p class=\"meta\">Posted on Jan 15, 2026</p>\n  <p>This is the article content that should have proper padding around it.</p>\n</div>\n\n<style>\n  /* Add asymmetric padding with left accent bar */\n</style>",
+    "solution": "<div class=\"article-card\">\n  <h2>Article Title</h2>\n  <p class=\"meta\">Posted on Jan 15, 2026</p>\n  <p>This is the article content that should have proper padding around it.</p>\n</div>\n\n<style>\nbody { padding: 40px; font-family: Arial; background: #f7fafc; }\n.article-card {\n  background: white;\n  border-left: 4px solid #4299e1;\n  padding: 24px 24px 24px 32px;\n  border-radius: 0 8px 8px 0;\n  max-width: 600px;\n  margin: 0 auto;\n}\nh2 { margin: 0 0 8px; color: #2d3748; }\n.meta { color: #718096; font-size: 0.85em; margin: 0 0 16px; }\np { line-height: 1.6; color: #4a5568; margin: 0; }\n</style>"
+  },
+  "hard": {
+    "title": "Fix Padding Overflow and Create Touch Targets",
+    "description": "The given layout has a fixed-width sidebar where padding causes overflow. Fix it using box-sizing: border-box, and ensure all interactive elements meet the 44x44px touch target recommendation.",
+    "starterCode": "<div class=\"sidebar\">\n  <a href=\"#\" class=\"nav-item\">Dashboard</a>\n  <a href=\"#\" class=\"nav-item\">Profile</a>\n  <a href=\"#\" class=\"nav-item\">Settings</a>\n  <a href=\"#\" class=\"nav-item icon-btn\">X</a>\n</div>\n\n<style>\n.sidebar {\n  width: 250px;\n  background: #2d3748;\n}\n.nav-item {\n  display: block;\n  color: white;\n  text-decoration: none;\n  background: #4a5568;\n}\n</style>",
+    "solution": "<div class=\"sidebar\">\n  <a href=\"#\" class=\"nav-item\">Dashboard</a>\n  <a href=\"#\" class=\"nav-item\">Profile</a>\n  <a href=\"#\" class=\"nav-item\">Settings</a>\n  <a href=\"#\" class=\"nav-item icon-btn\">Close</a>\n</div>\n\n<style>\n* { box-sizing: border-box; }\n.sidebar {\n  width: 250px;\n  background: #2d3748;\n  font-family: Arial;\n}\n.nav-item {\n  display: block;\n  color: white;\n  text-decoration: none;\n  padding: 14px 20px;\n  margin-bottom: 2px;\n  transition: background 0.2s;\n}\n.nav-item:hover { background: #4a5568; }\n.icon-btn {\n  margin-top: 20px;\n  background: #e53e3e;\n  text-align: center;\n}\n.icon-btn:hover { background: #c53030; }\n</style>"
+  }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Z-index - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; background: #1a1a2e; color: #eee; }
+    .top-bar { background: #16213e; padding: 15px 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .top-bar h1 { font-size: 20px; }
+    .top-bar label { font-size: 14px; display: flex; align-items: center; gap: 5px; }
+    .top-bar input[type="range"] { width: 150px; }
+    .top-bar input[type="number"] { width: 60px; padding: 4px 8px; border-radius: 4px; border: none; }
+    .main { display: flex; flex: 1; }
+    .editor-panel { flex: 1; display: flex; flex-direction: column; }
+    .preview-panel { flex: 1; background: white; position: relative; overflow: hidden; }
+    .controls { background: #0f3460; padding: 10px 20px; display: flex; gap: 10px; }
+    .controls button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #e94560; color: white; font-weight: bold; }
+    .controls button:hover { background: #c73650; }
+    #code { flex: 1; background: #1e1e1e; color: #d4d4d4; border: none; padding: 20px; font-family: 'Consolas', monospace; font-size: 14px; resize: none; outline: none; tab-size: 2; }
+    #preview { width: 100%; height: 100%; border: none; }
+    .z-label { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>📚 CSS Z-index Playground</h1>
+    <label>Box 1 z-index: <input type="number" id="z1" value="1" min="-10" max="100"></label>
+    <label>Box 2 z-index: <input type="number" id="z2" value="2" min="-10" max="100"></label>
+    <label>Box 3 z-index: <input type="number" id="z3" value="3" min="-10" max="100"></label>
+  </div>
+  <div class="main">
+    <div class="editor-panel">
+      <div class="controls">
+        <button onclick="applyCode()">▶ Run</button>
+        <button onclick="resetCode()">↺ Reset</button>
+        <label><input type="checkbox" id="autoUpdate" checked> Auto-run</label>
+      </div>
+      <textarea id="code">
+<style>
+  .stage {
+    position: relative;
+    height: 300px;
+    background: #f8f9fa;
+    margin: 40px auto;
+    width: 80%;
+    border-radius: 8px;
+  }
+  .box {
+    position: absolute;
+    width: 180px;
+    height: 110px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  .box1 { background: #e94560; top: 20px; left: 30px; z-index: 1; }
+  .box2 { background: #4a90d9; top: 50px; left: 80px; z-index: 2; }
+  .box3 { background: #2ecc71; top: 80px; left: 130px; z-index: 3; }
+</style>
+<div class="stage">
+  <div class="box box1">z-index: <span id="box1Label">1</span></div>
+  <div class="box box2">z-index: <span id="box2Label">2</span></div>
+  <div class="box box3">z-index: <span id="box3Label">3</span></div>
+</div></textarea>
+    </div>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
+      <div class="z-label">z-index Demo</div>
+    </div>
+  </div>
+
+  <script>
+    const codeEl = document.getElementById('code');
+    const preview = document.getElementById('preview');
+    const zInputs = {
+      z1: document.getElementById('z1'),
+      z2: document.getElementById('z2'),
+      z3: document.getElementById('z3')
+    };
+
+    function applyCode() {
+      let html = codeEl.value;
+      // Replace z-index values with slider values
+      html = html.replace(/(\.box1\s*\{[^}]*z-index:\s*)\d+/g, `$1${zInputs.z1.value}`);
+      html = html.replace(/(\.box2\s*\{[^}]*z-index:\s*)\d+/g, `$1${zInputs.z2.value}`);
+      html = html.replace(/(\.box3\s*\{[^}]*z-index:\s*)\d+/g, `$1${zInputs.z3.value}`);
+      // Update inline labels
+      html = html.replace(/(<span id="box1Label">)\d+(<\/span>)/g, `$1${zInputs.z1.value}$2`);
+      html = html.replace(/(<span id="box2Label">)\d+(<\/span>)/g, `$1${zInputs.z2.value}$2`);
+      html = html.replace(/(<span id="box3Label">)\d+(<\/span>)/g, `$1${zInputs.z3.value}$2`);
+
+      if (!html.includes('<html')) {
+        html = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>' + html + '</body></html>';
+      }
+      preview.srcdoc = html;
+    }
+
+    function resetCode() {
+      zInputs.z1.value = 1;
+      zInputs.z2.value = 2;
+      zInputs.z3.value = 3;
+      applyCode();
+    }
+
+    Object.values(zInputs).forEach(input => {
+      input.addEventListener('input', applyCode);
+    });
+
+    codeEl.addEventListener('input', () => {
+      if (document.getElementById('autoUpdate').checked) {
+        clearTimeout(window._runTimer);
+        window._runTimer = setTimeout(applyCode, 300);
+      }
+    });
+
+    // Initial render
+    applyCode();
+  </script>
+</body>
+</html>

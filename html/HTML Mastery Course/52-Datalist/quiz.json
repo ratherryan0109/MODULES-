@@ -1,0 +1,222 @@
+[
+  {
+    "question": "What does the <datalist> element provide for an <input>?",
+    "options": [
+      "A strict dropdown of options",
+      "A set of autocomplete suggestions",
+      "A validation rule",
+      "A data storage element"
+    ],
+    "answer": "b",
+    "explanation": "Datalist provides suggestions that the user can choose from, but they can also enter custom text."
+  },
+  {
+    "question": "Which attribute on the <input> links it to a <datalist>?",
+    "options": [
+      "id",
+      "name",
+      "list",
+      "data"
+    ],
+    "answer": "c",
+    "explanation": "The `list` attribute on `<input>` must match the `id` of the `<datalist>` element."
+  },
+  {
+    "question": "Can a user enter a value in an input that is not in the datalist?",
+    "options": [
+      "Yes, always",
+      "No, only list values allowed",
+      "Only if the input is type=text",
+      "Only if the datalist has the 'allow-custom' attribute"
+    ],
+    "answer": "a",
+    "explanation": "Datalist provides suggestions only — it does not restrict input to listed values."
+  },
+  {
+    "question": "Which of these input types does NOT support the datalist attribute?",
+    "options": [
+      "text",
+      "email",
+      "number",
+      "file"
+    ],
+    "answer": "d",
+    "explanation": "`<input type=\"file\">` does not support the `list` attribute."
+  },
+  {
+    "question": "What happens when <option> elements in a datalist have a `label` attribute?",
+    "options": [
+      "The label replaces the value",
+      "The label is shown alongside the value in the suggestion list",
+      "The label is ignored",
+      "The label is used for validation"
+    ],
+    "answer": "b",
+    "explanation": "When an `<option>` has a `label`, the browser may display the label as additional descriptive text alongside the value."
+  },
+  {
+    "question": "How does the datalist differ from a <select> dropdown?",
+    "options": [
+      "Datalist allows free-text input, select does not",
+      "Datalist is always visible, select is not",
+      "Datalist supports multiple selection",
+      "Datalist requires JavaScript"
+    ],
+    "answer": "a",
+    "explanation": "The main difference is that datalist suggests values but allows free-text entry, while a select restricts choices to listed options."
+  },
+  {
+    "question": "What is a key limitation of the native datalist element?",
+    "options": [
+      "It doesn't work on mobile browsers",
+      "Its suggestion popup is not stylable via CSS",
+      "It cannot be used with type=text",
+      "It only works with JavaScript"
+    ],
+    "answer": "b",
+    "explanation": "The datalist popup appearance is controlled by the operating system and cannot be customized with CSS."
+  },
+  {
+    "question": "What happens when you use `<datalist>` with `<input type=\"range\">`?",
+    "options": [
+      "Nothing — range does not support datalist",
+      "Tick marks are shown at the specified values",
+      "The range converts to a text input",
+      "The datalist values set the min/max"
+    ],
+    "answer": "b",
+    "explanation": "On range inputs, datalist options create labeled tick marks along the slider track."
+  },
+  {
+    "question": "How do you dynamically update datalist options with JavaScript?",
+    "options": [
+      "Modify the datalist's options collection or innerHTML",
+      "Use datalist.addOption()",
+      "Set the input's list attribute to a new datalist",
+      "Datalist cannot be updated dynamically"
+    ],
+    "answer": "a",
+    "explanation": "You can update the datalist by modifying `datalist.options` or setting `datalist.innerHTML` with new `<option>` elements."
+  },
+  {
+    "question": "Can a datalist be used with an input inside a Shadow DOM?",
+    "options": [
+      "Yes, always",
+      "No, both input and datalist must be in the same shadow tree",
+      "Only if the datalist is in the light DOM",
+      "Only with the :host-context() selector"
+    ],
+    "answer": "b",
+    "explanation": "The datalist association does not work across shadow boundaries — both elements must be in the same DOM tree."
+  },
+  {
+    "question": "What type of user experience does a datalist with `<input type=\"search\">` provide?",
+    "options": [
+      "A searchable dropdown with recent queries",
+      "A color picker",
+      "A number stepper",
+      "A calendar picker"
+    ],
+    "answer": "a",
+    "explanation": "With type=\"search\", the datalist shows suggestions filtered as the user types, ideal for search query autocomplete."
+  },
+  {
+    "question": "What happens if one `<option>` in the datalist has no `value` but has a `label`?",
+    "options": [
+      "The option is ignored",
+      "The label text becomes the suggestion",
+      "An error is thrown",
+      "The option is shown but disabled"
+    ],
+    "answer": "b",
+    "explanation": "If an `<option>` has no `value`, the browser uses the `label` as the suggestion text."
+  },
+  {
+    "question": "Can a single datalist be associated with multiple inputs?",
+    "options": [
+      "Yes, by using the same list id on multiple inputs",
+      "No, each datalist works with one input only",
+      "Only if the inputs are the same type",
+      "Only on inputs within the same form"
+    ],
+    "answer": "a",
+    "explanation": "Multiple inputs can reference the same datalist by using the same `list` attribute value pointing to the datalist's `id`."
+  },
+  {
+    "question": "What is the correct accessibility role for a datalist-enabled input?",
+    "options": [
+      "combobox",
+      "listbox",
+      "textbox",
+      "No specific role needed"
+    ],
+    "answer": "d",
+    "explanation": "The native HTML datalist association provides accessibility automatically; no explicit ARIA role is required on the input."
+  },
+  {
+    "question": "How does the browser filter datalist options as the user types?",
+    "options": [
+      "Exact match only",
+      "Case-insensitive substring match",
+      "Regex pattern match",
+      "Starts-with match"
+    ],
+    "answer": "b",
+    "explanation": "Browsers typically perform a case-insensitive substring match when filtering datalist suggestions."
+  },
+  {
+    "question": "Which attribute on the <option> inside a datalist provides the actual value submitted?",
+    "options": [
+      "id",
+      "name",
+      "value",
+      "data-value"
+    ],
+    "answer": "c",
+    "explanation": "The `value` attribute of `<option>` provides the value that goes into the input when the suggestion is selected."
+  },
+  {
+    "question": "What is a common workaround when you need styled autocomplete suggestions?",
+    "options": [
+      "Use CSS ::part() on datalist",
+      "Build a custom combobox with JavaScript",
+      "Set appearance: none on the datalist",
+      "Use a select with size attribute"
+    ],
+    "answer": "b",
+    "explanation": "Since datalist popups are not stylable, a custom combobox component with JavaScript is the workaround for styled autocomplete."
+  },
+  {
+    "question": "Which of these is NOT a valid use case for datalist?",
+    "options": [
+      "Country autocomplete",
+      "Tag input suggestions",
+      "Multi-select with checkboxes",
+      "Range slider tick marks"
+    ],
+    "answer": "c",
+    "explanation": "Datalist does not support multiple selection (checkboxes). Use a `<select multiple>` or custom component for multi-select."
+  },
+  {
+    "question": "What happens when the user selects a suggestion from the datalist?",
+    "options": [
+      "The input fires both an input and change event",
+      "Only a blur event fires",
+      "Only a select event fires",
+      "No events fire"
+    ],
+    "answer": "a",
+    "explanation": "When a suggestion is selected, both `input` and `change` events fire on the input element."
+  },
+  {
+    "question": "How do you create a datalist that shows options even when the input is empty?",
+    "options": [
+      "Set the input's placeholder to a special value",
+      "Use JavaScript to open the list programmatically",
+      "Add an empty value option",
+      "This is not natively possible"
+    ],
+    "answer": "d",
+    "explanation": "The native datalist only shows suggestions when the input is focused and the user starts typing. There is no native way to show all options on an empty input."
+  }
+]

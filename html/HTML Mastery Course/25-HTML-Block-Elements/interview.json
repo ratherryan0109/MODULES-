@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is a block-level element in HTML?",
+      "answer": "A block-level element is an element that starts on a new line and occupies the full available width of its parent container. It stacks vertically above and below other elements."
+    },
+    {
+      "question": "Give five examples of block-level elements.",
+      "answer": "div, p, h1-h6, ul, ol, li, header, nav, main, section, article, aside, footer, blockquote, pre, hr, form, table, fieldset, address."
+    },
+    {
+      "question": "What is the difference between block and inline elements?",
+      "answer": "Block elements start on a new line, take full width, and stack vertically. Inline elements stay on the same line, take only as much width as needed, and flow within text."
+    },
+    {
+      "question": "Can a block element contain inline elements?",
+      "answer": "Yes. Block elements can contain other block elements, inline elements, or a mix of both. For example, a <div> can contain <span>, <a>, <img>, and other inline elements."
+    },
+    {
+      "question": "What happens if you put a <div> inside a <p> tag?",
+      "answer": "This is invalid HTML. Browsers will automatically close the <p> tag before the <div>, breaking the intended structure."
+    },
+    {
+      "question": "What does the <hr> element represent?",
+      "answer": "<hr> represents a thematic break in the content, such as a shift of topic. It is displayed as a horizontal rule by default."
+    },
+    {
+      "question": "Is <li> a block-level element?",
+      "answer": "Yes, <li> (list item) is a block-level element. It occupies the full width of its parent list container."
+    },
+    {
+      "question": "What is the default display value of a <div>?",
+      "answer": "The default display value of a <div> is 'block'."
+    },
+    {
+      "question": "What does the <blockquote> element do?",
+      "answer": "<blockquote> represents a section quoted from another source. It is a block-level element typically rendered with indentation."
+    },
+    {
+      "question": "What is the <pre> element used for?",
+      "answer": "<pre> displays preformatted text, preserving whitespace and line breaks. It is a block-level element often used for code blocks."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Explain margin collapsing in block elements.",
+      "answer": "Margin collapsing occurs when vertical margins of adjacent block elements touch. Instead of adding, they collapse to the larger value. For example, if Box A has margin-bottom: 30px and Box B has margin-top: 20px, the gap is 30px, not 50px."
+    },
+    {
+      "question": "How can you prevent margin collapsing?",
+      "answer": "Methods include: setting overflow: hidden on the parent, adding padding or borders between elements, using flexbox or grid on the parent, or using inline-block display."
+    },
+    {
+      "question": "What is the difference between display: block and display: inline-block?",
+      "answer": "display: block creates an element that takes full width and starts on a new line. display: inline-block flows inline like text but respects width, height, margin, and padding like a block."
+    },
+    {
+      "question": "How do you center a block element horizontally?",
+      "answer": "Set a width (or max-width) on the element and use margin: 0 auto. The auto margins distribute equally on both sides."
+    },
+    {
+      "question": "What is the role of HTML5 semantic block elements?",
+      "answer": "Semantic elements like <header>, <nav>, <main>, <section>, <article>, <aside>, <footer> give meaning to the structure, improving accessibility, SEO, and code readability compared to generic <div> elements."
+    },
+    {
+      "question": "What happens if you set width: 100% on a block element with padding and border?",
+      "answer": "Without box-sizing: border-box, the element's total width becomes 100% + padding + border, causing overflow. With border-box, the width includes padding and border."
+    },
+    {
+      "question": "Can the <main> element appear multiple times on a page?",
+      "answer": "No. The <main> element should be unique per page, representing the dominant content. It should not be nested within <article>, <aside>, <footer>, <header>, or <nav>."
+    },
+    {
+      "question": "What is the <address> element and where should it be used?",
+      "answer": "<address> provides contact information for its nearest <article> or <body> ancestor. It is a block-level element displayed in italic by default."
+    },
+    {
+      "question": "How does the CSS display: contents affect a block element?",
+      "answer": "display: contents removes the element from the rendering tree but keeps its children. The element's box is not rendered, but its children are displayed as if the element did not exist."
+    },
+    {
+      "question": "What is the difference between <section> and <article>?",
+      "answer": "<section> groups thematically related content, typically with a heading. <article> represents a self-contained composition that could be syndicated independently. An <article> can contain multiple <section> elements."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the visual formatting model for block elements in CSS.",
+      "answer": "Block elements generate a principal block box in the normal flow. They participate in a block formatting context (BFC), where boxes are laid out vertically. The distance between them is determined by margins, which collapse."
+    },
+    {
+      "question": "How do you create a block formatting context (BFC) and why would you?",
+      "answer": "A BFC is created by: float, overflow: hidden/auto, display: flow-root/inline-block/flex/grid, position: absolute/fixed. BFCs prevent margin collapsing, contain floats, and prevent wrapping around floats."
+    },
+    {
+      "question": "What is the actual width of a block element with width: 50%, padding: 20px, border: 5px, and box-sizing: content-box?",
+      "answer": "If the parent is 1000px: content = 500px, padding = 40px (20px × 2), border = 10px (5px × 2). Total = 550px. With border-box, total would be 500px."
+    },
+    {
+      "question": "How do block elements behave in a flex container?",
+      "answer": "Inside a flex container, block elements become flex items. They no longer take 100% width by default, margins do not collapse, and they can be laid out horizontally or vertically based on flex-direction."
+    },
+    {
+      "question": "Explain the interaction between block elements and the clear property.",
+      "answer": "The clear property (left, right, both) pushes a block element below any preceding floated elements. This is often used to prevent unwanted wrapping around floats."
+    },
+    {
+      "question": "What is the difference between <aside> and <div> for sidebars?",
+      "answer": "<aside> has semantic meaning — it represents content indirectly related to the main content. A <div> has no semantic meaning. Screen readers treat <aside> as complementary content."
+    },
+    {
+      "question": "How does the CSS contain property affect block element rendering?",
+      "answer": "contain: layout creates a new formatting context and isolates the element's layout from the rest of the page, potentially improving performance by limiting recalculations."
+    },
+    {
+      "question": "Can a block element with position: fixed be centered?",
+      "answer": "Yes. Use left: 50% with transform: translateX(-50%), or use left: 0, right: 0 with margin: 0 auto and a defined width."
+    },
+    {
+      "question": "How do legacy browsers handle HTML5 semantic block elements?",
+      "answer": "IE 8 and below do not style unknown elements as block by default. Use display: block in CSS and HTML5 shiv (polyfill) to add styling support."
+    },
+    {
+      "question": "Explain how the CSS all: revert property affects a block element's display.",
+      "answer": "all: revert resets all CSS properties to the browser's default styles. For a <div>, display reverts to 'block'. For a <span>, it reverts to 'inline'."
+    }
+  ]
+}

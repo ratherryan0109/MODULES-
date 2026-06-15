@@ -1,0 +1,130 @@
+{
+  "module": "114-responsive-accessibility",
+  "title": "Responsive Accessibility",
+  "beginner": [
+    {
+      "question": "Why is browser zoom important for accessibility?",
+      "answer": "Browser zoom (typically Ctrl/Cmd +/-, or pinch zoom on mobile) allows users with low vision to enlarge content. Unlike text-only zoom, full-page zoom scales all content (images, layout). WCAG requires that pages remain functional when zoomed to 200% without loss of content or functionality."
+    },
+    {
+      "question": "What is the difference between browser zoom and text-only zoom?",
+      "answer": "Browser zoom scales the entire page (text, images, layout) proportionally. Text-only zoom (Ctrl+scroll wheel or browser Settings → Font size) only enlarges text, which can cause layout overflow if the design isn't flexible. Responsive design should handle both."
+    },
+    {
+      "question": "Why should you use relative units (`rem`, `em`, `%`) instead of pixels for accessibility?",
+      "answer": "Relative units respect user font-size preferences. If a user sets their browser default font to 20px, `1rem = 20px`. With pixel values, text stays fixed and can be too small. Relative units ensure the entire layout scales proportionally."
+    },
+    {
+      "question": "What does 'orientation lock' mean and why is it problematic for accessibility?",
+      "answer": "Orientation lock forces the page to display only in portrait or landscape mode using `@media` or viewport meta settings. This excludes users who rely on a specific orientation due to mounting (wheelchair arm mount), or those using foldable/convertible devices."
+    },
+    {
+      "question": "What is the minimum zoom level WCAG requires?",
+      "answer": "WCAG SC 1.4.10 (Reflow) requires that content be presented without loss of information or functionality, and without scrolling in two dimensions, at 400% zoom. Content must reflow to a single column when needed."
+    },
+    {
+      "question": "What viewport meta tag supports responsive accessibility?",
+      "answer": "`<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">`. This ensures the page matches the device width and doesn't force a desktop-scale view on mobile. Without it, zoom behavior can break on mobile devices."
+    },
+    {
+      "question": "What is the problem with `user-scalable=no` in the viewport meta tag?",
+      "answer": "`user-scalable=no` or `maximum-scale=1.0` disables pinch-zoom on mobile, which violates WCAG SC 1.4.4 (Resize Text). Users with low vision rely on zoom to read content. Never disable zoom."
+    },
+    {
+      "question": "How does responsive design support screen reader users?",
+      "answer": "Responsive reflow (single column at narrow widths) benefits screen readers because content flows linearly without complex multi-column reading that jumps around. A well-structured responsive page follows source order, which aligns with DOM reading order."
+    },
+    {
+      "question": "What is the `orientation` media query used for in CSS?",
+      "answer": "`@media (orientation: landscape) { ... }` and `@media (orientation: portrait) { ... }` apply styles based on device orientation. Use for optimizing layout per orientation, but never prevent content access in one orientation."
+    },
+    {
+      "question": "What is the difference between responsive design and adaptive design?",
+      "answer": "Responsive design uses fluid grids and CSS media queries to continuously adapt to any viewport size. Adaptive design uses fixed breakpoints to serve different layouts for specific device sizes. Both support accessibility when done with flexible, zoomable content."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you ensure a responsive table remains accessible?",
+      "answer": "Use `<thead>`, `<th>` with `scope=\"col/row\"` for proper screen reader mapping. For narrow screens, convert tables to stacked cards using `display: grid` and `@media` queries, or use `overflow-x: auto` with a scroll hint for horizontally scrollable tables."
+    },
+    {
+      "question": "What is SC 1.4.10 (Reflow) and what does it require?",
+      "answer": "SC 1.4.10 requires content to be presented without loss of information or functionality at 400% zoom without requiring two-dimensional scrolling. This means horizontal scrolling should be eliminated for vertically-scrolling content at any zoom level up to 400%."
+    },
+    {
+      "question": "How do you handle navigation (hamburger menu) accessibility across breakpoints?",
+      "answer": "The navigation must be accessible (keyboard navigable, screen reader friendly) at all breakpoints. On mobile, the hamburger toggle button needs `aria-expanded` and `aria-controls`. At desktop, the full navigation should be directly in the DOM with proper landmark roles."
+    },
+    {
+      "question": "How do you test responsiveness with screen readers?",
+      "answer": "Resize the browser to mobile widths and navigate using only a screen reader. Verify that content reflows correctly, no content is hidden from the accessibility tree unless intentional, and interactive elements remain reachable. Test at 200% and 400% zoom."
+    },
+    {
+      "question": "What is the 'content order' concern in responsive layouts with CSS Grid?",
+      "answer": "CSS Grid's `order` property and grid placement can visually reorder elements differently from DOM order. At narrow widths, this may cause reading order to mismatch visual order, confusing screen readers. Always verify source order matches logical reading order."
+    },
+    {
+      "question": "How do you create responsive focus indicators that work at all zoom levels?",
+      "answer": "Use relative units (2px = `0.125rem`) for focus indicator thickness so they scale with zoom. Use `outline-offset: 2px` (relative) to keep focus rings separated from content. Test at 400% zoom to ensure focus indicators are still visible."
+    },
+    {
+      "question": "What is the problem with `position: fixed` elements on mobile zoom?",
+      "answer": "`position: fixed` elements (sticky headers, floating menus) can cover large portions of the screen when zoomed in, blocking content underneath. Consider hiding sticky elements at high zoom levels, or making them dismissible."
+    },
+    {
+      "question": "How do you handle responsive images for accessibility?",
+      "answer": "Use responsive image syntax (`<picture>`, `srcset`, `sizes`) to serve appropriate resolution images. Always include descriptive `alt` text. For high-DPI displays, serve 2x or 3x resolution images. Avoid images of text at all costs, especially in responsive layouts."
+    },
+    {
+      "question": "What is the interaction between `prefers-color-scheme` and responsive design?",
+      "answer": "`prefers-color-scheme: dark` can be combined with responsive queries: `@media (prefers-color-scheme: dark) and (max-width: 768px)`. Dark mode may need different contrast adjustments at different screen sizes (e.g., higher contrast on small outdoor screens)."
+    },
+    {
+      "question": "How do you ensure touch targets remain accessible at all viewport sizes?",
+      "answer": "WCAG 2.2 SC 2.5.8 (Target Size) requires touch targets to be at least 24x24 CSS pixels. In responsive layouts, ensure buttons and links don't become too small (e.g., icon-only buttons) at any breakpoint. Use `min-height` and `min-width` in CSS."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a responsive accessible carousel that works at 400% zoom?",
+      "answer": "At 400% zoom, the carousel should become a stacked list of items (all visible at once) rather than a sliding horizontal strip. Use a media query or container query to switch from horizontal scrolling to vertical stacking when viewport is narrow or zoomed."
+    },
+    {
+      "question": "What is the 'CSS container queries' benefit for accessible responsive design?",
+      "answer": "Container queries (`@container`) allow components to respond to their parent container's size, not just the viewport. This is powerful for accessibility because a component wrapped in a sidebar or main area can adapt independently — ensuring zoom doesn't break layout."
+    },
+    {
+      "question": "How does the `resize` CSS property affect accessibility?",
+      "answer": "`resize: both` (or `horizontal`/`vertical`) allows users to resize textareas, which aids accessibility. However, ensure the resized element doesn't overflow the viewport at any zoom level. Use `max-width: 100%` to constrain resized elements."
+    },
+    {
+      "question": "How do you handle responsive typography that respects user zoom without breaking layout?",
+      "answer": "Use `clamp()` for fluid typography: `font-size: clamp(1rem, 2.5vw, 2rem)`. This scales text between minimum and maximum sizes while respecting zoom. Combine with `rem`-based spacing to maintain proportion. Test at 400% zoom for overflow."
+    },
+    {
+      "question": "What is the 'viewport units minimum size' trap for accessibility?",
+      "answer": "Viewport units (`vw`, `vh`) alone for font-size can shrink text to unreadable sizes on narrow viewports. Always use `clamp()` with a minimum (`clamp(1rem, 5vw, 3rem)`) to prevent text from becoming too small. WCAG SC 1.4.4 requires text be resizable up to 200%."
+    },
+    {
+      "question": "How do you implement a responsive grid that maintains logical focus order?",
+      "answer": "Use source-order DOM layout with CSS Grid and avoid `grid-auto-flow: dense` (which reorders items visually). At narrow widths, use `grid-template-columns: 1fr` for single-column stacking that matches DOM order. Test Tab order at every breakpoint."
+    },
+    {
+      "question": "What considerations exist for foldable/dual-screen devices in responsive accessibility?",
+      "answer": "Use the CSS `viewport-segment-*` media features and JavaScript `window.getScreenDetails()` API for dual-screen layouts. Ensure content spans the hinge area correctly and doesn't trap focus or hide content in the hinge gap. The `spanning` media feature helps."
+    },
+    {
+      "question": "How do you handle responsive data charts at high zoom levels?",
+      "answer": "At 400% zoom, charts should provide an alternative data table or text summary. Canvas-based charts (Chart.js, D3) may need a `role=\"img\"` with `aria-label` fallback. Provide a toggle to view the data as a table instead of the chart visualization."
+    },
+    {
+      "question": "What is the WCAG requirement for reflow of non-text content?",
+      "answer": "SC 1.4.10 (Reflow) applies to text content. Non-text content like images and videos can have a fixed size. However, they must not cause two-dimensional scrolling at 400% zoom — use `max-width: 100%` on all media to constrain them to the viewport width."
+    },
+    {
+      "question": "How do you implement a responsive accessible 'skip to content' link that works across all viewports?",
+      "answer": "The skip link must be the first focusable element in the DOM. It should remain visible on focus (`:focus-visible`) and trigger scrolling and focus to `#main-content`. At narrow widths, ensure it doesn't overlap with the mobile navigation toggle."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mask-gradient-fade",
+    "title": "Gradient Fade Reveal",
+    "difficulty": "beginner",
+    "description": "Create an image that fades from fully visible to transparent using a linear gradient mask.",
+    "hint": "Use mask-image with linear-gradient(from transparent to black).",
+    "criteria": ["mask-image with linear-gradient", "Smooth fade transition", "Image content visible partially"],
+    "starter": ".image {\n  mask-image: linear-gradient(to bottom, black, transparent);\n  -webkit-mask-image: /* repeat */;\n}"
+  },
+  {
+    "id": "mask-radial-reveal",
+    "title": "Radial Spotlight Reveal",
+    "difficulty": "intermediate",
+    "description": "Create a spotlight effect that reveals a colored image beneath a grayscale version using radial gradient masking.",
+    "hint": "Stack two images on top of each other, mask the top one with a radial gradient that follows the mouse.",
+    "criteria": ["Two stacked layers", "Radial mask on top layer", "Interactive or animated position"],
+    "starter": ".container { position: relative; }\n.container img { position: absolute; }\n.container .top {\n  mask-image: radial-gradient(circle at center, black 30%, transparent 31%);\n  /* Add positioning */\n}"
+  },
+  {
+    "id": "mask-svg-shape",
+    "title": "SVG Shape Mask Gallery",
+    "difficulty": "intermediate",
+    "description": "Build an image gallery where each image is masked into a different SVG shape (circle, triangle, star, heart).",
+    "hint": "Create inline SVG <mask> elements and reference them with mask: url(#shapeMask).",
+    "criteria": ["Minimum 3 different SVG shapes", "Images masked to fit each shape", "Responsive layout"],
+    "starter": "<svg><defs><mask id=\"circle\"><circle cx=\"50%\" cy=\"50%\" r=\"45%\" fill=\"white\"/></mask></defs></svg>\n<style>\n  .circle-img { mask: url(#circle); }\n</style>"
+  },
+  {
+    "id": "mask-animated-reveal",
+    "title": "Animated Page Reveal",
+    "difficulty": "advanced",
+    "description": "Create an animated page loading effect where content is revealed using a growing circle mask.",
+    "hint": "Animate the mask-size or use a CSS animation with a radial gradient mask that expands.",
+    "criteria": ["Animation that reveals content", "Circular reveal effect", "Smooth easing"],
+    "starter": ".page {\n  mask-image: radial-gradient(circle at center, black 0%, black var(--size), transparent calc(var(--size) + 1px));\n  animation: reveal 1.5s ease-out forwards;\n}\n@keyframes reveal {\n  from { --size: 0%; }\n  to { --size: 100%; }\n}"
+  }
+]

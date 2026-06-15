@@ -1,0 +1,197 @@
+{
+  "module": "101-css-logical-properties",
+  "title": "CSS Logical Properties",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does the 'inline' axis refer to in CSS Logical Properties?",
+      "options": [
+        "The direction text flows within a line",
+        "The vertical direction (top to bottom)",
+        "The direction blocks stack",
+        "The diagonal axis"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The inline axis is the direction text flows within a line. In horizontal writing modes (like English), it's horizontal. In vertical writing modes, it's vertical."
+    },
+    {
+      "id": 2,
+      "question": "Which logical property replaces the physical property 'width'?",
+      "options": ["block-size", "inline-size", "max-size", "width-logical"],
+      "correctAnswer": 1,
+      "explanation": "inline-size replaces width. It defines the size along the inline axis (horizontal in LTR, vertical in vertical writing modes)."
+    },
+    {
+      "id": 3,
+      "question": "What does margin-inline: auto do in a LTR context?",
+      "options": [
+        "Centers the element horizontally",
+        "Sets top and bottom margins to auto",
+        "Removes all margins",
+        "Centers the element vertically"
+      ],
+      "correctAnswer": 0,
+      "explanation": "margin-inline: auto centers the element along the inline axis — horizontally in LTR, same as margin: 0 auto but writing-mode aware."
+    },
+    {
+      "id": 4,
+      "question": "Which of the following is the correct logical equivalent for 'border-top'?",
+      "options": ["border-start", "border-block-start", "border-inline-start", "border-top-logical"],
+      "correctAnswer": 1,
+      "explanation": "border-block-start replaces border-top. The block axis runs perpendicular to the inline axis (vertical in LTR)."
+    },
+    {
+      "id": 5,
+      "question": "In an RTL context (dir='rtl'), what does 'border-inline-start' correspond to?",
+      "options": ["Left border", "Right border", "Top border", "Bottom border"],
+      "correctAnswer": 1,
+      "explanation": "In RTL, the inline start is on the right side (reading starts on the right), so border-inline-start affects the right border."
+    },
+    {
+      "id": 6,
+      "question": "What is the logical equivalent of 'text-align: left'?",
+      "options": ["text-align: right", "text-align: start", "text-align: inline-start", "text-align: block-start"],
+      "correctAnswer": 1,
+      "explanation": "text-align: start replaces text-align: left. In LTR it aligns left, in RTL it aligns right, adapting automatically."
+    },
+    {
+      "id": 7,
+      "question": "Which property pair correctly replaces 'left' and 'right' in positioning?",
+      "options": [
+        "inset-inline-start / inset-inline-end",
+        "inset-block-start / inset-block-end",
+        "inline-start / inline-end",
+        "position-start / position-end"
+      ],
+      "correctAnswer": 0,
+      "explanation": "inset-inline-start replaces left and inset-inline-end replaces right for positioned elements."
+    },
+    {
+      "id": 8,
+      "question": "What does 'block-size' replace?",
+      "options": ["width", "height", "both width and height", "padding"],
+      "correctAnswer": 1,
+      "explanation": "block-size replaces height. It defines the size along the block axis (vertical in LTR, horizontal in vertical writing modes)."
+    },
+    {
+      "id": 9,
+      "question": "In a vertical writing mode (writing-mode: vertical-rl), what does 'inline-size' control?",
+      "options": ["Width", "Height", "Font size", "Line height"],
+      "correctAnswer": 1,
+      "explanation": "In vertical writing modes, the inline axis runs vertically, so inline-size controls the height of the element."
+    },
+    {
+      "id": 10,
+      "question": "Which property would you use for a top-left corner radius that adapts in RTL?",
+      "options": [
+        "border-top-left-radius",
+        "border-start-start-radius",
+        "border-block-start-inline-start-radius",
+        "border-corner-top-left"
+      ],
+      "correctAnswer": 1,
+      "explanation": "border-start-start-radius targets the corner at the start of the block axis and start of the inline axis — top-left in LTR, top-right in RTL."
+    },
+    {
+      "id": 11,
+      "question": "What is the purpose of the 'inset' shorthand property?",
+      "options": [
+        "Sets all four inset properties at once (top, right, bottom, left)",
+        "Sets the inline size only",
+        "Sets the border inset style",
+        "Sets the padding internally"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The inset shorthand sets all four inset-* properties at once, similar to how 'top', 'right', 'bottom', 'left' work but with logical equivalents."
+    },
+    {
+      "id": 12,
+      "question": "What does 'overflow-inline' control?",
+      "options": [
+        "Overflow on the inline axis (horizontal in LTR)",
+        "Overflow on the block axis (vertical in LTR)",
+        "Both axes overflow",
+        "Text overflow with ellipsis"
+      ],
+      "correctAnswer": 0,
+      "explanation": "overflow-inline controls overflow on the inline axis, replacing overflow-x in most cases."
+    },
+    {
+      "id": 13,
+      "question": "Which CSS at-rule can you use to provide fallbacks for older browsers without logical property support?",
+      "options": ["@media", "@supports", "@import", "@layer"],
+      "correctAnswer": 1,
+      "explanation": "@supports (feature query) can detect if a browser supports a specific CSS property, allowing you to provide fallbacks: @supports (margin-inline-start: 0) { ... }"
+    },
+    {
+      "id": 14,
+      "question": "What is the main advantage of using logical properties for internationalization?",
+      "options": [
+        "Faster page loading",
+        "Layouts automatically adapt to different writing modes and directions",
+        "Smaller file sizes",
+        "Better color rendering"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Logical properties make layouts writing-mode-aware, automatically adapting to LTR, RTL, and vertical scripts without duplicating CSS rules."
+    },
+    {
+      "id": 15,
+      "question": "Which of the following does NOT have a logical property equivalent?",
+      "options": ["margin", "padding", "float", "border"],
+      "correctAnswer": 2,
+      "explanation": "The 'float' property does not have a logical equivalent yet. You typically use Flexbox or Grid instead for layout."
+    },
+    {
+      "id": 16,
+      "question": "What is the default value of 'writing-mode' in CSS?",
+      "options": ["horizontal-tb", "vertical-rl", "vertical-lr", "sideways-rl"],
+      "correctAnswer": 0,
+      "explanation": "The default writing mode is horizontal-tb: text flows horizontally, blocks stack top-to-bottom. This is the standard for most Western scripts."
+    },
+    {
+      "id": 17,
+      "question": "In RTL, what happens to 'padding-inline: 0 20px'?",
+      "options": [
+        "Padding is 0 on left, 20px on right",
+        "Padding is 0 on right, 20px on left",
+        "Both sides get 20px",
+        "Only the start side gets 20px"
+      ],
+      "correctAnswer": 0,
+      "explanation": "padding-inline with two values assigns the first to inline-start and second to inline-end. In RTL, start is right and end is left, so 0 on right, 20px on left."
+    },
+    {
+      "id": 18,
+      "question": "How do you center an element horizontally using logical properties?",
+      "options": [
+        "margin-inline: auto",
+        "margin-block: auto",
+        "inset: auto",
+        "text-align: center on the parent"
+      ],
+      "correctAnswer": 0,
+      "explanation": "margin-inline: auto centers the element along the inline axis, which is the horizontal direction in LTR writing modes."
+    },
+    {
+      "id": 19,
+      "question": "Which browser was the first to support most CSS Logical Properties?",
+      "options": ["Chrome 69+", "Firefox 41+", "Safari 12.1+", "Edge 79+"],
+      "correctAnswer": 1,
+      "explanation": "Firefox 41+ (2015) was the earliest browser to support logical properties for margin, padding, and border. Chrome added support later in version 69."
+    },
+    {
+      "id": 20,
+      "question": "What is a recommended strategy for migrating an existing project to use logical properties?",
+      "options": [
+        "Rewrite all CSS files at once",
+        "Start with text-align, then padding/margin, then sizing and borders incrementally",
+        "Only use logical properties for new features, never update existing code",
+        "Use JavaScript to convert all properties automatically"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Incremental migration is recommended: start with simple changes like text-align, then move to padding/margin, then sizing and borders. This allows testing at each step."
+    }
+  ]
+}

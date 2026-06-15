@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 3D Transformations - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; }
+    .demo-area { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; min-height: 200px; }
+    .scene { perspective: 600px; }
+    .box {
+      width: 120px; height: 120px; background: #89b4fa; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; color: #1e1e2e;
+      font-weight: 700; transition: transform 0.5s ease; font-size: 0.8rem;
+    }
+    .pre { font-family: monospace; background: #181825; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS 3D Transformations — Practical Examples</h1>
+
+  <div class="card">
+    <h2>1. RotateX</h2>
+    <p>Rotation around X-axis (forward/backward tilt).</p>
+    <div class="demo-area scene">
+      <div class="box" onmouseover="this.style.transform='rotateX(45deg)'" onmouseout="this.style.transform='rotateX(0)'">rotateX</div>
+    </div>
+    <div class="pre">transform: rotateX(45deg); /* parent: perspective: 600px */</div>
+  </div>
+
+  <div class="card">
+    <h2>2. RotateY</h2>
+    <p>Rotation around Y-axis (door opening).</p>
+    <div class="demo-area scene">
+      <div class="box" style="background:#f38ba8;" onmouseover="this.style.transform='rotateY(45deg)'" onmouseout="this.style.transform='rotateY(0)'">rotateY</div>
+    </div>
+    <div class="pre">transform: rotateY(45deg);</div>
+  </div>
+
+  <div class="card">
+    <h2>3. TranslateZ</h2>
+    <p>Moving toward/away from viewer.</p>
+    <div class="demo-area scene">
+      <div class="box" style="background:#a6e3a1;" onmouseover="this.style.transform='translateZ(100px)'" onmouseout="this.style.transform='translateZ(0)'">translateZ</div>
+    </div>
+    <div class="pre">transform: translateZ(100px);</div>
+  </div>
+
+  <div class="card">
+    <h2>4. Card Flip (3D)</h2>
+    <p>Flip card using rotateY with backface-visibility.</p>
+    <div class="demo-area">
+      <div class="scene" style="width:150px; height:150px;">
+        <div class="box" style="width:150px; height:150px; position:relative; transform-style:preserve-3d; background:transparent;" onmouseover="this.style.transform='rotateY(180deg)'" onmouseout="this.style.transform='rotateY(0)'">
+          <div style="position:absolute; inset:0; background:#cba6f7; border-radius:12px; display:flex; align-items:center; justify-content:center; backface-visibility:hidden;">Front</div>
+          <div style="position:absolute; inset:0; background:#f38ba8; border-radius:12px; display:flex; align-items:center; justify-content:center; backface-visibility:hidden; transform:rotateY(180deg);">Back</div>
+        </div>
+      </div>
+    </div>
+    <div class="pre">backface-visibility: hidden;<br>.front, .back { position: absolute; }<br>.back { transform: rotateY(180deg); }</div>
+  </div>
+
+  <div class="card">
+    <h2>5. Perspective Comparison</h2>
+    <p>Same rotateY(45deg) with different perspective values.</p>
+    <div class="demo-area">
+      <div style="perspective:200px;"><div class="box" style="background:#f38ba8; transform:rotateY(45deg);">200px</div></div>
+      <div style="perspective:600px;"><div class="box" style="background:#a6e3a1; transform:rotateY(45deg);">600px</div></div>
+      <div style="perspective:2000px;"><div class="box" style="background:#fab387; transform:rotateY(45deg);">2000px</div></div>
+    </div>
+    <div class="pre">perspective: 200px (extreme) vs 600px vs 2000px (subtle)</div>
+  </div>
+
+  <div class="card">
+    <h2>6. 3D Transform Chain</h2>
+    <p>Combining multiple 3D transforms.</p>
+    <div class="demo-area scene">
+      <div class="box" style="background:#89dceb;" onmouseover="this.style.transform='rotateX(20deg) rotateY(40deg) translateZ(50px)'" onmouseout="this.style.transform='rotateX(0) rotateY(0) translateZ(0)'">3D Chain</div>
+    </div>
+    <div class="pre">transform: rotateX(20deg) rotateY(40deg) translateZ(50px);</div>
+  </div>
+</body>
+</html>

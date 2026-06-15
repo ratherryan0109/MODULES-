@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML ID Examples</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; background: #f5f7fa; color: #333; }
+    h1 { text-align: center; color: #2c3e50; }
+    h2 { color: #2980b9; border-bottom: 2px solid #2980b9; padding-bottom: 6px; margin: 40px 0 20px; }
+    .example-box { background: white; border-radius: 10px; padding: 25px; margin: 25px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .example-box h3 { margin: 0 0 15px; color: #e67e22; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; font-size: 14px; }
+
+    /* For smooth scrolling demo */
+    html { scroll-behavior: smooth; }
+    .section { padding: 40px 0; border-bottom: 1px solid #eee; scroll-margin-top: 20px; }
+    .section:nth-child(odd) { background: #f8f9fa; }
+    .nav-links { background: #2c3e50; padding: 12px 20px; border-radius: 8px; margin-bottom: 24px; }
+    .nav-links a { color: #1abc9c; margin-right: 16px; text-decoration: none; }
+
+    /* JS counter demo */
+    #click-counter { font-size: 48px; font-weight: bold; color: #2980b9; display: block; text-align: center; }
+    #increment-btn, #reset-btn { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin: 4px; }
+    #increment-btn { background: #27ae60; color: white; }
+    #reset-btn { background: #e74c3c; color: white; }
+
+    /* Form demo */
+    #signup-form { max-width: 500px; margin: 0 auto; }
+    #signup-form label { display: block; margin-top: 12px; font-weight: bold; }
+    #signup-form input { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px; }
+    #signup-form input:focus { border-color: #2980b9; outline: none; }
+    #form-feedback { margin-top: 16px; padding: 12px; border-radius: 6px; display: none; }
+
+    /* Scroll-to sections */
+    .section-demo { background: white; border-radius: 8px; padding: 20px; margin: 12px 0; }
+  </style>
+</head>
+<body>
+  <h1>HTML ID Examples</h1>
+
+  <div class="example-box">
+    <h3>Example 1: Fragment Identifiers (Anchor Links)</h3>
+    <nav class="nav-links">
+      <a href="#section1">Section 1</a>
+      <a href="#section2">Section 2</a>
+      <a href="#section3">Section 3</a>
+    </nav>
+    <div id="section1" class="section-demo section">
+      <h4>Section 1</h4>
+      <p>This section has id="section1". Click the link above to scroll here smoothly.</p>
+      <p>The URL in the address bar changes to #section1 when you click the link.</p>
+    </div>
+    <div id="section2" class="section-demo section">
+      <h4>Section 2</h4>
+      <p>This section has id="section2". Smooth scrolling is enabled via CSS scroll-behavior: smooth.</p>
+    </div>
+    <div id="section3" class="section-demo section">
+      <h4>Section 3</h4>
+      <p>This section has id="section3". Each section has scroll-margin-top to offset the fixed header if needed.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 2: JavaScript Hook with getElementById</h3>
+    <p>Counter: <span id="click-counter">0</span></p>
+    <div style="text-align:center;">
+      <button id="increment-btn">+1</button>
+      <button id="reset-btn">Reset</button>
+    </div>
+    <script>
+      let count = 0;
+      const counter = document.getElementById('click-counter');
+      document.getElementById('increment-btn').addEventListener('click', () => {
+        counter.textContent = ++count;
+      });
+      document.getElementById('reset-btn').addEventListener('click', () => {
+        count = 0;
+        counter.textContent = 0;
+      });
+    </script>
+    <div class="note">document.getElementById('click-counter') is the fastest way to access a DOM element.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 3: Form Label Association</h3>
+    <p>Labels use the <code>for</code> attribute matching the input's <code>id</code>:</p>
+    <form id="signup-form">
+      <label for="full-name">Full Name:</label>
+      <input type="text" id="full-name" name="fullname" placeholder="Enter your name">
+
+      <label for="email-address">Email:</label>
+      <input type="email" id="email-address" name="email" placeholder="Enter your email">
+
+      <label for="user-password">Password:</label>
+      <input type="password" id="user-password" name="password" placeholder="Enter a password">
+
+      <div id="form-feedback"></div>
+
+      <button type="submit" id="submit-form-btn" style="margin-top:16px;padding:12px 24px;background:#3498db;color:white;border:none;border-radius:6px;cursor:pointer;font-size:16px;">Submit</button>
+    </form>
+    <script>
+      document.getElementById('signup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('full-name').value;
+        const feedback = document.getElementById('form-feedback');
+        feedback.style.display = 'block';
+        feedback.style.background = '#d5f5e3';
+        feedback.style.color = '#27ae60';
+        feedback.textContent = `Thanks for signing up, ${name || 'Guest'}!`;
+      });
+    </script>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 4: ID vs Class Comparison</h3>
+    <div style="display:flex;gap:20px;">
+      <div style="flex:1;">
+        <h4 style="color:#e74c3c;">ID (unique)</h4>
+        <p id="id-demo-1">This element has an ID. It is unique.</p>
+        <p style="color:#999;">Only one element can have #id-demo-1.</p>
+      </div>
+      <div style="flex:1;">
+        <h4 style="color:#27ae60;">Class (reusable)</h4>
+        <p class="class-demo">This element has a class.</p>
+        <p class="class-demo">This element also has the same class.</p>
+        <p style="color:#999;">Multiple elements can share a class.</p>
+      </div>
+    </div>
+    <div class="note">Use IDs when uniqueness matters (labels, anchors, JS). Use classes for reusable styling.</div>
+  </div>
+</body>
+</html>

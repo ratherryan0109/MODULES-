@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Blend Modes — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; padding: 2rem; color: #eee; }
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: #aaa; margin-bottom: 2rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .controls { background: #16213e; border-radius: 12px; padding: 1.5rem; }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group input[type="color"] { width: 100%; height: 40px; border: none; border-radius: 6px; cursor: pointer; background: transparent; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .tab-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .tab-bar button { padding: 0.5rem 1rem; border: none; border-radius: 6px; background: #0f3460; color: #aaa; cursor: pointer; }
+    .tab-bar button.active { background: #e94560; color: white; }
+    .preview-area { background: #16213e; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 500px; position: relative; }
+    .mix-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 12px; overflow: hidden; }
+    .mix-bg svg { width: 100%; height: 100%; display: block; }
+    .mix-element { position: relative; z-index: 1; padding: 2rem 4rem; font-size: 3rem; font-weight: 900; text-align: center; }
+    .code-output { background: #0a0a1a; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #a8d8ea; white-space: pre-wrap; word-break: break-all; width: 100%; }
+    .bg-preview { width: 100%; height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; }
+    .preset-btn { padding: 0.3rem 0.6rem; border: 1px solid #333; border-radius: 4px; background: #0f3460; color: #aaa; cursor: pointer; font-size: 0.7rem; }
+    .preset-btn:hover { background: #e94560; color: white; }
+  </style>
+</head>
+<body>
+  <h1>CSS Blend Modes Playground</h1>
+  <p class="subtitle">Experiment with mix-blend-mode and background-blend-mode</p>
+
+  <div class="container">
+    <div class="controls">
+      <div class="tab-bar">
+        <button id="tabMix" class="active" onclick="switchTab('mix')">mix-blend-mode</button>
+        <button id="tabBg" onclick="switchTab('bg')">background-blend-mode</button>
+      </div>
+
+      <div id="mixControls">
+        <div class="control-group">
+          <label>Blend Mode</label>
+          <select id="mixMode" onchange="updateMix()">
+            <option value="normal">normal</option>
+            <option value="multiply">multiply</option>
+            <option value="screen">screen</option>
+            <option value="overlay">overlay</option>
+            <option value="darken">darken</option>
+            <option value="lighten">lighten</option>
+            <option value="color-dodge">color-dodge</option>
+            <option value="color-burn">color-burn</option>
+            <option value="hard-light">hard-light</option>
+            <option value="soft-light">soft-light</option>
+            <option value="difference" selected>difference</option>
+            <option value="exclusion">exclusion</option>
+            <option value="hue">hue</option>
+            <option value="saturation">saturation</option>
+            <option value="color">color</option>
+            <option value="luminosity">luminosity</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>Element Color</label>
+          <input type="color" id="mixColor" value="#ffffff" oninput="updateMix()">
+        </div>
+        <div class="control-group">
+          <label>Opacity <span class="value" id="valMixOpacity">1.0</span></label>
+          <input type="range" id="mixOpacity" min="0" max="1" value="1" step="0.05" oninput="updateMix()">
+        </div>
+        <div class="control-group">
+          <label>Font Size <span class="value" id="valFontSize">48</span></label>
+          <input type="range" id="fontSize" min="16" max="96" value="48" oninput="updateMix()">
+        </div>
+      </div>
+
+      <div id="bgControls" style="display:none">
+        <div class="control-group">
+          <label>Blend Mode</label>
+          <select id="bgMode" onchange="updateBg()">
+            <option value="normal">normal</option>
+            <option value="multiply" selected>multiply</option>
+            <option value="screen">screen</option>
+            <option value="overlay">overlay</option>
+            <option value="darken">darken</option>
+            <option value="lighten">lighten</option>
+            <option value="color-dodge">color-dodge</option>
+            <option value="color-burn">color-burn</option>
+            <option value="hard-light">hard-light</option>
+            <option value="soft-light">soft-light</option>
+            <option value="difference">difference</option>
+            <option value="exclusion">exclusion</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>Gradient Start</label>
+          <input type="color" id="gradStart" value="#f093fb" oninput="updateBg()">
+        </div>
+        <div class="control-group">
+          <label>Gradient End</label>
+          <input type="color" id="gradEnd" value="#f5576c" oninput="updateBg()">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-area" id="previewArea">
+        <div class="mix-bg" id="mixBg">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#3498db"/>
+            <circle cx="120" cy="150" r="100" fill="#e74c3c" opacity="0.8"/>
+            <circle cx="280" cy="150" r="80" fill="#2ecc71" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="mix-element" id="mixElement">Blend</div>
+        <div class="bg-preview" id="bgPreview">background-blend-mode</div>
+      </div>
+      <div class="code-output" id="codeOutput">mix-blend-mode: difference;</div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tab) {
+      document.getElementById('mixControls').style.display = tab === 'mix' ? 'block' : 'none';
+      document.getElementById('bgControls').style.display = tab === 'bg' ? 'block' : 'none';
+      document.getElementById('tabMix').className = tab === 'mix' ? 'active' : '';
+      document.getElementById('tabBg').className = tab === 'bg' ? 'active' : '';
+      document.getElementById('mixBg').style.display = tab === 'mix' ? 'block' : 'none';
+      document.getElementById('mixElement').style.display = tab === 'mix' ? 'block' : 'none';
+      document.getElementById('bgPreview').style.display = tab === 'bg' ? 'flex' : 'none';
+      if (tab === 'mix') updateMix();
+      else updateBg();
+    }
+
+    function updateMix() {
+      const mode = document.getElementById('mixMode').value;
+      const color = document.getElementById('mixColor').value;
+      const opacity = document.getElementById('mixOpacity').value;
+      const fontSize = document.getElementById('fontSize').value;
+
+      document.getElementById('valMixOpacity').textContent = opacity;
+      document.getElementById('valFontSize').textContent = fontSize;
+
+      const el = document.getElementById('mixElement');
+      el.style.mixBlendMode = mode;
+      el.style.color = color;
+      el.style.opacity = opacity;
+      el.style.fontSize = fontSize + 'px';
+
+      document.getElementById('codeOutput').textContent =
+        'mix-blend-mode: ' + mode + ';\ncolor: ' + color + ';\nopacity: ' + opacity + ';';
+    }
+
+    function updateBg() {
+      const mode = document.getElementById('bgMode').value;
+      const start = document.getElementById('gradStart').value;
+      const end = document.getElementById('gradEnd').value;
+
+      const bgPreview = document.getElementById('bgPreview');
+      bgPreview.style.background = `linear-gradient(135deg, ${start}, ${end}), url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23333"/%3E%3Ctext x="80" y="160" fill="white" font-size="36"%3EIMAGE%3C/text%3E%3C/svg%3E') center/cover`;
+      bgPreview.style.backgroundBlendMode = mode;
+
+      document.getElementById('codeOutput').textContent =
+        'background-blend-mode: ' + mode + ';\n' +
+        'background: linear-gradient(135deg, ' + start + ', ' + end + '), url(image.jpg);';
+    }
+
+    switchTab('mix');
+  </script>
+</body>
+</html>

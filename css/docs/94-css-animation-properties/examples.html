@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Animation Properties - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    p { color: #475569; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-output { padding: 1.5rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; justify-content: center; min-height: 120px; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .box { width: 80px; height: 80px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; margin: 4px; font-size: 0.75rem; text-align: center; }
+
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes pulse { 50% { transform: scale(1.2); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @keyframes pop { 0% { transform: scale(0); } 70% { transform: scale(1.2); } 100% { transform: scale(1); } }
+    @keyframes slideRight { from { transform: translateX(0); } to { transform: translateX(60px); } }
+
+    .fill-none { background: #3b82f6; animation: slideIn 1s ease 0.3s; }
+    .fill-fwd { background: #8b5cf6; animation: slideIn 1s ease 0.3s forwards; }
+    .fill-both { background: #10b981; animation: slideIn 1s ease 0.3s both; }
+
+    .iter-1 { background: #f59e0b; animation: pulse 0.6s ease 1; }
+    .iter-3 { background: #ef4444; animation: pulse 0.6s ease 3; }
+    .iter-inf { background: #ec4899; animation: pulse 0.8s ease infinite; }
+
+    .dir-normal { background: #3b82f6; animation: float 1s ease infinite normal; }
+    .dir-reverse { background: #8b5cf6; animation: float 1s ease infinite reverse; }
+    .dir-alt { background: #10b981; animation: float 1s ease infinite alternate; }
+    .dir-alt-rev { background: #f59e0b; animation: float 1s ease infinite alternate-reverse; }
+
+    .stagger-grp .box { animation: pop 0.4s ease both; }
+    .stagger-grp .box:nth-child(1) { background: #3b82f6; animation-delay: 0s; }
+    .stagger-grp .box:nth-child(2) { background: #8b5cf6; animation-delay: 0.1s; }
+    .stagger-grp .box:nth-child(3) { background: #10b981; animation-delay: 0.2s; }
+    .stagger-grp .box:nth-child(4) { background: #f59e0b; animation-delay: 0.3s; }
+    .stagger-grp .box:nth-child(5) { background: #ec4899; animation-delay: 0.4s; }
+
+    .pause-box { background: #3b82f6; animation: float 1.5s ease infinite; cursor: pointer; }
+    .pause-box:hover { animation-play-state: paused; }
+
+    .speed-grp .box { animation: slideRight 1s ease infinite alternate; }
+    .speed-1 { background: #3b82f6; animation-duration: 0.5s; }
+    .speed-2 { background: #8b5cf6; animation-duration: 1s; }
+    .speed-3 { background: #10b981; animation-duration: 2s; }
+    .speed-4 { background: #f59e0b; animation-duration: 4s; }
+
+    .timing-grp .box { width: 60px; height: 60px; font-size: 0.6rem; animation: slideRight 2s ease infinite alternate; }
+    .timing-linear { background: #3b82f6; animation-timing-function: linear; }
+    .timing-ease { background: #8b5cf6; animation-timing-function: ease; }
+    .timing-ease-in { background: #10b981; animation-timing-function: ease-in; }
+    .timing-ease-out { background: #f59e0b; animation-timing-function: ease-out; }
+    .timing-cb { background: #ec4899; animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  </style>
+</head>
+<body>
+  <h1>CSS Animation Properties</h1>
+
+  <div class="demo-section">
+    <h2>1. Animation Fill Mode</h2>
+    <p><code>none</code> snaps back, <code>forwards</code> holds the end state, <code>both</code> also pre-applies the start state during delay. All have a 0.3s delay.</p>
+    <div class="demo-output">
+      <div class="box fill-none">none</div>
+      <div class="box fill-fwd">forwards</div>
+      <div class="box fill-both">both</div>
+    </div>
+    <pre><code>animation: slideIn 1s ease 0.3s none;    /* snaps back */
+animation: slideIn 1s ease 0.3s forwards; /* holds end */
+animation: slideIn 1s ease 0.3s both;     /* holds both */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>2. Iteration Count</h2>
+    <p>Control how many times the animation plays: once, three times, or infinitely.</p>
+    <div class="demo-output">
+      <div class="box iter-1">1x</div>
+      <div class="box iter-3">3x</div>
+      <div class="box iter-inf">∞</div>
+    </div>
+    <pre><code>animation-iteration-count: 1;
+animation-iteration-count: 3;
+animation-iteration-count: infinite;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>3. Animation Direction</h2>
+    <p><code>normal</code> plays forward, <code>reverse</code> plays backward, <code>alternate</code> reverses each cycle.</p>
+    <div class="demo-output">
+      <div class="box dir-normal">normal</div>
+      <div class="box dir-reverse">reverse</div>
+      <div class="box dir-alt">alternate</div>
+      <div class="box dir-alt-rev">alt-rev</div>
+    </div>
+    <pre><code>animation-direction: normal;           /* forward only */
+animation-direction: reverse;          /* backward only */
+animation-direction: alternate;        /* forward, then back */
+animation-direction: alternate-reverse; /* back, then forward */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>4. Staggered Delays</h2>
+    <p>Same pop animation with increasing <code>animation-delay</code> values for a cascading entrance effect.</p>
+    <div class="demo-output stagger-grp">
+      <div class="box">0s</div>
+      <div class="box">0.1s</div>
+      <div class="box">0.2s</div>
+      <div class="box">0.3s</div>
+      <div class="box">0.4s</div>
+    </div>
+    <pre><code>.item:nth-child(1) { animation-delay: 0s; }
+.item:nth-child(2) { animation-delay: 0.1s; }
+.item:nth-child(3) { animation-delay: 0.2s; }
+.item:nth-child(4) { animation-delay: 0.3s; }
+.item:nth-child(5) { animation-delay: 0.4s; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>5. Pause on Hover</h2>
+    <p>Hover over the box to pause the floating animation via <code>animation-play-state: paused</code>.</p>
+    <div class="demo-output">
+      <div class="box pause-box">hover</div>
+    </div>
+    <pre><code>.element {
+  animation: float 1.5s ease infinite;
+}
+.element:hover {
+  animation-play-state: paused;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>6. Animation Duration Comparison</h2>
+    <p>Different <code>animation-duration</code> values — from fast (0.5s) to slow (4s).</p>
+    <div class="demo-output speed-grp">
+      <div class="box speed-1">0.5s</div>
+      <div class="box speed-2">1s</div>
+      <div class="box speed-3">2s</div>
+      <div class="box speed-4">4s</div>
+    </div>
+    <pre><code>animation-duration: 0.5s;  /* fast */
+animation-duration: 1s;    /* normal */
+animation-duration: 2s;    /* slow */
+animation-duration: 4s;    /* very slow */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>7. Timing Functions</h2>
+    <p>Each box moves at the same speed but with a different easing curve.</p>
+    <div class="demo-output timing-grp">
+      <div class="box timing-linear">linear</div>
+      <div class="box timing-ease">ease</div>
+      <div class="box timing-ease-in">ease-in</div>
+      <div class="box timing-ease-out">ease-out</div>
+      <div class="box timing-cb">cubic-bezier</div>
+    </div>
+    <pre><code>animation-timing-function: linear;
+animation-timing-function: ease;
+animation-timing-function: ease-in;
+animation-timing-function: ease-out;
+animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);</code></pre>
+  </div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCSS Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; }
+    h1 { margin-bottom: 1rem; }
+    .editor-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    textarea { width: 100%; height: 300px; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 14px; resize: vertical; }
+    .preview { border: 2px solid #ddd; border-radius: 8px; padding: 1.5rem; min-height: 200px; margin: 1rem 0; }
+    .compiled { background: #f5f5f5; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; margin: 1rem 0; white-space: pre-wrap; }
+    button { padding: 0.5rem 1.5rem; background: #0055CC; color: white; border: none; border-radius: 6px; cursor: pointer; margin: 0.5rem; }
+
+    /* Simple SCSS-like processor for demo */
+  </style>
+</head>
+<body>
+  <h1>SCSS Playground</h1>
+  <p>Write SCSS-like syntax and see compiled CSS + preview.</p>
+
+  <div class="editor-panel">
+    <div><label>SCSS (simplified):</label><textarea id="scssInput">$primary: #0055CC;
+$spacing: 1rem;
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: $spacing;
+
+  &__title {
+    font-size: 1.25rem;
+    color: $primary;
+  }
+
+  &--featured {
+    border: 2px solid $primary;
+    box-shadow: 0 4px 12px rgba($primary, 0.15);
+  }
+}</textarea></div>
+    <div><label>HTML:</label><textarea id="htmlInput"><div class="card card--featured">
+  <h2 class="card__title">SCSS Demo Card</h2>
+  <p class="card__body" style="color:#666;">Content with SCSS-generated styles.</p>
+</div></textarea></div>
+  </div>
+
+  <div>
+    <button onclick="compileAndPreview()">Compile & Preview</button>
+  </div>
+
+  <div class="compiled" id="compiledOutput">Compiled CSS will appear here.</div>
+  <div class="preview" id="preview"></div>
+
+  <script>
+    const scssInput = document.getElementById('scssInput');
+    const htmlInput = document.getElementById('htmlInput');
+    const preview = document.getElementById('preview');
+    const compiledOutput = document.getElementById('compiledOutput');
+
+    function simpleCompile(scss) {
+      // Simple variable substitution (not full SCSS compilation)
+      let css = scss;
+
+      // Extract variables
+      const vars = {};
+      css.replace(/\$(\w[\w-]*)\s*:\s*([^;]+);/g, (_, name, value) => {
+        vars[name] = value.trim();
+        return '';
+      });
+
+      // Replace variable usage
+      css = css.replace(/\$(\w[\w-]*)/g, (_, name) => vars[name] || `$${name}`);
+
+      // Handle nesting (&)
+      let indent = 0;
+      let currentSelector = '';
+      const lines = css.split('\n');
+      const output = [];
+      const selectorStack = [];
+
+      lines.forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed) { output.push(''); return; }
+
+        if (trimmed.includes('{')) {
+          const sel = trimmed.replace(/\s*\{\s*$/, '').trim();
+          if (sel.startsWith('&')) {
+            const parent = selectorStack[selectorStack.length - 1] || '';
+            const combined = sel.replace('&', parent);
+            output.push(combined + ' {');
+            selectorStack.push(combined);
+          } else {
+            output.push(sel + ' {');
+            selectorStack.push(sel);
+          }
+        } else if (trimmed.includes('}')) {
+          selectorStack.pop();
+          output.push('}');
+        } else if (trimmed.startsWith('//')) {
+          // skip comments
+        } else {
+          output.push(trimmed);
+        }
+      });
+
+      return output.join('\n');
+    }
+
+    function compileAndPreview() {
+      const scss = scssInput.value;
+      const html = htmlInput.value;
+      const compiled = simpleCompile(scss);
+      compiledOutput.textContent = compiled || '/* Compiled CSS */';
+      preview.innerHTML = `<style>${compiled}</style>${html}`;
+    }
+
+    scssInput.addEventListener('input', compileAndPreview);
+    htmlInput.addEventListener('input', compileAndPreview);
+    compileAndPreview();
+  </script>
+</body>
+</html>

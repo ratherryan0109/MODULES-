@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 60: HTML SVG Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #fafafa; color: #222; }
+    h1 { border-bottom: 3px solid #FFB347; padding-bottom: 10px; }
+    h2 { color: #FFB347; margin-top: 30px; }
+    .example-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; margin: 10px 0; }
+    .output { margin: 10px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
+    .output svg { background: #f9f9f9; border-radius: 8px; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<h1>HTML SVG — Interactive Examples</h1>
+
+<!-- Example 1: Basic Shapes -->
+<h2>1. Basic SVG Shapes</h2>
+<div class="example-box">
+  <p>SVG provides several basic shape elements: <code>circle</code>, <code>rect</code>, <code>ellipse</code>, <code>line</code>, <code>polygon</code>, and <code>polyline</code>.</p>
+  <div class="grid-2">
+    <div class="code-block">
+      &lt;circle cx="50" cy="50" r="40" fill="coral" /&gt;<br><br>
+      &lt;rect x="10" y="10" width="80" height="60" rx="5" fill="steelblue" /&gt;<br><br>
+      &lt;polygon points="50,5 95,90 5,90" fill="gold" /&gt;
+    </div>
+    <div class="output">
+      <svg width="200" height="200" viewBox="0 0 100 100">
+        <circle cx="30" cy="30" r="25" fill="coral" />
+        <rect x="55" y="10" width="40" height="30" rx="4" fill="steelblue" />
+        <polygon points="50,70 80,95 20,95" fill="gold" />
+        <ellipse cx="30" cy="80" rx="20" ry="10" fill="#6C63FF" />
+        <line x1="60" y1="60" x2="90" y2="85" stroke="purple" stroke-width="2" />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Example 2: Path Commands -->
+<h2>2. Path Element — All Commands</h2>
+<div class="example-box">
+  <p>The <code>&lt;path&gt;</code> element can create any shape using path commands.</p>
+  <div class="grid-2">
+    <div class="code-block">
+      &lt;!-- Triangle --&gt;<br>
+      &lt;path d="M50 10 L90 90 L10 90 Z" fill="coral" /&gt;<br><br>
+      &lt;!-- Quadratic Bezier --&gt;<br>
+      &lt;path d="M10 80 Q50 10,90 80" fill="none" stroke="steelblue" stroke-width="3" /&gt;<br><br>
+      &lt;!-- Cubic Bezier --&gt;<br>
+      &lt;path d="M10 80 C30 10,70 10,90 80" fill="none" stroke="gold" stroke-width="3" /&gt;
+    </div>
+    <div class="output">
+      <svg width="300" height="300" viewBox="0 0 100 100">
+        <path d="M50 5 L95 90 L5 90 Z" fill="coral" opacity="0.7" />
+        <path d="M5 70 Q50 10,95 70" fill="none" stroke="steelblue" stroke-width="3" />
+        <path d="M5 85 C30 20,70 20,95 85" fill="none" stroke="gold" stroke-width="3" />
+        <path d="M20 50 L35 50 L35 35 L50 35 L50 50 L65 50 L65 65 L50 65 L50 80 L35 80 L35 65 L20 65 Z" fill="#6C63FF" opacity="0.6" />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Example 3: Gradients -->
+<h2>3. Gradients (Linear and Radial)</h2>
+<div class="example-box">
+  <div class="grid-2">
+    <div class="code-block">
+      &lt;defs&gt;<br>
+      &nbsp;&nbsp;&lt;linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%"&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;stop offset="0%" stop-color="#ff6b6b" /&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;stop offset="100%" stop-color="#6C63FF" /&gt;<br>
+      &nbsp;&nbsp;&lt;/linearGradient&gt;<br>
+      &lt;/defs&gt;
+    </div>
+    <div class="output">
+      <svg width="300" height="150" viewBox="0 0 200 100">
+        <defs>
+          <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff6b6b"/>
+            <stop offset="100%" stop-color="#6C63FF"/>
+          </linearGradient>
+          <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#feca57"/>
+            <stop offset="100%" stop-color="#ff6b6b"/>
+          </radialGradient>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#lg1)" />
+        <circle cx="150" cy="50" r="40" fill="url(#rg1)" />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Example 4: SVG Text -->
+<h2>4. SVG Text</h2>
+<div class="example-box">
+  <div class="output">
+    <svg width="400" height="150" viewBox="0 0 400 150">
+      <defs>
+        <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#6C63FF"/>
+          <stop offset="100%" stop-color="#e94560"/>
+        </linearGradient>
+      </defs>
+      <text x="200" y="40" text-anchor="middle" font-size="28" font-weight="bold" fill="url(#textGrad)">Mastering SVG</text>
+      <text x="200" y="70" text-anchor="middle" font-size="14" fill="#666">Scalable Vector Graphics in HTML</text>
+      <text x="200" y="100" text-anchor="middle" font-size="12" fill="#999">
+        <tspan fill="coral" font-weight="bold">Shapes</tspan> · 
+        <tspan fill="steelblue" font-weight="bold">Paths</tspan> · 
+        <tspan fill="gold" font-weight="bold">Gradients</tspan> · 
+        <tspan fill="#6C63FF" font-weight="bold">Animations</tspan>
+      </text>
+    </svg>
+  </div>
+</div>
+
+<!-- Example 5: Filters -->
+<h2>5. SVG Filters</h2>
+<div class="example-box">
+  <p>SVG filters create visual effects like blur, shadows, and glows.</p>
+  <div class="grid-2">
+    <div class="output">
+      <svg width="100%" height="200" viewBox="0 0 300 100">
+        <defs>
+          <filter id="shadow"><feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.4"/></filter>
+          <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter>
+          <filter id="blur"><feGaussianBlur stdDeviation="3"/></filter>
+        </defs>
+        <circle cx="40" cy="50" r="30" fill="coral" filter="url(#shadow)" />
+        <circle cx="110" cy="50" r="30" fill="gold" filter="url(#glow)" />
+        <circle cx="180" cy="50" r="30" fill="steelblue" filter="url(#blur)" />
+        <rect x="235" y="20" width="50" height="60" rx="5" fill="#6C63FF" filter="url(#shadow)" />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Example 6: SMIL Animation -->
+<h2>6. SMIL Animations (Native SVG Animation)</h2>
+<div class="example-box">
+  <p>SMIL (Synchronized Multimedia Integration Language) provides native SVG animation without JavaScript or CSS.</p>
+  <div class="output">
+    <svg width="400" height="200" viewBox="0 0 400 200">
+      <!-- Moving circle -->
+      <circle cx="50" cy="100" r="20" fill="coral">
+        <animate attributeName="cx" from="50" to="350" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="fill" values="coral;steelblue;gold;coral" dur="3s" repeatCount="indefinite" />
+      </circle>
+      <!-- Rotating rect -->
+      <rect x="175" y="50" width="40" height="40" fill="#6C63FF" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" from="0 195 70" to="360 195 70" dur="4s" repeatCount="indefinite" />
+      </rect>
+      <!-- Pulsing circle -->
+      <circle cx="300" cy="100" r="15" fill="gold">
+        <animate attributeName="r" values="15;25;15" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+    </svg>
+  </div>
+</div>
+
+<!-- Example 7: CSS Animated SVG -->
+<h2>7. CSS Animated SVG</h2>
+<div class="example-box">
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @keyframes dash { to { stroke-dashoffset: 0; } }
+    .spinner-svg { animation: spin 2s linear infinite; }
+    .bounce-svg { animation: bounce 1s ease-in-out infinite; }
+    .line-draw { stroke-dasharray: 250; stroke-dashoffset: 250; animation: dash 2s ease-in-out infinite alternate; }
+  </style>
+  <div class="output">
+    <svg width="200" height="200" viewBox="0 0 100 100" class="spinner-svg">
+      <circle cx="50" cy="50" r="35" fill="none" stroke="#eee" stroke-width="6" />
+      <circle cx="50" cy="50" r="35" fill="none" stroke="#6C63FF" stroke-width="6" 
+        stroke-dasharray="220" stroke-dashoffset="55" stroke-linecap="round" />
+    </svg>
+    <svg width="120" height="120" viewBox="0 0 100 100" class="bounce-svg">
+      <circle cx="50" cy="40" r="20" fill="coral" />
+      <ellipse cx="50" cy="85" rx="20" ry="5" fill="rgba(0,0,0,0.1)" />
+    </svg>
+    <svg width="200" height="100" viewBox="0 0 200 100">
+      <path class="line-draw" d="M10 50 Q 50 10, 100 50 T 190 50" fill="none" stroke="steelblue" stroke-width="3" />
+    </svg>
+  </div>
+</div>
+
+<!-- Example 8: Interactive SVG with JS -->
+<h2>8. Interactive SVG (Click to Change)</h2>
+<div class="example-box">
+  <p>Click on elements to interact.</p>
+  <div class="output">
+    <svg id="interactiveSvg" width="300" height="200" viewBox="0 0 300 200">
+      <defs>
+        <radialGradient id="ig"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#6C63FF"/></radialGradient>
+      </defs>
+      <rect x="10" y="10" width="80" height="80" rx="8" fill="coral" class="clickable" cursor="pointer" />
+      <circle cx="150" cy="50" r="30" fill="steelblue" class="clickable" cursor="pointer" />
+      <polygon points="260,10 290,80 230,80" fill="gold" class="clickable" cursor="pointer" />
+      <text x="150" y="150" text-anchor="middle" font-size="14" fill="#666" id="clickStatus">Click a shape!</text>
+    </svg>
+    <script>
+      document.getElementById('interactiveSvg').addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.classList && target.classList.contains('clickable')) {
+          const tag = target.tagName;
+          const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+          target.setAttribute('fill', randomColor);
+          document.getElementById('clickStatus').textContent = `Clicked ${tag}, new color: ${randomColor}`;
+        }
+      });
+    </script>
+  </div>
+</div>
+
+<!-- Example 9: Icon System with Symbols -->
+<h2>9. SVG Symbol System (Reusable Icons)</h2>
+<div class="example-box">
+  <p>Define icons once in <code>&lt;defs&gt;&lt;symbol&gt;</code> and reuse with <code>&lt;use&gt;</code>.</p>
+  <div class="output">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+      <defs>
+        <symbol id="icon-home" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></symbol>
+      </defs>
+    </svg>
+    <div style="display:flex;gap:20px;font-size:13px;">
+      <div style="text-align:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2"><use href="#icon-home"/></svg><br>Home</div>
+      <div style="text-align:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="gold" stroke-width="2"><use href="#icon-star"/></svg><br>Favorite</div>
+      <div style="text-align:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="steelblue" stroke-width="2"><use href="#icon-settings"/></svg><br>Settings</div>
+    </div>
+  </div>
+</div>
+
+<!-- Example 10: Responsive SVG Chart -->
+<h2>10. SVG Bar Chart (Data Visualization)</h2>
+<div class="example-box">
+  <p>A simple bar chart built with SVG rectangles — responsive and crisp at any size.</p>
+  <div class="output">
+    <svg viewBox="0 0 400 200" style="width:100%;max-width:500px;">
+      <text x="200" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#444">Monthly Sales</text>
+      <!-- Bars -->
+      <rect x="35" y="120" width="40" height="50" fill="coral" rx="3"><title>Jan: 50</title></rect>
+      <rect x="85" y="90" width="40" height="80" fill="steelblue" rx="3"><title>Feb: 80</title></rect>
+      <rect x="135" y="70" width="40" height="100" fill="gold" rx="3"><title>Mar: 100</title></rect>
+      <rect x="185" y="40" width="40" height="130" fill="#6C63FF" rx="3"><title>Apr: 130</title></rect>
+      <rect x="235" y="60" width="40" height="110" fill="#4ecdc4" rx="3"><title>May: 110</title></rect>
+      <rect x="285" y="80" width="40" height="90" fill="#e94560" rx="3"><title>Jun: 90</title></rect>
+      <!-- Axis -->
+      <line x1="20" y1="170" x2="350" y2="170" stroke="#ccc" stroke-width="1" />
+      <line x1="35" y1="20" x2="35" y2="170" stroke="#ccc" stroke-width="1" />
+      <!-- Labels -->
+      <text x="55" y="185" text-anchor="middle" font-size="10" fill="#999">Jan</text>
+      <text x="105" y="185" text-anchor="middle" font-size="10" fill="#999">Feb</text>
+      <text x="155" y="185" text-anchor="middle" font-size="10" fill="#999">Mar</text>
+      <text x="205" y="185" text-anchor="middle" font-size="10" fill="#999">Apr</text>
+      <text x="255" y="185" text-anchor="middle" font-size="10" fill="#999">May</text>
+      <text x="305" y="185" text-anchor="middle" font-size="10" fill="#999">Jun</text>
+    </svg>
+  </div>
+</div>
+
+</body>
+</html>

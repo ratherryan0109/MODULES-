@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>CSS Margins - Playground</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;background:#1a202c;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column}
+header{background:#2d3748;padding:20px;border-bottom:3px solid #4299e1;text-align:center}h1{color:#63b3ed}
+.container{display:flex;flex:1}.editor-panel{flex:1;display:flex;flex-direction:column;border-right:2px solid #2d3748}
+.preview-panel{flex:1;display:flex;flex-direction:column}.panel-label{background:#2d3748;padding:8px 15px;font-size:0.8em;color:#a0aec0;font-weight:bold;text-transform:uppercase}
+textarea{flex:1;background:#1a202c;color:#e2e8f0;border:none;padding:15px;font-family:'Courier New',monospace;font-size:14px;resize:none;outline:none}
+iframe{flex:1;background:white;border:none;width:100%}.controls{background:#2d3748;padding:10px 15px;display:flex;gap:10px;align-items:center}
+button{background:#4299e1;color:white;border:none;padding:8px 20px;border-radius:5px;cursor:pointer;font-weight:bold}button:hover{background:#3182ce}
+button.reset{background:#4a5568}.status{color:#68d391;font-size:0.85em;margin-left:auto}
+</style></head><body>
+<header><h1>🎨 CSS Margins Playground</h1></header>
+<div class="container">
+<div class="editor-panel"><div class="panel-label">📝 CSS Editor</div>
+<textarea id="cssEditor" spellcheck="false">/* Experiment with margins! */
+.container {
+  background: #edf2f7;
+  padding: 10px;
+}
+.box {
+  background: #4299e1;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial;
+  font-weight: bold;
+  margin: 20px;
+}
+</textarea>
+<div class="controls">
+<button onclick="updatePreview()">▶ Run</button>
+<button class="reset" onclick="resetCSS()">↺ Reset</button>
+<span class="status" id="status">Ready</span>
+</div></div>
+<div class="preview-panel"><div class="panel-label">🔍 Live Preview</div><iframe id="preview"></iframe></div></div>
+<script>
+const d=document.getElementById('cssEditor').value;
+function g(c){return '<!DOCTYPE html><html><head><title>P</title><style>'+c+'</style></head><body><div class=\"container\"><div class=\"box\">Box 1</div><div class=\"box\">Box 2 (notice margin collapsing)</div></div></body></html>';}
+function u(){const c=document.getElementById('cssEditor').value;document.getElementById('preview').src='data:text/html;charset=utf-8,'+encodeURIComponent(g(c));document.getElementById('status').textContent='✓ Updated';setTimeout(()=>{document.getElementById('status').textContent='Ready';},2000);}
+function r(){document.getElementById('cssEditor').value=d;u();}
+window.addEventListener('load',u);
+document.getElementById('cssEditor').addEventListener('keydown',function(e){if(e.key==='Enter'&&e.ctrlKey)u();});
+</script></body></html>

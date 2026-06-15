@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Counters Playground</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 700px; margin: 0 auto; }
+    .controls { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .controls label { display: flex; flex-direction: column; gap: 5px; }
+
+    .demo-area {
+      background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .demo-area { counter-reset: section-counter; }
+    .demo-area .section { margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px; }
+    .demo-area .section h3::before {
+      counter-increment: section-counter;
+      content: var(--prefix, "Section ") counter(section-counter, var(--list-style, decimal)) " ";
+      color: var(--counter-color, #007bff);
+    }
+    .demo-area .section p { margin: 8px 0 0; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Counters Playground</h1>
+    <div class="controls">
+      <label>
+        Counter Style:
+        <select id="styleSelect">
+          <option value="decimal">Decimal (1, 2, 3)</option>
+          <option value="upper-roman">Roman (I, II, III)</option>
+          <option value="lower-alpha">Alpha (a, b, c)</option>
+          <option value="upper-alpha">Alpha (A, B, C)</option>
+          <option value="lower-roman">Roman (i, ii, iii)</option>
+        </select>
+      </label>
+      <label>
+        Counter Color:
+        <input type="color" id="colorPicker" value="#007bff">
+      </label>
+      <label>
+        Prefix:
+        <input type="text" id="prefixInput" value="Section " style="padding: 6px; border: 1px solid #ddd; border-radius: 4px;">
+      </label>
+    </div>
+    <div class="demo-area" id="demoArea">
+      <div class="section"><h3>Introduction</h3><p>Content for introduction section.</p></div>
+      <div class="section"><h3>Getting Started</h3><p>Content for getting started section.</p></div>
+      <div class="section"><h3>Advanced Topics</h3><p>Content for advanced topics section.</p></div>
+      <div class="section"><h3>Conclusion</h3><p>Content for conclusion section.</p></div>
+    </div>
+  </div>
+  <script>
+    const demo = document.getElementById('demoArea');
+
+    document.getElementById('styleSelect').addEventListener('change', e => {
+      demo.style.setProperty('--list-style', e.target.value);
+    });
+    document.getElementById('colorPicker').addEventListener('input', e => {
+      demo.style.setProperty('--counter-color', e.target.value);
+    });
+    document.getElementById('prefixInput').addEventListener('input', e => {
+      const val = e.target.value || '\\0000a0'; // non-breaking space as fallback
+      demo.style.setProperty('--prefix', JSON.stringify(val));
+      // We need to set it via custom property differently
+      demo.style.setProperty('--prefix', `"${val}"`);
+    });
+  </script>
+</body>
+</html>

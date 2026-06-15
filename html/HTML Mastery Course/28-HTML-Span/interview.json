@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <span> element?",
+      "answer": "<span> is a generic inline container with no semantic meaning, used for grouping inline content for styling or JavaScript."
+    },
+    {
+      "question": "What is the difference between <span> and <div>?",
+      "answer": "<span> is inline (flows within text, content-based width). <div> is block (starts new line, full width)."
+    },
+    {
+      "question": "What is the default display property of a span?",
+      "answer": "The default display is 'inline'. Spans flow within text and do not start a new line."
+    },
+    {
+      "question": "Can a span contain a div?",
+      "answer": "No. Inline elements cannot contain block-level elements. A span can only contain other inline elements."
+    },
+    {
+      "question": "How do you style a span?",
+      "answer": "Use CSS classes or inline styles. Example: <span class=\"highlight\">text</span> or <span style=\"color:red;\">text</span>."
+    },
+    {
+      "question": "What is a common use case for span?",
+      "answer": "Styling specific words in a paragraph, creating badges, tooltip targets, icons, and JavaScript hooks for dynamic content."
+    },
+    {
+      "question": "Does a span have any semantic meaning?",
+      "answer": "No. The span element has no semantic meaning whatsoever. It is purely a styling and scripting hook."
+    },
+    {
+      "question": "Can you nest spans?",
+      "answer": "Yes. Spans can be nested inside other spans since they are both inline elements."
+    },
+    {
+      "question": "What happens if you set width on a span?",
+      "answer": "The width property is ignored for non-replaced inline elements like <span>. The span sizes to its content."
+    },
+    {
+      "question": "What element should you use instead of <span class=\"bold\">?",
+      "answer": "Use <strong> for strong importance or <b> for presentational bold text."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you make a span respect width and height?",
+      "answer": "Set display: inline-block on the span. This keeps it inline while allowing width, height, and vertical margins."
+    },
+    {
+      "question": "What is the difference between textContent and innerHTML on a span?",
+      "answer": "textContent sets plain text (safe from XSS). innerHTML parses HTML. For a span, textContent is recommended for security."
+    },
+    {
+      "question": "How can you create a tooltip using a span?",
+      "answer": "Use the title attribute for browser tooltips, or use CSS ::after with attr(data-tip) for custom tooltips."
+    },
+    {
+      "question": "Why should you avoid using spans for layout?",
+      "answer": "Spans are inline and cannot contain block elements. For layout, use divs with flexbox/grid instead."
+    },
+    {
+      "question": "How do you create a badge element with a span?",
+      "answer": "Apply CSS with background-color, color, border-radius (pill shape), padding, and font-size. Example: span.badge { background: #e74c3c; color: white; border-radius: 10px; padding: 2px 8px; font-size: 12px; }"
+    },
+    {
+      "question": "What is the semantic alternative to <span class=\"code\">?",
+      "answer": "Use the <code> element, which semantically represents a fragment of computer code."
+    },
+    {
+      "question": "How do you update a span's content with JavaScript?",
+      "answer": "Use document.getElementById('mySpan').textContent = 'new content'; or innerHTML if HTML is needed."
+    },
+    {
+      "question": "What is the accessibility implication of using spans for interactive elements?",
+      "answer": "Spans are not focusable or interactive by default. For interactive elements, use <button> or <a>, or add tabindex and ARIA roles."
+    },
+    {
+      "question": "How do you create colored dots with spans?",
+      "answer": "Use a span with display: inline-block, width: 10px, height: 10px, border-radius: 50%, and background-color."
+    },
+    {
+      "question": "Can you use spans inside a heading element?",
+      "answer": "Yes. Spans can be used inside headings for styling specific words differently."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the CSS display: contents affect a span?",
+      "answer": "display: contents removes the span's box from the rendering tree. Its content becomes part of the parent's inline content."
+    },
+    {
+      "question": "Explain how spans behave in an inline formatting context with different line-height values.",
+      "answer": "Spans within the same line box align by vertical-align. Different line-height values on nested spans can cause uneven spacing and alignment issues."
+    },
+    {
+      "question": "How do you create a text reveal animation using spans?",
+      "answer": "Wrap each word or letter in a span. Use CSS animations or JavaScript to animate opacity, transform, or clip-path on each span with staggered delays."
+    },
+    {
+      "question": "What is the performance implication of using hundreds of spans on a page?",
+      "answer": "Each span adds a DOM node. Hundreds of spans increase memory usage and style recalculation time. For massive text animations, consider canvas or SVG."
+    },
+    {
+      "question": "How do you handle whitespace between inline-block spans?",
+      "answer": "Whitespace gaps appear as spaces. Fix by: removing whitespace in HTML, setting font-size: 0 on parent, using flexbox, or negative margins."
+    },
+    {
+      "question": "Explain how CSS custom properties can be used with spans for dynamic theming.",
+      "answer": "Define --color, --bg on the span or parent. Use var(--color) in span styles. Update the property with JavaScript for dynamic theming."
+    },
+    {
+      "question": "How would you create a span-based breadcrumb component?",
+      "answer": "Use spans for each breadcrumb item with separators between them. Style with display: inline-block, add ::after for separator (/) characters. The last span gets aria-current='page'."
+    },
+    {
+      "question": "What is the interaction between spans and the CSS white-space property?",
+      "answer": "white-space: nowrap on a span prevents its content from wrapping. This is useful for badges, labels, and inline code fragments."
+    },
+    {
+      "question": "How do you create a typing animation effect with spans?",
+      "answer": "Wrap each character in a span with display: inline-block and overflow: hidden. Animate width or clip-path from 0 to full with staggered delays using JavaScript."
+    },
+    {
+      "question": "What are the limitations of using spans for text that needs to be copied?",
+      "answer": "Spans in the middle of text do not affect copy/paste, which is good. However, spans with CSS transforms or unusual layouts may produce unexpected copy results."
+    }
+  ]
+}

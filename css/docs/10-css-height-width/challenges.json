@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Create Responsive Cards",
+    "description": "Create 3 cards that are max-width 300px on desktop but shrink to fit the screen on mobile. Cards should be centered and have a minimum height of 150px.",
+    "starterCode": "<div class=\"card\">Card 1</div>\n<div class=\"card\">Card 2</div>\n<div class=\"card\">Card 3</div>\n\n<style>\n  /* Make cards responsive with max-width */\n</style>",
+    "solution": "<div class=\"card\">Card 1</div>\n<div class=\"card\">Card 2</div>\n<div class=\"card\">Card 3</div>\n\n<style>\n.card {\n  max-width: 300px;\n  width: 100%;\n  min-height: 150px;\n  margin: 10px auto;\n  padding: 30px;\n  background: #f0f4f8;\n  border-radius: 8px;\n  text-align: center;\n  font-family: Arial;\n  font-weight: bold;\n}\n</style>"
+  },
+  "medium": {
+    "title": "Build a Full-Height Hero Section",
+    "description": "Create a hero section that fills the full viewport height using vh units. Include centered text and test with different viewport sizes. Use min-height to ensure content is always visible even when text wraps.",
+    "starterCode": "<section class=\"hero\">\n  <div class=\"hero-content\">\n    <h1>Welcome to Our Site</h1>\n    <p>A brief description of what we offer.</p>\n  </div>\n</section>\n\n<style>\n  /* Make hero fill the viewport height */\n</style>",
+    "solution": "<section class=\"hero\">\n  <div class=\"hero-content\">\n    <h1>Welcome to Our Site</h1>\n    <p>A brief description of what we offer.</p>\n  </div>\n</section>\n\n<style>\n* { margin: 0; box-sizing: border-box; }\n.hero {\n  min-height: 100vh;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-family: Arial;\n  color: white;\n  text-align: center;\n  padding: 20px;\n}\n.hero-content { max-width: 600px; }\nh1 { font-size: 3em; margin-bottom: 16px; }\np { font-size: 1.2em; line-height: 1.6; }\n</style>"
+  },
+  "hard": {
+    "title": "Build a Scrolling Content Area with Constraints",
+    "description": "Create a fixed-height sidebar with a scrollable content area. The sidebar should have a fixed width of 280px, stretch to full viewport height, and have a scrollable list of items. The main content area should fill the remaining space.",
+    "starterCode": "<div class=\"layout\">\n  <aside class=\"sidebar\">\n    <h2>Menu</h2>\n    <ul class=\"menu-list\">\n      <li>Dashboard</li><li>Analytics</li><li>Reports</li>\n      <li>Settings</li><li>Users</li><li>Posts</li>\n      <li>Comments</li><li>Media</li><li>Plugins</li>\n    </ul>\n  </aside>\n  <main class=\"main\">\n    <h1>Dashboard</h1>\n    <p>Main content area that fills remaining space.</p>\n  </main>\n</div>\n\n<style>\n  /* Build the layout with constraints and scrolling */\n</style>",
+    "solution": "<div class=\"layout\">\n  <aside class=\"sidebar\">\n    <h2>Menu</h2>\n    <ul class=\"menu-list\">\n      <li>Dashboard</li><li>Analytics</li><li>Reports</li>\n      <li>Settings</li><li>Users</li><li>Posts</li>\n      <li>Comments</li><li>Media</li><li>Plugins</li>\n    </ul>\n  </aside>\n  <main class=\"main\">\n    <h1>Dashboard</h1>\n    <p>Main content area that fills remaining space.</p>\n  </main>\n</div>\n\n<style>\n* { margin: 0; box-sizing: border-box; }\n.layout { display: flex; min-height: 100vh; font-family: Arial; }\n.sidebar {\n  width: 280px;\n  background: #2d3748;\n  color: white;\n  padding: 20px;\n  overflow-y: auto;\n}\n.sidebar h2 { margin-bottom: 16px; font-size: 1.2em; }\n.menu-list { list-style: none; padding: 0; }\n.menu-list li {\n  padding: 10px;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.menu-list li:hover { background: #4a5568; }\n.main {\n  flex: 1;\n  padding: 30px;\n  background: #f7fafc;\n}\nh1 { margin-bottom: 16px; }\n</style>"
+  }
+}

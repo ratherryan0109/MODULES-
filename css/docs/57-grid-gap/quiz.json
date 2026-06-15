@@ -1,0 +1,147 @@
+{
+  "module": "57-grid-gap",
+  "title": "Grid Gap",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does `gap: 20px` do in a CSS Grid layout?",
+      "options": ["Creates 20px spacing between both rows and columns", "Creates 20px spacing only between rows", "Creates 20px spacing only between columns", "Creates 20px padding around the grid container"],
+      "correctAnswer": 0,
+      "explanation": "`gap: 20px` sets both row-gap and column-gap to 20px, creating uniform spacing between all grid tracks."
+    },
+    {
+      "id": 2,
+      "question": "What is the difference between `gap` and margins on grid items?",
+      "options": ["Gap only creates space between tracks, not at edges; margins apply to all sides", "Gap is applied to items; margins are applied to the container", "There is no difference", "Margins work better for grid layouts"],
+      "correctAnswer": 0,
+      "explanation": "`gap` creates space exclusively between grid tracks without adding space at container edges. Margins on items create space on all sides, including the outer edges."
+    },
+    {
+      "id": 3,
+      "question": "How does `gap` affect `fr` unit calculations?",
+      "options": ["Gap is subtracted from available space before fr is calculated", "Gap is added on top of fr tracks", "Fr tracks ignore gap entirely", "Gap replaces fr units"],
+      "correctAnswer": 0,
+      "explanation": "`gap` reduces the available space that `fr` units distribute. If the container is 600px with a 20px gap and 3 columns of 1fr, each fr gets (600-40)/3 = 186.67px."
+    },
+    {
+      "id": 4,
+      "question": "Which property lets you set different vertical and horizontal spacing?",
+      "options": ["Both: `gap: 20px 10px` and separate `row-gap`/`column-gap`", "Only `gap: 20px 10px`", "Only separate `row-gap` and `column-gap`", "Use margin on items instead"],
+      "correctAnswer": 0,
+      "explanation": "You can use `gap: 20px 10px` (row-gap: 20px, column-gap: 10px) or set `row-gap` and `column-gap` as separate properties."
+    },
+    {
+      "id": 5,
+      "question": "Does `gap` work in Flexbox layouts?",
+      "options": ["Yes, in all modern browsers", "No, gap only works in CSS Grid", "Only in Firefox", "Only with the flex-wrap property"],
+      "correctAnswer": 0,
+      "explanation": "`gap` works in Flexbox across all modern browsers (Chrome 84+, Firefox 63+, Safari 14.1+)."
+    },
+    {
+      "id": 6,
+      "question": "What was the original name for the `gap` property in CSS Grid?",
+      "options": ["grid-gap", "grid-space", "grid-margin", "grid-gutter"],
+      "correctAnswer": 0,
+      "explanation": "The original property was `grid-gap`, which was later renamed to `gap` as the property was generalized for Flexbox and multi-column layouts."
+    },
+    {
+      "id": 7,
+      "question": "If you want space between grid items but NOT at the outer edges, which property should you use?",
+      "options": ["gap", "margin on items", "padding on container", "border-spacing"],
+      "correctAnswer": 0,
+      "explanation": "`gap` only creates space between grid tracks, never at the outer container edges. This is its key advantage over margins."
+    },
+    {
+      "id": 8,
+      "question": "What does `gap: 30px 15px` mean?",
+      "options": ["row-gap: 30px; column-gap: 15px", "row-gap: 15px; column-gap: 30px", "gap: 30px on top, 15px on sides", "gap: 30px on all sides, 15px for first item"],
+      "correctAnswer": 0,
+      "explanation": "When `gap` has two values, the first is row-gap and the second is column-gap."
+    },
+    {
+      "id": 9,
+      "question": "What happens if you set `gap: -10px`?",
+      "options": ["It's invalid — gap cannot be negative", "Items overlap by 10px", "Gap is ignored", "Items move 10px closer together"],
+      "correctAnswer": 0,
+      "explanation": "Negative values are not allowed for `gap`. Unlike margins, `gap` only accepts non-negative values."
+    },
+    {
+      "id": 10,
+      "question": "To add space at the outer edges of a grid container IN ADDITION to internal gap, what should you use?",
+      "options": ["padding on the container", "gap with a larger value", "margin on the container", "additional columns"],
+      "correctAnswer": 0,
+      "explanation": "Use `padding` on the grid container to add space at the outer edges. `gap` only adds space between tracks."
+    },
+    {
+      "id": 11,
+      "question": "If a grid has 4 columns and `gap: 20px`, how many column gaps exist?",
+      "options": ["3 gaps (between the 4 columns)", "4 gaps", "2 gaps", "1 gap"],
+      "correctAnswer": 0,
+      "explanation": "With N columns, there are N-1 column gaps. Four columns have three gaps between them."
+    },
+    {
+      "id": 12,
+      "question": "In a container with `width: 500px`, `grid-template-columns: 100px 1fr 100px`, and `gap: 20px`, how much space does `1fr` get?",
+      "options": ["360px", "500px", "260px", "440px"],
+      "correctAnswer": 0,
+      "explanation": "Available space = 500px - 100px - 100px - 20px - 20px = 260px. Wait, let me recalculate: 500px - 100px (col1) - 100px (col3) - (2 gaps × 20px) = 500 - 100 - 100 - 40 = 260px. So 1fr = 260px."
+    },
+    {
+      "id": 13,
+      "question": "Can you animate the `gap` property?",
+      "options": ["Technically yes, but it triggers layout and is not recommended", "No, gap cannot be animated", "Yes, it's GPU-accelerated", "Only with Web Animations API"],
+      "correctAnswer": 0,
+      "explanation": "Gap can be animated in CSS transitions/animations, but changing gap triggers grid re-layout, which is expensive for animation. Use transforms instead."
+    },
+    {
+      "id": 14,
+      "question": "If you don't set `gap` on a grid, what is the default spacing between tracks?",
+      "options": ["0 (no gap)", "10px", "auto", "1em"],
+      "correctAnswer": 0,
+      "explanation": "The default value for `gap` (and `row-gap`/`column-gap`) is `normal`, which computes to 0 in CSS Grid."
+    },
+    {
+      "id": 15,
+      "question": "Which is more maintainable for spacing grids: `gap` or margins?",
+      "options": ["gap — it's a single property on the container", "Margins — they're more flexible", "Both are equally maintainable", "Neither — use padding instead"],
+      "correctAnswer": 0,
+      "explanation": "`gap` is more maintainable because it's a single property on the container. Margins require styling each item, handling edge cases, and dealing with collapsing."
+    },
+    {
+      "id": 16,
+      "question": "What CSS syntax correctly uses the two-value gap shorthand?",
+      "options": ["gap: 20px 10px;", "gap: 20px, 10px;", "gap: 20px / 10px;", "gap: 20px and 10px;"],
+      "correctAnswer": 0,
+      "explanation": "The two-value gap shorthand uses space separation: `gap: <row-gap> <column-gap>`."
+    },
+    {
+      "id": 17,
+      "question": "Can you use different gap values for different rows in the same grid?",
+      "options": ["No — row-gap applies uniformly to all rows", "Yes — use gap on specific grid lines", "Yes — use the nth-row selector", "No — but you can simulate it with margins"],
+      "correctAnswer": 0,
+      "explanation": "`row-gap` applies uniformly to all rows. You cannot set different gaps for different row tracks. To create varied spacing, you'd need to use margins or padding on specific items."
+    },
+    {
+      "id": 18,
+      "question": "What does `gap: 0` do?",
+      "options": ["Removes all spacing between grid tracks", "Sets gap to auto", "Collapses the grid entirely", "Resets gap to browser default"],
+      "correctAnswer": 0,
+      "explanation": "`gap: 0` explicitly removes all spacing between grid tracks, making them touch each other."
+    },
+    {
+      "id": 19,
+      "question": "In responsive design, how should gap values typically change?",
+      "options": ["Gaps often increase at larger viewports", "Gaps stay the same at all sizes", "Gaps decrease at larger viewports", "Gaps are not used in responsive design"],
+      "correctAnswer": 0,
+      "explanation": "Larger viewports typically benefit from more generous spacing. Mobile layouts often use tighter gaps (8-12px) while desktop layouts can use wider gaps (24-32px)."
+    },
+    {
+      "id": 20,
+      "question": "Which of the following is NOT a valid value for `gap`?",
+      "options": ["gap: auto", "gap: 20px", "gap: 1em", "gap: 10%"],
+      "correctAnswer": 0,
+      "explanation": "`auto` is not a valid value for `gap`. Valid values include lengths (`20px`, `1em`, `10%`) and the global values (`initial`, `inherit`, `unset`)."
+    }
+  ]
+}

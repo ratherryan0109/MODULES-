@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Typography Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #0f172a; color: #e2e8f0; padding: 1rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #38bdf8; margin-bottom: 0.5rem; }
+    .sub { color: #64748b; font-size: 0.85rem; margin-bottom: 1rem; }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+    .panel { background: #1e293b; border: 1px solid #334155; border-radius: 8px; overflow: hidden; }
+    .panel h2 { background: #334155; padding: 0.5rem 1rem; font-size: 0.8rem; color: #94a3b8; margin: 0; display: flex; justify-content: space-between; }
+    textarea { width: 100%; min-height: 300px; background: #1e293b; color: #e2e8f0; border: none; padding: 1rem; font-family: 'Courier New', monospace; font-size: 0.85rem; resize: vertical; }
+    textarea:focus { outline: none; }
+    .preview-area { background: white; min-height: 350px; border-radius: 0 0 8px 8px; padding: 2rem; overflow: auto; }
+    .controls { display: flex; gap: 0.5rem; padding: 0.5rem 1rem; background: #1e293b; border-top: 1px solid #334155; flex-wrap: wrap; align-items: center; }
+    .controls button, .controls label { background: #334155; color: #e2e8f0; border: 1px solid #475569; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .controls button:hover { background: #475569; }
+    .sliders { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .slider-group { display: flex; flex-direction: column; gap: 0.25rem; }
+    .slider-group label { font-size: 0.75rem; color: #94a3b8; }
+    .slider-group input[type="range"] { width: 120px; }
+    .slider-group span { font-size: 0.7rem; color: #64748b; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Responsive Typography Playground</h1>
+    <p class="sub">Adjust sliders to see how clamp() values affect text scaling.</p>
+    <div class="layout">
+      <div>
+        <div class="panel" style="margin-bottom:1rem;">
+          <h2>HTML</h2>
+          <textarea id="htmlInput">&lt;article class="content"&gt;
+  &lt;h1&gt;Responsive Typography&lt;/h1&gt;
+  &lt;p class="meta"&gt;Posted on June 12, 2026&lt;/p&gt;
+  &lt;p&gt;This article demonstrates fluid typography using CSS clamp(). The text scales smoothly between minimum and maximum sizes based on viewport width.&lt;/p&gt;
+  &lt;h2&gt;Why Fluid Typography?&lt;/h2&gt;
+  &lt;p&gt;Static font sizes require media queries at every breakpoint. Fluid typography with clamp() creates a continuous scaling curve that adapts to any viewport size.&lt;/p&gt;
+  &lt;h2&gt;Key Benefits&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Smooth scaling without breakpoints&lt;/li&gt;
+    &lt;li&gt;Optimal readability at all sizes&lt;/li&gt;
+    &lt;li&gt;Less CSS code&lt;/li&gt;
+    &lt;li&gt;Future-friendly&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p&gt;Use clamp(min, preferred, max) where preferred is often a viewport-relative formula.&lt;/p&gt;
+&lt;/article&gt;</textarea>
+        </div>
+        <div class="panel">
+          <h2>CSS</h2>
+          <textarea id="cssInput">/* Try editing these values */
+body { font-family: system-ui, sans-serif; }
+
+.content {
+  max-width: 65ch;
+  margin: 0 auto;
+  font-size: clamp(1rem, 0.5rem + 1vw, 1.25rem);
+  line-height: 1.6;
+  color: #1e293b;
+}
+
+.content h1 {
+  font-size: clamp(2rem, 1rem + 4vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 0.25em;
+  color: #0f172a;
+}
+
+.content h2 {
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  line-height: 1.2;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #1e293b;
+}
+
+.content .meta {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 2em;
+}
+
+.content ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.content li {
+  margin-bottom: 0.5rem;
+}</textarea>
+        </div>
+      </div>
+      <div>
+        <div class="panel">
+          <h2>Preview</h2>
+          <div class="preview-area" id="previewArea"></div>
+        </div>
+        <div class="controls">
+          <button onclick="render()"> Render</button>
+          <label><input type="checkbox" id="liveCheck" checked> Live</label>
+          <div class="sliders">
+            <div class="slider-group">
+              <label>Base font min</label>
+              <input type="range" id="baseMin" min="12" max="20" value="16">
+              <span id="baseMinVal">16px</span>
+            </div>
+            <div class="slider-group">
+              <label>Base font max</label>
+              <input type="range" id="baseMax" min="16" max="32" value="20">
+              <span id="baseMaxVal">20px</span>
+            </div>
+            <div class="slider-group">
+              <label>Line height</label>
+              <input type="range" id="lineHeight" min="1.2" max="2.0" step="0.1" value="1.6">
+              <span id="lhVal">1.6</span>
+            </div>
+            <div class="slider-group">
+              <label>Max width (ch)</label>
+              <input type="range" id="maxWidth" min="40" max="90" value="65">
+              <span id="mwVal">65ch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const htmlInput = document.getElementById('htmlInput');
+    const cssInput = document.getElementById('cssInput');
+    const preview = document.getElementById('previewArea');
+
+    function render() {
+      let css = cssInput.value;
+      // Apply slider overrides
+      const bMin = document.getElementById('baseMin').value;
+      const bMax = document.getElementById('baseMax').value;
+      const lh = document.getElementById('lineHeight').value;
+      const mw = document.getElementById('maxWidth').value;
+
+      // Inject overrides at the end
+      const overrides = `
+        .content { font-size: clamp(${bMin/16}rem, 0.5rem + 1vw, ${bMax/16}rem); line-height: ${lh}; max-width: ${mw}ch; }
+      `;
+      preview.innerHTML = `<style>${css} ${overrides}</style>${htmlInput.value}`;
+    }
+
+    // Slider events
+    document.querySelectorAll('input[type="range"]').forEach(input => {
+      input.addEventListener('input', () => {
+        const valSpan = document.getElementById(input.id + 'Val');
+        if (valSpan) {
+          if (input.id === 'lineHeight') valSpan.textContent = input.value;
+          else if (input.id === 'maxWidth') valSpan.textContent = input.value + 'ch';
+          else valSpan.textContent = input.value + 'px';
+        }
+        if (document.getElementById('liveCheck').checked) render();
+      });
+    });
+
+    let debounce;
+    function debouncedRender() {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        if (document.getElementById('liveCheck').checked) render();
+      }, 300);
+    }
+    htmlInput.addEventListener('input', debouncedRender);
+    cssInput.addEventListener('input', debouncedRender);
+
+    render();
+  </script>
+</body>
+</html>

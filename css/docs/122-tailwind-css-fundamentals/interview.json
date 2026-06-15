@@ -1,0 +1,130 @@
+{
+  "module": "122-tailwind-css-fundamentals",
+  "title": "Tailwind CSS Fundamentals",
+  "beginner": [
+    {
+      "question": "What is Tailwind CSS?",
+      "answer": "Tailwind CSS is a utility-first CSS framework that provides low-level utility classes for building custom designs. Instead of pre-built components, it offers thousands of single-purpose classes you compose in HTML."
+    },
+    {
+      "question": "How do you install Tailwind CSS in a project?",
+      "answer": "Via npm: `npm install -D tailwindcss`, then `npx tailwindcss init`. Configure content paths in `tailwind.config.js`, add `@tailwind base; @tailwind components; @tailwind utilities;` to your CSS, and run the build."
+    },
+    {
+      "question": "What is the Tailwind config file (`tailwind.config.js`)?",
+      "answer": "The config file customizes Tailwind's theme (colors, fonts, spacing), variants, plugins, and content paths. It's where you define your design system tokens that generate custom utility classes."
+    },
+    {
+      "question": "What are responsive prefixes in Tailwind?",
+      "answer": "Responsive prefixes like `sm:`, `md:`, `lg:`, `xl:`, `2xl:` apply utilities only at specific breakpoints. Example: `w-48 md:w-64` sets width 12rem on mobile, 16rem on medium screens and above. Breakpoints are mobile-first."
+    },
+    {
+      "question": "What is Tailwind's default spacing scale?",
+      "answer": "The default spacing scale uses rem units: `0` = 0px, `1` = 0.25rem, `2` = 0.5rem, `4` = 1rem, `8` = 2rem, `16` = 4rem, etc. Classes like `p-4`, `m-2`, `gap-6` reference this consistent scale."
+    },
+    {
+      "question": "How do you use colors in Tailwind CSS?",
+      "answer": "Tailwind provides a comprehensive color palette with numbered shades: `red-500`, `blue-700`, `gray-200`. Each color has shades from 50 (lightest) to 900/950 (darkest). Use with property prefixes: `bg-blue-500`, `text-gray-900`, `border-red-300`."
+    },
+    {
+      "question": "What is the `@tailwind base` directive?",
+      "answer": "`@tailwind base` injects Tailwind's base styles (Preflight), which is a modern CSS reset/normalize built on modern-normalize. It sets box-sizing, removes margins, standardizes heading sizes, and provides sensible defaults for form elements."
+    },
+    {
+      "question": "What is the `@tailwind utilities` directive?",
+      "answer": "`@tailwind utilities` injects all utility classes (flex, grid, spacing, typography, colors, etc.). This is the bulk of Tailwind's CSS. In JIT mode, only the utilities you use are generated."
+    },
+    {
+      "question": "How do you create a responsive grid with Tailwind?",
+      "answer": "Use grid utilities with responsive prefixes: `<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">`. This creates 1 column on mobile, 2 on tablet, 3 on desktop with consistent gaps."
+    },
+    {
+      "question": "How do you add custom colors in Tailwind's config?",
+      "answer": "In `tailwind.config.js`, extend the theme: `theme: { extend: { colors: { brand: { light: '#3b82f6', DEFAULT: '#2563eb', dark: '#1d4ed8' } } } }`. This generates utilities like `bg-brand`, `text-brand-dark`."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is Tailwind's JIT (Just-In-Time) engine?",
+      "answer": "Introduced in v3.0, the JIT engine generates CSS on-demand by scanning your templates for class names. It eliminates the need to purge unused styles, enables arbitrary values (`w-[123px]`), and produces minimal CSS output."
+    },
+    {
+      "question": "How do arbitrary values work in Tailwind?",
+      "answer": "Arbitrary values use square bracket syntax for one-off values: `w-[123px]`, `text-[#bada55]`, `bg-[url('/img.png')]`, `grid-cols-[200px_repeat(2,1fr)]`. These generate unique utilities without config changes. Use sparingly to maintain consistency."
+    },
+    {
+      "question": "How do you create a custom plugin in Tailwind?",
+      "answer": "Use `tailwind.plugin(function({ addUtilities, addComponents, theme, variants }) { ... })`. Register custom utilities, components, or base styles programmatically. Plugins can access theme values and generate responsive variants."
+    },
+    {
+      "question": "What is `@apply` in Tailwind and when should you use it?",
+      "answer": "`@apply` inlines Tailwind utilities into custom CSS: `.btn { @apply px-4 py-2 rounded bg-blue-500 text-white; }`. Use it to extract repeated patterns into component classes. Avoid overusing it — it defeats the utility-first purpose if used for simple things."
+    },
+    {
+      "question": "How does Tailwind handle dark mode?",
+      "answer": "Dark mode uses the `dark:` variant: `dark:bg-gray-900 dark:text-white`. Configure with `darkMode: 'class'` (toggle via JavaScript) or `darkMode: 'media'` (OS preference-based). The class strategy is more flexible for manual toggling."
+    },
+    {
+      "question": "What are Tailwind variants and how do they work?",
+      "answer": "Variants are condition prefixes that modify when a utility applies: `hover:`, `focus:`, `active:`, `disabled:`, `group-hover:`, `peer-checked:`, `motion-safe:`, `reduce-motion:`, etc. Variants are generated from the `variants` config section."
+    },
+    {
+      "question": "How does Tailwind's `group` and `peer` pattern work?",
+      "answer": "`group` marks a parent element, then `group-hover:` applies styles to children when the group is hovered. `peer` marks a sibling element (usually an input), then `peer-checked:` styles other siblings when the peer is checked/active."
+    },
+    {
+      "question": "How do you configure custom fonts in Tailwind?",
+      "answer": "In `tailwind.config.js`: `theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Playfair Display', 'serif'] } } }`. This generates `font-sans`, `font-display` utilities. Import the fonts separately via CSS or Google Fonts."
+    },
+    {
+      "question": "What is the difference between Tailwind `container` and standard CSS containers?",
+      "answer": "Tailwind's `.container` class centers content and sets `max-width` at each breakpoint (not a fixed width). Standard CSS containers don't exist in Tailwind — it uses `max-w-*` utilities instead for more control."
+    },
+    {
+      "question": "How do you optimize Tailwind for production?",
+      "answer": "Use `NODE_ENV=production` which enables JIT mode (v3+), ensures purging works correctly, and minifies output. Configure `content` paths to include all template files. Use `@tailwindcss/forms`, `@tailwindcss/typography` for standardizing HTML elements."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does Tailwind's `important` config option work and when would you use it?",
+      "answer": "Set `important: true` in the config (or `important: '#app'` for scoping). When true, all utilities get `!important`. Use when integrating with third-party CSS you can't control. The scoped version (with selector) only applies inside that container."
+    },
+    {
+      "question": "How do you create a Tailwind preset to share across multiple projects?",
+      "answer": "Create a package with a `preset.js` that exports a Tailwind config object. Projects include it: `presets: [require('my-design-system/preset')]`. The preset defines theme tokens, plugins, and variants that merge with the project's config."
+    },
+    {
+      "question": "What is Tailwind CSS `v4`'s new engine and how does it differ from v3?",
+      "answer": "Tailwind v4 (in development at the time of v3) uses Lightning CSS, a Rust-based CSS parser, for dramatic speed improvements. It also introduces CSS-first configuration (using `@theme` in CSS instead of `tailwind.config.js`) and native cascade layers."
+    },
+    {
+      "question": "How does Tailwind interact with CSS `@container` queries?",
+      "answer": "Tailwind provides `@container` utility for container queries. Variants like `@sm:`, `@md:`, `@lg:` apply utilities when the container (marked with `container` class) reaches those sizes. This enables truly reusable responsive components."
+    },
+    {
+      "question": "How do you create a custom variant in Tailwind?",
+      "answer": "Use the `addVariant` plugin API: `addVariant('data-open', '&[data-open]')`. This creates `data-open:text-red-500`. Variants can target attributes, pseudo-classes, media queries, or arbitrary selectors."
+    },
+    {
+      "question": "What is the performance impact of using Tailwind with SSR/SSG frameworks like Next.js or Nuxt?",
+      "answer": "Tailwind works seamlessly with SSR/SSG. The JIT engine generates CSS at build time. The output CSS is hashed and cached. No runtime CSS processing. The small CSS file size benefits initial load. The `content` configuration tells Tailwind which files to scan."
+    },
+    {
+      "question": "How do you handle highly dynamic class names in Tailwind with client-side rendering?",
+      "answer": "Tailwind uses full class names in the source code. Dynamic construction like `bg-${color}-500` won't work because the JIT engine can't analyze runtime values. Solution: use complete class names (e.g., object mapping `{ red: 'bg-red-500', blue: 'bg-blue-500' }`)."
+    },
+    {
+      "question": "How does `@tailwindcss/typography` (Prose) work?",
+      "answer": "The typography plugin adds a `.prose` class that styles rich HTML content (articles, blog posts) with beautiful typography. It handles headings, lists, quotes, code blocks, and images. Customizable via `theme: { typography: { ... } }` config."
+    },
+    {
+      "question": "What is the Tailwind `safelist` option and when is it needed?",
+      "answer": "The `safelist` option in the config ensures certain classes are always generated, even if not detected in the scanned files. Needed when classes are: (1) dynamically constructed (e.g., from a CMS), (2) used by third-party libraries, (3) referenced in JavaScript strings."
+    },
+    {
+      "question": "How do you create a multi-theme system with Tailwind?",
+      "answer": "Use CSS custom properties in your Tailwind config for dynamic values: `colors: { primary: 'var(--color-primary)' }`. Define theme class scopes: `.theme-dark { --color-primary: #3b82f6; }`. The same utilities (`bg-primary`) refer to different colors per theme."
+    }
+  ]
+}

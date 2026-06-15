@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What does the placeholder attribute do?",
+      "answer": "placeholder shows a short hint inside the input that disappears when the user starts typing. It is not a replacement for labels."
+    },
+    {
+      "question": "What is the difference between disabled and readonly?",
+      "answer": "disabled prevents interaction and the value is not submitted. readonly prevents editing but the value IS submitted."
+    },
+    {
+      "question": "How do you make a field required?",
+      "answer": "Add the required attribute: <input type='text' required>. The browser will prevent submission if the field is empty."
+    },
+    {
+      "question": "What does the maxlength attribute do?",
+      "answer": "maxlength limits the number of characters the user can enter into a text or password input."
+    },
+    {
+      "question": "What is the purpose of the value attribute?",
+      "answer": "value sets the initial or current value of the input. For buttons, it defines the displayed text."
+    },
+    {
+      "question": "How do you set a default value in a text input?",
+      "answer": "Use the value attribute: <input type='text' value='Default text'>."
+    },
+    {
+      "question": "What does the name attribute do?",
+      "answer": "name defines the key used when submitting the form data to the server."
+    },
+    {
+      "question": "What is the autofocus attribute?",
+      "answer": "autofocus automatically places the cursor in the input when the page loads. Use only once per page."
+    },
+    {
+      "question": "What does the size attribute do on an input?",
+      "answer": "size defines the visible width of the input in characters (mostly visual, use CSS width instead)."
+    },
+    {
+      "question": "How do you pre-check a checkbox or radio button?",
+      "answer": "Add the checked attribute: <input type='checkbox' checked>."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the pattern attribute and how do you use it?",
+      "answer": "pattern accepts a regex for validation. Example: pattern='[A-Za-z]{3,}' requires 3+ letters."
+    },
+    {
+      "question": "How does the form attribute let you place inputs outside a <form>?",
+      "answer": "The form attribute on an input takes a form's id as its value, associating the input with that form regardless of DOM position."
+    },
+    {
+      "question": "What does the min and max attribute do for number inputs?",
+      "answer": "They define the allowable numeric range. The browser shows validation errors for values outside this range."
+    },
+    {
+      "question": "What is the step attribute used for?",
+      "answer": "step defines the increment/decrement amount for number, range, and date inputs."
+    },
+    {
+      "question": "What is the purpose of formaction on a submit button?",
+      "answer": "formaction overrides the form's action attribute for that specific submit button, allowing different submission URLs per button."
+    },
+    {
+      "question": "How does formmethod differ from the form's method attribute?",
+      "answer": "formmethod on a submit button overrides the form-level method (GET/POST) for that specific submission."
+    },
+    {
+      "question": "What does the formnovalidate attribute do on a button?",
+      "answer": "formnovalidate on a submit button temporarily disables validation, useful for 'Save Draft' or 'Cancel' buttons."
+    },
+    {
+      "question": "What does the formtarget attribute do?",
+      "answer": "formtarget on a submit button overrides the form's target attribute, controlling where to display the response."
+    },
+    {
+      "question": "How do you set multiple values for autocomplete on a field?",
+      "answer": "Use space-separated tokens: autocomplete='shipping address-line1' for hierarchical autofill hints."
+    },
+    {
+      "question": "What is the multiple attribute used for?",
+      "answer": "multiple allows selecting/entering more than one value, commonly used with email and file input types."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do the input event and the change event differ when handling attributes?",
+      "answer": "The input event fires on every keystroke/value change. The change event fires only after the value is committed (blur for text, immediate for checkboxes/selects)."
+    },
+    {
+      "question": "Explain how the validity object reports attribute-based validation failures.",
+      "answer": "validity.valueMissing fires when required is set but empty; validity.patternMismatch fires when pattern regex doesn't match; validity.rangeUnderflow/Overflow for min/max; validity.tooLong/Short for minlength/maxlength."
+    },
+    {
+      "question": "How does the indeterminate state work on checkboxes with checked attribute?",
+      "answer": "indeterminate is a visual-only state set via JavaScript (checkbox.indeterminate = true). It doesn't affect the checked attribute or form submission."
+    },
+    {
+      "question": "What is the dirname attribute and when would you use it?",
+      "answer": "dirname submits the text directionality (ltr/rtl) of an input as a separate form field, useful for multilingual forms."
+    },
+    {
+      "question": "Explain the interaction between the disabled attribute and CSS pointer-events.",
+      "answer": "disabled sets the element to :disabled pseudo-class. pointer-events: none blocks click events but does not set the :disabled state or prevent form submission."
+    },
+    {
+      "question": "How does the list attribute connect an input to a <datalist>?",
+      "answer": "The list attribute on an input takes the id of a <datalist> element, providing autocomplete suggestions without restricting input to the list values."
+    },
+    {
+      "question": "What is the accept attribute on file inputs and how does it restrict file types?",
+      "answer": "accept specifies MIME types or file extensions for file upload filtering: accept='.pdf,.doc,.docx' or accept='image/*'."
+    },
+    {
+      "question": "How does the capture attribute work on file inputs?",
+      "answer": "capture specifies which camera to use: 'environment' for rear camera, 'user' for front camera. Used with type='file' accept='image/*'."
+    },
+    {
+      "question": "What is the difference between the rows/cols attributes on textarea and CSS width/height?",
+      "answer": "rows/cols set the visible size in character units as the initial size. CSS width/height override the visual size but do not affect the textarea's internal sizing behavior."
+    },
+    {
+      "question": "Explain the form-associated custom element lifecycle in terms of attribute changes.",
+      "answer": "Form-associated custom elements can use formAssociatedCallback (when associated/disassociated), formDisabledCallback (disabled state changes), formResetCallback (form is reset), and formStateRestoreCallback (restores form state)."
+    }
+  ]
+}

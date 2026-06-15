@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the id attribute in HTML?",
+      "answer": "The id attribute provides a unique identifier for an HTML element. It must be unique within the entire page."
+    },
+    {
+      "question": "What is the difference between id and class?",
+      "answer": "IDs must be unique per page; classes can be reused. IDs have higher CSS specificity. IDs can be used as URL fragments."
+    },
+    {
+      "question": "How do you select an element by ID in CSS?",
+      "answer": "Use the hash selector: #myId { property: value; }"
+    },
+    {
+      "question": "How do you select an element by ID in JavaScript?",
+      "answer": "Use document.getElementById('myId') or document.querySelector('#myId')."
+    },
+    {
+      "question": "Can two elements have the same ID?",
+      "answer": "No. Duplicate IDs are invalid HTML and cause JavaScript to behave unexpectedly (getElementById returns only the first)."
+    },
+    {
+      "question": "What is a valid ID name?",
+      "answer": "An ID must start with a letter, cannot contain spaces, and can include letters, digits, hyphens, underscores, and periods."
+    },
+    {
+      "question": "How do you link to a specific section of a page using an ID?",
+      "answer": "Use a hash in the href: <a href=\"#section-id\">Link</a> targets the element with id=\"section-id\"."
+    },
+    {
+      "question": "What is the for attribute on a label?",
+      "answer": "The for attribute associates a label with an input by matching the input's id. Clicking the label focuses the input."
+    },
+    {
+      "question": "Are IDs case-sensitive?",
+      "answer": "Yes. #Main and #main are considered different IDs."
+    },
+    {
+      "question": "Can you use an ID for styling?",
+      "answer": "Yes, but it is not recommended. Classes are preferred because they have lower specificity and are reusable."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Why should you avoid using IDs for CSS styling?",
+      "answer": "IDs have high specificity (0,1,0,0), making them hard to override. They are not reusable. Classes provide better maintainability."
+    },
+    {
+      "question": "How do you create smooth scrolling to an ID target?",
+      "answer": "Add CSS: html { scroll-behavior: smooth; } to the document. Then use <a href=\"#target\">links to scroll smoothly."
+    },
+    {
+      "question": "What is scroll-margin-top and why is it useful with IDs?",
+      "answer": "scroll-margin-top adds offset when scrolling to an ID target, preventing fixed headers from covering the target element."
+    },
+    {
+      "question": "How does getElementById compare to querySelector performance?",
+      "answer": "getElementById is significantly faster because it directly accesses the browser's internal ID lookup table."
+    },
+    {
+      "question": "What happens when you use an ID in a CSS preprocessor like Sass?",
+      "answer": "IDs work the same but are discouraged. Sass itself does not change ID behavior, but nesting with IDs increases specificity unnecessarily."
+    },
+    {
+      "question": "How do you handle duplicate IDs in a large application?",
+      "answer": "Use naming conventions (prefixes based on component or module), use JavaScript to validate uniqueness, or use ID generation libraries."
+    },
+    {
+      "question": "What is the interaction between IDs and the CSS :target pseudo-class?",
+      "answer": ":target styles the element whose ID matches the current URL fragment. Example: #section:target { background: yellow; }"
+    },
+    {
+      "question": "How do you change an element's ID with JavaScript?",
+      "answer": "Set element.id = 'newId'; or element.setAttribute('id', 'newId');"
+    },
+    {
+      "question": "What is the aria-labelledby attribute and how does it relate to IDs?",
+      "answer": "aria-labelledby takes space-separated IDs of elements that label the current element. It improves accessibility by associating descriptions."
+    },
+    {
+      "question": "How do you remove an ID from an element?",
+      "answer": "element.removeAttribute('id'); sets it to null."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does the browser handle the :target pseudo-class with dynamic ID changes?",
+      "answer": "When an element's ID matches the URL fragment, :target applies. If the ID changes via JavaScript, :target updates immediately."
+    },
+    {
+      "question": "What is the difference between <a href=\"#id\"> and <a href=\"#/id\">?",
+      "answer": "#id is an HTML fragment identifier (scrolls to element). #/id is a client-side route path (handled by JavaScript routing)."
+    },
+    {
+      "question": "How does the CSS specificity of IDs affect the cascade in large stylesheets?",
+      "answer": "One ID overrides any number of classes and elements. This makes overrides difficult without adding more IDs or !important."
+    },
+    {
+      "question": "What is the aria-controls attribute and how does it use IDs?",
+      "answer": "aria-controls references the ID of an element that the current element controls (e.g., a tab controlling a panel)."
+    },
+    {
+      "question": "How does the HTML spec define the uniqueness requirement for IDs in shadow DOM?",
+      "answer": "IDs only need to be unique within the same shadow root. IDs in different shadow roots can overlap without conflict."
+    },
+    {
+      "question": "What happens when you use duplicated IDs in querySelectorAll?",
+      "answer": "querySelectorAll('#dup') returns a NodeList with all elements that have that ID, even though it is invalid HTML."
+    },
+    {
+      "question": "How does Content Security Policy (CSP) affect inline event handlers using IDs?",
+      "answer": "CSP can block inline event handlers like onclick=\"document.getElementById('btn')\". Use addEventListener instead."
+    },
+    {
+      "question": "What is the purpose of the element's id property in the accessibility tree?",
+      "answer": "The id is exposed in the accessibility tree and can be used by aria-labelledby, aria-describedby, and aria-controls for relationships."
+    },
+    {
+      "question": "How do Single Page Applications (SPAs) handle ID-based routing?",
+      "answer": "SPAs use JavaScript to intercept hash changes (window.onhashchange), parse the fragment, and update content without page reload."
+    },
+    {
+      "question": "What is the difference between element.id and element.getAttribute('id')?",
+      "answer": "element.id returns the ID property (always a string, even if not set). getAttribute('id') returns null if not set. Setting element.id updates both."
+    }
+  ]
+}

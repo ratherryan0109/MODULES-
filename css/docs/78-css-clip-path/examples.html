@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Clip-Path - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .note { background: #f0fdfa; border-left: 4px solid #06b6d4; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.875rem; color: #475569; }
+    .flex-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .flex-row > div { flex:1; min-width:150px; text-align:center; }
+    .clip-demo { height:130px; background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Clip-Path</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Basic Shapes — Circle & Ellipse</h2>
+    <p>clip-path cuts an element into a shape. Only the visible area is painted; the rest is hidden.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="clip-demo" style="clip-path:circle(45% at center);">circle()</div><code style="font-size:0.75rem">circle(45% at center)</code></div>
+        <div><div class="clip-demo" style="clip-path:ellipse(35% 50% at center);">ellipse()</div><code style="font-size:0.75rem">ellipse(35% 50%)</code></div>
+      </div>
+    </div>
+    <pre><code>.circle  { clip-path: circle(45% at center); }
+.ellipse { clip-path: ellipse(35% 50% at center); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Inset Shape with Rounding</h2>
+    <p>inset() clips from each edge. Add round for rounded corners.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="clip-demo" style="clip-path:inset(10%);">inset(10%)</div><code style="font-size:0.75rem">Even padding all sides</code></div>
+        <div><div class="clip-demo" style="clip-path:inset(10% 20% round 16px);">inset rounded</div><code style="font-size:0.75rem">inset(10% 20% round 16px)</code></div>
+        <div><div class="clip-demo" style="clip-path:inset(20px 40px round 50%);">Pill shape</div><code style="font-size:0.75rem">inset(20px 40px round 50%)</code></div>
+      </div>
+    </div>
+    <pre><code>.even    { clip-path: inset(10%); }
+.rounded { clip-path: inset(10% 20% round 16px); }
+.pill    { clip-path: inset(20px 40px round 50%); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Polygons — Triangles, Hexagons, Stars</h2>
+    <p>polygon() takes a comma-separated list of x, y coordinate pairs.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><div class="clip-demo" style="clip-path:polygon(50% 0%,0% 100%,100% 100%);">Triangle</div><code style="font-size:0.75rem">Triangle</code></div>
+        <div><div class="clip-demo" style="clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);">Diamond</div><code style="font-size:0.75rem">Diamond</code></div>
+        <div><div class="clip-demo" style="clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);">Hexagon</div><code style="font-size:0.75rem">Hexagon</code></div>
+        <div><div class="clip-demo" style="clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);">Star</div><code style="font-size:0.75rem">Star (10 points)</code></div>
+      </div>
+    </div>
+    <pre><code>.triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+.diamond  { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.hexagon  { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+.star     { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Images with Clip-Path</h2>
+    <p>Clip images into custom shapes for visual interest.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' fill='%2306b6d4'/%3E%3Ctext x='35' y='85' fill='white' font-size='18' font-family='sans-serif'%3ECircle%3C/text%3E%3C/svg%3E" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;clip-path:circle(45%);"><code style="font-size:0.75rem">Avatar circle</code></div>
+        <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' fill='%236366f1'/%3E%3Ctext x='30' y='85' fill='white' font-size='18' font-family='sans-serif'%3EHexagon%3C/text%3E%3C/svg%3E" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);"><code style="font-size:0.75rem">Hexagon crop</code></div>
+        <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' fill='%23ec4899'/%3E%3Ctext x='35' y='85' fill='white' font-size='18' font-family='sans-serif'%3EStar%3C/text%3E%3C/svg%3E" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);"><code style="font-size:0.75rem">Star crop</code></div>
+      </div>
+    </div>
+    <pre><code>.avatar  { clip-path: circle(45%); }
+.hexagon { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Hover Morphing</h2>
+    <p>Transition clip-path smoothly on hover for interactive shape morphing.</p>
+    <div class="demo-output">
+      <div class="flex-row">
+        <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' fill='%2306b6d4'/%3E%3Ctext x='40' y='85' fill='white' font-size='16' font-family='sans-serif'%3EHover%3C/text%3E%3C/svg%3E" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;clip-path:circle(40%);transition:clip-path 0.4s" onmouseover="this.style.clipPath='polygon(50% 0%,100% 50%,50% 100%,0% 50%)'" onmouseout="this.style.clipPath='circle(40%)'"></div>
+        <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' fill='%236366f1'/%3E%3Ctext x='40' y='85' fill='white' font-size='16' font-family='sans-serif'%3EHover%3C/text%3E%3C/svg%3E" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);transition:clip-path 0.4s" onmouseover="this.style.clipPath='circle(40%)'" onmouseout="this.style.clipPath='polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)'"></div>
+      </div>
+    </div>
+    <pre><code>.morph {
+    clip-path: circle(40%);
+    transition: clip-path 0.4s;
+}
+.morph:hover { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Animated Morphing</h2>
+    <p>Keyframe animations can morph between shapes. Both shapes must have the same number of polygon points.</p>
+    <div class="demo-output">
+      <style>
+        @keyframes morph {
+          0%, 100% { clip-path: circle(50% at center); }
+          25% { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+          50% { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+          75% { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+        }
+      </style>
+      <div style="text-align:center">
+        <div style="width:150px;height:150px;margin:0 auto;background:linear-gradient(135deg,#06b6d4,#6366f1,#ec4899);animation:morph 5s ease-in-out infinite;"></div>
+        <p style="font-size:0.8rem;margin-top:8px;color:#64748b">Circle → Diamond → Hexagon → Star → repeat</p>
+      </div>
+    </div>
+    <pre><code>@keyframes morph {
+    0%, 100% { clip-path: circle(50% at center); }
+    25%      { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+    50%      { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+}</code></pre>
+    <div class="note">Only morph between shapes with the same number of polygon points for smooth transitions.</div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Text Wrapping with shape-outside</h2>
+    <p>Combine clip-path with shape-outside to make text flow around a clipped image.</p>
+    <div class="demo-output">
+      <div>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Crect width='180' height='180' fill='%236366f1'/%3E%3Ctext x='40' y='100' fill='white' font-size='20' font-family='sans-serif'%3ECircle%3C/text%3E%3C/svg%3E" alt="" style="width:150px;height:150px;float:left;margin-right:16px;clip-path:circle(50%);shape-outside:circle(50%);">
+        <p style="text-align:justify;font-size:0.875rem;color:#475569;line-height:1.6">The combination of clip-path and shape-outside creates magazine-style text wrapping. clip-path makes the image visually circular, while shape-outside tells the text where the boundary is. Both use the same shape function (circle(50%)) for consistency. This technique works for circular avatars, hexagonal featured images, and other creative editorial layouts. Text naturally fills the space beside the clipped image.</p>
+      </div>
+    </div>
+    <pre><code>.wrapped {
+    float: left;
+    clip-path: circle(50%);
+    shape-outside: circle(50%); /* Text follows the same shape */
+    margin-right: 16px;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: Angled Section Divider</h2>
+    <p>Use clip-path on sections to create diagonal edges and other divider shapes.</p>
+    <div class="demo-output">
+      <div style="padding:3rem;background:linear-gradient(135deg,#06b6d4,#6366f1);clip-path:polygon(0 0,100% 0,100% 70%,0 100%);color:white;text-align:center;">
+        <p style="font-size:1.5rem;font-weight:700">Angled Section</p>
+        <p style="font-size:0.875rem;opacity:0.9">clip-path creates the diagonal bottom edge</p>
+      </div>
+    </div>
+    <pre><code>.angled-section {
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+}</code></pre>
+  </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What CSS property is used to add borders to a table?",
+      "answer": "The border property is used. Example: table { border: 1px solid #ccc; } applies to both the table and its cells."
+    },
+    {
+      "question": "What does border-collapse: collapse do?",
+      "answer": "It merges adjacent cell borders into a single border, eliminating the double-border effect that appears with the default separate mode."
+    },
+    {
+      "question": "How do you add padding inside table cells?",
+      "answer": "Use the padding property on th and td elements. Example: th, td { padding: 10px 15px; } adds space around the cell content."
+    },
+    {
+      "question": "What is the difference between border-collapse: collapse and border-collapse: separate?",
+      "answer": "collapse merges adjacent borders into one; separate keeps them distinct and allows border-spacing to control the gap between them."
+    },
+    {
+      "question": "How do you change the background color of table headers?",
+      "answer": "Target the th element in CSS. Example: th { background-color: #333; color: white; }"
+    },
+    {
+      "question": "What CSS property aligns text horizontally in table cells?",
+      "answer": "text-align. Example: td { text-align: center; } centers content horizontally within cells."
+    },
+    {
+      "question": "How do you change the font size of table content?",
+      "answer": "Use the font-size property on th and/or td. Example: td { font-size: 14px; }"
+    },
+    {
+      "question": "What is the default border behavior of HTML tables?",
+      "answer": "By default, tables have no borders. The table and cells only show borders if explicitly set via CSS. The default border-collapse is separate."
+    },
+    {
+      "question": "How do you set a table to span the full width of its container?",
+      "answer": "Set width: 100% on the table element. Example: table { width: 100%; }"
+    },
+    {
+      "question": "What does the caption element do in a table?",
+      "answer": "The caption element provides a title or description for the table. It can be styled with CSS and positioned above or below using caption-side."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does table-layout: fixed differ from table-layout: auto?",
+      "answer": "With auto, column widths adjust to content. With fixed, column widths are determined by the first row or explicit width settings, ignoring content size."
+    },
+    {
+      "question": "Explain how to create zebra-striped rows in a table.",
+      "answer": "Use nth-child pseudo-class: tbody tr:nth-child(odd) { background: #f2f2f2; } tbody tr:nth-child(even) { background: white; }"
+    },
+    {
+      "question": "How can you make a table responsive on mobile devices?",
+      "answer": "Wrap the table in a div with overflow-x: auto, or use a media query to convert rows into block-level cards with data-label attributes for headers."
+    },
+    {
+      "question": "What is the purpose of the vertical-align property in table cells?",
+      "answer": "It controls vertical positioning of content within a cell. Values are top, middle (default), and bottom."
+    },
+    {
+      "question": "How do you add a hover effect to table rows?",
+      "answer": "Use tr:hover { background-color: #e0f0ff; } to change the background when the mouse hovers over any cell in the row."
+    },
+    {
+      "question": "How do you style the first and last columns of a table differently?",
+      "answer": "Use td:first-child for the first column and td:last-child for the last column. Combine with th for header styling."
+    },
+    {
+      "question": "What is the difference between styling thead, tbody, and tfoot?",
+      "answer": "Each is a semantic section of the table. thead contains header rows, tbody contains data rows, tfoot contains summary rows. CSS can target each independently."
+    },
+    {
+      "question": "How do you handle long content in table cells without breaking the layout?",
+      "answer": "Use word-wrap: break-word and table-layout: fixed. Optionally set max-width on columns and overflow: hidden with text-overflow: ellipsis."
+    },
+    {
+      "question": "Can you use CSS gradients on table headers?",
+      "answer": "Yes. Example: th { background: linear-gradient(180deg, #4a90d9, #357abd); color: white; }"
+    },
+    {
+      "question": "How do you add rounded corners to a table?",
+      "answer": "Set border-radius on the table and overflow: hidden, or use border-collapse: collapse and apply border-radius to thead th:first-child and :last-child."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the border conflict resolution algorithm in collapsed borders.",
+      "answer": "When borders conflict, the algorithm prioritizes by style: 'hidden' beats all, 'none' is weakest. Wider borders beat narrower ones, and if equal width, the order is double, solid, dashed, dotted, ridge, outset, groove, inset."
+    },
+    {
+      "question": "How can you implement a fixed header while scrolling the table body?",
+      "answer": "Wrap tbody in a div with max-height and overflow-y: auto. Set thead and tbody to display: block. Match th and td widths explicitly. Use position: sticky on thead tr."
+    },
+    {
+      "question": "What are the accessibility considerations when styling tables?",
+      "answer": "Use sufficient color contrast, preserve the DOM order for screen readers, keep headers distinguishable, use scope attributes on th, and ensure hover states are not the only way to convey information."
+    },
+    {
+      "question": "How do you create a print-friendly table style?",
+      "answer": "Use @media print { ... } to add borders, remove background colors (or ensure they print), set font sizes appropriately, avoid overflow, and use page-break-inside: avoid on rows."
+    },
+    {
+      "question": "Explain how to create a multi-row header with spanning columns using CSS.",
+      "answer": "Use rowspan attributes on th elements for vertical spanning. For styling, target individual header cells with classes or nth-child selectors."
+    },
+    {
+      "question": "How would you build a table where columns have different background colors?",
+      "answer": "Use colgroup and col elements with class names, or use td:nth-child(1), td:nth-child(2), etc. to target each column individually."
+    },
+    {
+      "question": "What is the table rendering model in CSS (visual formatting model)?",
+      "answer": "Tables follow a specific CSS rendering model where the table generates a block-level box, and internal elements (caption, column groups, rows, cell groups) follow specific display roles: table, table-row, table-cell, etc."
+    },
+    {
+      "question": "How do you create a table that sorts columns when clicking headers?",
+      "answer": "Add JavaScript click handlers to th elements, retrieve the column index, sort the data, and re-render the rows. Style the active sort column with a CSS class for visual indication."
+    },
+    {
+      "question": "Explain how to use CSS custom properties (variables) for table theming.",
+      "answer": "Define --header-bg, --row-odd, --row-even, --hover-bg, --border-color in :root. Reference them in table styles. Switch themes by overriding these variables on a parent container."
+    },
+    {
+      "question": "How would you create a responsive table that shows a summary card per row on mobile?",
+      "answer": "Use a media query. Set thead to display: none. Change tr, td to display: block. Use td::before { content: attr(data-label); } to show header labels. Style each td as a card row."
+    }
+  ]
+}

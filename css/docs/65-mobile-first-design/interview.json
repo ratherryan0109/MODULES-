@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is mobile-first design?", "answer": "A design approach where you build the layout for the smallest screen first, then use min-width media queries to enhance it for larger screens." },
+    { "question": "Why is mobile-first design recommended?", "answer": "It ensures core content works on all devices, prioritizes performance, and naturally leads to simpler, more maintainable CSS." },
+    { "question": "What is progressive enhancement in CSS?", "answer": "Progressive enhancement starts with a baseline functional layout and adds enhanced styles for capable browsers or larger screens." },
+    { "question": "What is the difference between mobile-first and desktop-first?", "answer": "Mobile-first uses min-width queries starting from small screens; desktop-first uses max-width queries starting from large screens." },
+    { "question": "Why use min-width instead of max-width in mobile-first?", "answer": "min-width applies styles upward, building from the base mobile layout. max-width applies styles downward, overriding the desktop layout for smaller screens." },
+    { "question": "What is a base style in mobile-first design?", "answer": "The base style is the CSS applied without any media queries, targeting the smallest screen. Enhanced styles layer on top via min-width queries." },
+    { "question": "How does mobile-first design affect page load performance?", "answer": "Mobile-first loads minimal styles first and adds enhancements only as needed, reducing initial CSS payload for mobile users." },
+    { "question": "What is graceful degradation?", "answer": "Graceful degradation is the opposite of progressive enhancement: building for modern browsers first and adding fallbacks for older ones." },
+    { "question": "Do you need media queries for mobile-first design?", "answer": "Yes, media queries are used to add complexity at larger breakpoints, but the base (no query) styles serve the smallest screens." },
+    { "question": "What is a typical mobile-first breakpoint strategy?", "answer": "Start with base styles for mobile, then add @media (min-width: 768px) for tablets, and @media (min-width: 1024px) or wider for desktop." }
+  ],
+  "intermediate": [
+    { "question": "How do you handle touch targets in mobile-first design?", "answer": "Ensure interactive elements are at least 44x44px with adequate spacing, enhancing the layout for larger screens while keeping targets accessible." },
+    { "question": "What is the role of the viewport meta tag in mobile-first design?", "answer": "<meta name='viewport' content='width=device-width, initial-scale=1'> ensures the page matches the device width, critical for mobile-first rendering." },
+    { "question": "How do you progressively enhance a navigation for mobile-first?", "answer": "Start with a hamburger menu or simple stacked list on mobile, enhance to a horizontal nav bar at larger breakpoints with min-width queries." },
+    { "question": "What is content parity in mobile-first design?", "answer": "Content parity means providing the same content across all devices, just presented differently. Mobile-first does not mean removing content from mobile." },
+    { "question": "How do you handle typography in mobile-first design?", "answer": "Use a base font size for mobile and scale up at larger breakpoints using clamp() or media queries for improved readability on bigger screens." },
+    { "question": "What is the relationship between mobile-first and accessibility?", "answer": "Mobile-first improves accessibility by ensuring content is available and usable at the most constrained sizes, benefiting screen reader and zoom users." },
+    { "question": "How do you handle images in a mobile-first workflow?", "answer": "Serve smaller images by default for mobile and progressively enhance with srcset or <picture> for larger/higher-resolution screens." },
+    { "question": "What is a mobile-first responsive grid strategy?", "answer": "Start with a single column on mobile (no media query), then expand columns at larger breakpoints using CSS Grid with auto-fill or explicit column definitions." },
+    { "question": "How does mobile-first affect CSS organization?", "answer": "Mobile-first keeps base styles simple and adds overrides upwards, leading to cleaner CSS with fewer overrides than desktop-first approaches." },
+    { "question": "How do you handle forms in mobile-first design?", "answer": "Use full-width inputs on mobile, single-column layouts, large touch-friendly fields, and progressively enhance to multi-column or inline layouts on desktop." }
+  ],
+  "advanced": [
+    { "question": "How does mobile-first design interact with CSS Container Queries for component reusability?", "answer": "Container queries enable components to scale independently of viewport. Mobile-first component styles define base behavior, then container query breakpoints enhance the component." },
+    { "question": "What are the SEO implications of mobile-first design?", "answer": "Google uses mobile-first indexing, so mobile-first design ensures the indexed version matches the user experience, improving search rankings." },
+    { "question": "How do you handle complex data tables in mobile-first design?", "answer": "Transform tables into card-based layouts or stacked rows on mobile, progressively enhancing to tabular format at larger breakpoints." },
+    { "question": "How do you implement progressive enhancement for CSS animations?", "answer": "Respect prefers-reduced-motion for the base experience, then add animations progressively for devices that support them." },
+    { "question": "How does mobile-first design apply to emails?", "answer": "Design emails with a single-column layout for mobile first, then use media queries to widen columns for desktop email clients." },
+    { "question": "What is the interaction between mobile-first design and CSS subgrid?", "answer": "Subgrid layouts benefit from mobile-first by defining minimal track structures in base CSS and expanding with subgrid at larger breakpoints." },
+    { "question": "How do you handle third-party embeds in a mobile-first context?", "answer": "Third-party embeds (maps, videos, widgets) should be constrained with max-width and height in base CSS, then given more space at larger breakpoints." },
+    { "question": "What is the relationship between mobile-first and the critical CSS technique?", "answer": "Critical CSS in mobile-first extracts above-the-fold base styles, then asynchronously loads enhanced styles for larger viewports." },
+    { "question": "How does mobile-first design affect client-side rendering frameworks?", "answer": "Mobile-first component design ensures components render functional base states before hydration, improving perceived performance on mobile." },
+    { "question": "How do you handle gesture-based interactions in mobile-first progressive enhancement?", "answer": "Start with touch-optimized base interactions (tap, swipe), then progressively enhance with hover states, keyboard shortcuts, and right-click for desktop users." }
+  ]
+}

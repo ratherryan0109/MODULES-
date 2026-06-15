@@ -1,0 +1,67 @@
+{
+  "module": "91-css-2d-transformations",
+  "title": "CSS 2D Transformations",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1, "question": "How many 2D transform functions does CSS provide?", "options": ["5 main functions", "3 functions", "7 functions", "10 functions"], "correctAnswer": 0, "explanation": "The 5 main 2D functions: translate, rotate, scale, skew, matrix."
+    },
+    {
+      "id": 2, "question": "In what order are multiple transform functions applied?", "options": ["Right to left", "Left to right", "Alphabetical", "By length"], "correctAnswer": 0, "explanation": "Transform functions are applied right-to-left in the order they appear."
+    },
+    {
+      "id": 3, "question": "What does matrix(1, 0, 0, 1, 0, 0) represent?", "options": ["Identity (no transform)", "Scale(1,0)", "Translate(1,1)", "Rotate(45deg)"], "correctAnswer": 0, "explanation": "The identity matrix applies no transformation."
+    },
+    {
+      "id": 4, "question": "Which property controls the pivot point of transformations?", "options": ["transform-origin", "transform-pivot", "origin", "pivot"], "correctAnswer": 0, "explanation": "transform-origin defines the anchor point for all transform functions."
+    },
+    {
+      "id": 5, "question": "Can 2D transforms be applied to inline elements?", "options": ["No, needs inline-block/block", "Yes, directly", "Only with !important", "Only span elements"], "correctAnswer": 0, "explanation": "Inline elements need display: inline-block or block for transforms to work."
+    },
+    {
+      "id": 6, "question": "What does translate(-50%, -50%) do when used with absolute positioning?", "options": ["Centers element", "Moves to top-left", "Scales down", "Hides element"], "correctAnswer": 0, "explanation": "Combined with top:50%; left:50%, it perfectly centers an element."
+    },
+    {
+      "id": 7, "question": "Which transform function can represent all others in a single call?", "options": ["matrix()", "translate()", "rotate()", "scale()"], "correctAnswer": 0, "explanation": "matrix() can combine translate, rotate, scale, and skew in one function."
+    },
+    {
+      "id": 8, "question": "What happens if you declare transform twice for the same element?", "options": ["Second overwrites the first", "Both apply", "First is used", "Error occurs"], "correctAnswer": 0, "explanation": "Only the last transform declaration applies due to CSS specificity cascade."
+    },
+    {
+      "id": 9, "question": "Which is a performance benefit of using transforms?", "options": ["GPU acceleration", "Smaller files", "Better SEO", "Easier debugging"], "correctAnswer": 0, "explanation": "Transforms are GPU-composited and don't trigger layout or paint."
+    },
+    {
+      "id": 10, "question": "What does the 'e' parameter in matrix(a,b,c,d,e,f) control?", "options": ["Translate X", "Scale X", "Skew Y", "Rotate"], "correctAnswer": 0, "explanation": "In matrix(), e controls translateX (horizontal translation)."
+    },
+    {
+      "id": 11, "question": "What transform order would produce: translate then rotate?", "options": ["transform: translate() rotate()", "transform: rotate() translate()", "Can't determine", "Neither"], "correctAnswer": 0, "explanation": "translate before rotate (left to right in code) means translate then rotate."
+    },
+    {
+      "id": 12, "question": "What is the default transform-origin value?", "options": ["50% 50% 0", "0 0 0", "100% 100%", "top left"], "correctAnswer": 0, "explanation": "Default transform-origin is 50% 50% (center of the element)."
+    },
+    {
+      "id": 13, "question": "Can you animate 2D transforms with CSS transitions?", "options": ["Yes", "No, only @keyframes", "Only with JavaScript", "Only 3D transforms"], "correctAnswer": 0, "explanation": "2D transforms work with both transitions and @keyframes animations."
+    },
+    {
+      "id": 14, "question": "What does transform: none do?", "options": ["Removes all transforms", "Sets to identity matrix", "Disables animation", "Only for 3D"], "correctAnswer": 0, "explanation": "transform: none removes all transformations from an element."
+    },
+    {
+      "id": 15, "question": "Which is the correct way to only scale X-axis?", "options": ["scaleX(1.5) or scale(1.5, 1)", "scale(1.5)", "scaleX(1.5) or scale(1, 1.5)", "scaleX(1.5)"], "correctAnswer": 3, "explanation": "Use scaleX(1.5) for X-axis only scaling. scale(1.5, 1) also works."
+    },
+    {
+      "id": 16, "question": "What happens to document flow when an element is transformed?", "options": ["Original space is preserved", "Element is removed from flow", "Other elements reflow", "Depends on transform type"], "correctAnswer": 0, "explanation": "Transforms don't affect document flow; the element's original space remains."
+    },
+    {
+      "id": 17, "question": "What unit does rotate() accept?", "options": ["deg, rad, grad, turn", "Only deg", "Only rad", "px, em, %"], "correctAnswer": 0, "explanation": "rotate() accepts any angular unit: degrees, radians, gradians, or turns."
+    },
+    {
+      "id": 18, "question": "Which 2D transform creates a parallelogram effect?", "options": ["skew()", "rotate()", "scale()", "translate()"], "correctAnswer": 0, "explanation": "skew() distorts a rectangle into a parallelogram shape."
+    },
+    {
+      "id": 19, "question": "What does scale(0) do?", "options": ["Makes element invisible (zero size)", "Removes element from layout", "Resets to default size", "Error"], "correctAnswer": 0, "explanation": "scale(0) reduces the element to zero size, making it invisible."
+    },
+    {
+      "id": 20, "question": "Which browser version first supported CSS 2D transforms?", "options": ["IE 9", "IE 6", "Chrome 1", "Firefox 3"], "correctAnswer": 0, "explanation": "CSS 2D transforms were first supported in IE 9 (with -ms- prefix)."
+    }
+  ]
+}

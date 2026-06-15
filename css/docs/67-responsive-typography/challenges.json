@@ -1,0 +1,29 @@
+{
+  "module": "67 - Responsive Typography",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Fluid Heading System",
+      "description": "Create a heading system (h1-h6) that scales fluidly using clamp().",
+      "instructions": "Define CSS that makes all 6 heading levels fluid. h1 should be largest, h6 smallest.",
+      "hints": ["Use a modular scale ratio of 1.25", "Each heading should use clamp() with different vw values", "Set line-height tighter for larger headings"],
+      "solution": "h1 { font-size: clamp(2rem, 1rem + 4vw, 4rem); line-height: 1.1; }\nh2 { font-size: clamp(1.5rem, 1rem + 3vw, 3rem); line-height: 1.15; }\nh3 { font-size: clamp(1.25rem, 0.8rem + 2vw, 2.5rem); line-height: 1.2; }\nh4 { font-size: clamp(1.125rem, 0.7rem + 1.5vw, 2rem); line-height: 1.25; }\nh5 { font-size: clamp(1rem, 0.6rem + 1.2vw, 1.5rem); line-height: 1.3; }\nh6 { font-size: clamp(0.875rem, 0.5rem + 1vw, 1.25rem); line-height: 1.35; }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Article Page with Perfect Vertical Rhythm",
+      "description": "Create a blog article page with consistent vertical rhythm using a modular scale.",
+      "instructions": "Build an article with headings, paragraphs, blockquotes, lists, and images. All spacing should follow a vertical rhythm based on the base line-height.",
+      "hints": ["Calculate a base rhythm unit (e.g., 1.5rem for 16px base with 1.5 line-height)", "Use multiples of the rhythm unit for all margins and padding", "Set max-width to 65ch for readability"],
+      "solution": ":root { --rhythm: calc(1rem * 1.5); }\nh1 { margin-bottom: var(--rhythm); }\np { margin-bottom: var(--rhythm); }\nh2 { margin-top: calc(var(--rhythm) * 2); margin-bottom: var(--rhythm); }\nblockquote { margin: var(--rhythm) 0; padding-left: var(--rhythm); }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Dynamic Type Tester",
+      "description": "Build an interactive tool that lets users adjust font-size, line-height, measure, and letter-spacing with real-time preview.",
+      "instructions": "Create a UI with sliders/controls for typography properties. Show sample text that updates in real-time.",
+      "hints": ["Use CSS custom properties set via JavaScript", "Include presets for different type scales", "Show the current CSS code that would generate the preview"],
+      "solution": "JavaScript would set CSS custom properties: document.documentElement.style.setProperty('--font-size', value + 'px'). CSS uses these variables: body { font-size: var(--font-size); line-height: var(--line-height); }"
+    }
+  ]
+}

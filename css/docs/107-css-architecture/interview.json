@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is CSS architecture?", "answer": "CSS architecture is the approach to organizing, structuring, and writing CSS code for maintainability, scalability, and reusability in projects." },
+    { "question": "What is ITCSS (Inverted Triangle CSS)?", "answer": "ITCSS organizes CSS in layers from generic to specific: settings, tools, generic, elements, objects, components, and utilities." },
+    { "question": "What is SMACSS (Scalable and Modular Architecture for CSS)?", "answer": "SMACSS categorizes CSS into five types: base, layout, module, state, and theme for scalable and maintainable stylesheets." },
+    { "question": "What is OOCSS (Object-Oriented CSS)?", "answer": "OOCSS separates structure from skin and container from content, creating reusable CSS objects that can be composed together." },
+    { "question": "What is a CSS naming convention?", "answer": "A CSS naming convention is a systematic way of naming CSS classes to improve readability, prevent conflicts, and describe relationships." },
+    { "question": "What is BEM naming convention?", "answer": "BEM stands for Block, Element, Modifier; it names classes as .block__element--modifier to reflect component structure." },
+    { "question": "Why is CSS file organization important?", "answer": "Good file organization makes CSS easier to maintain, debug, and scale by logically separating concerns and reducing specificity conflicts." },
+    { "question": "What is a typical ITCSS file structure?", "answer": "settings/_variables.scss, tools/_mixins.scss, generic/_reset.scss, elements/_base.scss, objects/_layout.scss, components/_buttons.scss, utilities/_spacing.scss" },
+    { "question": "How does SMACSS define state rules?", "answer": "State rules describe how modules look in different states (hidden, active, expanded) and are typically prefixed with is-: .is-active, .is-hidden." },
+    { "question": "What is the goal of OOCSS?", "answer": "The goal is to create reusable, composable CSS classes that avoid duplication and promote consistency across a project." }
+  ],
+  "intermediate": [
+    { "question": "How does ITCSS manage specificity escalation?", "answer": "ITCSS layers from low specificity (generic reset) to high specificity (components, utilities), preventing specificity wars by design." },
+    { "question": "What is the difference between SMACSS modules and layout rules?", "answer": "Layout rules divide the page into sections (header, footer, grid); modules are reusable widgets within those layouts (buttons, cards)." },
+    { "question": "How does OOCSS separate structure from skin?", "answer": "Structure classes define layout (width, padding, margin); skin classes define visual appearance (colors, backgrounds, borders) for independent reuse." },
+    { "question": "What are the common file organization patterns for large CSS projects?", "answer": "Patterns include: ITCSS layers, SMACSS categories, atomic design (atoms/molecules/organisms), feature-based folders, and utility-first approaches." },
+    { "question": "How do you handle CSS specificity in a large architecture?", "answer": "Use low-specificity selectors (classes over IDs), avoid deep nesting, leverage cascade layers (@layer), and follow naming conventions." },
+    { "question": "What is the role of CSS preprocessors in CSS architecture?", "answer": "Preprocessors enable variables, nesting, mixins, and file partials for better organization, but require compilation and can encourage over-nesting." },
+    { "question": "How do you structure CSS for a component-based framework (React, Vue)?", "answer": "Co-locate CSS with components using CSS Modules, styled-components, or a single CSS file per component with the component's class namespace." },
+    { "question": "What is the Single Responsibility Principle in CSS?", "answer": "Each CSS class should have one clear purpose, making styles more predictable, reusable, and easier to maintain." },
+    { "question": "How does SMACSS handle theme variations?", "answer": "Theme rules define color schemes and visual variations that can be applied globally or to specific modules, overriding default styles." },
+    { "question": "What is the difference between ITCSS and SMACSS?", "answer": "ITCSS focuses on layered specificity management; SMACSS focuses on categorization by role (base, layout, module, state, theme)." }
+  ],
+  "advanced": [
+    { "question": "How do you implement a CSS architecture with cascade layers (@layer)?", "answer": "Map ITCSS layers to @layer: @layer settings, tools, generic, elements, objects, components, utilities; layers enforce the order without specificity hacks." },
+    { "question": "How do you address CSS maintainability in a micro-frontend architecture?", "answer": "Use CSS custom properties for theming tokens, CSS Modules or shadow DOM for scoping, and shared naming conventions across micro-frontends." },
+    { "question": "What are the trade-offs between utility-first CSS and semantic CSS architecture?", "answer": "Utility-first offers rapid prototyping and small CSS but verbose HTML; semantic CSS has cleaner markup but larger, harder-to-maintain stylesheets." },
+    { "question": "How do you integrate CSS architecture with design tokens?", "answer": "Store design tokens (colors, spacing, typography) as CSS custom properties or SCSS variables in the settings layer, consumed by all subsequent layers." },
+    { "question": "How do you enforce CSS architecture at scale?", "answer": "Use stylelint with custom rules, CSS audit tools, code reviews, and automated formatting to enforce naming conventions and architectural rules." },
+    { "question": "How does the Open/Closed Principle apply to CSS?", "answer": "CSS components should be open for extension (via modifiers) but closed for modification; extend with new classes rather than altering existing ones." },
+    { "question": "How do you manage CSS architecture across multiple teams?", "answer": "Establish shared naming conventions, use a design system with versioned token packages, and implement strict code review for CSS changes." },
+    { "question": "How do you handle print styles in a CSS architecture?", "answer": "Create a separate print layer or stylesheet using @media print, placed appropriately in the cascade to override screen styles cleanly." },
+    { "question": "How does CSS architecture handle animations and keyframes?", "answer": "Organize animations in a dedicated animations layer or file, naming them semantically and grouping them by component or behavior." },
+    { "question": "How do you migrate a legacy CSS codebase to a modern architecture?", "answer": "Audit existing CSS, establish a new architecture incrementally using @layer, adopt a naming convention, and refactor one section at a time." }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "module": "115-css-best-practices",
+  "title": "CSS Best Practices",
+  "beginner": [
+    {
+      "question": "What does DRY mean in CSS?",
+      "answer": "DRY (Don't Repeat Yourself) means avoiding duplicate CSS code. If you find yourself writing the same colors, font stacks, or spacing values repeatedly, extract them into CSS custom properties, reusable classes, or a shared stylesheet."
+    },
+    {
+      "question": "Why is consistent naming important in CSS?",
+      "answer": "Consistent naming makes CSS predictable and maintainable. When all developers follow the same naming convention (e.g., BEM, utility-first), new team members can quickly understand what a class does without reading its full implementation."
+    },
+    {
+      "question": "What is the benefit of organizing CSS by section?",
+      "answer": "Organizing CSS by section (e.g., Base → Typography → Layout → Components → Utilities → Overrides) makes stylesheets easier to navigate. Developers can find relevant rules quickly, reducing the risk of creating duplicate or conflicting rules."
+    },
+    {
+      "question": "Why should you avoid inline styles in production?",
+      "answer": "Inline styles mix content with presentation (breaking separation of concerns), have the highest specificity (making overrides difficult), cannot be reused across elements, and cannot use media queries or pseudo-classes."
+    },
+    {
+      "question": "What is the purpose of a CSS reset?",
+      "answer": "A CSS reset removes default browser styles (user-agent stylesheets) to ensure consistent rendering across browsers. Common resets include `*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }`."
+    },
+    {
+      "question": "Why should you use shorthand properties?",
+      "answer": "Shorthand properties like `margin`, `padding`, `background`, `font`, and `border` reduce code size and improve readability. For example, `margin: 10px 20px` is clearer and shorter than four individual margin properties."
+    },
+    {
+      "question": "What is the best practice for CSS specificity management?",
+      "answer": "Keep specificity as low as possible. Use class selectors instead of ID selectors. Avoid `!important` unless absolutely necessary. Lower specificity makes overrides predictable and stylesheets more maintainable."
+    },
+    {
+      "question": "Why should you add comments to your CSS?",
+      "answer": "Comments explain the purpose of styles, document workarounds, and help team members understand the reasoning behind design decisions. Use section comments (`/* Header */`) and inline comments for non-obvious values."
+    },
+    {
+      "question": "What is the advantage of using a CSS preprocessor (like SCSS)?",
+      "answer": "CSS preprocessors provide variables, nesting, mixins, functions, and partials — features that make CSS more maintainable and DRY. They help organize code into smaller files that compile into a single production CSS file."
+    },
+    {
+      "question": "How do you decide between a new class or extending an existing one?",
+      "answer": "If a style is unique to one component, create a specific class. If a style is shared across multiple unrelated components, create a reusable utility or modifier class. Follow the Single Responsibility Principle — each class should do one thing."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "What is the recommended file structure for CSS in a medium-to-large project?",
+      "answer": "A modular structure: `base/` (reset, typography), `components/` (buttons, cards, modals), `layouts/` (header, footer, grid), `pages/` (homepage-specific overrides), `utilities/` (helper classes), and `abstracts/` (variables, mixins, functions)."
+    },
+    {
+      "question": "How do you balance readability and file size in CSS?",
+      "answer": "Write readable, well-commented CSS during development. Use a build step with CSSNano or csso to minify for production. Use sourcemaps so production styles remain debuggable. Never sacrifice readability for marginal size gains during development."
+    },
+    {
+      "question": "What is the best practice for naming CSS animation keyframes?",
+      "answer": "Use descriptive names that indicate what the animation does (e.g., `@keyframes fade-in`, `@keyframes slide-in-left`, `@keyframes pulse-shadow`). Avoid generic names like `anim1` or `move` that don't explain the visual effect."
+    },
+    {
+      "question": "Why should you group media queries by component rather than by breakpoint?",
+      "answer": "Keeping media queries next to their component's base styles (either in the same stylesheet or via CSS nesting) makes components self-contained and easier to maintain. Grouping all media queries at the bottom creates distance between the rule and its responsive variant."
+    },
+    {
+      "question": "What is 'CSS code smell' and give an example?",
+      "answer": "A CSS code smell is a pattern that indicates deeper maintainability issues. Examples: overusing `!important`, extremely high specificity selectors (`#main .content div ul li a`), magic numbers (`padding: 37px`), or deeply nested preprocessor selectors."
+    },
+    {
+      "question": "How do you handle browser-specific CSS gracefully?",
+      "answer": "Use feature queries (`@supports`) for progressive enhancement. Write standard CSS first, then add enhanced features wrapped in `@supports (property: value)`. For vendor prefixes, use Autoprefixer in your build step rather than manually adding them."
+    },
+    {
+      "question": "What is the best practice for using `!important`?",
+      "answer": "`!important` should be reserved for: (1) utility/helper classes (`.hidden { display: none !important; }`), (2) overriding inline styles from third-party code, (3) accessibility overrides (forced colors, high contrast). It should never be used for normal component styling."
+    },
+    {
+      "question": "Why should you avoid `@import` in CSS?",
+      "answer": "CSS `@import` blocks parallel downloading — the browser must download and parse the imported file before continuing. Use `<link>` tags in HTML instead, which load stylesheets in parallel. In build systems, use Sass `@use` or PostCSS imports at compile time."
+    },
+    {
+      "question": "What is the '80/20 rule' in CSS architecture?",
+      "answer": "80% of your CSS should be reusable, generic styles (buttons, forms, typography). Only 20% should be page-specific or one-off styles. If you're writing mostly one-off styles, your CSS architecture needs refactoring."
+    },
+    {
+      "question": "How do you manage CSS in a team environment without conflicts?",
+      "answer": "Establish a style guide (naming convention, file structure, coding standards), use linting (Stylelint) with auto-fix in CI/IDE, require code reviews focused on CSS decisions, and use CSS Modules or scoped styles to prevent naming collisions."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "What is the 'ITCSS' methodology and when should you use it?",
+      "answer": "ITCSS (Inverted Triangle CSS) organizes CSS by specificity from generic to explicit: Settings → Tools → Generic → Elements → Objects → Components → Utilities. This ensures each layer builds on the previous one without unexpected overrides. Best for large-scale projects."
+    },
+    {
+      "question": "How do you implement a 'design system' in pure CSS without a framework?",
+      "answer": "Define design tokens as CSS custom properties: `:root { --color-primary: #3b82f6; --spacing-unit: 4px; --font-body: 'Inter', sans-serif; }`. Create reusable component classes using these tokens. Document them in a living style guide or Storybook."
+    },
+    {
+      "question": "What is the 'Single Responsibility Principle' in CSS context?",
+      "answer": "Each CSS class should do exactly one thing and do it well. For example, `.btn` handles button base styles, `.btn--primary` sets the color scheme, `.btn--large` sets the size. This makes classes composable, predictable, and reusable."
+    },
+    {
+      "question": "How do you handle CSS technical debt in a legacy project?",
+      "answer": "Audit with tools like PurgeCSS (find unused styles), Chrome DevTools Coverage tab, and Stylelint. Refactor incrementally: extract inline styles, remove unused overrides, consolidate duplicate rules, add a naming convention to new code only. Never refactor everything at once."
+    },
+    {
+      "question": "What is 'CSS Containment' and how does it help performance best practices?",
+      "answer": "CSS containment (`contain: layout style paint size`) tells the browser that a subtree is independent from the rest of the page. This limits the browser's style recalculation and layout work to just that subtree, improving performance in large documents."
+    },
+    {
+      "question": "How do you approach CSS code reviews for maximum effectiveness?",
+      "answer": "Check for: hardcoded pixel values (use tokens), excessive specificity, missing fallbacks, unused imports, browser compatibility of new features, performance implications (selectors, animations), accessibility (contrast, focus, reduced motion), and naming convention consistency."
+    },
+    {
+      "question": "What is the 'Open/Closed Principle' applied to CSS components?",
+      "answer": "Components should be open for extension but closed for modification. Create base component styles that are stable, then extend them via modifiers or composition. Avoid modifying a base component's styles for a one-off use case."
+    },
+    {
+      "question": "How do you balance utility-first CSS with semantic class names in a large team?",
+      "answer": "Use a hybrid approach: utility classes for layout/spacing/typography (the 'how'), semantic component classes for design system components (the 'what'). Establish clear guidelines for when to use each. Document both approaches in the team style guide."
+    },
+    {
+      "question": "What is the 'CSS Wrapper' anti-pattern and how do you avoid it?",
+      "answer": "The wrapper anti-pattern is creating excessive `<div>` wrappers just to apply CSS. It leads to div soup and poor semantic HTML. Avoid by using modern CSS: Grid/Flexbox can handle layouts without extra wrappers, `display: contents` removes unnecessary containers."
+    },
+    {
+      "question": "How do you create a CSS 'changelog' to track style changes?",
+      "answer": "Use structured commit messages (`style(button): add hover state`), maintain a CHANGELOG per component/directory, tag CSS-only releases, and use visual diff tools (Chromatic, Percy) to capture style changes. Document removed classes and migration paths."
+    }
+  ]
+}

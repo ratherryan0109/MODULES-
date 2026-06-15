@@ -1,0 +1,147 @@
+{
+    "module": "37-css-forms",
+    "title": "CSS Forms",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "id": 1,
+            "question": "Which CSS property is critical for inputs to include padding in the total width?",
+            "options": ["box-sizing: border-box", "width: 100%", "display: block", "overflow: hidden"],
+            "correctAnswer": 0,
+            "explanation": "box-sizing: border-box makes padding and border included in the element's total width, preventing input overflow issues."
+        },
+        {
+            "id": 2,
+            "question": "Which pseudo-class styles an input with invalid data?",
+            "options": [":invalid", ":error", ":bad", ":required"],
+            "correctAnswer": 0,
+            "explanation": ":invalid selects form elements whose content fails validation against the input constraints defined by HTML attributes."
+        },
+        {
+            "id": 3,
+            "question": "What should you NOT remove without providing a replacement when styling form elements?",
+            "options": ["outline on :focus", "background color", "font size", "border radius"],
+            "correctAnswer": 0,
+            "explanation": "Never remove outline: none without providing a visible focus indicator. Focus outlines are essential for keyboard accessibility."
+        },
+        {
+            "id": 4,
+            "question": "Which property enables custom checkbox styling?",
+            "options": ["appearance: none", "display: none", "visibility: hidden", "opacity: 0"],
+            "correctAnswer": 0,
+            "explanation": "appearance: none removes the native OS styling from form controls, giving you a blank canvas for custom checkbox styling."
+        },
+        {
+            "id": 5,
+            "question": "What layout method is recommended for form structure?",
+            "options": ["CSS Grid or Flexbox", "HTML tables", "Floats", "Absolute positioning"],
+            "correctAnswer": 0,
+            "explanation": "CSS Grid and Flexbox provide the most responsive and maintainable form layouts, with consistent spacing via the gap property."
+        },
+        {
+            "id": 6,
+            "question": "What is the minimum touch target size recommended for form controls on mobile?",
+            "options": ["24x24px", "44x44px", "32x32px", "60x60px"],
+            "correctAnswer": 1,
+            "explanation": "WCAG recommends touch targets of at least 44x44px for comfortable and accurate tapping on mobile devices."
+        },
+        {
+            "id": 7,
+            "question": "Which pseudo-class displays validation errors only after user interaction?",
+            "options": [":invalid", ":user-invalid", ":error", ":bad"],
+            "correctAnswer": 1,
+            "explanation": ":user-invalid only applies after the user has interacted with the field, preventing premature error display on empty required fields."
+        },
+        {
+            "id": 8,
+            "question": "What CSS property should be used to inherit typography from the design system onto form controls?",
+            "options": ["font-family: inherit and font-size: inherit", "font: 100%", "All form controls inherit automatically", "font-family: sans-serif"],
+            "correctAnswer": 0,
+            "explanation": "Form controls don't inherit font properties automatically. Setting font-family: inherit and font-size: inherit ensures they match the design system."
+        },
+        {
+            "id": 9,
+            "question": "How do you style a custom select dropdown arrow without JavaScript?",
+            "options": ["Use appearance: none with a background-image SVG arrow", "Select arrows cannot be styled", "Use the ::after pseudo-element on select", "Use the arrow property"],
+            "correctAnswer": 0,
+            "explanation": "Setting appearance: none removes the native arrow, then a custom SVG arrow is applied as a background-image on the select element."
+        },
+        {
+            "id": 10,
+            "question": "Which pseudo-class highlights the entire form group when any child input is focused?",
+            "options": [":focus-within", ":focus", ":focus-visible", ":has(:focus)"],
+            "correctAnswer": 0,
+            "explanation": ":focus-within on the parent container applies styles when any descendant element has focus, useful for highlighting active form sections."
+        },
+        {
+            "id": 11,
+            "question": "What is the accessibility requirement for associating labels with inputs?",
+            "options": ["Label must be visually near the input", "Every input must have an associated label using for/id or wrapping", "Placeholder text is sufficient", "aria-label is required on all inputs"],
+            "correctAnswer": 1,
+            "explanation": "Every input needs a proper label element associated via the for/id attributes or by wrapping the input in the label element."
+        },
+        {
+            "id": 12,
+            "question": "Why is using placeholder as a label replacement problematic?",
+            "options": ["Placeholders disappear when typing", "Placeholders often fail color contrast", "They are not accessible as labels", "All of the above"],
+            "correctAnswer": 3,
+            "explanation": "Placeholders disappear on input, often have low contrast, and are not a replacement for proper labels per WCAG guidelines."
+        },
+        {
+            "id": 13,
+            "question": "Which pseudo-class is specifically for keyboard-only focus indicators?",
+            "options": [":focus", ":focus-visible", ":focus-within", ":keyboard-focus"],
+            "correctAnswer": 1,
+            "explanation": ":focus-visible shows a focus indicator only when the browser determines it's keyboard-initiated, not on mouse clicks."
+        },
+        {
+            "id": 14,
+            "question": "What is the easiest way to theme native checkboxes and radio buttons in modern CSS?",
+            "options": ["Use custom JavaScript widgets", "Use the accent-color property", "Use appearance: none with custom styles", "Use filter: hue-rotate()"],
+            "correctAnswer": 1,
+            "explanation": "accent-color provides quick native theming for checkboxes, radio buttons, and range inputs without custom CSS or JavaScript."
+        },
+        {
+            "id": 15,
+            "question": "Which pseudo-class styles an input that is showing its placeholder text?",
+            "options": [":placeholder-shown", ":empty", ":placeholder", ":hint"],
+            "correctAnswer": 0,
+            "explanation": ":placeholder-shown applies when the input's placeholder text is visible (no user input yet), useful for float label patterns."
+        },
+        {
+            "id": 16,
+            "question": "What is the correct approach for styling custom radio buttons?",
+            "options": ["Use appearance: none, set dimensions, use ::after for the dot", "Radio buttons cannot be styled", "Use clip-path to create circles", "Use border-radius: 50% on the input"],
+            "correctAnswer": 0,
+            "explanation": "appearance: none removes native styling, then custom dimensions, border, and a ::after pseudo-element create the custom radio indicator."
+        },
+        {
+            "id": 17,
+            "question": "How should error messages be programmatically associated with inputs?",
+            "options": ["Place error message next to the input", "Use aria-describedby on the input pointing to the error element", "Use aria-errormessage", "Both aria-describedby and aria-errormessage work"],
+            "correctAnswer": 3,
+            "explanation": "aria-describedby or aria-errormessage associates the error message with the input, so screen readers announce it when the input receives focus."
+        },
+        {
+            "id": 18,
+            "question": "What CSS selector styles the track of a range input?",
+            "options": ["input[type='range']::-webkit-slider-runnable-track", "input[type='range']::track", "input[type='range']::-moz-range-track", "Both webkit and mozz prefixed pseudo-elements"],
+            "correctAnswer": 3,
+            "explanation": "Range input styling requires vendor-prefixed pseudo-elements like ::-webkit-slider-runnable-track and ::-moz-range-track."
+        },
+        {
+            "id": 19,
+            "question": "What is the purpose of the inputmode attribute in form design?",
+            "options": ["Sets input validation mode", "Triggers the appropriate mobile keyboard layout", "Controls CSS input mode", "Enables dark mode on inputs"],
+            "correctAnswer": 1,
+            "explanation": "inputmode tells mobile browsers which keyboard layout to show (numeric, email, url, etc.), improving the mobile input experience."
+        },
+        {
+            "id": 20,
+            "question": "Which HTML elements should be used to group related radio buttons for accessibility?",
+            "options": ["div", "fieldset and legend", "section", "group"],
+            "correctAnswer": 1,
+            "explanation": "<fieldset> groups related form controls and <legend> provides the group label, which screen readers announce when navigating between options."
+        }
+    ]
+}

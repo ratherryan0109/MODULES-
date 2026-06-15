@@ -1,0 +1,147 @@
+{
+  "module": "97-css-parallax-effects",
+  "title": "CSS Parallax Effects",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the key CSS property for pure CSS parallax?",
+      "options": ["transform-style", "perspective", "backface-visibility", "overflow"],
+      "correctAnswer": 1,
+      "explanation": "perspective on the container enables the 3D space needed for parallax depth."
+    },
+    {
+      "id": 2,
+      "question": "In the perspective method, how do you make a layer scroll slower?",
+      "options": ["translateZ(0)", "translateZ(negative)", "translateZ(positive)", "scale(1)"],
+      "correctAnswer": 1,
+      "explanation": "Negative translateZ values place elements further away, making them scroll slower."
+    },
+    {
+      "id": 3,
+      "question": "Why use scale() with translateZ in parallax?",
+      "options": ["For decoration", "To compensate for size change from Z translation", "To rotate the element", "For color effects"],
+      "correctAnswer": 1,
+      "explanation": "Elements moved away (translateZ negative) appear smaller; scale() compensates to maintain size."
+    },
+    {
+      "id": 4,
+      "question": "Which property is an alternative for parallax backgrounds?",
+      "options": ["background-attachment: fixed", "background-size: cover", "background-position: center", "background-repeat: no-repeat"],
+      "correctAnswer": 0,
+      "explanation": "background-attachment: fixed keeps the background stationary while content scrolls."
+    },
+    {
+      "id": 5,
+      "question": "What issue does background-attachment: fixed have on mobile?",
+      "options": ["Too fast", "Not supported or buggy", "Too slow", "No color support"],
+      "correctAnswer": 1,
+      "explanation": "background-attachment: fixed has limited or buggy support on mobile browsers."
+    },
+    {
+      "id": 6,
+      "question": "How many parallax layers are recommended for performance?",
+      "options": ["5-7", "2-3 maximum", "10+", "As many as needed"],
+      "correctAnswer": 1,
+      "explanation": "2-3 layers is recommended; more can cause performance issues."
+    },
+    {
+      "id": 7,
+      "question": "What overflow setting is needed for perspective parallax?",
+      "options": ["overflow: visible", "overflow-y: auto/scroll", "overflow: hidden", "overflow: clip"],
+      "correctAnswer": 1,
+      "explanation": "The container needs overflow-y: auto or scroll to enable scrolling for the parallax effect."
+    },
+    {
+      "id": 8,
+      "question": "Does pure CSS parallax work on iOS Safari?",
+      "options": ["Yes, fully", "Partially, with issues", "No", "Only with JS"],
+      "correctAnswer": 1,
+      "explanation": "iOS Safari has partial support and may need workarounds."
+    },
+    {
+      "id": 9,
+      "question": "What is an alternative to CSS-only parallax?",
+      "options": ["JavaScript scroll listeners", "HTML marquee", "CSS animations", "SVG"],
+      "correctAnswer": 0,
+      "explanation": "JavaScript with scroll event listeners is the traditional approach for parallax."
+    },
+    {
+      "id": 10,
+      "question": "Which accessibility concern applies to parallax?",
+      "options": ["Too colorful", "Can cause motion sickness", "Too slow", "Not responsive"],
+      "correctAnswer": 1,
+      "explanation": "Parallax scrolling can trigger vestibular disorders; respect prefers-reduced-motion."
+    },
+    {
+      "id": 11,
+      "question": "What is the scroll speed formula for a layer with translateZ(-2px) and perspective: 1px?",
+      "options": ["0.33x (one-third speed)", "0.5x (half speed)", "1x (normal speed)", "2x (double speed)"],
+      "correctAnswer": 0,
+      "explanation": "Scroll speed = 1 + (translateZ / perspective) = 1 + (-2/1) = -1, absolute ratio ~0.33x."
+    },
+    {
+      "id": 12,
+      "question": "What is the scale compensation formula for parallax layers?",
+      "options": ["scale = 1 + abs(translateZ) / perspective", "scale = translateZ / perspective", "scale = perspective / translateZ", "scale = 1 - translateZ / perspective"],
+      "correctAnswer": 0,
+      "explanation": "scale = 1 + abs(translateZ) / perspective. For translateZ(-1px) with perspective: 1px, scale = 2."
+    },
+    {
+      "id": 13,
+      "question": "Which property must be set on the parallax container alongside perspective?",
+      "options": ["transform-style: preserve-3d", "backface-visibility: hidden", "position: relative", "z-index: 1"],
+      "correctAnswer": 0,
+      "explanation": "transform-style: preserve-3d maintains the 3D context for child layers."
+    },
+    {
+      "id": 14,
+      "question": "What happens without scale() compensation in parallax?",
+      "options": ["Elements appear smaller and may leave gaps", "Elements are larger", "Parallax effect is reversed", "Nothing changes"],
+      "correctAnswer": 0,
+      "explanation": "Elements with negative translateZ appear smaller; scale() compensates to maintain their visual size."
+    },
+    {
+      "id": 15,
+      "question": "Which is more performant: perspective method or background-attachment: fixed?",
+      "options": ["Perspective method (GPU-accelerated)", "background-attachment: fixed", "Both are equal", "Neither is performant"],
+      "correctAnswer": 0,
+      "explanation": "The perspective method runs on the GPU, while background-attachment: fixed triggers repaints on every scroll."
+    },
+    {
+      "id": 16,
+      "question": "How do you disable parallax for prefers-reduced-motion?",
+      "options": ["Set perspective: none and transform: none on layers", "Remove the container", "Set display: none", "Reduce scroll speed"],
+      "correctAnswer": 0,
+      "explanation": "Disable perspective and reset transforms inside @media (prefers-reduced-motion: reduce)."
+    },
+    {
+      "id": 17,
+      "question": "What is a common cause of the 3D parallax effect being flattened?",
+      "options": ["Overflow: hidden on a parent element", "Using too many layers", "Small perspective value", "Using translateZ(0)"],
+      "correctAnswer": 0,
+      "explanation": "Overflow: hidden outside the container flattens the 3D effect. The overflow must be on the container itself."
+    },
+    {
+      "id": 18,
+      "question": "What does a perspective value of 1px achieve in parallax?",
+      "options": ["Very close vanishing point for dramatic depth", "No depth effect", "Extreme zoom", "Flat 2D rendering"],
+      "correctAnswer": 0,
+      "explanation": "perspective: 1px places the vanishing point very close, creating noticeable parallax with small translateZ values."
+    },
+    {
+      "id": 19,
+      "question": "Which layer scrolls fastest in a CSS parallax setup?",
+      "options": ["The layer with translateZ(0) - foreground", "The layer with translateZ(-3px) - background", "All layers scroll at the same speed", "The layer with the largest scale"],
+      "correctAnswer": 0,
+      "explanation": "translateZ(0) elements scroll at normal speed (1x). More negative values scroll slower."
+    },
+    {
+      "id": 20,
+      "question": "What ARIA attribute should decorative parallax layers have?",
+      "options": ["aria-hidden=\"true\"", "aria-live=\"polite\"", "role=\"presentation\"", "aria-role=\"decoration\""],
+      "correctAnswer": 0,
+      "explanation": "Purely decorative parallax layers should be hidden from screen readers with aria-hidden=\"true\"."
+    }
+  ]
+}

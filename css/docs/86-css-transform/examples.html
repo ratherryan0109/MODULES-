@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Transform - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .card {
+      background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;
+      border: 1px solid #45475a;
+    }
+    .demo-area { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; }
+    .box {
+      width: 120px; height: 120px; background: #89b4fa; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; color: #1e1e2e;
+      font-weight: 700; transition: transform 0.4s ease;
+    }
+    .pre { font-family: monospace; background: #181825; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Transform — Practical Examples</h1>
+
+  <div class="card">
+    <h2>1. Translate</h2>
+    <p>Moves the element from its original position.</p>
+    <div class="demo-area">
+      <div class="box" style="transform: translateX(0);" onmouseover="this.style.transform='translateX(60px)'" onmouseout="this.style.transform='translateX(0)'">translateX</div>
+      <div class="box" style="background:#f38ba8; transform: translate(0,0);" onmouseover="this.style.transform='translate(40px, 40px)'" onmouseout="this.style.transform='translate(0,0)'">translate(x,y)</div>
+    </div>
+    <div class="pre">transform: translateX(60px);<br>transform: translate(40px, 40px);</div>
+  </div>
+
+  <div class="card">
+    <h2>2. Rotate</h2>
+    <p>Rotates around the transform-origin (default: center).</p>
+    <div class="demo-area">
+      <div class="box" style="background:#f38ba8;" onmouseover="this.style.transform='rotate(45deg)'" onmouseout="this.style.transform='rotate(0deg)'">rotate 45°</div>
+      <div class="box" style="background:#a6e3a1;" onmouseover="this.style.transform='rotate(180deg)'" onmouseout="this.style.transform='rotate(0deg)'">rotate 180°</div>
+      <div class="box" style="background:#fab387; transform-origin: top left;" onmouseover="this.style.transform='rotate(45deg)'" onmouseout="this.style.transform='rotate(0deg)'">origin: top left</div>
+    </div>
+    <div class="pre">transform: rotate(45deg);<br>transform-origin: top left;</div>
+  </div>
+
+  <div class="card">
+    <h2>3. Scale</h2>
+    <p>Scales the element in size.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#a6e3a1;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">scale(1.2)</div>
+      <div class="box" style="background:#cba6f7;" onmouseover="this.style.transform='scale(0.8)'" onmouseout="this.style.transform='scale(1)'">scale(0.8)</div>
+      <div class="box" style="background:#89dceb;" onmouseover="this.style.transform='scale(1.5, 0.5)'" onmouseout="this.style.transform='scale(1)'">scale(1.5, 0.5)</div>
+    </div>
+    <div class="pre">transform: scale(1.2);<br>transform: scale(1.5, 0.5); /* X, Y */</div>
+  </div>
+
+  <div class="card">
+    <h2>4. Skew</h2>
+    <p>Skews the element along X and Y axes.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#fab387;" onmouseover="this.style.transform='skewX(15deg)'" onmouseout="this.style.transform='skewX(0)'">skewX</div>
+      <div class="box" style="background:#f38ba8;" onmouseover="this.style.transform='skewY(15deg)'" onmouseout="this.style.transform='skewY(0)'">skewY</div>
+      <div class="box" style="background:#cba6f7;" onmouseover="this.style.transform='skew(10deg, 10deg)'" onmouseout="this.style.transform='skew(0)'">skew(x, y)</div>
+    </div>
+    <div class="pre">transform: skewX(15deg);<br>transform: skew(10deg, 10deg);</div>
+  </div>
+
+  <div class="card">
+    <h2>5. Combined Transforms</h2>
+    <p>Multiple functions in one transform property. Applied right-to-left.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#89dceb;" onmouseover="this.style.transform='translateX(40px) rotate(45deg) scale(1.2)'" onmouseout="this.style.transform='translateX(0) rotate(0deg) scale(1)'">Combined</div>
+    </div>
+    <div class="pre">transform: translateX(40px) rotate(45deg) scale(1.2);</div>
+  </div>
+
+  <div class="card">
+    <h2>6. Transform Origin Effects</h2>
+    <p>Same rotation (45deg) with different transform-origin values.</p>
+    <div class="grid">
+      <div><div class="box" style="background:#f38ba8; transform-origin: center; margin:20px;" onmouseover="this.style.transform='rotate(45deg)'" onmouseout="this.style.transform='rotate(0)'">center</div></div>
+      <div><div class="box" style="background:#a6e3a1; transform-origin: top left; margin:20px;" onmouseover="this.style.transform='rotate(45deg)'" onmouseout="this.style.transform='rotate(0)'">top left</div></div>
+      <div><div class="box" style="background:#fab387; transform-origin: bottom right; margin:20px;" onmouseover="this.style.transform='rotate(45deg)'" onmouseout="this.style.transform='rotate(0)'">bottom right</div></div>
+    </div>
+  </div>
+</body>
+</html>

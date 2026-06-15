@@ -1,0 +1,128 @@
+{
+    "beginner": [
+        {
+            "question": "What is Local Storage and what problem does it solve?",
+            "answer": "Local Storage is a web storage API that allows websites to store key-value data persistently in the user's browser. It solves the problem of client-side data persistence by providing up to 5-10 MB of storage space that survives page reloads, browser restarts, and tab closures, unlike cookies which are limited to 4 KB and are sent with every HTTP request."
+        },
+        {
+            "question": "How do you set and get values in Local Storage?",
+            "answer": "Use localStorage.setItem('key', 'value') to store data and localStorage.getItem('key') to retrieve it. You can also use dot notation or bracket notation. For example: localStorage.setItem('username', 'John') stores the value, and localStorage.getItem('username') returns 'John'."
+        },
+        {
+            "question": "What happens when you call getItem for a key that doesn't exist?",
+            "answer": "getItem returns null when the specified key does not exist in Local Storage. It does not throw an error, so you must check for null before using the value to avoid runtime errors when trying to call methods on null."
+        },
+        {
+            "question": "How do you remove items from Local Storage?",
+            "answer": "Use localStorage.removeItem('key') to remove a specific item, or localStorage.clear() to remove all items stored for the current origin. removeItem silently does nothing if the key doesn't exist."
+        },
+        {
+            "question": "What is the difference between Local Storage and Session Storage?",
+            "answer": "Both are part of the Web Storage API, but Session Storage data is cleared when the browser tab or window is closed, while Local Storage persists indefinitely until explicitly removed. Both share the same API methods and have similar storage limits (~5-10 MB), but their lifetime and scope differ."
+        },
+        {
+            "question": "Can Local Storage store objects directly?",
+            "answer": "No, Local Storage only stores strings. To store objects or arrays, you must serialize them using JSON.stringify() before storing, and parse them with JSON.parse() when retrieving. For example: localStorage.setItem('user', JSON.stringify({name: 'Alice'})) and then JSON.parse(localStorage.getItem('user'))."
+        },
+        {
+            "question": "How do you check if Local Storage is supported in a browser?",
+            "answer": "Check if the Storage object exists: if (typeof Storage !== 'undefined') { /* supported */ }. You should also wrap storage operations in try-catch because some browsers may have it disabled in private mode."
+        },
+        {
+            "question": "What is method to get the number of items in Local Storage?",
+            "answer": "Use the localStorage.length property, which returns the number of key-value pairs currently stored for the origin."
+        },
+        {
+            "question": "Is Local Storage data shared across different domains?",
+            "answer": "No, Local Storage is scoped to the origin (protocol + hostname + port). Data stored by one origin cannot be accessed by another origin. For example, data stored on https://example.com cannot be read by https://other.com."
+        },
+        {
+            "question": "Can Local Storage be accessed from the server side?",
+            "answer": "No, Local Storage is a client-side API that exists only in the browser. Server-side code (Node.js, PHP, Python, etc.) cannot directly access or manipulate Local Storage data. Only JavaScript running in the browser can access it."
+        }
+    ],
+    "intermediate": [
+        {
+            "question": "How do you implement data expiration in Local Storage?",
+            "answer": "Since Local Storage doesn't have built-in expiration, you implement it by storing a timestamp alongside the data. Create a wrapper that stores { value, expiry: Date.now() + ttlMs }. When retrieving, check if the current time exceeds the expiry. If it has, remove the item and return null; otherwise, return the value."
+        },
+        {
+            "question": "What is the 'storage' event and how does it work?",
+            "answer": "The 'storage' event fires on other window/tab objects when Local Storage is modified. It provides the key, oldValue, newValue, url (of the changing page), and storageArea. It does NOT fire on the tab that made the change. This enables cross-tab communication for features like shared state or preferences synchronization."
+        },
+        {
+            "question": "How do you handle QuotaExceededError in Local Storage?",
+            "answer": "Wrap localStorage.setItem() in a try-catch block and check for QuotaExceededError (error.name === 'QuotaExceededError' || error.code === 22). When caught, you can clear old/unused data, notify the user, or implement a cache eviction strategy like LRU (Least Recently Used) removal."
+        },
+        {
+            "question": "What are the security concerns with Local Storage?",
+            "answer": "Local Storage is vulnerable to XSS (Cross-Site Scripting) attacks since any JavaScript on the page can access it. Never store sensitive data like passwords, authentication tokens, or credit card information. Unlike HttpOnly cookies, Local Storage cannot be protected from client-side script access. Also, data is stored in plain text in the browser's profile directory."
+        },
+        {
+            "question": "How can you iterate over all items in Local Storage?",
+            "answer": "Use a for loop with localStorage.key(i) or a for...in loop: for (let i = 0; i < localStorage.length; i++) { const key = localStorage.key(i); const value = localStorage.getItem(key); } or use Object.keys(localStorage) to get an array of all keys."
+        },
+        {
+            "question": "What is the typical use case for Local Storage in a real application?",
+            "answer": "Common use cases include: (1) Persisting user preferences like theme, language, or layout settings, (2) Caching API responses for offline access, (3) Shopping cart data in e-commerce sites, (4) Form autosave to prevent data loss, (5) Application state persistence across sessions, (6) Feature flags and A/B test assignments."
+        },
+        {
+            "question": "How do you calculate the current storage usage in bytes?",
+            "answer": "Iterate over all keys and sum the byte size of each key and value. Since JavaScript uses UTF-16 encoding, multiply the string length by 2 for byte count: let total = 0; for (let key in localStorage) { total += (localStorage[key].length + key.length) * 2; }."
+        },
+        {
+            "question": "Can Local Storage be used in Service Workers?",
+            "answer": "No, localStorage is not available in Service Workers or Web Workers because it is synchronous and tied to the main window context. Service Workers should use the Cache API or IndexedDB for storage needs."
+        },
+        {
+            "question": "How does Local Storage behave differently in private/incognito browsing?",
+            "answer": "In private browsing mode, behavior varies by browser. Some browsers disable Local Storage entirely, others create a temporary storage that is cleared when the private window closes, and some allow it during the session but clear it afterward. This is why checking availability and using try-catch is essential."
+        },
+        {
+            "question": "What is the difference between localStorage.setItem() and direct property assignment?",
+            "answer": "Both localStorage.key = 'value' and localStorage.setItem('key', 'value') work similarly, but setItem is the standard API method. Direct assignment may not fire the storage event in some implementations and may have issues with certain key names (like __proto__ or length). Always prefer setItem/getItem for reliability."
+        }
+    ],
+    "advanced": [
+        {
+            "question": "How would you implement a Least Recently Used (LRU) cache using Local Storage with a size limit?",
+            "answer": "Create a CacheManager class that tracks access order. Store cache entries as { key, value, lastAccessed: timestamp }. When adding new items, check total size; if exceeded, remove the item with the oldest lastAccessed timestamp. Use a separate index key (e.g., 'cache_index') to maintain an ordered list of cache keys. This ensures the most frequently accessed items remain in storage."
+        },
+        {
+            "question": "What happens when two tabs simultaneously write to Local Storage? Can there be race conditions?",
+            "answer": "Local Storage operations are synchronous within a single JavaScript context, but across tabs there is no transactional locking mechanism. If two tabs read-modify-write the same key concurrently, one write can overwrite the other (lost update problem). For critical data, implement a versioning or compare-and-swap pattern by storing a version number alongside the data and checking it before writes."
+        },
+        {
+            "question": "How would you implement a pub/sub messaging system using Local Storage?",
+            "answer": "Use Local Storage as a message bus leveraging the 'storage' event. Create a channel-based system: store messages under a prefixed key like 'pubsub_channelName' with a counter. When a tab posts a message, it increments the counter, and other tabs receive the 'storage' event. Each subscriber filters by channel prefix and processes the message payload."
+        },
+        {
+            "question": "Explain how you would create an offline-first application using Local Storage as a cache layer.",
+            "answer": "Implement a cache-aside pattern: (1) On data fetch, check Local Storage first, (2) If found and not expired, return cached data immediately, (3) If not found or expired, fetch from network, (4) Store the response in Local Storage with TTL, (5) Return the fresh data. For mutation operations, implement a write-through or write-behind pattern where data is written to both Local Storage and the server, with a queue for offline mutations."
+        },
+        {
+            "question": "How do you handle storage quota exceeded when storing large datasets?",
+            "answer": "Implement a multi-tier strategy: (1) Estimate data size before storing, (2) Use a try-catch and implement eviction policies (remove oldest, largest, or least-frequently-used items), (3) Compress data using LZ-string or similar algorithms before storage, (4) Chunk large datasets across multiple keys, (5) As a fallback, use IndexedDB which has larger quotas, (6) Prompt users to clear space if critical storage fails."
+        },
+        {
+            "question": "Can you explain the performance implications of synchronous Local Storage operations?",
+            "answer": "Local Storage operations are synchronous and block the main thread. For small data (< 100 KB), this is negligible (~1-5ms). However, frequent large operations (reading/writing MBs of data) can cause noticeable UI jank. For heavy storage needs, use IndexedDB which is asynchronous. For worker threads, localStorage is unavailable altogether."
+        },
+        {
+            "question": "How would you migrate data from Local Storage to IndexedDB without losing user data?",
+            "answer": "Implement a migration script that: (1) Checks a migration version flag in Local Storage, (2) Reads all data from Local Storage, (3) Writes it to IndexedDB in object stores, (4) Updates the migration version, (5) Optionally removes the migrated data from Local Storage. Run this asynchronously on page load, and maintain backwards compatibility by checking both stores during the transition period."
+        },
+        {
+            "question": "What is the maximum string length that can be stored in Local Storage?",
+            "answer": "The maximum string length depends on the browser and the total quota (typically 5-10 MB for the entire origin). Since characters in JavaScript are UTF-16 (2 bytes each), a 5 MB quota allows approximately 2.5 million characters. However, attempting to store a single string near the quota limit may fail if other keys already use some space."
+        },
+        {
+            "question": "How would you implement encryption for sensitive data stored in Local Storage?",
+            "answer": "Use the Web Crypto API for client-side encryption: (1) Generate or derive an encryption key using PBKDF2 or ECDH, (2) Encrypt data with AES-GCM before storing: const encoder = new TextEncoder(); const encrypted = await crypto.subtle.encrypt(algorithm, key, encoder.encode(data)), (3) Store the ciphertext (as base64) and IV in Local Storage, (4) Decrypt on retrieval. Note that the encryption key must be derived from a user-provided password, not stored alongside the data."
+        },
+        {
+            "question": "How does the Same-Origin Policy affect Local Storage access in iframes?",
+            "answer": "Local Storage access in iframes follows the Same-Origin Policy. An iframe from a different origin cannot access the parent page's Local Storage, and vice versa. Cross-origin iframes have their own isolated Local Storage based on their own origin. For communication between different origins, use postMessage() API to relay storage data between windows/iframes."
+        }
+    ]
+}

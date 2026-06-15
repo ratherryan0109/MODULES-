@@ -1,0 +1,128 @@
+{
+    "beginner": [
+        {
+            "question": "What are Server-Sent Events (SSE) and what problem do they solve?",
+            "answer": "SSE is a technology that allows servers to push data to web clients over HTTP connections. It solves the problem of real-time updates without requiring clients to repeatedly poll the server. Unlike WebSockets, SSE is unidirectional (server to client only) and works over standard HTTP."
+        },
+        {
+            "question": "How do you create a connection to an SSE endpoint?",
+            "answer": "Use the EventSource constructor: const eventSource = new EventSource('/api/stream'). This creates a persistent HTTP connection to the specified URL. The browser automatically handles the connection and parses incoming events."
+        },
+        {
+            "question": "How do you receive messages from an EventSource?",
+            "answer": "Listen for the 'message' event: eventSource.onmessage = function(event) { console.log(event.data); }. You can also use addEventListener: eventSource.addEventListener('message', handler). The event.data property contains the message payload as a string."
+        },
+        {
+            "question": "What is the MIME type for SSE and why is it important?",
+            "answer": "The MIME type is 'text/event-stream'. The server must set this Content-Type header in its response. It tells the browser to keep the connection open and continuously parse the response body for event data rather than treating it as a standard HTTP response."
+        },
+        {
+            "question": "What are the main fields in an SSE event?",
+            "answer": "The main fields are: 'event' (event type, defaults to 'message'), 'data' (the event payload), 'id' (event ID for reconnection tracking), and 'retry' (reconnection delay in milliseconds). Fields are separated by newlines, and events are separated by blank lines."
+        },
+        {
+            "question": "How does EventSource handle reconnection?",
+            "answer": "EventSource automatically reconnects when the connection drops. It tracks the last event ID received and sends it as the Last-Event-ID header on reconnection. The server can use this to resume the stream from where it left off."
+        },
+        {
+            "question": "Can EventSource send data to the server?",
+            "answer": "No, EventSource only receives data from the server. It is a one-way communication channel. For sending data to the server, you need to make separate HTTP requests (fetch/XHR) alongside the EventSource connection."
+        },
+        {
+            "question": "What happens when you call eventSource.close()?",
+            "answer": "The connection is closed and will not automatically reconnect. The readyState changes to CLOSED (2). To resume receiving events, you must create a new EventSource instance."
+        },
+        {
+            "question": "What are the three readyState values for EventSource?",
+            "answer": "CONNECTING (0): The connection has not been established yet. OPEN (1): The connection is open and receiving events. CLOSED (2): The connection is closed or failed to open."
+        },
+        {
+            "question": "How do you handle different event types in SSE?",
+            "answer": "Use addEventListener with the event name: eventSource.addEventListener('userupdate', handler). Events without a specific 'event' field trigger the generic 'message' event. This allows routing different types of data to different handlers."
+        }
+    ],
+    "intermediate": [
+        {
+            "question": "How does the SSE 'id' field enable reliable reconnection?",
+            "answer": "The server includes an 'id' field in each event. On reconnection, the browser automatically sends a Last-Event-ID header with the last received ID. The server can compare this with its event log and replay events from that point forward, ensuring no events are lost during a disconnection."
+        },
+        {
+            "question": "What is the 'retry' field and how does it affect reconnection behavior?",
+            "answer": "The 'retry' field specifies the delay in milliseconds before the browser attempts to reconnect after a connection drop. The server can dynamically adjust this value. If not set, browsers use a default interval (typically 3 seconds). The retry value can be updated by the server at any time."
+        },
+        {
+            "question": "How do you enable cross-origin requests with EventSource?",
+            "answer": "EventSource supports CORS. The server must include the Access-Control-Allow-Origin header. For credentials (cookies), pass { withCredentials: true } in the constructor, and the server must include Access-Control-Allow-Credentials: true and specific origin in Access-Control-Allow-Origin."
+        },
+        {
+            "question": "What are the limitations of SSE compared to WebSockets?",
+            "answer": "Key limitations: (1) Unidirectional — only server to client; (2) Text-only — no binary data; (3) Limited connections — 6-10 per domain; (4) No native support in Internet Explorer; (5) Larger overhead than WebSockets due to HTTP framing; (6) No built-in multiplexing."
+        },
+        {
+            "question": "How do you implement a keepalive mechanism for SSE?",
+            "answer": "SSE doesn't have a built-in ping/pong, but you can use: (1) Comment lines — send ': heartbeat\\n\\n' periodically to prevent proxy timeouts; (2) Periodic data events — send a lightweight event every N seconds; (3) The server can monitor the connection and close it if idle, relying on the client's auto-reconnect."
+        },
+        {
+            "question": "Can you use SSE with HTTP/2 and what are the benefits?",
+            "answer": "Yes, SSE works over HTTP/2. Benefits include: (1) Multiplexing — multiple SSE streams can share a single TCP connection without hitting the per-domain limit; (2) Server push integration; (3) Header compression reduces overhead. HTTP/2 effectively eliminates the 6-10 connection limit issue."
+        },
+        {
+            "question": "How do you parse large JSON payloads in SSE events?",
+            "answer": "Use multiple 'data:' lines to split large JSON across lines. The EventSource concatenates them with newlines: data: {\\ndata: \"message\": \"Hello\",\\ndata: \"timestamp\": 123\\ndata: }. Parse with JSON.parse(event.data) on the client. Note that the concatenated string must be valid JSON."
+        },
+        {
+            "question": "How would you implement a fallback for browsers that don't support SSE?",
+            "answer": "Detect support with: if (typeof EventSource !== 'undefined'). For unsupported browsers: (1) Fall back to XHR polling — make repeated GET requests; (2) Use a polyfill library (like EventSource polyfill); (3) Use a library like SockJS that provides a unified API over multiple transports."
+        },
+        {
+            "question": "What is the maximum number of simultaneous SSE connections per browser?",
+            "answer": "SSE uses standard HTTP connections, so the limit is typically 6-10 per domain (HTTP/1.1). This is shared with other HTTP requests to the same domain. With HTTP/2, this limit effectively doesn't apply due to multiplexing."
+        },
+        {
+            "question": "How do you debug SSE connections in browser DevTools?",
+            "answer": "In Chrome DevTools: (1) Network tab — filter by 'EventStream' to see SSE connections; (2) Click on the SSE request to see the event stream in the 'EventStream' tab; (3) The response preview shows real-time events; (4) Console — EventSource events can be logged with eventSource.onmessage. Firefox also has native EventStream debugging in the Network tab."
+        }
+    ],
+    "advanced": [
+        {
+            "question": "How would you design an SSE-based system that handles millions of concurrent connections?",
+            "answer": "Use an event-driven architecture: (1) Front-end servers (Node.js/Go/Erlang) that handle SSE connections with non-blocking I/O; (2) A message broker (Redis Pub/Sub, Apache Kafka, RabbitMQ) for distributing events; (3) Each SSE server subscribes to relevant channels; (4) Use a gateway/load balancer that supports long-lived connections; (5) Implement connection pooling and rate limiting; (6) Consider using HTTP/2 for multiplexing."
+        },
+        {
+            "question": "How does SSE handle the case where the client is behind a proxy that buffers responses?",
+            "answer": "Many proxies buffer HTTP responses, which would delay SSE events. Solutions: (1) The server should send a 'X-Accel-Buffering: no' header (for nginx); (2) Send 'Cache-Control: no-cache'; (3) Use 'Transfer-Encoding: chunked'; (4) For proxies that buffer based on response size, send a large initial padding (1-2KB of comments) to fill the buffer and force it to flush; (5) Use WebSocket instead if proxy issues persist."
+        },
+        {
+            "question": "How would you implement an SSE-compatible server in Node.js that supports event ID tracking?",
+            "answer": "Set headers: res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive' }). Track last event ID per connection. On new connection, check Last-Event-ID header and replay missed events from a buffer. Send events with res.write('data: ...\\n\\n'). Handle backpressure with drain events."
+        },
+        {
+            "question": "What are the security considerations specific to SSE?",
+            "answer": "Key security concerns: (1) CSRF — EventSource requests include cookies automatically; use CSRF tokens or check Origin header; (2) CORS — restrict Access-Control-Allow-Origin to trusted origins; (3) Data leakage — SSE exposes connection duration and existence; (4) DoS — limit concurrent connections per client; (5) Authentication — validate tokens on initial request, but SSE connections are long-lived; implement token rotation or short-lived sessions."
+        },
+        {
+            "question": "How would you implement SSE with authentication that works for long-lived connections?",
+            "answer": "SSE connections are long-lived, so token-based auth needs special handling: (1) Pass auth token as query parameter: new EventSource('/events?token=...'); (2) Validate token on initial request; (3) Set a session that outlasts the token's lifetime; (4) Implement a custom event type for token refresh that reauthenticates without closing the connection; (5) Alternatively, use a cookie-based session that gets periodically refreshed."
+        },
+        {
+            "question": "How do you handle backpressure in an SSE server when the client is slow to consume events?",
+            "answer": "Node.js streams have built-in backpressure handling: (1) Monitor the return value of res.write(); if it returns false, the internal buffer is full; (2) Listen for the 'drain' event before writing more data; (3) Implement a client-side buffer with size limits; (4) Consider dropping non-critical events for slow consumers; (5) Use a sliding window to limit buffered events per connection."
+        },
+        {
+            "question": "How can you combine SSE with WebSockets for optimal real-time architecture?",
+            "answer": "Use each technology for its strengths: (1) SSE for server-to-client pushes (notifications, feeds, updates) — simpler, auto-reconnects, works over HTTP; (2) WebSocket for bidirectional communication (chat commands, collaborative editing) when client needs to send data; (3) A hybrid approach — maintain both connections, or use WebSocket for primary communication and SSE as a fallback."
+        },
+        {
+            "question": "How would you implement an event replay system for SSE that survives server restarts?",
+            "answer": "Store events in a persistent store (Redis, PostgreSQL, or a file-based event log). Each event has a monotonically increasing ID. On server startup, load the last known event ID. On client connection, check Last-Event-ID and replay events from that point. Implement a retention policy (e.g., keep last 1000 events or 1 hour of events). Use a background job to clean up old events."
+        },
+        {
+            "question": "What are the browser memory implications of long-running SSE connections?",
+            "answer": "SSE connections are lightweight — the browser maintains a single HTTP connection with minimal overhead. However: (1) Each unhandled event is stored in the browser's event queue; process events promptly; (2) The data property contains the full event text; large events consume memory; (3) Browsers may throttle inactive tabs, delaying event processing; (4) Use appropriate backpressure and avoid accumulating unbounded buffers."
+        },
+        {
+            "question": "How would you test an SSE endpoint in a CI/CD pipeline?",
+            "answer": "Write integration tests that: (1) Connect to the SSE endpoint using a Node.js http module request; (2) Verify the Content-Type header is 'text/event-stream'; (3) Read the stream line by line and parse events; (4) Assert that specific events are received within timeouts; (5) Test reconnection by closing the connection and verifying Last-Event-ID behavior; (6) Use k6 or artillery.io for load testing SSE endpoints. For client-side testing, mock the EventSource and verify event handlers are called correctly."
+        }
+    ]
+}

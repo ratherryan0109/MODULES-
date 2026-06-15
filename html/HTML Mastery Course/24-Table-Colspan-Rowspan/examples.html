@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colspan & Rowspan Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; background: #f5f7fa; color: #333; }
+    h1 { text-align: center; color: #2c3e50; }
+    h2 { color: #2980b9; border-bottom: 2px solid #2980b9; padding-bottom: 6px; margin-top: 40px; }
+    .example-box { background: white; border-radius: 10px; padding: 25px; margin: 25px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .example-box h3 { margin: 0 0 15px; color: #e67e22; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; font-size: 14px; }
+
+    /* Shared table styles */
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+    th, td { padding: 12px 16px; border: 1px solid #ddd; text-align: center; }
+
+    /* Example 1: Basic Colspan */
+    .ex1 th { background: #3498db; color: white; }
+    .ex1 td { background: #ebf5fb; }
+
+    /* Example 2: Basic Rowspan */
+    .ex2 th { background: #e74c3c; color: white; }
+    .ex2 td { background: #fadbd8; }
+    .ex2 td[rowspan] { background: #f1948a; font-weight: bold; }
+
+    /* Example 3: Multi-level Headers */
+    .ex3 th { background: #2c3e50; color: white; }
+    .ex3 th[colspan] { background: #1a252f; }
+    .ex3 td { background: #ecf0f1; }
+
+    /* Example 4: Schedule with rowspan + colspan */
+    .ex4 th:first-child { background: #8e44ad; color: white; }
+    .ex4 th:not(:first-child) { background: #6c3483; color: white; }
+    .ex4 td { background: #f5eef8; }
+    .ex4 td[rowspan] { background: #d7bde2; font-weight: bold; }
+    .ex4 td[colspan] { background: #f9e79f; font-weight: bold; }
+
+    /* Example 5: Invoice */
+    .ex5 th { background: #1abc9c; color: white; }
+    .ex5 th[colspan] { background: #16a085; }
+    .ex5 td { background: #e8f8f5; }
+    .ex5 td[rowspan] { background: #d1f2eb; font-weight: bold; }
+    .ex5 .total-label { text-align: right; font-weight: bold; background: #f0f0f0; }
+    .ex5 .total-value { font-weight: bold; }
+    .ex5 .grand-total-label { text-align: right; font-weight: bold; font-size: 1.1em; background: #d5f5e3; }
+    .ex5 .grand-total-value { font-weight: bold; font-size: 1.1em; color: #27ae60; }
+
+    /* Example 6: Complex (Combined) */
+    .ex6 th { background: #34495e; color: white; }
+    .ex6 th[colspan] { background: #2c3e50; }
+    .ex6 td { background: #f8f9fa; }
+    .ex6 td[rowspan] { background: #e8f4fd; font-weight: bold; vertical-align: middle; }
+    .ex6 td[colspan] { background: #fcf3cf; font-weight: bold; }
+    .ex6 .highlight { background: #f5b7b1; font-weight: bold; }
+
+    /* Code display */
+    .code-block { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 13px; overflow-x: auto; margin: 10px 0; white-space: pre; }
+  </style>
+</head>
+<body>
+  <h1>Colspan & Rowspan Examples</h1>
+
+  <div class="example-box">
+    <h3>Example 1: Basic Colspan</h3>
+    <p>The "Name" header spans 2 columns. Notice how <code>colspan="2"</code> merges First Name and Last Name into one header.</p>
+    <table class="ex1">
+      <tr>
+        <th colspan="2">Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+      <tr>
+        <td>John</td><td>Doe</td><td>30</td><td>New York</td>
+      </tr>
+      <tr>
+        <td>Jane</td><td>Smith</td><td>25</td><td>Los Angeles</td>
+      </tr>
+    </table>
+    <div class="code-block">&lt;tr&gt;
+  &lt;th colspan="2"&gt;Name&lt;/th&gt;
+  &lt;th&gt;Age&lt;/th&gt;
+  &lt;th&gt;City&lt;/th&gt;
+&lt;/tr&gt;</div>
+    <div class="note">Row 1 has 3 cells (one spans 2 columns = 3). Row 2 has 4 cells. Both total 4 columns.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 2: Basic Rowspan</h3>
+    <p>The "Department" header spans 3 rows vertically using <code>rowspan="3"</code>.</p>
+    <table class="ex2">
+      <tr>
+        <th rowspan="3">Engineering</th>
+        <td>Alice Johnson</td>
+        <td>Senior Dev</td>
+      </tr>
+      <tr>
+        <td>Bob Chen</td>
+        <td>Junior Dev</td>
+      </tr>
+      <tr>
+        <td>Carol Davis</td>
+        <td>QA Engineer</td>
+      </tr>
+      <tr>
+        <th rowspan="2">Marketing</th>
+        <td>Dan Wilson</td>
+        <td>Marketing Lead</td>
+      </tr>
+      <tr>
+        <td>Eve Martinez</td>
+        <td>Content Writer</td>
+      </tr>
+    </table>
+    <div class="code-block">&lt;tr&gt;
+  &lt;th rowspan="3"&gt;Engineering&lt;/th&gt;
+  &lt;td&gt;Alice Johnson&lt;/td&gt;
+  &lt;td&gt;Senior Dev&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;!-- th cells are omitted because rowspan covers them --&gt;
+  &lt;td&gt;Bob Chen&lt;/td&gt;
+  &lt;td&gt;Junior Dev&lt;/td&gt;
+&lt;/tr&gt;</div>
+    <div class="note">When <code>rowspan</code> is used, the spanned rows omit the cell in that column position.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 3: Multi-Level Headers</h3>
+    <p>Headers can be organized hierarchically with colspan for grouping.</p>
+    <table class="ex3">
+      <tr>
+        <th colspan="2">Personal Info</th>
+        <th colspan="2">Contact Details</th>
+      </tr>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+      <tr><td>John</td><td>Doe</td><td>john@example.com</td><td>555-0100</td></tr>
+      <tr><td>Jane</td><td>Smith</td><td>jane@example.com</td><td>555-0102</td></tr>
+    </table>
+    <div class="note">Row 1 has 2 cells (colspan=2 each). Row 2 has 4 cells. Both total 4 columns.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 4: Workshop Schedule (Combined)</h3>
+    <p>Combining colspan and rowspan in a real scheduling scenario.</p>
+    <table class="ex4">
+      <tr>
+        <th>Time</th>
+        <th colspan="3">Workshop Sessions</th>
+      </tr>
+      <tr>
+        <th rowspan="2">9:00-12:00</th>
+        <td colspan="2">Web Development</td>
+        <td rowspan="2">Design Lab</td>
+      </tr>
+      <tr>
+        <td>HTML</td>
+        <td>CSS</td>
+      </tr>
+      <tr>
+        <th>12:00-1:00</th>
+        <td colspan="3">Lunch Break</td>
+      </tr>
+      <tr>
+        <th rowspan="2">1:00-4:00</th>
+        <td>React</td>
+        <td>Node.js</td>
+        <td rowspan="2">UX Workshop</td>
+      </tr>
+      <tr>
+        <td>Components</td>
+        <td>APIs</td>
+      </tr>
+    </table>
+    <div class="note">Column count: Row 1 = 4, Row 2 = 4 (1 rowspan + 2 colspan + 1 rowspan), Row 3 = 4 (skipped rowspan col + 2 single + skipped rowspan).</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 5: Invoice Table</h3>
+    <p>A practical invoice layout using colspan for summary rows.</p>
+    <table class="ex5">
+      <tr>
+        <th colspan="5">Invoice #2025-1042</th>
+      </tr>
+      <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Unit Price</th>
+        <th>Discount</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>Laptop Pro 15"</td><td>1</td><td>$1,299.99</td><td>$100.00</td><td>$1,199.99</td>
+      </tr>
+      <tr>
+        <td>Wireless Mouse</td><td>2</td><td>$49.99</td><td>$0.00</td><td>$99.98</td>
+      </tr>
+      <tr>
+        <td>USB-C Hub</td><td>1</td><td>$79.99</td><td>$10.00</td><td>$69.99</td>
+      </tr>
+      <tr>
+        <td>Laptop Sleeve</td><td>1</td><td>$34.99</td><td>$0.00</td><td>$34.99</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="total-label">Subtotal</td>
+        <td class="total-value">$1,404.95</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="total-label">Tax (8%)</td>
+        <td class="total-value">$112.40</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="grand-total-label">Grand Total</td>
+        <td class="grand-total-value">$1,517.35</td>
+      </tr>
+    </table>
+    <div class="note">Summary rows use <code>colspan="4"</code> to push the label text to the right, with the value in the last column.</div>
+  </div>
+
+  <div class="example-box">
+    <h3>Example 6: Complex Employee Schedule</h3>
+    <p>Advanced table combining colspan, rowspan, and group headers.</p>
+    <table class="ex6">
+      <tr>
+        <th rowspan="2">Employee</th>
+        <th colspan="5">Week of March 10, 2025</th>
+      </tr>
+      <tr>
+        <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+      </tr>
+      <tr>
+        <td rowspan="2">Alice</td>
+        <td>9-5</td><td>9-5</td><td>Off</td><td>9-5</td><td>9-1</td>
+      </tr>
+      <tr>
+        <td colspan="5" class="highlight">On call (weekend support)</td>
+      </tr>
+      <tr>
+        <td rowspan="2">Bob</td>
+        <td>10-6</td><td>10-6</td><td>10-6</td><td>Off</td><td>10-3</td>
+      </tr>
+      <tr>
+        <td colspan="5">Training workshop (remote)</td>
+      </tr>
+      <tr>
+        <td>Carol</td>
+        <td>9-5</td><td>9-5</td><td>9-5</td><td>9-5</td><td>9-5</td>
+      </tr>
+      <tr>
+        <td rowspan="2">Dan</td>
+        <td>Off</td><td>Off</td><td>12-8</td><td>12-8</td><td>12-6</td>
+      </tr>
+      <tr>
+        <td colspan="5" class="highlight">Night shift allowance</td>
+      </tr>
+    </table>
+    <div class="note">This table combines rowspan for employees with multiple entries and colspan for notes spanning the full week. Each row still totals 6 columns.</div>
+  </div>
+</body>
+</html>

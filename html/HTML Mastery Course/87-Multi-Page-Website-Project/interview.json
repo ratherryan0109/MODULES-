@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the difference between a single-page and multi-page website?",
+      "answer": "A single-page website loads all content on one HTML page. A multi-page website uses separate HTML files for different sections, linked via navigation."
+    },
+    {
+      "question": "How do you create navigation between pages?",
+      "answer": "Use the <a> element with the href attribute pointing to the target HTML file: <a href='about.html'>About</a>."
+    },
+    {
+      "question": "What is a relative file path?",
+      "answer": "A relative path specifies the location of a file relative to the current page, like 'images/photo.jpg' or '../index.html'."
+    },
+    {
+      "question": "What should every page in a multi-page site have?",
+      "answer": "Every page should have a consistent header (with navigation), main content area, and footer. Each page must also have a unique title."
+    },
+    {
+      "question": "How do you indicate the current page in navigation?",
+      "answer": "Add a class like 'active' to the current page's navigation link and style it differently with CSS."
+    },
+    {
+      "question": "What is a breadcrumb navigation?",
+      "answer": "Breadcrumbs show the user's path from the homepage to the current page, like: Home > Services > Web Design."
+    },
+    {
+      "question": "How do you link to a subfolder page?",
+      "answer": "Include the folder path: <a href='services/web-design.html'>Web Design</a>."
+    },
+    {
+      "question": "What is a 404 page and why is it important?",
+      "answer": "A 404 page displays when a page is not found. A custom 404 page helps users navigate back to valid content."
+    },
+    {
+      "question": "What's the best way to handle footer link groups?",
+      "answer": "Use <div> elements with CSS grid or flexbox to create columns, each with a heading and list of links."
+    },
+    {
+      "question": "What does the <main> element represent?",
+      "answer": "<main> contains the primary, unique content of the page. It should appear only once per page."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you create a dropdown navigation menu with nested pages?",
+      "answer": "Nest a <ul> inside a <li> for sub-pages, and use CSS to show/hide the nested list on hover or click."
+    },
+    {
+      "question": "What is the aria-current attribute and how is it used?",
+      "answer": "aria-current='page' marks the current page in a navigation set, improving screen reader announcements."
+    },
+    {
+      "question": "How do you handle active state for dropdown parents?",
+      "answer": "Add the 'active' class to the parent <li> or <a> when any child page is active, using conditional classes."
+    },
+    {
+      "question": "What are relative vs absolute vs root-relative URLs?",
+      "answer": "Relative: 'about.html' (from current folder). Absolute: 'https://example.com/about.html'. Root-relative: '/about.html' (from site root)."
+    },
+    {
+      "question": "How do you ensure consistent header/footer without server-side includes?",
+      "answer": "With static HTML, you copy the code to each page. For better maintainability, use JavaScript to inject shared HTML or use build tools."
+    },
+    {
+      "question": "What is a sitemap and how does it help?",
+      "answer": "A sitemap is an HTML page or XML file listing all pages on the site. XML sitemaps help search engines discover content."
+    },
+    {
+      "question": "How do you create a sticky header that stays on top?",
+      "answer": "Use CSS position: sticky or position: fixed on the header. Sticky still takes up space in the document flow."
+    },
+    {
+      "question": "What is the best way to organize CSS for a multi-page site?",
+      "answer": "Use a single global stylesheet for shared styles (header, footer, typography) and page-specific styles inline or in separate files."
+    },
+    {
+      "question": "How do you create a skip-to-content link?",
+      "answer": "Add an anchor link at the top: <a href='#main-content' class='skip-link'>Skip to main content</a>, then add id='main-content' to the <main> element."
+    },
+    {
+      "question": "What is the purpose of the <base> element?",
+      "answer": "<base href='/'> sets the base URL for all relative links on the page, simplifying paths when pages are in subdirectories."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does server-side rendering (SSR) differ from static multi-page sites?",
+      "answer": "Static multi-page sites are pre-built HTML files. SSR generates HTML on the server per request, allowing dynamic content while maintaining multi-page SEO benefits."
+    },
+    {
+      "question": "How do you implement a multi-lingual multi-page site structure?",
+      "answer": "Use subdirectories for each language (/en/, /es/, /fr/) with identical structure. Use the hreflang attribute and rel='alternate' for SEO."
+    },
+    {
+      "question": "What is the Document Outline algorithm and why is it important?",
+      "answer": "The HTML5 outline algorithm generates a document structure from heading levels. Proper heading hierarchy (h1-h6) creates a logical outline for accessibility."
+    },
+    {
+      "question": "How do you handle versioning of CSS/JS across pages?",
+      "answer": "Use query parameters for cache busting: <link rel='stylesheet' href='style.css?v=2'>. Or use build tools that hash filenames."
+    },
+    {
+      "question": "What are the SEO implications of content duplication across pages?",
+      "answer": "Duplicate content confuses search engines. Use rel='canonical' to specify the preferred version of a page."
+    },
+    {
+      "question": "How does the HTML spec define the relationship between <nav> and aria-label?",
+      "answer": "When multiple <nav> elements exist, use aria-label to distinguish them: <nav aria-label='Main'> and <nav aria-label='Footer'>."
+    },
+    {
+      "question": "What is progressive enhancement in multi-page sites?",
+      "answer": "Start with functional HTML links between pages, layer CSS for visual design, then enhance with JavaScript for smoother transitions using the History API."
+    },
+    {
+      "question": "How do you implement partial page updates while maintaining multi-page architecture?",
+      "answer": "Use fetch() or XMLHttpRequest to load HTML fragments from other pages and insert them into the current page with JavaScript."
+    },
+    {
+      "question": "What are the performance considerations for multi-page sites?",
+      "answer": "Each page loads separately, so optimize: critical CSS in <head>, lazy-load images, minimize HTTP requests, use browser caching, and preload key pages."
+    },
+    {
+      "question": "How do you build a multi-page site with no build tools (pure HTML)?",
+      "answer": "Create individual HTML files for each page. Use iframe or object elements for shared components, or copy-paste the header/footer code. Validate all links with a link checker."
+    }
+  ]
+}

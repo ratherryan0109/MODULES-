@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Playground - YouTube Clone</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;background:#0f0f0f;color:#fff;height:100vh;display:flex;flex-direction:column}.toolbar{background:#0f172a;padding:.5rem 1rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid #333}.toolbar h2{font-size:1rem}.toolbar button,.toolbar select{background:#333;color:#fff;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer}.main-split{display:flex;flex:1;overflow:hidden}.editor-pane{flex:1;display:flex;flex-direction:column;border-right:1px solid #333}.preview-pane{flex:1}iframe{width:100%;height:100%;border:none}textarea{width:100%;flex:1;background:#1e293b;color:#e2e8f0;border:none;padding:1rem;font-family:'Consolas',monospace;font-size:.875rem;resize:none;outline:none}.tabs{display:flex;background:#0f172a}.tabs button{background:transparent;color:#94a3b8;border:none;padding:.5rem 1rem;cursor:pointer;border-bottom:2px solid transparent}.tabs button.active{color:#fff;border-bottom-color:#ff0000}@media(max-width:768px){.main-split{flex-direction:column}}</style></head>
+<body>
+<div class="toolbar"><h2>YouTube UI Playground</h2><select id="vs"><option value="100%">Responsive</option><option value="375px">Mobile</option><option value="768px">Tablet</option></select><button id="run">&#9654; Run</button><button id="reset">&#8635; Reset</button></div>
+<div class="main-split"><div class="editor-pane"><div class="tabs"><button class="active" data-tab="html">HTML</button><button data-tab="css">CSS</button></div>
+<textarea id="html"><div style="padding:1rem;font-family:sans-serif">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem">
+    <div style="background:#1a1a1a;border-radius:12px;padding:.5rem">
+      <div style="aspect-ratio:16/9;background:#ff0000;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">Video Thumbnail</div>
+      <h3 style="font-size:.9rem;margin-top:.5rem;color:#f1f1f1">Complete CSS Grid Tutorial</h3>
+      <p style="font-size:.8rem;color:#aaa">TechChannel · 245K views</p>
+    </div>
+    <div style="background:#1a1a1a;border-radius:12px;padding:.5rem">
+      <div style="aspect-ratio:16/9;background:#0066ff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">Video Thumbnail</div>
+      <h3 style="font-size:.9rem;margin-top:.5rem;color:#f1f1f1">Flexbox vs Grid Guide</h3>
+      <p style="font-size:.8rem;color:#aaa">WebDev Pro · 128K views</p>
+    </div>
+  </div>
+</div></textarea>
+<textarea id="css">body{margin:0;font-family:'Inter',sans-serif;background:#0f0f0f;color:#f1f1f1}</textarea>
+</div><div class="preview-pane"><iframe id="preview"></iframe></div></div>
+<script>
+  const h=document.getElementById('html'),c=document.getElementById('css'),p=document.getElementById('preview'),vs=document.getElementById('vs'),r=document.getElementById('run'),rs=document.getElementById('reset'),tb=document.querySelectorAll('[data-tab]');
+  function render(){const d='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><style>*,*::before,*::after{box-sizing:border-box}'+c.value+'</style></head><body>'+h.value+'</body></html>';p.src='data:text/html;charset=utf-8,'+encodeURIComponent(d)}
+  function reset(){h.value='<div style="padding:1rem;font-family:sans-serif">\n  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem">\n    <div style="background:#1a1a1a;border-radius:12px;padding:.5rem">\n      <div style="aspect-ratio:16/9;background:#ff0000;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">Video Thumbnail</div>\n      <h3 style="font-size:.9rem;margin-top:.5rem;color:#f1f1f1">Complete CSS Grid Tutorial</h3>\n      <p style="font-size:.8rem;color:#aaa">TechChannel · 245K views</p>\n    </div>\n    <div style="background:#1a1a1a;border-radius:12px;padding:.5rem">\n      <div style="aspect-ratio:16/9;background:#0066ff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">Video Thumbnail</div>\n      <h3 style="font-size:.9rem;margin-top:.5rem;color:#f1f1f1">Flexbox vs Grid Guide</h3>\n      <p style="font-size:.8rem;color:#aaa">WebDev Pro · 128K views</p>\n    </div>\n  </div>\n</div>';c.value='body{margin:0;font-family:\'Inter\',sans-serif;background:#0f0f0f;color:#f1f1f1}';render()}
+  vs.addEventListener('change',()=>{p.style.width=vs.value;p.style.margin=vs.value==='100%'?'0':'0 auto'});r.addEventListener('click',render);rs.addEventListener('click',reset);
+  tb.forEach(b=>{b.addEventListener('click',()=>{tb.forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.editor-pane textarea').forEach(t=>t.style.display='none');if(b.dataset.tab==='html')h.style.display='block';if(b.dataset.tab==='css')c.style.display='block'})});h.style.display='block';c.style.display='none';render();
+</script></body></html>

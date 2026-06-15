@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    {"question":"What is the viewport meta tag?","answer":"<meta name='viewport' content='width=device-width, initial-scale=1.0'> that controls how a page displays on mobile devices by setting the layout viewport width and initial zoom level."},
+    {"question":"Why is the viewport meta tag important?","answer":"Without it, mobile browsers render pages at a desktop width (usually 980px) and scale them down, making text tiny and requiring users to pinch-zoom."},
+    {"question":"What does width=device-width mean?","answer":"It sets the layout viewport width to the CSS pixel width of the device, allowing responsive layouts to work correctly."},
+    {"question":"What does initial-scale=1.0 mean?","answer":"It sets the initial zoom level to 100%, preventing the browser from zooming out to fit the desktop-width layout."},
+    {"question":"Where should the viewport meta tag be placed?","answer":"In the <head> section of the HTML document, ideally before CSS stylesheet links."},
+    {"question":"What is user-scalable?","answer":"An attribute that controls whether the user can zoom the page. Setting it to 'no' is an accessibility violation."},
+    {"question":"What is the default layout viewport on mobile?","answer":"Most mobile browsers default to 980px layout viewport when no viewport meta tag is specified."},
+    {"question":"What is the difference between layout viewport and visual viewport?","answer":"The layout viewport is where the page content is rendered. The visual viewport is the portion currently visible on screen."},
+    {"question":"Can I set the viewport to a specific pixel width?","answer":"Yes, e.g., width=1024, but this is not recommended as it won't adapt to different devices."},
+    {"question":"Does the viewport meta tag affect desktop browsers?","answer":"Desktop browsers generally ignore the viewport meta tag since they don't have the same scaling behavior."}
+  ],
+  "intermediate": [
+    {"question":"How does the viewport meta tag affect mobile-first CSS?","answer":"The viewport tag is essential for mobile-first CSS. Without width=device-width, media queries based on device widths won't work correctly."},
+    {"question":"What is the viewport-fit=cover attribute for?","answer":"It tells the browser to fill the entire display area including notched and rounded corners, used with env(safe-area-inset-*) for padding."},
+    {"question":"What are the safe-area-inset CSS environment variables?","answer":"env(safe-area-inset-top/right/bottom/left) are CSS variables that provide the pixel values for the safe area insets on notched devices."},
+    {"question":"Why is maximum-scale=1.0 considered harmful?","answer":"It prevents pinch-zoom which is essential for users with low vision. WCAG 2.1 requires text resizing up to 200% without loss of content."},
+    {"question":"How do dynamic viewport units (dvh, svh, lvh) differ?","answer":"svh = small viewport height (address bar visible), lvh = large viewport height (address bar hidden), dvh = dynamic (changes between them)."},
+    {"question":"What is the 16px font-size rule for iOS form inputs?","answer":"iOS Safari zooms into form inputs with font-size less than 16px. Set font-size: 16px minimum on inputs to prevent this behavior."},
+    {"question":"Can you use viewport meta tag with JavaScript?","answer":"Yes, you can modify the viewport tag via JavaScript using document.querySelector('meta[name=viewport]').content = '...' for dynamic viewport changes."},
+    {"question":"How does the viewport meta tag interact with orientation changes?","answer":"When a device rotates, the viewport width changes. width=device-width ensures the layout adapts to the new orientation automatically."},
+    {"question":"What is the effect of setting initial-scale=0.5?","answer":"The page would load zoomed out to 50%, showing more content but making everything half the size. This is rarely useful."},
+    {"question":"How do you handle the viewport for iframe content?","answer":"The viewport meta tag in the iframed document controls its display. It should have width=device-width, initial-scale=1.0 for responsive iframes."}
+  ],
+  "advanced": [
+    {"question":"How does the viewport meta tag interact with the CSS visual-viewport API?","answer":"The visual-viewport API (window.visualViewport) provides real-time dimensions of the visual viewport. Combined with the viewport meta tag, it enables advanced responsive interactions for features like virtual keyboards."},
+    {"question":"What is the interop issue with viewport units on mobile browsers?","answer":"Historically, 100vh included browser chrome on some browsers (Chrome Android) and excluded it on others (Safari iOS). The dvh/svh/lvh units resolve this inconsistency."},
+    {"question":"How does the viewport meta tag affect Google's mobile-first indexing?","answer":"Google's mobile-first indexing uses the mobile version of pages for ranking. Pages without proper viewport tags are considered not mobile-friendly and may rank lower."},
+    {"question":"What happens when you combine viewport-fit=cover with position: fixed elements?","answer":"Fixed elements may render under notches or rounded corners. Use env(safe-area-inset-*) padding on fixed elements to keep them within the safe area."},
+    {"question":"How can you dynamically change the viewport scale for specific interactions?","answer":"Use JavaScript: document.querySelector('meta[name=viewport]').content = 'width=device-width, initial-scale=' + scale. Reset after the interaction."},
+    {"question":"What is the interaction between the viewport meta tag and CSS zoom?","answer":"The viewport meta tag controls the initial layout viewport scale. CSS zoom is a separate property that scales elements after rendering. They affect different stages of the rendering pipeline."},
+    {"question":"How do browsers handle conflicting viewport meta tags from multiple sources?","answer":"The first viewport meta tag in document order is used. Subsequent tags are ignored. This is important for browser extensions and injected content."},
+    {"question":"What is the viewport-percentage-lengths specification and how does it relate to the viewport tag?","answer":"The specification defines vw, vh, vmin, vmax and the newer svh, lvh, dvh, vi, vb units. The viewport meta tag's properties influence how these units are calculated."},
+    {"question":"How does the virtual keyboard affect the visual viewport on mobile?","answer":"When the virtual keyboard opens, the visual viewport shrinks. Elements using 100vh may be hidden behind the keyboard. Use dvh units to handle this."},
+    {"question":"What workarounds existed before the viewport meta tag?","answer":"Before 2007, mobile sites used WAP/WML, separate m.example.com domains, or device detection with server-side rendering. The viewport meta tag eliminated the need for most device-specific markup."}
+  ]
+}

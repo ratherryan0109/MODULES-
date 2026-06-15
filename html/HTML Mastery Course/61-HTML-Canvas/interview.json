@@ -1,0 +1,187 @@
+{
+  "module": "HTML Canvas",
+  "title": "Canvas Interview Questions",
+  "instructions": "Prepare for technical interviews with these 30 questions covering Canvas API fundamentals, animation, pixel manipulation, performance optimization, and real-world applications.",
+  "questions": [
+    {
+      "id": 1,
+      "difficulty": "basic",
+      "question": "What is the HTML Canvas element and how is it different from SVG?",
+      "answer": "Canvas is a raster-based, pixel-oriented drawing surface controlled via JavaScript. SVG is vector-based, resolution-independent, and retains each element in the DOM. Canvas is better for many objects, animations, and pixel manipulation. SVG is better for accessibility, event handling, and static graphics."
+    },
+    {
+      "id": 2,
+      "difficulty": "basic",
+      "question": "How do you set the size of a canvas element correctly?",
+      "answer": "Set width and height as HTML attributes on the <canvas> tag, not via CSS alone. CSS only stretches the canvas visually but doesn't change the pixel resolution, causing blurriness. For Retina displays, multiply the attribute values by window.devicePixelRatio and scale the context accordingly."
+    },
+    {
+      "id": 3,
+      "difficulty": "basic",
+      "question": "What does getContext('2d') return and what options does it accept?",
+      "answer": "It returns a CanvasRenderingContext2D object for 2D drawing. Options include: alpha (boolean, defaults to true), willReadFrequently (boolean, optimize for getImageData), and colorSpace ('srgb' or 'display-p3')."
+    },
+    {
+      "id": 4,
+      "difficulty": "basic",
+      "question": "Explain the difference between fillRect, strokeRect, and clearRect.",
+      "answer": "fillRect(x, y, w, h) draws a filled rectangle using the current fillStyle. strokeRect draws an outlined rectangle using the current strokeStyle and lineWidth. clearRect erases pixels in the specified area, making them fully transparent."
+    },
+    {
+      "id": 5,
+      "difficulty": "basic",
+      "question": "What is the purpose of beginPath() and closePath()?",
+      "answer": "beginPath() resets the current path list and starts a new path definition. closePath() draws a straight line from the current point back to the starting point of the current sub-path (like closing a polygon)."
+    },
+    {
+      "id": 6,
+      "difficulty": "basic",
+      "question": "How do you draw a circle on a canvas?",
+      "answer": "Use arc(x, y, r, 0, Math.PI * 2) where (x, y) is center, r is radius, 0 is start angle, Math.PI*2 is end angle. Always call beginPath() first and fill() or stroke() after."
+    },
+    {
+      "id": 7,
+      "difficulty": "intermediate",
+      "question": "Explain the canvas state stack and how save()/restore() work.",
+      "answer": "Canvas maintains a stack of drawing states. save() pushes the current state (transformations, clipping region, styles like fillStyle, strokeStyle, lineWidth, globalAlpha, etc.) onto the stack. restore() pops the last saved state. This is useful for isolating transformations and style changes."
+    },
+    {
+      "id": 8,
+      "difficulty": "intermediate",
+      "question": "How do you create and use gradients in Canvas?",
+      "answer": "Use createLinearGradient(x0, y0, x1, y1) or createRadialGradient(x0, y0, r0, x1, y1, r1) to create a gradient object. Add color stops with gradient.addColorStop(offset, color). Assign the gradient to fillStyle or strokeStyle and draw shapes normally."
+    },
+    {
+      "id": 9,
+      "difficulty": "intermediate",
+      "question": "What is globalCompositeOperation and what are some common modes?",
+      "answer": "It controls how new drawings blend with existing content. Common modes: source-over (default), source-in, source-out, source-atop, destination-over, destination-in, destination-out, destination-atop, lighter, copy, xor, multiply, screen, overlay, darken, lighten, difference, exclusion."
+    },
+    {
+      "id": 10,
+      "difficulty": "intermediate",
+      "question": "How do you draw text on a canvas and measure it before drawing?",
+      "answer": "Set ctx.font, ctx.textAlign, ctx.textBaseline. Use fillText() for filled text or strokeText() for outlined text. Measure with ctx.measureText(text).width to get text width in pixels."
+    },
+    {
+      "id": 11,
+      "difficulty": "intermediate",
+      "question": "Explain how to animate on a canvas using requestAnimationFrame.",
+      "answer": "Define an animation function that clears the canvas (usually with clearRect), updates object positions/states, draws everything, then calls requestAnimationFrame(animate) to schedule the next frame. The callback receives a timestamp for time-based animations."
+    },
+    {
+      "id": 12,
+      "difficulty": "intermediate",
+      "question": "How do you handle High-DPI (Retina) displays in Canvas?",
+      "answer": "Get devicePixelRatio (typically 2 or 3). Set canvas.width = displayWidth * dpr and canvas.height = displayHeight * dpr. Set canvas.style.width/height in CSS pixels. Call ctx.scale(dpr, dpr) so coordinates stay in CSS pixel units."
+    },
+    {
+      "id": 13,
+      "difficulty": "intermediate",
+      "question": "What are the three overloads of drawImage()?",
+      "answer": "(1) drawImage(image, dx, dy) — draws image at (dx, dy). (2) drawImage(image, dx, dy, dw, dh) — draws scaled to (dw, dh). (3) drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh) — draws a sub-rectangle of the source, scaled to the destination rectangle."
+    },
+    {
+      "id": 14,
+      "difficulty": "intermediate",
+      "question": "How do you access and manipulate individual pixels on a canvas?",
+      "answer": "Use getImageData(x, y, w, h) to get pixel data as a Uint8ClampedArray of RGBA values. Modify the array directly (R, G, B, A per pixel). Write back with putImageData(imageData, x, y)."
+    },
+    {
+      "id": 15,
+      "difficulty": "intermediate",
+      "question": "What is the difference between transform() and setTransform()?",
+      "answer": "transform(a, b, c, d, e, f) multiplies the current transformation matrix by the given matrix. setTransform(a, b, c, d, e, f) resets the transformation to the identity matrix first, then applies the given matrix, ignoring any previous transforms."
+    },
+    {
+      "id": 16,
+      "difficulty": "intermediate",
+      "question": "How do you implement hit detection on canvas?",
+      "answer": "Methods include: (1) Bounding box AABB checks, (2) Distance checks for circles, (3) ctx.isPointInPath(x, y) for current path, (4) Color-based detection — draw each object with a unique color on an off-screen canvas and check pixel color."
+    },
+    {
+      "id": 17,
+      "difficulty": "intermediate",
+      "question": "What is an off-screen canvas and when would you use it?",
+      "answer": "A hidden canvas created via document.createElement('canvas') used for pre-rendering. Draw static elements once to the off-screen canvas, then copy the result to the visible canvas in each frame. Improves animation performance by avoiding redundant draw calls."
+    },
+    {
+      "id": 18,
+      "difficulty": "intermediate",
+      "question": "How do you create a clipping region on canvas?",
+      "answer": "Define a path (using the usual moveTo, lineTo, arc, etc.), then call ctx.clip(). All subsequent drawing is restricted to the area inside that path. Use save()/restore() around clips to revert to the full canvas."
+    },
+    {
+      "id": 19,
+      "difficulty": "advanced",
+      "question": "Explain dirty rectangle optimization in canvas animations.",
+      "answer": "Instead of clearing and redrawing the entire canvas each frame, track which regions changed. Use clearRect() only on those regions (dirty rectangles), then redraw only the affected areas. This dramatically reduces fill rate for large canvases with minimal changes."
+    },
+    {
+      "id": 20,
+      "difficulty": "advanced",
+      "question": "How do you implement a particle system efficiently on canvas?",
+      "answer": "Use a pool of particle objects to avoid garbage collection. Batch style changes (avoid changing fillStyle per particle). Use off-screen canvas for the background. Use requestAnimationFrame with delta-time calculations. Consider using typed arrays (Float32Array) for particle positions instead of objects."
+    },
+    {
+      "id": 21,
+      "difficulty": "advanced",
+      "question": "What are the performance implications of using shadows on canvas?",
+      "answer": "Shadows require the canvas to render the geometry into an off-screen buffer, apply a blur filter, composite the shadow, then render the original geometry. This multiplies the fill cost per operation. Use shadows sparingly, and consider pre-rendering shadow effects to an off-screen canvas."
+    },
+    {
+      "id": 22,
+      "difficulty": "advanced",
+      "question": "How would you implement a canvas-based image editor with filters?",
+      "answer": "Load an image with drawImage(). Apply filters by manipulating pixel data via getImageData/putImageData (e.g., brightness, contrast, sepia, invert, blur with convolution kernels). For performance, use Web Workers for pixel processing and apply multiple filters in a single pass over the pixel array."
+    },
+    {
+      "id": 23,
+      "difficulty": "advanced",
+      "question": "What is the willReadFrequently option and when should it be used?",
+      "answer": "The willReadFrequently option (passed to getContext) hints that the canvas will be frequently read via getImageData. When true, the browser uses a CPU-based backing store instead of GPU, making reads faster at the cost of slower drawing. Use it for pixel manipulation tools."
+    },
+    {
+      "id": 24,
+      "difficulty": "advanced",
+      "question": "How do you convert a canvas to an image (data URL or blob)?",
+      "answer": "canvas.toDataURL('image/png') returns a data URL. canvas.toDataURL('image/jpeg', quality) returns JPEG data URL. canvas.toBlob(callback, mimeType, quality) returns a Blob object asynchronously. Useful for saving canvas content or uploading to servers."
+    },
+    {
+      "id": 25,
+      "difficulty": "advanced",
+      "question": "Explain how to handle canvas transparency and preserve alpha channel.",
+      "answer": "By default, canvas has an alpha channel. To preserve transparency, ensure alpha is true (the default). When exporting with toDataURL, use 'image/png' to preserve alpha. For performance, set alpha: false if transparency is not needed — some browsers can optimize rendering."
+    },
+    {
+      "id": 26,
+      "difficulty": "advanced",
+      "question": "What is the difference between canvas and WebGL for 2D rendering?",
+      "answer": "Canvas 2D is a higher-level API suitable for most 2D use cases. WebGL (through getContext('webgl')) is a lower-level API based on OpenGL ES, providing hardware-accelerated rendering. WebGL is more powerful but requires shaders and is more complex. For thousands of sprites or special effects, WebGL is significantly faster."
+    },
+    {
+      "id": 27,
+      "difficulty": "advanced",
+      "question": "How do you implement a smooth animation with delta time?",
+      "answer": "Store the previous frame's timestamp. In each requestAnimationFrame callback, calculate deltaTime = currentTime - lastTime. Multiply object velocities by deltaTime/16.67 (normalized to 60fps) so animation speed is consistent regardless of actual frame rate."
+    },
+    {
+      "id": 28,
+      "difficulty": "advanced",
+      "question": "What security restrictions apply to canvas?",
+      "answer": "If you draw an image from a cross-origin source without setting img.crossOrigin = 'anonymous', the canvas becomes 'tainted'. Tainted canvases throw a SecurityError when calling toDataURL(), toBlob(), or getImageData(). This prevents unauthorized cross-origin data extraction."
+    },
+    {
+      "id": 29,
+      "difficulty": "advanced",
+      "question": "How would you create a custom canvas cursor for drawing apps?",
+      "answer": "Track mouse position with mousemove events. In the animation loop or on mouse events, draw a cursor shape (crosshair, brush preview circle, etc.) at the current mouse coordinates on a separate layer. Convert mouse coordinates to canvas coordinates using getBoundingClientRect() and scaling for Retina."
+    },
+    {
+      "id": 30,
+      "difficulty": "advanced",
+      "question": "Explain how to create a canvas-based charting library architecture.",
+      "answer": "Core components: (1) Data model layer parsing input data. (2) Scaling/axis module computing range and tick marks. (3) Renderer handling canvas drawing with transform for margins. (4) Legend and tooltip modules. (5) Animation engine for transitions. Use a dirty-rectangle system and off-screen canvas for axes (which rarely change) to optimize performance."
+    }
+  ]
+}

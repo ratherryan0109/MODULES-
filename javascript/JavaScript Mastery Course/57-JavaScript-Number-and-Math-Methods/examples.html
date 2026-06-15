@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Number and Math Methods - Examples</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 960px; margin: 0 auto; padding: 20px; background: #f8fafc; color: #334155; }
+    h1 { color: #d97706; border-bottom: 2px solid #d97706; padding-bottom: 10px; }
+    h2 { color: #b45309; margin-top: 30px; }
+    .example { background: #fff; border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #e2e8f0; border-left: 4px solid #d97706; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .example h3 { color: #d97706; margin-top: 0; }
+    .example p { color: #64748b; font-size: 0.95rem; }
+    .example .code-block { background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 6px; overflow-x: auto; margin: 12px 0; }
+    .example .code-block code { font-family: "Cascadia Code", "Fira Code", "Consolas", monospace; font-size: 14px; }
+    .output { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; margin-top: 10px; font-family: "Cascadia Code", "Fira Code", monospace; font-size: 14px; color: #334155; }
+    .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 12px; margin: 10px 0; color: #92400e; }
+    button { background: #d97706; color: #fff; border: none; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: background 0.15s; }
+    button:hover { background: #b45309; }
+    button:active { background: #92400e; }
+    .example-header { display: flex; justify-content: space-between; align-items: center; }
+    .badge { background: #fef3c7; color: #92400e; font-size: 12px; padding: 2px 10px; border-radius: 12px; font-weight: 600; }
+    @media (max-width: 640px) { body { padding: 12px; } .example { padding: 14px; } }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Number and Math Methods</h1>
+  <p>Deep dive into Number methods (isNaN, isFinite, parseFloat, parseInt) and advanced Math operations.</p>
+  <p><strong>Note:</strong> Open the browser console (F12) to see JavaScript output.</p>
+
+  <div class="note">
+    <strong>Key Concepts:</strong> Number.isNaN vs global isNaN, Number.isFinite vs global isFinite, Number.parseInt and parseFloat, Number.isInteger and isSafeInteger, Number.EPSILON precision
+  </div>
+
+  <div class="example">
+    <div class="example-header">
+      <h3>Example 1: Basic JavaScript Number and Math Methods</h3>
+      <span class="badge">Number.isNaN vs global isNaN</span>
+    </div>
+    <p>Demonstrating basic javascript number and math methods using number.isnan vs global isnan.</p>
+    <div class="code-block"><code>// Basic demonstration of javascript number and math methods<br>console.log(&quot;=== JavaScript Number and Math Methods ===&quot;);<br><br>const example1_message = &quot;JavaScript Number and Math Methods fundamentals&quot;;<br>console.log(&quot;Message:&quot;, example1_message);<br><br>// Display in output area<br>document.getElementById(&quot;ex1_output&quot;).textContent =<br>&nbsp;&nbsp;&quot;Output: &quot; + example1_message;</code></div>
+    <button onclick="runExample1()">Run Example 1</button>
+    <div class="output" id="ex1_output">Click "Run Example" to see output</div>
+  </div>
+
+  <div class="example">
+    <div class="example-header">
+      <h3>Example 2: Practical Implementation</h3>
+      <span class="badge">Number.isFinite vs global isFinite</span>
+    </div>
+    <p>Demonstrating practical implementation using number.isfinite vs global isfinite.</p>
+    <div class="code-block"><code>// Practical implementation of javascript number and math methods<br>function processExample57(data) {<br>&nbsp;&nbsp;return data.map(item =&gt; {<br>&nbsp;&nbsp;&nbsp;&nbsp;return `Processed: ${item}`;<br>&nbsp;&nbsp;});<br>}<br><br>const ex2_input = [&quot;Number.isNaN vs global isNaN&quot;, &quot;Number.isFinite vs global isFinite&quot;];<br>const ex2_result = processExample57(ex2_input);<br>console.log(&quot;Result:&quot;, ex2_result);<br><br>document.getElementById(&quot;ex2_output&quot;).textContent =<br>&nbsp;&nbsp;&quot;[&quot; + ex2_result.join(&quot;, &quot;) + &quot;]&quot;;</code></div>
+    <button onclick="runExample2()">Run Example 2</button>
+    <div class="output" id="ex2_output">Click "Run Example" to see output</div>
+  </div>
+
+  <div class="example">
+    <div class="example-header">
+      <h3>Example 3: Number.isNaN vs global isNaN</h3>
+      <span class="badge">Number.isNaN vs global isNaN</span>
+    </div>
+    <p>Demonstrating number.isnan vs global isnan using number.isnan vs global isnan.</p>
+    <div class="code-block"><code>// Example demonstrating number.isnan vs global isnan<br>const ex3_data = [10, 20, 30, 40, 50];<br>console.log(&quot;Number.isNaN vs global isNaN example:&quot;);<br>console.log(&quot;Input:&quot;, ex3_data);<br><br>// Transform the data<br>const ex3_transformed = ex3_data.map(x =&gt; x * 2);<br>console.log(&quot;Transformed:&quot;, ex3_transformed);<br><br>document.getElementById(&quot;ex3_output&quot;).textContent =<br>&nbsp;&nbsp;&quot;[&quot; + ex3_transformed.join(&quot;, &quot;) + &quot;]&quot;;</code></div>
+    <button onclick="runExample3()">Run Example 3</button>
+    <div class="output" id="ex3_output">Click "Run Example" to see output</div>
+  </div>
+
+  <div class="example">
+    <div class="example-header">
+      <h3>Example 4: Number.isFinite vs global isFinite</h3>
+      <span class="badge">Number.isFinite vs global isFinite</span>
+    </div>
+    <p>Demonstrating number.isfinite vs global isfinite using number.isfinite vs global isfinite.</p>
+    <div class="code-block"><code>// Advanced: Combining number.isnan vs global isnan with number.isfinite vs global isfinite<br>const ex4_data = [<br>&nbsp;&nbsp;{ id: 1, value: &quot;Number.isNaN vs global isNaN&quot; },<br>&nbsp;&nbsp;{ id: 2, value: &quot;Number.isFinite vs global isFinite&quot; },<br>&nbsp;&nbsp;{ id: 3, value: &quot;Number.parseInt and parseFloat&quot; }<br>];<br><br>function process57(items) {<br>&nbsp;&nbsp;return items.filter(item =&gt; item.id &gt; 0)<br>&nbsp;&nbsp;&nbsp;&nbsp;.map(item =&gt; item.value.toUpperCase());<br>}<br><br>console.log(&quot;Processed:&quot;, process57(ex4_data));<br>document.getElementById(&quot;ex4_output&quot;).textContent =<br>&nbsp;&nbsp;&quot;[&quot; + process57(ex4_data).join(&quot;, &quot;) + &quot;]&quot;;</code></div>
+    <button onclick="runExample4()">Run Example 4</button>
+    <div class="output" id="ex4_output">Click "Run Example" to see output</div>
+  </div>
+
+  <div class="example">
+    <div class="example-header">
+      <h3>Example 5: Number.parseInt and parseFloat</h3>
+      <span class="badge">Number.parseInt and parseFloat</span>
+    </div>
+    <p>Demonstrating number.parseint and parsefloat using number.parseint and parsefloat.</p>
+    <div class="code-block"><code>// Real-world scenario using number.parseint and parsefloat<br>class JavaScriptNumberandMathMethodsHandler {<br>&nbsp;&nbsp;constructor() {<br>&nbsp;&nbsp;&nbsp;&nbsp;this.cache = new Map();<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;add(key, value) {<br>&nbsp;&nbsp;&nbsp;&nbsp;this.cache.set(key, value);<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(`Added: ${key} =&gt; ${value}`);<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;get(key) {<br>&nbsp;&nbsp;&nbsp;&nbsp;return this.cache.get(key);<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;getAll() {<br>&nbsp;&nbsp;&nbsp;&nbsp;return Array.from(this.cache.entries());<br>&nbsp;&nbsp;}<br>}<br><br>const ex5_handler = new JavaScriptNumberandMathMethodsHandler();<br>ex5_handler.add(&quot;concept1&quot;, &quot;Number.isNaN vs global isNaN&quot;);<br>ex5_handler.add(&quot;concept2&quot;, &quot;Number.isFinite vs global isFinite&quot;);<br>console.log(&quot;All entries:&quot;, ex5_handler.getAll());<br>document.getElementById(&quot;ex5_output&quot;).textContent =<br>&nbsp;&nbsp;JSON.stringify(ex5_handler.getAll());</code></div>
+    <button onclick="runExample5()">Run Example 5</button>
+    <div class="output" id="ex5_output">Click "Run Example" to see output</div>
+  </div>
+
+  <div class="example">
+    <div class="example-header">
+      <h3>Example 6: Number.isInteger and isSafeInteger</h3>
+      <span class="badge">Number.isInteger and isSafeInteger</span>
+    </div>
+    <p>Demonstrating number.isinteger and issafeinteger using number.isinteger and issafeinteger.</p>
+    <div class="code-block"><code>// Performance considerations for javascript number and math methods<br>const ex6_size = 10000;<br>console.log(&quot;Testing javascript number and math methods performance...&quot;);<br><br>console.time(&quot;javascriptnumberandmathmethods_operation&quot;);<br>const ex6_data = Array.from({ length: ex6_size }, (_, i) =&gt; i);<br>const ex6_result = ex6_data<br>&nbsp;&nbsp;.filter(n =&gt; n % 2 === 0)<br>&nbsp;&nbsp;.map(n =&gt; n * 2)<br>&nbsp;&nbsp;.reduce((a, b) =&gt; a + b, 0);<br>console.timeEnd(&quot;javascriptnumberandmathmethods_operation&quot;);<br><br>console.log(&quot;Result after processing:&quot;, ex6_result);<br>document.getElementById(&quot;ex6_output&quot;).textContent =<br>&nbsp;&nbsp;&quot;Processed &quot; + ex6_size + &quot; items. Result: &quot; + ex6_result;</code></div>
+    <button onclick="runExample6()">Run Example 6</button>
+    <div class="output" id="ex6_output">Click "Run Example" to see output</div>
+  </div>
+
+  <div class="example">
+    <div class="example-header">
+      <h3>Example 7: Error Handling</h3>
+      <span class="badge">Number.EPSILON precision</span>
+    </div>
+    <p>Demonstrating error handling using number.epsilon precision.</p>
+    <div class="code-block"><code>// Error handling patterns for javascript number and math methods<br>function safeExecute57(fn, fallback) {<br>&nbsp;&nbsp;try {<br>&nbsp;&nbsp;&nbsp;&nbsp;const result = fn();<br>&nbsp;&nbsp;&nbsp;&nbsp;return { success: true, data: result };<br>&nbsp;&nbsp;} catch (error) {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.error(&quot;Error:&quot;, error.message);<br>&nbsp;&nbsp;&nbsp;&nbsp;return { success: false, data: fallback };<br>&nbsp;&nbsp;}<br>}<br><br>// Test with valid operation<br>const ex7_result1 = safeExecute57(() =&gt; {<br>&nbsp;&nbsp;return &quot;javascript number and math methods executed successfully&quot;;<br>}, &quot;fallback&quot;);<br><br>// Test with failing operation<br>const ex7_result2 = safeExecute57(() =&gt; {<br>&nbsp;&nbsp;throw new Error(&quot;Test error&quot;);<br>}, &quot;fallback value&quot;);<br><br>console.log(&quot;Result 1:&quot;, ex7_result1);<br>console.log(&quot;Result 2:&quot;, ex7_result2);<br>document.getElementById(&quot;ex7_output&quot;).textContent =<br>&nbsp;&nbsp;&quot;Success: &quot; + ex7_result1.data + &quot; | Fallback: &quot; + ex7_result2.data;</code></div>
+    <button onclick="runExample7()">Run Example 7</button>
+    <div class="output" id="ex7_output">Click "Run Example" to see output</div>
+  </div>
+
+  <div class="example">
+    <div class="example-header">
+      <h3>Example 8: Integration Example</h3>
+      <span class="badge">Math.trunc, sign, cbrt, hypot</span>
+    </div>
+    <p>Demonstrating integration example using math.trunc, sign, cbrt, hypot.</p>
+    <div class="code-block"><code>// Integrating javascript number and math methods with other JavaScript features<br>const ex8_config = {<br>&nbsp;&nbsp;topic: &quot;JavaScript Number and Math Methods&quot;,<br>&nbsp;&nbsp;concepts: [&quot;Number.isNaN vs global isNaN&quot;, &quot;Number.isFinite vs global isFinite&quot;, &quot;Number.parseInt and parseFloat&quot;],<br>&nbsp;&nbsp;level: &quot;intermediate&quot;<br>};<br><br>function build57(config) {<br>&nbsp;&nbsp;return `<br>Module: ${config.topic}<br>Concepts: ${config.concepts.join(&quot;, &quot;)}<br>Level: ${config.level}<br>&nbsp;&nbsp;`.trim();<br>}<br><br>console.log(build57(ex8_config));<br>document.getElementById(&quot;ex8_output&quot;).textContent = build57(ex8_config);</code></div>
+    <button onclick="runExample8()">Run Example 8</button>
+    <div class="output" id="ex8_output">Click "Run Example" to see output</div>
+  </div>
+
+  <script>
+    function runExample1() {
+      try {
+        // Basic demonstration of javascript number and math methods
+        console.log("=== JavaScript Number and Math Methods ===");
+        
+        const example1_message = "JavaScript Number and Math Methods fundamentals";
+        console.log("Message:", example1_message);
+        
+        // Display in output area
+        document.getElementById("ex1_output").textContent =
+          "Output: " + example1_message;
+      } catch(e) {
+        console.error("Error:", e.message);
+        document.getElementById("ex1_output").textContent = "Error: " + e.message;
+      }
+    }
+
+    function runExample2() {
+      try {
+        // Practical implementation of javascript number and math methods
+        function processExample57(data) {
+          return data.map(item => {
+            return `Processed: ${item}`;
+          });
+        }
+        
+        const ex2_input = ["Number.isNaN vs global isNaN", "Number.isFinite vs global isFinite"];
+        const ex2_result = processExample57(ex2_input);
+        console.log("Result:", ex2_result);
+        
+        document.getElementById("ex2_output").textContent =
+          "[" + ex2_result.join(", ") + "]";
+      } catch(e) {
+        console.error("Error:", e.message);
+        document.getElementById("ex2_output").textContent = "Error: " + e.message;
+      }
+    }
+
+    function runExample3() {
+      try {
+        // Example demonstrating number.isnan vs global isnan
+        const ex3_data = [10, 20, 30, 40, 50];
+        console.log("Number.isNaN vs global isNaN example:");
+        console.log("Input:", ex3_data);
+        
+        // Transform the data
+        const ex3_transformed = ex3_data.map(x => x * 2);
+        console.log("Transformed:", ex3_transformed);
+        
+        document.getElementById("ex3_output").textContent =
+          "[" + ex3_transformed.join(", ") + "]";
+      } catch(e) {
+        console.error("Error:", e.message);
+        document.getElementById("ex3_output").textContent = "Error: " + e.message;
+      }
+    }
+
+    function runExample4() {
+      try {
+        // Advanced: Combining number.isnan vs global isnan with number.isfinite vs global isfinite
+        const ex4_data = [
+          { id: 1, value: "Number.isNaN vs global isNaN" },
+          { id: 2, value: "Number.isFinite vs global isFinite" },
+          { id: 3, value: "Number.parseInt and parseFloat" }
+        ];
+        
+        function process57(items) {
+          return items.filter(item => item.id > 0)
+            .map(item => item.value.toUpperCase());
+        }
+        
+        console.log("Processed:", process57(ex4_data));
+        document.getElementById("ex4_output").textContent =
+          "[" + process57(ex4_data).join(", ") + "]";
+      } catch(e) {
+        console.error("Error:", e.message);
+        document.getElementById("ex4_output").textContent = "Error: " + e.message;
+      }
+    }
+
+    function runExample5() {
+      try {
+        // Real-world scenario using number.parseint and parsefloat
+        class JavaScriptNumberandMathMethodsHandler {
+          constructor() {
+            this.cache = new Map();
+          }
+          add(key, value) {
+            this.cache.set(key, value);
+            console.log(`Added: ${key} => ${value}`);
+          }
+          get(key) {
+            return this.cache.get(key);
+          }
+          getAll() {
+            return Array.from(this.cache.entries());
+          }
+        }
+        
+        const ex5_handler = new JavaScriptNumberandMathMethodsHandler();
+        ex5_handler.add("concept1", "Number.isNaN vs global isNaN");
+        ex5_handler.add("concept2", "Number.isFinite vs global isFinite");
+        console.log("All entries:", ex5_handler.getAll());
+        document.getElementById("ex5_output").textContent =
+          JSON.stringify(ex5_handler.getAll());
+      } catch(e) {
+        console.error("Error:", e.message);
+        document.getElementById("ex5_output").textContent = "Error: " + e.message;
+      }
+    }
+
+    function runExample6() {
+      try {
+        // Performance considerations for javascript number and math methods
+        const ex6_size = 10000;
+        console.log("Testing javascript number and math methods performance...");
+        
+        console.time("javascriptnumberandmathmethods_operation");
+        const ex6_data = Array.from({ length: ex6_size }, (_, i) => i);
+        const ex6_result = ex6_data
+          .filter(n => n % 2 === 0)
+          .map(n => n * 2)
+          .reduce((a, b) => a + b, 0);
+        console.timeEnd("javascriptnumberandmathmethods_operation");
+        
+        console.log("Result after processing:", ex6_result);
+        document.getElementById("ex6_output").textContent =
+          "Processed " + ex6_size + " items. Result: " + ex6_result;
+      } catch(e) {
+        console.error("Error:", e.message);
+        document.getElementById("ex6_output").textContent = "Error: " + e.message;
+      }
+    }
+
+    function runExample7() {
+      try {
+        // Error handling patterns for javascript number and math methods
+        function safeExecute57(fn, fallback) {
+          try {
+            const result = fn();
+            return { success: true, data: result };
+          } catch (error) {
+            console.error("Error:", error.message);
+            return { success: false, data: fallback };
+          }
+        }
+        
+        // Test with valid operation
+        const ex7_result1 = safeExecute57(() => {
+          return "javascript number and math methods executed successfully";
+        }, "fallback");
+        
+        // Test with failing operation
+        const ex7_result2 = safeExecute57(() => {
+          throw new Error("Test error");
+        }, "fallback value");
+        
+        console.log("Result 1:", ex7_result1);
+        console.log("Result 2:", ex7_result2);
+        document.getElementById("ex7_output").textContent =
+          "Success: " + ex7_result1.data + " | Fallback: " + ex7_result2.data;
+      } catch(e) {
+        console.error("Error:", e.message);
+        document.getElementById("ex7_output").textContent = "Error: " + e.message;
+      }
+    }
+
+    function runExample8() {
+      try {
+        // Integrating javascript number and math methods with other JavaScript features
+        const ex8_config = {
+          topic: "JavaScript Number and Math Methods",
+          concepts: ["Number.isNaN vs global isNaN", "Number.isFinite vs global isFinite", "Number.parseInt and parseFloat"],
+          level: "intermediate"
+        };
+        
+        function build57(config) {
+          return `
+        Module: ${config.topic}
+        Concepts: ${config.concepts.join(", ")}
+        Level: ${config.level}
+          `.trim();
+        }
+        
+        console.log(build57(ex8_config));
+        document.getElementById("ex8_output").textContent = build57(ex8_config);
+      } catch(e) {
+        console.error("Error:", e.message);
+        document.getElementById("ex8_output").textContent = "Error: " + e.message;
+      }
+    }
+
+  </script>
+</body>
+</html>

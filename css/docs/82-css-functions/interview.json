@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is the calc() function in CSS?", "answer": "calc() performs mathematical calculations in CSS values, allowing mixed units like calc(100% - 40px)." },
+    { "question": "What is the min() function in CSS?", "answer": "min() selects the smallest value from a comma-separated list, e.g., width: min(100%, 1200px) for responsive sizing." },
+    { "question": "What is the max() function in CSS?", "answer": "max() selects the largest value from a comma-separated list, e.g., width: max(300px, 50%) to enforce a minimum size." },
+    { "question": "What is the clamp() function in CSS?", "answer": "clamp(MIN, PREFERRED, MAX) clamps a value between a minimum and maximum, e.g., font-size: clamp(1rem, 2vw, 2rem)." },
+    { "question": "What does the attr() function do in CSS?", "answer": "attr() retrieves the value of an HTML attribute and uses it in CSS. Currently, it is mainly supported for the content property." },
+    { "question": "What does the url() function do in CSS?", "answer": "url() specifies a file path for resources like images, fonts, or SVGs. Example: background-image: url('image.jpg')." },
+    { "question": "What does the var() function do in CSS?", "answer": "var() inserts the value of a CSS custom property: color: var(--primary-color)." },
+    { "question": "What is the difference between min() and max()?", "answer": "min() picks the smallest value (upper bound), max() picks the largest value (lower bound). min() prevents an element from being too large; max() prevents it from being too small." },
+    { "question": "Can you nest CSS functions inside each other?", "answer": "Yes, functions can be nested: clamp(min(1rem, 2vw), 50%, max(3rem, 5vw))." },
+    { "question": "What types of values can CSS functions return?", "answer": "CSS functions can return lengths, percentages, angles, times, numbers, colors, and other CSS value types." }
+  ],
+  "intermediate": [
+    { "question": "How does calc() handle operator precedence?", "answer": "calc() follows standard arithmetic precedence (* and / before + and -). Use parentheses to control evaluation: calc((100% - 20px) / 2)." },
+    { "question": "What are common use cases for min() in responsive design?", "answer": "width: min(100%, 1200px) sets a maximum width while allowing smaller screens to use full width, replacing max-width." },
+    { "question": "How do you use clamp() for fluid typography?", "answer": "font-size: clamp(1rem, 0.5rem + 2vw, 2rem) creates text that scales between 1rem and 2rem based on viewport width." },
+    { "question": "Can calc() be used with CSS custom properties?", "answer": "Yes, calc() works with custom properties: width: calc(100% - var(--sidebar-width))." },
+    { "question": "What is the attr() function limitation in CSS?", "answer": "Currently, attr() is only fully supported in the content property. Using it for other properties has limited browser support." },
+    { "question": "How do you use url() with SVG fragments?", "answer": "url('sprite.svg#icon-name') references a specific SVG element by ID within an SVG sprite file." },
+    { "question": "What is the difference between min-width and min() for width?", "answer": "min-width is a property that sets a minimum width. min(100%, 500px) as a value for width sets a maximum of 500px while allowing smaller sizes." },
+    { "question": "How do CSS functions interact with each other in complex expressions?", "answer": "Functions can be combined: clamp(min(1rem, 3vw), 2rem + 1vw, max(3rem, 5vw))." },
+    { "question": "How does calc() handle division by zero?", "answer": "Division by zero makes the calc() expression invalid, and the declaration is ignored." },
+    { "question": "Can you use env() for safe area insets with calc()?", "answer": "Yes: padding-bottom: calc(env(safe-area-inset-bottom) + 20px) for safe area-aware spacing on notched devices." }
+  ],
+  "advanced": [
+    { "question": "How do CSS min(), max(), and clamp() compare to using media queries for responsive sizing?", "answer": "These functions provide continuous, fluid sizing without breakpoints. Media queries create discrete jumps. Functions are simpler and often more performant." },
+    { "question": "How does calc() interact with CSS Grid's fr unit?", "answer": "calc() cannot directly operate on fr units (they resolve at a different stage). Use calc() with percentages inside minmax() instead." },
+    { "question": "What are the performance implications of calc() in animations?", "answer": "calc() values are recalculated on every frame during animations, which can impact performance if used in complex expressions on many elements." },
+    { "question": "How do you use attr() with CSS custom properties for dynamic theming?", "answer": "While attr() is limited in CSS, you can set custom properties via inline style attributes (style='--value: attr(data-value)') using JavaScript." },
+    { "question": "How does clamp() interact with CSS Container Queries and cqi units?", "answer": "clamp(1rem, 2cqi + 1rem, 3rem) creates container-relative fluid typography, scaling based on the container's inline size." },
+    { "question": "What is the relationship between env() and safe area insets in CSS functions?", "answer": "env() provides platform environment variables (like safe-area-inset-top) that can be used in calc() for notched device padding." },
+    { "question": "How do you create a responsive grid with min() and max() instead of repeat()?", "answer": "Use grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)) for a grid that adapts without overflow." },
+    { "question": "What is the syntax for using toggle() and other deprecated functions?", "answer": "toggle() was proposed but never widely implemented. Stick to var(), calc(), min(), max(), clamp(), attr(), and url()." },
+    { "question": "How do CSS functions work with CSS custom properties in @keyframe animations?", "answer": "Custom properties used in calc() inside keyframes are evaluated per frame. @property-registered properties animate smoothly when used with calc()." },
+    { "question": "What are the best practices for combining calc() with CSS variables in large design systems?", "answer": "Keep calc() expressions simple, avoid deeply nested calc() calls, precompute values where possible, and use descriptive variable names." }
+  ]
+}

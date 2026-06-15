@@ -1,0 +1,122 @@
+[
+    {
+        "question": "What protocol does a WebSocket connection initially use to establish the connection?",
+        "options": ["TCP directly", "HTTP", "UDP", "FTP"],
+        "answer": "b",
+        "explanation": "WebSocket connections start as HTTP requests with an Upgrade header. After the server responds with 101 Switching Protocols, the connection upgrades to the WebSocket protocol."
+    },
+    {
+        "question": "Which HTTP status code indicates a successful WebSocket upgrade?",
+        "options": ["200 OK", "101 Switching Protocols", "301 Moved Permanently", "204 No Content"],
+        "answer": "b",
+        "explanation": "The server responds with HTTP 101 Switching Protocols to confirm the WebSocket upgrade. This changes the connection from HTTP to the WebSocket protocol."
+    },
+    {
+        "question": "What is the correct constructor to create a WebSocket connection?",
+        "options": ["new WebSocket('ws://server.com')", "WebSocket.create('ws://server.com')", "new Socket('ws://server.com')", "WebSocket.connect('ws://server.com')"],
+        "answer": "a",
+        "explanation": "WebSocket connections are created with the new WebSocket(url) constructor, passing the WebSocket server URL with ws:// or wss:// scheme."
+    },
+    {
+        "question": "What is the primary advantage of WebSockets over HTTP long-polling?",
+        "options": ["No server required", "Full-duplex communication over a single connection", "Faster DNS resolution", "Built-in caching"],
+        "answer": "b",
+        "explanation": "WebSockets provide full-duplex communication over a single TCP connection, meaning both client and server can send messages at any time without the overhead of repeated HTTP requests."
+    },
+    {
+        "question": "Which WebSocket event is fired when a message is received?",
+        "options": ["data", "message", "receive", "incoming"],
+        "answer": "b",
+        "explanation": "The 'message' event fires whenever data is received from the server. The received data is available in event.data."
+    },
+    {
+        "question": "How do you send data through an open WebSocket connection?",
+        "options": ["socket.write(data)", "socket.send(data)", "socket.transmit(data)", "socket.push(data)"],
+        "answer": "b",
+        "explanation": "The send() method on the WebSocket instance sends data to the server. It accepts strings, ArrayBuffers, or Blobs."
+    },
+    {
+        "question": "What does WebSocket.readyState value of 1 (OPEN) indicate?",
+        "options": ["Connection is being established", "Connection is open and ready for communication", "Connection is closing", "Connection is closed"],
+        "answer": "b",
+        "explanation": "OPEN (value 1) means the WebSocket connection is established and ready to send and receive messages. Other states are CONNECTING (0), CLOSING (2), and CLOSED (3)."
+    },
+    {
+        "question": "What security protocol should WebSockets use in production?",
+        "options": ["ws://", "wss://", "https://", "tls://"],
+        "answer": "b",
+        "explanation": "wss:// (WebSocket Secure) uses TLS/SSL encryption, just like HTTPS. It should always be used in production to prevent eavesdropping and man-in-the-middle attacks."
+    },
+    {
+        "question": "What is the purpose of the WebSocket close event's code property?",
+        "options": ["To identify the server", "To indicate why the connection closed", "To specify the next reconnect delay", "To encrypt the close message"],
+        "answer": "b",
+        "explanation": "The close event's code property provides a numeric status code (e.g., 1000 for normal closure, 1006 for abnormal) indicating why the connection was closed."
+    },
+    {
+        "question": "Which of the following can be sent via WebSocket.send()?",
+        "options": ["Only strings", "Strings, ArrayBuffers, and Blobs", "Only JSON objects", "Only binary data"],
+        "answer": "b",
+        "explanation": "WebSocket.send() accepts strings (text messages), ArrayBuffers, TypedArrays, and Blobs (binary messages). Objects must be serialized first."
+    },
+    {
+        "question": "What happens if you call send() before the WebSocket is open?",
+        "options": ["The data is sent anyway", "An exception is thrown", "The data is queued until the connection opens", "The connection is automatically opened"],
+        "answer": "b",
+        "explanation": "Calling send() on a WebSocket that is not in the OPEN state throws an InvalidStateError. Always check readyState === WebSocket.OPEN before sending."
+    },
+    {
+        "question": "What is the WebSocket subprotocol?",
+        "options": ["An alternative to WebSocket", "An application-level protocol negotiated during handshake", "A security layer for WebSocket", "A compression algorithm"],
+        "answer": "b",
+        "explanation": "Subprotocols are application-level protocols negotiated during the WebSocket handshake via the Sec-WebSocket-Protocol header, allowing the server to select a mutually supported protocol."
+    },
+    {
+        "question": "How does a WebSocket connection close gracefully?",
+        "options": ["The browser closes the TCP connection", "A close frame is sent with a status code", "The HTTP connection times out", "The server must close first"],
+        "answer": "b",
+        "explanation": "A graceful WebSocket close involves sending a close frame with a status code (e.g., 1000) and an optional reason. This allows both sides to clean up resources."
+    },
+    {
+        "question": "What is Sec-WebSocket-Key used for in the handshake?",
+        "options": ["Encryption key for messages", "To verify the server understands WebSocket protocol", "Authentication token", "Session identifier"],
+        "answer": "b",
+        "explanation": "The Sec-WebSocket-Key is a random base64-encoded value sent by the client. The server must return a specific hash of this value in Sec-WebSocket-Accept, proving it understands the WebSocket protocol."
+    },
+    {
+        "question": "Can WebSocket messages be sent with a guarantee of delivery order?",
+        "options": ["No, order is not guaranteed", "Yes, WebSocket preserves message order within a connection", "Only for text messages", "Only with the ordered option set"],
+        "answer": "b",
+        "explanation": "WebSocket messages are delivered in order as they are sent within the same connection. The WebSocket protocol guarantees ordered delivery of frames."
+    },
+    {
+        "question": "What is the default binaryType value for a WebSocket?",
+        "options": ["arraybuffer", "blob", "binary", "uint8array"],
+        "answer": "b",
+        "explanation": "The default binaryType for WebSocket is 'blob'. It can be changed to 'arraybuffer' for direct ArrayBuffer access to binary data."
+    },
+    {
+        "question": "What happens when a WebSocket receives a message larger than the maximum frame size?",
+        "options": ["The message is truncated", "The connection is closed with code 1009", "The message is split into smaller frames", "An error event is fired but connection continues"],
+        "answer": "b",
+        "explanation": "If a WebSocket receives a frame that exceeds the maximum allowed size, the connection is closed with close code 1009 (Message Too Big)."
+    },
+    {
+        "question": "Which API did WebSockets replace for real-time web communication?",
+        "options": ["XMLHttpRequest", "HTTP long-polling and Comet", "Server-Sent Events", "WebRTC"],
+        "answer": "b",
+        "explanation": "Before WebSockets, real-time web communication relied on HTTP long-polling and Comet techniques, which involved maintaining multiple HTTP connections and polling for updates."
+    },
+    {
+        "question": "What is the maximum number of WebSocket connections a browser typically allows per domain?",
+        "options": ["1", "Unlimited", "Typically 6-10 per domain", "255"],
+        "answer": "c",
+        "explanation": "Browsers typically limit the number of simultaneous WebSocket connections per domain to 6-10, similar to HTTP connection limits. This varies by browser."
+    },
+    {
+        "question": "What is a key difference between WebSockets and Server-Sent Events (SSE)?",
+        "options": ["WebSockets are full-duplex, SSE is server-to-client only", "SSE is newer than WebSockets", "WebSockets only work with HTTP/2", "SSE supports binary data, WebSockets do not"],
+        "answer": "a",
+        "explanation": "WebSockets provide full-duplex communication (both client and server can send messages). SSE (Server-Sent Events) is uni-directional — only the server can push data to the client."
+        }
+]

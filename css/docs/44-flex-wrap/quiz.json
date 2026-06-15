@@ -1,0 +1,147 @@
+{
+  "module": "44-flex-wrap",
+  "title": "Flex Wrap",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the default value of flex-wrap?",
+      "options": ["wrap", "nowrap", "wrap-reverse", "auto"],
+      "correctAnswer": 1,
+      "explanation": "flex-wrap defaults to nowrap, meaning items stay on one line."
+    },
+    {
+      "id": 2,
+      "question": "Which flex-wrap value causes items to overflow the container?",
+      "options": ["wrap", "nowrap", "wrap-reverse", "none"],
+      "correctAnswer": 1,
+      "explanation": "nowrap keeps items on one line, which can cause overflow if they don't fit."
+    },
+    {
+      "id": 3,
+      "question": "Which property becomes available only when flex-wrap causes multiple lines?",
+      "options": ["align-items", "justify-content", "align-content", "align-self"],
+      "correctAnswer": 2,
+      "explanation": "align-content controls distribution of lines when there are multiple lines (wrapping)."
+    },
+    {
+      "id": 4,
+      "question": "What does wrap-reverse do differently from wrap?",
+      "options": ["Reverses the main axis", "Reverses the cross axis direction", "Reverses item order", "Hides items"],
+      "correctAnswer": 1,
+      "explanation": "wrap-reverse reverses the cross axis direction, so lines stack from bottom to top."
+    },
+    {
+      "id": 5,
+      "question": "Which shorthand combines flex-direction and flex-wrap?",
+      "options": ["flex", "flex-flow", "flex-box", "flex-layout"],
+      "correctAnswer": 1,
+      "explanation": "flex-flow is the shorthand for flex-direction and flex-wrap."
+    },
+    {
+      "id": 6,
+      "question": "With flex-wrap: wrap and flex-direction: row, how do new lines form?",
+      "options": ["Below the previous line", "Above the previous line", "To the right", "To the left"],
+      "correctAnswer": 0,
+      "explanation": "With wrap, new lines appear below (in the cross axis direction)."
+    },
+    {
+      "id": 7,
+      "question": "What happens to items when the container is too narrow with flex-wrap: wrap?",
+      "options": ["They overflow", "They wrap to new lines", "They shrink to fit", "They disappear"],
+      "correctAnswer": 1,
+      "explanation": "With flex-wrap: wrap, items will wrap to new lines when there isn't enough space."
+    },
+    {
+      "id": 8,
+      "question": "Is flex-flow: column wrap a valid CSS declaration?",
+      "options": ["Yes", "No, wrap only works with row", "No, columns can't wrap", "Only in Safari"],
+      "correctAnswer": 0,
+      "explanation": "flex-flow: column wrap is valid; items wrap to new columns."
+    },
+    {
+      "id": 9,
+      "question": "What is a common responsive design pattern using flex-wrap?",
+      "options": ["Flex items with fixed widths", "Flex items with flex-basis that creates a minimum width", "Using only nowrap", "Using block display"],
+      "correctAnswer": 1,
+      "explanation": "flex-basis sets a minimum width for items, and when combined with wrap, creates responsive rows."
+    },
+    {
+      "id": 10,
+      "question": "How many lines will items form with flex-wrap: nowrap?",
+      "options": ["1", "2", "3", "As many as needed"],
+      "correctAnswer": 0,
+      "explanation": "nowrap keeps all items on a single line, regardless of container width."
+    },
+    {
+      "id": 11,
+      "question": "Which value of flex-wrap would you use for a responsive image gallery?",
+      "options": ["nowrap", "wrap", "wrap-reverse", "none"],
+      "correctAnswer": 1,
+      "explanation": "wrap allows images to flow onto multiple rows as the viewport shrinks."
+    },
+    {
+      "id": 12,
+      "question": "What is the correct syntax for flex-flow shorthand equivalent to 'column wrap'?",
+      "options": ["flex-flow: wrap column;", "flex-flow: column wrap;", "flow: column wrap;", "flex: column wrap;"],
+      "correctAnswer": 1,
+      "explanation": "flex-flow takes direction first, then wrap: flex-flow: column wrap;"
+    },
+    {
+      "id": 13,
+      "question": "Does flex-wrap affect alignment on the main axis?",
+      "options": ["Yes, significantly", "No, it only affects the cross axis behavior", "Yes, only for wrap-reverse", "It disables alignment"],
+      "correctAnswer": 1,
+      "explanation": "flex-wrap controls cross axis wrapping behavior, not main axis alignment."
+    },
+    {
+      "id": 14,
+      "question": "With flex-wrap: wrap-reverse, where do items first appear?",
+      "options": ["Top of the container", "Bottom of the container", "Center of the container", "Left of the container"],
+      "correctAnswer": 1,
+      "explanation": "wrap-reverse places the first line at the bottom of the container."
+    },
+    {
+      "id": 15,
+      "question": "Can you use gap with flex-wrap?",
+      "options": ["No, gap doesn't work with wrap", "Yes, gap works perfectly with wrapped items", "Only in Firefox", "Only with nowrap"],
+      "correctAnswer": 1,
+      "explanation": "gap works with flex-wrap, creating consistent spacing between wrapped items."
+    },
+    {
+      "id": 16,
+      "question": "What does flex-flow: row nowrap do?",
+      "options": ["Items wrap and stack", "Items stay in a single row and don't wrap", "Items reverse order", "Items flow vertically"],
+      "correctAnswer": 1,
+      "explanation": "row nowrap is the default: items flow in a row and don't wrap."
+    },
+    {
+      "id": 17,
+      "question": "When using flex-wrap: wrap, what determines when items wrap?",
+      "options": ["Number of items", "Total width of items vs container width", "Height of items", "Font size"],
+      "correctAnswer": 1,
+      "explanation": "Items wrap when their total width (including gap) exceeds the container width."
+    },
+    {
+      "id": 18,
+      "question": "Which of these enables responsive behavior without media queries?",
+      "options": ["flex-wrap: nowrap; width: 100%", "flex-wrap: wrap; flex: 1 1 200px;", "flex-direction: column;", "align-items: stretch;"],
+      "correctAnswer": 1,
+      "explanation": "flex-wrap: wrap with a flex-basis (200px) creates responsive rows that wrap automatically."
+    },
+    {
+      "id": 19,
+      "question": "What happens if you set flex-wrap: wrap on a container with flex-direction: column?",
+      "options": ["Items wrap horizontally to new columns", "Items wrap vertically to new rows", "Nothing changes", "Items disappear"],
+      "correctAnswer": 0,
+      "explanation": "With column direction, wrap creates new columns (horizontal wrapping)."
+    },
+    {
+      "id": 20,
+      "question": "Is flex-wrap: wrap-reverse recommended for content where reading order matters?",
+      "options": ["Yes, it's always fine", "No, it can confuse readers as stacking order is reversed", "Only on mobile", "Yes, in all cases"],
+      "correctAnswer": 1,
+      "explanation": "wrap-reverse reverses the visual stacking order, which can confuse reading order."
+    }
+  ]
+}

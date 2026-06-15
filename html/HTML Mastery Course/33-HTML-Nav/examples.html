@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>33 - HTML Nav Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 20px;
+      background: #f0f2f5;
+      color: #333;
+    }
+    .example-box {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .example-box h2 {
+      margin: 0;
+      padding: 15px 20px;
+      background: #2563eb;
+      color: white;
+      font-size: 1.2em;
+    }
+    .example-desc { padding: 15px 20px 5px; color: #666; }
+    pre {
+      background: #1e293b; color: #e2e8f0; padding: 15px;
+      overflow-x: auto; font-size: 14px; margin: 0 20px 15px; border-radius: 6px;
+    }
+    .demo-area { padding: 0; }
+
+    /* Example 1: Horizontal Nav */
+    .horiz-nav ul {
+      display: flex; gap: 0; list-style: none; margin: 0; padding: 0;
+      background: #1e293b; border-radius: 8px; overflow: hidden;
+    }
+    .horiz-nav li { flex: 1; }
+    .horiz-nav a {
+      display: block; text-align: center; padding: 14px 20px;
+      color: #cbd5e1; text-decoration: none; transition: all 0.2s;
+    }
+    .horiz-nav a:hover { background: #3b82f6; color: white; }
+    .horiz-nav .active { background: #2563eb; color: white; }
+
+    /* Example 2: Vertical Sidebar */
+    .vert-nav { display: flex; }
+    .vert-nav nav {
+      width: 220px; background: #1e293b; border-radius: 8px; padding: 10px 0;
+    }
+    .vert-nav ul { list-style: none; margin: 0; padding: 0; }
+    .vert-nav a {
+      display: block; padding: 12px 24px; color: #cbd5e1;
+      text-decoration: none; transition: all 0.2s; border-left: 3px solid transparent;
+    }
+    .vert-nav a:hover { background: #334155; color: white; border-left-color: #3b82f6; }
+    .vert-nav .active {
+      background: #334155; color: white; border-left-color: #3b82f6; font-weight: bold;
+    }
+
+    /* Example 3: Breadcrumb */
+    .breadcrumb-nav ol {
+      display: flex; list-style: none; margin: 0; padding: 0;
+      background: #f8fafc; padding: 12px 20px; border-radius: 6px;
+    }
+    .breadcrumb-nav li { display: flex; align-items: center; }
+    .breadcrumb-nav li + li::before {
+      content: "›"; margin: 0 10px; color: #94a3b8; font-size: 1.2em;
+    }
+    .breadcrumb-nav a { color: #3b82f6; text-decoration: none; }
+    .breadcrumb-nav a:hover { text-decoration: underline; }
+    .breadcrumb-nav [aria-current="page"] { color: #64748b; font-weight: 500; }
+
+    /* Example 4: Pagination */
+    .pagination-nav ul {
+      display: flex; gap: 6px; list-style: none; margin: 0; padding: 0;
+      justify-content: center;
+    }
+    .pagination-nav a {
+      display: block; padding: 8px 14px; border: 1px solid #d1d5db;
+      border-radius: 6px; color: #374151; text-decoration: none;
+      transition: all 0.2s; background: white;
+    }
+    .pagination-nav a:hover { background: #3b82f6; color: white; border-color: #3b82f6; }
+    .pagination-nav [aria-current="page"] {
+      background: #2563eb; color: white; border-color: #2563eb; font-weight: bold;
+    }
+
+    /* Example 5: Tab Navigation */
+    .tab-nav ul {
+      display: flex; gap: 2px; list-style: none; margin: 0; padding: 0;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    .tab-nav a {
+      display: block; padding: 12px 24px; color: #64748b; text-decoration: none;
+      border-radius: 6px 6px 0 0; transition: all 0.2s;
+      position: relative; bottom: -2px;
+    }
+    .tab-nav a:hover { color: #2563eb; background: #f0f5ff; }
+    .tab-nav [aria-current="page"] {
+      color: #2563eb; border: 2px solid #e5e7eb; border-bottom: 2px solid white;
+      background: white; font-weight: 600;
+    }
+    .tab-content { padding: 20px; background: white; border: 2px solid #e5e7eb; border-top: none; border-radius: 0 0 6px 6px; }
+
+    /* Example 6: Footer Nav */
+    .footer-nav { background: #1e293b; padding: 20px; border-radius: 8px; }
+    .footer-nav nav ul {
+      display: flex; gap: 20px; justify-content: center;
+      list-style: none; margin: 0 0 10px; padding: 0;
+    }
+    .footer-nav nav a { color: #94a3b8; text-decoration: none; font-size: 0.9em; }
+    .footer-nav nav a:hover { color: white; }
+    .footer-nav p { text-align: center; color: #64748b; font-size: 0.8em; margin: 0; }
+  </style>
+</head>
+<body>
+
+  <h1>🧭 HTML Nav Element - Examples</h1>
+
+  <!-- Example 1: Horizontal Navigation -->
+  <div class="example-box">
+    <h2>Example 1: Primary Horizontal Navigation</h2>
+    <p class="example-desc">A standard top navigation bar with active page highlighted:</p>
+    <pre>
+&lt;nav aria-label="Main navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/" class="active" aria-current="page"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/services"&gt;Services&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/portfolio"&gt;Portfolio&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+    </pre>
+    <div class="demo-area" style="padding: 20px;">
+      <nav class="horiz-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#" class="active" aria-current="page">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Example 2: Vertical Sidebar Navigation -->
+  <div class="example-box">
+    <h2>Example 2: Vertical Sidebar Navigation</h2>
+    <p class="example-desc">A vertical navigation menu commonly used in dashboards:</p>
+    <pre>
+&lt;nav aria-label="Sidebar navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/dashboard" class="active"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/profile"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/settings"&gt;Settings&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/billing"&gt;Billing&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+    </pre>
+    <div class="demo-area" style="padding: 20px;">
+      <div class="vert-nav">
+        <nav aria-label="Sidebar navigation">
+          <ul>
+            <li><a href="#" class="active" aria-current="page">Dashboard</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Billing</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </nav>
+        <div style="padding: 20px; color: #64748b;">Sidebar content area →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 3: Breadcrumb Navigation -->
+  <div class="example-box">
+    <h2>Example 3: Breadcrumb Navigation</h2>
+    <p class="example-desc">A breadcrumb trail using <code>&lt;ol&gt;</code> (order matters):</p>
+    <pre>
+&lt;nav aria-label="Breadcrumb"&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/products"&gt;Products&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/products/laptops"&gt;Laptops&lt;/a&gt;&lt;/li&gt;
+    &lt;li aria-current="page"&gt;ProBook X1&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+    </pre>
+    <div class="demo-area" style="padding: 20px;">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Laptops</a></li>
+          <li aria-current="page">ProBook X1</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Example 4: Pagination -->
+  <div class="example-box">
+    <h2>Example 4: Pagination Navigation</h2>
+    <p class="example-desc">Pagination controls with current page highlighted:</p>
+    <pre>
+&lt;nav aria-label="Pagination"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#" aria-label="Previous page"&gt;« Prev&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" aria-label="Page 2"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" aria-current="page" aria-label="Page 3, current"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" aria-label="Next page"&gt;Next »&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+    </pre>
+    <div class="demo-area" style="padding: 20px;">
+      <nav class="pagination-nav" aria-label="Pagination">
+        <ul>
+          <li><a href="#" aria-label="Previous page">« Prev</a></li>
+          <li><a href="#" aria-label="Page 1">1</a></li>
+          <li><a href="#" aria-label="Page 2">2</a></li>
+          <li><a href="#" aria-current="page" aria-label="Page 3, current page">3</a></li>
+          <li><a href="#" aria-label="Page 4">4</a></li>
+          <li><a href="#" aria-label="Page 5">5</a></li>
+          <li><a href="#" aria-label="Next page">Next »</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Example 5: Tab Navigation -->
+  <div class="example-box">
+    <h2>Example 5: Tab Navigation</h2>
+    <p class="example-desc">Tab-style navigation with content sections:</p>
+    <pre>
+&lt;nav aria-label="Tabs"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#" aria-current="page"&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Features&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+    </pre>
+    <div class="demo-area" style="padding: 20px;">
+      <nav class="tab-nav" aria-label="Tabs">
+        <ul>
+          <li><a href="#" aria-current="page">Overview</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="tab-content">
+        <h3>Overview</h3>
+        <p>This is the Overview tab content. Click the other tabs to see how the active state changes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 6: Footer Navigation -->
+  <div class="example-box">
+    <h2>Example 6: Footer Navigation</h2>
+    <p class="example-desc">Navigation links in a page footer:</p>
+    <pre>
+&lt;footer&gt;
+  &lt;nav aria-label="Footer navigation"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/privacy"&gt;Privacy Policy&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/terms"&gt;Terms of Service&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/sitemap"&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+  &lt;p&gt;&amp;copy; 2025 Company Name.&lt;/p&gt;
+&lt;/footer&gt;
+    </pre>
+    <div class="demo-area" style="padding: 20px;">
+      <footer class="footer-nav">
+        <nav aria-label="Footer navigation">
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Sitemap</a></li>
+            <li><a href="#">Accessibility</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </nav>
+        <p>&copy; 2025 Company Name. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 53: Fieldset & Legend Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; color: #222; }
+    h1 { border-bottom: 3px solid #6C63FF; padding-bottom: 10px; }
+    h2 { color: #6C63FF; margin-top: 30px; }
+    .example-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; margin: 10px 0; }
+    .output { background: #f9f9f9; border: 1px dashed #999; border-radius: 6px; padding: 15px; margin: 10px 0; }
+    .note { background: #e8f4fd; border-left: 4px solid #2196F3; padding: 10px 15px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    .tag { background: #6C63FF; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+    fieldset.demo-fieldset { border: 2px groove #ddd; border-radius: 8px; padding: 20px; margin: 10px 0; }
+    fieldset.demo-fieldset legend { font-weight: bold; color: #6C63FF; padding: 0 10px; }
+    .styled-fieldset { border: 2px solid #6C63FF; border-radius: 8px; background: linear-gradient(135deg, #f5f7ff, #ffffff); padding: 20px; margin: 10px 0; }
+    .styled-fieldset legend { background: #6C63FF; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px; }
+    .disabled-section { opacity: 0.6; cursor: not-allowed; }
+    .disabled-section * { pointer-events: none; }
+    .grid-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  </style>
+</head>
+<body>
+
+<h1>Fieldset & Legend — Interactive Examples</h1>
+
+<!-- Example 1: Basic Fieldset -->
+<h2>1. Basic Fieldset with Legend</h2>
+<div class="example-box">
+  <p>The simplest usage: a <code>&lt;fieldset&gt;</code> wrapping form controls with a <code>&lt;legend&gt;</code> caption.</p>
+  <div class="code-block">
+    &lt;fieldset&gt;<br>
+    &nbsp;&nbsp;&lt;legend&gt;Personal Information&lt;/legend&gt;<br>
+    &nbsp;&nbsp;&lt;label&gt;Name: &lt;input type="text"&gt;&lt;/label&gt;&lt;br&gt;<br>
+    &nbsp;&nbsp;&lt;label&gt;Email: &lt;input type="email"&gt;&lt;/label&gt;<br>
+    &lt;/fieldset&gt;
+  </div>
+  <div class="output">
+    <fieldset class="demo-fieldset">
+      <legend>Personal Information</legend>
+      <label>Name: <input type="text" placeholder="John Doe"></label><br><br>
+      <label>Email: <input type="email" placeholder="john@example.com"></label>
+    </fieldset>
+  </div>
+</div>
+
+<!-- Example 2: Radio Button Group -->
+<h2>2. Radio Button Group (Required Fieldset)</h2>
+<div class="example-box">
+  <p>Radio buttons <strong>must</strong> be grouped with <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> for accessibility.</p>
+  <div class="code-block">
+    &lt;fieldset&gt;<br>
+    &nbsp;&nbsp;&lt;legend&gt;Preferred Contact Method&lt;/legend&gt;<br>
+    &nbsp;&nbsp;&lt;label&gt;&lt;input type="radio" name="contact" value="email"&gt; Email&lt;/label&gt;<br>
+    &nbsp;&nbsp;&lt;label&gt;&lt;input type="radio" name="contact" value="phone"&gt; Phone&lt;/label&gt;<br>
+    &lt;/fieldset&gt;
+  </div>
+  <div class="output">
+    <fieldset class="demo-fieldset">
+      <legend>Preferred Contact Method</legend>
+      <label><input type="radio" name="contact" value="email"> Email</label><br>
+      <label><input type="radio" name="contact" value="phone"> Phone</label><br>
+      <label><input type="radio" name="contact" value="mail"> Mail</label>
+    </fieldset>
+  </div>
+</div>
+
+<!-- Example 3: Checkbox Group -->
+<h2>3. Checkbox Group</h2>
+<div class="example-box">
+  <p>Checkbox groups benefit from fieldset grouping, especially when there are multiple related options.</p>
+  <div class="output">
+    <fieldset class="demo-fieldset">
+      <legend>Skills (Select all that apply)</legend>
+      <label><input type="checkbox" name="skills" value="html"> HTML</label><br>
+      <label><input type="checkbox" name="skills" value="css"> CSS</label><br>
+      <label><input type="checkbox" name="skills" value="js"> JavaScript</label><br>
+      <label><input type="checkbox" name="skills" value="react"> React</label>
+    </fieldset>
+  </div>
+</div>
+
+<!-- Example 4: Disabled Fieldset -->
+<h2>4. Disabled Fieldset</h2>
+<div class="example-box">
+  <p>The <code>disabled</code> attribute disables all form controls inside the fieldset.</p>
+  <div class="code-block">
+    &lt;fieldset disabled&gt;<br>
+    &nbsp;&nbsp;&lt;legend&gt;Premium Features&lt;/legend&gt;<br>
+    &nbsp;&nbsp;&lt;input type="checkbox"&gt; Advanced Analytics<br>
+    &lt;/fieldset&gt;
+  </div>
+  <div class="output">
+    <fieldset class="demo-fieldset" disabled>
+      <legend>Premium Features (Upgrade to Unlock)</legend>
+      <label><input type="checkbox" name="advanced"> Advanced Analytics</label><br>
+      <label><input type="checkbox" name="priority"> Priority Support</label><br>
+      <label><input type="checkbox" name="custom"> Custom Branding</label><br><br>
+      <button type="button">Upgrade Now</button>
+    </fieldset>
+  </div>
+  <div class="note">
+    <strong>Note:</strong> Notice how all inputs, the button, and even the labels appear grayed out and non-interactive.
+  </div>
+</div>
+
+<!-- Example 5: Styled Fieldset -->
+<h2>5. CSS Styled Fieldset</h2>
+<div class="example-box">
+  <p>You can remove the default groove border and apply custom styles to match your design.</p>
+  <div class="code-block">
+    fieldset { border: 2px solid #6C63FF; border-radius: 8px; padding: 20px; }<br>
+    legend { background: #6C63FF; color: white; padding: 5px 15px; border-radius: 20px; }
+  </div>
+  <div class="output">
+    <fieldset class="styled-fieldset">
+      <legend>Shipping Address</legend>
+      <div class="grid-group">
+        <label>Street: <input type="text" style="width:100%;" placeholder="123 Main St"></label>
+        <label>City: <input type="text" style="width:100%;" placeholder="New York"></label>
+        <label>State: <input type="text" style="width:100%;" placeholder="NY"></label>
+        <label>ZIP: <input type="text" style="width:100%;" placeholder="10001"></label>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<!-- Example 6: Nested Fieldsets -->
+<h2>6. Nested Fieldsets</h2>
+<div class="example-box">
+  <p>Fieldsets can be nested for hierarchical groupings. Each nested fieldset should have its own legend.</p>
+  <div class="output">
+    <fieldset class="demo-fieldset">
+      <legend>Contact Information</legend>
+      <label>Full Name: <input type="text" placeholder="Jane Doe"></label><br><br>
+      
+      <fieldset class="demo-fieldset" style="margin-top: 10px;">
+        <legend>Phone Numbers</legend>
+        <label>Primary: <input type="tel" placeholder="(555) 123-4567"></label><br>
+        <label>Secondary: <input type="tel" placeholder="(555) 987-6543"></label>
+      </fieldset>
+      
+      <fieldset class="demo-fieldset" style="margin-top: 10px;">
+        <legend>Address</legend>
+        <label>Street: <input type="text" placeholder="456 Oak Ave"></label><br>
+        <label>City: <input type="text" placeholder="Portland"></label>
+      </fieldset>
+    </fieldset>
+  </div>
+  <div class="note">
+    <strong>Tip:</strong> Nested fieldsets should be used sparingly. Two levels is usually sufficient for most forms.
+  </div>
+</div>
+
+<!-- Example 7: Multi-Column Layout -->
+<h2>7. Multi-Column Form Sections</h2>
+<div class="example-box">
+  <p>Combine fieldsets with CSS Grid or Flexbox for professional form layouts.</p>
+  <div class="output">
+    <style>
+      .two-col-fieldset { border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin: 10px 0; }
+      .two-col-fieldset legend { font-weight: bold; font-size: 18px; color: #333; padding: 0 10px; }
+      .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+      .two-col-grid label { display: flex; flex-direction: column; font-size: 13px; color: #555; }
+      .two-col-grid input, .two-col-grid select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-top: 4px; }
+      .full-width { grid-column: 1 / -1; }
+    </style>
+    <fieldset class="two-col-fieldset">
+      <legend>Billing Address</legend>
+      <div class="two-col-grid">
+        <label class="full-width">Full Name <input type="text" placeholder="John Smith"></label>
+        <label class="full-width">Street Address <input type="text" placeholder="789 Elm Street"></label>
+        <label>City <input type="text" placeholder="Seattle"></label>
+        <label>State <select><option>WA</option><option>OR</option><option>CA</option></select></label>
+        <label>ZIP Code <input type="text" placeholder="98101"></label>
+        <label>Country <input type="text" placeholder="USA"></label>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<!-- Example 8: Form Attribute Association -->
+<h2>8. Fieldset with form Attribute</h2>
+<div class="example-box">
+  <p>The <code>form</code> attribute on fieldset associates it with a form element by ID — even if placed outside the form tags.</p>
+  <div class="code-block">
+    &lt;form id="externalForm" action="/submit" method="post"&gt;<br>
+    &nbsp;&nbsp;&lt;button&gt;Submit (from anywhere)&lt;/button&gt;<br>
+    &lt;/form&gt;<br><br>
+    &lt;fieldset form="externalForm"&gt;<br>
+    &nbsp;&nbsp;&lt;legend&gt;External Group&lt;/legend&gt;<br>
+    &nbsp;&nbsp;&lt;input name="data"&gt;<br>
+    &lt;/fieldset&gt;
+  </div>
+  <div class="output">
+    <form id="externalForm" action="#" method="post" style="margin-bottom: 10px;">
+      <button type="submit" style="padding: 8px 20px; background: #6C63FF; color: white; border: none; border-radius: 4px;">Submit (External)</button>
+    </form>
+    <fieldset form="externalForm" class="demo-fieldset">
+      <legend>External Fields (outside form tags)</legend>
+      <label>Name: <input type="text" name="name" placeholder="Associated with externalForm"></label><br>
+      <label>Email: <input type="email" name="email" placeholder="Also associated"></label>
+    </fieldset>
+    <p><small>Click Submit — these fields are part of the form even though they are placed outside it.</small></p>
+  </div>
+</div>
+
+<!-- Example 9: Survey Form -->
+<h2>9. Survey Form with Multiple Sections</h2>
+<div class="example-box">
+  <p>A complete mini-survey demonstrating fieldset usage across multiple form sections.</p>
+  <div class="output">
+    <form action="#" method="post">
+      <fieldset class="two-col-fieldset">
+        <legend>Section 1: Demographics</legend>
+        <div class="two-col-grid">
+          <label>Age Group
+            <select><option>18-24</option><option>25-34</option><option>35-44</option><option>45+</option></select>
+          </label>
+          <label>Employment
+            <select><option>Employed</option><option>Self-Employed</option><option>Student</option><option>Retired</option></select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="two-col-fieldset">
+        <legend>Section 2: Feedback</legend>
+        <label>How satisfied are you?<br>
+          <label><input type="radio" name="satisfaction" value="1"> Very Satisfied</label>
+          <label><input type="radio" name="satisfaction" value="2"> Satisfied</label>
+          <label><input type="radio" name="satisfaction" value="3"> Neutral</label>
+          <label><input type="radio" name="satisfaction" value="4"> Unsatisfied</label>
+        </label>
+        <br>
+        <label>Additional Comments:<br>
+          <textarea rows="3" style="width: 100%;"></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset class="two-col-fieldset">
+        <legend>Section 3: Preferences</legend>
+        <label><input type="checkbox"> I would like to receive newsletter emails</label><br>
+        <label><input type="checkbox"> I agree to the terms and conditions</label>
+      </fieldset>
+
+      <button type="submit" style="padding: 10px 30px; background: #6C63FF; color: white; border: none; border-radius: 6px; font-size: 16px; margin-top: 10px;">Submit Survey</button>
+    </form>
+  </div>
+</div>
+
+<!-- Example 10: Reset Styles -->
+<h2>10. Fieldset Reset for Custom Designs</h2>
+<div class="example-box">
+  <p>When building fully custom designs, reset the default fieldset styles and start fresh.</p>
+  <div class="code-block">
+    fieldset { border: none; margin: 0; padding: 0; }<br>
+    legend { padding: 0; font-weight: bold; }
+  </div>
+  <div class="output">
+    <style>
+      .reset-fieldset { border: none; margin: 0; padding: 0; }
+      .reset-fieldset legend { padding: 0; font-weight: 700; font-size: 18px; color: #333; margin-bottom: 10px; }
+      .reset-group { display: flex; gap: 15px; flex-wrap: wrap; }
+      .reset-group label { display: flex; flex-direction: column; font-size: 13px; color: #555; }
+      .reset-group input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; margin-top: 4px; }
+    </style>
+    <fieldset class="reset-fieldset">
+      <legend>Preferences</legend>
+      <div class="reset-group">
+        <label>Theme
+          <select><option>Light</option><option>Dark</option><option>System</option></select>
+        </label>
+        <label>Language
+          <select><option>English</option><option>Spanish</option><option>French</option></select>
+        </label>
+        <label>Timezone
+          <select><option>UTC-5 (EST)</option><option>UTC-8 (PST)</option><option>UTC+0 (GMT)</option></select>
+        </label>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+</body>
+</html>

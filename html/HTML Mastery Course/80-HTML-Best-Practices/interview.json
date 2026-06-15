@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is semantic HTML and why is it important?",
+      "answer": "Semantic HTML uses elements that describe their meaning (like <header>, <nav>, <article>, <footer>) rather than generic containers (<div>). It's important for accessibility (screen readers understand structure), SEO (search engines identify content hierarchy), and maintainability (code is more readable)."
+    },
+    {
+      "question": "What is the correct basic structure of an HTML5 document?",
+      "answer": "An HTML5 document starts with <!DOCTYPE html>, followed by <html lang='en'>, <head> containing metadata, character encoding, viewport settings, and title, then <body> with the visible content. The body typically contains <header>, <main>, and <footer> elements."
+    },
+    {
+      "question": "Why should you use heading tags (h1-h6) appropriately?",
+      "answer": "Headings create a document outline that screen readers and search engines use for navigation. Rules: one h1 per page, don't skip levels, use h1 for the main title, h2 for major sections, h3 for sub-sections, etc."
+    },
+    {
+      "question": "What is the importance of alt text on images?",
+      "answer": "Alt text provides alternative text for images when they can't be displayed and is essential for accessibility. Screen readers read alt text to describe images to visually impaired users. Informative images need descriptive alt text, while decorative images should have empty alt (alt='')."
+    },
+    {
+      "question": "Why should every form input have an associated label element?",
+      "answer": "Labels improve accessibility by associating text descriptions with form controls. Screen readers read the label when the input is focused. Clicking a label also focuses or activates its associated input, improving usability for all users."
+    },
+    {
+      "question": "What is the purpose of the main element?",
+      "answer": "The <main> element represents the dominant content of the document. There should be only one <main> per page, and it should not be nested within <article>, <aside>, <footer>, <header>, or <nav>. It helps screen readers skip to the primary content."
+    },
+    {
+      "question": "Why should you avoid using inline styles in HTML?",
+      "answer": "Inline styles violate the separation of concerns principle (HTML for structure, CSS for presentation). They reduce maintainability, increase code duplication, prevent CSS caching, and override external stylesheets, making styling changes more difficult."
+    },
+    {
+      "question": "What is the difference between defer and async for script loading?",
+      "answer": "Both defer and async load scripts in parallel with HTML parsing. defer executes scripts in order after HTML parsing is complete. async executes scripts as soon as they download, regardless of parsing state or other scripts. defer is generally preferred for scripts that depend on DOM content."
+    },
+    {
+      "question": "What meta tags are essential for every HTML page?",
+      "answer": "Essential meta tags are: charset (UTF-8), viewport (for responsive design), title tag (not meta but essential), and meta description. For social sharing, Open Graph tags (og:title, og:description, og:image) are also important."
+    },
+    {
+      "question": "What is the purpose of the fieldset and legend elements?",
+      "answer": "Fieldset groups related form controls together, and legend provides a caption for the group. This improves accessibility by helping screen reader users understand form structure and relationships between form controls."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Explain the difference between <article> and <section> elements with examples.",
+      "answer": "<article> represents a self-contained composition that could be independently distributed (blog post, news story, forum post). <section> represents a thematic grouping of content, typically with a heading. An <article> can contain <section> elements, and a <section> can contain <article> elements. For example, a blog post (<article>) might have introduction, body, and conclusion sections."
+    },
+    {
+      "question": "How do you implement a skip navigation link and why is it important?",
+      "answer": "A skip navigation link is an internal link that allows keyboard and screen reader users to bypass repetitive navigation: <a href='#main-content' class='skip-link'>Skip to main content</a>. It's typically visually hidden until focused. It's important for accessibility as it significantly improves keyboard navigation efficiency."
+    },
+    {
+      "question": "What are ARIA attributes and when should you use them?",
+      "answer": "ARIA (Accessible Rich Internet Applications) attributes supplement HTML semantics when native elements are insufficient. Examples: aria-label for buttons without visible text, aria-describedby for additional context, aria-live for dynamic content updates, role='alert' for error messages. The first rule of ARIA is: don't use ARIA if you can use native HTML semantics."
+    },
+    {
+      "question": "How do you create an accessible custom checkbox using HTML and CSS?",
+      "answer": "Use a <label> wrapping a hidden <input type='checkbox'> with a styled span for visual presentation. The input maintains accessibility (keyboard interaction, form submission, screen reader support) while CSS handles visual styling. Always preserve the native input's functionality."
+    },
+    {
+      "question": "What is the correct way to handle external links that open in new tabs for accessibility?",
+      "answer": "For external links with target='_blank', always add rel='noopener noreferrer' for security and include a visual indicator or screen reader announcement. Option: <a href='https://external.com' target='_blank' rel='noopener noreferrer'>External Site <span class='sr-only'>(opens in new tab)</span></a>."
+    },
+    {
+      "question": "How should you structure a page to support both light and dark mode effectively?",
+      "answer": "Use CSS custom properties for colors, respect prefers-color-scheme media query, and add the color-scheme meta tag. Avoid hardcoding colors in HTML. Use semantic structure without color assumptions to ensure the page works regardless of the color scheme."
+    },
+    {
+      "question": "What is the purpose of the <picture> element and when should it be used?",
+      "answer": "The <picture> element provides art direction: different images for different screen sizes or resolutions. Unlike srcset which serves the same image at different sizes, <picture> can serve completely different images (different crops, aspect ratios) using <source> elements with media queries."
+    },
+    {
+      "question": "How do you properly implement heading hierarchy in a page with multiple sections?",
+      "answer": "Start with one <h1> for the page title. Each <section> or <article> with a heading should start at <h2>. Subsections within use <h3>, and so on. Each sectioning element (section, article, nav, aside) resets the heading context, allowing nested h1-h6 within article elements."
+    },
+    {
+      "question": "What considerations should be made when writing HTML for internationalization (i18n)?",
+      "answer": "Use lang attribute on <html> and on content sections that differ from the page language. Avoid text in images. Use logical text direction attributes (dir='rtl' for right-to-left). Use Unicode encoding (UTF-8). Provide translations for aria-label and other accessible text. Use data-* attributes for locale-specific content."
+    },
+    {
+      "question": "How do you handle form validation both client-side and server-side?",
+      "answer": "Client-side: use HTML5 validation attributes (required, minlength, pattern, type) with CSS :valid/:invalid pseudoclasses for immediate feedback. Server-side: always validate again because client-side can be bypassed. Use aria-describedby for error messages and aria-invalid on invalid fields."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the concept of the Document Outline algorithm and its current browser support status.",
+      "answer": "HTML5 introduced a document outline algorithm where sectioning elements (section, article, nav, aside) reset heading rank, theoretically allowing multiple h1 elements. However, browser support was never implemented, and the algorithm is now considered outdated. Best practice remains: one h1 per page with sequential heading hierarchy."
+    },
+    {
+      "question": "How do you implement a fully accessible modal dialog using semantic HTML?",
+      "answer": "Use the <dialog> element (or a <div> with role='dialog'), with aria-modal='true', aria-labelledby referencing the title, and aria-describedby for description. Trap keyboard focus within the dialog, close on Escape key, restore focus to trigger element on close. The <dialog> element natively handles many of these requirements."
+    },
+    {
+      "question": "What is the Shadow DOM and how does it affect HTML semantics and accessibility?",
+      "answer": "The Shadow DOM encapsulates DOM and CSS, allowing component-level isolation. While it prevents style leakage, it can create accessibility challenges because ARIA relationships don't cross shadow boundaries. Use delegatesFocus for focus management, and ensure accessible names are properly projected through slots."
+    },
+    {
+      "question": "How do you implement progressive enhancement and graceful degradation in HTML?",
+      "answer": "Start with semantic HTML that works without CSS or JavaScript (progressive enhancement). Add CSS for presentation and JavaScript for interactivity. Use feature detection before using advanced APIs. Ensure core content and functionality is accessible even when JavaScript fails (degradation). This follows the principle of building a solid foundation first."
+    },
+    {
+      "question": "Explain the concept of Critical CSS and how it relates to HTML structure.",
+      "answer": "Critical CSS is the minimum CSS required to render above-the-fold content, inlined in the <head> to eliminate render-blocking requests. The HTML structure determines what's 'critical' - pages with consistent, semantic headers typically have predictable critical CSS. Inline critical CSS via <style> tags and defer non-critical CSS with media='print' onload='this.media='all''."
+    },
+    {
+      "question": "How do you implement accessible data tables for complex tabular data?",
+      "answer": "Use <table> with <caption> for table title, <thead>/<tbody>/<tfoot> for structure, <th> with scope='col'/'row' for headers, and <th id='...'> with headers='...' attribute on <td> for complex multi-level headers. Avoid using tables for layout. For sortable tables, use aria-sort on column headers."
+    },
+    {
+      "question": "What are the best practices for implementing Microdata, RDFa, or JSON-LD while maintaining clean HTML?",
+      "answer": "Use JSON-LD exclusively as it keeps HTML clean by placing structured data in separate <script> tags. This avoids cluttering HTML with Microdata attributes while providing the same semantic benefits. JSON-LD is Google's recommended format and doesn't require any changes to visible HTML structure."
+    },
+    {
+      "question": "How do you implement an accessible carousel/slider with semantic HTML?",
+      "answer": "Use <section aria-roledescription='carousel' aria-label='Featured items'> with <ul> for slides, <li role='group' aria-roledescription='slide' aria-label='Slide N of M'> for each slide. Include previous/next buttons with aria-label, pause/play button for auto-rotating carousels, and ensure all content is reachable by keyboard."
+    },
+    {
+      "question": "What is the role of HTML in Core Web Vitals optimization?",
+      "answer": "HTML structure directly affects Largest Contentful Paint (LCP) - ensure the main content element is easily identifiable and loads quickly. First Input Delay (FID) is affected by JavaScript loading - use defer/async. Cumulative Layout Shift (CLS) is impacted by missing width/height on images, ads, and embeds - always specify dimensions in HTML."
+    },
+    {
+      "question": "How do you implement a proper SEO-friendly breadcrumb navigation with schema markup?",
+      "answer": "Use <nav aria-label='Breadcrumb'> with an <ol> ordered list of <li> items containing <a> links. Mark the last item as current with aria-current='page'. Include JSON-LD BreadcrumbList schema. This provides accessible navigation while enabling rich breadcrumb snippets in search results."
+    }
+  ]
+}

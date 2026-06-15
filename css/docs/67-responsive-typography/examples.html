@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Typography Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #f8fafc; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { color: #2563eb; margin-bottom: 1rem; }
+    h2 { color: #1e40af; margin: 2rem 0 0.5rem; font-size: 1.25rem; }
+    .demo { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; }
+    .badge { background: #dbeafe; color: #1e40af; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem; }
+
+    /* 1. Basic fluid typography with clamp */
+    .fluid-text { font-size: clamp(1rem, 0.5rem + 2vw, 1.5rem); }
+
+    /* 2. Fluid heading system */
+    .fluid-system h1 { font-size: clamp(2rem, 1rem + 4vw, 4rem); line-height: 1.1; margin-bottom: 0.5em; }
+    .fluid-system h2 { font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem); line-height: 1.2; margin-bottom: 0.5em; }
+    .fluid-system h3 { font-size: clamp(1.25rem, 0.8rem + 1.5vw, 2rem); line-height: 1.3; margin-bottom: 0.5em; }
+    .fluid-system p { font-size: clamp(1rem, 0.5rem + 1vw, 1.125rem); line-height: 1.6; }
+
+    /* 3. Measure control (line length) */
+    .measure-demo p { max-width: 65ch; margin-bottom: 1rem; font-size: 1rem; line-height: 1.6; }
+
+    /* 4. Modular scale */
+    .mod-scale { font-family: 'Georgia', serif; }
+    .mod-scale .ms--1 { font-size: calc(1rem / 1.25); color: #64748b; }
+    .mod-scale .ms-0 { font-size: 1rem; }
+    .mod-scale .ms-1 { font-size: 1.25rem; }
+    .mod-scale .ms-2 { font-size: 1.563rem; }
+    .mod-scale .ms-3 { font-size: 1.953rem; }
+    .mod-scale .ms-4 { font-size: 2.441rem; }
+    .mod-scale .ms-5 { font-size: 3.052rem; }
+    .mod-scale .ms-6 { font-size: 3.815rem; }
+
+    /* 5. Line height comparison */
+    .lh-compare > div { margin-bottom: 1.5rem; max-width: 65ch; }
+    .lh-compare .tight { line-height: 1.2; }
+    .lh-compare .normal { line-height: 1.5; }
+    .lh-compare .loose { line-height: 1.8; }
+
+    /* 6. System font stack */
+    .system-stack { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; }
+
+    /* 7. Vertical rhythm */
+    .rhythm { max-width: 65ch; }
+    .rhythm h2 { margin-top: 2rem; margin-bottom: 0.5rem; }
+    .rhythm p { margin-bottom: 1.5rem; line-height: 1.5; }
+    .rhythm p + p { margin-top: -0.5rem; }
+
+    /* 8. Letter spacing variations */
+    .ls-demo { max-width: 65ch; }
+    .ls-demo .normal { letter-spacing: normal; }
+    .ls-demo .wide { letter-spacing: 0.1em; }
+    .ls-demo .tight { letter-spacing: -0.02em; }
+
+    /* 9. Font display simulation */
+    @font-face {
+      font-family: 'DemoFont';
+      src: local('Georgia');
+      font-display: swap;
+    }
+    .font-display-demo { font-family: 'DemoFont', serif; font-size: 1.25rem; }
+
+    /* 10. Responsive spacing */
+    .spacing-demo h2 { margin-bottom: 0.5rem; }
+    .spacing-demo p { margin-bottom: clamp(1rem, 0.5rem + 1vw, 2rem); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Responsive Typography Examples</h1>
+    <p style="margin-bottom:2rem;color:#64748b;">Resize browser to see fluid scaling in action.</p>
+
+    <div class="demo">
+      <span class="badge">Example 1</span>
+      <h2>Fluid Body Text with clamp()</h2>
+      <p class="fluid-text">This text scales fluidly between 1rem (16px) and 1.5rem (24px) using <code>clamp(1rem, 0.5rem + 2vw, 1.5rem)</code>. Resize your browser to see the smooth transition.</p>
+    </div>
+
+    <div class="demo fluid-system">
+      <span class="badge">Example 2</span>
+      <h2>Complete Fluid Heading System</h2>
+      <h1>Heading 1 (fluid)</h1>
+      <h2>Heading 2 (fluid)</h2>
+      <h3>Heading 3 (fluid)</h3>
+      <p>Body text with fluid sizing and proper line height. All headings use clamp() for smooth scaling across viewport sizes.</p>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 3</span>
+      <h2>Measure Control (max-width: 65ch)</h2>
+      <div class="measure-demo">
+        <p>This paragraph is constrained to 65 characters per line using <code>max-width: 65ch</code>. The ch unit equals the width of the "0" character in the current font, making it ideal for controlling line length. No matter how wide the viewport gets, this text will never exceed the optimal reading width.</p>
+        <p>Research has shown that 45-75 characters per line is optimal for reading speed and comprehension. Too short causes eye fatigue from frequent line breaks. Too long makes it hard to track to the next line.</p>
+      </div>
+    </div>
+
+    <div class="demo mod-scale">
+      <span class="badge">Example 4</span>
+      <h2>Modular Scale (Major Third 1.25)</h2>
+      <div class="ms--1">ms-1 (small text)</div>
+      <div class="ms-0">ms-0 (base): 1rem</div>
+      <div class="ms-1">ms-1: 1.25rem</div>
+      <div class="ms-2">ms-2: 1.563rem</div>
+      <div class="ms-3">ms-3: 1.953rem</div>
+      <div class="ms-4">ms-4: 2.441rem</div>
+      <div class="ms-5">ms-5: 3.052rem</div>
+      <div class="ms-6">ms-6: 3.815rem</div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 5</span>
+      <h2>Line Height Comparison</h2>
+      <div class="lh-compare">
+        <div class="tight"><strong>1.2 (tight):</strong> This is a paragraph with tight line height. It works for headings but makes body text feel cramped and hard to read, especially in longer passages where tracking from line to line becomes difficult.</div>
+        <div class="normal"><strong>1.5 (normal):</strong> This is the recommended line height for body text. It provides enough vertical space between lines for comfortable reading without wasting too much vertical space. The WCAG guidelines recommend at least 1.5 for body text.</div>
+        <div class="loose"><strong>1.8 (loose):</strong> This is a generous line height often used for accessible design or poetry. While very readable, it uses more vertical space and can make scanning difficult as there's more distance between lines.</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 6</span>
+      <h2>System Font Stack</h2>
+      <p class="system-stack">This text uses the system font stack: <code>system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif</code>. It matches the OS-native typeface, loads instantly, and feels familiar to users.</p>
+    </div>
+
+    <div class="demo rhythm">
+      <span class="badge">Example 7</span>
+      <h2>Vertical Rhythm</h2>
+      <h2>Section Title</h2>
+      <p>Consistent vertical rhythm creates a comfortable reading experience. The spacing between elements follows a pattern based on the line height, typically using multiples of the base spacing unit.</p>
+      <h2>Another Section</h2>
+      <p>By maintaining consistent vertical spacing, the page feels organized and professional. This is achieved through consistent margin and padding values, often derived from the base line-height.</p>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 8</span>
+      <h2>Letter Spacing Variations</h2>
+      <div class="ls-demo">
+        <p class="normal"><strong>Normal:</strong> The quick brown fox jumps over the lazy dog.</p>
+        <p class="wide"><strong>0.1em (wide):</strong> The quick brown fox jumps over the lazy dog.</p>
+        <p class="tight"><strong>-0.02em (tight):</strong> The quick brown fox jumps over the lazy dog.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="badge">Example 9</span>
+      <h2>font-display: swap</h2>
+      <p class="font-display-demo">This text loads a local font with <code>font-display: swap</code>, ensuring text is visible immediately even before the font loads.</p>
+    </div>
+
+    <div class="demo spacing-demo">
+      <span class="badge">Example 10</span>
+      <h2>Responsive Spacing</h2>
+      <p>Bottom margins use <code>clamp()</code> to scale with viewport, creating proportional spacing on all devices.</p>
+      <p>This ensures the vertical rhythm adapts just like text sizes do.</p>
+    </div>
+  </div>
+</body>
+</html>

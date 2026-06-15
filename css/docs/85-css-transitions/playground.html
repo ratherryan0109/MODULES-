@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Transitions - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #1e1e2e; color: #cdd6f4; padding: 2rem; }
+    h1 { color: #89b4fa; margin-bottom: 1rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    .editor-panel { background: #313244; border-radius: 12px; padding: 1.5rem; border: 1px solid #45475a; }
+    .preview-panel { background: #313244; border-radius: 12px; padding: 1.5rem; border: 1px solid #45475a; display: flex; align-items: center; justify-content: center; min-height: 400px; }
+    label { display: block; margin: 0.75rem 0 0.25rem; color: #a6e3a1; font-weight: 700; }
+    input[type="text"], select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #45475a; background: #181825; color: #cdd6f4; font-family: monospace; }
+    input[type="color"] { width: 100%; height: 40px; border-radius: 6px; border: 1px solid #45475a; background: #181825; cursor: pointer; }
+    input[type="range"] { width: 100%; }
+    .demo-box {
+      width: 150px; height: 150px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #1e1e2e; cursor: pointer;
+      background: #89b4fa; transition: all 0.3s ease;
+    }
+    .demo-box:hover {
+      background: #f38ba8; transform: scale(1.1) rotate(5deg);
+    }
+    .code-output {
+      background: #181825; padding: 1rem; border-radius: 8px; margin-top: 1rem;
+      font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; border: 1px solid #45475a;
+    }
+    button {
+      background: #89b4fa; color: #1e1e2e; border: none; padding: 0.5rem 1rem;
+      border-radius: 6px; cursor: pointer; font-weight: 700; margin-top: 1rem;
+    }
+    button:hover { background: #b4d0fb; }
+    .row { display: flex; gap: 1rem; }
+    .row > div { flex: 1; }
+  </style>
+</head>
+<body>
+  <h1>CSS Transitions Playground</h1>
+  <div class="container">
+    <div class="editor-panel">
+      <h2 style="color:#a6e3a1;margin-bottom:1rem;">Controls</h2>
+      <label>Property</label>
+      <select id="property">
+        <option value="all">all</option>
+        <option value="transform">transform</option>
+        <option value="opacity">opacity</option>
+        <option value="background-color">background-color</option>
+        <option value="color">color</option>
+      </select>
+
+      <label>Duration (s)</label>
+      <input type="range" id="duration" min="0.1" max="5" step="0.1" value="0.3">
+      <span id="durationVal">0.3s</span>
+
+      <label>Timing Function</label>
+      <select id="timing">
+        <option value="ease">ease</option>
+        <option value="linear">linear</option>
+        <option value="ease-in">ease-in</option>
+        <option value="ease-out">ease-out</option>
+        <option value="ease-in-out">ease-in-out</option>
+        <option value="cubic-bezier(0.68, -0.55, 0.265, 1.55)">bounce</option>
+      </select>
+
+      <label>Delay (s)</label>
+      <input type="range" id="delay" min="0" max="2" step="0.1" value="0">
+      <span id="delayVal">0s</span>
+
+      <label>Background Color</label>
+      <input type="color" id="bgColor" value="#89b4fa">
+
+      <label>Hover Background Color</label>
+      <input type="color" id="hoverBg" value="#f38ba8">
+
+      <div class="row">
+        <div>
+          <label>Scale</label>
+          <input type="range" id="scale" min="0.5" max="2" step="0.1" value="1.1">
+        </div>
+        <div>
+          <label>Rotate (deg)</label>
+          <input type="range" id="rotate" min="0" max="360" step="5" value="5">
+        </div>
+      </div>
+
+      <button id="resetBtn">Reset to Defaults</button>
+    </div>
+    <div class="preview-panel">
+      <div id="previewBox" class="demo-box">Hover me</div>
+    </div>
+  </div>
+  <div class="code-output" id="codeOutput">transition: all 0.3s ease 0s;</div>
+
+  <script>
+    const box = document.getElementById('previewBox');
+    const prop = document.getElementById('property');
+    const duration = document.getElementById('duration');
+    const durationVal = document.getElementById('durationVal');
+    const timing = document.getElementById('timing');
+    const delay = document.getElementById('delay');
+    const delayVal = document.getElementById('delayVal');
+    const bgColor = document.getElementById('bgColor');
+    const hoverBg = document.getElementById('hoverBg');
+    const scaleInput = document.getElementById('scale');
+    const rotateInput = document.getElementById('rotate');
+    const codeOutput = document.getElementById('codeOutput');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function update() {
+      const p = prop.value;
+      const d = duration.value;
+      const t = timing.value;
+      const de = delay.value;
+      durationVal.textContent = d + 's';
+      delayVal.textContent = de + 's';
+
+      box.style.transition = `${p} ${d}s ${t} ${de}s`;
+      box.style.backgroundColor = bgColor.value;
+
+      // Use a style tag for hover since :hover can't be set via JS directly
+      const styleTag = document.getElementById('dynamicStyle') || (() => {
+        const s = document.createElement('style');
+        s.id = 'dynamicStyle';
+        document.head.appendChild(s);
+        return s;
+      })();
+
+      const scale = scaleInput.value;
+      const rotate = rotateInput.value;
+      styleTag.textContent = `
+        #previewBox:hover {
+          background-color: ${hoverBg.value} !important;
+          transform: scale(${scale}) rotate(${rotate}deg) !important;
+        }
+      `;
+
+      codeOutput.textContent = `transition: ${p} ${d}s ${t} ${de}s;\n\n/* Hover state */\n#previewBox:hover {\n  background-color: ${hoverBg.value};\n  transform: scale(${scale}) rotate(${rotate}deg);\n}`;
+    }
+
+    [prop, duration, timing, delay, bgColor, hoverBg, scaleInput, rotateInput].forEach(el => el.addEventListener('input', update));
+
+    resetBtn.addEventListener('click', () => {
+      prop.value = 'all';
+      duration.value = '0.3';
+      timing.value = 'ease';
+      delay.value = '0';
+      bgColor.value = '#89b4fa';
+      hoverBg.value = '#f38ba8';
+      scaleInput.value = '1.1';
+      rotateInput.value = '5';
+      update();
+    });
+
+    update();
+  </script>
+</body>
+</html>

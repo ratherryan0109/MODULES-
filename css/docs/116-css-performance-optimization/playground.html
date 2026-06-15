@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Performance Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; }
+    h1 { margin-bottom: 1rem; }
+    .controls { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; padding: 1rem; background: #f5f5f5; border-radius: 8px; }
+    .controls label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; }
+    .controls select, .controls input[type="range"] { padding: 0.25rem; border: 1px solid #ccc; border-radius: 4px; }
+    .test-area { border: 2px solid #ddd; border-radius: 8px; padding: 2rem; min-height: 300px; margin: 1rem 0; }
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .metric-card { background: #f0f0f0; padding: 1rem; border-radius: 8px; text-align: center; }
+    .metric-card .value { font-size: 2rem; font-weight: bold; color: #0055CC; }
+    .metric-card .label { font-size: 0.85rem; color: #666; }
+    .box { width: 50px; height: 50px; background: #0055CC; border-radius: 6px; display: inline-block; margin: 4px; }
+    button { padding: 0.5rem 1rem; background: #0055CC; color: white; border: none; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>CSS Performance Playground</h1>
+  <p>Test different CSS properties and see rendering performance metrics.</p>
+
+  <div class="controls">
+    <label>Animation Property
+      <select id="animProp">
+        <option value="transform">transform (GPU)</option>
+        <option value="opacity">opacity (GPU)</option>
+        <option value="width">width (layout)</option>
+        <option value="left">left (layout)</option>
+        <option value="margin-left">margin-left (layout)</option>
+      </select>
+    </label>
+    <label>Element Count
+      <input type="range" id="elemCount" min="10" max="500" value="50">
+      <span id="elemLabel">50</span>
+    </label>
+    <button id="runBtn">Run Test</button>
+  </div>
+
+  <div class="test-area" id="testArea"></div>
+
+  <div class="metrics">
+    <div class="metric-card"><div class="value" id="fpsValue">--</div><div class="label">FPS</div></div>
+    <div class="metric-card"><div class="value" id="frameTime">--</div><div class="label">Frame Time (ms)</div></div>
+    <div class="metric-card"><div class="value" id="propType">--</div><div class="label">Composite Type</div></div>
+  </div>
+
+  <script>
+    const animProp = document.getElementById('animProp');
+    const elemCount = document.getElementById('elemCount');
+    const elemLabel = document.getElementById('elemLabel');
+    const testArea = document.getElementById('testArea');
+    const fpsValue = document.getElementById('fpsValue');
+    const frameTime = document.getElementById('frameTime');
+    const propType = document.getElementById('propType');
+    const runBtn = document.getElementById('runBtn');
+
+    elemCount.addEventListener('input', () => { elemLabel.textContent = elemCount.value; });
+
+    function getCompositeType(prop) {
+      const gpuProps = ['transform', 'opacity'];
+      return gpuProps.includes(prop) ? 'GPU (fast)' : 'Layout (slow)';
+    }
+
+    function runTest() {
+      const prop = animProp.value;
+      const count = parseInt(elemCount.value);
+      testArea.innerHTML = '';
+      propType.textContent = getCompositeType(prop);
+
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'box';
+        el.style.transition = `${prop} 2s ease-in-out`;
+        el.dataset.index = i;
+        el.addEventListener('mouseenter', () => {
+          if (prop === 'transform') el.style.transform = 'translateX(100px)';
+          else if (prop === 'opacity') el.style.opacity = '0.3';
+          else if (prop === 'width') el.style.width = '150px';
+          else if (prop === 'left') { el.style.position = 'relative'; el.style.left = '100px'; }
+          else if (prop === 'margin-left') el.style.marginLeft = '100px';
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = '';
+          el.style.opacity = '';
+          el.style.width = '';
+          el.style.left = '';
+          el.style.marginLeft = '';
+        });
+        testArea.appendChild(el);
+      }
+
+      // Simulate FPS measurement
+      let frames = 0;
+      const start = performance.now();
+      function countFrame() {
+        frames++;
+        if (frames < 60) requestAnimationFrame(countFrame);
+        else {
+          const elapsed = performance.now() - start;
+          const fps = Math.round(frames / (elapsed / 1000));
+          fpsValue.textContent = fps;
+          frameTime.textContent = (elapsed / frames).toFixed(2);
+        }
+      }
+      requestAnimationFrame(countFrame);
+    }
+
+    runBtn.addEventListener('click', runTest);
+    runTest();
+  </script>
+</body>
+</html>

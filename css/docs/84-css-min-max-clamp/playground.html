@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS min(), max(), clamp() — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; padding: 2rem; color: #eee; }
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: #aaa; margin-bottom: 2rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .controls { background: #16213e; border-radius: 12px; padding: 1.5rem; }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: #aaa; }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #333; background: #0f3460; color: #eee; }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+    .tab-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .tab-bar button { padding: 0.5rem 1rem; border: none; border-radius: 6px; background: #0f3460; color: #aaa; cursor: pointer; }
+    .tab-bar button.active { background: #e94560; color: white; }
+    .preview-area { background: #16213e; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; }
+    .preview-box { background: linear-gradient(135deg, #e74c3c, #3498db); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; font-weight: bold; text-align: center; padding: 1rem; min-height: 80px; transition: none; }
+    .code-output { background: #0a0a1a; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #a8d8ea; white-space: pre-wrap; word-break: break-all; width: 100%; }
+    .preset-btn { padding: 0.3rem 0.6rem; border: 1px solid #333; border-radius: 4px; background: #0f3460; color: #aaa; cursor: pointer; font-size: 0.7rem; }
+    .preset-btn:hover { background: #e94560; color: white; }
+    .presets { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .visual-scale { margin-top: 1rem; width: 100%; }
+    .visual-bar { height: 20px; background: #e94560; border-radius: 4px; transition: width 0.2s; }
+    .visual-labels { display: flex; justify-content: space-between; font-size: 0.65rem; color: #666; margin-top: 0.2rem; }
+  </style>
+</head>
+<body>
+  <h1>min(), max(), clamp() Playground</h1>
+  <p class="subtitle">Experiment with CSS comparison functions interactively</p>
+
+  <div class="container">
+    <div class="controls">
+      <div class="tab-bar">
+        <button id="tabMin" class="active" onclick="switchFunc('min')">min()</button>
+        <button id="tabMax" onclick="switchFunc('max')">max()</button>
+        <button id="tabClamp" onclick="switchFunc('clamp')">clamp()</button>
+      </div>
+
+      <div id="minControls">
+        <h2>min() Controls</h2>
+        <div class="control-group">
+          <label>Value A (fluid) <span class="value" id="valMinA">100</span></label>
+          <input type="range" id="minA" min="20" max="100" value="100" oninput="updateMin()">
+        </div>
+        <div class="control-group">
+          <label>Value B (fixed bound) <span class="value" id="valMinB">250</span></label>
+          <input type="range" id="minB" min="50" max="500" value="250" oninput="updateMin()">
+        </div>
+        <div class="control-group">
+          <label>Unit A</label>
+          <select id="minUnitA" onchange="updateMin()">
+            <option value="%">%</option>
+            <option value="px">px</option>
+            <option value="vw">vw</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>Unit B</label>
+          <select id="minUnitB" onchange="updateMin()">
+            <option value="px">px</option>
+            <option value="%">%</option>
+            <option value="vw">vw</option>
+          </select>
+        </div>
+        <p style="font-size:0.8rem;color:#666">min() selects the SMALLER value. Use it like max-width.</p>
+      </div>
+
+      <div id="maxControls" style="display:none">
+        <h2>max() Controls</h2>
+        <div class="control-group">
+          <label>Value A (fluid) <span class="value" id="valMaxA">50</span></label>
+          <input type="range" id="maxA" min="0" max="100" value="50" oninput="updateMax()">
+        </div>
+        <div class="control-group">
+          <label>Value B (minimum) <span class="value" id="valMaxB">200</span></label>
+          <input type="range" id="maxB" min="50" max="500" value="200" oninput="updateMax()">
+        </div>
+        <div class="control-group">
+          <label>Unit A</label>
+          <select id="maxUnitA" onchange="updateMax()">
+            <option value="%">%</option>
+            <option value="px">px</option>
+            <option value="vw">vw</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>Unit B</label>
+          <select id="maxUnitB" onchange="updateMax()">
+            <option value="px">px</option>
+            <option value="%">%</option>
+            <option value="vw">vw</option>
+          </select>
+        </div>
+        <p style="font-size:0.8rem;color:#666">max() selects the LARGER value. Use it like min-width.</p>
+      </div>
+
+      <div id="clampControls" style="display:none">
+        <h2>clamp() Controls</h2>
+        <div class="control-group">
+          <label>Minimum <span class="value" id="valClampMin">100</span></label>
+          <input type="range" id="clampMin" min="10" max="300" value="100" oninput="updateClamp()">
+        </div>
+        <div class="control-group">
+          <label>Preferred (fluid) <span class="value" id="valClampPref">50</span></label>
+          <input type="range" id="clampPref" min="10" max="100" value="50" oninput="updateClamp()">
+        </div>
+        <div class="control-group">
+          <label>Maximum <span class="value" id="valClampMax">400</span></label>
+          <input type="range" id="clampMax" min="100" max="600" value="400" oninput="updateClamp()">
+        </div>
+        <div class="control-group">
+          <label>Preferred Unit</label>
+          <select id="clampUnit" onchange="updateClamp()">
+            <option value="%">%</option>
+            <option value="vw">vw</option>
+            <option value="vh">vh</option>
+          </select>
+        </div>
+        <p style="font-size:0.8rem;color:#666">clamp(MIN, PREF, MAX) keeps the value between MIN and MAX.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <div class="preview-box" id="previewBox">
+          min(100%, 250px)
+        </div>
+        <div class="visual-scale" id="visualScale">
+          <div class="visual-bar" id="visualBar" style="width:100%"></div>
+          <div class="visual-labels">
+            <span id="visualMin">Min</span>
+            <span id="visualCurrent">Current</span>
+            <span id="visualMax">Max</span>
+          </div>
+        </div>
+      </div>
+      <div class="code-output" id="codeOutput">width: min(100%, 250px);</div>
+    </div>
+  </div>
+
+  <script>
+    let currentFunc = 'min';
+
+    function switchFunc(name) {
+      currentFunc = name;
+      ['min', 'max', 'clamp'].forEach(f => {
+        document.getElementById(f + 'Controls').style.display = f === name ? 'block' : 'none';
+        document.getElementById('tab' + f.charAt(0).toUpperCase() + f.slice(1)).className = f === name ? 'active' : '';
+      });
+      if (name === 'min') updateMin();
+      else if (name === 'max') updateMax();
+      else updateClamp();
+    }
+
+    function updateMin() {
+      const a = document.getElementById('minA').value;
+      const b = document.getElementById('minB').value;
+      const uA = document.getElementById('minUnitA').value;
+      const uB = document.getElementById('minUnitB').value;
+
+      document.getElementById('valMinA').textContent = a;
+      document.getElementById('valMinB').textContent = b;
+
+      const expr = `min(${a}${uA}, ${b}${uB})`;
+      const box = document.getElementById('previewBox');
+      box.style.width = expr;
+      box.style.removeProperty('height');
+      box.style.removeProperty('font-size');
+
+      document.getElementById('previewBox').textContent = expr;
+      document.getElementById('codeOutput').textContent = `width: ${expr};`;
+
+      // Visual bar: show relative sizes
+      const bar = document.getElementById('visualBar');
+      const valA = parseInt(a);
+      const valB = parseInt(b);
+      const ratio = Math.min(valA, valB) / Math.max(valA, valB) * 100;
+      bar.style.width = Math.max(20, ratio) + '%';
+      document.getElementById('visualMin').textContent = `min: ${Math.min(valA, valB)}`;
+      document.getElementById('visualCurrent').textContent = `selected: ${Math.min(valA, valB)}`;
+      document.getElementById('visualMax').textContent = `others: ${Math.max(valA, valB)}`;
+    }
+
+    function updateMax() {
+      const a = document.getElementById('maxA').value;
+      const b = document.getElementById('maxB').value;
+      const uA = document.getElementById('maxUnitA').value;
+      const uB = document.getElementById('maxUnitB').value;
+
+      document.getElementById('valMaxA').textContent = a;
+      document.getElementById('valMaxB').textContent = b;
+
+      const expr = `max(${a}${uA}, ${b}${uB})`;
+      const box = document.getElementById('previewBox');
+      box.style.width = expr;
+      box.style.removeProperty('height');
+      box.style.removeProperty('font-size');
+
+      document.getElementById('previewBox').textContent = expr;
+      document.getElementById('codeOutput').textContent = `width: ${expr};`;
+
+      const bar = document.getElementById('visualBar');
+      const valA = parseInt(a);
+      const valB = parseInt(b);
+      const ratio = Math.max(valA, valB) / Math.max(valA, valB, 1) * 100;
+      bar.style.width = Math.max(20, ratio) + '%';
+      document.getElementById('visualMin').textContent = `others: ${Math.min(valA, valB)}`;
+      document.getElementById('visualCurrent').textContent = `selected: ${Math.max(valA, valB)}`;
+      document.getElementById('visualMax').textContent = `max: ${Math.max(valA, valB)}`;
+    }
+
+    function updateClamp() {
+      const min = document.getElementById('clampMin').value;
+      const pref = document.getElementById('clampPref').value;
+      const max = document.getElementById('clampMax').value;
+      const unit = document.getElementById('clampUnit').value;
+
+      document.getElementById('valClampMin').textContent = min;
+      document.getElementById('valClampPref').textContent = pref;
+      document.getElementById('valClampMax').textContent = max;
+
+      const expr = `clamp(${min}px, ${pref}${unit}, ${max}px)`;
+      const box = document.getElementById('previewBox');
+      box.style.width = expr;
+      box.style.removeProperty('height');
+      box.style.removeProperty('font-size');
+
+      document.getElementById('previewBox').textContent = expr;
+      document.getElementById('codeOutput').textContent = `width: ${expr};`;
+
+      const bar = document.getElementById('visualBar');
+      const numMin = parseInt(min);
+      const numPref = parseInt(pref);
+      const numMax = parseInt(max);
+      const clamped = Math.max(numMin, Math.min(numPref, numMax));
+      const totalRange = numMax - numMin;
+      const pos = totalRange > 0 ? ((clamped - numMin) / totalRange) * 100 : 50;
+      bar.style.width = Math.max(20, pos) + '%';
+      document.getElementById('visualMin').textContent = `min: ${numMin}`;
+      document.getElementById('visualCurrent').textContent = `current: ${clamped}`;
+      document.getElementById('visualMax').textContent = `max: ${numMax}`;
+    }
+
+    updateMin();
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "title": "Color Accessibility Challenges",
+  "module": "109",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Fix Color-Only Status Indicators",
+      "description": "Given a list of status indicators that only use color (green/red/orange dots), refactor them to include text labels and icons.",
+      "starterCode": "<ul class=\"status-list\">\n  <li class=\"status active\">Active</li>\n  <li class=\"status inactive\">Inactive</li>\n  <li class=\"status pending\">Pending</li>\n</ul>",
+      "hint": "Use ::before pseudo-elements to add Unicode symbols like ✓, ✗, and ⏳.",
+      "solution": ".status.active::before { content: '✓ '; color: green; }\n.status.inactive::before { content: '✗ '; color: red; }\n.status.pending::before { content: '⏳ '; color: orange; }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Accessible Form Validation",
+      "description": "Create a form with validation that uses color, icons, and text messages to indicate errors. Use aria attributes for screen reader support.",
+      "starterCode": "<form id=\"signup-form\">\n  <div class=\"field\">\n    <label for=\"email\">Email</label>\n    <input type=\"email\" id=\"email\" required>\n  </div>\n  <button type=\"submit\">Submit</button>\n</form>",
+      "hint": "Use aria-describedby on the input pointing to an error message span. Style the error state with border color + icon + text.",
+      "solution": "/* CSS */\n.field.error input { border-color: #e74c3c; }\n.field.error .error-msg { display: block; color: #e74c3c; }\n.field.error .error-msg::before { content: '⚠ '; }\n\n<!-- HTML updated -->\n<div class=\"field\">\n  <label for=\"email\">Email</label>\n  <input type=\"email\" id=\"email\" aria-describedby=\"email-error\">\n  <span id=\"email-error\" class=\"error-msg\" role=\"alert\">Please enter a valid email</span>\n</div>"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Perceptually Accessible Theme System",
+      "description": "Build a complete CSS custom property theme system using OKLCH colors that maintains WCAG AAA contrast across light and dark modes.",
+      "starterCode": ":root {\n  --hue: 240;\n  --primary: oklch(50% 0.2 var(--hue));\n}",
+      "hint": "Use color-mix() and relative color syntax to derive accessible pairs. Test contrast ratios mathematically.",
+      "solution": ":root {\n  --hue: 240;\n  --primary: oklch(50% 0.25 var(--hue));\n  --primary-light: oklch(from var(--primary) 85% c h);\n  --primary-dark: oklch(from var(--primary) 30% c h);\n  --text-on-primary: oklch(95% 0.02 var(--hue));\n  --text-on-primary-dark: oklch(90% 0.02 var(--hue));\n  --border-focus: oklch(60% 0.3 var(--hue));\n}\n\n@media (prefers-color-scheme: dark) {\n  :root {\n    --primary: oklch(60% 0.2 var(--hue));\n    --text-on-primary: oklch(15% 0.02 var(--hue));\n  }\n}\n\n@media (prefers-contrast: high) {\n  :root {\n    --primary: oklch(40% 0.3 var(--hue));\n    --text-on-primary: oklch(98% 0.01 var(--hue));\n  }\n}"
+    }
+  ]
+}

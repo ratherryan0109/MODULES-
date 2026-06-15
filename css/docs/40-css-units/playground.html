@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Units Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 800px; margin: 0 auto; }
+    .controls { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .controls label { display: flex; flex-direction: column; gap: 5px; }
+
+    .demo-area {
+      background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .unit-preview {
+      background: #007bff; color: #fff; display: flex; align-items: center;
+      justify-content: center; border-radius: 6px; transition: all 0.3s;
+      margin: 10px 0;
+    }
+
+    .unit-info {
+      background: #f8f9fa; padding: 15px; border-radius: 6px;
+      font-family: monospace; margin-top: 15px;
+    }
+
+    .conversion-table {
+      width: 100%; border-collapse: collapse; margin-top: 15px;
+    }
+    .conversion-table th, .conversion-table td {
+      padding: 10px; border: 1px solid #ddd; text-align: left;
+    }
+    .conversion-table th { background: #007bff; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Units Playground</h1>
+    <div class="controls">
+      <label>
+        Unit Type:
+        <select id="unitSelect">
+          <option value="px">px (pixels)</option>
+          <option value="rem">rem (root em)</option>
+          <option value="em">em (parent em)</option>
+          <option value="%">% (percent)</option>
+          <option value="vw">vw (viewport width)</option>
+          <option value="vh">vh (viewport height)</option>
+          <option value="ch">ch (character width)</option>
+        </select>
+      </label>
+      <label>
+        Value:
+        <input type="range" id="valueSlider" min="1" max="100" value="20">
+        <span id="valueDisplay">20</span>
+      </label>
+      <label>
+        Parent Font Size (for %/em):
+        <input type="number" id="parentFont" value="16" min="8" max="40" style="width: 70px; padding: 6px; border: 1px solid #ddd; border-radius: 4px;"> px
+      </label>
+    </div>
+
+    <div class="demo-area">
+      <div style="font-size: var(--parent-font, 16px);" id="parentEl">
+        <div class="unit-preview" id="previewBox">Sample Text</div>
+      </div>
+      <div class="unit-info" id="unitInfo">
+        Computed value: —
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const preview = document.getElementById('previewBox');
+    const unitInfo = document.getElementById('unitInfo');
+    const valueSlider = document.getElementById('valueSlider');
+    const valueDisplay = document.getElementById('valueDisplay');
+    const unitSelect = document.getElementById('unitSelect');
+    const parentFont = document.getElementById('parentFont');
+    const parentEl = document.getElementById('parentEl');
+
+    function update() {
+      const value = parseFloat(valueSlider.value);
+      const unit = unitSelect.value;
+      const pf = parseFloat(parentFont.value) || 16;
+
+      valueDisplay.textContent = value;
+      parentEl.style.setProperty('--parent-font', pf + 'px');
+
+      // Get the rendered width/height for display
+      preview.style.width = '';
+      preview.style.height = '';
+      preview.style.fontSize = '';
+
+      if (unit === 'px') {
+        preview.style.width = value + 'px';
+        preview.style.height = value * 0.5 + 'px';
+      } else if (unit === 'rem') {
+        preview.style.width = value + 'rem';
+        preview.style.height = value * 0.5 + 'rem';
+      } else if (unit === 'em') {
+        preview.style.width = value + 'em';
+        preview.style.height = value * 0.5 + 'em';
+      } else if (unit === '%') {
+        preview.style.width = value + '%';
+        preview.style.height = value * 0.5 + '%';
+      } else if (unit === 'vw') {
+        preview.style.width = value + 'vw';
+        preview.style.height = value * 0.5 + 'vw';
+      } else if (unit === 'vh') {
+        preview.style.width = value + 'vh';
+        preview.style.height = value * 0.5 + 'vh';
+      } else if (unit === 'ch') {
+        preview.style.width = value + 'ch';
+        preview.style.height = value * 0.5 + 'ch';
+      }
+
+      // Show computed info after a brief delay for rendering
+      requestAnimationFrame(() => {
+        const rect = preview.getBoundingClientRect();
+        const cs = getComputedStyle(preview);
+        unitInfo.innerHTML = `
+          <strong>Applied:</strong> ${value}${unit}<br>
+          <strong>Computed width:</strong> ${rect.width.toFixed(1)}px<br>
+          <strong>Computed height:</strong> ${rect.height.toFixed(1)}px<br>
+          <strong>Computed font-size:</strong> ${cs.fontSize}
+        `;
+      });
+    }
+
+    valueSlider.addEventListener('input', update);
+    unitSelect.addEventListener('change', update);
+    parentFont.addEventListener('input', update);
+    update();
+  </script>
+</body>
+</html>

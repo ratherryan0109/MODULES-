@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does flex-shrink do in Flexbox?", "answer": "flex-shrink determines how much a flex item can shrink when there is not enough space in the container." },
+    { "question": "What is the default value of flex-shrink?", "answer": "The default value of flex-shrink is 1, meaning items can shrink by default." },
+    { "question": "What does flex-shrink: 0 do?", "answer": "flex-shrink: 0 prevents an item from shrinking, forcing it to maintain its flex-basis size." },
+    { "question": "When does flex-shrink take effect?", "answer": "flex-shrink takes effect when the total flex-basis of all items exceeds the container's available space." },
+    { "question": "What happens when all items have flex-shrink: 1?", "answer": "All items shrink equally to fit the container, each reducing proportionally based on their flex-basis." },
+    { "question": "What is the difference between flex-shrink: 0 and flex-shrink: 1?", "answer": "flex-shrink: 0 prevents shrinking; flex-shrink: 1 allows the item to shrink when needed." },
+    { "question": "Can flex-shrink be a decimal value?", "answer": "Yes, flex-shrink accepts positive numbers including decimals like 0.5." },
+    { "question": "How do you make a flex item not shrink at all?", "answer": "Set flex-shrink: 0 on that item to prevent it from shrinking below its flex-basis." },
+    { "question": "Does flex-shrink work on the cross axis?", "answer": "No, flex-shrink only affects the main axis size of flex items." },
+    { "question": "How does flex-shrink differ from flex-grow?", "answer": "flex-grow distributes extra space (increases size); flex-shrink distributes negative space (decreases size)." }
+  ],
+  "intermediate": [
+    { "question": "How is the shrink amount calculated for each flex item?", "answer": "The shrink amount is proportional to the item's flex-basis times its flex-shrink factor, divided by the sum of all weighted flex-basis values." },
+    { "question": "How does flex-shrink interact with min-width?", "answer": "An item cannot shrink below its min-width value, even if flex-shrink would allow further shrinking." },
+    { "question": "Why do items with larger flex-basis shrink more with flex-shrink: 1?", "answer": "The shrink formula multiplies flex-basis by shrink factor, so larger items contribute more to the total shrink weight and shrink more." },
+    { "question": "How does flex-shrink: 2 differ from flex-shrink: 1 on the same item?", "answer": "An item with flex-shrink: 2 shrinks twice as much as an item with flex-shrink: 1, assuming the same flex-basis." },
+    { "question": "How do you prevent a flex item from shrinking but allow it to grow?", "answer": "Set flex: 1 0 auto (grow: 1, shrink: 0, basis: auto) to allow growth but prevent shrinking." },
+    { "question": "How does flex-shrink behave with flex-direction: column?", "answer": "In column direction, flex-shrink reduces item height instead of width when items overflow vertically." },
+    { "question": "What happens when items have different flex-shrink values?", "answer": "Items with higher flex-shrink values shrink more than those with lower values, based on the weighted shrink formula." },
+    { "question": "How does flex-shrink interact with max-width?", "answer": "max-width is an upper bound; flex-shrink only reduces size, so max-width does not limit shrinking." },
+    { "question": "How does content size affect flex-shrink behavior?", "answer": "Items cannot shrink below their min-content size (determined by content like long words or images)." },
+    { "question": "How does flex-shrink handle overflow in a nowrap container?", "answer": "flex-shrink reduces items to fit the container; if items reach min-content before fitting, overflow occurs." }
+  ],
+  "advanced": [
+    { "question": "What is the flex-shrink algorithm for distributing negative space?", "answer": "Negative space is distributed proportionally: each item reduces by (shrink * basis) / sum(shrink * basis) * totalNegativeSpace." },
+    { "question": "How does flex-shrink interact with the min-content size of a flex item?", "answer": "min-content overrides the flex-shrink calculation; the item stops shrinking at min-content, and remaining items absorb more shrinkage." },
+    { "question": "How does flex-shrink behave with nested flex containers?", "answer": "flex-shrink of an outer flex item is calculated first, then the inner flex layout distributes the reduced space among its children." },
+    { "question": "How does the flex shorthand default flex-shrink to 1?", "answer": "The flex shorthand defaults flex-shrink to 1 if only flex-grow is specified (e.g., flex: 1 sets grow:1, shrink:1, basis:0)." },
+    { "question": "How does flex-shrink work when items have auto margins?", "answer": "Auto margins absorb free space before flex-shrink calculations, potentially reducing the negative space that needs to be shrunk." },
+    { "question": "How does flex-shrink interact with visibility: hidden items?", "answer": "Visibility: hidden items still participate in flex layout and shrink; their space is invisible but still subtracted from the container." },
+    { "question": "How does flex-shrink behave with absolutely positioned items?", "answer": "Absolutely positioned children are not flex items and are ignored by flex-shrink calculations." },
+    { "question": "How does the flex-shrink factor affect the final item size when some items reach min-content?", "answer": "When an item hits min-content, it stops shrinking; the remaining negative space is redistributed among the other shrinkable items." },
+    { "question": "How does flex-shrink interact with the gap property?", "answer": "Gaps are subtracted from total space before flex-shrink calculations; they do not shrink and maintain their fixed spacing." },
+    { "question": "How do you create a non-shrinking sidebar with a shrinking content area?", "answer": "Set flex-shrink: 0 on the sidebar and flex-shrink: 1 on the content area; the sidebar maintains its width while content shrinks." }
+  ]
+}

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geolocation API Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f0f2f5;
+      color: #333;
+    }
+    h1 { color: #2c3e50; }
+    h2 { color: #34495e; margin-top: 40px; border-bottom: 2px solid #bdc3c7; padding-bottom: 8px; }
+    section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+      margin: 5px;
+    }
+    button:hover { background: #2980b9; }
+    button:active { transform: scale(0.97); }
+    button.danger { background: #e74c3c; }
+    button.danger:hover { background: #c0392b; }
+    button.success { background: #2ecc71; }
+    button.success:hover { background: #27ae60; }
+    button:disabled { background: #bdc3c7; cursor: not-allowed; }
+
+    .data-card {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 10px 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px 16px;
+    }
+    .data-card .label { color: #666; font-weight: 500; }
+    .data-card .value { font-family: monospace; color: #2c3e50; }
+    .data-card .value.highlight { color: #27ae60; font-weight: bold; }
+
+    #mapContainer {
+      width: 100%;
+      height: 350px;
+      background: #e9ecef;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6c757d;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    #mapContainer img { max-width: 100%; max-height: 100%; }
+
+    .status-msg {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    .status-msg.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .status-msg.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    .status-msg.info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    .status-msg.warn { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+
+    .permission-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .permission-status.granted { background: #d4edda; color: #155724; }
+    .permission-status.denied { background: #f8d7da; color: #721c24; }
+    .permission-status.prompt { background: #fff3cd; color: #856404; }
+
+    .controls { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+    .speed-indicator {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #e9ecef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin: 10px auto;
+    }
+    .speed-indicator .value { font-size: 28px; font-weight: bold; color: #2c3e50; }
+    .speed-indicator .unit { font-size: 12px; color: #666; }
+
+    .nearby-places {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 10px 0;
+    }
+    .place-card {
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 14px;
+      background: #f8f9fa;
+    }
+    .place-card .name { font-weight: 600; }
+    .place-card .dist { color: #666; font-size: 13px; margin-top: 4px; }
+
+    label { font-weight: 500; margin-right: 8px; }
+    select, input[type="number"] {
+      padding: 8px 12px;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .log {
+      max-height: 200px;
+      overflow-y: auto;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      margin: 10px 0;
+    }
+    .log .entry { padding: 2px 0; border-bottom: 1px solid #2a2a4e; }
+    .log .entry .time { color: #666; }
+  </style>
+</head>
+<body>
+
+<h1>🌍 Geolocation API Examples</h1>
+<p>Interactive examples demonstrating the HTML5 Geolocation API. Requires HTTPS or localhost.</p>
+
+<!-- ============================================================ -->
+<section>
+  <h2>1. Check Permissions</h2>
+  <p>Check the current geolocation permission state:</p>
+  <div class="controls">
+    <button onclick="checkPermission()">Check Permission Status</button>
+  </div>
+  <div id="permissionDisplay">
+    <span class="permission-status prompt">⏳ Click to check</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>2. Get Current Position</h2>
+  <p>Request your current location:</p>
+  <div class="controls">
+    <button onclick="getCurrentPosition()">📍 Get My Location</button>
+    <label>Accuracy:</label>
+    <select id="accuracySelect">
+      <option value="false">Low (Wi-Fi/IP, faster, less battery)</option>
+      <option value="true">High (GPS, slower, more battery)</option>
+    </select>
+  </div>
+
+  <div id="positionDisplay" style="display:none;">
+    <div class="data-card">
+      <span class="label">Latitude</span><span class="value" id="displayLat">—</span>
+      <span class="label">Longitude</span><span class="value" id="displayLng">—</span>
+      <span class="label">Accuracy</span><span class="value highlight" id="displayAccuracy">—</span>
+      <span class="label">Altitude</span><span class="value" id="displayAltitude">—</span>
+      <span class="label">Heading</span><span class="value" id="displayHeading">—</span>
+      <span class="label">Speed</span><span class="value" id="displaySpeed">—</span>
+      <span class="label">Timestamp</span><span class="value" id="displayTimestamp">—</span>
+    </div>
+    <div id="mapContainer">
+      <span>📍 Map will appear here</span>
+    </div>
+    <div id="addressDisplay" class="status-msg info">Reverse geocoding address...</div>
+  </div>
+  <div id="positionStatus" style="display:none;"></div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>3. Real-time Tracking (watchPosition)</h2>
+  <p>Track your position continuously. Useful for navigation or fitness tracking.</p>
+  <div class="controls">
+    <button onclick="startTracking()" id="startTrackBtn" class="success">▶ Start Tracking</button>
+    <button onclick="stopTracking()" id="stopTrackBtn" class="danger" disabled>⏹ Stop Tracking</button>
+  </div>
+
+  <div id="trackingDisplay" style="display:none;">
+    <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+      <div class="data-card" style="flex:2; min-width:250px;">
+        <span class="label">Latitude</span><span class="value" id="trackLat">—</span>
+        <span class="label">Longitude</span><span class="value" id="trackLng">—</span>
+        <span class="label">Accuracy</span><span class="value" id="trackAccuracy">—</span>
+      </div>
+      <div class="speed-indicator" id="speedDisplay">
+        <div class="value" id="speedValue">0</div>
+        <div class="unit">m/s</div>
+      </div>
+    </div>
+    <div class="log" id="trackingLog">
+      <div class="entry"><span class="time">—</span> Waiting for position updates...</div>
+    </div>
+  </div>
+  <div id="trackingStatus" style="display:none;"></div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>4. Distance Calculator</h2>
+  <p>Calculate the distance between two geographic points:</p>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <div style="flex:1; min-width:200px;">
+      <h3>Point A</h3>
+      <div style="margin: 8px 0;">
+        <label>Lat:</label>
+        <input type="number" id="latA" value="40.7128" step="0.0001">
+      </div>
+      <div style="margin: 8px 0;">
+        <label>Lng:</label>
+        <input type="number" id="lngA" value="-74.0060" step="0.0001">
+      </div>
+      <button onclick="useCurrentPositionA()">📍 Use My Location</button>
+    </div>
+    <div style="flex:1; min-width:200px;">
+      <h3>Point B</h3>
+      <div style="margin: 8px 0;">
+        <label>Lat:</label>
+        <input type="number" id="latB" value="34.0522" step="0.0001">
+      </div>
+      <div style="margin: 8px 0;">
+        <label>Lng:</label>
+        <input type="number" id="lngB" value="-118.2437" step="0.0001">
+      </div>
+      <button onclick="useCurrentPositionB()">📍 Use My Location</button>
+    </div>
+  </div>
+  <div class="controls">
+    <button onclick="calculateDistance()" style="padding: 12px 32px;">📏 Calculate Distance</button>
+  </div>
+  <div id="distanceResult" class="status-msg info" style="display:none;"></div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>5. Simulated Watch (DevTools Test)</h2>
+  <p>Override coordinates using Chrome DevTools (Sensors panel) then click below:</p>
+  <div class="controls">
+    <button onclick="testWithCoords()">Test with Custom Coordinates</button>
+  </div>
+  <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
+    <label>Lat:</label>
+    <input type="number" id="testLat" value="48.8566" step="0.0001" style="width:120px;">
+    <label>Lng:</label>
+    <input type="number" id="testLng" value="2.3522" step="0.0001" style="width:120px;">
+    <button onclick="testCustomCoords()" class="success">Test</button>
+  </div>
+  <div id="testResult" style="display:none;"></div>
+</section>
+
+<script>
+let trackingWatchId = null;
+
+// ===== Formatting helpers =====
+function formatCoord(val) { return val != null ? val.toFixed(6) : '—'; }
+function formatVal(val, unit) { return val != null ? val + ' ' + unit : '—'; }
+function formatTime(ts) { return new Date(ts).toLocaleTimeString(); }
+
+function showStatus(id, message, type) {
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  el.className = 'status-msg ' + type;
+  el.textContent = message;
+}
+
+function hideStatus(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+// ===== 1. Check Permission =====
+async function checkPermission() {
+  const display = document.getElementById('permissionDisplay');
+
+  if (!navigator.permissions || !navigator.permissions.query) {
+    display.innerHTML = '<span class="permission-status prompt">⚠️ Permissions API not supported</span>';
+    return;
+  }
+
+  try {
+    const result = await navigator.permissions.query({ name: 'geolocation' });
+    const states = {
+      granted: '<span class="permission-status granted">✅ Granted</span>',
+      denied: '<span class="permission-status denied">❌ Denied</span>',
+      prompt: '<span class="permission-status prompt">⏳ Will prompt</span>'
+    };
+    display.innerHTML = states[result.state] || '<span class="permission-status prompt">Unknown</span>';
+  } catch (err) {
+    display.innerHTML = '<span class="permission-status prompt">Error checking permission</span>';
+  }
+}
+
+// ===== 2. Get Current Position =====
+function getCurrentPosition() {
+  const statusEl = document.getElementById('positionStatus');
+  const displayEl = document.getElementById('positionDisplay');
+  const mapEl = document.getElementById('mapContainer');
+  hideStatus('positionStatus');
+  displayEl.style.display = 'none';
+
+  if (!('geolocation' in navigator)) {
+    showStatus('positionStatus', '❌ Geolocation is not supported by this browser.', 'error');
+    return;
+  }
+
+  showStatus('positionStatus', '📍 Requesting your location...', 'info');
+
+  const useHighAccuracy = document.getElementById('accuracySelect').value === 'true';
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      hideStatus('positionStatus');
+      displayEl.style.display = 'block';
+      const c = position.coords;
+
+      document.getElementById('displayLat').textContent = formatCoord(c.latitude);
+      document.getElementById('displayLng').textContent = formatCoord(c.longitude);
+      document.getElementById('displayAccuracy').textContent = formatVal(c.accuracy, 'm');
+      document.getElementById('displayAltitude').textContent = formatVal(c.altitude, 'm');
+      document.getElementById('displayHeading').textContent = formatVal(c.heading, '°');
+      document.getElementById('displaySpeed').textContent = formatVal(c.speed, 'm/s');
+      document.getElementById('displayTimestamp').textContent = formatTime(position.timestamp);
+
+      // Static map
+      const lat = c.latitude.toFixed(6);
+      const lng = c.longitude.toFixed(6);
+      mapEl.innerHTML = `
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=600x350&markers=color:red%7C${lat},${lng}&key=DEMO"
+             alt="Map showing location"
+             style="width:100%;height:100%;object-fit:cover;"
+             onerror="this.parentElement.innerHTML='<span>🗺️ Map preview requires a Google Maps API key</span><br><span style=\\'font-size:12px\\'>Coords: ' + ${lat} + ', ' + ${lng} + '</span>'">
+      `;
+
+      // Reverse geocode
+      reverseGeocode(c.latitude, c.longitude).then(addr => {
+        document.getElementById('addressDisplay').textContent = '📍 ' + addr;
+      });
+    },
+    (error) => {
+      const messages = {
+        1: '❌ Permission denied. Please allow location access in your browser settings.',
+        2: '❌ Position unavailable. Check your GPS or Wi-Fi connection.',
+        3: '❌ Request timed out. Try again in an area with better signal.'
+      };
+      showStatus('positionStatus', messages[error.code] || '❌ An unknown error occurred.', 'error');
+    },
+    { enableHighAccuracy: useHighAccuracy, timeout: 15000, maximumAge: 300000 }
+  );
+}
+
+async function reverseGeocode(lat, lng) {
+  try {
+    const resp = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&addressdetails=1`, {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!resp.ok) return 'Reverse geocoding unavailable';
+    const data = await resp.json();
+    return data.display_name || 'Unknown location';
+  } catch {
+    return 'Offline — address unavailable';
+  }
+}
+
+// ===== 3. Real-time Tracking =====
+function startTracking() {
+  if (!('geolocation' in navigator)) {
+    showStatus('trackingStatus', 'Geolocation not supported.', 'error');
+    return;
+  }
+
+  const display = document.getElementById('trackingDisplay');
+  display.style.display = 'block';
+  hideStatus('trackingStatus');
+  document.getElementById('startTrackBtn').disabled = true;
+  document.getElementById('stopTrackBtn').disabled = false;
+
+  const log = document.getElementById('trackingLog');
+  log.innerHTML = '<div class="entry"><span class="time">' + new Date().toLocaleTimeString() + '</span> Tracking started...</div>';
+
+  trackingWatchId = navigator.geolocation.watchPosition(
+    (position) => {
+      const c = position.coords;
+
+      document.getElementById('trackLat').textContent = formatCoord(c.latitude);
+      document.getElementById('trackLng').textContent = formatCoord(c.longitude);
+      document.getElementById('trackAccuracy').textContent = formatVal(c.accuracy, 'm');
+      document.getElementById('speedValue').textContent = c.speed != null ? c.speed.toFixed(1) : '0';
+
+      const time = new Date().toLocaleTimeString();
+      const entry = document.createElement('div');
+      entry.className = 'entry';
+      entry.innerHTML = `<span class="time">${time}</span> Lat: ${formatCoord(c.latitude)}, Lng: ${formatCoord(c.longitude)}, Acc: ${formatVal(c.accuracy, 'm')}`;
+      log.insertBefore(entry, log.firstChild);
+
+      // Keep log manageable
+      while (log.children.length > 20) log.removeChild(log.lastChild);
+    },
+    (error) => {
+      showStatus('trackingStatus', 'Tracking error: ' + error.message, 'error');
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 5000 }
+  );
+}
+
+function stopTracking() {
+  if (trackingWatchId !== null) {
+    navigator.geolocation.clearWatch(trackingWatchId);
+    trackingWatchId = null;
+  }
+  document.getElementById('startTrackBtn').disabled = false;
+  document.getElementById('stopTrackBtn').disabled = true;
+
+  const log = document.getElementById('trackingLog');
+  const entry = document.createElement('div');
+  entry.className = 'entry';
+  entry.innerHTML = `<span class="time">${new Date().toLocaleTimeString()}</span> ⏹ Tracking stopped`;
+  log.insertBefore(entry, log.firstChild);
+}
+
+// ===== 4. Distance Calculator =====
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371000;
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat/2) ** 2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+            Math.sin(dLon/2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function calculateDistance() {
+  const latA = parseFloat(document.getElementById('latA').value);
+  const lngA = parseFloat(document.getElementById('lngA').value);
+  const latB = parseFloat(document.getElementById('latB').value);
+  const lngB = parseFloat(document.getElementById('lngB').value);
+
+  const d = haversineDistance(latA, lngA, latB, lngB);
+  const el = document.getElementById('distanceResult');
+  el.style.display = 'block';
+
+  let formatted;
+  if (d < 1000) {
+    formatted = d.toFixed(0) + ' m';
+  } else if (d < 100000) {
+    formatted = (d / 1000).toFixed(2) + ' km';
+  } else {
+    formatted = (d / 1000).toFixed(0) + ' km';
+  }
+
+  el.className = 'status-msg success';
+  el.innerHTML = `📏 Distance between points: <strong>${formatted}</strong>`;
+}
+
+function useCurrentPositionA() {
+  if (!('geolocation' in navigator)) return;
+  navigator.geolocation.getCurrentPosition(p => {
+    document.getElementById('latA').value = p.coords.latitude.toFixed(6);
+    document.getElementById('lngA').value = p.coords.longitude.toFixed(6);
+  }, null, { enableHighAccuracy: false, timeout: 10000 });
+}
+
+function useCurrentPositionB() {
+  if (!('geolocation' in navigator)) return;
+  navigator.geolocation.getCurrentPosition(p => {
+    document.getElementById('latB').value = p.coords.latitude.toFixed(6);
+    document.getElementById('lngB').value = p.coords.longitude.toFixed(6);
+  }, null, { enableHighAccuracy: false, timeout: 10000 });
+}
+
+// ===== 5. Custom Coordinates Test =====
+function testCustomCoords() {
+  const lat = parseFloat(document.getElementById('testLat').value) || 48.8566;
+  const lng = parseFloat(document.getElementById('testLng').value) || 2.3522;
+
+  const el = document.getElementById('testResult');
+  el.style.display = 'block';
+  el.className = 'status-msg info';
+  el.innerHTML = `📍 Testing coordinates: ${lat.toFixed(6)}, ${lng.toFixed(6)} (Paris)<br>
+                  <small>Open DevTools → Sensors → set Override to verify geolocation</small>`;
+}
+
+function testWithCoords() {
+  const el = document.getElementById('testResult');
+  el.style.display = 'block';
+  el.className = 'status-msg warn';
+  el.innerHTML = `🧪 Use Chrome DevTools:<br>
+    <ol style="margin:8px 0 0 20px;">
+      <li>Open DevTools (F12)</li>
+      <li>Click ⋮ → More tools → Sensors</li>
+      <li>Check "Override" and select a location preset</li>
+      <li>Click "Get My Location" above</li>
+    </ol>`;
+}
+
+// Check permission on load
+checkPermission();
+</script>
+</body>
+</html>

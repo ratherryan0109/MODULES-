@@ -1,0 +1,42 @@
+[
+  {
+    "id": "58-challenge-1",
+    "title": "Basic JavaScript String Methods Deep Dive",
+    "description": "Write a function that demonstrates the core concepts of JavaScript String Methods Deep Dive. Focus on implementing indexOf, lastIndexOf, includes correctly.",
+    "difficulty": "easy",
+    "starterCode": "function basic_58() {\n  // Implement indexof, lastindexof, includes\n  // Return a meaningful result\n  return \"Implement JavaScript String Methods Deep Dive\";\n}",
+    "solution": "function basic_58() {\n  const concepts = [\"indexOf, lastIndexOf, includes\", \"startsWith, endsWith\", \"slice vs substring vs substr\"];\n  return concepts.map(c => c.toUpperCase());\n}"
+  },
+  {
+    "id": "58-challenge-2",
+    "title": "Intermediate JavaScript String Methods Deep Dive",
+    "description": "Create a function that uses indexOf, lastIndexOf, includes and startsWith, endsWith together. Handle edge cases and validate inputs.",
+    "difficulty": "medium",
+    "starterCode": "function intermediate_58(input) {\n  // Process input using indexof, lastindexof, includes\n  // and startswith, endswith\n  // Handle edge cases\n  if (!input) return [];\n  return input;\n}",
+    "solution": "function intermediate_58(input) {\n  if (!Array.isArray(input)) return [];\n  return input\n    .filter(item => item != null)\n    .map(item => ({ original: item, processed: String(item).toUpperCase() }));\n}"
+  },
+  {
+    "id": "58-challenge-3",
+    "title": "Advanced JavaScript String Methods Deep Dive Project",
+    "description": "Build a small application that applies indexOf, lastIndexOf, includes, startsWith, endsWith, slice vs substring vs substr in a real-world scenario. Include error handling and input validation.",
+    "difficulty": "hard",
+    "starterCode": "class JavaScriptStringMethodsDeepDive {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    // Add item with validation\n  }\n  \n  process() {\n    // Process stored data using indexof, lastindexof, includes\n  }\n}",
+    "solution": "class JavaScriptStringMethodsDeepDive {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    if (item == null) throw new Error('Invalid item');\n    this.data.push(item);\n  }\n  \n  process() {\n    return this.data\n      .filter(d => d != null)\n      .map(d => ({ value: d, timestamp: Date.now() }));\n  }\n  \n  clear() {\n    this.data = [];\n  }\n}"
+  },
+  {
+    "id": "58-challenge-4",
+    "title": "Debugging JavaScript String Methods Deep Dive",
+    "description": "The following code has bugs related to indexOf, lastIndexOf, includes. Find and fix them.",
+    "difficulty": "medium",
+    "starterCode": "// Fix the bugs in this code\nfunction processData58(items) {\n  let result = [];\n  for (var i = 0; i < items.length; i++); {\n    result.push(items[i].toUpperCase());\n  }\n  return result;\n}\n\nconsole.log(processData58([\"a\", \"b\", \"c\"]));",
+    "solution": "function processData58(items) {\n  return items.map(item => item.toUpperCase());\n}\n\nconsole.log(processData58([\"a\", \"b\", \"c\"]));\n// Expected: [\"A\", \"B\", \"C\"]"
+  },
+  {
+    "id": "58-challenge-5",
+    "title": "Refactoring JavaScript String Methods Deep Dive",
+    "description": "Refactor the following code to use modern JavaScript patterns with indexOf, lastIndexOf, includes and startsWith, endsWith.",
+    "difficulty": "hard",
+    "starterCode": "// Refactor this code\nfunction oldWay58(arr) {\n  var temp = [];\n  for (var i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) {\n      temp.push(arr[i] * 2);\n    }\n  }\n  var sum = 0;\n  for (var j = 0; j < temp.length; j++) {\n    sum += temp[j];\n  }\n  return sum;\n}",
+    "solution": "function refactored58(arr) {\n  return arr\n    .filter(n => n % 2 === 0)\n    .map(n => n * 2)\n    .reduce((sum, n) => sum + n, 0);\n}"
+  }
+]

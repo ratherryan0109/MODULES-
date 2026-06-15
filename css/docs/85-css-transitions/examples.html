@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Transitions - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .example-card {
+      background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;
+      border: 1px solid #45475a; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .example-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .demo-box {
+      width: 100px; height: 100px; background: #89b4fa; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; color: #1e1e2e; font-weight: 700;
+    }
+    /* Example 1: Basic Transition */
+    .ex1 { transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; }
+    .ex1:hover { background-color: #f38ba8; transform: scale(1.1); }
+    /* Example 2: Timing Functions */
+    .ex2-linear { transition: transform 1s linear; }
+    .ex2-linear:hover { transform: translateX(200px); }
+    .ex2-ease { transition: transform 1s ease; }
+    .ex2-ease:hover { transform: translateX(200px); }
+    .ex2-ease-in { transition: transform 1s ease-in; }
+    .ex2-ease-in:hover { transform: translateX(200px); }
+    .ex2-ease-out { transition: transform 1s ease-out; }
+    .ex2-ease-out:hover { transform: translateX(200px); }
+    .ex2-ease-in-out { transition: transform 1s ease-in-out; }
+    .ex2-ease-in-out:hover { transform: translateX(200px); }
+    /* Example 3: Custom Cubic Bezier */
+    .ex3 { transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); cursor: pointer; }
+    .ex3:hover { transform: rotate(180deg) scale(1.2); }
+    /* Example 4: Delay */
+    .ex4 { transition: opacity 0.3s ease 0.2s; }
+    .ex4-hidden { opacity: 0; }
+    /* Example 5: Multiple Properties */
+    .ex5 {
+      transition:
+        background-color 0.3s ease,
+        border-radius 0.5s ease-in-out,
+        transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      cursor: pointer;
+    }
+    .ex5:hover {
+      background-color: #cba6f7; border-radius: 50%; transform: rotate(360deg);
+    }
+    .pre { font-family: monospace; background: #181825; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; }
+    .flex-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  </style>
+</head>
+<body>
+  <h1>CSS Transitions — Practical Examples</h1>
+
+  <div class="example-card">
+    <h2>1. Basic Hover Transition</h2>
+    <p>Background color and scale on hover with 0.3s ease.</p>
+    <div class="demo-box ex1">Hover me</div>
+    <div class="pre">transition: background-color 0.3s ease, transform 0.3s ease;</div>
+  </div>
+
+  <div class="example-card">
+    <h2>2. Timing Functions Comparison</h2>
+    <p>Each box moves 200px on hover with a different timing function (1s duration).</p>
+    <div class="flex-row">
+      <div><div class="demo-box ex2-linear" style="background:#f38ba8;">linear</div></div>
+      <div><div class="demo-box ex2-ease" style="background:#a6e3a1;">ease</div></div>
+      <div><div class="demo-box ex2-ease-in" style="background:#fab387;">ease-in</div></div>
+      <div><div class="demo-box ex2-ease-out" style="background:#cba6f7;">ease-out</div></div>
+      <div><div class="demo-box ex2-ease-in-out" style="background:#89dceb;">ease-in-out</div></div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <h2>3. Custom Cubic Bezier (Bounce Effect)</h2>
+    <p>Using <code>cubic-bezier(0.68, -0.55, 0.265, 1.55)</code> for an elastic bounce.</p>
+    <div class="demo-box ex3" style="background:#fab387;">Click/Hover</div>
+    <div class="pre">cubic-bezier(0.68, -0.55, 0.265, 1.55)</div>
+  </div>
+
+  <div class="example-card">
+    <h2>4. Transition Delay</h2>
+    <p>Fades out with a 0.2s delay using <code>transition-delay: 0.2s</code>.</p>
+    <div class="demo-box ex4" style="background:#f38ba8;" onclick="this.classList.toggle('ex4-hidden')">Click me</div>
+    <div class="pre">transition: opacity 0.3s ease 0.2s;</div>
+  </div>
+
+  <div class="example-card">
+    <h2>5. Multiple Properties, Different Timings</h2>
+    <p>Background, border-radius, and transform all transition independently.</p>
+    <div class="demo-box ex5" style="background:#a6e3a1;">Hover me</div>
+    <div class="pre">
+transition:<br>
+&nbsp;&nbsp;background-color 0.3s ease,<br>
+&nbsp;&nbsp;border-radius 0.5s ease-in-out,<br>
+&nbsp;&nbsp;transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Syntax - Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px;
+      background: #f7fafc;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #1a365d;
+      text-align: center;
+      border-bottom: 4px solid #4299e1;
+      padding-bottom: 15px;
+    }
+
+    h2 { color: #2b6cb0; margin-top: 40px; }
+
+    .demo-box {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 20px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-left: 5px solid #4299e1;
+    }
+
+    .code {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      margin: 15px 0;
+    }
+
+    .error {
+      border-left-color: #e53e3e;
+      background: #fff5f5;
+    }
+
+    .error .code {
+      background: #742a2a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+    }
+
+    th {
+      background: #2d3748;
+      color: white;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .tag-correct { background: #c6f6d5; color: #22543d; }
+    .tag-wrong { background: #fed7d7; color: #742a2a; }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .col {
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .col-correct { background: #f0fff4; border: 2px solid #48bb78; }
+    .col-wrong { background: #fff5f5; border: 2px solid #fc8181; }
+
+    .shorthand-example {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .shorthand-example > div {
+      flex: 1;
+      min-width: 250px;
+      padding: 20px;
+      border-radius: 8px;
+      background: #edf2f7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Syntax: Examples & Demonstrations</h1>
+
+  <!-- BASIC RULE STRUCTURE -->
+  <div class="demo-box">
+    <h2>1. Basic CSS Rule Structure</h2>
+    <p>Every CSS rule follows the pattern: <strong>selector { property: value; }</strong></p>
+    <div class="code">
+      /* Selector → Declaration Block */<br>
+      h1 {<br>
+      &nbsp;&nbsp;color: navy;       /* property: value; */<br>
+      &nbsp;&nbsp;font-size: 32px;   /* property: value; */<br>
+      &nbsp;&nbsp;text-align: center;/* property: value; */<br>
+      }
+    </div>
+    <p style="color: navy; font-size: 32px; text-align: center; font-weight: bold;">This h1-like text is styled using that exact rule.</p>
+  </div>
+
+  <!-- CORRECT VS INCORRECT -->
+  <div class="demo-box">
+    <h2>2. Correct vs Incorrect Syntax</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Syntax</th>
+          <th>Valid?</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="code">p { color: red; }</td>
+          <td><span class="tag tag-correct">✅ Valid</span></td>
+          <td>Standard correct syntax</td>
+        </tr>
+        <tr>
+          <td class="code">p { color: red; font-size: 16px; }</td>
+          <td><span class="tag tag-correct">✅ Valid</span></td>
+          <td>Multiple declarations with semicolons</td>
+        </tr>
+        <tr>
+          <td class="code">p { color: red font-size: 16px; }</td>
+          <td><span class="tag tag-wrong">❌ Invalid</span></td>
+          <td>Missing semicolon — font-size ignored</td>
+        </tr>
+        <tr>
+          <td class="code">p { color = red; }</td>
+          <td><span class="tag tag-wrong">❌ Invalid</span></td>
+          <td>Using = instead of :</td>
+        </tr>
+        <tr>
+          <td class="code">P { COLOR: RED; }</td>
+          <td><span class="tag tag-correct">✅ Valid</span></td>
+          <td>Case-insensitive for properties/values</td>
+        </tr>
+        <tr>
+          <td class="code">h1, h2, h3 { color: blue; }</td>
+          <td><span class="tag tag-correct">✅ Valid</span></td>
+          <td>Grouped selectors</td>
+        </tr>
+        <tr>
+          <td class="code">margin: 10px 20px 10px 20px;</td>
+          <td><span class="tag tag-correct">✅ Valid</span></td>
+          <td>Shorthand margin (top right bottom left)</td>
+        </tr>
+        <tr>
+          <td class="code">margin: 10px, 20px;</td>
+          <td><span class="tag tag-wrong">❌ Invalid</span></td>
+          <td>Commas don't belong in margin shorthand</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SHORTHAND VS LONGHAND -->
+  <div class="demo-box">
+    <h2>3. Shorthand vs Longhand Comparison</h2>
+    <div class="shorthand-example">
+      <div>
+        <h3 style="color:#e53e3e;">Longhand (Verbose)</h3>
+        <div class="code">
+          .box {<br>
+          &nbsp;&nbsp;padding-top: 10px;<br>
+          &nbsp;&nbsp;padding-right: 20px;<br>
+          &nbsp;&nbsp;padding-bottom: 10px;<br>
+          &nbsp;&nbsp;padding-left: 20px;<br>
+          &nbsp;&nbsp;border-width: 2px;<br>
+          &nbsp;&nbsp;border-style: solid;<br>
+          &nbsp;&nbsp;border-color: #333;<br>
+          &nbsp;&nbsp;margin-top: 5px;<br>
+          &nbsp;&nbsp;margin-right: 10px;<br>
+          &nbsp;&nbsp;margin-bottom: 5px;<br>
+          &nbsp;&nbsp;margin-left: 10px;<br>
+          }
+        </div>
+      </div>
+      <div>
+        <h3 style="color:#38a169;">Shorthand (Concise)</h3>
+        <div class="code">
+          .box {<br>
+          &nbsp;&nbsp;padding: 10px 20px;<br>
+          &nbsp;&nbsp;border: 2px solid #333;<br>
+          &nbsp;&nbsp;margin: 5px 10px;<br>
+          }
+        </div>
+      </div>
+    </div>
+    <div style="background:#ebf8ff; padding:15px; border-radius:5px; margin-top:15px;">
+      <strong>💡 Tip:</strong> Shorthand is concise but be careful — it resets omitted values to defaults. For example, <code>background: #fff;</code> resets background-image to none.
+    </div>
+  </div>
+
+  <!-- VENDOR PREFIXES -->
+  <div class="demo-box" style="border-left-color: #9f7aea;">
+    <h2>4. Vendor Prefixes</h2>
+    <p>Experimental CSS features may need vendor prefixes for cross-browser support:</p>
+    <div class="code">
+      .box {<br>
+      &nbsp;&nbsp;-webkit-transform: rotate(45deg);  /* Chrome, Safari */<br>
+      &nbsp;&nbsp;-moz-transform: rotate(45deg);     /* Firefox */<br>
+      &nbsp;&nbsp;-ms-transform: rotate(45deg);      /* IE/Edge */<br>
+      &nbsp;&nbsp;-o-transform: rotate(45deg);       /* Older Opera */<br>
+      &nbsp;&nbsp;transform: rotate(45deg);          /* Standard */<br>
+      }
+    </div>
+    <div style="width:100px;height:100px;background:#9f7aea;color:white;display:flex;align-items:center;justify-content:center;border-radius:8px;transform:rotate(45deg);margin:30px auto;">
+      Rotated!
+    </div>
+    <p>Always put the unprefixed standard property <strong>last</strong> so it takes precedence when supported.</p>
+  </div>
+
+  <!-- WHITESPACE -->
+  <div class="demo-box">
+    <h2>5. Whitespace Flexibility</h2>
+    <p>CSS is flexible with whitespace — all of these are equivalent:</p>
+    <div class="comparison-grid">
+      <div class="col col-correct">
+        <strong>Compact:</strong>
+        <div class="code">p{color:red;font-size:14px;}</div>
+      </div>
+      <div class="col col-correct">
+        <strong>Readable (recommended):</strong>
+        <div class="code">p {<br>&nbsp;&nbsp;color: red;<br>&nbsp;&nbsp;font-size: 14px;<br>}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTES IN CSS -->
+  <div class="demo-box">
+    <h2>6. When to Use Quotes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Situation</th>
+          <th>Example</th>
+          <th>Quotes Required?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Font family with spaces</td>
+          <td class="code">font-family: "Times New Roman", serif;</td>
+          <td>✅ Yes for "Times New Roman"</td>
+        </tr>
+        <tr>
+          <td>Content property</td>
+          <td class="code">.foo::before { content: "→ "; }</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td>URL in url()</td>
+          <td class="code">background: url("bg.jpg");</td>
+          <td>⚠️ Optional (recommended)</td>
+        </tr>
+        <tr>
+          <td>Attribute selectors</td>
+          <td class="code">[data-type="primary"]</td>
+          <td>✅ Yes for the attribute value</td>
+        </tr>
+        <tr>
+          <td>Fonts without spaces</td>
+          <td class="code">font-family: Arial;</td>
+          <td>❌ No</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- IMPORTANT -->
+  <div class="demo-box" style="border-left-color: #e53e3e;">
+    <h2>7. The !important Annotation</h2>
+    <p>Adding <code>!important</code> gives a declaration the highest priority:</p>
+    <div class="code">
+      #special { color: green; }<br>
+      p { color: blue !important; }<br><br>
+      &lt;p id="special"&gt;What color am I?&lt;/p&gt;
+    </div>
+    <p style="color: blue !important;" id="special-demo">I'm <strong>blue</strong> because of !important, even though the ID selector would normally win.</p>
+    <div style="background:#fff5f5; padding:10px; border-radius:5px; margin-top:10px;">
+      <strong>⚠️ Warning:</strong> Use !important sparingly! It breaks the cascade and makes maintenance difficult.
+    </div>
+  </div>
+
+  <!-- GROUPING SELECTORS -->
+  <div class="demo-box">
+    <h2>8. Grouping Selectors</h2>
+    <p>Use commas to apply the same rule to multiple selectors:</p>
+    <div class="code">
+      h1, h2, h3, .section-title {<br>
+      &nbsp;&nbsp;font-family: Georgia, serif;<br>
+      &nbsp;&nbsp;color: #2c3e50;<br>
+      &nbsp;&nbsp;margin-bottom: 0.5em;<br>
+      }
+    </div>
+    <div style="font-family: Georgia, serif; color: #2c3e50; margin-bottom: 0.5em; font-size: 24px;">This looks like h1</div>
+    <div style="font-family: Georgia, serif; color: #2c3e50; margin-bottom: 0.5em; font-size: 20px;">This looks like h2</div>
+    <div style="font-family: Georgia, serif; color: #2c3e50; margin-bottom: 0.5em; font-size: 18px;">This looks like h3</div>
+  </div>
+
+</body>
+</html>

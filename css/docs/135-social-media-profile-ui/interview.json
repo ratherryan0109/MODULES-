@@ -1,0 +1,130 @@
+{
+  "module": "135-social-media-profile-ui",
+  "title": "Social Media Profile UI",
+  "beginner": [
+    {
+      "question": "What is a 'profile page' on a social media platform?",
+      "answer": "A profile page displays a user's information: cover photo, avatar, bio, follower/following counts, posts, photos, and activity. It's the public-facing identity of a user on the platform."
+    },
+    {
+      "question": "How do you design a responsive 'profile header'?",
+      "answer": "Cover image (banner) at top, profile avatar overlapping the cover, user name, bio, stats (posts, followers, following), and action buttons (Follow, Message). Desktop: horizontal layout with stats in a row. Mobile: stacked layout."
+    },
+    {
+      "question": "What is the 'avatar' component?",
+      "answer": "An avatar is a circular user profile image. Use `width: 40px; height: 40px; border-radius: 50%; object-fit: cover;`. Various sizes: small (32px), medium (40px), large (64px), hero (120px+). Add a border when overlapping cover photos."
+    },
+    {
+      "question": "What is the 'feed' in a social media profile?",
+      "answer": "The feed is a chronological or algorithmic list of posts by the user. Each post has: avatar, username, timestamp, content (text, image, video), and interaction buttons (Like, Comment, Share). Posts are displayed in a single vertical column."
+    },
+    {
+      "question": "How do you create a responsive 'post card'?",
+      "answer": "A post card contains: header (avatar + name + time), content text, media (image/video with `max-width: 100%; border-radius`), and action bar (Like/Comment/Share buttons). Use `display: flex; flex-direction: column; gap: 12px;`."
+    },
+    {
+      "question": "How do you style 'interaction buttons' on a post?",
+      "answer": "Three buttons: Like (heart/thumbs up), Comment (speech bubble), Share (arrow). Use `display: flex; justify-content: space-around;` on mobile, `gap` on desktop. Each button has an SVG icon and optional count. Use `aria-label` for accessibility."
+    },
+    {
+      "question": "What is a 'responsive profile grid' for photos/videos?",
+      "answer": "A grid of user-uploaded media. Desktop: 3 columns. Tablet: 2 columns. Mobile: 2 columns (smaller thumbnails). Use CSS Grid: `grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px;`. Each item has `aspect-ratio: 1; object-fit: cover;`."
+    },
+    {
+      "question": "How do you create a 'tabs' navigation for a profile page?",
+      "answer": "Tabs switch between content sections: Posts, Photos, Videos, About, etc. Use `role=\"tablist\"` with `role=\"tab\"` and `role=\"tabpanel\"`. Active tab has a bottom border indicator. On mobile, tabs are scrollable horizontally."
+    },
+    {
+      "question": "What is a 'cover photo' in a profile?",
+      "answer": "A large banner image at the top of the profile. Aspect ratio typically 3:1 (e.g., 1200x400px). Use `width: 100%; height: 300px; object-fit: cover;` on desktop. On mobile, height reduces to 150-200px."
+    },
+    {
+      "question": "How do you style profile stats (followers, following, posts)?",
+      "answer": "Display stats as numbers with labels: '1,234 Followers'. Use `display: flex; gap: 24px;` for desktop layout. Each stat: `display: flex; flex-direction: column; align-items: center;`. Number is bold, label is lighter."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you handle the overlapping avatar on the cover photo?",
+      "answer": "Use `position: relative;` on the profile header container. Avatar uses `position: absolute; bottom: -50px; left: 20px;` (or `transform: translateY(-50%)`). Add a white border: `border: 4px solid white;`. The username/padding below accounts for the overlap."
+    },
+    {
+      "question": "How do you implement a responsive 'image gallery' with lightbox?",
+      "answer": "Grid of clickable thumbnails that opens a full-size modal (lightbox). Use `<img>` with `loading=\"lazy\"`. The lightbox uses `position: fixed; inset: 0; background: rgba(0,0,0,0.9);`. Navigation: left/right arrows, close button, swipe on mobile."
+    },
+    {
+      "question": "How do you create a 'follow button' toggle?",
+      "answer": "A button that toggles between 'Follow' (primary) and 'Following' (secondary). Use CSS `:checked` with a hidden checkbox, or JavaScript class toggle. Unfollow: show a hover state 'Unfollow' in red. Use `aria-pressed` for accessibility."
+    },
+    {
+      "question": "How do you design responsive 'comment threads'?",
+      "answer": "Each comment: avatar (small, 32px), username, text, timestamp, like/reply actions. Nested replies are indented. Desktop: deeper nesting (3-4 levels). Mobile: max 2 levels with visual indent. Use `aria-level` for accessibility."
+    },
+    {
+      "question": "How do you implement a 'suggested users/friends' sidebar?",
+      "answer": "A card/list showing suggested profiles with avatar, name, and 'Follow' button. Desktop: sidebar column. Mobile: horizontal scrollable row below the profile header. Use `overflow-x: auto;` with scroll-snap."
+    },
+    {
+      "question": "How do you handle responsive 'edit profile' forms?",
+      "answer": "Desktop: grid with two columns for form fields. Mobile: single column full-width. Include: profile photo upload, cover photo upload, bio textarea, name inputs, links, and save button. Use `input[type=\"file\"]` with custom styling."
+    },
+    {
+      "question": "How do you create 'story highlights' circles on a profile?",
+      "answer": "A horizontal scrollable row of circular story highlight covers. Each: `width: 64px; height: 64px; border-radius: 50%;`. With label text below. Desktop: larger (80px). Mobile: smaller (56px). Use `overflow-x: auto;` for scrolling."
+    },
+    {
+      "question": "How do you implement a 'verified badge' checkmark?",
+      "answer": "A small blue checkmark icon next to the username. Use `display: inline-flex; align-items: center;`. The badge is a blue circle with white checkmark. Use SVG or a background checkmark character. Size: 18-20px matching the username font."
+    },
+    {
+      "question": "How do you create a responsive 'bio' section?",
+      "answer": "The bio is multi-line text below the username. Use `max-width: 600px;` for readability. Include optional: website link, location, and birthday. On mobile, bio text wraps naturally. Links use `color: var(--primary);`."
+    },
+    {
+      "question": "How do you design a 'settings' page for a social profile?",
+      "answer": "Desktop: two-column (sidebar with settings categories, content with form fields). Mobile: single column with accordion categories. Categories: Account, Privacy, Notifications, Appearance, Help. Use `role=\"tablist\"` for category navigation."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement 'infinite scroll' for the profile feed?",
+      "answer": "Use IntersectionObserver on a sentinel element. Fetch older posts via API, append to feed. Show loading spinner (CSS animation) at bottom. Use `content-visibility: auto` on below-fold posts for performance. Preserve scroll position on back navigation."
+    },
+    {
+      "question": "How do you implement 'realtime' updates (new follower, new like) without page refresh?",
+      "answer": "Use WebSockets or Server-Sent Events. Show a temporary CSS notification banner: 'John liked your post'. Use CSS animations: slide-in, pause, slide-out. Use `aria-live=\"polite\"` for screen reader announcements."
+    },
+    {
+      "question": "How do you create a responsive 'messaging/chat' UI?",
+      "answer": "Desktop: sidebar (conversation list) + main (chat). Mobile: conversation list full-width, tap to open chat full-width. Messages: sent right (`align-self: flex-end`), received left. Timestamp dividers. Input bar fixed at bottom."
+    },
+    {
+      "question": "How do you implement 'story viewer' (full-screen story slides)?",
+      "answer": "A full-screen modal: `position: fixed; inset: 0; background: black;`. Story content centered. Progress bar at top. Navigation: tap left/right, swipe on mobile. Use CSS `aspect-ratio: 9/16; max-height: 100vh;` for story container."
+    },
+    {
+      "question": "How do you create an 'activity feed' showing likes, comments, follows?",
+      "answer": "A list of notification items: '[User] liked your post', '[User] started following you'. Each item: avatar, message text, relative timestamp, and action icon. Group by date. Use `time` element with `datetime` attribute for semantics."
+    },
+    {
+      "question": "How do you implement 'post creation' with media preview?",
+      "answer": "A modal or inline composer with: avatar, textarea (auto-growing), media upload preview (image/video thumbnails), and 'Post' button. The textarea uses `field-sizing: content` or JavaScript auto-resize. Media previews use grid/flex layout."
+    },
+    {
+      "question": "How do you handle 'reactions' (like Love, Laugh, Wow, Sad) on posts?",
+      "answer": "Long-press/hover on Like button shows reaction picker. Reactions are emoji icons in a popup. On selection, the primary button changes icon and count updates. Use CSS `transform: scale()` with transition for the picker animation."
+    },
+    {
+      "question": "How do you design a responsive 'friend list' page?",
+      "answer": "A grid of friend cards with avatar, name, mutual friends count, and 'Friends'/'Unfriend' button. Desktop: 3-4 columns. Tablet: 2 columns. Mobile: 1 column. Search/filter at top. Use CSS Grid with `auto-fill` and `minmax(250px, 1fr)`."
+    },
+    {
+      "question": "How do you implement 'post privacy selector' (public, friends, private)?",
+      "answer": "A dropdown/select near the post composer or on existing posts. Options: Public (globe icon), Friends (people icon), Only Me (lock icon). Use `<select>` or custom dropdown with `role=\"listbox\"`. Show current privacy with color-coded icon."
+    },
+    {
+      "question": "How do you handle CSS for 'dark mode' in a social media profile?",
+      "answer": "Use CSS custom properties throughout: `--bg-primary`, `--bg-secondary`, `--text-primary`, `--text-secondary`, `--border-color`. Dark mode toggles all values. Cards and modals get different backgrounds. Ensure contrast ratios meet WCAG AA."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "27-challenge-1",
+    "title": "Basic JavaScript Array Methods Part 1",
+    "description": "Write a function that demonstrates the core concepts of JavaScript Array Methods Part 1. Focus on implementing push and pop (stack operations) correctly.",
+    "difficulty": "easy",
+    "starterCode": "function basic_27() {\n  // Implement push and pop (stack operations)\n  // Return a meaningful result\n  return \"Implement JavaScript Array Methods Part 1\";\n}",
+    "solution": "function basic_27() {\n  const concepts = [\"push and pop (stack operations)\", \"shift and unshift (queue operations)\", \"splice (add/remove/replace)\"];\n  return concepts.map(c => c.toUpperCase());\n}"
+  },
+  {
+    "id": "27-challenge-2",
+    "title": "Intermediate JavaScript Array Methods Part 1",
+    "description": "Create a function that uses push and pop (stack operations) and shift and unshift (queue operations) together. Handle edge cases and validate inputs.",
+    "difficulty": "medium",
+    "starterCode": "function intermediate_27(input) {\n  // Process input using push and pop (stack operations)\n  // and shift and unshift (queue operations)\n  // Handle edge cases\n  if (!input) return [];\n  return input;\n}",
+    "solution": "function intermediate_27(input) {\n  if (!Array.isArray(input)) return [];\n  return input\n    .filter(item => item != null)\n    .map(item => ({ original: item, processed: String(item).toUpperCase() }));\n}"
+  },
+  {
+    "id": "27-challenge-3",
+    "title": "Advanced JavaScript Array Methods Part 1 Project",
+    "description": "Build a small application that applies push and pop (stack operations), shift and unshift (queue operations), splice (add/remove/replace) in a real-world scenario. Include error handling and input validation.",
+    "difficulty": "hard",
+    "starterCode": "class JavaScriptArrayMethodsPart1 {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    // Add item with validation\n  }\n  \n  process() {\n    // Process stored data using push and pop (stack operations)\n  }\n}",
+    "solution": "class JavaScriptArrayMethodsPart1 {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    if (item == null) throw new Error('Invalid item');\n    this.data.push(item);\n  }\n  \n  process() {\n    return this.data\n      .filter(d => d != null)\n      .map(d => ({ value: d, timestamp: Date.now() }));\n  }\n  \n  clear() {\n    this.data = [];\n  }\n}"
+  },
+  {
+    "id": "27-challenge-4",
+    "title": "Debugging JavaScript Array Methods Part 1",
+    "description": "The following code has bugs related to push and pop (stack operations). Find and fix them.",
+    "difficulty": "medium",
+    "starterCode": "// Fix the bugs in this code\nfunction processData27(items) {\n  let result = [];\n  for (var i = 0; i < items.length; i++); {\n    result.push(items[i].toUpperCase());\n  }\n  return result;\n}\n\nconsole.log(processData27([\"a\", \"b\", \"c\"]));",
+    "solution": "function processData27(items) {\n  return items.map(item => item.toUpperCase());\n}\n\nconsole.log(processData27([\"a\", \"b\", \"c\"]));\n// Expected: [\"A\", \"B\", \"C\"]"
+  },
+  {
+    "id": "27-challenge-5",
+    "title": "Refactoring JavaScript Array Methods Part 1",
+    "description": "Refactor the following code to use modern JavaScript patterns with push and pop (stack operations) and shift and unshift (queue operations).",
+    "difficulty": "hard",
+    "starterCode": "// Refactor this code\nfunction oldWay27(arr) {\n  var temp = [];\n  for (var i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) {\n      temp.push(arr[i] * 2);\n    }\n  }\n  var sum = 0;\n  for (var j = 0; j < temp.length; j++) {\n    sum += temp[j];\n  }\n  return sum;\n}",
+    "solution": "function refactored27(arr) {\n  return arr\n    .filter(n => n % 2 === 0)\n    .map(n => n * 2)\n    .reduce((sum, n) => sum + n, 0);\n}"
+  }
+]

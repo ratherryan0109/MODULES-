@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Rotate - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; }
+    .demo-area { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; min-height: 180px; }
+    .box {
+      width: 120px; height: 120px; background: #89b4fa; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; color: #1e1e2e;
+      font-weight: 700; transition: rotate 0.4s ease;
+    }
+    .pre { font-family: monospace; background: #181825; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; }
+    .scene { perspective: 600px; }
+  </style>
+</head>
+<body>
+  <h1>CSS Rotate — Practical Examples</h1>
+
+  <div class="card">
+    <h2>1. Basic 2D Rotation (Z-axis)</h2>
+    <p>Rotates the element flat on the screen.</p>
+    <div class="demo-area">
+      <div class="box" onmouseover="this.style.rotate='45deg'" onmouseout="this.style.rotate='0deg'">rotate(45deg)</div>
+      <div class="box" style="background:#f38ba8;" onmouseover="this.style.rotate='0.25turn'" onmouseout="this.style.rotate='0turn'">0.25turn</div>
+    </div>
+    <div class="pre">rotate: 45deg;<br>rotate: 0.25turn;</div>
+  </div>
+
+  <div class="card">
+    <h2>2. Full Rotation (360°)</h2>
+    <p>Element completes a full spin on hover.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#a6e3a1;" onmouseover="this.style.rotate='360deg'" onmouseout="this.style.rotate='0deg'">360deg</div>
+      <div class="box" style="background:#fab387;" onmouseover="this.style.rotate='1turn'" onmouseout="this.style.rotate='0turn'">1turn</div>
+    </div>
+    <div class="pre">rotate: 360deg; /* full circle */</div>
+  </div>
+
+  <div class="card">
+    <h2>3. 3D Rotation - X Axis</h2>
+    <p>Flips forward around X-axis (requires perspective).</p>
+    <div class="demo-area scene">
+      <div class="box" style="background:#cba6f7;" onmouseover="this.style.rotate='X 180deg'" onmouseout="this.style.rotate='X 0deg'">X 180deg</div>
+    </div>
+    <div class="pre">rotate: X 180deg;<br>/* parent: perspective: 600px */</div>
+  </div>
+
+  <div class="card">
+    <h2>4. 3D Rotation - Y Axis</h2>
+    <p>Flips sideways around Y-axis (door-opening effect).</p>
+    <div class="demo-area scene">
+      <div class="box" style="background:#89dceb;" onmouseover="this.style.rotate='Y 180deg'" onmouseout="this.style.rotate='Y 0deg'">Y 180deg</div>
+    </div>
+    <div class="pre">rotate: Y 180deg;</div>
+  </div>
+
+  <div class="card">
+    <h2>5. Transform Origin Impact</h2>
+    <p>Same 45deg rotation but different pivot points.</p>
+    <div class="demo-area">
+      <div><div class="box" style="transform-origin:center;" onmouseover="this.style.rotate='45deg'" onmouseout="this.style.rotate='0deg'">center</div></div>
+      <div><div class="box" style="background:#f38ba8; transform-origin:top left;" onmouseover="this.style.rotate='45deg'" onmouseout="this.style.rotate='0deg'">top left</div></div>
+      <div><div class="box" style="background:#a6e3a1; transform-origin:bottom right;" onmouseover="this.style.rotate='45deg'" onmouseout="this.style.rotate='0deg'">bottom right</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>6. Combined with Translate</h2>
+    <p>Using rotate and translate as separate properties.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#f38ba8;" onmouseover="this.style.rotate='360deg';this.style.translate='60px 0'" onmouseout="this.style.rotate='0deg';this.style.translate='0 0'">Spin+Move</div>
+    </div>
+    <div class="pre">translate: 60px 0;<br>rotate: 360deg;</div>
+  </div>
+</body>
+</html>

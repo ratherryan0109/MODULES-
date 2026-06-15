@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Grid Areas - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b}.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px;flex-wrap:wrap}
+.controls{flex:0 0 300px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;min-width:400px;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:12px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group select,.group textarea{width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px;font-family:monospace;font-size:13px}
+.group textarea{height:80px;resize:vertical}
+.grid-container{display:grid;gap:4px;background:#2d2d44;border-radius:8px;padding:4px;transition:all .3s;min-height:250px}
+.el{display:flex;align-items:center;justify-content:center;padding:10px;border-radius:4px;font-weight:bold;font-size:13px;text-align:center;overflow:hidden}
+#css-code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf;white-space:pre;overflow-x:auto}
+.btn{background:#6c5ce7;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:13px;margin-top:8px;margin-right:8px}
+.btn-reset{background:#ff6b6b}
+.colors{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.color-btn{width:28px;height:28px;border-radius:4px;border:2px solid transparent;cursor:pointer}
+.color-btn.active{border-color:#fff}
+</style>
+</head>
+<body>
+<h1>Grid Areas Playground</h1>
+<p class="subtitle">Define grid areas with string notation and see the result instantly</p>
+<div class="layout">
+<div class="controls">
+<div class="group"><label>Preset Layout</label><select id="preset">
+<option value="full">Full page (header/nav/main/aside/footer)</option>
+<option value="blog">2-column blog</option>
+<option value="dashboard">Dashboard</option>
+<option value="gallery">Image Gallery</option>
+<option value="custom">Custom...</option>
+</select></div>
+<div class="group"><label>Columns</label><input type="text" id="cols" value="1fr 1fr 1fr" style="width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px;font-family:monospace"></div>
+<div class="group"><label>Rows</label><input type="text" id="rows" value="auto 1fr auto" style="width:100%;padding:8px;background:#1a1a2e;color:#eee;border:1px solid #333;border-radius:4px;font-family:monospace"></div>
+<div class="group"><label>Areas (one row per line)</label><textarea id="areas"></textarea></div>
+<div class="group"><label>Gap</label><input type="range" id="gap" min="0" max="20" value="6" style="width:100%"></div>
+<button class="btn btn-reset" onclick="resetPlayground()">Reset</button>
+</div>
+<div class="preview">
+<div id="grid" class="grid-container"></div>
+<div id="css-code">/* CSS code */</div>
+</div>
+</div>
+<script>
+const columns=['header','header','header','nav','main','aside','footer','footer','footer'];
+const colors=['#6c5ce7','#ff6b6b','#4ecdc4','#45b7d1','#ffd93d','#a29bfe','#fdcb6e','#e17055','#00cec9','#fd79a8'];
+const presets={full:{cols:'150px 1fr 150px',rows:'auto 1fr auto',areas:'"header header header"\n"nav    main   aside"\n"footer footer footer"'},blog:{cols:'1fr 250px',rows:'auto 1fr auto',areas:'"header  header"\n"content sidebar"\n"footer  footer"'},dashboard:{cols:'1fr 1fr 200px',rows:'auto 1fr auto',areas:'"stats stats stats"\n"chart table menu"\n"footer footer footer"'},gallery:{cols:'repeat(3,1fr)',rows:'repeat(3,200px)',areas:'"a a b"\n"a a c"\n"d e f"'}};
+let colorIndex=0;
+function getColor(n){const hash=[...n].reduce((a,c)=>a+c.charCodeAt(0),0);return colors[hash%colors.length];}
+function update(){
+const preset=document.getElementById('preset').value;
+if(preset!=='custom'){const p=presets[preset];document.getElementById('cols').value=p.cols;document.getElementById('rows').value=p.rows;document.getElementById('areas').value=p.areas;}
+const cols=document.getElementById('cols').value;
+const rows=document.getElementById('rows').value;
+const areasText=document.getElementById('areas').value;
+const gap=document.getElementById('gap').value;
+const grid=document.getElementById('grid');
+const code=document.getElementById('css-code');
+grid.style.gridTemplateColumns=cols;
+grid.style.gridTemplateRows=rows;
+grid.style.gap=gap+'px';
+const lines=areasText.split('\n').map(l=>l.trim().replace(/^"|"$/g,'')).filter(l=>l);
+const areaNames=[...new Set(lines.flatMap(l=>l.split(/\s+/).filter(w=>w!=='.'&&w!=='')))];
+const areaColors={};areaNames.forEach((n,i)=>{areaColors[n]=colors[i%colors.length];});
+grid.innerHTML='';
+lines.forEach((line,r)=>{
+const cells=line.split(/\s+/);
+cells.forEach(cell=>{
+if(cell&&cell!=='.'){
+const el=document.createElement('div');
+el.className='el';
+el.textContent=cell;
+el.style.gridArea=cell;
+el.style.background=areaColors[cell]||'#555';
+grid.appendChild(el);
+}
+});
+const firstNonDot=cells.find(c=>c&&c!=='.');
+if(firstNonDot&&document.querySelector(`[style*="grid-area: ${firstNonDot}"]`)){
+}
+});
+grid.style.gridTemplateAreas=lines.map(l=>`"${l}"`).join('\n');
+code.textContent=`/* Grid Areas */\n.container {\n  display: grid;\n  grid-template-columns: ${cols};\n  grid-template-rows: ${rows};\n  grid-template-areas:\n    ${lines.map(l=>`"${l}"`).join('\n    ')};\n  gap: ${gap}px;\n}\n\n/* Assign items */\n${areaNames.map(n=>`.${n} { grid-area: ${n}; }`).join('\n')}`;
+}
+document.getElementById('preset').addEventListener('change',update);
+document.querySelectorAll('.controls input, .controls textarea').forEach(el=>el.addEventListener('input',()=>{if(el.id!=='preset')document.getElementById('preset').value='custom';update();}));
+
+function resetPlayground(){
+document.getElementById('preset').value='full';
+const p=presets.full;
+document.getElementById('cols').value=p.cols;
+document.getElementById('rows').value=p.rows;
+document.getElementById('areas').value=p.areas;
+document.getElementById('gap').value=6;
+update();}
+update();
+</script>
+</body>
+</html>

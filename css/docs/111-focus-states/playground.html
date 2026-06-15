@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus States Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #0d1117; color: #c9d1d9; }
+    h1 { color: #58a6ff; margin-bottom: 0.25rem; }
+    .subtitle { color: #8b949e; margin-bottom: 2rem; }
+    .playground-container { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    h2 { color: #58a6ff; margin-bottom: 1rem; }
+
+    .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .control-group label { display: block; margin-bottom: 0.25rem; color: #8b949e; font-size: 0.875rem; font-weight: 600; }
+    .control-group input[type="color"], .control-group select, .control-group input[type="range"] { width: 100%; padding: 0.5rem; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; }
+
+    .focus-preview { display: flex; gap: 2rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 2rem; background: var(--preview-bg, #fff); border-radius: 8px; align-items: center; justify-content: center; min-height: 200px; }
+    .focus-preview button, .focus-preview a, .focus-preview input { font-size: 1rem; }
+
+    .preview-element { position: relative; }
+
+    .output-area { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem; font-family: monospace; font-size: 0.875rem; white-space: pre-wrap; margin-top: 1rem; }
+
+    .preset-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+    .preset-btn { padding: 0.5rem 1rem; border: 1px solid #30363d; border-radius: 6px; background: #21262d; color: #c9d1d9; cursor: pointer; }
+    .preset-btn:hover { background: #30363d; }
+    .preset-btn.active { border-color: #58a6ff; background: #1f6feb33; }
+
+    .component-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+    .component-box { padding: 1.5rem; background: #fff; border-radius: 8px; text-align: center; min-width: 180px; }
+
+    .test-area { margin-top: 2rem; }
+    .test-area button, .test-area a, .test-area input { margin: 0.5rem; }
+
+    .style-type-select { width: 100%; padding: 0.5rem; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>🎯 Focus States Interactive Playground</h1>
+  <p class="subtitle">Design and test custom focus indicators in real-time</p>
+
+  <div class="playground-container">
+    <h2>🎨 Focus Style Designer</h2>
+    <div class="controls">
+      <div class="control-group">
+        <label for="focus-color">Focus Ring Color</label>
+        <input type="color" id="focus-color" value="#58a6ff">
+      </div>
+      <div class="control-group">
+        <label for="focus-width">Ring Width (px)</label>
+        <input type="range" id="focus-width" min="1" max="8" value="3" step="1">
+        <span id="width-display">3px</span>
+      </div>
+      <div class="control-group">
+        <label for="focus-offset">Ring Offset (px)</label>
+        <input type="range" id="focus-offset" min="0" max="8" value="2" step="1">
+        <span id="offset-display">2px</span>
+      </div>
+      <div class="control-group">
+        <label for="focus-style">Ring Style</label>
+        <select id="focus-style">
+          <option value="solid">Solid</option>
+          <option value="dashed">Dashed</option>
+          <option value="dotted">Dotted</option>
+          <option value="double">Double</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="bg-color-preview">Preview Background</label>
+        <input type="color" id="bg-color-preview" value="#ffffff">
+      </div>
+      <div class="control-group">
+        <label for="border-radius">Border Radius (px)</label>
+        <input type="range" id="border-radius" min="0" max="20" value="6" step="1">
+        <span id="radius-display">6px</span>
+      </div>
+    </div>
+
+    <div class="preset-btns">
+      <span style="color:#8b949e;font-size:0.875rem;padding:0.5rem 0;">Presets: </span>
+      <button class="preset-btn" data-color="#0066cc" data-width="3" data-offset="2" data-style="solid">Blue Outline</button>
+      <button class="preset-btn" data-color="#dc3545" data-width="3" data-offset="1" data-style="solid">Red Ring</button>
+      <button class="preset-btn" data-color="#000" data-width="2" data-offset="3" data-style="dashed">Dashed Black</button>
+      <button class="preset-btn" data-color="#ffc107" data-width="4" data-offset="2" data-style="double">Yellow Double</button>
+    </div>
+
+    <div class="focus-preview" id="focus-preview">
+      <button class="preview-element" id="preview-btn">Button</button>
+      <a href="#" class="preview-element" id="preview-link">Link</a>
+      <input type="text" class="preview-element" id="preview-input" value="Input" style="padding:0.5rem;border:2px solid #ccc;border-radius:6px;">
+    </div>
+
+    <div class="output-area" id="css-output">:focus-visible {
+  outline: 3px solid #58a6ff;
+  outline-offset: 2px;
+}</div>
+  </div>
+
+  <div class="playground-container">
+    <h2>🧪 Test Components</h2>
+    <p style="color:#8b949e;margin-bottom:1rem;">Tab through these elements to see your focus style applied.</p>
+    <div class="component-row" style="background:#fff;padding:2rem;border-radius:8px;">
+      <button>Primary Action</button>
+      <button style="background:#dc3545;color:#fff;border:none;padding:0.75rem 1.5rem;border-radius:6px;cursor:pointer;">Danger</button>
+      <button style="background:#28a745;color:#fff;border:none;padding:0.75rem 1.5rem;border-radius:6px;cursor:pointer;">Success</button>
+      <a href="#" style="color:#0066cc;">Text Link</a>
+      <select style="padding:0.5rem;border:2px solid #ccc;border-radius:6px;">
+        <option>Option 1</option>
+        <option>Option 2</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="playground-container">
+    <h2>📋 Focus Checklist</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;color:#8b949e;">
+      <div style="padding:1rem;background:#0d1117;border-radius:6px;">
+        <h3 style="color:#58a6ff;font-size:1rem;">✅ Do</h3>
+        <ul style="list-style:none;padding:0;">
+          <li style="padding:0.25rem 0;">✓ Use :focus-visible (not :focus)</li>
+          <li style="padding:0.25rem 0;">✓ Minimum 2px ring width</li>
+          <li style="padding:0.25rem 0;">✓ 3:1 contrast against background</li>
+          <li style="padding:0.25rem 0;">✓ Test with keyboard Tab</li>
+          <li style="padding:0.25rem 0;">✓ Support forced colors mode</li>
+        </ul>
+      </div>
+      <div style="padding:1rem;background:#0d1117;border-radius:6px;">
+        <h3 style="color:#f85149;font-size:1rem;">❌ Don't</h3>
+        <ul style="list-style:none;padding:0;">
+          <li style="padding:0.25rem 0;">✗ outline: none without replacement</li>
+          <li style="padding:0.25rem 0;">✗ Remove focus for mouse clicks only</li>
+          <li style="padding:0.25rem 0;">✗ Use low-contrast focus colors</li>
+          <li style="padding:0.25rem 0;">✗ Trap focus without escape</li>
+          <li style="padding:0.25rem 0;">✗ Forget custom component focus</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const focusColor = document.getElementById('focus-color');
+    const focusWidth = document.getElementById('focus-width');
+    const focusOffset = document.getElementById('focus-offset');
+    const focusStyle = document.getElementById('focus-style');
+    const bgPreview = document.getElementById('bg-color-preview');
+    const previewRadius = document.getElementById('border-radius');
+    const widthDisplay = document.getElementById('width-display');
+    const offsetDisplay = document.getElementById('offset-display');
+    const radiusDisplay = document.getElementById('radius-display');
+    const cssOutput = document.getElementById('css-output');
+    const previewBtn = document.getElementById('preview-btn');
+    const previewLink = document.getElementById('preview-link');
+    const previewInput = document.getElementById('preview-input');
+    const previewContainer = document.getElementById('focus-preview');
+
+    function applyFocusStyles() {
+      const color = focusColor.value;
+      const width = focusWidth.value;
+      const offset = focusOffset.value;
+      const style = focusStyle.value;
+      const bg = bgPreview.value;
+      const radius = previewRadius.value;
+
+      widthDisplay.textContent = width + 'px';
+      offsetDisplay.textContent = offset + 'px';
+      radiusDisplay.textContent = radius + 'px';
+
+      previewContainer.style.setProperty('--preview-bg', bg);
+
+      const outlineCss = `outline: ${width}px ${style} ${color};\noutline-offset: ${offset}px;`;
+      const shadowCss = `outline: none;\nbox-shadow: 0 0 0 ${width}px ${color};`;
+
+      const styleEl = document.getElementById('dynamic-focus-style') || document.createElement('style');
+      styleEl.id = 'dynamic-focus-style';
+      styleEl.textContent = `
+        .preview-element:focus-visible {
+          outline: ${width}px ${style} ${color} !important;
+          outline-offset: ${offset}px !important;
+          border-radius: ${radius}px;
+        }
+        .component-row button:focus-visible,
+        .component-row a:focus-visible,
+        .component-row select:focus-visible {
+          outline: ${width}px ${style} ${color} !important;
+          outline-offset: ${offset}px !important;
+        }
+      `;
+      document.head.appendChild(styleEl);
+
+      cssOutput.textContent = `/* Custom Focus Style */\n:focus-visible {\n  outline: ${width}px ${style} ${color};\n  outline-offset: ${offset}px;\n  border-radius: ${radius}px;\n}\n\n/* Preview background: ${bg} */`;
+
+      previewBtn.style.borderRadius = radius + 'px';
+      previewInput.style.borderRadius = radius + 'px';
+      previewLink.style.borderRadius = radius + 'px';
+    }
+
+    focusColor.addEventListener('input', applyFocusStyles);
+    focusWidth.addEventListener('input', applyFocusStyles);
+    focusOffset.addEventListener('input', applyFocusStyles);
+    focusStyle.addEventListener('change', applyFocusStyles);
+    bgPreview.addEventListener('input', applyFocusStyles);
+    previewRadius.addEventListener('input', applyFocusStyles);
+
+    // Presets
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        focusColor.value = btn.dataset.color;
+        focusWidth.value = btn.dataset.width;
+        focusOffset.value = btn.dataset.offset;
+        focusStyle.value = btn.dataset.style;
+        applyFocusStyles();
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    applyFocusStyles();
+  </script>
+</body>
+</html>

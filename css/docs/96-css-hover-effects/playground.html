@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Hover Effects - Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;padding:30px;background:#0f0f1a;color:#e0e0e0}
+.container{max-width:900px;margin:0 auto}
+h1{color:#ffd700}.subtitle{color:#aaa;margin-bottom:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.panel{background:#1a1a2e;border-radius:10px;padding:16px;border:1px solid #2a2a4a}
+.panel h2{color:#00d4ff;font-size:1rem;margin-bottom:8px}
+.ctrl{margin-bottom:10px}
+.ctrl label{display:block;color:#ccc;margin-bottom:2px;font-size:0.8rem}
+.ctrl input,.ctrl select{width:100%;padding:5px 8px;border:1px solid #333;border-radius:5px;background:#0a0a1a;color:#e0e0e0;font-size:0.85rem}
+.ctrl input[type=range]{padding:0}
+.ctrl input[type=color]{height:36px;padding:2px}
+.preview{display:flex;align-items:center;justify-content:center;min-height:220px;background:#12122a;border-radius:8px}
+.target{width:140px;height:100px;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold;border-radius:12px;cursor:pointer;transition-property:transform,box-shadow,background,border-color;transition-duration:var(--hdur);transition-timing-function:ease}
+.code{background:#0a0a1a;padding:12px;border-radius:8px;margin-top:12px;font-family:'Fira Code',monospace;font-size:0.8rem;color:#a8e6cf}
+</style>
+</head>
+<body>
+<div class=container>
+<h1>Hover Effects Playground</h1>
+<p class=subtitle>Customize hover effects and see the result.</p>
+<div class=row>
+<div class=panel><h2>Transform</h2>
+<div class=ctrl><label>Translate Y: <span id=tyVal>0px</span></label><input type=range id=ty min=-20 max=0 value=-6></div>
+<div class=ctrl><label>Scale: <span id=scVal>1.0</span></label><input type=range id=sc min=1 max=1.2 step=0.01 value=1.05></div>
+<div class=ctrl><label>Rotate: <span id=rotVal>0deg</span></label><input type=range id=rot min=-10 max=10 value=0></div>
+</div>
+<div class=panel><h2>Style</h2>
+<div class=ctrl><label>Shadow Intensity: <span id=shVal>0</span></label><input type=range id=sh min=0 max=40 value=20></div>
+<div class=ctrl><label>Background</label><input type=color id=bgVal value="#3b82f6"></div>
+<div class=ctrl><label>Hover Background</label><input type=color id=bgHov value="#1d4ed8"></div>
+<div class=ctrl><label>Duration: <span id=durVal>0.3s</span></label><input type=range id=dur min=50 max=1000 value=300></div>
+</div>
+</div>
+<div class=preview><div class=target id=target>Hover Me</div></div>
+<div class=code id=codeOut>.target { transition: all 0.3s ease; }</div>
+</div>
+<script>
+const t=document.getElementById('target'),ty=document.getElementById('ty'),sc=document.getElementById('sc'),rot=document.getElementById('rot'),sh=document.getElementById('sh'),bg=document.getElementById('bgVal'),bgH=document.getElementById('bgHov'),dur=document.getElementById('dur');
+function update(){
+const y=ty.value+'px',s=sc.value,r=rot.value+'deg',shadow=sh.value,d=(dur.value/1000).toFixed(2)+'s';
+document.getElementById('tyVal').textContent=y;document.getElementById('scVal').textContent=s;document.getElementById('rotVal').textContent=r;document.getElementById('shVal').textContent=shadow;document.getElementById('durVal').textContent=d;
+t.style.setProperty('--hdur',d);t.style.background=bg.value;
+t.onmouseover=()=>{t.style.transform=`translateY(${y}) scale(${s}) rotate(${r})`;t.style.boxShadow=`0 ${shadow/2}px ${shadow}px rgba(59,130,246,0.4)`;t.style.background=bgH.value};
+t.onmouseout=()=>{t.style.transform='';t.style.boxShadow='';t.style.background=bg.value};
+document.getElementById('codeOut').textContent=`/* Base */\n.target {\n  background: ${bg.value};\n  transition: all ${d} ease;\n}\n\n/* Hover */\n.target:hover {\n  transform: translateY(${y}) scale(${s}) rotate(${r});\n  box-shadow: 0 ${shadow/2}px ${shadow}px rgba(59,130,246,0.4);\n  background: ${bgH.value};\n}`;
+}
+[ty,sc,rot,sh,bg,bgH,dur].forEach(el=>el.addEventListener('input',update));update();
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Backgrounds - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .bg-panel { min-height: 100px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 600; padding: 1.5rem; margin: 0.75rem 0; text-align: center; }
+    .bg-panel.light-text { color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+    .bg-color { background-color: #06b6d4; }
+    .bg-gradient { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .bg-radial { background: radial-gradient(circle at center, #ffecd2, #fcb69f); }
+    .bg-pattern { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" fill="%23f1f5f9"/><circle cx="20" cy="20" r="8" fill="%2306b6d4" opacity="0.15"/></svg>'); }
+    .bg-cover { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="400" height="200" fill="%233065fe"/><text x="200" y="110" text-anchor="middle" fill="white" font-size="24" font-weight="bold">Background Image</text></svg>') no-repeat center; background-size: cover; }
+    .bg-multiple { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><circle cx="15" cy="15" r="4" fill="white" opacity="0.25"/></svg>') repeat, linear-gradient(135deg, #f093fb, #f5576c); }
+    .bg-repeat-demo { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="3" fill="%2306b6d4"/></svg>'); background-repeat: repeat; }
+    .bg-no-repeat { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect width="60" height="60" fill="%2306b6d4" rx="8"/><text x="30" y="38" text-anchor="middle" fill="white" font-size="12">LOGO</text></svg>') no-repeat center #f1f5f9; }
+    .bg-position { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><circle cx="20" cy="20" r="20" fill="%2306b6d4"/></svg>') no-repeat bottom right #f1f5f9; }
+    .bg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .bg-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>CSS Backgrounds - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Background Color</h2>
+    <p>Use <code>background-color</code> to fill an element with a solid color.</p>
+    <div class="demo-output">
+      <div class="bg-panel bg-color light-text">background-color: #06b6d4</div>
+    </div>
+    <pre><code>.panel { background-color: #06b6d4; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Background Image & Repeat</h2>
+    <p>Images can repeat, tile, or be placed once using <code>background-repeat</code>.</p>
+    <div class="demo-output">
+      <div class="bg-grid">
+        <div><strong>repeat (default)</strong><div class="bg-panel bg-repeat-demo"></div></div>
+        <div><strong>no-repeat center</strong><div class="bg-panel bg-no-repeat"></div></div>
+      </div>
+    </div>
+    <pre><code>.tile { background-image: url('pattern.png'); background-repeat: repeat; }
+.single { background-image: url('logo.svg'); background-repeat: no-repeat; background-position: center; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Background Position</h2>
+    <p>Position the background image with keywords, percentages, or pixel values.</p>
+    <div class="demo-output">
+      <div class="bg-panel bg-position light-text" style="background-position:bottom right">bottom right</div>
+      <div class="bg-panel bg-position light-text" style="background-position:center left">center left</div>
+      <div class="bg-panel bg-position light-text" style="background-position:30% 50%">30% 50%</div>
+    </div>
+    <pre><code>.pos1 { background-position: bottom right; }
+.pos2 { background-position: 30% 50%; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Linear Gradient</h2>
+    <p><code>linear-gradient()</code> creates smooth color transitions along a straight line.</p>
+    <div class="demo-output">
+      <div class="bg-panel bg-gradient light-text">linear-gradient(135deg, #667eea, #764ba2)</div>
+      <div class="bg-panel light-text" style="background:linear-gradient(to right, #f97316, #ef4444)">to right: orange → red</div>
+    </div>
+    <pre><code>.gradient { background: linear-gradient(135deg, #667eea, #764ba2); }
+.horizontal { background: linear-gradient(to right, #f97316, #ef4444); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Radial Gradient</h2>
+    <p><code>radial-gradient()</code> creates circular or elliptical gradients radiating from a center point.</p>
+    <div class="demo-output">
+      <div class="bg-panel bg-radial">radial-gradient(circle, #ffecd2, #fcb69f)</div>
+    </div>
+    <pre><code>.radial { background: radial-gradient(circle at center, #ffecd2, #fcb69f); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Background Size (Cover & Contain)</h2>
+    <p><code>background-size: cover</code> scales the image to fill the element; <code>contain</code> keeps it fully visible.</p>
+    <div class="demo-output">
+      <div class="bg-grid">
+        <div><strong>cover</strong><div class="bg-panel bg-cover" style="min-height:120px"></div></div>
+        <div><strong>contain</strong><div class="bg-panel" style="min-height:120px;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22400%22 height=%22200%22 fill=%22%233065fe%22/><text x=%22200%22 y=%22110%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22>Background</text></svg>') no-repeat center #f1f5f9;background-size:contain"></div></div>
+      </div>
+    </div>
+    <pre><code>.cover { background-size: cover; }
+.contain { background-size: contain; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Multiple Backgrounds</h2>
+    <p>Layer multiple backgrounds by comma-separating values. The first value is the topmost layer.</p>
+    <div class="demo-output">
+      <div class="bg-panel bg-multiple light-text">Overlay pattern + gradient</div>
+    </div>
+    <pre><code>.multi {
+  background:
+    url('overlay.png') repeat,
+    linear-gradient(135deg, #f093fb, #f5576c);
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: Background Shorthand</h2>
+    <p>The <code>background</code> shorthand combines color, image, repeat, position, and size.</p>
+    <div class="demo-output">
+      <div class="bg-panel" style="background: #3069fe url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22><circle cx=%2215%22 cy=%2215%22 r=%225%22 fill=%22white%22 opacity=%220.2%22/></svg>') repeat-x center;color:white">Shorthand: color image repeat position</div>
+    </div>
+    <pre><code>.shorthand {
+  background: #3069fe url('dots.png') repeat-x center;
+}
+
+/* Same as:
+background-color: #3069fe;
+background-image: url('dots.png');
+background-repeat: repeat-x;
+background-position: center;
+*/</code></pre>
+  </div>
+
+</body>
+</html>

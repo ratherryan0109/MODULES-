@@ -1,0 +1,130 @@
+{
+  "module": "124-css-modules",
+  "title": "CSS Modules",
+  "beginner": [
+    {
+      "question": "What are CSS Modules?",
+      "answer": "CSS Modules are CSS files where all class names and animation names are scoped locally by default. Each class is transformed into a unique, hashed identifier during build, preventing naming collisions across components."
+    },
+    {
+      "question": "How does scoping work in CSS Modules?",
+      "answer": "CSS Modules transform class names by appending a hash: `.card` becomes `.card_abc123`. This hash is unique per file. In your component code, you import the styles object and access `.card` as `styles.card`, which returns the hashed name."
+    },
+    {
+      "question": "How do you use CSS Modules in a React component?",
+      "answer": "Import styles: `import styles from './Button.module.css'`. Use: `<button className={styles.btn}>`. The `styles` object maps original class names to hashed versions. Multiple classes: `${styles.btn} ${styles.primary}`."
+    },
+    {
+      "question": "What is the naming convention for CSS Module files?",
+      "answer": "CSS Module files use the `.module.css` extension (e.g., `Button.module.css`). Build tools like webpack, Vite, and Parcel recognize this pattern and enable CSS Modules processing. Without `.module`, the file is treated as global CSS."
+    },
+    {
+      "question": "What problem do CSS Modules solve?",
+      "answer": "CSS Modules solve the global namespace problem in CSS. Without them, class names are global — two `.card` components on the same page would conflict. CSS Modules make class names unique per component, eliminating conflicts."
+    },
+    {
+      "question": "How do CSS Modules handle composition?",
+      "answer": "CSS Modules support composition via `composes: className from './other.module.css'`. This allows a class to inherit styles from another module's class without duplicating CSS or relying on inheritance chains."
+    },
+    {
+      "question": "Can you use global selectors in CSS Modules?",
+      "answer": "Yes, use `:global(.selector)` to escape scoping. This is useful for styling third-party components, global styles (resets), or when you need a class to be accessible from outside the component."
+    },
+    {
+      "question": "What is the difference between CSS Modules and CSS-in-JS?",
+      "answer": "CSS Modules are static CSS files processed at build time, producing separate CSS bundles. CSS-in-JS (styled-components, Emotion) generates and injects styles at runtime (or extracts at build time). CSS Modules have no runtime overhead."
+    },
+    {
+      "question": "How do CSS Modules handle class composition with multiple classes?",
+      "answer": "Use template literals or class utility libraries: `${styles.base} ${styles.primary} ${isActive ? styles.active : ''}`. Libraries like `classnames` or `clsx` help manage conditional class combinations."
+    },
+    {
+      "question": "What is the file size benefit of CSS Modules?",
+      "answer": "CSS Modules don't inherently reduce file size. However, they enable code splitting — each component's CSS can be lazy-loaded with its JavaScript bundle, reducing initial CSS payload. Only the CSS for rendered components is loaded."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does `composes` work in CSS Modules?",
+      "answer": "`.heading { composes: title from './typography.module.css'; composes: large from './sizes.module.css'; font-weight: bold; }`. The element gets all classes applied. `composes` cannot be used with `@media` or pseudo-classes."
+    },
+    {
+      "question": "How do CSS Modules handle animations and keyframes?",
+      "answer": "CSS Modules scope `@keyframes` names similarly to classes. Use `@keyframes slide-in { ... }` and reference it in animation: `animation: slide-in 0.3s ease`. The keyframe name is hashed. Use `:global(@keyframes name)` for global animations."
+    },
+    {
+      "question": "How do you configure CSS Modules in webpack?",
+      "answer": "In `webpack.config.js`, set `modules: true` in css-loader: `{ loader: 'css-loader', options: { modules: { localIdentName: '[name]__[local]--[hash:base64:5]' } } }`. This controls the naming pattern of hashed classes."
+    },
+    {
+      "question": "How do CSS Modules work with TypeScript?",
+      "answer": "CSS Modules don't have built-in TypeScript types. Add a declaration file: `declare module '*.module.css' { const classes: { [key: string]: string }; export default classes; }`. Plugins like `typescript-plugin-css-modules` provide auto-completion."
+    },
+    {
+      "question": "How do CSS Modules handle multiple classes from the same module?",
+      "answer": "Access each class from the imported styles object: `className={`${styles.card} ${styles.featured}`}`. The build process outputs both hashed class names. CSS Modules don't provide built-in class composition utilities beyond `composes`."
+    },
+    {
+      "question": "What is the difference between local scope and global scope in CSS Modules?",
+      "answer": "By default, all classes in a CSS Module are locally scoped (`:local`). Use `:global(.class-name)` to escape to global scope. The `:local` and `:global` keywords can toggle scope for specific selectors within a single file."
+    },
+    {
+      "question": "How do you use CSS Modules with preprocessors like SCSS?",
+      "answer": "The file becomes `.module.scss`. Configure sass-loader to process SCSS, then css-loader handles CSS Modules. You get both SCSS features (variables, mixins) and CSS Modules scoping. Example: `import styles from './Card.module.scss'`."
+    },
+    {
+      "question": "How do CSS Modules integrate with Next.js?",
+      "answer": "Next.js supports CSS Modules out of the box for files ending in `.module.css` or `.module.scss`. No configuration needed. Works with both Pages Router and App Router (including server components)."
+    },
+    {
+      "question": "What is the 'CSS Modules + Tailwind CSS' combination?",
+      "answer": "You can use both: CSS Modules for component encapsulation and Tailwind utilities inside the module: `.card { @apply p-4 rounded shadow; }`. Some frameworks (like Next.js) support both. Alternatively, use Tailwind's classes directly and skip CSS Modules."
+    },
+    {
+      "question": "How do CSS Modules handle cascade across components?",
+      "answer": "CSS Modules intentionally prevent cascade across components (no global class conflicts). This means you can't easily style a child component from a parent. Pass custom class names as props (`className`) or use a design token approach for consistency."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How does CSS Modules scoping affect the Shadow DOM?",
+      "answer": "CSS Modules scope to the component by hashing class names. Shadow DOM scopes by DOM boundary. They address different concerns. CSS Modules + Shadow DOM (e.g., via `attachShadow`) provide double isolation — class naming + DOM encapsulation."
+    },
+    {
+      "question": "What is the 'CSS Modules Composition' pattern for design systems?",
+      "answer": "Create base primitive modules (`_typography.module.css`, `_spacing.module.css`) with `composes` references. Component modules compose from primitives: `.card { composes: p-4 from '_spacing.module.css'; composes: body-lg from '_typography.module.css'; }`."
+    },
+    {
+      "question": "How do CSS Modules handle runtime dynamic class generation?",
+      "answer": "CSS Modules can't handle dynamically constructed class names (like `styles[`color-${value}`]`) because the hashed names are determined at build time. Use conditional objects: `className={{ [styles.active]: isActive, [styles.disabled]: isDisabled }]`."
+    },
+    {
+      "question": "What is the 'custom local ident name' pattern for debugging CSS Modules?",
+      "answer": "In development, configure `localIdentName: '[name]__[local]--[hash:base64:5]'` so class names include the source file and original name: `Button__btn--a3b2c`. In production, use `localIdentName: '[hash:base64:8]'` for minimal output."
+    },
+    {
+      "question": "How do CSS Modules interact with SSR (Server-Side Rendering)?",
+      "answer": "CSS Modules work with SSR by extracting CSS during build. Frameworks like Next.js collect CSS module styles during server rendering and inject them into the HTML. No client-side JavaScript is needed for CSS — it's pure CSS in `<style>` or `<link>` tags."
+    },
+    {
+      "question": "How do you create CSS Modules that conditionally export different styles?",
+      "answer": "CSS Modules don't support conditional exports. Use separate module files for variations (`.dark.module.css`, `.light.module.css`) and import the appropriate one based on context, or use CSS custom properties that change value scoped to the component."
+    },
+    {
+      "question": "What is the 'CSS Modules Hashing Algorithm' and can you customize it?",
+      "answer": "The hashing algorithm generates a unique identifier for each class name based on the file path and class name. Customize via `localIdentHashFunction`, `localIdentHashDigest`, and `localIdentHashDigestLength` in webpack's css-loader configuration."
+    },
+    {
+      "question": "How do CSS Modules resolve the 'global third-party CSS' problem?",
+      "answer": "Import third-party CSS globally (separate CSS files without module processing). Use `:global` in CSS Modules to reference third-party classes. Or, use `composes: className from global` to include a global class inside a local class."
+    },
+    {
+      "question": "How does the Vite implementation of CSS Modules differ from webpack's?",
+      "answer": "Vite uses PostCSS for CSS Modules processing (enabled by default for `*.module.css`). It provides simpler configuration via `css.modules` in `vite.config.js`. Vite supports `localsConvention` for camelCase class access and `generateScopedName` for naming patterns."
+    },
+    {
+      "question": "What is the 'CSS Modules Export Composition' pattern for shared constants?",
+      "answer": "CSS Modules can export values: `:export { primaryColor: #3b82f6; }`. These are accessible in JavaScript: `import { primaryColor } from './vars.module.css'`. Useful for sharing design token values between CSS and JS without duplication."
+    }
+  ]
+}

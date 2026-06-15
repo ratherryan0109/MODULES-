@@ -1,0 +1,32 @@
+[
+  {
+    "difficulty": "easy",
+    "title": "Stack Items Vertically",
+    "description": "Create a flex container that stacks 4 items vertically with a gap of 1rem.",
+    "instructions": "1. Create a flex container\n2. Add 4 child items\n3. Use flex-direction to stack them vertically\n4. Add gap: 1rem",
+    "starterCode": ".container {\n  /* Your code */\n}",
+    "solution": ".container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n  background: #f0f0f0;\n  padding: 1rem;\n}\n.item {\n  background: #42a5f5;\n  color: white;\n  padding: 1rem;\n  border-radius: 4px;\n}",
+    "hints": ["Use flex-direction: column"],
+    "validation": "Items should stack vertically with 1rem gap."
+  },
+  {
+    "difficulty": "medium",
+    "title": "Footer with Column and Row",
+    "description": "Create a footer layout with copyright on the left and links on the right using mixed flex-direction.",
+    "instructions": "1. Create a footer container (row)\n2. Add copyright text (left section)\n3. Add link items in a row sub-container\n4. Use justify-content: space-between",
+    "starterCode": "footer {\n  /* Your code */\n}\n.links {\n  /* Your code */\n}",
+    "solution": "footer {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  background: #333;\n  color: white;\n  padding: 1rem;\n}\n.links {\n  display: flex;\n  flex-direction: row;\n  gap: 1rem;\n}\n.links a {\n  color: #ddd;\n  text-decoration: none;\n}",
+    "hints": ["Nest a row container inside the footer for links", "Use space-between for left/right alignment"],
+    "validation": "Copyright on left, links on right, both in a row."
+  },
+  {
+    "difficulty": "hard",
+    "title": "Responsive Navigation with Direction Change",
+    "description": "Create a navigation that switches from row on desktop to column on mobile.",
+    "instructions": "1. Create a nav container\n2. Add 5 nav links\n3. Use flex-direction: row by default\n4. At 600px breakpoint, switch to column\n5. Add gaps and styling",
+    "starterCode": "nav {\n  /* Your code */\n}\n@media (max-width: 600px) {\n  nav {\n    /* Your code */\n  }\n}",
+    "solution": "nav {\n  display: flex;\n  flex-direction: row;\n  gap: 1rem;\n  background: #333;\n  padding: 1rem;\n}\nnav a {\n  color: white;\n  text-decoration: none;\n  padding: 0.5rem 1rem;\n}\n@media (max-width: 600px) {\n  nav {\n    flex-direction: column;\n  }\n}",
+    "hints": ["Use a media query for the breakpoint", "Change only flex-direction in the media query"],
+    "validation": "Row layout on desktop (>600px), column on mobile (<600px)."
+  }
+]

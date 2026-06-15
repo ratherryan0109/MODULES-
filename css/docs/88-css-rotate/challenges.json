@@ -1,0 +1,50 @@
+{
+  "module": "CSS Rotate",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Simple Spinner",
+      "description": "Create a spinning loading indicator using rotate animation.",
+      "hint": "Use @keyframes with from/to for rotate from 0 to 360deg.",
+      "expected_outcome": "Element spins continuously.",
+      "solution": { "css": "@keyframes spin { from { rotate: 0deg; } to { rotate: 360deg; } } .spinner { animation: spin 1s linear infinite; }" }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Hover Spin Button",
+      "description": "A button that spins 360 degrees on hover.",
+      "hint": "Use transition on rotate property with :hover.",
+      "expected_outcome": "Button spins once on hover.",
+      "solution": { "css": ".btn { transition: rotate 0.5s ease; } .btn:hover { rotate: 360deg; }" }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Card Flip (3D)",
+      "description": "Create a card that flips to reveal back content on hover using Y-axis rotation.",
+      "hint": "Use rotate: Y 180deg, perspective on parent, and backface-visibility.",
+      "expected_outcome": "Card flips like a playing card.",
+      "solution": { "css": ".scene { perspective: 800px; } .card { transition: rotate 0.6s; transform-style: preserve-3d; } .card:hover { rotate: Y 180deg; } .front, .back { backface-visibility: hidden; } .back { rotate: Y 180deg; }" }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Transform Origin Clock Hand",
+      "description": "Create a clock-like hand that rotates from its bottom center.",
+      "hint": "Use transform-origin: bottom center with rotate animation.",
+      "expected_outcome": "Hand rotates from bottom center like a clock hand.",
+      "solution": { "css": ".hand { width: 4px; height: 80px; background: #333; transform-origin: bottom center; animation: tick 60s linear infinite; } @keyframes tick { from { rotate: 0deg; } to { rotate: 360deg; } }" }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "3D Cube Rotator",
+      "description": "Create a 3D cube that rotates continuously on all axes.",
+      "hint": "Use transform-style: preserve-3d, multiple faces positioned with translateZ, and rotate animation on the cube container.",
+      "expected_outcome": "A 3D cube that spins in space.",
+      "solution": { "css": ".cube { transform-style: preserve-3d; animation: spin 5s linear infinite; } @keyframes spin { 0% { rotate: X 0deg Y 0deg; } 100% { rotate: X 360deg Y 360deg; } }" }
+    }
+  ]
+}

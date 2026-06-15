@@ -1,0 +1,147 @@
+{
+  "module": "98-css-nesting",
+  "title": "CSS Nesting",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What character represents the current selector in CSS Nesting?",
+      "options": ["#", ".", "&", "@"],
+      "correctAnswer": 2,
+      "explanation": "The & (ampersand) represents the current parent selector in CSS Nesting."
+    },
+    {
+      "id": 2,
+      "question": "When is the & selector required in CSS Nesting?",
+      "options": ["Always", "For pseudo-classes and adjacent selectors", "Never", "Only for media queries"],
+      "correctAnswer": 1,
+      "explanation": "& is needed when combining with pseudo-classes (:hover), adjacent selectors (+), or modifiers (.active)."
+    },
+    {
+      "id": 3,
+      "question": "Can you nest @media queries inside CSS rules?",
+      "options": ["Yes", "No", "Only in Sass", "Only with @layer"],
+      "correctAnswer": 0,
+      "explanation": "CSS Nesting allows @media queries to be nested inside rules."
+    },
+    {
+      "id": 4,
+      "question": "What is a best practice for nesting depth?",
+      "options": ["As deep as needed", "2-3 levels maximum", "10 levels", "No nesting"],
+      "correctAnswer": 1,
+      "explanation": "Keep nesting to 2-3 levels to avoid excessive specificity."
+    },
+    {
+      "id": 5,
+      "question": "Does CSS nesting require a preprocessor?",
+      "options": ["Yes, always", "No, it's native CSS now", "Only in older browsers", "Only TypeScript"],
+      "correctAnswer": 1,
+      "explanation": "CSS Nesting is now native in modern browsers (Chrome 120+, Firefox 117+)."
+    },
+    {
+      "id": 6,
+      "question": "What happens to specificity with deep nesting?",
+      "options": ["Stays the same", "Increases", "Decreases", "Resets"],
+      "correctAnswer": 1,
+      "explanation": "Each nesting level increases specificity, which can make overrides difficult."
+    },
+    {
+      "id": 7,
+      "question": "Can you nest ::before and ::after pseudo-elements?",
+      "options": ["Yes", "No", "Only ::before", "Only with &"],
+      "correctAnswer": 0,
+      "explanation": "Pseudo-elements can be nested: .card { &::before { ... } }"
+    },
+    {
+      "id": 8,
+      "question": "Which of these is valid CSS Nesting syntax?",
+      "options": [".card { .title { } }", ".card .title { }", ".card & .title { }", "All of the above"],
+      "correctAnswer": 0,
+      "explanation": ".card { .title { } } is the nesting syntax; the others are flat."
+    },
+    {
+      "id": 9,
+      "question": "What should you avoid when using CSS Nesting?",
+      "options": ["Using &", "Deep nesting", "Nesting media queries", "Nesting pseudo-classes"],
+      "correctAnswer": 1,
+      "explanation": "Deep nesting (3+ levels) should be avoided to maintain low specificity."
+    },
+    {
+      "id": 10,
+      "question": "Is CSS Nesting similar to Sass/SCSS nesting?",
+      "options": ["Identical", "Similar but has differences", "Completely different", "Not related"],
+      "correctAnswer": 1,
+      "explanation": "CSS Nesting is similar but has some differences from Sass (e.g., & is required in more cases)."
+    },
+    {
+      "id": 11,
+      "question": "What does the nested selector .card { & .title { } } resolve to?",
+      "options": [".card .title", ".card.title", ".card > .title", ".card + .title"],
+      "correctAnswer": 0,
+      "explanation": "& .title inside .card resolves to .card .title (descendant selector)."
+    },
+    {
+      "id": 12,
+      "question": "Can you nest @supports inside CSS rules?",
+      "options": ["Yes", "No", "Only in Chromium", "Only with @layer"],
+      "correctAnswer": 0,
+      "explanation": "@supports can be nested inside rules just like @media in CSS Nesting."
+    },
+    {
+      "id": 13,
+      "question": "What does @scope combined with nesting provide?",
+      "options": ["Component-level style isolation", "Better performance", "Shorter file size", "Sass compatibility"],
+      "correctAnswer": 0,
+      "explanation": "@scope with nesting provides component-level isolation, preventing style leakage."
+    },
+    {
+      "id": 14,
+      "question": "Which CSS preprocessor feature is NOT available in native CSS nesting?",
+      "options": ["@extend", "& nesting", "@media nesting", "Pseudo-class nesting"],
+      "correctAnswer": 0,
+      "explanation": "Native CSS nesting does not support @extend, @at-root, or property nesting."
+    },
+    {
+      "id": 15,
+      "question": "What does .button { &.active { } } resolve to?",
+      "options": [".button.active", ".button .active", ".button > .active", ".button, .active"],
+      "correctAnswer": 0,
+      "explanation": "&.active concatenates: .button.active (element with both classes)."
+    },
+    {
+      "id": 16,
+      "question": "In which Chrome version was CSS nesting supported?",
+      "options": ["Chrome 120+", "Chrome 100+", "Chrome 80+", "Chrome 140+"],
+      "correctAnswer": 0,
+      "explanation": "CSS nesting is supported in Chrome 120+, Firefox 117+, Safari 17.2+, and Edge 120+."
+    },
+    {
+      "id": 17,
+      "question": "What happens if you omit & before ::before in nesting?",
+      "options": ["It may still work in some browsers but using & is safer", "It throws a CSS error", "It selects a child element instead", "It's ignored entirely"],
+      "correctAnswer": 0,
+      "explanation": "Some browsers may allow omitting & for pseudo-elements, but including it is safer and more readable."
+    },
+    {
+      "id": 18,
+      "question": "Can @keyframes be nested inside CSS rules?",
+      "options": ["No, @keyframes must be at the stylesheet top level", "Yes, in all browsers", "Only in Safari", "Only when using &"],
+      "correctAnswer": 0,
+      "explanation": "@keyframes cannot be nested inside rule sets; they must be at the stylesheet root level."
+    },
+    {
+      "id": 19,
+      "question": "What is a benefit of nesting @media queries inside selectors?",
+      "options": ["Co-located responsive logic makes CSS easier to maintain", "Smaller file size", "Faster page load", "Better browser support"],
+      "correctAnswer": 0,
+      "explanation": "Nesting @media inside rules keeps related responsive styles together, improving maintainability."
+    },
+    {
+      "id": 20,
+      "question": "What tool can transpile CSS nesting for older browser support?",
+      "options": ["PostCSS Nesting plugin", "Sass compiler", "TypeScript compiler", "Webpack"],
+      "correctAnswer": 0,
+      "explanation": "The PostCSS Nesting plugin transpiles nested CSS to flat CSS for older browsers."
+    }
+  ]
+}

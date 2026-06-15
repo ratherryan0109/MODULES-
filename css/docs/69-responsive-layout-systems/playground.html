@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout Systems Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #0f172a; color: #e2e8f0; padding: 1rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #38bdf8; margin-bottom: 1rem; }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; height: calc(100vh - 80px); }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+    .panel { background: #1e293b; border: 1px solid #334155; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+    .panel h2 { background: #334155; padding: 0.5rem 1rem; font-size: 0.8rem; color: #94a3b8; margin: 0; }
+    textarea { width: 100%; flex: 1; min-height: 200px; background: #1e293b; color: #e2e8f0; border: none; padding: 1rem; font-family: 'Courier New', monospace; font-size: 0.85rem; resize: vertical; }
+    textarea:focus { outline: none; }
+    .preview-frame { background: white; flex: 1; overflow: auto; }
+    .controls { display: flex; gap: 0.5rem; padding: 0.5rem 1rem; background: #1e293b; border-top: 1px solid #334155; flex-wrap: wrap; align-items: center; }
+    .controls button, .controls label { background: #334155; color: #e2e8f0; border: 1px solid #475569; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .layout-switcher { display: flex; gap: 0.25rem; }
+    .layout-switcher button { font-size: 0.7rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Responsive Layout Systems Playground</h1>
+    <div class="layout">
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="panel">
+          <h2>HTML</h2>
+          <textarea id="htmlInput">&lt;div class="page"&gt;
+  &lt;header class="header"&gt;Header&lt;/header&gt;
+  &lt;nav class="nav"&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+    &lt;a href="#"&gt;Services&lt;/a&gt;
+    &lt;a href="#"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;main class="content"&gt;
+    &lt;article class="card"&gt;Card 1 - Main Content&lt;/article&gt;
+    &lt;article class="card"&gt;Card 2 - Side Content&lt;/article&gt;
+    &lt;article class="card"&gt;Card 3 - Extra Content&lt;/article&gt;
+  &lt;/main&gt;
+  &lt;aside class="sidebar"&gt;Sidebar&lt;/aside&gt;
+  &lt;footer class="footer"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</textarea>
+        </div>
+        <div class="panel">
+          <h2>CSS</h2>
+          <textarea id="cssInput">* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui; }
+.page { min-height: 100vh; display: grid; gap: 0.5rem; padding: 0.5rem; }
+
+/* Mobile: single column */
+.page {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto auto;
+}
+
+.header { background: #3b82f6; color: white; padding: 1rem; text-align: center; }
+.nav { display: flex; flex-direction: column; gap: 0.25rem; }
+.nav a { background: #f1f5f9; padding: 0.5rem; text-align: center; text-decoration: none; color: #333; border-radius: 4px; }
+.content { display: flex; flex-direction: column; gap: 0.5rem; }
+.card { background: #dbeafe; padding: 1rem; border-radius: 6px; }
+.sidebar { background: #f1f5f9; padding: 1rem; text-align: center; }
+.footer { background: #1e293b; color: white; padding: 1rem; text-align: center; }
+
+/* Tablet */
+@media (min-width: 640px) {
+  .page { grid-template-columns: 1fr 200px; grid-template-rows: auto auto 1fr auto; }
+  .header { grid-column: 1 / -1; }
+  .nav { grid-column: 1 / -1; flex-direction: row; justify-content: center; }
+  .content { flex-direction: row; flex-wrap: wrap; }
+  .card { flex: 1 1 calc(50% - 0.25rem); }
+  .sidebar { grid-column: 2; grid-row: 3; }
+  .footer { grid-column: 1 / -1; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .page { grid-template-columns: 200px 1fr 200px; grid-template-rows: auto 1fr auto; max-width: 1200px; margin: 0 auto; }
+  .header { grid-column: 1 / -1; }
+  .nav { grid-column: 1; grid-row: 2; flex-direction: column; }
+  .content { grid-column: 2; flex-direction: row; flex-wrap: nowrap; }
+  .card { flex: 1; }
+  .sidebar { grid-column: 3; grid-row: 2; }
+  .footer { grid-column: 1 / -1; }
+}</textarea>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Preview</h2>
+        <div class="controls">
+          <div class="layout-switcher">
+            <button onclick="setMode('mobile')"> Mobile</button>
+            <button onclick="setMode('tablet')"> Tablet</button>
+            <button onclick="setMode('desktop')" class="active"> Desktop</button>
+          </div>
+          <span style="font-size:0.75rem;color:#64748b;" id="modeLabel">Desktop</span>
+          <div style="margin-left:auto;">
+            <button onclick="render()"> Render</button>
+            <label><input type="checkbox" id="liveCheck" checked> Live</label>
+          </div>
+        </div>
+        <div class="preview-frame" id="previewArea"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const htmlInput = document.getElementById('htmlInput');
+    const cssInput = document.getElementById('cssInput');
+    const preview = document.getElementById('previewArea');
+    let currentMode = 'desktop';
+
+    function render() {
+      preview.innerHTML = `<style>${cssInput.value}</style>${htmlInput.value}`;
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.layout-switcher button').forEach(b => b.classList.remove('active'));
+      document.querySelector(`button[onclick*="${mode}"]`).classList.add('active');
+
+      const sizes = { mobile: '375px', tablet: '768px', desktop: '1024px' };
+      preview.style.width = sizes[mode];
+      preview.style.margin = '0 auto';
+      document.getElementById('modeLabel').textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
+      render();
+    }
+
+    let debounce;
+    function debouncedRender() {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        if (document.getElementById('liveCheck').checked) render();
+      }, 300);
+    }
+    htmlInput.addEventListener('input', debouncedRender);
+    cssInput.addEventListener('input', debouncedRender);
+
+    // Set initial
+    setMode('desktop');
+  </script>
+</body>
+</html>

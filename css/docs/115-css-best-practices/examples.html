@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Best Practices - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    :root {
+      --primary: #06b6d4;
+      --primary-hover: #0891b2;
+      --surface: #f8fafc;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 2rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; color: var(--text); background: var(--surface); line-height: 1.6; padding: var(--space-lg); }
+
+    .card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-lg); box-shadow: var(--shadow); }
+    .card__title { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--space-sm); }
+    .card__body { color: var(--text-muted); margin-bottom: var(--space-md); }
+    .card--featured { border-color: var(--primary); border-width: 2px; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; border: none; border-radius: var(--radius); font-size: 1rem; cursor: pointer; min-height: 44px; text-decoration: none; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    .bad { border-left: 4px solid #ef4444; padding-left: 1rem; }
+    .good { border-left: 4px solid #22c55e; padding-left: 1rem; }
+    .row { display: flex; gap: var(--space-lg); flex-wrap: wrap; }
+
+    img { max-width: 100%; height: auto; display: block; }
+    .ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .word-break { overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; }
+  </style>
+  <style>/* Demo-specific CSS */</style>
+</head>
+<body>
+  <h1>CSS Best Practices</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: CSS Custom Properties for Consistency</h2>
+    <p>Store design tokens as custom properties on <code>:root</code> for a single source of truth.</p>
+    <div class="demo-output">
+      <div class="card card--featured">
+        <h3 class="card__title">Token-based Card</h3>
+        <p class="card__body">All colors, spacing, and shadows come from <code>var()</code> references. Change one value in <code>:root</code> and it updates everywhere.</p>
+        <button class="btn btn-primary">Learn More</button>
+      </div>
+    </div>
+    <pre><code>:root {
+  --primary: #06b6d4;
+  --radius: 8px;
+  --space-lg: 2rem;
+}
+.card {
+  padding: var(--space-lg);
+  border-radius: var(--radius);
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Specificity Management</h2>
+    <p>Keep selectors flat. Prefer classes over IDs. Avoid <code>!important</code>.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div class="bad">
+          <h3 style="color:#ef4444;">Bad</h3>
+          <code>#sidebar ul li a { color: blue; }</code>
+          <p style="margin-top:0.5rem;color:#64748b;font-size:0.875rem;">High specificity — hard to override.</p>
+        </div>
+        <div class="good">
+          <h3 style="color:#22c55e;">Good</h3>
+          <code>.nav-link { color: blue; }</code>
+          <p style="margin-top:0.5rem;color:#64748b;font-size:0.875rem;">Low specificity — easy to extend.</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* Avoid */
+#sidebar ul li a { color: blue; }
+
+/* Prefer */
+.nav-link { color: blue; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Defensive CSS — Overflow Handling</h2>
+    <p>Always handle long text and large images gracefully.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="width:200px;border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-sm);">
+          <p class="ellipsis">Very long product name that should not break the layout</p>
+        </div>
+        <div style="width:200px;border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-sm);">
+          <img src="https://placehold.co/600x200/06b6d4/fff?text=Responsive+Image" alt="Responsive demo">
+        </div>
+        <div style="width:200px;border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-sm);">
+          <p class="word-break">Supercalifragilisticexpialidocious</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Performant Animations</h2>
+    <p>Animate only <code>transform</code> and <code>opacity</code> to avoid triggering layout recalculations.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:2rem;align-items:center;">
+        <div style="width:100px;height:100px;background:#06b6d4;border-radius:8px;transition:transform 0.3s, opacity 0.3s;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;" onmouseenter="this.style.transform='scale(1.15)';this.style.opacity='0.8'" onmouseleave="this.style.transform='scale(1)';this.style.opacity='1'">Hover</div>
+        <p style="color:#64748b;font-size:0.875rem;">Uses <code>transform: scale()</code> and <code>opacity</code> only — no layout thrashing.</p>
+      </div>
+    </div>
+    <pre><code>.box {
+  transition: transform 0.3s, opacity 0.3s;
+  /* will-change: transform;  for heavy animations */
+}
+.box:hover {
+  transform: scale(1.15);
+  opacity: 0.8;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Accessible Focus Styles</h2>
+    <p>Never remove <code>outline</code> without providing a visible replacement.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div class="bad">
+          <h3 style="color:#ef4444;">Bad: outline: none</h3>
+          <button style="outline:none;padding:0.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;background:#fff;">Tab to me</button>
+        </div>
+        <div class="good">
+          <h3 style="color:#22c55e;">Good: focus-visible</h3>
+          <button style="padding:0.5rem 1rem;border:2px solid #06b6d4;border-radius:6px;background:#fff;cursor:pointer;" class="focus-btn">Tab to me</button>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* Never do this */
+button:focus { outline: none; }
+
+/* Do this instead */
+button:focus-visible {
+  outline: 3px solid #06b6d4;
+  outline-offset: 2px;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: BEM Naming Convention</h2>
+    <p>Block__Element--Modifier creates predictable, maintainable class names.</p>
+    <div class="demo-output">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <article class="card">
+          <h3 class="card__title">Default Card</h3>
+          <p class="card__body">Standard card with default styling.</p>
+          <button class="btn btn-primary">Action</button>
+        </article>
+        <article class="card card--featured">
+          <h3 class="card__title">Featured Card</h3>
+          <p class="card__body">Uses the <code>--featured</code> modifier.</p>
+          <button class="btn btn-primary">Action</button>
+        </article>
+      </div>
+    </div>
+    <pre><code>.card { }             /* Block */
+.card__title { }      /* Element */
+.card__body { }       /* Element */
+.card--featured { }   /* Modifier */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: CSS Reset / Normalize</h2>
+    <p>A minimal reset ensures consistent box-sizing and removes default margins across browsers.</p>
+    <div class="demo-output">
+      <pre style="background:#f1f5f9;color:#0f172a;font-size:0.85rem;">*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 8: Responsive Units Over Pixels</h2>
+    <p>Use <code>rem</code>, <code>em</code>, <code>%</code>, and <code>vw</code>/<code>vh</code> instead of <code>px</code> for better scalability.</p>
+    <div class="demo-output">
+      <div class="row">
+        <div style="flex:1;padding:1rem;background:#f1f5f9;border-radius:8px;">
+          <p style="font-size:1rem;">Base text (1rem)</p>
+          <p style="font-size:0.875rem;">Small text (0.875rem)</p>
+          <p style="font-size:1.25rem;font-weight:600;">Heading (1.25rem)</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>p { font-size: 1rem; }       /* 16px base */
+small { font-size: 0.875rem; } /* 14px */
+h3 { font-size: 1.25rem; }    /* 20px */</pre>
+  </div>
+
+  <style>
+    .focus-btn:focus-visible { outline: 3px solid #06b6d4; outline-offset: 2px; }
+  </style>
+</body>
+</html>

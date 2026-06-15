@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Project - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #e44d26; border-bottom: 3px solid #e44d26; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Module 85: Landing Page Project — Examples</h1>
+
+    <div class="note">
+        <strong>Tip:</strong> Refer to <code>project.md</code> for the complete landing page code. These examples demonstrate individual landing page components.
+    </div>
+
+    <!-- Example 1: Hero Section -->
+    <div class="example">
+        <h2>Example 1: Hero Section with CTA</h2>
+        <p>The hero is the first thing visitors see. It must communicate value immediately.</p>
+        <pre>
+&lt;section style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 100px 20px; text-align: center;"&gt;
+    &lt;h1 style="font-size: 48px; margin-bottom: 20px;"&gt;
+        Build Better Websites Faster
+    &lt;/h1&gt;
+    &lt;p style="font-size: 20px; max-width: 600px; margin: 0 auto 40px;"&gt;
+        The all-in-one platform for modern web development. Ship products in days, not months.
+    &lt;/p&gt;
+    &lt;div&gt;
+        &lt;a href="#" style="background: white; color: #667eea; padding: 16px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; margin: 0 10px; display: inline-block;"&gt;Get Started Free&lt;/a&gt;
+        &lt;a href="#" style="color: white; padding: 16px 40px; border-radius: 30px; text-decoration: none; border: 2px solid rgba(255,255,255,0.5); margin: 0 10px; display: inline-block;"&gt;Learn More&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 60px 20px; text-align: center; border-radius: 8px;">
+                <h2 style="font-size: 32px; margin-bottom: 15px;">Build Better Websites Faster</h2>
+                <p style="font-size: 18px; max-width: 500px; margin: 0 auto 30px;">The all-in-one platform for modern web development.</p>
+                <div>
+                    <span style="background: white; color: #667eea; padding: 12px 30px; border-radius: 30px; font-weight: bold; margin: 5px 10px; display: inline-block;">Get Started Free</span>
+                    <span style="color: white; padding: 12px 30px; border-radius: 30px; border: 2px solid rgba(255,255,255,0.5); margin: 5px 10px; display: inline-block;">Learn More</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 2: Features Grid -->
+    <div class="example">
+        <h2>Example 2: Features Grid with Cards</h2>
+        <p>Display key features in a grid layout with hover effects.</p>
+        <pre>
+&lt;div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;"&gt;
+    &lt;div style="background: white; padding: 25px; border-radius: 12px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform 0.3s;"&gt;
+        &lt;div style="font-size: 40px; margin-bottom: 15px;"&gt;⚡&lt;/div&gt;
+        &lt;h3 style="margin-bottom: 10px;"&gt;Lightning Fast&lt;/h3&gt;
+        &lt;p style="color: #666;"&gt;Optimized for speed with global CDN.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div style="...">...&lt;/div&gt;
+    &lt;div style="...">...&lt;/div&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size: 36px; margin-bottom: 10px;">⚡</div>
+                    <h4 style="margin-bottom: 8px;">Lightning Fast</h4>
+                    <p style="color: #666; font-size: 14px;">Global CDN for maximum speed.</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size: 36px; margin-bottom: 10px;">🔒</div>
+                    <h4 style="margin-bottom: 8px;">Secure</h4>
+                    <p style="color: #666; font-size: 14px;">AES-256 encryption standard.</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size: 36px; margin-bottom: 10px;">☁️</div>
+                    <h4 style="margin-bottom: 8px;">Cloud Sync</h4>
+                    <p style="color: #666; font-size: 14px;">Real-time sync across devices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 3: Pricing Table -->
+    <div class="example">
+        <h2>Example 3: Pricing Table with Featured Tier</h2>
+        <p>Three-tier pricing with the middle option highlighted as the best value.</p>
+        <pre>
+&lt;div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start;"&gt;
+    &lt;div style="background: white; border-radius: 12px; padding: 30px; text-align: center;"&gt;
+        &lt;h3&gt;Basic&lt;/h3&gt;
+        &lt;div style="font-size: 36px; font-weight: bold;"&gt;$9&lt;small&gt;/mo&lt;/small&gt;&lt;/div&gt;
+        &lt;ul style="list-style: none; text-align: left; padding: 0;"&gt;
+            &lt;li&gt;✓ 50GB storage&lt;/li&gt;
+            &lt;li&gt;✓ Email support&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;a href="#" style="display: block; padding: 12px; border-radius: 25px; border: 2px solid #667eea; color: #667eea; text-decoration: none;"&gt;Choose Plan&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!-- Featured tier with scale and border --&gt;
+    &lt;div style="background: white; border-radius: 12px; padding: 30px; text-align: center; border: 2px solid #667eea; transform: scale(1.05);"&gt;
+        &lt;span style="background: #667eea; color: white; padding: 5px 15px; border-radius: 20px;"&gt;Popular&lt;/span&gt;
+        &lt;h3&gt;Pro&lt;/h3&gt;
+        &lt;div style="font-size: 36px; font-weight: bold;"&gt;$29&lt;small&gt;/mo&lt;/small&gt;&lt;/div&gt;
+        &lt;ul&gt;
+            &lt;li&gt;✓ 500GB storage&lt;/li&gt;
+            &lt;li&gt;✓ Priority support&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;a href="#" style="display: block; padding: 12px; border-radius: 25px; background: #667eea; color: white; text-decoration: none;"&gt;Choose Plan&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div style="background: white; border-radius: 12px; padding: 30px; text-align: center;"&gt;
+        &lt;h3&gt;Enterprise&lt;/h3&gt;
+        &lt;div style="font-size: 36px; font-weight: bold;"&gt;$99&lt;small&gt;/mo&lt;/small&gt;&lt;/div&gt;
+        &lt;ul&gt;
+            &lt;li&gt;✓ Unlimited storage&lt;/li&gt;
+            &lt;li&gt;✓ Dedicated manager&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;a href="#" style="display: block; padding: 12px; border-radius: 25px; border: 2px solid #667eea; color: #667eea; text-decoration: none;"&gt;Contact Us&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; align-items: start;">
+                <div style="background: white; border-radius: 10px; padding: 25px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 10px;">Basic</h3>
+                    <div style="font-size: 32px; font-weight: bold; margin-bottom: 15px;">$9<small style="font-weight:normal;">/mo</small></div>
+                    <ul style="list-style: none; padding: 0; text-align: left; margin-bottom: 20px;">
+                        <li style="padding: 5px 0;">✓ 50GB storage</li>
+                        <li style="padding: 5px 0;">✓ Email support</li>
+                    </ul>
+                    <div style="display: block; padding: 10px; border-radius: 25px; border: 2px solid #667eea; color: #667eea; text-align: center;">Choose Plan</div>
+                </div>
+                <div style="background: white; border-radius: 10px; padding: 25px; text-align: center; border: 2px solid #667eea; transform: scale(1.05); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px;">Popular</span>
+                    <h3 style="margin-bottom: 10px;">Pro</h3>
+                    <div style="font-size: 32px; font-weight: bold; margin-bottom: 15px;">$29<small style="font-weight:normal;">/mo</small></div>
+                    <ul style="list-style: none; padding: 0; text-align: left; margin-bottom: 20px;">
+                        <li style="padding: 5px 0;">✓ 500GB storage</li>
+                        <li style="padding: 5px 0;">✓ Priority support</li>
+                    </ul>
+                    <div style="display: block; padding: 10px; border-radius: 25px; background: #667eea; color: white; text-align: center;">Choose Plan</div>
+                </div>
+                <div style="background: white; border-radius: 10px; padding: 25px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 10px;">Enterprise</h3>
+                    <div style="font-size: 32px; font-weight: bold; margin-bottom: 15px;">$99<small style="font-weight:normal;">/mo</small></div>
+                    <ul style="list-style: none; padding: 0; text-align: left; margin-bottom: 20px;">
+                        <li style="padding: 5px 0;">✓ Unlimited storage</li>
+                        <li style="padding: 5px 0;">✓ Dedicated manager</li>
+                    </ul>
+                    <div style="display: block; padding: 10px; border-radius: 25px; border: 2px solid #667eea; color: #667eea; text-align: center;">Contact Us</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 4: Testimonial Card -->
+    <div class="example">
+        <h2>Example 4: Testimonial Card with Author</h2>
+        <pre>
+&lt;div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 400px;"&gt;
+    &lt;p style="font-style: italic; color: #555; margin-bottom: 20px;"&gt;
+        "This product has completely transformed our workflow. Highly recommended!"
+    &lt;/p&gt;
+    &lt;div style="display: flex; align-items: center; gap: 15px;"&gt;
+        &lt;div style="width: 50px; height: 50px; border-radius: 50%; background: #667eea; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;"&gt;JD&lt;/div&gt;
+        &lt;div&gt;
+            &lt;div style="font-weight: 600;"&gt;Jane Doe&lt;/div&gt;
+            &lt;div style="font-size: 14px; color: #888;"&gt;CEO, TechStart&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 400px;">
+                <p style="font-style: italic; color: #555; margin-bottom: 15px;">"This product has completely transformed our workflow. Highly recommended!"</p>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 45px; height: 45px; border-radius: 50%; background: #667eea; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">JD</div>
+                    <div>
+                        <div style="font-weight: 600;">Jane Doe</div>
+                        <div style="font-size: 13px; color: #888;">CEO, TechStart</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 5: FAQ Accordion -->
+    <div class="example">
+        <h2>Example 5: FAQ Accordion</h2>
+        <p>Click a question to toggle the answer.</p>
+        <pre>
+&lt;div style="max-width: 600px;"&gt;
+    &lt;div style="border-bottom: 1px solid #eee;"&gt;
+        &lt;div onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'" style="padding: 15px 0; font-weight: 600; cursor: pointer;"&gt;
+            What is included in the free trial?
+        &lt;/div&gt;
+        &lt;div style="display: none; padding: 0 0 15px; color: #666;"&gt;
+            Full access to Pro plan for 14 days. No credit card required.
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="max-width: 500px;">
+                <div style="border-bottom: 1px solid #eee;">
+                    <div onclick="const a=this.nextElementSibling; a.style.display=a.style.display==='block'?'none':'block'" style="padding: 12px 0; font-weight: 600; cursor: pointer;">What is included in the free trial?</div>
+                    <div style="display: none; padding: 0 0 12px; color: #666;">Full access to Pro plan for 14 days. No credit card required.</div>
+                </div>
+                <div style="border-bottom: 1px solid #eee;">
+                    <div onclick="const a=this.nextElementSibling; a.style.display=a.style.display==='block'?'none':'block'" style="padding: 12px 0; font-weight: 600; cursor: pointer;">Can I cancel anytime?</div>
+                    <div style="display: none; padding: 0 0 12px; color: #666;">Yes, you can cancel anytime. No cancellation fees.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 6: CTA Form -->
+    <div class="example">
+        <h2>Example 6: Call-to-Action Email Signup</h2>
+        <pre>
+&lt;div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 60px 20px; text-align: center; border-radius: 12px;"&gt;
+    &lt;h2 style="font-size: 32px; margin-bottom: 15px;"&gt;Stay Updated&lt;/h2&gt;
+    &lt;p style="margin-bottom: 30px;"&gt;Get the latest news and offers.&lt;/p&gt;
+    &lt;form style="display: flex; gap: 10px; justify-content: center; max-width: 450px; margin: 0 auto;"&gt;
+        &lt;input type="email" placeholder="Enter your email" style="flex: 1; padding: 14px 20px; border: none; border-radius: 25px; font-size: 16px;"&gt;
+        &lt;button type="submit" style="background: #222; color: white; padding: 14px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer;"&gt;Subscribe&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</pre>
+        <div class="output-label">Rendered Output:</div>
+        <div class="output">
+            <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 40px 20px; text-align: center; border-radius: 8px;">
+                <h3 style="font-size: 24px; margin-bottom: 10px;">Stay Updated</h3>
+                <p style="margin-bottom: 20px;">Get the latest news and offers.</p>
+                <div style="display: flex; gap: 10px; justify-content: center; max-width: 400px; margin: 0 auto;">
+                    <input type="email" placeholder="Enter your email" style="flex: 1; padding: 12px 18px; border: none; border-radius: 25px; font-size: 14px;">
+                    <button style="background: #222; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-size: 14px; cursor: pointer;">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Project:</strong> The complete landing page code is available in <code>project.md</code>. Use these component examples as building blocks for your own landing page.
+    </div>
+</body>
+</html>

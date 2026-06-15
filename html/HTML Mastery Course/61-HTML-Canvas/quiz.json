@@ -1,0 +1,222 @@
+[
+  {
+    "question": "Which method is used to obtain the 2D drawing context from a canvas element?",
+    "options": [
+      "canvas.getContext('2d')",
+      "canvas.getContext('canvas-2d')",
+      "canvas.get2DContext()",
+      "canvas.createContext('2d')"
+    ],
+    "answer": "a",
+    "explanation": "The getContext('2d') method returns a 2D rendering context for drawing on the canvas."
+  },
+  {
+    "question": "What does the clearRect() method do?",
+    "options": [
+      "Clears the entire canvas",
+      "Makes a rectangle transparent by erasing pixels",
+      "Removes the canvas from the DOM",
+      "Resets all canvas styles to defaults"
+    ],
+    "answer": "b",
+    "explanation": "clearRect(x, y, w, h) sets the specified rectangle to fully transparent black, effectively erasing drawn content in that area."
+  },
+  {
+    "question": "Which Canvas API method begins a new path?",
+    "options": [
+      "newPath()",
+      "startPath()",
+      "beginPath()",
+      "openPath()"
+    ],
+    "answer": "c",
+    "explanation": "beginPath() resets the current path list and starts a new one. Always call it before defining a new shape."
+  },
+  {
+    "question": "What is the default lineCap style in Canvas?",
+    "options": [
+      "round",
+      "square",
+      "butt",
+      "triangle"
+    ],
+    "answer": "c",
+    "explanation": "The default lineCap is 'butt', which gives flat ends flush with the line endpoints."
+  },
+  {
+    "question": "How do you create a linear gradient in Canvas?",
+    "options": [
+      "ctx.makeLinearGradient()",
+      "ctx.createLinearGradient()",
+      "ctx.linearGradient()",
+      "ctx.gradient('linear')"
+    ],
+    "answer": "b",
+    "explanation": "createLinearGradient(x0, y0, x1, y1) creates a linear gradient object that can be used as a fill or stroke style."
+  },
+  {
+    "question": "What is the effect of setting ctx.globalAlpha = 0.5?",
+    "options": [
+      "Only fills are semi-transparent",
+      "Only strokes are semi-transparent",
+      "All subsequent drawing operations are 50% transparent",
+      "The canvas background becomes semi-transparent"
+    ],
+    "answer": "c",
+    "explanation": "globalAlpha sets the transparency level for all drawing operations (both fill and stroke) on the canvas."
+  },
+  {
+    "question": "Which method draws an image onto the canvas?",
+    "options": [
+      "ctx.insertImage()",
+      "ctx.renderImage()",
+      "ctx.drawImage()",
+      "ctx.placeImage()"
+    ],
+    "answer": "c",
+    "explanation": "drawImage() has three overloads: drawImage(img, x, y), drawImage(img, x, y, w, h), and drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)."
+  },
+  {
+    "question": "What does requestAnimationFrame return?",
+    "options": [
+      "A boolean indicating success",
+      "An animation frame ID (integer)",
+      "A Promise that resolves on completion",
+      "The current timestamp"
+    ],
+    "answer": "b",
+    "explanation": "requestAnimationFrame returns a unique ID that can be used with cancelAnimationFrame() to stop the animation."
+  },
+  {
+    "question": "Which property controls how shapes are blended when overlapping?",
+    "options": [
+      "ctx.blendMode",
+      "ctx.overlay",
+      "ctx.globalCompositeOperation",
+      "ctx.compositeMode"
+    ],
+    "answer": "c",
+    "explanation": "globalCompositeOperation sets the blending mode for overlapping shapes, with options like source-over, multiply, screen, xor, etc."
+  },
+  {
+    "question": "How do you correctly handle Retina displays with Canvas?",
+    "options": [
+      "Set canvas width/height with devicePixelRatio scaling",
+      "Use CSS transform: scale(0.5)",
+      "Use ctx.retina = true",
+      "Retina is automatically handled"
+    ],
+    "answer": "a",
+    "explanation": "Multiply canvas.width and canvas.height by window.devicePixelRatio, then ctx.scale(dpr, dpr) to ensure crisp rendering on high-DPI displays."
+  },
+  {
+    "question": "What does the ctx.save() method do?",
+    "options": [
+      "Saves the canvas image as a file",
+      "Pushes the current drawing state onto a stack",
+      "Saves the current path for later reuse",
+      "Persists the canvas content to localStorage"
+    ],
+    "answer": "b",
+    "explanation": "save() pushes the current state (styles, transforms, clipping region) onto a stack so it can be restored later with restore()."
+  },
+  {
+    "question": "Which method creates an arc/circle path?",
+    "options": [
+      "ctx.circle()",
+      "ctx.arc()",
+      "ctx.curve()",
+      "ctx.round()"
+    ],
+    "answer": "b",
+    "explanation": "arc(x, y, r, startAngle, endAngle, counterclockwise) adds an arc to the current path."
+  },
+  {
+    "question": "What is the correct way to measure text width before rendering?",
+    "options": [
+      "ctx.measureText().width",
+      "ctx.textWidth()",
+      "ctx.getTextWidth()",
+      "Text width cannot be measured"
+    ],
+    "answer": "a",
+    "explanation": "measureText(text).width returns the width in pixels of the given text when rendered with the current font settings."
+  },
+  {
+    "question": "How do you check if a point (x, y) is inside the current path?",
+    "options": [
+      "ctx.isPointInPath(x, y)",
+      "ctx.hitTest(x, y)",
+      "ctx.pathContains(x, y)",
+      "ctx.containsPoint(x, y)"
+    ],
+    "answer": "a",
+    "explanation": "isPointInPath(x, y) returns true if the specified point is inside the current path, useful for hit detection."
+  },
+  {
+    "question": "What is the default value of ctx.lineJoin?",
+    "options": [
+      "round",
+      "bevel",
+      "miter",
+      "square"
+    ],
+    "answer": "c",
+    "explanation": "The default lineJoin is 'miter', which produces sharp corners where line segments meet."
+  },
+  {
+    "question": "Which Canvas feature is most expensive for performance?",
+    "options": [
+      "fillRect()",
+      "Shadows (shadowBlur, shadowOffset)",
+      "Setting fillStyle",
+      "Calling beginPath()"
+    ],
+    "answer": "b",
+    "explanation": "Shadow rendering requires multiple passes per draw operation and is significantly more expensive than basic shape drawing."
+  },
+  {
+    "question": "How do you create an off-screen canvas for pre-rendering?",
+    "options": [
+      "ctx.createOffscreen()",
+      "document.createElement('canvas')",
+      "Canvas.offscreen()",
+      "new OffscreenCanvas()"
+    ],
+    "answer": "b",
+    "explanation": "Create a hidden canvas element with document.createElement('canvas'), draw to it, then use drawImage() to copy pre-rendered content to the visible canvas."
+  },
+  {
+    "question": "What does putImageData() do?",
+    "options": [
+      "Saves canvas data to a file",
+      "Pastes an ImageData object onto the canvas at specified coordinates",
+      "Converts ImageData to a PNG",
+      "Compresses image pixel data"
+    ],
+    "answer": "b",
+    "explanation": "putImageData(imageData, dx, dy) paints pixel data from an ImageData object onto the canvas at the given position."
+  },
+  {
+    "question": "Which transformation method resets the transform to the identity matrix?",
+    "options": [
+      "ctx.identity()",
+      "ctx.clearTransform()",
+      "ctx.resetTransform()",
+      "ctx.setIdentity()"
+    ],
+    "answer": "c",
+    "explanation": "resetTransform() sets the current transformation matrix to the identity matrix, removing any previous translations, rotations, or scaling."
+  },
+  {
+    "question": "What is the canvas fallback content used for?",
+    "options": [
+      "Fills the canvas with a default background",
+      "Displayed when JavaScript is disabled",
+      "Displayed when the browser does not support canvas",
+      "Provides alternative text for screen readers"
+    ],
+    "answer": "c",
+    "explanation": "Any content between <canvas> and </canvas> tags is displayed only in browsers that do not support the canvas element."
+  }
+]

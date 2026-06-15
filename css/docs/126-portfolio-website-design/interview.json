@@ -1,0 +1,130 @@
+{
+  "module": "126-portfolio-website-design",
+  "title": "Portfolio Website Design",
+  "beginner": [
+    {
+      "question": "What are the essential sections of a portfolio website?",
+      "answer": "Hero (name, title, tagline), About/Bio, Skills, Projects/Portfolio grid, Resume/Experience, Testimonials (optional), Contact, and Footer. The portfolio grid is the centerpiece — it showcases work samples."
+    },
+    {
+      "question": "What is a 'project grid' in a portfolio?",
+      "answer": "A project grid displays work samples in a visually organized layout. Typically a CSS Grid with 2-3 columns on desktop, collapsing to 1 column on mobile. Each project card shows a thumbnail, title, tags, and sometimes a hover overlay."
+    },
+    {
+      "question": "How do you design a responsive project card?",
+      "answer": "Each card uses `display: flex; flex-direction: column;` with an image container (aspect-ratio), title, description, and tags. Cards have consistent padding, border-radius, and shadow. On mobile, cards stack vertically with full-width images."
+    },
+    {
+      "question": "What is a 'filter system' in a portfolio?",
+      "answer": "A filter system allows visitors to sort projects by category (Web Design, Branding, UI/UX). Filter buttons toggle visibility of project cards using JavaScript (adding/removing CSS classes like `.hidden` or `.active`)."
+    },
+    {
+      "question": "How do you implement a filter system with CSS?",
+      "answer": "Each project card has data attributes: `<div class=\"project\" data-category=\"web\">`. Filter buttons toggle a class on the gallery container. CSS: `[data-filter=\"web\"] .project[data-category=\"web\"] { display: block; }`. Use `display: none` to hide non-matching items."
+    },
+    {
+      "question": "What is the role of dark mode in a portfolio website?",
+      "answer": "Dark mode gives visitors a choice of viewing experience. Many creative portfolios default to dark mode as a design statement. Implement using `prefers-color-scheme` media query or a user toggle with CSS custom properties."
+    },
+    {
+      "question": "How do you implement dark mode with CSS custom properties?",
+      "answer": "Define all colors as custom properties: `:root { --bg: #fff; --text: #222; }`. For dark mode: `[data-theme=\"dark\"] { --bg: #111; --text: #eee; }`. Use `prefers-color-scheme: dark` to auto-detect OS preference. Toggle via JavaScript with `document.documentElement.dataset.theme`."
+    },
+    {
+      "question": "What is a 'responsive avatar' in a portfolio?",
+      "answer": "A responsive avatar is a profile photo that scales across viewports. Use `max-width: 100%; height: auto;` with `border-radius: 50%` for a circular crop. On mobile, the avatar is typically smaller and centered."
+    },
+    {
+      "question": "What is the best layout approach for a portfolio hero?",
+      "answer": "A two-column layout: left side has name, title, description, and CTA buttons. Right side has a professional photo or illustration. On mobile, stack vertically (photo above or below text). Use CSS Grid or Flexbox."
+    },
+    {
+      "question": "How should a portfolio's contact section be designed?",
+      "answer": "Include a contact form (name, email, message) and social links. On desktop, form and info side by side. On mobile, stacked. Form inputs should be full-width on mobile. Include `mailto:` link as fallback. Ensure form accessibility."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you create a responsive 'masonry' layout for a portfolio?",
+      "answer": "Use CSS Grid with `masonry` (experimental, Chrome-only) or CSS Columns (`column-count`). Better: use `grid-template-rows: masonry` (Firefox) or a JavaScript library like Masonry. For production, CSS Grid with explicit spans works most reliably."
+    },
+    {
+      "question": "How do you implement a 'hover overlay' effect on portfolio project cards?",
+      "answer": "Use `position: relative` on the card, and a `::after` pseudo-element or inner overlay with `position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s;`. On hover (`:hover`), set `opacity: 1`. Display project info on the overlay."
+    },
+    {
+      "question": "How do you create a responsive 'skill bar' or visualization?",
+      "answer": "Use a container div with `background: #e5e7eb; border-radius; overflow: hidden;`. Inside, a fill div with `width: 85%; height: 100%; background: linear-gradient;`. Animate width on scroll using IntersectionObserver. Stack vertically on mobile."
+    },
+    {
+      "question": "How do you handle responsive typography for portfolio headlines?",
+      "answer": "Use `clamp()` for fluid sizing: `h1 { font-size: clamp(2.5rem, 6vw, 5rem); }`. For portfolio-specific uses, a large hero name (4-6rem on desktop) scales down to 2rem on mobile. Maintain line-height proportion."
+    },
+    {
+      "question": "How do you implement a 'back to top' button on a portfolio?",
+      "answer": "A fixed-position button at bottom-right: `position: fixed; bottom: 2rem; right: 2rem;`. Show/hide based on scroll position using JavaScript. Smooth scroll: `element.scrollIntoView({ behavior: 'smooth' })`. Respect reduced motion."
+    },
+    {
+      "question": "How do you design a responsive 'about' section with photo and bio?",
+      "answer": "Desktop: two columns (photo: 40%, bio: 60%) or image left/right with text on the other side. Mobile: single column, photo above bio. Use `grid-template-columns: 1fr 2fr;` on desktop, `1fr` on mobile."
+    },
+    {
+      "question": "How do you create a responsive 'testimonials' section?",
+      "answer": "Use a CSS Grid or horizontal carousel. Desktop: 2-3 testimonial cards per row. Mobile: single card, optionally swipeable. Cards contain quote, author avatar, name, and role. Use `auto-fit` and `minmax(300px, 1fr)`."
+    },
+    {
+      "question": "How do you implement a filter animation (smooth show/hide for filter results)?",
+      "answer": "Use CSS transitions with `max-height`, `opacity`, and `transform`. Instead of `display: none` (not animatable), toggle classes: `.hidden { max-height: 0; opacity: 0; overflow: hidden; pointer-events: none; }`."
+    },
+    {
+      "question": "How do you create a responsive 'resume timeline' section?",
+      "answer": "A vertical timeline with alternating left/right entries on desktop, all left-aligned on mobile. Use CSS pseudo-elements for the timeline line and dots. Each entry: date, title, company, description. Use `grid-template-columns: 1fr 1fr` or flexbox."
+    },
+    {
+      "question": "How do you handle responsive image galleries for a portfolio?",
+      "answer": "Use a lightbox (like PhotoSwipe) or a modal gallery. Thumbnails in a grid that opens full images on click. Use `loading=\"lazy\"` for images below the fold. Serve multiple image sizes via `srcset`."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a dynamic 'mood board' or color theme switcher for a portfolio?",
+      "answer": "Define multiple theme files as CSS custom property sets. Use JavaScript to swap `data-theme` attribute on `<html>`. Persist with `localStorage`. Animate transitions: `* { transition: background-color 0.3s, color 0.3s; }`."
+    },
+    {
+      "question": "How do you create a scroll-driven video reel/showreel section that autoplays on scroll?",
+      "answer": "Use IntersectionObserver to play/pause a `<video>` element when it enters/leaves the viewport. Use `muted autoplay` for automatic start. Show play/pause button for accessibility. Respect prefers-reduced-motion."
+    },
+    {
+      "question": "How do you implement a 'cursor follower' or custom cursor effect that works on mobile?",
+      "answer": "Custom cursor effects are desktop-only (mobile has no hover cursor). Use `@media (hover: hover) and (pointer: fine)` to apply custom cursor CSS only on devices with a mouse. Fallback to standard cursor on touch devices."
+    },
+    {
+      "question": "How do you build a responsive portfolio that works as both a single-page and multi-page site?",
+      "answer": "Use anchor-based routing for SPA feel: each 'page' is a section with `id`. Use CSS `scroll-snap-type: y proximity` for section snapping. For multi-page, maintain consistent navigation. Consider using a static site generator (Hugo, Astro)."
+    },
+    {
+      "question": "How do you implement 'lazy loading' for a portfolio project gallery with placeholder effects?",
+      "answer": "Use `loading=\"lazy\"` on images. Create a shimmer/skeleton placeholder with CSS gradient: `background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%); background-size: 200%; animation: shimmer 1.5s infinite;`. Replace with real image on load."
+    },
+    {
+      "question": "How do you create a responsive 'project detail' modal that works on all devices?",
+      "answer": "Use a fixed overlay with `overflow-y: auto` for content scrolling. On desktop: centered modal with max-width. On mobile: full-screen modal (no border-radius, fills viewport). Close button top-right. Support swipe-to-close on mobile."
+    },
+    {
+      "question": "How do you implement client-side search/filter with URL state management?",
+      "answer": "Update URL params when filtering: `history.replaceState(null, '', '?filter=web')`. On page load, read `URLSearchParams` and apply filter. This allows sharing filtered views. Use `popstate` event for back/forward button support."
+    },
+    {
+      "question": "How do you create a responsive portfolio that supports multiple languages (i18n)?",
+      "answer": "Use CSS for layout (no text in CSS — use HTML with `data-lang` attributes). Hide/show content per language with: `[data-lang=\"en\"] { display: block; } [data-lang=\"es\"] { display: none; }`. Toggle with JavaScript. Ensure longer German/French text still fits cards."
+    },
+    {
+      "question": "How do you implement 'print' styles for a portfolio resume section?",
+      "answer": "Add `@media print { ... }` styles. Hide navigation, CTAs, and interactive elements. Display the resume section with full content. Use `page-break-before: avoid` to prevent awkward splits. Remove dark mode colors. Ensure black text on white."
+    },
+    {
+      "question": "How do you use CSS Container Queries to build truly responsive portfolio components?",
+      "answer": "Wrap portfolio sections as containers: `container-type: inline-size`. Use `@container (min-width: 600px)` to switch project cards from vertical to horizontal layout. This enables the same component to work in sidebar or full-width contexts."
+    }
+  ]
+}

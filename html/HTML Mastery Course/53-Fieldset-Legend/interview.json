@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the <fieldset> element and what is its purpose?",
+      "answer": "The <fieldset> element is an HTML tag used to group related form controls together. It draws a box around the grouped elements and, when paired with a <legend> element, provides an accessible label for the group. Its purpose is to organize forms, improve visual structure, and enhance accessibility for screen reader users."
+    },
+    {
+      "question": "What does the <legend> element do?",
+      "answer": "The <legend> element provides a caption for the <fieldset>. It must be the first child of the fieldset element. The legend text is typically displayed in the top-left corner of the fieldset border and serves as the accessible name for the group."
+    },
+    {
+      "question": "Why should radio buttons always be wrapped in a <fieldset>?",
+      "answer": "Radio buttons must be wrapped in a <fieldset> with a <legend> for accessibility compliance. Screen readers use the legend to announce the group context before each radio option, helping users understand the relationship between the options. Without it, users may hear the options without knowing what question they answer."
+    },
+    {
+      "question": "What is the default visual appearance of a <fieldset>?",
+      "answer": "By default, a <fieldset> appears as a box with a 2px groove border, slight padding (approximately 0.35em top/bottom, 0.75em left/right), and a 2px margin. The <legend> is positioned over the top border line."
+    },
+    {
+      "question": "Can a <fieldset> exist without a <legend>?",
+      "answer": "Yes, a <fieldset> can exist without a <legend>. It is technically valid HTML. However, omitting the legend defeats the accessibility purpose of the fieldset, as screen readers cannot announce the group context without it."
+    },
+    {
+      "question": "What happens when you apply the disabled attribute to a <fieldset>?",
+      "answer": "Applying the disabled attribute to a <fieldset> causes all descendant form controls (inputs, textareas, selects, buttons) to become disabled and non-interactive. The browser applies default grayed-out styling to the entire group."
+    },
+    {
+      "question": "How do you create a nested fieldset?",
+      "answer": "Simply place one <fieldset> element inside another. Each should have its own <legend>. Nested fieldsets are useful for hierarchical groupings, such as phone numbers inside a contact information section."
+    },
+    {
+      "question": "What is the implicit ARIA role of <fieldset>?",
+      "answer": "The <fieldset> element has an implicit ARIA role of 'group'. The <legend> automatically provides the aria-labelledby reference, making the group accessible by default without additional ARIA attributes."
+    },
+    {
+      "question": "How can you associate a <fieldset> with a form that is not its parent?",
+      "answer": "Use the form attribute on the <fieldset> element, setting it to the ID of the target form. For example: <fieldset form='myForm'> associates the fieldset and its controls with the form that has id='myForm', even if the fieldset is placed outside the form tags."
+    },
+    {
+      "question": "What is the difference between <fieldset> and <div> for grouping form controls?",
+      "answer": "A <fieldset> provides semantic meaning and accessibility benefits — it has an implicit 'group' role and the <legend> serves as the accessible name. A <div> has no semantic meaning. For form groupings that need context, <fieldset> should always be used over <div>."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you style a <fieldset> to remove the default border while keeping it accessible?",
+      "answer": "Use CSS: fieldset { border: none; margin: 0; padding: 0; }. Keep the <legend> for accessibility, but style it as a heading: legend { font-weight: bold; font-size: 1.2em; padding: 0; margin-bottom: 10px; }. This preserves the semantic grouping while achieving a custom look."
+    },
+    {
+      "question": "What are the browser compatibility issues with <fieldset> and Flexbox/Grid?",
+      "answer": "Older browsers (particularly IE and some mobile browsers) have issues with flexbox and grid layouts inside fieldsets because the fieldset element's internal rendering is not fully defined in the CSS spec. The legend's positioning behavior can also interfere. A workaround is to wrap the inner content in a <div> and apply flexbox/grid to that wrapper."
+    },
+    {
+      "question": "How does a screen reader handle a disabled <fieldset>?",
+      "answer": "Screen readers typically announce the legend text and indicate that the group is disabled. Individual controls may or may not be announced depending on the screen reader. Some screen readers skip over disabled controls entirely, while others announce them as disabled. The user cannot interact with or focus on any disabled controls."
+    },
+    {
+      "question": "What CSS challenges arise when styling the <legend> element?",
+      "answer": "The <legend> element has a default display of 'table' in most browsers, which makes it resistant to certain CSS properties like width, margin, and positioning. Common workarounds include setting display: block or display: inline-block, using negative margins to position it, or wrapping the legend content in a <span> for finer control."
+    },
+    {
+      "question": "How would you create a multi-step form using fieldsets?",
+      "answer": "Use one <fieldset> per form step. Show only the current step's fieldset (display: block) and hide the others (display: none). Use JavaScript to toggle visibility and update the legend to indicate the current step. Each fieldset legend can include the step number (e.g., 'Step 1: Personal Information')."
+    },
+    {
+      "question": "Can you use <fieldset> outside of a <form> element?",
+      "answer": "Yes, <fieldset> can be used outside of a <form> element. It is a valid HTML element that can group any related controls. However, to function as part of a form submission, the fieldset or its controls must be associated with a form, either by being inside a <form> or by using the form attribute."
+    },
+    {
+      "question": "What is the effect of applying the form attribute to a fieldset when it is already inside a form?",
+      "answer": "If a fieldset is already inside a <form> element, the form attribute on the fieldset is ignored or can override the association. It's best practice to omit the form attribute when the fieldset is already inside the target form. The form attribute is intended for fieldsets placed outside of any form."
+    },
+    {
+      "question": "How do you handle <fieldset> in responsive layouts?",
+      "answer": "Remove the default padding and border, or make them responsive. Use relative units (em, rem) for padding. For the internal layout, use a wrapper <div> with CSS Grid or Flexbox. On mobile, switch from multi-column to single-column layouts within the fieldset using media queries."
+    },
+    {
+      "question": "What is the difference between disabling a <fieldset> and disabling individual controls inside it?",
+      "answer": "Disabling the <fieldset> disables all descendant controls at once — a convenient way to toggle an entire section. Disabling individual controls gives finer control but requires more code. The visual effect is the same, but disabled fieldset state cannot be overridden by individual enabled controls."
+    },
+    {
+      "question": "How would you create an optional form section that can be enabled/disabled with a checkbox?",
+      "answer": "Use a checkbox outside the fieldset. When checked, remove the disabled attribute from the fieldset. When unchecked, add it back. Example: checkbox.addEventListener('change', () => { fieldset.disabled = !checkbox.checked; });. The legend should clearly indicate that this section is optional."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain how the <fieldset> element interacts with the CSS Box Model and how browser rendering differs.",
+      "answer": "The <fieldset> element has a unique rendering model. Its border is drawn, then the <legend> is positioned over it. The internal content area is not always predictable across browsers because the spec doesn't fully define its intrinsic sizing. Firefox uses '-moz-inline-box' behavior, Chrome uses 'block', and the legend's 'table' display complicates layout. The <fieldset> also has 'min-inline-size: min-content' which can cause unexpected shrinking in flex/grid contexts."
+    },
+    {
+      "question": "How does the 'form' attribute on <fieldset> work with the HTML5 constraint validation API?",
+      "answer": "When a fieldset has a 'form' attribute, its descendant controls participate in the referenced form's validation lifecycle. The form's checkValidity() and reportValidity() methods include the fieldset's controls. The controls' 'form' property returns the associated form. The form's submit event includes values from these external controls. However, the fieldset's own disabled state still overrides individual control states."
+    },
+    {
+      "question": "What accessibility issues arise with nested fieldsets and how do you mitigate them?",
+      "answer": "Nested fieldsets can cause screen reader verbosity — the legend of each ancestor is announced before each control, creating long announcements. Mitigations: (1) Limit nesting to 2 levels, (2) Make legends brief and complementary, (3) Use aria-labelledby on the outer fieldset to control announcement order, (4) Consider using aria-details for non-critical grouping information instead of nesting."
+    },
+    {
+      "question": "How does the Web Content Accessibility Guidelines (WCAG) address <fieldset> and <legend>?",
+      "answer": "WCAG 2.1 Success Criterion 1.3.1 (Info and Relationships, Level A) requires that semantic relationships are programmatically determinable. Using <fieldset> and <legend> satisfies this for grouped form controls. SC 2.4.6 (Headings and Labels, Level AA) implies legend text should be descriptive. SC 3.3.2 (Labels or Instructions, Level A) is supported by the legend providing group-level instructions."
+    },
+    {
+      "question": "What are the shadow DOM implications of custom elements that extend <fieldset>?",
+      "answer": "Extending <fieldset> with custom elements is possible via is='...' but has limited support. The main challenge is that the shadow DOM isolates styles, so the unique rendering of fieldset/legend (legend positioning over border) may not work correctly. Instead, use <fieldset> in the light DOM and wrap content with custom elements. The form associated custom element API provides a better path for custom form controls."
+    },
+    {
+      "question": "How do you implement a <fieldset> that visually spans multiple columns while preserving the single-fieldset semantics?",
+      "answer": "Use CSS multi-column or CSS Grid on a wrapper <div> inside the <fieldset>. The fieldset itself remains a block container. Apply 'column-count: 2' or 'display: grid; grid-template-columns: 1fr 1fr' to the wrapper. This preserves the single semantic group while visually organizing controls into columns. Ensure the legend remains outside the wrapper as the first child."
+    },
+    {
+      "question": "What happens to <fieldset> styling when printing, and how do you optimize it?",
+      "answer": "When printing, the fieldset border and legend are printed as rendered on screen. However, the default groove border can look inconsistent on print. Optimize by using a solid border in print styles: @media print { fieldset { border: 1px solid #000; } }. Also consider reducing padding and font sizes for printed forms to save paper."
+    },
+    {
+      "question": "How does the disabled state on <fieldset> interact with JavaScript frameworks like React or Vue?",
+      "answer": "In React, setting disabled on <fieldset> works as expected: <fieldset disabled={isDisabled}>. All children are disabled. However, if any child has its own disabled prop, the fieldset's disabled takes precedence. In Vue, :disabled='isDisabled' works similarly. The challenge is that some UI component libraries render non-standard elements inside fieldsets that may not respect the disabled inheritance — you may need to propagate disabled manually to custom components."
+    },
+    {
+      "question": "Explain the historical evolution of <fieldset> from HTML 2.0 to HTML5.",
+      "answer": "Introduced in HTML 2.0, <fieldset> had minimal styling and no formal accessibility integration. HTML 4.01 added better form control support. HTML5 introduced the 'form' and 'disabled' attributes, enabling association with external forms and bulk disabling. HTML5 also clarified the implicit ARIA role mapping. Modern browsers continue to refine the rendering, but the core functionality remains backward compatible across decades."
+    },
+    {
+      "question": "How would you build a custom 'fieldset-like' component using ARIA when <fieldset> cannot be used?",
+      "answer": "Use a <div> with role='group' and aria-labelledby pointing to a heading element. Example: <div role='group' aria-labelledby='group-heading'><h3 id='group-heading'>Group Label</h3><!-- controls --></div>. This provides equivalent semantics but requires manual styling. The native <fieldset> should always be preferred as it handles border rendering, legend positioning, and disabled inheritance natively."
+    }
+  ]
+}

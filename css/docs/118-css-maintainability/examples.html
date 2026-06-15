@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Maintainability - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    :root {
+      --primary: #06b6d4;
+      --primary-hover: #0891b2;
+      --surface: #f8fafc;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 2rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; color: var(--text); background: var(--surface); line-height: 1.6; padding: var(--space-lg); }
+
+    .card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-lg); box-shadow: var(--shadow); }
+    .card__title { font-size: 1.25rem; margin-bottom: var(--space-sm); }
+    .card__body { color: var(--text-muted); margin-bottom: var(--space-md); }
+    .card--featured { border-color: var(--primary); border-width: 2px; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: var(--space-sm) var(--space-md); border: none; border-radius: var(--radius); font-size: 1rem; cursor: pointer; text-decoration: none; min-height: 44px; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-secondary { background: #f1f5f9; color: var(--text); border: 1px solid var(--border); }
+
+    .l-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg); }
+    .u-flex { display: flex; }
+    .u-gap-md { gap: var(--space-md); }
+    .u-mt-lg { margin-top: var(--space-lg); }
+    .u-text-center { text-align: center; }
+    .u-text-muted { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <h1>CSS Maintainability</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Design Tokens as Custom Properties</h2>
+    <p>All colors, spacing, and typography are defined in <code>:root</code>. Changing one value updates the entire system.</p>
+    <div class="demo-output">
+      <pre style="background:#f1f5f9;color:#0f172a;font-size:0.85rem;">:root {
+  --primary: #06b6d4;
+  --surface: #f8fafc;
+  --border: #e2e8f0;
+  --radius: 8px;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+}</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: BEM Component — Cards</h2>
+    <p>BEM naming makes the relationship between elements clear: <code>.card__title</code> belongs to <code>.card</code>.</p>
+    <div class="demo-output">
+      <div class="l-grid">
+        <article class="card card--featured">
+          <h3 class="card__title">Featured Card</h3>
+          <p class="card__body">Uses <code>card--featured</code> modifier for the prominent border.</p>
+          <button class="btn btn-primary">Action</button>
+        </article>
+        <article class="card">
+          <h3 class="card__title">Standard Card</h3>
+          <p class="card__body">Default card with consistent spacing via tokens.</p>
+          <button class="btn btn-secondary">Learn More</button>
+        </article>
+      </div>
+    </div>
+    <pre><code>.card { }                  /* Block */
+.card__title { }           /* Element */
+.card__body { }            /* Element */
+.card--featured { }        /* Modifier */
+.card__title--large { }    /* Element modifier */</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Separated File Structure</h2>
+    <p>Organize CSS into partials by concern, then import them into a main file.</p>
+    <div class="demo-output">
+      <pre style="background:#1e293b;color:#e2e8f0;font-size:0.85rem;">styles/
+├── abstracts/
+│   ├── _variables.css
+│   └── _mixins.css
+├── base/
+│   ├── _reset.css
+│   └── _typography.css
+├── components/
+│   ├── _button.css
+│   ├── _card.css
+│   └── _nav.css
+├── layout/
+│   ├── _grid.css
+│   └── _header.css
+├── pages/
+│   └── _home.css
+└── main.css  /* @import all above */</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Utility Classes for Repeatable Patterns</h2>
+    <p>Utility classes reduce duplication for common property combinations.</p>
+    <div class="demo-output">
+      <div class="u-flex u-gap-md" style="flex-wrap:wrap;">
+        <div class="card" style="flex:1;">
+          <p class="card__title">Card A</p>
+          <p class="u-text-muted">Reuses <code>.u-text-muted</code></p>
+        </div>
+        <div class="card" style="flex:1;">
+          <p class="card__title">Card B</p>
+          <p class="u-text-muted">Same utility, consistent look</p>
+        </div>
+      </div>
+    </div>
+    <pre><code>.u-flex { display: flex; }
+.u-gap-md { gap: 1rem; }
+.u-mt-lg { margin-top: 2rem; }
+.u-text-muted { color: #64748b; }</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Consistent Component API</h2>
+    <p>Buttons use the same structure: <code>.btn</code> block + <code>.btn--variant</code> modifier. No surprise overrides.</p>
+    <div class="demo-output">
+      <div class="u-flex u-gap-md" style="flex-wrap:wrap;">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <a href="#" class="btn btn-primary">Link as Button</a>
+      </div>
+    </div>
+    <pre><code>.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  min-height: 44px;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn-primary { background: var(--primary); }
+.btn-secondary { background: var(--surface); }</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Meaningful Comments</h2>
+    <p>Use section comments to organize style blocks, but avoid stating the obvious.</p>
+    <div class="demo-output">
+      <pre style="background:#f1f5f9;color:#0f172a;font-size:0.85rem;">/* ===== ABSTRACTS ===== */
+:root { /* tokens */ }
+
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ===== COMPONENTS ===== */
+.card { /* ... */ }
+.btn { /* ... */ }
+
+/* ===== LAYOUT ===== */
+.l-grid { /* ... */ }
+
+/* ===== UTILITIES ===== */
+.u-flex { /* ... */ }</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Avoid Deep Nesting</h2>
+    <p>Keep selector depth to 3 levels or fewer. Deep nesting creates high specificity and brittle styles.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:2rem;">
+        <div class="bad" style="flex:1;">
+          <p style="font-weight:600;color:#ef4444;">Over-nested</p>
+          <code>.main .sidebar .widget .list .item a { }</code>
+        </div>
+        <div class="good" style="flex:1;">
+          <p style="font-weight:600;color:#22c55e;">Flat</p>
+          <code>.widget-link { }</code>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* Avoid: 5 levels deep */
+.main .sidebar .widget .list .item a {}
+
+/* Prefer: one level */
+.widget-link {}</pre>
+  </div>
+</body>
+</html>

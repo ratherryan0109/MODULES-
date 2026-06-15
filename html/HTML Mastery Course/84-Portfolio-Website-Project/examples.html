@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website - Examples</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; margin-bottom: 30px; }
+        h2 { color: #2c3e50; margin: 30px 0 15px; }
+        .component { background: white; border-radius: 10px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .component-header { background: #2c3e50; color: white; padding: 12px 20px; font-weight: bold; }
+        .component-demo { padding: 30px; }
+        .component-code { background: #1e1e1e; color: #d4d4d4; padding: 20px; overflow-x: auto; font-size: 14px; line-height: 1.5; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        .preview { border: 2px dashed #ccc; padding: 20px; border-radius: 8px; margin: 10px 0; }
+        .tag { display: inline-block; background: #3498db; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin: 2px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portfolio Website - Component Examples</h1>
+
+        <!-- Example 1: Hero Section -->
+        <div class="component">
+            <div class="component-header">Example 1: Hero Section</div>
+            <div class="component-demo">
+                <div class="preview">
+                    <header style="text-align:center;padding:60px 20px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border-radius:8px;">
+                        <img src="https://via.placeholder.com/120x120" alt="Profile" style="border-radius:50%;border:4px solid white;margin-bottom:20px;">
+                        <h1 style="font-size:2.5em;margin-bottom:10px;">John Doe</h1>
+                        <p style="font-size:1.2em;opacity:0.9;margin-bottom:25px;">Full-Stack Web Developer | UI/UX Enthusiast</p>
+                        <div>
+                            <a href="#" style="background:white;color:#764ba2;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:bold;margin:0 5px;">View My Work</a>
+                            <a href="#" style="background:transparent;color:white;padding:12px 30px;border-radius:25px;text-decoration:none;border:2px solid white;margin:0 5px;">Contact Me</a>
+                        </div>
+                    </header>
+                </div>
+<pre>&lt;header style="text-align:center;padding:60px 20px;
+    background:linear-gradient(135deg,#667eea,#764ba2);color:white;"&gt;
+    &lt;img src="profile.jpg" alt="Profile" style="border-radius:50%;"&gt;
+    &lt;h1&gt;John Doe&lt;/h1&gt;
+    &lt;p&gt;Full-Stack Web Developer | UI/UX Enthusiast&lt;/p&gt;
+    &lt;a href="#"&gt;View My Work&lt;/a&gt;
+    &lt;a href="#"&gt;Contact Me&lt;/a&gt;
+&lt;/header&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Example 2: Skills Section -->
+        <div class="component">
+            <div class="component-header">Example 2: Skills Section</div>
+            <div class="component-demo">
+                <div class="preview">
+                    <section>
+                        <h2 style="text-align:center;margin-bottom:25px;color:#2c3e50;">Skills &amp; Technologies</h2>
+                        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">REST APIs</span>
+                            <span class="tag">Tailwind CSS</span>
+                            <span class="tag">Figma</span>
+                        </div>
+                    </section>
+                </div>
+<pre>&lt;section&gt;
+    &lt;h2&gt;Skills &amp;amp; Technologies&lt;/h2&gt;
+    &lt;div&gt;
+        &lt;span class="tag"&gt;HTML5&lt;/span&gt;
+        &lt;span class="tag"&gt;CSS3&lt;/span&gt;
+        &lt;span class="tag"&gt;JavaScript&lt;/span&gt;
+        &lt;!-- More skills --&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Example 3: Project Card -->
+        <div class="component">
+            <div class="component-header">Example 3: Project Card</div>
+            <div class="component-demo">
+                <div class="preview">
+                    <div style="background:white;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1);max-width:350px;">
+                        <div style="background:#3498db;height:180px;display:flex;align-items:center;justify-content:center;color:white;font-size:3em;">&#128187;</div>
+                        <div style="padding:20px;">
+                            <h3 style="margin-bottom:8px;">E-Commerce Platform</h3>
+                            <p style="color:#666;font-size:0.9em;margin-bottom:15px;">A full-stack e-commerce platform with payment integration, user auth, and admin dashboard.</p>
+                            <div style="margin-bottom:15px;">
+                                <span class="tag">React</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">MongoDB</span>
+                            </div>
+                            <a href="#" style="color:#3498db;text-decoration:none;font-weight:bold;">Live Demo &rarr;</a>
+                            <a href="#" style="color:#666;text-decoration:none;margin-left:15px;">Source Code &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+<pre>&lt;div class="project-card"&gt;
+    &lt;div class="project-image"&gt;&amp;#x1F4BB;&lt;/div&gt;
+    &lt;div class="project-info"&gt;
+        &lt;h3&gt;E-Commerce Platform&lt;/h3&gt;
+        &lt;p&gt;Full-stack e-commerce with payments.&lt;/p&gt;
+        &lt;div class="tags"&gt;
+            &lt;span&gt;React&lt;/span&gt;
+            &lt;span&gt;Node.js&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;a href="#"&gt;Live Demo&lt;/a&gt;
+        &lt;a href="#"&gt;Source Code&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Example 4: Contact Form -->
+        <div class="component">
+            <div class="component-header">Example 4: Contact Form Section</div>
+            <div class="component-demo">
+                <div class="preview">
+                    <section style="max-width:600px;margin:0 auto;padding:20px;">
+                        <h2 style="text-align:center;margin-bottom:20px;color:#2c3e50;">Get In Touch</h2>
+                        <form>
+                            <div style="display:grid;gap:15px;">
+                                <input type="text" placeholder="Your Name" style="padding:12px;border:1px solid #ddd;border-radius:6px;font-size:16px;">
+                                <input type="email" placeholder="Your Email" style="padding:12px;border:1px solid #ddd;border-radius:6px;font-size:16px;">
+                                <input type="text" placeholder="Subject" style="padding:12px;border:1px solid #ddd;border-radius:6px;font-size:16px;">
+                                <textarea placeholder="Your Message" rows="5" style="padding:12px;border:1px solid #ddd;border-radius:6px;font-size:16px;resize:vertical;"></textarea>
+                                <button style="background:#3498db;color:white;padding:14px;border:none;border-radius:6px;font-size:16px;cursor:pointer;">Send Message</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+<pre>&lt;section class="contact"&gt;
+    &lt;h2&gt;Get In Touch&lt;/h2&gt;
+    &lt;form&gt;
+        &lt;input type="text" placeholder="Your Name"&gt;
+        &lt;input type="email" placeholder="Your Email"&gt;
+        &lt;input type="text" placeholder="Subject"&gt;
+        &lt;textarea placeholder="Your Message"&gt;&lt;/textarea&gt;
+        &lt;button&gt;Send Message&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/section&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Example 5: Footer -->
+        <div class="component">
+            <div class="component-header">Example 5: Portfolio Footer</div>
+            <div class="component-demo">
+                <div class="preview">
+                    <footer style="background:#2c3e50;color:white;padding:30px 20px;text-align:center;border-radius:8px;">
+                        <div style="margin-bottom:20px;">
+                            <a href="#" style="color:white;text-decoration:none;margin:0 10px;">GitHub</a>
+                            <a href="#" style="color:white;text-decoration:none;margin:0 10px;">LinkedIn</a>
+                            <a href="#" style="color:white;text-decoration:none;margin:0 10px;">Twitter</a>
+                            <a href="#" style="color:white;text-decoration:none;margin:0 10px;">Email</a>
+                        </div>
+                        <p>&copy; 2026 John Doe. All rights reserved.</p>
+                    </footer>
+                </div>
+<pre>&lt;footer&gt;
+    &lt;div class="social-links"&gt;
+        &lt;a href="#"&gt;GitHub&lt;/a&gt;
+        &lt;a href="#"&gt;LinkedIn&lt;/a&gt;
+        &lt;a href="#"&gt;Twitter&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;p&gt;&amp;copy; 2026 John Doe&lt;/p&gt;
+&lt;/footer&gt;</pre>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>Tip:</strong> Combine all these components into a single page to build your complete portfolio website. Add responsive CSS, animations, and your own content.
+        </div>
+    </div>
+</body>
+</html>

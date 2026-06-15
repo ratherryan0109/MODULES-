@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS loading spinner?", "answer": "A loading spinner is an animated indicator that rotates continuously to show the user that content is being loaded or processed." },
+    { "question": "How do you create a simple spinning animation?", "answer": "Use @keyframes spin { to { transform: rotate(360deg); } } with animation: spin 1s linear infinite on a circular element." },
+    { "question": "What is a pulse loading animation?", "answer": "A pulse animation repeatedly scales opacity or size of an element to create a breathing or heartbeat effect indicating loading." },
+    { "question": "How do you build a CSS skeleton screen?", "answer": "Use a gray gradient background with animation on background-position to create a shimmer effect that mimics content layout." },
+    { "question": "What is a progress bar animation?", "answer": "A progress bar animation fills a bar element from left to right, with optional color changes and pulse effects to show loading progress." },
+    { "question": "How do you create a CSS-only spinner without images?", "answer": "Use a border on an element with border-radius: 50% and border-top-color: transparent, then rotate it infinitely with an animation." },
+    { "question": "What is the shimmer effect in loading skeletons?", "answer": "A shimmer is a moving highlight across a gray skeleton block, created by animating a gradient background-position horizontally." },
+    { "question": "How do you control the speed of a loading animation?", "answer": "Adjust animation-duration; shorter values (0.5-1s) create faster loading indicators, longer values (2-4s) create calmer effects." },
+    { "question": "What is a dot-loading animation?", "answer": "A dot-loading animation uses three dots that sequentially scale or change opacity to indicate ongoing activity." },
+    { "question": "How do you match the loading animation color to your theme?", "answer": "Use CSS custom properties for colors, or inherit currentColor so the animation adapts to the surrounding text color." }
+  ],
+  "intermediate": [
+    { "question": "How do you create an SVG spinner animation?", "answer": "Use an SVG circle element with stroke-dasharray and stroke-dashoffset animated with rotate to create a circular progress spinner." },
+    { "question": "How do you stagger multiple loading elements for a natural feel?", "answer": "Apply animation-delay with increasing values to each element using nth-child selectors, e.g., .bar:nth-child(2) { animation-delay: 0.2s; }" },
+    { "question": "How do you create a skeleton screen that matches real content dimensions?", "answer": "Use percentage-based widths and aspect-ratio on skeleton elements to approximate the final content layout." },
+    { "question": "How can you create a CSS-only indeterminate progress bar?", "answer": "Use an infinite animation that moves a striped gradient back and forth within a container using translateX keyframes." },
+    { "question": "How do loading animations affect perceived performance?", "answer": "Well-designed loading animations make wait times feel shorter (perceived performance), improving user experience during actual loading delays." },
+    { "question": "How do you build a circular ring progress indicator?", "answer": "Use SVG circle with stroke-dasharray set to the circumference and animate stroke-dashoffset to create a filling ring effect." },
+    { "question": "How do you create a bouncing balls loading animation?", "answer": "Use multiple small circles with translateY keyframes, each with different animation-delay values to create sequential bouncing." },
+    { "question": "How can you respect prefers-reduced-motion in loading animations?", "answer": "Wrap loading animations in @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; } } to minimize motion." },
+    { "question": "How do you create a pulse ring (radar) loading effect?", "answer": "Use an element with box-shadow and opacity animation, or multiple concentric circles with scale and opacity keyframes." },
+    { "question": "How do you make loading animations accessible to screen readers?", "answer": "Use aria-label on the loading container, aria-busy='true' on the loading region, and provide text fallback for screen readers." }
+  ],
+  "advanced": [
+    { "question": "How do you create a conic-gradient loading spinner?", "answer": "Use background: conic-gradient(transparent, currentColor) with border-radius: 50% and rotate animation for a smooth gradient spinner." },
+    { "question": "How do you optimize skeleton screen rendering to avoid layout shift?", "answer": "Reserve exact dimensions matching final content, use aspect-ratio, and avoid animating layout-affecting properties to prevent Cumulative Layout Shift." },
+    { "question": "How do you build a loading animation that runs on the compositor thread?", "answer": "Use only transform and opacity properties in your keyframes to ensure the animation runs on the compositor thread without layout thrashing." },
+    { "question": "How do you create a morphing blob loading animation?", "answer": "Use border-radius keyframes with different radius values at each keyframe step, combined with rotate for continuous morphing effect." },
+    { "question": "How do you synchronize loading animations with actual fetch progress?", "answer": "Use CSS custom properties updated via JavaScript to control animation progress, or use Web Animations API to sync with real data loading." },
+    { "question": "How do you create a 3D cube spinner with CSS?", "answer": "Build a 3D cube using transform-style: preserve-3d and face rotations, then animate the parent's rotateX and rotateY for a tumbling cube." },
+    { "question": "How do you animate a gradient-based progress bar without hard edges?", "answer": "Use a moving gradient background with background-size larger than the container and animate background-position for smooth color transitions." },
+    { "question": "How do you create a text-based loading animation (like typing dots)?", "answer": "Animate the content property of a pseudo-element using steps() timing, cycling through '.', '..', '...' strings for a typing indicator." },
+    { "question": "How do loading animations interact with the Page Visibility API?", "answer": "Use document.visibilityState to pause heavy loading animations when the tab is hidden, saving battery and CPU resources." },
+    { "question": "How do you create a particle-like loading animation using only CSS?", "answer": "Use multiple small pseudo-elements or box-shadows with staggered animation-delay and translate animations to simulate particle movement." }
+  ]
+}

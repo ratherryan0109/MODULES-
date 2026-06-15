@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What 2D transform functions does CSS provide?", "answer": "CSS provides translate(), rotate(), scale(), skew(), and matrix() for 2D transformations." },
+    { "question": "What is the transform-origin property used for?", "answer": "transform-origin sets the reference point (pivot) around which transforms like rotation and scale are applied." },
+    { "question": "How do you apply multiple 2D transforms to a single element?", "answer": "List them space-separated in the transform property: transform: translate(10px) rotate(45deg) scale(1.5);" },
+    { "question": "Does applying a 2D transform affect the document layout?", "answer": "No, 2D transforms are visual-only and do not affect the element's layout position or dimensions in the flow." },
+    { "question": "What is the default transform-origin position?", "answer": "The default transform-origin is the center of the element: 50% 50% or center center." },
+    { "question": "Can 2D transforms be animated with transitions?", "answer": "Yes, the transform property is fully animatable with CSS transitions and animations." },
+    { "question": "What does transform: none do?", "answer": "transform: none removes all transformations from the element, returning it to its default visual state." },
+    { "question": "How do you rotate an element 90 degrees clockwise?", "answer": "Use transform: rotate(90deg); to rotate the element 90 degrees clockwise around its center." },
+    { "question": "How do you move an element 50px right and 20px down?", "answer": "Use transform: translate(50px, 20px); to move the element 50px right and 20px down." },
+    { "question": "Can you use calc() inside 2D transform functions?", "answer": "Yes, calc() can be used inside translate functions, e.g., transform: translate(calc(100% - 20px), 0);" }
+  ],
+  "intermediate": [
+    { "question": "How does the order of combined 2D transforms affect the visual result?", "answer": "Transforms apply right to left; translate then rotate moves along rotated axes, while rotate then translate moves along the original axes." },
+    { "question": "How do 2D transforms create a stacking context?", "answer": "Any transform value other than none creates a new stacking context, which can affect z-index behavior." },
+    { "question": "What is the matrix() function and how does it combine transforms?", "answer": "matrix(a, b, c, d, tx, ty) encodes translate, scale, skew, and rotate into a single affine transformation matrix." },
+    { "question": "How do you apply a transform only on hover?", "answer": "Use the :hover pseudo-class: .element:hover { transform: scale(1.1) rotate(5deg); } with a transition for smooth animation." },
+    { "question": "How do 2D transforms affect fixed-position elements?", "answer": "A transformed ancestor changes the containing block for fixed-position descendants, breaking normal viewport-relative positioning." },
+    { "question": "How can 2D transforms improve animation performance?", "answer": "Transforms are composited on the GPU layer, avoiding layout and paint recalculations for smooth 60fps animations." },
+    { "question": "What is the effect of transform-origin: left top on rotation?", "answer": "The element rotates around its top-left corner instead of its center, creating a swinging or door-like motion." },
+    { "question": "How do percentage values work in transform-origin?", "answer": "Percentages are relative to the element's own dimensions: 0% 0% is top-left, 100% 100% is bottom-right." },
+    { "question": "How do you create an element that scales on hover without moving?", "answer": "Set transform-origin: center center (default) to scale from the center, keeping the element centered while it grows." },
+    { "question": "Can you transition individual transform functions separately?", "answer": "No, the entire transform value is animated as a single unit; you cannot transition translate separately from rotate." }
+  ],
+  "advanced": [
+    { "question": "How does the CSS individual transform property (translate, rotate, scale) differ from the transform property?", "answer": "Individual properties apply independently with defined order: translate first, then rotate, then scale; the transform property has implicit ordering." },
+    { "question": "How do 2D transforms affect accessibility and screen readers?", "answer": "Transforms are visual-only and do not affect screen reader content, but scaled-down text may become unreadable." },
+    { "question": "How do you create a transform that only applies to hover and uses different timing on enter/exit?", "answer": "Define different transition properties on the base and hover states for asymmetric timing, e.g., different durations for hover-in and hover-out." },
+    { "question": "How does matrix(a, b, c, d, tx, ty) decompose into individual transforms?", "answer": "Matrix decomposition extracts translation (tx, ty), scale (from vector lengths), rotation (from angle), and skew (from shear) components." },
+    { "question": "How do 2D transforms interact with CSS containment?", "answer": "contain: paint establishes a new clipping context, potentially clipping transformed elements that extend beyond their containment box." },
+    { "question": "How can you create a custom transform that is not natively supported?", "answer": "You cannot create new transform functions, but matrix() can approximate most affine transformations through mathematical composition." },
+    { "question": "How does transform-origin affect the FLIP animation technique?", "answer": "FLIP uses transform-origin to ensure the invert step accurately maps the element's starting position before the play step animates it." },
+    { "question": "How do 2D transforms behave in forced colors mode?", "answer": "Forced colors mode does not disable transforms, but high-contrast themes can affect the visibility of transformed content and interactions." },
+    { "question": "How do you optimize multiple transformed elements for performance?", "answer": "Use will-change: transform, minimize paint regions, avoid overlapping transformed layers, and prefer opacity/transform over other properties." },
+    { "question": "How do transforms affect the layout of surrounding elements in flex/grid contexts?", "answer": "Transformed elements occupy their original grid/flex position and size; the visual transform does not alter the grid/flex layout calculations." }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "module": "CSS Design Systems",
+  "description": "Practice building and extending a CSS design system",
+  "challenges": [
+    {
+      "id": 1,
+      "title": "Build a Toggle Component with Design Tokens",
+      "difficulty": "easy",
+      "description": "Build a CSS toggle/switch component using your design system tokens. Requirements: (1) uses only CSS (no JS for styling), (2) uses design system tokens for all colors and spacing (--color-primary, --color-surface, etc.), (3) has on/off visual states, (4) smooth transition animation, (5) includes :focus-visible styles, (6) works with <label> for accessibility.",
+      "hints": [
+        "Hide the actual checkbox input with opacity: 0 or position: absolute",
+        "Use ::before on a label or span to create the toggle track",
+        "Use ::after for the circular knob that slides",
+        "Use the :checked pseudo-class on the hidden input for the 'on' state",
+        "Transition the transform of the knob for smooth sliding"
+      ],
+      "starterCode": "<label class=\"c-toggle\">\n  <input type=\"checkbox\" class=\"c-toggle__input\">\n  <span class=\"c-toggle__track\">\n    <span class=\"c-toggle__knob\"></span>\n  </span>\n  <span class=\"c-toggle__label\">Enable notifications</span>\n</label>",
+      "solution": ".c-toggle { display: inline-flex; align-items: center; gap: var(--spacing-sm); cursor: pointer; } .c-toggle__input { position: absolute; opacity: 0; width: 0; height: 0; } .c-toggle__track { position: relative; width: 44px; height: 24px; background: var(--color-border); border-radius: var(--radius-full); transition: background var(--transition-fast); } .c-toggle__knob { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform var(--transition-fast); box-shadow: var(--shadow-sm); } .c-toggle__input:checked + .c-toggle__track { background: var(--color-primary); } .c-toggle__input:checked + .c-toggle__track .c-toggle__knob { transform: translateX(20px); } .c-toggle__input:focus-visible + .c-toggle__track { outline: 2px solid var(--color-primary); outline-offset: 2px; } .c-toggle__label { font-family: var(--font-sans); color: var(--color-text); }"
+    },
+    {
+      "id": 2,
+      "title": "Implement Multi-Theme Token System",
+      "difficulty": "medium",
+      "description": "Extend a basic design system with a multi-theme token system. Requirements: (1) define at least 20 design tokens in :root (colors, spacing, typography, shadows), (2) create 3 complete themes: light (default), dark, and high-contrast, (3) themes are activated via data-attributes (data-theme=\"dark\", data-theme=\"high-contrast\"), (4) include a page with a Button, Card, and Badge component using the tokens, (5) add a JavaScript theme switcher, (6) persist the theme choice in localStorage.",
+      "hints": [
+        "Define theme overrides with [data-theme=\"dark\"] selector over only the tokens that change",
+        "Components should all reference var(--color-*) = no hard-coded values",
+        "High-contrast theme should maximize contrast (black/white, thick borders)",
+        "For localStorage: store 'dark' or 'light' string, read on page load"
+      ],
+      "starterCode": "/* themes.css */\n:root {\n  --color-primary: #3b82f6;\n  --color-surface: #ffffff;\n  --color-text: #0f172a;\n  /* add 17 more tokens */\n}\n\n[data-theme=\"dark\"] {\n  /* override only tokens that change */\n}\n\n[data-theme=\"high-contrast\"] {\n  /* maximize contrast */\n}",
+      "solution": "/* Token architecture (see lesson.md for full set) */\n:root { --color-primary: #3b82f6; --color-surface: #ffffff; --color-text: #0f172a; --color-text-secondary: #475569; --color-border: #e2e8f0; --spacing-sm: 8px; --spacing-md: 16px; --spacing-lg: 24px; --radius-md: 8px; --radius-lg: 12px; --font-sans: system-ui, sans-serif; --font-size-base: 1rem; --shadow-md: 0 4px 6px rgba(0,0,0,0.07); }\n\n[data-theme=\"dark\"] { --color-primary: #60a5fa; --color-surface: #1e1e2e; --color-text: #cdd6f4; --color-text-secondary: #a6adc8; --color-border: #45475a; --shadow-md: 0 4px 6px rgba(0,0,0,0.4); }\n\n[data-theme=\"high-contrast\"] { --color-primary: #0000ff; --color-surface: #ffffff; --color-text: #000000; --color-text-secondary: #000000; --color-border: #000000; --shadow-md: none; }\n\n/* JS */\nfunction setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }\nconst saved = localStorage.getItem('theme'); if (saved) setTheme(saved);"
+    },
+    {
+      "id": 3,
+      "title": "Design System Component Audit & Documentation",
+      "difficulty": "hard",
+      "description": "Audit an existing (provided) CSS codebase and create a design system from it. Requirements: (1) extract all hard-coded values into CSS custom properties (design tokens), (2) organize into ITCSS layers with @layer, (3) create BEM naming for all components, (4) create documentation for each component (variants, states, accessibility), (5) build a living style guide page showing all components with code snippets, (6) add dark theme support by overriding token values, (7) test all components and fix any accessibility issues found (focus styles, contrast, semantic HTML).",
+      "hints": [
+        "Use grep/stylelint to find hard-coded colors, font sizes, and spacing values",
+        "Each component needs: base styles + variant modifiers + state styles",
+        "Documentation should show: component name, HTML example, variants, accessibility notes",
+        "The living style guide should be a single HTML page with all components",
+        "Check contrast ratios with browser DevTools",
+        "Use :focus-visible for keyboard focus indicators"
+      ],
+      "starterCode": "/* Given: messy CSS with hard-coded values */\n.card { background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\n.card h2 { font-size: 24px; color: #333; margin-bottom: 16px; }\n.btn { background: #667eea; color: white; padding: 12px 24px; border-radius: 8px; border: none; font-size: 16px; }\n.btn.danger { background: #e74c3c; }\n/* ... many more inconsistent rules */",
+      "solution": "/* Refactored design system */\n@layer settings, generic, elements, objects, components, utilities;\n\n@layer settings {\n  :root {\n    --color-primary: #667eea;\n    --color-danger: #e74c3c;\n    --color-surface: #ffffff;\n    --color-text: #333333;\n    --spacing-md: 16px;\n    --spacing-lg: 24px;\n    --radius-md: 8px;\n    --radius-lg: 12px;\n    --font-size-base: 1rem;\n    --font-size-heading: 1.5rem;\n    --shadow: 0 2px 8px rgba(0,0,0,0.1);\n  }\n}\n\n@layer components {\n  .c-card { background: var(--color-surface); padding: var(--spacing-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow); }\n  .c-card__title { font-size: var(--font-size-heading); color: var(--color-text); margin-bottom: var(--spacing-md); }\n  \n  .c-btn { background: var(--color-primary); color: white; padding: var(--spacing-md) var(--spacing-lg); border-radius: var(--radius-md); border: none; font-size: var(--font-size-base); cursor: pointer; transition: opacity 0.2s; }\n  .c-btn:hover { opacity: 0.9; }\n  .c-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }\n  .c-btn--danger { background: var(--color-danger); }\n}\n\n@layer utilities {\n  .u-mt-lg { margin-top: var(--spacing-lg); }\n}\n\n/* Documentation page */\n<!-- build an HTML page showing each component with its code -->"
+    }
+  ]
+}

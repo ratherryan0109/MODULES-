@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textarea Examples</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',sans-serif; background:#f0f2f5; padding:30px 20px; }
+    .container { max-width:800px; margin:0 auto; }
+    h1 { color:#1a1a2e; border-bottom:3px solid #4a6cf7; padding-bottom:12px; margin-bottom:30px; }
+    h2 { color:#4a6cf7; margin:30px 0 16px; }
+    .card { background:white; border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:0 2px 12px rgba(0,0,0,0.08); }
+    .card label { display:block; margin-bottom:4px; font-weight:600; color:#333; font-size:14px; }
+    .card textarea { width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:8px; font-size:15px; font-family:inherit; line-height:1.5; transition:border-color 0.3s; margin-bottom:12px; }
+    .card textarea:focus { border-color:#4a6cf7; outline:none; box-shadow:0 0 0 3px rgba(74,108,247,0.12); }
+    pre { background:#2d3748; color:#e2e8f0; padding:14px; border-radius:8px; overflow-x:auto; font-size:13px; margin-bottom:12px; }
+    .output { background:#1a1a2e; color:#2ecc71; padding:10px 14px; border-radius:6px; font-family:monospace; font-size:14px; margin-top:8px; }
+    button { background:#4a6cf7; color:white; border:none; padding:10px 24px; border-radius:6px; cursor:pointer; }
+    .tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:600; background:#e2e8f0; color:#4a5568; margin-left:6px; }
+    .count { text-align:right; font-size:13px; color:#718096; margin-top:-8px; margin-bottom:12px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Textarea — Interactive Examples</h1>
+  <div class="card">
+    <h2>1. Basic Textarea</h2>
+    <form onsubmit="event.preventDefault(); show('o1', 'Submitted: ' + this.bio.value)">
+      <label for="bio">Bio:</label>
+      <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
+      <button type="submit">Submit</button>
+      <div class="output" id="o1">Submit to see value...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>2. With Default Content</h2>
+    <pre>&lt;textarea&gt;Default text with line breaks preserved.&lt;/textarea&gt;</pre>
+    <textarea rows="3" style="margin-bottom:0;">This is default content.
+Line breaks are preserved.
+      Leading whitespace too.</textarea>
+  </div>
+  <div class="card">
+    <h2>3. Maxlength + Character Counter</h2>
+    <form onsubmit="event.preventDefault(); show('o3', 'Tweet: ' + this.tweet.value)">
+      <label for="tweet">Tweet (max 280 chars):</label>
+      <textarea id="tweet" name="tweet" rows="3" maxlength="280" placeholder="What's happening?" oninput="updateCount()"></textarea>
+      <div class="count" id="charCount">0 / 280</div>
+      <button type="submit">Submit</button>
+      <div class="output" id="o3">Submit to see value...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>4. Auto-Resizing Textarea</h2>
+    <pre>textarea.style.height = textarea.scrollHeight + 'px';</pre>
+    <label for="autota">Auto-resizing comments:</label>
+    <textarea id="autota" rows="3" placeholder="Type multiple lines... this will grow with content"
+      oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px'"
+      style="overflow:hidden;resize:none;min-height:80px;"></textarea>
+    <p style="font-size:13px;color:#718096;">The textarea grows as you type.</p>
+  </div>
+  <div class="card">
+    <h2>5. Readonly vs Disabled</h2>
+    <pre>&lt;textarea readonly&gt;  &lt;textarea disabled&gt;</pre>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div><label>Readonly (value submitted):</label><textarea rows="3" readonly>Cannot edit but value IS submitted with form.</textarea></div>
+      <div><label>Disabled (value NOT submitted):</label><textarea rows="3" disabled>Cannot edit and value is NOT submitted.</textarea></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>6. Minlength Validation</h2>
+    <form onsubmit="event.preventDefault(); show('o6', 'Valid feedback submitted!')">
+      <label for="feedback">Feedback (min 10 chars, required):</label>
+      <textarea id="feedback" name="feedback" rows="4" required minlength="10" placeholder="At least 10 characters..."></textarea>
+      <button type="submit">Submit</button>
+      <div class="output" id="o6">Submit to validate...</div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>7. Code Editor Style</h2>
+    <pre>&lt;textarea&gt; styled as a code editor</pre>
+    <textarea style="font-family:'Courier New',monospace;font-size:14px;background:#1a1a2e;color:#2ecc71;border-color:#2a3a5e;white-space:pre;tab-size:2;" rows="8" placeholder="// Write code here...">function hello() {
+  console.log("Hello, World!");
+}</textarea>
+  </div>
+  <div class="card">
+    <h2>8. Wrap Behavior Comparison</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div><label>wrap="soft" (default):</label><textarea rows="3" wrap="soft" placeholder="Type a long line without pressing Enter..."></textarea></div>
+      <div><label>wrap="hard":</label><textarea rows="3" wrap="hard" placeholder="Type a long line without pressing Enter..."></textarea></div>
+    </div>
+    <p style="font-size:13px;color:#718096;margin-top:8px;">Hard wrap inserts actual line breaks in the submitted value.</p>
+  </div>
+</div>
+<script>
+function show(id, msg) { document.getElementById(id).textContent = '> ' + msg; }
+function updateCount() {
+  const ta = document.getElementById('tweet');
+  document.getElementById('charCount').textContent = ta.value.length + ' / 280';
+}
+</script>
+</body>
+</html>

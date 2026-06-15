@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does justify-items do in CSS Grid?", "answer": "justify-items aligns grid items along the inline (row) axis within their grid cells. Values: start, end, center, stretch." },
+    { "question": "What does align-items do in CSS Grid?", "answer": "align-items aligns grid items along the block (column) axis within their grid cells. Values: start, end, center, stretch." },
+    { "question": "What is the difference between justify-items and justify-content?", "answer": "justify-items aligns items inside their cells, while justify-content aligns the entire grid tracks within the container along the inline axis." },
+    { "question": "What does justify-self do on a grid item?", "answer": "justify-self overrides the container's justify-items for a single grid item, aligning that item along the inline axis." },
+    { "question": "What does align-self do on a grid item?", "answer": "align-self overrides the container's align-items for a single grid item, aligning that item along the block axis." },
+    { "question": "What is the default value of justify-items and align-items?", "answer": "The default value for both is stretch, meaning items fill their entire grid cell area by default." },
+    { "question": "What does align-content do in a grid container?", "answer": "align-content distributes space between and around grid tracks along the block (column) axis when there is extra space in the container." },
+    { "question": "What are the possible values for justify-content and align-content?", "answer": "start, end, center, stretch, space-between, space-around, space-evenly." },
+    { "question": "Can you use justify-self on a grid container?", "answer": "No, justify-self is applied to grid items, not the container. The container uses justify-items or justify-content." },
+    { "question": "What happens when a grid item has a smaller size than its cell?", "answer": "The item can be aligned within the cell using justify-self and align-self properties." }
+  ],
+  "intermediate": [
+    { "question": "What is the difference between space-between and space-evenly for justify-content?", "answer": "space-between puts equal space between tracks but no space at the edges; space-evenly puts equal space everywhere including edges." },
+    { "question": "How does align-content: center differ from align-items: center?", "answer": "align-content: center centers the entire set of grid tracks in the container vertically; align-items: center centers items within their individual cells." },
+    { "question": "What is the stretch value in justify-items and when does it not work?", "answer": "stretch expands items to fill the cell. It does not work when the item has an intrinsic aspect ratio or an explicit width/height set." },
+    { "question": "How do baseline values work in grid alignment?", "answer": "align-items: baseline aligns the content baselines of items within a row, making text align across cells regardless of item padding." },
+    { "question": "Can you use alignment properties with subgrid?", "answer": "Yes, alignment properties work within subgrids. The subgrid's items align within their own cells based on the subgrid's alignment settings." },
+    { "question": "What is the relationship between place-items and justify-items/align-items?", "answer": "place-items is the shorthand for align-items and justify-items in that order: place-items: <align-items> <justify-items>." },
+    { "question": "What is the place-content shorthand?", "answer": "place-content is shorthand for align-content and justify-content: place-content: <align-content> <justify-content>." },
+    { "question": "What is the place-self shorthand?", "answer": "place-self is shorthand for align-self and justify-self on individual items: place-self: <align-self> <justify-self>." },
+    { "question": "How does justify-content interact with fixed-width tracks?", "answer": "If the total track width is less than the container, justify-content distributes the remaining space around or between tracks." },
+    { "question": "What happens when align-content is used with grid-auto-flow: column?", "answer": "align-content distributes space between rows in the block axis, while with grid-auto-flow: column items are placed in columns first." }
+  ],
+  "advanced": [
+    { "question": "How does the safe and unsafe alignment modifier work in Grid?", "answer": "safe ensures the item is not rendered outside the container to avoid data loss, while unsafe allows overflow if needed. Example: align-items: safe center." },
+    { "question": "How do alignment properties resolve when grid items have different aspect ratios?", "answer": "With stretch, items with intrinsic aspect ratios (like images) may not stretch in both axes. Use object-fit: cover on such items instead." },
+    { "question": "What is the interaction between align-content and overflow in a grid container?", "answer": "If content overflows the container, align-content may have no visible effect because there is no extra space to distribute." },
+    { "question": "How does grid item alignment interact with writing modes?", "answer": "Align and justify axes swap in vertical writing modes: justify-items aligns in the inline axis (vertical), align-items in the block axis (horizontal)." },
+    { "question": "What happens to alignment when using grid-template-areas with empty cells?", "answer": "Empty cells still exist as grid areas, and alignment properties apply to the cells themselves. Items align within their assigned named areas." },
+    { "question": "How does justify-content: stretch work in a grid?", "answer": "stretch for justify-content increases track sizes to fill the container if minmax constraints allow it. If tracks have fixed sizes, stretch has no effect." },
+    { "question": "How do alignment properties interact with CSS Grid's span and gap simultaneously?", "answer": "Gap takes priority over alignment distribution. After gap is subtracted, remaining space is distributed by content/justify-content." },
+    { "question": "What is the difference between align-items: first baseline and align-items: last baseline?", "answer": "first baseline aligns using the baseline of the first line of text in each item; last baseline uses the last line of text in each item." },
+    { "question": "Can alignment properties override grid item margins?", "answer": "Yes, margins on grid items are factored into alignment calculations. Items with margin: auto can be centered independently of justify-self." },
+    { "question": "How does justify-items: legacy work in Grid?", "answer": "The legacy value inherits alignment behavior from the parent and is mainly for backwards compatibility with HTML align attributes; it behaves like start in Grid." }
+  ]
+}

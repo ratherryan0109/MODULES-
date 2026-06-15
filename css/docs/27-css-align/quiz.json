@@ -1,0 +1,247 @@
+﻿{
+    "module":  "27-css-align",
+    "title":  "CSS Alignment",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "Which property is used to horizontally align text within a block element?",
+                          "options":  [
+                                          "vertical-align",
+                                          "text-align",
+                                          "margin-align",
+                                          "align-text"
+                                      ],
+                          "explanation":  "text-align controls the horizontal alignment of inline content within a block container.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  2,
+                          "question":  "How do you center a block element horizontally?",
+                          "options":  [
+                                          "text-align: center",
+                                          "margin: 0 auto",
+                                          "display: center",
+                                          "align: center"
+                                      ],
+                          "explanation":  "Setting margin: 0 auto on a block element with an explicit width centers it horizontally within its parent.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What is required for margin: auto to center a block element?",
+                          "options":  [
+                                          "The element must be positioned",
+                                          "The element must have an explicit width",
+                                          "The parent must have position: relative",
+                                          "The element must be floated"
+                                      ],
+                          "explanation":  "margin: auto only works for centering when the element has an explicit width (or max-width) set.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "Which vertical-align value is the default?",
+                          "options":  [
+                                          "top",
+                                          "middle",
+                                          "baseline",
+                                          "bottom"
+                                      ],
+                          "explanation":  "The default value of vertical-align is \u0027baseline\u0027, which aligns the element\u0027s baseline with the parent\u0027s baseline.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  5,
+                          "question":  "What does vertical-align NOT work on?",
+                          "options":  [
+                                          "Inline elements",
+                                          "Inline-block elements",
+                                          "Block elements",
+                                          "Table cells"
+                                      ],
+                          "explanation":  "vertical-align only works on inline, inline-block, and table-cell elements. It has no effect on block-level elements.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  6,
+                          "question":  "Which Flexbox properties center content both vertically and horizontally?",
+                          "options":  [
+                                          "align-items and justify-content",
+                                          "flex-center",
+                                          "align and justify",
+                                          "place-content"
+                                      ],
+                          "explanation":  "align-items: center (cross axis) and justify-content: center (main axis) together center flex items both vertically and horizontally.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  7,
+                          "question":  "What is the shorthand Grid property for centering an item?",
+                          "options":  [
+                                          "place-items: center",
+                                          "grid-center: center",
+                                          "align-content: center",
+                                          "justify-items: center"
+                                      ],
+                          "explanation":  "place-items: center is shorthand for align-items: center and justify-items: center, centering items in their grid cells.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  8,
+                          "question":  "Why do you need transform: translate(-50%, -50%) when using absolute positioning for centering?",
+                          "options":  [
+                                          "It\u0027s optional",
+                                          "top: 50% centers the top edge, not the middle",
+                                          "It improves performance",
+                                          "It fixes browser bugs"
+                                      ],
+                          "explanation":  "top: 50% positions the element\u0027s top edge at 50%. transform: translate(-50%, -50%) shifts it back by half its own size, true centering.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  9,
+                          "question":  "Which is NOT a valid value for text-align?",
+                          "options":  [
+                                          "justify",
+                                          "center",
+                                          "baseline",
+                                          "right"
+                                      ],
+                          "explanation":  "baseline is a vertical-align value, not a text-align value. text-align accepts left, right, center, justify, start, end.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  10,
+                          "question":  "How do you center a single line of text vertically within a fixed-height container?",
+                          "options":  [
+                                          "vertical-align: middle",
+                                          "line-height equal to height",
+                                          "padding: auto",
+                                          "margin: auto 0"
+                                      ],
+                          "explanation":  "Setting line-height equal to the container height vertically centers a single line of text. This works because text is vertically centered within its line height.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  11,
+                          "question":  "What does justify-content: center do in a flex container?",
+                          "options":  [
+                                          "Centers items on the cross axis",
+                                          "Centers items on the main axis",
+                                          "Centers text inside items",
+                                          "Centers the container"
+                                      ],
+                          "explanation":  "justify-content aligns flex items along the main axis. justify-content: center centers them horizontally (or vertically if flex-direction: column).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  12,
+                          "question":  "Which alignment method is best for centering an element of unknown size?",
+                          "options":  [
+                                          "margin: auto",
+                                          "Absolute positioning with transform",
+                                          "Fixed width with margin auto",
+                                          "text-align"
+                                      ],
+                          "explanation":  "transform: translate(-50%, -50%) with absolute positioning works regardless of the element\u0027s size, making it ideal for unknown or dynamic sizes.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  13,
+                          "question":  "What does text-align: justify do?",
+                          "options":  [
+                                          "Centers text",
+                                          "Aligns text to the right",
+                                          "Stretches text to fill the width",
+                                          "Creates equal spacing between characters"
+                                      ],
+                          "explanation":  "text-align: justify adjusts word spacing so each line fills the full width, creating even left and right margins.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  14,
+                          "question":  "How do you center a flex item when there\u0027s only one item?",
+                          "options":  [
+                                          "margin: auto on the item",
+                                          "align-items and justify-content on the container",
+                                          "Both work",
+                                          "Neither works"
+                                      ],
+                          "explanation":  "With a single flex item, both margin: auto on the item and align-items/justify-content on the container will center it.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  15,
+                          "question":  "What is the default value of align-items in a flex container?",
+                          "options":  [
+                                          "flex-start",
+                                          "center",
+                                          "stretch",
+                                          "baseline"
+                                      ],
+                          "explanation":  "The default align-items value is \u0027stretch\u0027, which stretches flex items to fill the container\u0027s cross axis.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  16,
+                          "question":  "Which is an accessibility concern with text-align: justify?",
+                          "options":  [
+                                          "Text becomes too small",
+                                          "Uneven word spacing can reduce readability",
+                                          "Text is right-aligned",
+                                          "It doesn\u0027t work on mobile"
+                                      ],
+                          "explanation":  "Justified text can create uneven gaps between words (rivers), which may reduce readability for some users, especially those with dyslexia.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  17,
+                          "question":  "What does align-self: center do in Flexbox?",
+                          "options":  [
+                                          "Centers all items",
+                                          "Centers a single flex item on the cross axis",
+                                          "Centers a single item on the main axis",
+                                          "Centers the container"
+                                      ],
+                          "explanation":  "align-self overrides align-items for a specific flex item, centering it on the cross axis independently of other items.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  18,
+                          "question":  "What is the difference between place-items and place-content in Grid?",
+                          "options":  [
+                                          "They are the same",
+                                          "place-items aligns items within cells; place-content aligns the grid itself",
+                                          "place-content is for Flexbox",
+                                          "place-items affects only rows"
+                                      ],
+                          "explanation":  "place-items controls alignment within grid cells, while place-content controls alignment of the entire grid within the container.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "How can you center an absolutely positioned element horizontally only?",
+                          "options":  [
+                                          "left: 50%; transform: translateX(-50%)",
+                                          "margin: 0 auto",
+                                          "text-align: center on parent",
+                                          "right: 50%"
+                                      ],
+                          "explanation":  "For horizontal centering of an absolute element: left: 50% positions left edge at center, transform: translateX(-50%) shifts it left by half width.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  20,
+                          "question":  "Which method centers content both horizontally and vertically with the least code?",
+                          "options":  [
+                                          "Flexbox (2 properties)",
+                                          "Grid (1 property: place-items)",
+                                          "Absolute + transform (3 properties)",
+                                          "margin: auto"
+                                      ],
+                          "explanation":  "display: grid; place-items: center; is the most concise way to center content both horizontally and vertically.",
+                          "correctAnswer":  1
+                      }
+                  ]
+}

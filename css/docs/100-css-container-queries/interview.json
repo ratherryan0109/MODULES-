@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What are CSS container queries?", "answer": "Container queries allow you to apply styles based on a parent container's size rather than the viewport size, enabling truly responsive components." },
+    { "question": "What does container-type do?", "answer": "container-type establishes an element as a query container and specifies which dimension (inline-size, size, or normal) can be queried." },
+    { "question": "What does container-name do?", "answer": "container-name assigns a name to a container so it can be specifically targeted by @container queries." },
+    { "question": "How do you write a container query?", "answer": "Use @container (min-width: 400px) { .child { ... } } to apply styles when the container is at least 400px wide." },
+    { "question": "What are cqi units?", "answer": "cqi (container query inline) units are relative to the query container's inline size; 1cqi equals 1% of the container's inline dimension." },
+    { "question": "How do container queries differ from media queries?", "answer": "Container queries respond to a parent container's size; media queries respond to the viewport or device size." },
+    { "question": "What is the shorthand syntax for container?", "answer": "container: name / type; e.g., container: sidebar / inline-size; combines container-name and container-type." },
+    { "question": "Can you query container height with container queries?", "answer": "Yes, if container-type: size is set, you can query both width and height; with inline-size you can only query inline dimension." },
+    { "question": "What is container-type: size vs inline-size?", "answer": "size enables queries on both inline and block dimensions; inline-size enables queries only on the inline (typically width) dimension." },
+    { "question": "Do container queries work with all CSS properties?", "answer": "Container queries work with most properties inside the query block, but the container-type property itself is not queryable." }
+  ],
+  "intermediate": [
+    { "question": "How do you create a component that responds to its parent width?", "answer": "Set container-type: inline-size on the parent, then use @container (min-width: value) to adjust child component styles." },
+    { "question": "How do you use named containers with @container?", "answer": "Set container-name: card on the container, then @container card (width > 300px) { ... } queries only that specific container." },
+    { "question": "What happens when multiple containers are nested?", "answer": "The nearest ancestor with a container-type responds to the query; container names disambiguate which container to query." },
+    { "question": "How do container query units (cqi, cqw, cqh, cqmin, cqmax) work?", "answer": "cqi = 1% of inline size, cqw = 1% of width, cqh = 1% of height, cqmin/cqmax = the smaller/larger of cqi and cqb." },
+    { "question": "Can you combine container queries with media queries?", "answer": "Yes, they are complementary; use media queries for page-level layout and container queries for component-level responsiveness." },
+    { "question": "How do container queries affect performance?", "answer": "Container queries can improve performance by avoiding viewport-wide recalculations, but each container query adds to the style recalc scope." },
+    { "question": "How do you style a container element itself based on its own size?", "answer": "You cannot query the container's own size directly; apply query styles to children and use a wrapper to style the container differently." },
+    { "question": "What is the default value of container-type?", "answer": "The default is normal, meaning the element is not a query container and cannot be queried by @container." },
+    { "question": "How do container queries work with CSS Grid and subgrid?", "answer": "Grid items can be query containers; subgrid elements inherit grid track sizes and can respond to container queries based on the subgrid's size." },
+    { "question": "Can you use container queries inside @keyframes?", "answer": "No, @container cannot be nested inside @keyframes; container queries are for style rules, not animation definitions." }
+  ],
+  "advanced": [
+    { "question": "How do you test container queries in browser DevTools?", "answer": "Chrome DevTools shows container badges in the Elements panel; right-click an element and inspect its container chain." },
+    { "question": "How do container queries interact with CSS cascade layers?", "answer": "Container queries respect cascade layer ordering; @container blocks within a higher-priority layer override lower-layer container queries." },
+    { "question": "How do you create a container query polyfill for older browsers?", "answer": "Use container-query-polyfill.js which observes element resize and applies query styles; fallback with CSS custom properties for progressive enhancement." },
+    { "question": "How do container queries interact with content-visibility?", "answer": "content-visibility: auto may skip rendering of offscreen containers, potentially delaying container query evaluation until the element is near the viewport." },
+    { "question": "How do you use container queries with CSS custom properties?", "answer": "Set custom properties on the container and use them inside @container blocks; the custom property values cascade into the query context." },
+    { "question": "How do container queries work with the :has() selector?", "answer": ":has() can be used within @container blocks to style elements based on their children's state, combining container queries with parent selection." },
+    { "question": "How do container queries affect server-side rendering (SSR)?", "answer": "SSR cannot evaluate container queries since container sizes depend on client rendering; use sensible default styles that upgrade on the client." },
+    { "question": "How do you use container query length units outside of @container rules?", "answer": "Container query units are invalid outside container queries and fall back to initial values or are ignored." },
+    { "question": "How do you handle container queries in iframe contexts?", "answer": "Containers inside iframes query their own parent container within the iframe, not the outer page's layout." },
+    { "question": "How do you implement container query-based typography scaling?", "answer": "Use cqi units on font-size: font-size: clamp(1rem, 3cqi, 2rem); typography scales fluidly with the container width." }
+  ]
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Debugging - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    .bad { border-left: 4px solid #ef4444; padding-left: 1rem; }
+    .good { border-left: 4px solid #22c55e; padding-left: 1rem; }
+
+    .debug-outlines * { outline: 1px solid rgba(239,68,68,0.4); }
+
+    #special { color: #22c55e; }
+    .highlight { color: #06b6d4; }
+    .text { color: #ef4444; }
+
+    .overflow-box { width: 200px; border: 2px solid #ef4444; padding: 0.5rem; }
+    .long-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .stack { position: relative; height: 120px; }
+    .stack div { position: absolute; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #fff; font-weight: bold; }
+    .z1 { background: #06b6d4; top: 0; left: 0; z-index: 1; }
+    .z2 { background: #ef4444; top: 30px; left: 30px; z-index: 2; }
+    .z3 { background: #22c55e; top: 60px; left: 60px; z-index: 3; }
+  </style>
+</head>
+<body>
+  <h1>CSS Debugging</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Toggle Debug Overlay</h2>
+    <p>Add temporary outlines to every element to visualize the box model and spacing issues.</p>
+    <div class="demo-output">
+      <button onclick="document.querySelector('.debug-area').classList.toggle('debug-outlines')" style="padding:0.5rem 1rem;border:2px solid #0f172a;border-radius:6px;background:#fff;cursor:pointer;margin-bottom:1rem;">Toggle Debug Outlines</button>
+      <div class="debug-area" style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div style="padding:1rem;background:#f1f5f9;border-radius:8px;">Box A</div>
+        <div style="padding:1.5rem;background:#e2e8f0;border-radius:8px;">Box B</div>
+        <div style="padding:0.75rem;background:#cbd5e1;border-radius:8px;">Box C</div>
+      </div>
+    </div>
+    <pre><code>&lt;style&gt;
+  .debug * { outline: 1px solid rgba(255,0,0,0.3); }
+&lt;/style&gt;
+&lt;!-- Toggle with JS --&gt;
+document.querySelector('.container')
+  .classList.toggle('debug');</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Specificity Conflict</h2>
+    <p>Three conflicting selectors target the same element. The ID selector wins due to highest specificity.</p>
+    <div class="demo-output">
+      <p id="special" class="highlight text">This text has three conflicting selectors. Check computed styles in DevTools.</p>
+      <p style="font-size:0.875rem;color:#64748b;margin-top:0.5rem;">
+        <code>#special</code> (0,1,0) &gt; <code>.highlight</code> (0,0,1) and <code>.text</code> (0,0,1)
+      </p>
+    </div>
+    <pre><code>#special { color: green; }     /* (0,1,0) — wins */
+.highlight { color: blue; }    /* (0,0,1) */
+.text { color: red; }         /* (0,0,1) */</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Overflow Detection</h2>
+    <p>Long content overflowing its container is a common layout bug. The red border highlights the container boundary.</p>
+    <div class="demo-output">
+      <div class="overflow-box">
+        <span class="long-text">This very long text would overflow its container without ellipsis handling.</span>
+      </div>
+      <p style="font-size:0.875rem;color:#64748b;margin-top:0.5rem;">Solution: <code>overflow: hidden; text-overflow: ellipsis; white-space: nowrap;</code></p>
+    </div>
+    <pre><code>.container {
+  width: 200px;
+  border: 2px solid red; /* Visual indicator */
+}
+.content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: z-index Stacking Context</h2>
+    <p>Three overlapping boxes show how z-index controls layering. Use DevTools 3D View to visualize.</p>
+    <div class="demo-output">
+      <div class="stack">
+        <div class="z1">z: 1</div>
+        <div class="z2">z: 2</div>
+        <div class="z3">z: 3</div>
+      </div>
+    </div>
+    <pre><code>.layer1 { z-index: 1; }
+.layer2 { z-index: 2; }
+.layer3 { z-index: 3; }
+/* Higher z-index is visually on top */</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Collapsing Margins</h2>
+    <p>Adjacent vertical margins collapse to the larger value instead of adding. This often surprises developers.</p>
+    <div class="demo-output">
+      <div style="margin-bottom:30px;padding:1rem;background:#f1f5f9;border-radius:8px;">Box A (margin-bottom: 30px)</div>
+      <div style="margin-top:20px;padding:1rem;background:#e2e8f0;border-radius:8px;">Box B (margin-top: 20px)</div>
+      <p style="font-size:0.875rem;color:#64748b;margin-top:0.5rem;">The gap between boxes is 30px (the larger margin), not 50px.</p>
+    </div>
+    <pre><code>/* Margin collapse: the gap is 30px, not 50px */
+.box-a { margin-bottom: 30px; }
+.box-b { margin-top: 20px; }
+/* Fix: use padding or a single margin direction */</pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Missing Background Fallback</h2>
+    <p>Always provide a background color as fallback for gradients and images.</p>
+    <div class="demo-output">
+      <div style="display:flex;gap:1rem;">
+        <div class="bad">
+          <p style="font-weight:600;color:#ef4444;">No Fallback</p>
+          <div style="background:linear-gradient(135deg,#06b6d4,#0891b2);padding:2rem;border-radius:8px;color:#fff;">Gradient only</div>
+        </div>
+        <div class="good">
+          <p style="font-weight:600;color:#22c55e;">With Fallback</p>
+          <div style="background:#0891b2;background:linear-gradient(135deg,#06b6d4,#0891b2);padding:2rem;border-radius:8px;color:#fff;">Solid + Gradient</div>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* With solid color fallback */
+.element {
+  background: #0891b2;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: DevTools Console Tips</h2>
+    <p>Use the browser DevTools console for quick CSS debugging.</p>
+    <div class="demo-output">
+      <pre style="background:#1e293b;color:#e2e8f0;font-size:0.85rem;">// Inspect element styles
+$0.style.color = 'red';
+
+// Check computed styles
+getComputedStyle($0).fontSize;
+
+// Toggle pseudo-classes
+$0.style.outline = '2px solid red';
+
+// List unused CSS (Coverage tab)
+// DevTools > Coverage > Reload</pre>
+      <button onclick="document.querySelectorAll('.demo-section')[7].querySelector('button').style.outline='3px solid #06b6d4';this.style.outline='3px solid #06b6d4'" style="padding:0.5rem 1rem;border:2px solid #0f172a;border-radius:6px;background:#fff;cursor:pointer;margin-top:0.5rem;">Click Me — highlights both buttons</button>
+    </div>
+  </div>
+</body>
+</html>

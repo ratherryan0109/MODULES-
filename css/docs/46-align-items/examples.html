@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Align Items - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .flex-row { display: flex; gap: 0.5rem; min-height: 120px; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; }
+    .flex-row div { color: white; padding: 0.75rem; border-radius: 4px; text-align: center; }
+    .flex-row div:nth-child(1) { background: #06b6d4; font-size: 1rem; }
+    .flex-row div:nth-child(2) { background: #f59e0b; font-size: 1.5rem; padding: 1.5rem; }
+    .flex-row div:nth-child(3) { background: #10b981; font-size: 0.8rem; padding: 0.4rem; }
+    .label { font-size: 0.8rem; color: #64748b; font-weight: 600; margin-bottom: 0.25rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Align Items - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: All Align-Items Values</h2>
+    <p>align-items controls how flex items align along the cross axis (perpendicular to flex-direction).</p>
+    <div class="demo-output">
+      <div class="grid-3">
+        <div>
+          <div class="label">stretch (default)</div>
+          <div class="flex-row" style="align-items:stretch;">
+            <div>Short</div><div>Medium</div><div>Tall</div>
+          </div>
+        </div>
+        <div>
+          <div class="label">flex-start</div>
+          <div class="flex-row" style="align-items:flex-start;">
+            <div>Short</div><div>Medium</div><div>Tall</div>
+          </div>
+        </div>
+        <div>
+          <div class="label">center</div>
+          <div class="flex-row" style="align-items:center;">
+            <div>Short</div><div>Medium</div><div>Tall</div>
+          </div>
+        </div>
+        <div>
+          <div class="label">flex-end</div>
+          <div class="flex-row" style="align-items:flex-end;">
+            <div>Short</div><div>Medium</div><div>Tall</div>
+          </div>
+        </div>
+        <div>
+          <div class="label">baseline</div>
+          <div class="flex-row" style="align-items:baseline;">
+            <div>Short</div><div>Medium</div><div>Tall</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.container {
+  display: flex;
+  align-items: center; /* stretch | flex-start | center | flex-end | baseline */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Perfect Centering</h2>
+    <p>Combine <code>justify-content: center</code> with <code>align-items: center</code> for perfect center alignment.</p>
+    <div class="demo-output">
+      <div style="display:flex; justify-content:center; align-items:center; height:180px; background:linear-gradient(135deg,#06b6d4,#8b5cf6); border-radius:8px; color:white;">
+        <div style="text-align:center;">
+          <div style="font-size:1.5rem; font-weight:bold;">Perfectly Centered</div>
+          <div style="font-size:0.85rem; opacity:0.8;">Horizontally &amp; Vertically</div>
+        </div>
+      </div>
+    </div>
+    <pre><code>.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Align-Self Override</h2>
+    <p>Individual items can override the container's <code>align-items</code> with <code>align-self</code>.</p>
+    <div class="demo-output">
+      <div class="flex-row" style="align-items:flex-start; height:150px;">
+        <div style="background:#06b6d4;">flex-start</div>
+        <div style="background:#f59e0b; align-self:center;">center</div>
+        <div style="background:#10b981; align-self:flex-end;">flex-end</div>
+        <div style="background:#ef4444; align-self:stretch;">stretch</div>
+      </div>
+    </div>
+    <pre><code>.container { align-items: flex-start; }
+.item:nth-child(2) { align-self: center; }
+.item:nth-child(3) { align-self: flex-end; }
+.item:nth-child(4) { align-self: stretch; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: align-items in a Column Layout</h2>
+    <p>When <code>flex-direction: column</code>, align-items works horizontally (cross axis).</p>
+    <div class="demo-output">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:0.5rem; background:#f1f5f9; padding:1rem; border-radius:6px;">
+        <div style="background:#06b6d4; color:white; padding:0.5rem 2rem; border-radius:4px;">Item 1</div>
+        <div style="background:#f59e0b; color:white; padding:0.5rem 3rem; border-radius:4px;">Item 2</div>
+        <div style="background:#10b981; color:white; padding:0.5rem 1rem; border-radius:4px;">Item 3</div>
+      </div>
+    </div>
+    <pre><code>.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Vertical Navigation (align-items: stretch)</h2>
+    <p>Sidebar navigation items stretch to fill width with <code>align-items: stretch</code>.</p>
+    <div class="demo-output">
+      <div style="display:flex; flex-direction:column; align-items:stretch; gap:2px; background:#1e293b; border-radius:6px; overflow:hidden; max-width:200px;">
+        <div style="background:#06b6d4; color:white; padding:0.75rem 1rem; font-weight:600;">Home</div>
+        <div style="background:#334155; color:#cbd5e1; padding:0.75rem 1rem;">Profile</div>
+        <div style="background:#334155; color:#cbd5e1; padding:0.75rem 1rem;">Settings</div>
+        <div style="background:#334155; color:#cbd5e1; padding:0.75rem 1rem;">Logout</div>
+      </div>
+    </div>
+    <pre><code>.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Baseline Alignment for Text</h2>
+    <p>Aligns items by the baseline of their text content — useful for mixed font sizes.</p>
+    <div class="demo-output">
+      <div style="display:flex; align-items:baseline; gap:1rem; background:#f1f5f9; padding:1rem; border-radius:6px;">
+        <div style="background:#06b6d4; color:white; padding:0.5rem 1rem; border-radius:4px; font-size:1.8rem;">Big</div>
+        <div style="background:#f59e0b; color:white; padding:0.5rem 1rem; border-radius:4px; font-size:1rem;">Normal</div>
+        <div style="background:#10b981; color:white; padding:0.5rem 1rem; border-radius:4px; font-size:0.75rem;">Small</div>
+      </div>
+    </div>
+    <pre><code>.container {
+  display: flex;
+  align-items: baseline;
+}
+/* All text sits on the same baseline */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Header with Centered Items</h2>
+    <p>A practical navbar using <code>align-items: center</code> to keep all elements vertically aligned.</p>
+    <div class="demo-output">
+      <div style="display:flex; align-items:center; justify-content:space-between; background:#1e293b; padding:0.75rem 1rem; border-radius:8px; color:white;">
+        <div style="font-weight:bold; font-size:1.2rem;">MyApp</div>
+        <div style="display:flex; gap:1rem;">
+          <a href="#" style="color:#cbd5e1; text-decoration:none;">Home</a>
+          <a href="#" style="color:#cbd5e1; text-decoration:none;">About</a>
+        </div>
+        <button style="background:#06b6d4; color:white; border:none; padding:0.4rem 1rem; border-radius:4px; cursor:pointer;">Login</button>
+      </div>
+    </div>
+    <pre><code>.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}</code></pre>
+  </div>
+</body>
+</html>

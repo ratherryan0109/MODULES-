@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21 - Description Lists Examples</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .example-box {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .example-box h2 {
+      margin-top: 0;
+      color: #2563eb;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+    }
+    .example-box dl {
+      background: #fafafa;
+      padding: 15px;
+      border-left: 4px solid #2563eb;
+      border-radius: 4px;
+    }
+    .example-box dt {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #1e40af;
+    }
+    .example-box dt:first-of-type {
+      margin-top: 0;
+    }
+    .example-box dd {
+      margin-left: 20px;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    code {
+      background: #e5e7eb;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    .styled-dl {
+      font-family: 'Georgia', serif;
+    }
+    .styled-dl dt {
+      font-size: 1.2em;
+      color: #7c3aed;
+      border-bottom: 1px dashed #ddd;
+      padding-bottom: 4px;
+    }
+    .styled-dl dd {
+      font-style: italic;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📋 HTML Description Lists - Examples</h1>
+
+  <!-- Example 1: Basic Glossary -->
+  <div class="example-box">
+    <h2>Example 1: Basic Glossary</h2>
+    <p>A simple description list defining web technologies:</p>
+    <pre>
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Markup Language - the standard language for creating web pages.&lt;/dd&gt;
+
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Cascading Style Sheets - used for styling HTML elements.&lt;/dd&gt;
+
+  &lt;dt&gt;JavaScript&lt;/dt&gt;
+  &lt;dd&gt;A programming language that enables interactive web pages.&lt;/dd&gt;
+&lt;/dl&gt;
+    </pre>
+    <dl>
+      <dt>HTML</dt>
+      <dd>HyperText Markup Language - the standard language for creating web pages.</dd>
+      <dt>CSS</dt>
+      <dd>Cascading Style Sheets - used for styling HTML elements.</dd>
+      <dt>JavaScript</dt>
+      <dd>A programming language that enables interactive web pages.</dd>
+    </dl>
+  </div>
+
+  <!-- Example 2: Multiple Descriptions -->
+  <div class="example-box">
+    <h2>Example 2: Multiple Descriptions for One Term</h2>
+    <p>One term with three different descriptions:</p>
+    <pre>
+&lt;dl&gt;
+  &lt;dt&gt;Color&lt;/dt&gt;
+  &lt;dd&gt;A property that defines the text color of an element.&lt;/dd&gt;
+  &lt;dd&gt;Can be specified using named colors, HEX, RGB, or HSL values.&lt;/dd&gt;
+  &lt;dd&gt;Inherited property in CSS.&lt;/dd&gt;
+&lt;/dl&gt;
+    </pre>
+    <dl>
+      <dt>Color</dt>
+      <dd>A property that defines the text color of an element.</dd>
+      <dd>Can be specified using named colors, HEX, RGB, or HSL values.</dd>
+      <dd>Inherited property in CSS.</dd>
+    </dl>
+  </div>
+
+  <!-- Example 3: Multiple Terms -->
+  <div class="example-box">
+    <h2>Example 3: Multiple Terms, Same Description</h2>
+    <p>Two terms sharing one description:</p>
+    <pre>
+&lt;dl&gt;
+  &lt;dt&gt;HTTP&lt;/dt&gt;
+  &lt;dt&gt;HTTPS&lt;/dt&gt;
+  &lt;dd&gt;Protocols used for transferring data over the web.&lt;/dd&gt;
+&lt;/dl&gt;
+    </pre>
+    <dl>
+      <dt>HTTP</dt>
+      <dt>HTTPS</dt>
+      <dd>Protocols used for transferring data over the web.</dd>
+    </dl>
+  </div>
+
+  <!-- Example 4: Nested HTML -->
+  <div class="example-box">
+    <h2>Example 4: Nested HTML Inside Description</h2>
+    <p>Using paragraphs and unordered lists inside <code>&lt;dd&gt;</code>:</p>
+    <pre>
+&lt;dl&gt;
+  &lt;dt&gt;Frontend Development&lt;/dt&gt;
+  &lt;dd&gt;
+    &lt;p&gt;Technologies used on the client side:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+      &lt;li&gt;JavaScript&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/dd&gt;
+&lt;/dl&gt;
+    </pre>
+    <dl>
+      <dt>Frontend Development</dt>
+      <dd>
+        <p>Technologies used on the client side:</p>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+
+  <!-- Example 5: Metadata Pairs -->
+  <div class="example-box">
+    <h2>Example 5: Metadata Pairs</h2>
+    <p>Using a description list for document metadata:</p>
+    <pre>
+&lt;dl&gt;
+  &lt;dt&gt;Author&lt;/dt&gt;
+  &lt;dd&gt;Jane Doe&lt;/dd&gt;
+  &lt;dt&gt;Published&lt;/dt&gt;
+  &lt;dd&gt;January 15, 2025&lt;/dd&gt;
+  &lt;dt&gt;Category&lt;/dt&gt;
+  &lt;dd&gt;Web Development&lt;/dd&gt;
+  &lt;dt&gt;Tags&lt;/dt&gt;
+  &lt;dd&gt;HTML, CSS, JavaScript&lt;/dd&gt;
+&lt;/dl&gt;
+    </pre>
+    <dl>
+      <dt>Author</dt>
+      <dd>Jane Doe</dd>
+      <dt>Published</dt>
+      <dd>January 15, 2025</dd>
+      <dt>Category</dt>
+      <dd>Web Development</dd>
+      <dt>Tags</dt>
+      <dd>HTML, CSS, JavaScript</dd>
+    </dl>
+  </div>
+
+  <!-- Example 6: Styled Description List -->
+  <div class="example-box">
+    <h2>Example 6: CSS Styled Description List</h2>
+    <p>A description list with custom styling applied:</p>
+    <pre>
+.styled-dl dt {
+  font-size: 1.2em;
+  color: #7c3aed;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 4px;
+}
+.styled-dl dd {
+  font-style: italic;
+  color: #6b7280;
+}
+    </pre>
+    <dl class="styled-dl">
+      <dt>API</dt>
+      <dd>Application Programming Interface - a set of rules for building software applications.</dd>
+      <dt>DOM</dt>
+      <dd>Document Object Model - a programming interface for web documents.</dd>
+      <dt>AJAX</dt>
+      <dd>Asynchronous JavaScript and XML - a technique for creating dynamic web pages.</dd>
+    </dl>
+  </div>
+
+  <!-- Example 7: FAQ Structure -->
+  <div class="example-box">
+    <h2>Example 7: FAQ Using Description List</h2>
+    <p>FAQ pairs are a natural fit for description lists:</p>
+    <pre>
+&lt;dl&gt;
+  &lt;div&gt;
+    &lt;dt&gt;What is HTML?&lt;/dt&gt;
+    &lt;dd&gt;HTML stands for HyperText Markup Language.&lt;/dd&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;dt&gt;What is CSS?&lt;/dt&gt;
+    &lt;dd&gt;CSS stands for Cascading Style Sheets.&lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;
+    </pre>
+    <dl>
+      <div>
+        <dt>What is HTML?</dt>
+        <dd>HTML stands for HyperText Markup Language. It is the standard language for creating web pages.</dd>
+      </div>
+      <div>
+        <dt>What is CSS?</dt>
+        <dd>CSS stands for Cascading Style Sheets. It is used to style and layout web pages.</dd>
+      </div>
+      <div>
+        <dt>What is JavaScript?</dt>
+        <dd>JavaScript is a programming language that adds interactivity to websites.</dd>
+      </div>
+    </dl>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+{
+  "module": "93-css-keyframe-animations",
+  "title": "CSS Keyframe Animations",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does @keyframes define?",
+      "options": ["Animation timing", "Animation states over time", "Element properties", "Animation triggers"],
+      "correctAnswer": 1,
+      "explanation": "@keyframes defines the intermediate states (keyframes) of an animation."
+    },
+    {
+      "id": 2,
+      "question": "Which keyword represents 0% in @keyframes?",
+      "options": ["start", "begin", "from", "first"],
+      "correctAnswer": 2,
+      "explanation": "'from' is equivalent to 0% in a @keyframes block."
+    },
+    {
+      "id": 3,
+      "question": "Which keyword represents 100% in @keyframes?",
+      "options": ["end", "finish", "to", "last"],
+      "correctAnswer": 2,
+      "explanation": "'to' is equivalent to 100% in a @keyframes block."
+    },
+    {
+      "id": 4,
+      "question": "What is the minimum number of keyframe stops needed for an animation?",
+      "options": ["1", "2", "3", "None"],
+      "correctAnswer": 1,
+      "explanation": "An animation needs at least 2 stops (0% and 100%, or from and to)."
+    },
+    {
+      "id": 5,
+      "question": "What property controls how many times an animation repeats?",
+      "options": ["animation-repeat", "animation-iteration-count", "animation-loop", "animation-count"],
+      "correctAnswer": 1,
+      "explanation": "animation-iteration-count controls the number of repetitions."
+    },
+    {
+      "id": 6,
+      "question": "Which value makes an animation run forever?",
+      "options": ["forever", "loop", "infinite", "always"],
+      "correctAnswer": 2,
+      "explanation": "The value 'infinite' makes the animation repeat indefinitely."
+    },
+    {
+      "id": 7,
+      "question": "What does animation-fill-mode: forwards do?",
+      "options": ["Starts animation from end", "Retains end state after animation", "Reverses animation", "Pauses animation"],
+      "correctAnswer": 1,
+      "explanation": "forwards retains the styles from the last keyframe after the animation ends."
+    },
+    {
+      "id": 8,
+      "question": "Which animation direction reverses each iteration?",
+      "options": ["reverse", "alternate", "normal", "alternate-reverse"],
+      "correctAnswer": 1,
+      "explanation": "alternate goes normal then reverse on each iteration."
+    },
+    {
+      "id": 9,
+      "question": "Can you apply multiple animations to one element?",
+      "options": ["No", "Yes, comma-separated", "Only with JS", "Only two max"],
+      "correctAnswer": 1,
+      "explanation": "Multiple animations can be applied: animation: bounce 1s, fadeIn 0.5s;"
+    },
+    {
+      "id": 10,
+      "question": "What happens if animation-duration is not set?",
+      "options": ["Default 0s (no animation)", "Default 1s", "Default 0.3s", "Animation doesn't run"],
+      "correctAnswer": 0,
+      "explanation": "The default animation-duration is 0s, meaning no animation occurs."
+    },
+    {
+      "id": 11,
+      "question": "Which properties trigger compositor-only animation?",
+      "options": ["transform and opacity", "width and height", "color and background", "margin and padding"],
+      "correctAnswer": 0,
+      "explanation": "transform and opacity are handled on the compositor thread, avoiding layout and paint."
+    },
+    {
+      "id": 12,
+      "question": "What does a negative animation-delay value do?",
+      "options": ["Starts the animation mid-sequence", "Prevents the animation from starting", "Reverses the animation", "Delays the animation by the absolute value"],
+      "correctAnswer": 0,
+      "explanation": "A negative delay starts the animation as if it had already been playing for that time."
+    },
+    {
+      "id": 13,
+      "question": "Which JavaScript event fires when a keyframe animation completes?",
+      "options": ["animationend", "animationcomplete", "animationfinish", "animationstop"],
+      "correctAnswer": 0,
+      "explanation": "The animationend event fires when the animation finishes playing."
+    },
+    {
+      "id": 14,
+      "question": "What is the purpose of animation-fill-mode: backwards?",
+      "options": ["Applies the 0% keyframe styles during the delay period", "Runs the animation in reverse", "Removes all styles after the animation", "Slows down the animation start"],
+      "correctAnswer": 0,
+      "explanation": "backwards applies the initial keyframe styles during the animation-delay period, preventing a flash."
+    },
+    {
+      "id": 15,
+      "question": "What does steps(4) in an animation-timing-function do?",
+      "options": ["Divides the animation into 4 discrete jumps", "Creates 4 additional keyframes", "Slows down the animation 4x", "Repeats the animation 4 times"],
+      "correctAnswer": 0,
+      "explanation": "steps(4) creates a frame-by-frame animation with 4 discrete stops, no interpolation between them."
+    },
+    {
+      "id": 16,
+      "question": "Which CSS at-rule is used to disable animations for reduced motion?",
+      "options": ["@media (prefers-reduced-motion: reduce)", "@media (motion: reduce)", "@media (animation: off)", "@supports (motion: reduce)"],
+      "correctAnswer": 0,
+      "explanation": "The prefers-reduced-motion media query detects user motion preferences."
+    },
+    {
+      "id": 17,
+      "question": "What happens if you omit 0% and 100% keyframes?",
+      "options": ["The element's computed styles are used for those positions", "The animation doesn't run", "Only intermediate keyframes are shown", "The browser throws an error"],
+      "correctAnswer": 0,
+      "explanation": "If 0% or 100% keyframes are omitted, the browser uses the element's computed style."
+    },
+    {
+      "id": 18,
+      "question": "What does the animation shorthand order require for time values?",
+      "options": ["Duration first, delay second", "Delay first, duration second", "Either order is valid", "They must be comma-separated"],
+      "correctAnswer": 0,
+      "explanation": "In the animation shorthand, the first time value is duration, the second is delay."
+    },
+    {
+      "id": 19,
+      "question": "Which keyframe creates a bounce effect with 3 stops?",
+      "options": ["0%: translateY(0), 50%: translateY(-50px), 100%: translateY(0)", "0%: translateY(-50px), 100%: translateY(0)", "from: scale(1), to: scale(1.5)", "0%: rotate(0), 50%: rotate(180deg), 100%: rotate(360deg)"],
+      "correctAnswer": 0,
+      "explanation": "A bounce animation moves away then returns to the original position using an intermediate keyframe."
+    },
+    {
+      "id": 20,
+      "question": "Which event fires at the end of each animation cycle except the final one?",
+      "options": ["animationiteration", "animationcycle", "animationrepeat", "animationstep"],
+      "correctAnswer": 0,
+      "explanation": "The animationiteration event fires at the end of each iteration except the final one."
+    }
+  ]
+}

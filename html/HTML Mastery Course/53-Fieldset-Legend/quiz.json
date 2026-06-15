@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the primary purpose of the <fieldset> element?",
+    "options": ["To create a clickable button group", "To group related form controls visually and semantically", "To display a set of images", "To define a section of a webpage"],
+    "answer": "b",
+    "explanation": "The <fieldset> element is used to group related form controls, providing both a visual box and a semantic grouping that improves accessibility."
+  },
+  {
+    "question": "What element provides a caption for a <fieldset>?",
+    "options": ["<caption>", "<title>", "<legend>", "<label>"],
+    "answer": "c",
+    "explanation": "The <legend> element is the first child of <fieldset> and provides a descriptive caption for the group of form controls."
+  },
+  {
+    "question": "What is the implicit ARIA role of the <fieldset> element?",
+    "options": ["region", "group", "form", "section"],
+    "answer": "b",
+    "explanation": "The <fieldset> element has an implicit ARIA role of 'group'. The <legend> provides the accessible name via aria-labelledby."
+  },
+  {
+    "question": "What happens when the disabled attribute is added to a <fieldset>?",
+    "options": ["Only the fieldset border is disabled", "All descendant form controls become disabled", "The legend becomes disabled", "Only input elements are disabled"],
+    "answer": "b",
+    "explanation": "The disabled attribute on a <fieldset> disables all form controls within it, including <input>, <textarea>, <select>, <button>, and <output>."
+  },
+  {
+    "question": "What must be the first child element inside a <fieldset>?",
+    "options": ["<input>", "<label>", "<legend>", "<div>"],
+    "answer": "c",
+    "explanation": "The <legend> element must be the first child of <fieldset>. Placing other elements before it breaks the layout and accessibility."
+  },
+  {
+    "question": "Which form controls benefit most from being wrapped in a <fieldset> with <legend>?",
+    "options": ["Text inputs", "Radio buttons and checkboxes", "Submit buttons", "Hidden inputs"],
+    "answer": "b",
+    "explanation": "Radio buttons and checkbox groups benefit most because <fieldset> provides group context that screen readers announce before each option."
+  },
+  {
+    "question": "Which attribute associates a <fieldset> with a <form> by ID, even if placed outside the form tags?",
+    "options": ["action", "method", "form", "id"],
+    "answer": "c",
+    "explanation": "The form attribute on <fieldset> takes the id of a <form> element, associating the fieldset and its controls with that form."
+  },
+  {
+    "question": "How does a screen reader announce a <fieldset> with a <legend>?",
+    "options": ["It skips the fieldset entirely", "It reads the legend text before each control in the group", "It reads only the first input", "It announces 'group' then reads controls without legend"],
+    "answer": "b",
+    "explanation": "Screen readers announce the legend text before each form control inside the fieldset, providing essential context for the user."
+  },
+  {
+    "question": "What is the default border style of a <fieldset>?",
+    "options": ["1px solid black", "2px groove", "3px ridge", "No border"],
+    "answer": "b",
+    "explanation": "The default browser style for <fieldset> is a 2px groove border (often rendered as a 3D inset border)."
+  },
+  {
+    "question": "Can <fieldset> elements be nested inside other <fieldset> elements?",
+    "options": ["No, they cannot be nested", "Yes, they can be nested for hierarchical grouping", "Only in HTML5", "Only with an explicit ARIA role"],
+    "answer": "b",
+    "explanation": "Fieldsets can be nested inside other fieldsets to create hierarchical groupings, though deep nesting should be avoided for usability."
+  },
+  {
+    "question": "What should you do to the <fieldset> legend for maximum accessibility?",
+    "options": ["Make it a hyperlink", "Keep it as short as possible while being descriptive", "Use only images in the legend", "Place it after all form controls"],
+    "answer": "b",
+    "explanation": "The legend should be concise but descriptive, providing clear context for the grouped controls. Images or interactive elements in legends reduce accessibility."
+  },
+  {
+    "question": "What CSS property is commonly reset when styling fieldsets from scratch?",
+    "options": ["color", "border", "font-size", "width"],
+    "answer": "b",
+    "explanation": "The default groove border is often removed (border: none) when creating custom-styled fieldsets that match a design system."
+  },
+  {
+    "question": "What is the <legend> element's default display value?",
+    "options": ["block", "inline", "table", "inline-block"],
+    "answer": "c",
+    "explanation": "The <legend> element has a default display of 'table' in most browsers, which enables its unique positioning over the fieldset border."
+  },
+  {
+    "question": "Which of the following is NOT disabled when a <fieldset> has the disabled attribute?",
+    "options": ["<input type='text'>", "<textarea>", "<div> containing text", "<button>"],
+    "answer": "c",
+    "explanation": "The disabled attribute on <fieldset> disables all form controls but not non-form elements like <div>. Only elements that accept the disabled attribute are affected."
+  },
+  {
+    "question": "What is the benefit of using <fieldset> for a group of checkboxes?",
+    "options": ["It automatically selects all checkboxes", "It provides group context for screen reader users", "It changes the checkbox style", "It prevents deselecting all options"],
+    "answer": "b",
+    "explanation": "Like radio buttons, checkbox groups benefit from fieldset grouping because screen readers announce the legend before each checkbox, providing context."
+  },
+  {
+    "question": "What happens if a <fieldset> has no <legend>?",
+    "options": ["It causes an HTML error", "The group still works but loses the accessible label", "The fieldset border disappears", "All inputs become required"],
+    "answer": "b",
+    "explanation": "A <fieldset> without a <legend> is still valid HTML, but the visual and accessibility benefit of having a labeled group is lost."
+  },
+  {
+    "question": "Which element cannot be placed inside a <legend> for best accessibility?",
+    "options": ["<strong>", "<em>", "<a>", "<span>"],
+    "answer": "c",
+    "explanation": "Interactive elements like hyperlinks (<a>) inside <legend> can confuse screen readers and should be avoided. Only text and phrasing content are recommended."
+  },
+  {
+    "question": "In which HTML version was the <fieldset> element introduced?",
+    "options": ["HTML 2.0", "HTML 4.01", "HTML5", "XHTML"],
+    "answer": "a",
+    "explanation": "The <fieldset> element has been part of HTML since HTML 2.0, making it one of the oldest form structuring elements."
+  },
+  {
+    "question": "What CSS display value is used in some modern CSS resets for <legend> to prevent positioning issues?",
+    "options": ["display: block", "display: inline", "display: flex", "display: table"],
+    "answer": "a",
+    "explanation": "Setting display: block on <legend> is a common reset to prevent the default 'table' display from causing cross-browser positioning differences."
+  },
+  {
+    "question": "How can you visually indicate that a <fieldset> is disabled beyond the default browser styling?",
+    "options": ["Use the hidden attribute", "Apply CSS opacity and cursor styling", "Remove all inputs from the fieldset", "Use a transparent border"],
+    "answer": "b",
+    "explanation": "Adding CSS like opacity: 0.6 and cursor: not-allowed provides a stronger visual indication that the fieldset section is disabled."
+  }
+]

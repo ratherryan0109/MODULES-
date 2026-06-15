@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Colors - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; margin: 0.75rem 0; }
+    .swatch { height: 80px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.8rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+    .swatch.dark-text { color: #0f172a; text-shadow: none; }
+    .currentcolor-demo { border: 4px solid currentColor; padding: 1.25rem; border-radius: 8px; margin: 0.75rem 0; }
+    .alpha-strip { display: flex; gap: 4px; margin: 0.75rem 0; }
+    .alpha-step { flex: 1; height: 50px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; font-weight: 600; }
+    .opacity-box { background: #0f172a; padding: 0.75rem; border-radius: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .opacity-box span { background: #06b6d4; padding: 0.5rem 1rem; border-radius: 4px; color: white; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>CSS Colors - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Named Colors</h2>
+    <p>CSS supports 140 named colors like <code>red</code>, <code>teal</code>, and <code>coral</code>.</p>
+    <div class="demo-output">
+      <div class="swatch-grid">
+        <div class="swatch" style="background:red">red</div>
+        <div class="swatch" style="background:coral">coral</div>
+        <div class="swatch" style="background:tomato">tomato</div>
+        <div class="swatch" style="background:gold">gold</div>
+        <div class="swatch" style="background:teal">teal</div>
+        <div class="swatch" style="background:navy">navy</div>
+        <div class="swatch" style="background:rebeccapurple">rebeccapurple</div>
+        <div class="swatch" style="background:mediumseagreen">mediumseagreen</div>
+      </div>
+    </div>
+    <pre><code>.one { color: red; }
+.two { color: teal; }
+.three { color: rebeccapurple; }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: HEX Colors</h2>
+    <p>HEX notation uses <code>#RRGGBB</code> or shorthand <code>#RGB</code>, with optional alpha <code>#RRGGBBAA</code>.</p>
+    <div class="demo-output">
+      <div class="swatch-grid">
+        <div class="swatch" style="background:#ff0000">#ff0000</div>
+        <div class="swatch" style="background:#00cc66">#00cc66</div>
+        <div class="swatch" style="background:#3069fe">#3069fe</div>
+        <div class="swatch" style="background:#f0f;color:#0f172a;text-shadow:none">#f0f (shorthand)</div>
+        <div class="swatch" style="background:#ff000080">#ff000080</div>
+        <div class="swatch" style="background:#0f172a">#0f172a</div>
+      </div>
+    </div>
+    <pre><code>.hex-full { color: #ff0000; }         /* Full notation */
+.hex-short { color: #f00; }            /* Shorthand */
+.hex-alpha { color: #ff000080; }       /* 50% alpha */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: RGB / RGBA</h2>
+    <p>RGB defines colors by red, green, blue channels (0–255 each). RGBA adds an alpha channel for opacity.</p>
+    <div class="demo-output">
+      <div class="swatch-grid">
+        <div class="swatch" style="background:rgb(255,0,0)">rgb(255,0,0)</div>
+        <div class="swatch" style="background:rgb(0,200,100)">rgb(0,200,100)</div>
+        <div class="swatch" style="background:rgb(48,105,254)">rgb(48,105,254)</div>
+        <div class="swatch" style="background:rgba(48,105,254,0.5)">rgba(..,0.5)</div>
+      </div>
+      <div class="alpha-strip">
+        <div class="alpha-step" style="background:rgba(6,182,212,1.0)">1.0</div>
+        <div class="alpha-step" style="background:rgba(6,182,212,0.8)">0.8</div>
+        <div class="alpha-step" style="background:rgba(6,182,212,0.6)">0.6</div>
+        <div class="alpha-step" style="background:rgba(6,182,212,0.4)">0.4</div>
+        <div class="alpha-step" style="background:rgba(6,182,212,0.2);color:#0f172a;text-shadow:none">0.2</div>
+        <div class="alpha-step" style="background:rgba(6,182,212,0.1);color:#0f172a;text-shadow:none">0.1</div>
+      </div>
+    </div>
+    <pre><code>.solid { background: rgb(255, 0, 0); }
+.translucent { background: rgba(48, 105, 254, 0.5); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: HSL / HSLA</h2>
+    <p>HSL uses hue (0–360°), saturation (0–100%), and lightness (0–100%). HSLA adds alpha.</p>
+    <div class="demo-output">
+      <div class="swatch-grid">
+        <div class="swatch" style="background:hsl(0,100%,50%)">hsl(0,100%,50%)</div>
+        <div class="swatch" style="background:hsl(120,60%,50%)">hsl(120,60%,50%)</div>
+        <div class="swatch" style="background:hsl(240,80%,60%)">hsl(240,80%,60%)</div>
+        <div class="swatch" style="background:hsl(0,80%,70%)">hsl(0,80%,70%)</div>
+        <div class="swatch" style="background:hsl(0,80%,30%)">hsl(0,80%,30%)</div>
+        <div class="swatch" style="background:hsla(240,80%,60%,0.5)">hsla(..,0.5)</div>
+      </div>
+    </div>
+    <pre><code>.vivid { background: hsl(0, 100%, 50%); }      /* Pure red */
+.muted { background: hsl(0, 50%, 70%); }        /* Washed-out red */
+.translucent { background: hsla(240, 80%, 60%, 0.5); }</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: currentColor</h2>
+    <p><code>currentColor</code> refers to the element's computed <code>color</code> value. Change it once and all uses update.</p>
+    <div class="demo-output">
+      <div class="currentcolor-demo" style="color:#ef4444">
+        <strong style="font-size:1.1rem">Red theme</strong><br>
+        Border uses <code>currentColor</code> — matches this text color.
+      </div>
+      <div class="currentcolor-demo" style="color:#06b6d4">
+        <strong style="font-size:1.1rem">Cyan theme</strong><br>
+        Same CSS, different <code>color</code> — border updates automatically.
+      </div>
+    </div>
+    <pre><code>.card {
+  color: #ef4444;
+  border: 3px solid currentColor;  /* Matches text color */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Opacity</h2>
+    <p>The <code>opacity</code> property makes the entire element (and its children) translucent.</p>
+    <div class="demo-output">
+      <div class="opacity-box">
+        <span style="opacity:1.0">100%</span>
+        <span style="opacity:0.8">80%</span>
+        <span style="opacity:0.6">60%</span>
+        <span style="opacity:0.4">40%</span>
+        <span style="opacity:0.2">20%</span>
+      </div>
+    </div>
+    <pre><code>.faded { opacity: 0.5; }  /* Element and children at 50% */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Modern Color Spaces (OKLCH, P3)</h2>
+    <p>Modern CSS supports wider gamut color spaces like <code>oklch()</code> and <code>color()</code> for more vibrant colors.</p>
+    <div class="demo-output">
+      <div class="swatch-grid">
+        <div class="swatch" style="background:oklch(0.6, 0.2, 25)">oklch()</div>
+        <div class="swatch" style="background:color(srgb 1 0.2 0.3)">color(srgb)</div>
+        <div class="swatch" style="background:color(display-p3 1 0.2 0.3)">color(p3)</div>
+      </div>
+    </div>
+    <pre><code>.oklch { background: oklch(0.6, 0.2, 25); }
+.p3 { background: color(display-p3 1 0.2 0.3); }</code></pre>
+  </div>
+
+</body>
+</html>

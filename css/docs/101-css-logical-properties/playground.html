@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Logical Properties - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #1e1e2e; color: #cdd6f4; padding: 1.5rem; }
+    h1 { color: #89b4fa; margin-bottom: 1rem; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+    .panel { background: #313244; border-radius: 12px; padding: 1.5rem; border: 1px solid #45475a; }
+    .preview-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 500px; position: relative; }
+
+    .control-group { margin-bottom: 1rem; }
+    .control-group label { display: block; color: #a6e3a1; font-weight: 700; margin-bottom: 0.25rem; font-size: 0.85rem; }
+    .control-group select, .control-group input[type="text"] { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #45475a; background: #181825; color: #cdd6f4; font-family: monospace; }
+    .control-group input[type="range"] { width: 100%; }
+
+    .row { display: flex; gap: 0.75rem; }
+    .row > div { flex: 1; }
+
+    .toggle-btns { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .toggle-btns button { flex: 1; padding: 8px; border: 2px solid #45475a; border-radius: 6px; cursor: pointer; background: #181825; color: #cdd6f4; font-weight: 600; transition: all 0.2s; }
+    .toggle-btns button.active { border-color: #89b4fa; background: #89b4fa; color: #1e1e2e; }
+
+    #demoBox {
+      inline-size: 200px;
+      block-size: 200px;
+      background: linear-gradient(135deg, #89b4fa, #cba6f7);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e1e2e;
+      font-weight: 700;
+      text-align: center;
+      padding: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .code-output { background: #181825; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-family: monospace; font-size: 0.8rem; white-space: pre-wrap; border: 1px solid #45475a; max-height: 200px; overflow-y: auto; }
+
+    button.primary { background: #89b4fa; color: #1e1e2e; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 700; margin-top: 0.5rem; width: 100%; }
+    button.primary:hover { background: #b4d0fb; }
+
+    .badge { position: absolute; background: #f38ba8; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; color: #1e1e2e; transition: all 0.3s ease; }
+  </style>
+</head>
+<body>
+  <h1>CSS Logical Properties Playground</h1>
+
+  <div class="toggle-btns">
+    <button id="ltrBtn" class="active" onclick="setDir('ltr')">LTR (English)</button>
+    <button id="rtlBtn" onclick="setDir('rtl')">RTL (Arabic / Hebrew)</button>
+    <button id="vertBtn" onclick="setDir('vertical')">Vertical (Japanese)</button>
+  </div>
+
+  <div class="container">
+    <div class="panel">
+      <h2 style="color:#a6e3a1;margin-bottom:1rem;">Controls</h2>
+
+      <div class="control-group">
+        <label>Apply Logical Property</label>
+        <select id="propSelect">
+          <option value="margin-inline: auto">margin-inline: auto (center)</option>
+          <option value="padding-inline: 20px">padding-inline: 20px</option>
+          <option value="padding-block: 30px">padding-block: 30px</option>
+          <option value="border-inline-start: 5px solid #f38ba8">border-inline-start: 5px solid #f38ba8</option>
+          <option value="border-inline-end: 5px solid #a6e3a1">border-inline-end: 5px solid #a6e3a1</option>
+          <option value="border-block-start: 5px solid #f9e2af">border-block-start: 5px solid #f9e2af</option>
+          <option value="inset-inline-start: 20px">inset-inline-start: 20px (position)</option>
+          <option value="inset-inline-end: 20px">inset-inline-end: 20px (position)</option>
+          <option value="text-align: start">text-align: start</option>
+          <option value="text-align: end">text-align: end</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="control-group">
+          <label>Inline Size (width)</label>
+          <input type="range" id="inlineSize" min="100" max="400" value="200">
+          <span id="inlineSizeVal">200px</span>
+        </div>
+        <div class="control-group">
+          <label>Block Size (height)</label>
+          <input type="range" id="blockSize" min="100" max="400" value="200">
+          <span id="blockSizeVal">200px</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="control-group">
+          <label>Border Start-Start Radius</label>
+          <input type="range" id="radStartStart" min="0" max="60" value="16">
+          <span id="radStartStartVal">16px</span>
+        </div>
+        <div class="control-group">
+          <label>Border End-End Radius</label>
+          <input type="range" id="radEndEnd" min="0" max="60" value="16">
+          <span id="radEndEndVal">16px</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Margin Inline Auto</label>
+        <select id="marginInline">
+          <option value="0">No</option>
+          <option value="auto" selected>Yes (auto center)</option>
+        </select>
+      </div>
+
+      <button class="primary" id="resetBtn">Reset to Defaults</button>
+    </div>
+
+    <div class="panel preview-panel" id="previewRoot">
+      <div id="demoBox">
+        Logical Box<br>
+        <span style="font-size:0.75rem;font-weight:400;">Resize me!</span>
+      </div>
+      <div class="badge" id="badgeEl">Badge</div>
+    </div>
+  </div>
+
+  <div class="code-output" id="codeOutput">/* CSS generated by controls */</div>
+
+  <script>
+    const demoBox = document.getElementById('demoBox');
+    const previewRoot = document.getElementById('previewRoot');
+    const badge = document.getElementById('badgeEl');
+    const inlineSize = document.getElementById('inlineSize');
+    const inlineSizeVal = document.getElementById('inlineSizeVal');
+    const blockSize = document.getElementById('blockSize');
+    const blockSizeVal = document.getElementById('blockSizeVal');
+    const radStartStart = document.getElementById('radStartStart');
+    const radStartStartVal = document.getElementById('radStartStartVal');
+    const radEndEnd = document.getElementById('radEndEnd');
+    const radEndEndVal = document.getElementById('radEndEndVal');
+    const propSelect = document.getElementById('propSelect');
+    const marginInline = document.getElementById('marginInline');
+    const codeOutput = document.getElementById('codeOutput');
+    const resetBtn = document.getElementById('resetBtn');
+    const ltrBtn = document.getElementById('ltrBtn');
+    const rtlBtn = document.getElementById('rtlBtn');
+    const vertBtn = document.getElementById('vertBtn');
+
+    let currentDir = 'ltr';
+
+    function update() {
+      const is = inlineSize.value;
+      const bs = blockSize.value;
+      const rss = radStartStart.value;
+      const ree = radEndEnd.value;
+      const prop = propSelect.value;
+      const mi = marginInline.value;
+
+      inlineSizeVal.textContent = is + 'px';
+      blockSizeVal.textContent = bs + 'px';
+      radStartStartVal.textContent = rss + 'px';
+      radEndEndVal.textContent = ree + 'px';
+
+      // Reset demo box styles we control
+      demoBox.style.inlineSize = is + 'px';
+      demoBox.style.blockSize = bs + 'px';
+      demoBox.style.borderStartStartRadius = rss + 'px';
+      demoBox.style.borderEndEndRadius = ree + 'px';
+      demoBox.style.marginInline = mi;
+      demoBox.style.paddingInline = '';
+      demoBox.style.paddingBlock = '';
+      demoBox.style.borderInlineStart = '';
+      demoBox.style.borderInlineEnd = '';
+      demoBox.style.borderBlockStart = '';
+      demoBox.style.textAlign = '';
+      demoBox.style.insetInlineStart = '';
+      demoBox.style.insetInlineEnd = '';
+
+      // Apply selected property
+      const [propName, ...propValParts] = prop.split(': ');
+      const propVal = propValParts.join(': ');
+
+      switch (propName) {
+        case 'padding-inline': demoBox.style.paddingInline = propVal; break;
+        case 'padding-block': demoBox.style.paddingBlock = propVal; break;
+        case 'border-inline-start': demoBox.style.borderInlineStart = propVal; break;
+        case 'border-inline-end': demoBox.style.borderInlineEnd = propVal; break;
+        case 'border-block-start': demoBox.style.borderBlockStart = propVal; break;
+        case 'inset-inline-start':
+          demoBox.style.position = 'absolute';
+          demoBox.style.insetInlineStart = propVal;
+          break;
+        case 'inset-inline-end':
+          demoBox.style.position = 'absolute';
+          demoBox.style.insetInlineEnd = propVal;
+          break;
+        case 'text-align': demoBox.style.textAlign = propVal; break;
+        case 'margin-inline': break; // already applied
+      }
+
+      // Badge positioning using logical properties
+      badge.style.insetBlockStart = '12px';
+      if (currentDir === 'rtl') {
+        badge.style.insetInlineStart = '12px';
+        badge.style.insetInlineEnd = 'auto';
+        badge.textContent = 'وسام';
+      } else {
+        badge.style.insetInlineEnd = '12px';
+        badge.style.insetInlineStart = 'auto';
+        badge.textContent = 'Badge';
+      }
+
+      const lines = [
+        `/* Writing Mode & Direction */`,
+        `html { direction: ${currentDir === 'rtl' ? 'rtl' : 'ltr'}; }`,
+        currentDir === 'vertical' ? `html { writing-mode: vertical-rl; }` : '',
+        ``,
+        `/* Element Styles */`,
+        `#demoBox {`,
+        `  inline-size: ${is}px;`,
+        `  block-size: ${bs}px;`,
+        `  border-start-start-radius: ${rss}px;`,
+        `  border-end-end-radius: ${ree}px;`,
+        mi !== '0' ? `  margin-inline: ${mi};` : '',
+        prop !== 'margin-inline: auto' ? `  ${prop};` : '',
+        `}`,
+        ``,
+        `/* Badge uses logical positioning */`,
+        `#badge {`,
+        `  position: absolute;`,
+        `  inset-block-start: 12px;`,
+        currentDir === 'rtl' ? `  inset-inline-start: 12px;` : `  inset-inline-end: 12px;`,
+        `}`
+      ];
+
+      codeOutput.textContent = lines.filter(l => l !== '').join('\n');
+    }
+
+    function setDir(dir) {
+      currentDir = dir;
+      ltrBtn.classList.toggle('active', dir === 'ltr');
+      rtlBtn.classList.toggle('active', dir === 'rtl');
+      vertBtn.classList.toggle('active', dir === 'vertical');
+
+      if (dir === 'vertical') {
+        previewRoot.style.writingMode = 'vertical-rl';
+        previewRoot.style.direction = 'ltr';
+      } else {
+        previewRoot.style.writingMode = 'horizontal-tb';
+        previewRoot.style.direction = dir === 'rtl' ? 'rtl' : 'ltr';
+      }
+      update();
+    }
+
+    [inlineSize, blockSize, radStartStart, radEndEnd, propSelect, marginInline].forEach(el => el.addEventListener('input', update));
+    [inlineSize, blockSize, radStartStart, radEndEnd].forEach(el => el.addEventListener('input', update));
+
+    resetBtn.addEventListener('click', () => {
+      inlineSize.value = '200';
+      blockSize.value = '200';
+      radStartStart.value = '16';
+      radEndEnd.value = '16';
+      propSelect.selectedIndex = 0;
+      marginInline.value = 'auto';
+      setDir('ltr');
+    });
+
+    update();
+  </script>
+</body>
+</html>

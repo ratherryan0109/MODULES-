@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Mastery Course</title>
+<meta name="description" content="Interactive JavaScript Mastery Course - 155 modules covering everything from fundamentals to advanced projects">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #d97706;
+  --primary-dark: #b45309;
+  --primary-light: #fde68a;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --success: #16a34a;
+  --error: #dc2626;
+  --warning: #d97706;
+  --glass-bg: rgba(255,255,255,0.7);
+  --glass-border: rgba(0,0,0,0.06);
+  --glass-shadow: 0 8px 32px rgba(217,119,6,0.1);
+  --radius: 16px;
+  --transition: 0.3s ease;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow: hidden;
+}
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+.blob-1 { width: 500px; height: 500px; background: rgba(217,119,6,0.06); top: -200px; left: -150px; animation: floatBlob 10s ease-in-out infinite 0s; }
+.blob-2 { width: 400px; height: 400px; background: rgba(217,119,6,0.04); top: -100px; right: -100px; animation: floatBlob 10s ease-in-out infinite -2.5s; }
+.blob-3 { width: 450px; height: 450px; background: rgba(217,119,6,0.06); bottom: -150px; left: -100px; animation: floatBlob 10s ease-in-out infinite -5s; }
+.blob-4 { width: 350px; height: 350px; background: rgba(217,119,6,0.04); bottom: -80px; right: -80px; animation: floatBlob 10s ease-in-out infinite -7.5s; }
+@keyframes floatBlob {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(30px,-50px) scale(1.1); }
+  50% { transform: translate(-20px,20px) scale(0.9); }
+  75% { transform: translate(40px,30px) scale(1.05); }
+}
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+}
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all var(--transition);
+}
+.glass-card:hover {
+  box-shadow: var(--glass-shadow);
+  border-color: rgba(217,119,6,0.2);
+}
+.app { display: flex; height: 100vh; position: relative; z-index: 1; }
+.app-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 60px;
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0 1.5rem;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.app-header h1 {
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--primary); flex: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.app-header .js-badge {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+}
+.app-header .progress-badge {
+  font-size: 0.8rem; color: var(--text-secondary);
+  background: rgba(0,0,0,0.04); padding: 4px 12px;
+  border-radius: 20px; border: 1px solid rgba(0,0,0,0.06);
+  white-space: nowrap;
+}
+.hamburger {
+  display: none; background: none; border: none;
+  font-size: 1.5rem; color: var(--text); cursor: pointer;
+}
+.sidebar {
+  width: 300px; flex-shrink: 0;
+  margin-top: 60px;
+  padding: 1rem;
+  overflow-y: auto;
+  height: calc(100vh - 60px);
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+  z-index: 50;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(217,119,6,0.2); border-radius: 3px; }
+.sidebar .sidebar-label {
+  font-size: 0.7rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text-muted);
+  padding: 0.5rem 0.75rem 0.25rem;
+}
+.sidebar .section-label {
+  font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--primary);
+  padding: 0.75rem 0.75rem 0.25rem;
+  font-weight: 700;
+  opacity: 0.7;
+}
+.module-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.5rem 0.75rem; border-radius: 10px;
+  cursor: pointer; transition: all var(--transition);
+  border-left: 3px solid transparent;
+  text-decoration: none; color: var(--text-secondary);
+  font-size: 0.82rem; line-height: 1.3;
+}
+.module-item:hover {
+  background: rgba(217,119,6,0.06);
+  transform: translateX(2px);
+  color: var(--text);
+}
+.module-item.active {
+  background: rgba(217,119,6,0.1);
+  border-left-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+.module-item .num {
+  font-size: 0.65rem; font-weight: 700; color: var(--text-muted);
+  width: 24px; text-align: right; flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.module-item.active .num { color: var(--primary); }
+.module-item .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--text-muted); flex-shrink: 0;
+  transition: all var(--transition);
+}
+.module-item.active .dot { background: var(--primary); box-shadow: 0 0 8px rgba(217,119,6,0.3); }
+.module-item.visited .dot { background: var(--success); }
+.content {
+  flex: 1; margin-top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  padding: 1.5rem 2rem 4rem;
+}
+.content::-webkit-scrollbar { width: 8px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb { background: rgba(217,119,6,0.15); border-radius: 4px; }
+.tab-bar {
+  display: flex; gap: 0.25rem;
+  margin-bottom: 1.5rem; padding: 4px;
+  background: rgba(0,0,0,0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  overflow-x: auto; white-space: nowrap;
+}
+.tab-bar::-webkit-scrollbar { height: 3px; }
+.tab-bar::-webkit-scrollbar-thumb { background: rgba(217,119,6,0.2); border-radius: 2px; }
+.tab-btn {
+  padding: 0.6rem 1.2rem; border: none; border-radius: 8px;
+  background: transparent; color: var(--text-secondary);
+  font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: all var(--transition);
+  font-family: inherit; flex-shrink: 0;
+}
+.tab-btn:hover { color: var(--primary); background: rgba(217,119,6,0.06); }
+.tab-btn.active {
+  background: rgba(217,119,6,0.12);
+  color: var(--primary);
+  box-shadow: 0 2px 8px rgba(217,119,6,0.15);
+}
+.content-panel { display: none; }
+.content-panel.active { display: block; }
+.lesson h1 { font-size: clamp(1.8rem,4vw,2.8rem); color: var(--primary); margin-bottom: 0.75rem; font-weight: 800; letter-spacing: -0.02em; }
+.lesson h2 { font-size: 1.4rem; color: var(--text); margin: 1.5rem 0 0.5rem; font-weight: 700; }
+.lesson h3 { font-size: 1.15rem; color: var(--text-secondary); margin: 1.2rem 0 0.4rem; font-weight: 600; }
+.lesson p { margin-bottom: 0.8rem; line-height: 1.7; color: var(--text); }
+.lesson ul, .lesson ol { margin: 0.5rem 0 1rem 1.5rem; line-height: 1.7; }
+.lesson li { margin-bottom: 0.25rem; }
+.lesson strong { color: var(--primary-dark); font-weight: 700; }
+.lesson em { font-style: italic; color: var(--text-secondary); }
+.lesson a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.lesson a:hover { color: var(--primary-dark); }
+.lesson blockquote {
+  border-left: 4px solid var(--primary);
+  padding: 0.75rem 1rem; margin: 1rem 0;
+  background: rgba(217,119,6,0.06);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+}
+.lesson pre {
+  background: #f1f5f9;
+  border-radius: 10px; padding: 1rem; overflow-x: auto;
+  margin: 0.75rem 0; border: 1px solid rgba(0,0,0,0.06);
+}
+.lesson code {
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85em;
+}
+.lesson p code, .lesson li code {
+  background: rgba(217,119,6,0.1);
+  padding: 2px 6px; border-radius: 4px;
+  color: var(--primary);
+}
+.lesson table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  margin: 1rem 0; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.lesson th, .lesson td {
+  padding: 0.65rem 1rem; text-align: left;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.lesson th { background: rgba(217,119,6,0.08); font-weight: 700; color: var(--primary); }
+.lesson tr:last-child td { border-bottom: none; }
+.lesson tr:hover td { background: rgba(0,0,0,0.02); }
+.lesson img { max-width: 100%; border-radius: 10px; margin: 1rem 0; }
+.lesson hr { border: none; height: 1px; background: rgba(0,0,0,0.06); margin: 1.5rem 0; }
+.examples-content iframe.example-frame {
+  width: 100%; border: none; border-radius: 10px;
+  background: transparent; min-height: 300px;
+  margin-bottom: 1rem;
+}
+.examples-content .example-container { margin-bottom: 1.5rem; }
+.quiz-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.quiz-header .score { font-weight: 700; color: var(--primary); }
+.quiz-question {
+  margin-bottom: 1rem; padding: 1.25rem;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.quiz-question .q-text { font-weight: 600; margin-bottom: 0.75rem; font-size: 1rem; }
+.quiz-question .q-num { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; margin-right: 0.5rem; }
+.quiz-option {
+  display: block; width: 100%; text-align: left;
+  padding: 0.6rem 1rem; margin-bottom: 0.4rem;
+  border-radius: 8px; border: 1px solid rgba(0,0,0,0.08);
+  background: transparent;
+  cursor: pointer; transition: all var(--transition);
+  font-family: inherit; font-size: 0.9rem; color: var(--text);
+}
+.quiz-option:hover { background: rgba(217,119,6,0.06); border-color: rgba(217,119,6,0.2); }
+.quiz-option.selected { background: rgba(217,119,6,0.1); border-color: var(--primary); }
+.quiz-option.correct { background: rgba(22,163,74,0.1); border-color: var(--success); color: #16a34a; }
+.quiz-option.wrong { background: rgba(220,38,38,0.06); border-color: var(--error); color: #dc2626; }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+.quiz-explanation {
+  margin-top: 0.5rem; padding: 0.75rem 1rem;
+  border-radius: 8px; background: var(--surface);
+  border-left: 3px solid var(--primary);
+  font-size: 0.85rem; color: var(--text-secondary);
+  display: none;
+}
+.quiz-explanation.show { display: block; }
+.challenge-card {
+  margin-bottom: 1.5rem; padding: 1.5rem;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.challenge-card .challenge-tag {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; margin-bottom: 0.5rem;
+}
+.challenge-card.easy .challenge-tag { background: rgba(22,163,74,0.1); color: #16a34a; }
+.challenge-card.medium .challenge-tag { background: rgba(217,119,6,0.1); color: #d97706; }
+.challenge-card.hard .challenge-tag { background: rgba(220,38,38,0.08); color: #dc2626; }
+.challenge-card .c-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.challenge-card .c-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem; line-height: 1.5; }
+.challenge-card pre {
+  background: #f1f5f9; border-radius: 8px; padding: 0.75rem; overflow-x: auto;
+  font-size: 0.82rem; border: 1px solid rgba(0,0,0,0.06);
+  max-height: 200px; overflow-y: auto;
+}
+.challenge-card .solution-btn {
+  margin-top: 0.5rem; padding: 0.4rem 1rem; border: 1px solid var(--primary);
+  background: transparent; color: var(--primary); border-radius: 8px;
+  cursor: pointer; font-weight: 600; font-size: 0.8rem;
+  transition: all var(--transition); font-family: inherit;
+}
+.challenge-card .solution-btn:hover { background: var(--primary); color: #fff; }
+.challenge-card .solution-content { display: none; margin-top: 0.75rem; }
+.challenge-card .solution-content.show { display: block; }
+.resources-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.resource-card {
+  padding: 1.2rem; border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: all var(--transition);
+  text-decoration: none; color: var(--text); display: block;
+}
+.resource-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(217,119,6,0.08);
+  border-color: rgba(217,119,6,0.15);
+}
+.resource-card .rc-type {
+  display: inline-block; padding: 2px 8px; border-radius: 8px;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  margin-bottom: 0.4rem; letter-spacing: 0.05em;
+}
+.resource-card .rc-type.documentation { background: rgba(37,99,235,0.1); color: #2563eb; }
+.resource-card .rc-type.video { background: rgba(220,38,38,0.06); color: #dc2626; }
+.resource-card .rc-type.article { background: rgba(217,119,6,0.06); color: #d97706; }
+.resource-card .rc-type.tutorial { background: rgba(22,163,74,0.1); color: #16a34a; }
+.resource-card .rc-type.course { background: rgba(124,58,237,0.1); color: #7c3aed; }
+.resource-card .rc-type.newsletter { background: rgba(236,72,153,0.1); color: #ec4899; }
+.resource-card .rc-title { font-weight: 600; font-size: 0.9rem; }
+.resource-card .rc-url { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; word-break: break-all; }
+.videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.25rem; }
+.video-card {
+  border-radius: 12px; overflow: hidden;
+  background: var(--surface);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: all var(--transition);
+}
+.video-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(217,119,6,0.08); }
+.video-card .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+.video-card .video-wrapper iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border: none;
+}
+.video-card .v-info { padding: 0.75rem 1rem; }
+.video-card .v-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.video-card .v-channel { font-size: 0.8rem; color: var(--text-secondary); }
+.video-card .v-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.4; }
+.nav-buttons {
+  display: flex; justify-content: space-between; gap: 1rem;
+  margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.nav-btn {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; border: none; border-radius: 10px;
+  font-weight: 700; font-size: 0.85rem; font-family: inherit;
+  cursor: pointer; transition: all var(--transition);
+  letter-spacing: 0.02em;
+}
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+.nav-btn.primary {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+}
+.nav-btn.primary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(217,119,6,0.35);
+}
+.nav-btn.secondary {
+  background: rgba(0,0,0,0.04);
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.nav-btn.secondary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  background: rgba(0,0,0,0.04);
+}
+.nav-btn .arrow { font-size: 1.1rem; }
+.loading-spinner {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem; gap: 1rem;
+  color: var(--text-muted);
+}
+.loading-spinner .spinner {
+  width: 40px; height: 40px; border: 3px solid rgba(217,119,6,0.1);
+  border-top-color: var(--primary);
+  border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-state { text-align: center; padding: 3rem; color: var(--text-muted); }
+.error-state .error-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.error-state h3 { color: var(--text); margin-bottom: 0.5rem; }
+.error-state p { font-size: 0.9rem; }
+.error-state .server-hint {
+  margin-top: 0.75rem; padding: 0.75rem 1rem;
+  background: rgba(0,0,0,0.04); border-radius: 8px;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.82rem; border: 1px solid rgba(0,0,0,0.08);
+  display: inline-block;
+}
+.empty-state { text-align: center; padding: 3rem; color: var(--text-muted); }
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed; left: 0; top: 60px; bottom: 0;
+    transform: translateX(-100%); width: 280px;
+    background: rgba(248,250,252,0.98);
+    backdrop-filter: blur(20px);
+    z-index: 200;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .hamburger { display: block; }
+  .content { padding: 1rem; }
+  .resources-grid { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .tab-btn { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
+  .nav-buttons { flex-direction: column; }
+  .nav-btn { justify-content: center; }
+  .glass-card { padding: 1.25rem; }
+  .sidebar-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,0.5); }
+  .sidebar-overlay.show { display: block; }
+}
+@media (max-width: 480px) {
+  .content { padding: 0.75rem; }
+  .app-header { padding: 0 0.75rem; }
+  .app-header h1 { font-size: 1rem; }
+  .progress-badge { font-size: 0.7rem; padding: 2px 8px; }
+}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<header class="app-header glass">
+  <button class="hamburger" id="hamburgerBtn" aria-label="Toggle modules menu">☰</button>
+  <span class="js-badge">JS</span>
+  <h1>JavaScript Mastery Course</h1>
+  <span class="progress-badge" id="progressBadge">0 / 155</span>
+</header>
+<div class="app">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-label">Modules</div>
+    <div id="moduleList"></div>
+  </nav>
+  <main class="content" id="content">
+    <div class="tab-bar" id="tabBar">
+      <button class="tab-btn active" data-tab="lesson">Lesson</button>
+      <button class="tab-btn" data-tab="examples">Examples</button>
+      <button class="tab-btn" data-tab="quiz">Quiz</button>
+      <button class="tab-btn" data-tab="challenges">Challenges</button>
+      <button class="tab-btn" data-tab="cheatsheet">Cheatsheet</button>
+      <button class="tab-btn" data-tab="project">Project</button>
+      <button class="tab-btn" data-tab="resources">Resources</button>
+      <button class="tab-btn" data-tab="videos">Videos</button>
+    </div>
+    <div id="panel-lesson" class="content-panel lesson active"></div>
+    <div id="panel-examples" class="content-panel examples-content"></div>
+    <div id="panel-quiz" class="content-panel"></div>
+    <div id="panel-challenges" class="content-panel"></div>
+    <div id="panel-cheatsheet" class="content-panel lesson"></div>
+    <div id="panel-project" class="content-panel lesson"></div>
+    <div id="panel-resources" class="content-panel"></div>
+    <div id="panel-videos" class="content-panel"></div>
+    <div class="nav-buttons">
+      <button class="nav-btn secondary" id="prevBtn"><span class="arrow">◀</span> Previous</button>
+      <button class="nav-btn primary" id="nextBtn">Next <span class="arrow">▶</span></button>
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+const COURSE_PATH = 'JavaScript Mastery Course/';
+const modules = [
+  {num:"01",title:"Introduction to JavaScript",folder:"01-Introduction-to-JavaScript",section:"JS Fundamentals"},
+  {num:"02",title:"JS Setup & Environment",folder:"02-Setting-Up-Development-Environment",section:"JS Fundamentals"},
+  {num:"03",title:"JavaScript Syntax",folder:"03-JavaScript-Variables-and-Constants",section:"JS Fundamentals"},
+  {num:"04",title:"Variables",folder:"04-JavaScript-Data-Types",section:"JS Fundamentals"},
+  {num:"05",title:"Data Types",folder:"05-JavaScript-Operators",section:"JS Fundamentals"},
+  {num:"06",title:"Type Conversion",folder:"06-JavaScript-Strings",section:"JS Fundamentals"},
+  {num:"07",title:"Operators",folder:"07-JavaScript-Numbers-and-Math",section:"JS Fundamentals"},
+  {num:"08",title:"User Input & Output",folder:"08-JavaScript-Booleans-and-Comparisons",section:"JS Fundamentals"},
+  {num:"09",title:"Comments",folder:"09-JavaScript-Control-Flow-if-else",section:"JS Fundamentals"},
+  {num:"10",title:"Template Literals",folder:"10-JavaScript-Switch-Statement",section:"JS Fundamentals"},
+  {num:"11",title:"Strings",folder:"11-JavaScript-Ternary-Operator",section:"JS Fundamentals"},
+  {num:"12",title:"Numbers",folder:"12-JavaScript-Loops-while-and-do-while",section:"JS Fundamentals"},
+  {num:"13",title:"Math Object",folder:"13-JavaScript-For-Loop",section:"JS Fundamentals"},
+  {num:"14",title:"Booleans",folder:"14-JavaScript-Break-and-Continue",section:"JS Fundamentals"},
+  {num:"15",title:"Null & Undefined",folder:"15-JavaScript-Functions-Basics",section:"JS Fundamentals"},
+  {num:"16",title:"Conditional Statements",folder:"16-JavaScript-Function-Expressions",section:"Control Flow"},
+  {num:"17",title:"if Statement",folder:"17-JavaScript-Arrow-Functions",section:"Control Flow"},
+  {num:"18",title:"if else Statement",folder:"18-JavaScript-Parameters-and-Arguments",section:"Control Flow"},
+  {num:"19",title:"Else if Ladder",folder:"19-JavaScript-Return-Statement",section:"Control Flow"},
+  {num:"20",title:"Switch Statement",folder:"20-JavaScript-Scope-and-Closures",section:"Control Flow"},
+  {num:"21",title:"Ternary Operator",folder:"21-JavaScript-Hoisting",section:"Control Flow"},
+  {num:"22",title:"Logical Operators",folder:"22-JavaScript-IIFE",section:"Control Flow"},
+  {num:"23",title:"Truthy & Falsy Values",folder:"23-JavaScript-Callback-Functions",section:"Control Flow"},
+  {num:"24",title:"Loops Introduction",folder:"24-JavaScript-Higher-Order-Functions",section:"Control Flow"},
+  {num:"25",title:"For Loop",folder:"25-JavaScript-Recursion",section:"Control Flow"},
+  {num:"26",title:"While Loop",folder:"26-JavaScript-Arrays-Basics",section:"Control Flow"},
+  {num:"27",title:"Do While Loop",folder:"27-JavaScript-Array-Methods-Part-1",section:"Control Flow"},
+  {num:"28",title:"Break Statement",folder:"28-JavaScript-Array-Methods-Part-2",section:"Control Flow"},
+  {num:"29",title:"Continue Statement",folder:"29-JavaScript-Array-Sorting",section:"Control Flow"},
+  {num:"30",title:"Nested Loops",folder:"30-JavaScript-Objects-Basics",section:"Control Flow"},
+  {num:"31",title:"Functions Introduction",folder:"31-JavaScript-Object-Properties",section:"Functions"},
+  {num:"32",title:"Function Declaration",folder:"32-JavaScript-Object-Prototypes",section:"Functions"},
+  {num:"33",title:"Function Expressions",folder:"33-JavaScript-this-Keyword",section:"Functions"},
+  {num:"34",title:"Arrow Functions",folder:"34-JavaScript-Call-Apply-Bind",section:"Functions"},
+  {num:"35",title:"Parameters & Arguments",folder:"35-JavaScript-Constructor-Functions",section:"Functions"},
+  {num:"36",title:"Return Statement",folder:"36-JavaScript-ES6-Classes",section:"Functions"},
+  {num:"37",title:"Scope",folder:"37-JavaScript-Class-Inheritance",section:"Functions"},
+  {num:"38",title:"Closures",folder:"38-JavaScript-Error-Handling",section:"Functions"},
+  {num:"39",title:"Callback Functions",folder:"39-JavaScript-Debugging-Techniques",section:"Functions"},
+  {num:"40",title:"Higher Order Functions",folder:"40-JavaScript-Strict-Mode",section:"Functions"},
+  {num:"41",title:"Arrays Introduction",folder:"41-JavaScript-DOM-Introduction",section:"Arrays"},
+  {num:"42",title:"Array Methods",folder:"42-JavaScript-DOM-Selectors",section:"Arrays"},
+  {num:"43",title:"Push Pop Shift Unshift",folder:"43-JavaScript-DOM-Traversal",section:"Arrays"},
+  {num:"44",title:"Slice & Splice",folder:"44-JavaScript-DOM-Manipulation",section:"Arrays"},
+  {num:"45",title:"Map",folder:"45-JavaScript-DOM-Attributes",section:"Arrays"},
+  {num:"46",title:"Filter",folder:"46-JavaScript-DOM-Events",section:"Arrays"},
+  {num:"47",title:"Reduce",folder:"47-JavaScript-Event-Delegation",section:"Arrays"},
+  {num:"48",title:"Find & FindIndex",folder:"48-JavaScript-Keyboard-and-Mouse-Events",section:"Arrays"},
+  {num:"49",title:"Some & Every",folder:"49-JavaScript-Form-Events",section:"Arrays"},
+  {num:"50",title:"Sorting Arrays",folder:"50-JavaScript-BOM",section:"Arrays"},
+  {num:"51",title:"Objects Introduction",folder:"51-JavaScript-Timers-and-Intervals",section:"Objects"},
+  {num:"52",title:"Object Properties",folder:"52-JavaScript-JSON",section:"Objects"},
+  {num:"53",title:"Object Methods",folder:"53-JavaScript-Date-and-Time",section:"Objects"},
+  {num:"54",title:"This Keyword",folder:"54-JavaScript-Math-and-Random",section:"Objects"},
+  {num:"55",title:"Object Destructuring",folder:"55-JavaScript-Symbols",section:"Objects"},
+  {num:"56",title:"Keys Values Entries",folder:"56-JavaScript-Maps-and-Sets",section:"Objects"},
+  {num:"57",title:"Object Cloning",folder:"57-JavaScript-Number-and-Math-Methods",section:"Objects"},
+  {num:"58",title:"Optional Chaining",folder:"58-JavaScript-String-Methods-Deep-Dive",section:"Objects"},
+  {num:"59",title:"Spread Operator",folder:"59-JavaScript-Array-Destructuring",section:"Objects"},
+  {num:"60",title:"Rest Operator",folder:"60-JavaScript-Object-Destructuring",section:"Objects"},
+  {num:"61",title:"DOM Introduction",folder:"61-JavaScript-Spread-and-Rest-Operators",section:"DOM"},
+  {num:"62",title:"Selecting Elements",folder:"62-JavaScript-Iterables-and-Iterators",section:"DOM"},
+  {num:"63",title:"DOM Traversal",folder:"63-JavaScript-Generators",section:"DOM"},
+  {num:"64",title:"Changing Content",folder:"64-JavaScript-Async-Await",section:"DOM"},
+  {num:"65",title:"Changing Styles",folder:"65-JavaScript-Promises",section:"DOM"},
+  {num:"66",title:"Creating Elements",folder:"66-JavaScript-Callback-to-Promise-to-Async",section:"DOM"},
+  {num:"67",title:"Removing Elements",folder:"67-JavaScript-Fetch-API",section:"DOM"},
+  {num:"68",title:"DOM Events",folder:"68-JavaScript-Error-Handling-in-Async",section:"DOM"},
+  {num:"69",title:"Event Listeners",folder:"69-JavaScript-Modules-ES6",section:"DOM"},
+  {num:"70",title:"Event Bubbling",folder:"70-JavaScript-CommonJS-vs-ESM",section:"DOM"},
+  {num:"71",title:"Event Delegation",folder:"71-JavaScript-Web-Storage",section:"DOM"},
+  {num:"72",title:"Forms & Validation",folder:"72-JavaScript-Template-Literals",section:"DOM"},
+  {num:"73",title:"Window Object",folder:"73-JavaScript-Enhanced-Object-Literals",section:"Browser APIs"},
+  {num:"74",title:"Navigator Object",folder:"74-JavaScript-Destructuring-Assignment",section:"Browser APIs"},
+  {num:"75",title:"Location Object",folder:"75-JavaScript-Short-Circuiting-and-Nullish",section:"Browser APIs"},
+  {num:"76",title:"History API",folder:"76-JavaScript-Proxy-and-Reflect",section:"Browser APIs"},
+  {num:"77",title:"Timers",folder:"77-JavaScript-Symbols-and-Meta-Programming",section:"Browser APIs"},
+  {num:"78",title:"Local Storage",folder:"78-JavaScript-Property-Descriptors",section:"Browser APIs"},
+  {num:"79",title:"Session Storage",folder:"79-JavaScript-Garbage-Collection",section:"Browser APIs"},
+  {num:"80",title:"Cookies",folder:"80-JavaScript-This-Binding-Patterns",section:"Browser APIs"},
+  {num:"81",title:"Geolocation API",folder:"81-JavaScript-Function-Composition",section:"Browser APIs"},
+  {num:"82",title:"Clipboard API",folder:"82-JavaScript-Currying",section:"Browser APIs"},
+  {num:"83",title:"Execution Context",folder:"83-JavaScript-Debouncing-and-Throttling",section:"Advanced JS"},
+  {num:"84",title:"Call Stack",folder:"84-JavaScript-Web-Workers",section:"Advanced JS"},
+  {num:"85",title:"Hoisting",folder:"85-JavaScript-Service-Workers",section:"Advanced JS"},
+  {num:"86",title:"Scope Chain",folder:"86-JavaScript-IndexedDB",section:"Advanced JS"},
+  {num:"87",title:"Closures Deep Dive",folder:"87-JavaScript-Cache-API",section:"Advanced JS"},
+  {num:"88",title:"Prototypes",folder:"88-JavaScript-Internationalization",section:"Advanced JS"},
+  {num:"89",title:"Prototype Inheritance",folder:"89-JavaScript-Regular-Expressions",section:"Advanced JS"},
+  {num:"90",title:"Classes",folder:"90-JavaScript-Typed-Arrays",section:"Advanced JS"},
+  {num:"91",title:"Constructor Functions",folder:"91-JavaScript-ES6-Features",section:"Advanced JS"},
+  {num:"92",title:"ES6 Modules",folder:"92-JavaScript-ES7-ES8-Features",section:"Advanced JS"},
+  {num:"93",title:"Iterators",folder:"93-JavaScript-ES9-ES10-Features",section:"Advanced JS"},
+  {num:"94",title:"Generators",folder:"94-JavaScript-ES11-ES12-Features",section:"Advanced JS"},
+  {num:"95",title:"Symbols",folder:"95-JavaScript-ES13-ES14-Features",section:"Advanced JS"},
+  {num:"96",title:"BigInt",folder:"96-JavaScript-Pattern-Matching",section:"Advanced JS"},
+  {num:"97",title:"Async Programming",folder:"97-JavaScript-Event-Loop",section:"Async JS"},
+  {num:"98",title:"Callbacks",folder:"98-JavaScript-Microtasks-vs-Macrotasks",section:"Async JS"},
+  {num:"99",title:"Callback Hell",folder:"99-JavaScript-Memory-Management",section:"Async JS"},
+  {num:"100",title:"Promises",folder:"100-JavaScript-Performance-Optimization",section:"Async JS"},
+  {num:"101",title:"Promise Chaining",folder:"101-JavaScript-Data-Structures",section:"Async JS"},
+  {num:"102",title:"Async Await",folder:"102-JavaScript-Algorithms-Basics",section:"Async JS"},
+  {num:"103",title:"Fetch API",folder:"103-JavaScript-Recursion-and-Backtracking",section:"Async JS"},
+  {num:"104",title:"Error Handling",folder:"104-JavaScript-Sorting-Algorithms",section:"Async JS"},
+  {num:"105",title:"Try Catch Finally",folder:"105-JavaScript-Searching-Algorithms",section:"Async JS"},
+  {num:"106",title:"Promise.all",folder:"106-JavaScript-Dynamic-Programming",section:"Async JS"},
+  {num:"107",title:"Promise.race",folder:"107-JavaScript-Testing-Basics",section:"Async JS"},
+  {num:"108",title:"API Integration",folder:"108-JavaScript-Jest-Testing",section:"Async JS"},
+  {num:"109",title:"let and const",folder:"109-JavaScript-NodeJS-Basics",section:"Modern JS"},
+  {num:"110",title:"Destructuring",folder:"110-JavaScript-Error-Handling-Advanced",section:"Modern JS"},
+  {num:"111",title:"Spread Operator",folder:"111-JavaScript-Design-Patterns",section:"Modern JS"},
+  {num:"112",title:"Rest Parameters",folder:"112-JavaScript-Observer-Pattern",section:"Modern JS"},
+  {num:"113",title:"Template Literals",folder:"113-JavaScript-Singleton-and-Factory",section:"Modern JS"},
+  {num:"114",title:"Default Parameters",folder:"114-JavaScript-Module-Patterns",section:"Modern JS"},
+  {num:"115",title:"Optional Chaining",folder:"115-JavaScript-Security-Basics",section:"Modern JS"},
+  {num:"116",title:"Nullish Coalescing",folder:"116-JavaScript-Authentication-and-Authorization",section:"Modern JS"},
+  {num:"117",title:"Dynamic Imports",folder:"117-JavaScript-WebSockets",section:"Modern JS"},
+  {num:"118",title:"Modules",folder:"118-JavaScript-Server-Sent-Events",section:"Modern JS"},
+  {num:"119",title:"Arrays in DSA",folder:"119-JavaScript-GraphQL-Basics",section:"DSA"},
+  {num:"120",title:"Strings in DSA",folder:"120-JavaScript-REST-API-Integration",section:"DSA"},
+  {num:"121",title:"Hash Maps",folder:"121-JavaScript-Data-Visualization",section:"DSA"},
+  {num:"122",title:"Sets",folder:"122-JavaScript-Canvas-API",section:"DSA"},
+  {num:"123",title:"Stacks",folder:"123-JavaScript-SVG-Manipulation",section:"DSA"},
+  {num:"124",title:"Queues",folder:"124-JavaScript-Animation-Basics",section:"DSA"},
+  {num:"125",title:"Linked Lists",folder:"125-JavaScript-Form-Validation",section:"DSA"},
+  {num:"126",title:"Trees",folder:"126-JavaScript-File-API",section:"DSA"},
+  {num:"127",title:"Graphs",folder:"127-JavaScript-Drag-and-Drop",section:"DSA"},
+  {num:"128",title:"Recursion",folder:"128-JavaScript-Cookies-and-Sessions",section:"DSA"},
+  {num:"129",title:"Searching Algorithms",folder:"129-JavaScript-Browser-History-API",section:"DSA"},
+  {num:"130",title:"Sorting Algorithms",folder:"130-JavaScript-Localization",section:"DSA"},
+  {num:"131",title:"Clean Code Practices",folder:"131-JavaScript-Accessibility",section:"Professional"},
+  {num:"132",title:"Debugging Techniques",folder:"132-JavaScript-Responsive-Design",section:"Professional"},
+  {num:"133",title:"Error Handling Strategies",folder:"133-JavaScript-Progressive-Web-Apps",section:"Professional"},
+  {num:"134",title:"Code Optimization",folder:"134-JavaScript-Tools-and-Builders",section:"Professional"},
+  {num:"135",title:"Memory Management",folder:"135-JavaScript-TypeScript-Basics",section:"Professional"},
+  {num:"136",title:"Design Patterns",folder:"136-JavaScript-TypeScript-Advanced",section:"Professional"},
+  {num:"137",title:"MVC Pattern",folder:"137-JavaScript-React-Basics",section:"Professional"},
+  {num:"138",title:"Functional Programming",folder:"138-JavaScript-React-Hooks",section:"Professional"},
+  {num:"139",title:"OOP in JavaScript",folder:"139-JavaScript-React-Advanced",section:"Professional"},
+  {num:"140",title:"Testing Fundamentals",folder:"140-JavaScript-NodeJS-Express",section:"Professional"},
+  {num:"141",title:"Calculator Project",folder:"141-JavaScript-Calculator-App",section:"Projects"},
+  {num:"142",title:"Digital Clock",folder:"142-JavaScript-Todo-App",section:"Projects"},
+  {num:"143",title:"Todo App",folder:"143-JavaScript-Weather-App",section:"Projects"},
+  {num:"144",title:"Weather App",folder:"144-JavaScript-Movie-Search-App",section:"Projects"},
+  {num:"145",title:"Quiz App",folder:"145-JavaScript-Chat-Application",section:"Projects"},
+  {num:"146",title:"Expense Tracker",folder:"146-JavaScript-E-Commerce-Cart",section:"Projects"},
+  {num:"147",title:"Notes App",folder:"147-JavaScript-Social-Media-Dashboard",section:"Projects"},
+  {num:"148",title:"Music Player",folder:"148-JavaScript-Music-Player",section:"Projects"},
+  {num:"149",title:"E-Commerce Cart",folder:"149-JavaScript-Image-Editor",section:"Projects"},
+  {num:"150",title:"Chat Application",folder:"150-JavaScript-Quiz-App",section:"Projects"},
+  {num:"151",title:"Kanban Board",folder:"151-JavaScript-File-Uploader",section:"Projects"},
+  {num:"152",title:"Netflix Clone Logic",folder:"152-JavaScript-Data-Table",section:"Projects"},
+  {num:"153",title:"YouTube Clone Logic",folder:"153-JavaScript-Whiteboard-App",section:"Projects"},
+  {num:"154",title:"Real Time Dashboard",folder:"154-JavaScript-Portfolio-Website",section:"Projects"},
+  {num:"155",title:"AI Powered Web App",folder:"155-AI-Powered-Web-App",section:"Projects"},
+];
+let currentIndex = 0;
+let currentTab = 'lesson';
+let cache = {};
+let visited = new Set();
+let quizAnswered = {};
+let quizDataCache = [];
+const sidebar = document.getElementById('sidebar');
+const moduleList = document.getElementById('moduleList');
+const content = document.getElementById('content');
+const tabBar = document.getElementById('tabBar');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const progressBadge = document.getElementById('progressBadge');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+function renderSidebar() {
+  let currentSection = '';
+  moduleList.innerHTML = modules.map((m, i) => {
+    let sectionHtml = '';
+    if (m.section !== currentSection) {
+      currentSection = m.section;
+      sectionHtml = `<div class="section-label">${m.section}</div>`;
+    }
+    return sectionHtml + `
+      <a class="module-item" href="#" data-index="${i}" data-folder="${m.folder}">
+        <span class="num">${m.num}</span>
+        <span class="dot"></span>
+        <span>${m.title}</span>
+      </a>
+    `;
+  }).join('');
+  updateSidebar();
+}
+function updateSidebar() {
+  document.querySelectorAll('.module-item').forEach((el, i) => {
+    el.classList.toggle('active', i === currentIndex);
+    if (visited.has(i)) el.classList.add('visited');
+    else el.classList.remove('visited');
+  });
+  const active = document.querySelector('.module-item.active');
+  if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTab = btn.dataset.tab;
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + currentTab).classList.add('active');
+    if (currentTab !== 'lesson') loadTabContent(currentTab);
+  });
+});
+function switchTab(tab) {
+  const btn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+  if (btn) btn.click();
+}
+prevBtn.addEventListener('click', () => { if (currentIndex > 0) goToModule(currentIndex - 1); });
+nextBtn.addEventListener('click', () => { if (currentIndex < modules.length - 1) goToModule(currentIndex + 1); });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft' && currentIndex > 0) goToModule(currentIndex - 1);
+  if (e.key === 'ArrowRight' && currentIndex < modules.length - 1) goToModule(currentIndex + 1);
+});
+moduleList.addEventListener('click', (e) => {
+  const item = e.target.closest('.module-item');
+  if (!item) return;
+  e.preventDefault();
+  const idx = parseInt(item.dataset.index);
+  goToModule(idx);
+  if (window.innerWidth <= 768) closeSidebar();
+});
+hamburgerBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  sidebarOverlay.classList.toggle('show');
+});
+sidebarOverlay.addEventListener('click', closeSidebar);
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('show');
+}
+function updateProgress() {
+  progressBadge.textContent = visited.size + ' / ' + modules.length;
+}
+async function fetchText(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return await res.text();
+}
+async function fetchJSON(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return await res.json();
+}
+async function goToModule(index) {
+  if (index < 0 || index >= modules.length) return;
+  currentIndex = index;
+  visited.add(index);
+  updateSidebar();
+  updateProgress();
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === modules.length - 1;
+  window.location.hash = 'module-' + modules[index].num;
+  document.querySelectorAll('.content-panel').forEach(p => {
+    p.classList.remove('active');
+    if (p.id === 'panel-lesson') p.classList.add('active');
+  });
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.tab-btn[data-tab="lesson"]').classList.add('active');
+  currentTab = 'lesson';
+  const panels = ['lesson','examples','quiz','challenges','cheatsheet','project','resources','videos'];
+  panels.forEach(p => {
+    document.getElementById('panel-' + p).innerHTML = '<div class="loading-spinner"><div class="spinner"></div><span>Loading...</span></div>';
+  });
+  try {
+    const md = await fetchText(COURSE_PATH + modules[index].folder + '/lesson.md');
+    const html = marked.parse(md);
+    document.getElementById('panel-lesson').innerHTML = html;
+    document.querySelectorAll('#panel-lesson pre code').forEach(block => {
+      hljs.highlightElement(block);
+    });
+  } catch(e) {
+    document.getElementById('panel-lesson').innerHTML = serverErrorHTML();
+  }
+}
+function serverErrorHTML() {
+  return '<div class="error-state"><div class="error-icon">🔒</div><h3>Content Not Accessible</h3><p>This viewer needs a local server to load module files.</p><div class="server-hint">npx serve .<br><span style="color:var(--text-muted)">or</span><br>python -m http.server 8000</div><p style="margin-top:0.75rem;font-size:0.85rem;">Then open <strong>http://localhost:8000</strong> in your browser.</p></div>';
+}
+async function loadTabContent(tab) {
+  const panel = document.getElementById('panel-' + tab);
+  const m = modules[currentIndex];
+  const cacheKey = m.folder + '/' + tab;
+  if (cache[cacheKey]) {
+    panel.innerHTML = cache[cacheKey];
+    if (tab === 'quiz') initQuiz();
+    return;
+  }
+  panel.innerHTML = '<div class="loading-spinner"><div class="spinner"></div><span>Loading...</span></div>';
+  try {
+    let html = '';
+    switch(tab) {
+      case 'examples': {
+        const text = await fetchText(COURSE_PATH + m.folder + '/examples.html');
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const bodyContent = doc.body.innerHTML;
+        const styles = doc.querySelectorAll('style');
+        let styleHtml = '';
+        styles.forEach(s => styleHtml += s.outerHTML);
+        const exampleContainers = doc.querySelectorAll('.example, .example-box, .example-card');
+        if (exampleContainers.length > 0) {
+          html = styleHtml + Array.from(exampleContainers).map(el => {
+            const clone = el.cloneNode(true);
+            const preBlocks = clone.querySelectorAll('pre');
+            preBlocks.forEach(pre => {
+              const code = pre.querySelector('code');
+              if (code) { try { hljs.highlightElement(code); } catch(e) {} }
+            });
+            return '<div class="example-container glass-card">' + clone.innerHTML + '</div>';
+          }).join('');
+        } else {
+          html = styleHtml + '<div class="glass-card">' + bodyContent + '</div>';
+        }
+        break;
+      }
+      case 'quiz': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/quiz.json');
+        html = renderQuiz(data);
+        break;
+      }
+      case 'challenges': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/challenges.json');
+        html = renderChallenges(data);
+        break;
+      }
+      case 'cheatsheet': {
+        const md = await fetchText(COURSE_PATH + m.folder + '/cheatsheet.md');
+        html = marked.parse(md);
+        break;
+      }
+      case 'project': {
+        const md = await fetchText(COURSE_PATH + m.folder + '/project.md');
+        html = marked.parse(md);
+        break;
+      }
+      case 'resources': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/resources.json');
+        html = renderResources(data);
+        break;
+      }
+      case 'videos': {
+        const data = await fetchJSON(COURSE_PATH + m.folder + '/video.json');
+        html = renderVideos(data);
+        break;
+      }
+    }
+    cache[cacheKey] = html;
+    panel.innerHTML = html;
+    if (tab === 'quiz') initQuiz();
+    panel.querySelectorAll('pre code').forEach(block => {
+      try { hljs.highlightElement(block); } catch(e) {}
+    });
+  } catch(e) {
+    panel.innerHTML = '<div class="error-state"><div class="error-icon">⚠️</div><h3>Could not load ' + tab + '</h3><p>' + e.message + '</p></div>';
+  }
+}
+function renderQuiz(data) {
+  if (!data || data.length === 0) return '<div class="empty-state"><div class="empty-icon">📝</div><p>No quiz questions available for this module.</p></div>';
+  quizAnswered = {};
+  quizDataCache = data;
+  let html = '<div class="quiz-header glass" style="padding:0.75rem 1rem;border-radius:10px;margin-bottom:1rem;"><span>📝 Module Quiz</span><span class="score" id="quizScore">0 / ' + data.length + '</span></div>';
+  data.forEach((q, i) => {
+    html += '<div class="quiz-question" data-q="' + i + '"><div class="q-text"><span class="q-num">Q' + (i+1) + '.</span> ' + q.question + '</div>';
+    html += q.options.map((opt, oi) => {
+      const letter = String.fromCharCode(97 + oi);
+      return '<button class="quiz-option" data-q="' + i + '" data-opt="' + letter + '">' + letter + ') ' + opt + '</button>';
+    }).join('');
+    html += '<div class="quiz-explanation" data-q="' + i + '">' + (q.explanation || '') + '</div></div>';
+  });
+  return html;
+}
+function initQuiz() {
+  document.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', () => handleQuizAnswer(btn));
+  });
+}
+function handleQuizAnswer(btn) {
+  const qIdx = btn.dataset.q;
+  if (quizAnswered[qIdx]) return;
+  quizAnswered[qIdx] = true;
+  const questionDiv = btn.closest('.quiz-question');
+  const allOptions = questionDiv.querySelectorAll('.quiz-option');
+  const explanation = questionDiv.querySelector('.quiz-explanation');
+  allOptions.forEach(opt => opt.disabled = true);
+  const qData = getQuizData();
+  if (!qData || !qData[qIdx]) return;
+  const correct = qData[qIdx].answer;
+  const selected = btn.dataset.opt;
+  if (selected === correct) { btn.classList.add('correct'); }
+  else {
+    btn.classList.add('wrong');
+    allOptions.forEach(opt => { if (opt.dataset.opt === correct) opt.classList.add('correct'); });
+  }
+  explanation.classList.add('show');
+  updateQuizScore();
+}
+function getQuizData() {
+  return quizDataCache;
+}
+function updateQuizScore() {
+  const scoreEl = document.getElementById('quizScore');
+  if (!scoreEl) return;
+  const correct = document.querySelectorAll('.quiz-option.correct').length;
+  const total = document.querySelectorAll('.quiz-question').length;
+  scoreEl.textContent = correct + ' / ' + total;
+}
+function renderChallenges(data) {
+  if (!data || data.length === 0) return '<div class="empty-state"><div class="empty-icon">🏆</div><p>No challenges available for this module.</p></div>';
+  return data.map(c => {
+    const level = c.difficulty || 'medium';
+    return '<div class="challenge-card ' + level + '"><span class="challenge-tag">' + level + '</span><div class="c-title">' + (c.title || level + ' challenge') + '</div><div class="c-desc">' + (c.description || '') + '</div><pre><code>' + escapeHTML(c.starterCode || '') + '</code></pre><button class="solution-btn" data-level="' + level + '">Show Solution</button><div class="solution-content" data-level="' + level + '"><pre><code>' + escapeHTML(c.solution || '') + '</code></pre></div></div>';
+  }).join('');
+}
+function renderResources(data) {
+  if (!data || data.length === 0) return '<div class="empty-state"><div class="empty-icon">📚</div><p>No resources listed for this module.</p></div>';
+  return '<div class="resources-grid">' + data.map(r => '<a class="resource-card" href="' + r.url + '" target="_blank" rel="noopener"><span class="rc-type ' + (r.type||'article') + '">' + (r.type||'article') + '</span><div class="rc-title">' + r.title + '</div><div class="rc-url">' + r.url + '</div></a>').join('') + '</div>';
+}
+function renderVideos(data) {
+  const videos = Array.isArray(data) ? data : (data && data.videos);
+  if (!videos || videos.length === 0) return '<div class="empty-state"><div class="empty-icon">🎬</div><p>No video tutorials for this module.</p></div>';
+  return '<div class="videos-grid">' + videos.map(v => '<div class="video-card"><div class="video-wrapper"><iframe src="' + v.url + '" title="' + escapeHTML(v.title) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="v-info"><div class="v-title">' + v.title + '</div><div class="v-channel">' + (v.channel || '') + '</div>' + (v.description ? '<div class="v-desc">' + v.description + '</div>' : '') + '</div></div>').join('') + '</div>';
+}
+function escapeHTML(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+function handleHash() {
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#module-')) {
+    const num = hash.replace('#module-', '');
+    const idx = modules.findIndex(m => m.num === num);
+    if (idx >= 0 && idx !== currentIndex) { goToModule(idx); return true; }
+  }
+  return false;
+}
+window.addEventListener('hashchange', handleHash);
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('solution-btn')) {
+    const level = e.target.dataset.level;
+    const content = e.target.parentElement.querySelector('.solution-content');
+    if (content) {
+      content.classList.toggle('show');
+      e.target.textContent = content.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+      content.querySelectorAll('pre code').forEach(block => { try { hljs.highlightElement(block); } catch(err) {} });
+    }
+  }
+});
+renderSidebar();
+if (!handleHash()) { goToModule(0); }
+content.addEventListener('click', () => { if (window.innerWidth <= 768 && sidebar.classList.contains('open')) closeSidebar(); });
+</script>
+</body>
+</html>

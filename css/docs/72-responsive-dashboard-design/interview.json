@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a responsive dashboard layout?", "answer": "A dashboard layout that adapts its grid structure, chart sizes, and sidebar behavior to different screen sizes." },
+    { "question": "How do you create a dashboard grid with CSS Grid?", "answer": "Use grid-template-columns and grid-template-areas to arrange dashboard panels (charts, tables, metrics) in a structured layout." },
+    { "question": "What is a sidebar collapse in dashboard design?", "answer": "A responsive pattern where the sidebar condenses to icons-only or hidden on small screens to maximize content space." },
+    { "question": "What are chart containers in a dashboard?", "answer": "Chart containers are grid cells that hold data visualizations. They should be fluid, using percentage-based widths and aspect ratios." },
+    { "question": "How do you make a dashboard panel responsive?", "answer": "Use relative units for sizing, min-width to prevent collapse, and media queries to rearrange panels at different breakpoints." },
+    { "question": "What is a KPI card in a dashboard?", "answer": "A Key Performance Indicator card displays a single metric with a label and trend indicator, typically arranged in a row at the top of dashboards." },
+    { "question": "How do you handle dashboard overflow on small screens?", "answer": "Use horizontal scrolling for data tables, collapse secondary panels, stack metrics vertically, and prioritize essential data." },
+    { "question": "What is the role of max-width in dashboard responsiveness?", "answer": "max-width prevents dashboard containers from becoming too wide on large screens, maintaining readability for content like tables and text." },
+    { "question": "How do you ensure charts scale responsively?", "answer": "Use container-relative units, aspect-ratio containers, and ensure chart libraries support resize events or use responsive containers." },
+    { "question": "What is a grid dashboard?", "answer": "A dashboard using CSS Grid to arrange data panels in a structured layout with rows and columns that adapt to the viewport." }
+  ],
+  "intermediate": [
+    { "question": "How do you implement a sidebar that collapses from full to icon-only?", "answer": "Use CSS Grid with two layouts: sidebar + main on desktop, and a collapsed sidebar + main on smaller screens with media queries." },
+    { "question": "How do you create a responsive dashboard with grid-template-areas?", "answer": "Define areas like 'header header', 'sidebar main', 'sidebar widgets' on desktop, then reorganize to single column on mobile." },
+    { "question": "How do you handle chart containers that need minimum dimensions?", "answer": "Use min-height and min-width on chart containers, and use aspect-ratio to maintain chart proportions as containers resize." },
+    { "question": "What is the best approach for a dashboard that has both fixed and fluid panels?", "answer": "Use Grid with a mix of fixed (sidebar width in px) and flexible (main content with 1fr) column sizes." },
+    { "question": "How do you implement a responsive top navigation with sidebar on desktop?", "answer": "Use media queries: mobile has top nav only; desktop adds a persistent sidebar with navigation links." },
+    { "question": "How do you handle dashboard data tables responsively?", "answer": "Use horizontal scroll on small screens, hide less important columns, or convert to card-style data views for mobile." },
+    { "question": "How do you create a responsive KPI card row?", "answer": "Use grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) to display KPI cards that wrap to multiple rows on smaller screens." },
+    { "question": "How do you manage dashboard panel reordering on different screen sizes?", "answer": "Use grid-template-areas with different area string orders at different breakpoints to reorder panels visually." },
+    { "question": "What is the role of CSS Grid auto-fit in dashboard layouts?", "answer": "auto-fit with minmax creates responsive chart rows where panels automatically redistribute when screen width changes." },
+    { "question": "How do you handle dashboard theming for light and dark mode?", "answer": "Use CSS custom properties and prefers-color-scheme media query to switch between light and dark themes." }
+  ],
+  "advanced": [
+    { "question": "How do you implement a complex dashboard with multiple grid layers and nested scrolling?", "answer": "Use a top-level grid for the main layout, child grids for panel arrangements, and overflow handling per panel for independent scrolling." },
+    { "question": "How do you handle real-time data updates in responsive dashboard panels?", "answer": "Ensure panels have stable dimensions during data updates using explicit sizing, and use CSS transitions/animations for smooth data changes." },
+    { "question": "What is the interaction between dashboard responsive layouts and CSS Container Queries?", "answer": "Container queries enable dashboard widgets to adapt their internal layout based on the widget container size, making them reusable across dashboard layouts." },
+    { "question": "How do you implement a dashboard with drag-and-drop panel rearrangement?", "answer": "Combine CSS Grid with a drag-and-drop library. The grid template changes on drop, and media queries ensure responsive placement." },
+    { "question": "How do you optimize dashboard performance with many data panels?", "answer": "Use lazy rendering for off-screen panels, virtualize data tables, debounce resize handlers, and use contain: layout on independent panels." },
+    { "question": "How do you create a print-friendly dashboard layout?", "answer": "Use @media print to restructure the dashboard to a single-column layout, expand collapsed sections, and hide interactive elements." },
+    { "question": "How do you handle dashboard responsiveness in embedded contexts (iframes, widgets)?", "answer": "Use container queries or resize observers to adapt the dashboard to its embedded container size, not the viewport." },
+    { "question": "What is the pattern for a dashboard that switches from side to top navigation at different sizes?", "answer": "Grid switches from 'sidebar | main' to 'main' on mobile, moving sidebar items to a top navigation bar using display changes." },
+    { "question": "How do you implement a responsive dashboard with CSS Grid subgrid for aligned chart axes?", "answer": "Use subgrid to align chart axis containers across panels in the same row, ensuring consistent chart area alignment." },
+    { "question": "How do you handle dashboard component communication in responsive layouts?", "answer": "Components can use CSS custom properties or ResizeObserver to communicate their dimensions to sibling components for coordinated responsive behavior." }
+  ]
+}

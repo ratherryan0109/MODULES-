@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Accessibility Playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #1a1a2e; color: #eee; }
+    h1 { color: #e94560; margin-bottom: 0.25rem; }
+    .subtitle { color: #888; margin-bottom: 2rem; }
+    .playground-container { background: #16213e; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    h2 { color: #0f3460; margin-bottom: 1rem; }
+    label { display: block; margin: 1rem 0 0.25rem; font-weight: 600; color: #ccc; }
+    input, select { width: 100%; padding: 0.5rem; border: 2px solid #333; border-radius: 6px; background: #1a1a2e; color: #eee; font-size: 1rem; }
+    input[type="color"] { height: 50px; cursor: pointer; }
+    .preview-box {
+      margin-top: 1rem; padding: 2rem; border-radius: 8px; text-align: center;
+      font-size: 1.25rem; min-height: 120px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .contrast-ratio { font-size: 1.5rem; font-weight: bold; }
+    .pass-aa { color: #2ecc71; }
+    .pass-aaa { color: #27ae60; }
+    .fail { color: #e74c3c; }
+    .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .simulator { margin-top: 1.5rem; }
+    .sim-btn {
+      padding: 0.5rem 1rem; border: 2px solid #333; border-radius: 6px;
+      background: #1a1a2e; color: #eee; cursor: pointer; margin: 0.25rem;
+    }
+    .sim-btn.active { border-color: #e94560; background: #e9456033; }
+    .status-demo { display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .status-item { display: flex; align-items: center; gap: 0.5rem; }
+    .status-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .output-area { margin-top: 1rem; padding: 1rem; background: #0d1117; border-radius: 6px; font-family: monospace; font-size: 0.875rem; white-space: pre-wrap; }
+    .pattern-option { margin: 0.5rem 0; }
+    @media (prefers-contrast: high) {
+      body { background: #000; color: #fff; }
+      .playground-container { background: #111; border: 1px solid #fff; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 Color Accessibility Playground</h1>
+  <p class="subtitle">Experiment with accessible color combinations in real-time</p>
+
+  <div class="playground-container">
+    <h2>🔍 Contrast Ratio Tester</h2>
+    <div class="controls">
+      <div>
+        <label for="fg-color">Text Color</label>
+        <input type="color" id="fg-color" value="#ffffff">
+      </div>
+      <div>
+        <label for="bg-color">Background Color</label>
+        <input type="color" id="bg-color" value="#1a1a2e">
+      </div>
+      <div>
+        <label for="font-size">Font Size</label>
+        <select id="font-size">
+          <option value="normal">Normal (&lt; 18px)</option>
+          <option value="large">Large (≥ 18px bold / 24px)</option>
+        </select>
+      </div>
+      <div>
+        <label for="font-weight">Font Weight</label>
+        <select id="font-weight">
+          <option value="normal">Normal</option>
+          <option value="bold">Bold</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="preview-box" id="preview-box">
+      <span id="preview-text">Sample Text for Contrast Testing</span>
+      <span class="contrast-ratio" id="ratio-display">Ratio: --</span>
+      <span id="wcag-status">Select colors to see WCAG status</span>
+    </div>
+
+    <div class="output-area" id="css-output">/* CSS output will appear here */</div>
+  </div>
+
+  <div class="playground-container">
+    <h2>👁 Vision Deficiency Simulation</h2>
+    <p style="color:#888;margin-bottom:1rem;">Click a filter to simulate how users with different conditions see your colors.</p>
+    <div class="simulator">
+      <button class="sim-btn" data-filter="none">Normal Vision</button>
+      <button class="sim-btn" data-filter="deuteranopia">Deuteranopia</button>
+      <button class="sim-btn" data-filter="protanopia">Protanopia</button>
+      <button class="sim-btn" data-filter="tritanopia">Tritanopia</button>
+      <button class="sim-btn" data-filter="achromatopsia">Achromatopsia</button>
+    </div>
+    <div class="status-demo" id="status-demo">
+      <div class="status-item"><span class="status-dot" style="background:#2ecc71"></span> Success</div>
+      <div class="status-item"><span class="status-dot" style="background:#e74c3c"></span> Error</div>
+      <div class="status-item"><span class="status-dot" style="background:#f39c12"></span> Warning</div>
+      <div class="status-item"><span class="status-dot" style="background:#3498db"></span> Info</div>
+    </div>
+    <p style="margin-top:1rem;font-size:0.875rem;color:#888;">Add text labels or icons to ensure status is clear to all users.</p>
+  </div>
+
+  <div class="playground-container">
+    <h2>📋 Accessible Color Palette Builder</h2>
+    <div class="controls">
+      <div>
+        <label for="base-hue">Base Hue (0-360)</label>
+        <input type="range" id="base-hue" min="0" max="360" value="220">
+      </div>
+      <div>
+        <label for="palette-type">Palette Type</label>
+        <select id="palette-type">
+          <option value="monochromatic">Monochromatic</option>
+          <option value="complementary">Complementary</option>
+          <option value="triadic">Triadic</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap;" id="palette-display"></div>
+    <div class="output-area" id="palette-css">/* CSS custom properties will appear here */</div>
+  </div>
+
+  <script>
+    // Contrast Ratio Calculator
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : { r: 0, g: 0, b: 0 };
+    }
+
+    function luminance(r, g, b) {
+      const [rs, gs, bs] = [r, g, b].map(v => {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+    }
+
+    function contrastRatio(hex1, hex2) {
+      const c1 = hexToRgb(hex1);
+      const c2 = hexToRgb(hex2);
+      const l1 = luminance(c1.r, c1.g, c1.b);
+      const l2 = luminance(c2.r, c2.g, c2.b);
+      const lighter = Math.max(l1, l2);
+      const darker = Math.min(l1, l2);
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    const fgInput = document.getElementById('fg-color');
+    const bgInput = document.getElementById('bg-color');
+    const fontSize = document.getElementById('font-size');
+    const fontWeight = document.getElementById('font-weight');
+    const previewBox = document.getElementById('preview-box');
+    const previewText = document.getElementById('preview-text');
+    const ratioDisplay = document.getElementById('ratio-display');
+    const wcagStatus = document.getElementById('wcag-status');
+    const cssOutput = document.getElementById('css-output');
+
+    function updateContrast() {
+      const fg = fgInput.value;
+      const bg = bgInput.value;
+      const size = fontSize.value;
+      const weight = fontWeight.value;
+
+      previewBox.style.background = bg;
+      previewText.style.color = fg;
+      previewText.style.fontWeight = weight === 'bold' ? 'bold' : 'normal';
+
+      const ratio = contrastRatio(fg, bg);
+      ratioDisplay.textContent = `Contrast Ratio: ${ratio.toFixed(2)}:1`;
+      ratioDisplay.style.color = ratio >= 4.5 ? '#2ecc71' : '#e74c3c';
+
+      let aaNorm = ratio >= 4.5;
+      let aaaNorm = ratio >= 7;
+      let aaLarge = ratio >= 3;
+      let aaaLarge = ratio >= 4.5;
+
+      let lines = [];
+      if (size === 'normal') {
+        lines.push(`AA Normal Text: ${aaNorm ? '✅ PASS' : '❌ FAIL'} (≥ 4.5:1)`);
+        lines.push(`AAA Normal Text: ${aaaNorm ? '✅ PASS' : '❌ FAIL'} (≥ 7:1)`);
+      } else {
+        lines.push(`AA Large Text: ${aaLarge ? '✅ PASS' : '❌ FAIL'} (≥ 3:1)`);
+        lines.push(`AAA Large Text: ${aaaLarge ? '✅ PASS' : '❌ FAIL'} (≥ 4.5:1)`);
+      }
+      wcagStatus.textContent = lines.join(' | ');
+
+      cssOutput.textContent = `/* Accessible Color Combination */\n` +
+        `.element {\n` +
+        `  color: ${fg};\n` +
+        `  background-color: ${bg};\n` +
+        `  font-weight: ${weight};\n` +
+        `  /* Ratio: ${ratio.toFixed(2)}:1 */\n` +
+        `}`;
+    }
+
+    fgInput.addEventListener('input', updateContrast);
+    bgInput.addEventListener('input', updateContrast);
+    fontSize.addEventListener('change', updateContrast);
+    fontWeight.addEventListener('change', updateContrast);
+
+    // Vision Deficiency Simulation
+    const simBtns = document.querySelectorAll('.sim-btn');
+    const statusDemo = document.getElementById('status-demo');
+
+    simBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        simBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        const filters = {
+          'none': 'none',
+          'deuteranopia': 'url(#deuteranopia)',
+          'protanopia': 'url(#protanopia)',
+          'tritanopia': 'url(#tritanopia)',
+          'achromatopsia': 'url(#achromatopsia)'
+        };
+        statusDemo.style.filter = filters[filter] || 'none';
+      });
+    });
+
+    updateContrast();
+
+    // Palette Builder
+    const hueInput = document.getElementById('base-hue');
+    const paletteType = document.getElementById('palette-type');
+    const paletteDisplay = document.getElementById('palette-display');
+    const paletteCss = document.getElementById('palette-css');
+
+    function hslToHex(h, s, l) {
+      s /= 100;
+      l /= 100;
+      const a = s * Math.min(l, 1 - l);
+      const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+      };
+      return `#${f(0)}${f(8)}${f(4)}`;
+    }
+
+    function buildPalette() {
+      const hue = parseInt(hueInput.value);
+      const type = paletteType.value;
+      let hues = [];
+
+      switch (type) {
+        case 'monochromatic':
+          hues = [hue, hue, hue, hue, hue];
+          break;
+        case 'complementary':
+          hues = [hue, hue + 30, hue + 60, hue + 180, hue + 210];
+          break;
+        case 'triadic':
+          hues = [hue, hue + 30, hue + 120, hue + 150, hue + 240];
+          break;
+      }
+
+      const lightnesses = [45, 55, 65, 40, 75];
+      const saturations = [70, 65, 60, 75, 55];
+
+      paletteDisplay.innerHTML = '';
+      const colors = hues.map((h, i) => {
+        const lum = lightnesses[i % lightnesses.length];
+        const sat = saturations[i % saturations.length];
+        const hex = hslToHex(h % 360, sat, lum);
+        return { hex, h: h % 360, s: sat, l: lum };
+      });
+
+      colors.forEach((c, i) => {
+        const swatch = document.createElement('div');
+        swatch.style.cssText = `width:80px;height:80px;background:${c.hex};border-radius:8px;display:flex;align-items:center;justify-content:center;color:${i < 2 ? '#fff' : '#000'};font-size:0.75rem;border:2px solid #333;`;
+        swatch.textContent = c.hex;
+        paletteDisplay.appendChild(swatch);
+      });
+
+      paletteCss.textContent = ':root {\n' +
+        colors.map((c, i) => `  --palette-${i + 1}: ${c.hex};`).join('\n') +
+        '\n}\n\n/* Usage:\n.element {\n  color: var(--palette-1);\n  background: var(--palette-2);\n}\n*/';
+    }
+
+    hueInput.addEventListener('input', buildPalette);
+    paletteType.addEventListener('change', buildPalette);
+    buildPalette();
+  </script>
+
+  <svg style="position:absolute;width:0;height:0;">
+    <filter id="deuteranopia">
+      <feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/>
+    </filter>
+    <filter id="protanopia">
+      <feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/>
+    </filter>
+    <filter id="tritanopia">
+      <feColorMatrix type="matrix" values="0.95,0.05,0,0,0 0,0.433,0.567,0,0 0,0.475,0.525,0,0 0,0,0,1,0"/>
+    </filter>
+    <filter id="achromatopsia">
+      <feColorMatrix type="matrix" values="0.299,0.587,0.114,0,0 0.299,0.587,0.114,0,0 0.299,0.587,0.114,0,0 0,0,0,1,0"/>
+    </filter>
+  </svg>
+</body>
+</html>

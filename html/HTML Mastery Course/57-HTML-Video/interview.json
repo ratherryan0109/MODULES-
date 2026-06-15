@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What is the HTML <video> element and how do you use it?",
+      "answer": "The <video> element is an HTML5 tag used to embed video content in web pages without requiring third-party plugins. You use it by providing one or more <source> elements with different video formats, and optionally the controls attribute for native playback controls."
+    },
+    {
+      "question": "What are the supported video formats in HTML5?",
+      "answer": "The three main video formats are: MP4 (H.264 codec) — supported by all browsers; WebM (VP8/VP9 codecs) — supported by Firefox, Chrome, Opera; and OGG (Theora codec) — legacy support. MP4 + WebM provides the best cross-browser coverage."
+    },
+    {
+      "question": "What does the controls attribute do on a video element?",
+      "answer": "The controls attribute is a boolean attribute that displays the browser's native video playback controls. These include play/pause, seek bar, volume control, fullscreen toggle, and time display. It requires no value — just including 'controls' is sufficient."
+    },
+    {
+      "question": "How do you add a poster image to a video?",
+      "answer": "Use the poster attribute with a URL to an image file: <video controls poster='thumbnail.jpg'>. The poster image is displayed before the user plays the video or while the video is loading."
+    },
+    {
+      "question": "What is the purpose of the autoplay attribute?",
+      "answer": "The autoplay attribute tells the browser to start playing the video automatically when the page loads. However, modern browsers require the muted attribute to be present alongside autoplay to prevent unwanted sound playback."
+    },
+    {
+      "question": "How do you loop a video?",
+      "answer": "Add the loop attribute to the <video> tag. This boolean attribute causes the video to restart from the beginning each time it reaches the end."
+    },
+    {
+      "question": "What fallback content should you provide inside the video element?",
+      "answer": "You should provide text or HTML content between the <video> tags that displays when the browser cannot play any of the provided video sources. Common fallbacks include a message like 'Your browser does not support video' and a download link."
+    },
+    {
+      "question": "How do you set video dimensions?",
+      "answer": "Use the width and height attributes: <video width='640' height='360'>. Always set dimensions to prevent layout shifts. For responsive design, use CSS max-width: 100% and height: auto."
+    },
+    {
+      "question": "What is the difference between <video> src attribute and nested <source> elements?",
+      "answer": "The src attribute on <video> specifies a single video source. Nested <source> elements allow multiple format options with format-specific MIME types, enabling the browser to select the first supported format."
+    },
+    {
+      "question": "How do you mute a video in HTML?",
+      "answer": "Add the muted attribute to the <video> tag: <video controls muted>. This boolean attribute starts the video without sound. You can also control it via JavaScript with video.muted = true."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "Explain the Fullscreen API for video elements.",
+      "answer": "The Fullscreen API allows any element (not just video) to be displayed in fullscreen mode. For video: element.requestFullscreen() enters fullscreen, document.exitFullscreen() exits. Listen for fullscreenchange event. Check state with document.fullscreenElement. Note that fullscreen must be triggered by a user gesture."
+    },
+    {
+      "question": "How does Picture-in-Picture (PiP) work with HTML video?",
+      "answer": "PiP allows video to play in a floating window on top of other applications. Call video.requestPictureInPicture() which returns a Promise. Exit with document.exitPictureInPicture(). Listen for enterpictureinpicture and leavepictureinpicture events. PiP must be initiated by user gesture and requires HTTPS."
+    },
+    {
+      "question": "What are TimeRanges and how are they used with video?",
+      "answer": "TimeRanges objects represent time intervals. video.buffered returns the buffered ranges, video.seekable returns seekable ranges, video.played returns played ranges. Each has length, start(index), and end(index) properties. Used to build custom buffer/progress indicators."
+    },
+    {
+      "question": "How do you implement custom video controls?",
+      "answer": "Hide native controls (remove controls attribute), build custom UI with HTML/CSS, then wire JavaScript: play/pause button toggles video.play()/pause(), seek bar updates via timeupdate event and sets currentTime, volume slider sets video.volume. Handle the 'isSeeking' flag to prevent conflicts between user input and timeupdate events."
+    },
+    {
+      "question": "What is WebVTT and how does it relate to HTML video?",
+      "answer": "WebVTT (Web Video Text Tracks) is a format for timed text tracks. Used with the <track> element, it provides captions (kind='captions'), subtitles (kind='subtitles'), descriptions (kind='descriptions'), chapters (kind='chapters'), and metadata (kind='metadata'). The .vtt file contains timed cue text."
+    },
+    {
+      "question": "How do you detect video codec support across browsers?",
+      "answer": "Use video.canPlayType(type) which returns 'probably', 'maybe', or ''. Test specific codec strings like 'video/mp4; codecs=\"avc1.42E01E\"' for H.264 baseline, 'video/webm; codecs=\"vp9\"' for VP9. Always test multiple codec strings as support varies."
+    },
+    {
+      "question": "What is the difference between loadedmetadata, loadeddata, and canplay events?",
+      "answer": "loadedmetadata fires when duration and dimensions are available. loadeddata fires when the first video frame has loaded. canplay fires when enough data exists to start playing. They represent progressive stages of media readiness."
+    },
+    {
+      "question": "How do you implement adaptive streaming with HTML video?",
+      "answer": "Native adaptive streaming uses Media Source Extensions (MSE). For HLS, use libraries like hls.js. For MPEG-DASH, use dash.js. These libraries fetch segments in different qualities and feed them to a MediaSource attached to the video element via URL.createObjectURL()."
+    },
+    {
+      "question": "How do you synchronize multiple video elements?",
+      "answer": "Use a master video to track currentTime and listen for timeupdate. On each update, set slave videos' currentTime to match. For frame-accurate sync, use requestAnimationFrame instead of timeupdate. Pause/play all videos together. Note that perfect sync is challenging due to decoding differences."
+    },
+    {
+      "question": "How do you capture video frames to canvas?",
+      "answer": "Use ctx.drawImage(videoElement, x, y, width, height) on a canvas context. The video element can be drawn to canvas at any time, capturing the current frame. This is used for thumbnail generation, image capture, and video processing. Works even while the video is paused or playing."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain Media Source Extensions (MSE) and how they enable adaptive streaming.",
+      "answer": "MSE allows JavaScript to build media streams from segments. Create a MediaSource object, attach it to video via URL.createObjectURL(mediaSource). Open a SourceBuffer, append video segments using appendBuffer(). This enables adaptive bitrate streaming where the JavaScript code selects quality level segments based on network conditions, without changing the video src."
+    },
+    {
+      "question": "How would you implement server-side video quality switching without MSE?",
+      "answer": "Without MSE, use multiple <source> elements with media queries (e.g., source[media='(min-width: 1200px)'][src='high.mp4']). This only checks viewport width, not network conditions. For true adaptive quality, use MSE-based libraries like hls.js or dash.js, or consider using the Media Capabilities API to evaluate decoding abilities."
+    },
+    {
+      "question": "What is Encrypted Media Extensions (EME) and how does DRM work with HTML video?",
+      "answer": "EME enables DRM-protected video playback. It works with Content Decryption Modules (CDMs) like Widevine (Chrome), FairPlay (Safari), and PlayReady (Edge). The video element's encrypted event fires, and through the MediaKeys API, the license exchange happens. EME requires a license server and proper key system initialization."
+    },
+    {
+      "question": "How do you optimize video delivery for performance?",
+      "answer": "Key optimizations: (1) Lazy load using Intersection Observer to start loading when near viewport, (2) Use preload='metadata' for non-critical videos, (3) Serve multiple resolutions with adaptive streaming, (4) Use CDN for video delivery, (5) Compress videos with encoding presets, (6) Use poster images to avoid blank player, (7) Implement video prebuffering based on user behavior prediction."
+    },
+    {
+      "question": "What are the accessibility requirements for HTML video?",
+      "answer": "Accessibility requires: (1) Captions for deaf/hearing-impaired users via <track kind='captions'>, (2) Audio descriptions for blind/visually-impaired users via <track kind='descriptions'>, (3) Keyboard operability for all controls, (4) Focus indicators on custom controls, (5) ARIA labels on player buttons, (6) Transcript as fallback, (7) Avoid flashing content that could trigger seizures."
+    },
+    {
+      "question": "How would you build a video player with client-side analytics tracking?",
+      "answer": "Track events: play, pause, timeupdate (at intervals), seek, ended, fullscreen, quality change. Calculate: total watch time, completion rate, buffering events, seek patterns. Use the buffered property to detect buffering (when waiting event fires). Send analytics batches to reduce network calls. Track viewport visibility with Intersection Observer for autoplay analytics."
+    },
+    {
+      "question": "Explain the autoplay policy across major browsers in detail.",
+      "answer": "Chrome: Allows autoplay if muted, or if user has interacted with the domain, or if the site has a high Media Engagement Index (MEI). Safari: Blocks autoplay with sound entirely until user interaction. Firefox: Similar to Chrome — allows muted autoplay, requires interaction for unmuted. All browsers allow muted autoplay. The play() rejection returns NotAllowedError for blocked autoplay."
+    },
+    {
+      "question": "How do you implement 360° VR video playback in HTML?",
+      "answer": "360° video requires a framework like Three.js or A-Frame. The video is projected onto the inside of a sphere, with the camera at the center. Use a <video> element as a texture source. Track device orientation (DeviceOrientation API) or mouse drags to rotate the camera. WebXR API can provide immersive VR viewing."
+    },
+    {
+      "question": "What are the challenges of using video as a background element?",
+      "answer": "Challenges include: (1) Autoplay policies requiring muted playback, (2) Performance impact — video uses GPU resources and battery, (3) Mobile bandwidth concerns — background videos can consume significant data, (4) SEO — search engines can't index video content, (5) Accessibility — provide a static fallback, (6) Layout — video loading causes CLS without proper sizing, (7) iOS restrictions on inline video."
+    },
+    {
+      "question": "How does WebCodecs API differ from MSE for video processing?",
+      "answer": "WebCodecs provides low-level access to individual video frames and audio chunks without going through a MediaSource. It allows direct encoding/decoding using codecs like AV1, H.264, and VP9. Unlike MSE which is streaming-oriented, WebCodecs is better for: real-time effects, video editing, WebRTC processing, and custom codec work. It operates on EncodedVideoChunk and VideoFrame objects."
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "module": "19-css-display",
+  "title": "CSS Display",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What happens when you set width on an inline element?",
+      "options": [
+        "Width is applied correctly",
+        "Width is ignored",
+        "Width is halved",
+        "Width becomes 100%"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Inline elements ignore width and height. Use inline-block or block if you need to set dimensions."
+    },
+    {
+      "id": 2,
+      "question": "What's the difference between display: none and visibility: hidden?",
+      "options": [
+        "They are the same",
+        "display: none removes from flow; visibility: hidden preserves space",
+        "visibility: none removes from flow; display preserves space",
+        "display: none works on all elements; visibility only on block"
+      ],
+      "correctAnswer": 1,
+      "explanation": "display: none removes the element from document flow entirely. visibility: hidden hides it but it still occupies space."
+    },
+    {
+      "id": 3,
+      "question": "Which display value allows elements to sit inline while respecting width/height?",
+      "options": [
+        "block",
+        "inline",
+        "inline-block",
+        "flex"
+      ],
+      "correctAnswer": 2,
+      "explanation": "inline-block flows inline like text but respects all box model properties including width and height."
+    },
+    {
+      "id": 4,
+      "question": "What is the default display value for a <div> element?",
+      "options": [
+        "inline",
+        "block",
+        "inline-block",
+        "flex"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default display for <div> is block — it takes up the full available width and starts on a new line."
+    },
+    {
+      "id": 5,
+      "question": "What is the default display value for a <span> element?",
+      "options": [
+        "block",
+        "inline",
+        "inline-block",
+        "flex"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The default display for <span> is inline — it flows within text and doesn't start a new line."
+    },
+    {
+      "id": 6,
+      "question": "What does display: flex enable?",
+      "options": [
+        "Table-like layout",
+        "Flexible box layout with powerful alignment and distribution capabilities",
+        "Grid-based layout",
+        "Inline flow with block properties"
+      ],
+      "correctAnswer": 1,
+      "explanation": "display: flex creates a flex container, enabling flexible layout with alignment, ordering, and space distribution."
+    },
+    {
+      "id": 7,
+      "question": "What does display: flow-root do?",
+      "options": [
+        "Creates a root element",
+        "Creates a new block formatting context, preventing margin collapse and containing floats",
+        "Makes an element a flex container and root",
+        "Removes all formatting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "display: flow-root creates a new block formatting context without side effects, commonly used to contain floats."
+    },
+    {
+      "id": 8,
+      "question": "What happens when display: contents is applied?",
+      "options": [
+        "The element is hidden completely",
+        "The element's box is removed, but its children render normally",
+        "The element shows its content only",
+        "The element becomes a flex container"
+      ],
+      "correctAnswer": 1,
+      "explanation": "display: contents removes the element's box from the layout while its children are rendered as if the wrapper doesn't exist."
+    },
+    {
+      "id": 9,
+      "question": "Why might display: none be problematic for accessibility?",
+      "options": [
+        "It's an invalid property",
+        "Content with display: none is hidden from screen readers",
+        "It causes page crashing",
+        "It only affects visual users"
+      ],
+      "correctAnswer": 1,
+      "explanation": "display: none removes content from the accessibility tree, hiding it from screen readers."
+    },
+    {
+      "id": 10,
+      "question": "What is the default display value for <img> elements?",
+      "options": [
+        "block",
+        "inline",
+        "inline-block (replaced element)",
+        "flex"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Images default to display: inline but are 'replaced elements', which means they behave differently from regular inline elements."
+    },
+    {
+      "id": 11,
+      "question": "What display values activate CSS Grid layout?",
+      "options": [
+        "display: grid or display: inline-grid",
+        "display: flex",
+        "display: block-grid",
+        "display: css-grid"
+      ],
+      "correctAnswer": 0,
+      "explanation": "display: grid creates a block-level grid container. display: inline-grid creates an inline-level grid container."
+    },
+    {
+      "id": 12,
+      "question": "How do block elements behave differently from inline elements?",
+      "options": [
+        "Block elements start on new lines and fill available width; inline elements flow in text",
+        "Block elements can't have padding; inline elements can",
+        "Block elements are always square; inline are rectangular",
+        "There is no difference"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Block elements start on a new line and fill available width. Inline elements flow within text and shrink to content width."
+    },
+    {
+      "id": 13,
+      "question": "What happens when you change a <span> to display: block?",
+      "options": [
+        "Nothing changes",
+        "It starts on a new line and fills the available width",
+        "It disappears",
+        "It becomes inline"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Changing an inline element to display: block makes it start on a new line and fill available horizontal space."
+    },
+    {
+      "id": 14,
+      "question": "What does display: table do to a non-table element?",
+      "options": [
+        "Creates a spreadsheet",
+        "Makes the element behave like a <table> element for layout purposes",
+        "Adds a table border",
+        "Displays tabular data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "display: table (and display: table-row, table-cell) makes elements mimic table layout behavior."
+    },
+    {
+      "id": 15,
+      "question": "Can display values be animated?",
+      "options": [
+        "No, display cannot be animated with CSS transitions",
+        "Yes, display transitions work in all browsers",
+        "Only display: none to block works",
+        "Yes, with the transition property"
+      ],
+      "correctAnswer": 0,
+      "explanation": "display cannot be animated with CSS transitions. Use opacity or visibility for animated show/hide effects."
+    },
+    {
+      "id": 16,
+      "question": "What is the purpose of display: inline-flex?",
+      "options": [
+        "Creates an inline-level flex container",
+        "Creates a flexible inline element",
+        "Combines inline and flex properties",
+        "Creates an inline block with flex children"
+      ],
+      "correctAnswer": 0,
+      "explanation": "display: inline-flex creates a flex container that flows inline with surrounding content, rather than on a new block line."
+    },
+    {
+      "id": 17,
+      "question": "What display value should you use for a horizontal navigation menu?",
+      "options": [
+        "display: flex on the ul",
+        "display: block on li items",
+        "display: inline on the ul",
+        "display: table on the nav"
+      ],
+      "correctAnswer": 0,
+      "explanation": "display: flex on the <ul> creates a horizontal layout with alignment and spacing control for navigation items."
+    },
+    {
+      "id": 18,
+      "question": "What is the difference between inline-block and inline?",
+      "options": [
+        "inline-block respects width/height and top/bottom margins/padding; inline doesn't",
+        "inline-block is always square; inline is rectangular",
+        "There is no difference",
+        "inline-block can't have padding"
+      ],
+      "correctAnswer": 0,
+      "explanation": "inline-block flows inline but respects all box model properties (width, height, top/bottom margin/padding)."
+    },
+    {
+      "id": 19,
+      "question": "What does setting display: none on a parent do to its children?",
+      "options": [
+        "Children remain visible",
+        "Children are also hidden since the parent's box is removed",
+        "Children become inline",
+        "Children rearrange in the flow"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When a parent has display: none, it and all its children are removed from the layout and accessibility tree."
+    },
+    {
+      "id": 20,
+      "question": "What is the default display value for <li> elements?",
+      "options": [
+        "block",
+        "list-item",
+        "inline",
+        "flex"
+      ],
+      "correctAnswer": 1,
+      "explanation": "<li> elements default to display: list-item, which is similar to block but also generates a marker box."
+    }
+  ]
+}

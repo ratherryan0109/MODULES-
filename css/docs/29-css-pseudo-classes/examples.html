@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Pseudo-classes - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; padding: 30px; background: #f5f5f5; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { margin-bottom: 30px; color: #333; }
+    h2 { margin: 30px 0 15px; color: #555; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; font-family: 'Consolas', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+
+    /* Dynamic */
+    .demo-link:link { color: #4a90d9; }
+    .demo-link:visited { color: #6c5ce7; }
+    .demo-link:hover { color: #e94560; text-decoration: underline; }
+    .demo-link:active { color: #ff6b6b; }
+    .demo-btn { padding: 12px 25px; background: #4a90d9; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+    .demo-btn:hover { background: #357abd; }
+    .demo-btn:focus { outline: 3px solid #4a90d9; outline-offset: 2px; }
+    .demo-btn:active { background: #2a5f8a; }
+
+    /* Structural */
+    .str-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .str-table th, .str-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+    .str-table tr:nth-child(even) { background: #f8f9fa; }
+    .str-table tr:first-child { background: #1a1a2e; color: white; }
+    .str-table tr:last-child { border-bottom: 2px solid #1a1a2e; }
+
+    /* List styling */
+    .styled-list li:first-child { font-weight: bold; color: #e94560; }
+    .styled-list li:last-child { font-style: italic; color: #999; }
+    .styled-list li:nth-child(3) { background: #fff3cd; padding: 5px; }
+
+    /* Form states */
+    .form-demo { max-width: 400px; }
+    .form-demo label { display: block; margin: 15px 0 5px; }
+    .form-demo input { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px; }
+    .form-demo input:valid { border-color: #2ecc71; }
+    .form-demo input:invalid:not(:placeholder-shown) { border-color: #e94560; }
+    .form-demo input:focus { outline: none; border-color: #4a90d9; box-shadow: 0 0 5px rgba(74,144,217,0.3); }
+    .form-demo input:disabled { background: #f0f0f0; cursor: not-allowed; }
+    .form-demo input:required { border-left: 3px solid #e94560; }
+
+    /* :not() demo */
+    .not-demo span { padding: 8px 12px; margin: 5px; display: inline-block; }
+    .not-demo span:not(.special) { background: #e3f2fd; border-radius: 4px; }
+    .not-demo .special { background: #c8e6c9; border-radius: 4px; font-weight: bold; }
+
+    /* :empty demo */
+    .empty-demo div { border: 1px solid #ddd; padding: 10px; margin: 5px 0; min-height: 20px; }
+    .empty-demo div:empty { display: none; }
+
+    /* :target */
+    .target-section { padding: 20px; margin: 10px 0; background: #f0f0f0; border-radius: 8px; }
+    .target-section:target { background: #fff3cd; border: 2px solid #ffc107; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Pseudo-classes - Examples</h1>
+
+    <div class="example">
+      <h2>1. Dynamic Pseudo-classes (Link States - LVHA)</h2>
+      <div class="code">:link → :visited → :hover → :active</div>
+      <a href="https://example.com" class="demo-link">Visit Example.com</a>
+      <button class="demo-btn">Hover, Focus, Click Me</button>
+    </div>
+
+    <div class="example">
+      <h2>2. Structural Pseudo-classes (Striped Table)</h2>
+      <div class="code">tr:nth-child(even) { background: #f8f9fa; }<br>tr:first-child { }<br>tr:last-child { }</div>
+      <table class="str-table">
+        <tr><th>Name</th><th>Age</th><th>City</th></tr>
+        <tr><td>John</td><td>25</td><td>NYC</td></tr>
+        <tr><td>Jane</td><td>30</td><td>LA</td></tr>
+        <tr><td>Bob</td><td>28</td><td>Chicago</td></tr>
+        <tr><td>Alice</td><td>35</td><td>Houston</td></tr>
+      </table>
+    </div>
+
+    <div class="example">
+      <h2>3. :nth-child Patterns</h2>
+      <div class="code">li:nth-child(3) { background: yellow; }<br>li:first-child { }<br>li:last-child { }</div>
+      <ul class="styled-list">
+        <li>First child (bold red)</li>
+        <li>Second child</li>
+        <li>Third child (highlighted)</li>
+        <li>Fourth child</li>
+        <li>Last child (italic, gray)</li>
+      </ul>
+    </div>
+
+    <div class="example">
+      <h2>4. Form State Pseudo-classes</h2>
+      <div class="code">:valid { border: green; }<br>:invalid { border: red; }<br>:disabled { gray bg; }</div>
+      <div class="form-demo">
+        <label>Email (required):</label>
+        <input type="email" required placeholder="Enter email">
+        <label>Name (disabled):</label>
+        <input type="text" disabled value="Pre-filled">
+        <label>Age (required):</label>
+        <input type="number" required min="1" max="120" placeholder="Enter age">
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>5. :not() Negation Pseudo-class</h2>
+      <div class="code">span:not(.special) { background: lightblue; }</div>
+      <div class="not-demo">
+        <span>Normal</span>
+        <span class="special">Special!</span>
+        <span>Normal</span>
+        <span>Normal</span>
+        <span class="special">Special!</span>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>6. :empty Pseudo-class</h2>
+      <div class="code">div:empty { display: none; }</div>
+      <div class="empty-demo">
+        <div>This div has content and is visible.</div>
+        <div></div> <!-- Empty div - hidden -->
+        <div>Another visible div.</div>
+      </div>
+      <div class="note">The empty div between the two visible ones is hidden by :empty.</div>
+    </div>
+
+    <div class="example">
+      <h2>7. :target Pseudo-class</h2>
+      <div class="code">section:target { background: yellow; }</div>
+      <a href="#section1">Go to Section 1</a> | <a href="#section2">Go to Section 2</a>
+      <section id="section1" class="target-section">
+        <h3>Section 1</h3>
+        <p>Click the link above to target me!</p>
+      </section>
+      <section id="section2" class="target-section">
+        <h3>Section 2</h3>
+        <p>Click the link above to target me!</p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

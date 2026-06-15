@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What does <iframe> stand for?",
+    "options": ["Inline Frame", "Internal Frame", "Indexed Frame", "Integrated Frame"],
+    "answer": "a",
+    "explanation": "iframe stands for Inline Frame. It embeds another HTML document within the current page."
+  },
+  {
+    "question": "Which attribute provides an accessible label for screen readers on an iframe?",
+    "options": ["label", "aria-label", "title", "name"],
+    "answer": "c",
+    "explanation": "The title attribute provides a descriptive label for assistive technologies. It is required for WCAG compliance when using iframes."
+  },
+  {
+    "question": "What does the sandbox attribute do without any tokens?",
+    "options": ["Allows all features", "Restricts all features", "Only restricts scripts", "Enables fullscreen"],
+    "answer": "b",
+    "explanation": "An empty sandbox attribute applies all restrictions: no scripts, no forms, no popups, no navigation, no modals, no same-origin access."
+  },
+  {
+    "question": "Which attribute allows embedding inline HTML without a separate URL?",
+    "options": ["srcdoc", "htmldoc", "inline", "data"],
+    "answer": "a",
+    "explanation": "The srcdoc attribute contains inline HTML that is rendered in the iframe instead of loading an external URL via src."
+  },
+  {
+    "question": "How do you enable JavaScript execution in a sandboxed iframe?",
+    "options": ["sandbox='allow-javascript'", "sandbox='allow-scripts'", "sandbox='scripts'", "sandbox='enable-js'"],
+    "answer": "b",
+    "explanation": "The token 'allow-scripts' in the sandbox attribute permits JavaScript execution while other restrictions remain in place."
+  },
+  {
+    "question": "What is the purpose of the 'allow' attribute on an iframe?",
+    "options": ["Specifies allowed URLs", "Controls browser feature permissions", "Sets the iframe dimensions", "Defines CSS styles"],
+    "answer": "b",
+    "explanation": "The allow attribute implements Permissions Policy, controlling which browser features (camera, microphone, fullscreen, etc.) the iframe can request."
+  },
+  {
+    "question": "How do you communicate between a parent page and an iframe cross-origin?",
+    "options": ["Direct DOM access", "window.postMessage()", "AJAX requests", "Server-sent events"],
+    "answer": "b",
+    "explanation": "window.postMessage() enables cross-origin communication between windows and iframes. Always validate event.origin for security."
+  },
+  {
+    "question": "Which loading attribute value defers iframe loading until near the viewport?",
+    "options": ["loading='defer'", "loading='lazy'", "loading='delayed'", "loading='async'"],
+    "answer": "b",
+    "explanation": "loading='lazy' defers loading the iframe until it is close to the viewport. loading='eager' (default) loads immediately."
+  },
+  {
+    "question": "What is the security risk of using sandbox='allow-scripts allow-same-origin' together?",
+    "answer": "a",
+    "options": ["Allows scripts to access the parent origin", "Prevents all JavaScript", "Disables CSS", "Blocks all images"],
+    "explanation": "Combining allow-scripts with allow-same-origin lets the iframe execute scripts that can access the parent page's origin, effectively bypassing the sandbox."
+  },
+  {
+    "question": "Which CSP directive controls which sources can embed a page in iframes?",
+    "options": ["frame-src", "frame-ancestors", "default-src", "child-src"],
+    "answer": "b",
+    "explanation": "The frame-ancestors directive specifies which parent sources are allowed to embed the page in an iframe. frame-src restricts what the page can embed."
+  },
+  {
+    "question": "What happens if you access iframe.contentDocument cross-origin?",
+    "options": ["Returns null", "Returns the document", "Throws a SecurityError", "Prompts for permission"],
+    "answer": "c",
+    "explanation": "Accessing iframe.contentDocument (or contentWindow.document) cross-origin throws a SecurityError due to the same-origin policy."
+  },
+  {
+    "question": "How do you make an iframe responsive while maintaining 16:9 aspect ratio?",
+    "options": ["Set width='100%' and height='auto'", "Use CSS aspect-ratio property or padding-bottom trick", "Use the responsive attribute", "Set width and height in percentage"],
+    "answer": "b",
+    "explanation": "Use aspect-ratio: 16/9 in CSS, or the padding-bottom: 56.25% trick with absolute positioning. Both maintain the aspect ratio while filling the container width."
+  },
+  {
+    "question": "Which attribute makes an iframe targetable by links and forms?",
+    "options": ["id", "name", "target", "class"],
+    "answer": "b",
+    "explanation": "The name attribute gives the iframe a name that can be used as the target of links (<a target='name'>) and form submissions."
+  },
+  {
+    "question": "What does X-Frame-Options: DENY do?",
+    "options": ["Prevents page from being loaded in an iframe", "Denies all requests to the page", "Blocks all external images", "Disables JavaScript in frames"],
+    "answer": "a",
+    "explanation": "X-Frame-Options: DENY is an HTTP response header that tells browsers not to render the page in any iframe. SAMEORIGIN allows framing from the same origin."
+  },
+  {
+    "question": "Which postMessage security practice is essential?",
+    "options": ["Check event.data", "Check event.origin", "Check event.source", "All of the above are required"],
+    "answer": "b",
+    "explanation": "Always validate event.origin to ensure the message comes from a trusted source. Without this check, any site can send messages to your handler, enabling XSS."
+  },
+  {
+    "question": "What happens if both srcdoc and src are specified on an iframe?",
+    "options": ["srcdoc takes priority", "src takes priority", "Both are loaded (merge)", "Browser throws an error"],
+    "answer": "a",
+    "explanation": "When both srcdoc and src are present, srcdoc takes priority. src serves as a fallback for browsers that don't support srcdoc."
+  },
+  {
+    "question": "Which HTTP header can prevent clickjacking attacks?",
+    "options": ["Content-Security-Policy", "X-Frame-Options", "X-Content-Type-Options", "Strict-Transport-Security"],
+    "answer": "b",
+    "explanation": "X-Frame-Options (DENY or SAMEORIGIN) prevents malicious sites from loading your page in an iframe, which is the primary defense against clickjacking attacks."
+  },
+  {
+    "question": "What does the referrerpolicy='no-referrer' attribute do?",
+    "options": ["Blocks all iframe content", "Sends no referrer header when navigating", "Prevents referrer spam", "Only works with HTTPS"],
+    "answer": "b",
+    "explanation": "referrerpolicy='no-referrer' ensures no Referer header is sent when the iframe navigates or loads resources, protecting user privacy."
+  },
+  {
+    "question": "How do you detect when an iframe has finished loading?",
+    "options": ["iframe.onready", "iframe.addEventListener('load')", "iframe.addEventListener('complete')", "iframe.addEventListener('done')"],
+    "answer": "b",
+    "explanation": "The load event fires when the iframe and all its resources have finished loading. Use iframe.addEventListener('load', handler) to detect it."
+  },
+  {
+    "question": "What is the default value of the loading attribute on an iframe?",
+    "options": ["lazy", "eager", "auto", "async"],
+    "answer": "b",
+    "explanation": "The default loading behavior is 'eager', meaning the iframe loads immediately when the page loads. You must explicitly set loading='lazy' to defer loading."
+  }
+]

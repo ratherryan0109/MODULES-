@@ -1,0 +1,42 @@
+[
+  {
+    "id": "40-challenge-1",
+    "title": "Basic JavaScript Strict Mode",
+    "description": "Write a function that demonstrates the core concepts of JavaScript Strict Mode. Focus on implementing \"use strict\" directive correctly.",
+    "difficulty": "easy",
+    "starterCode": "function basic_40() {\n  // Implement \"use strict\" directive\n  // Return a meaningful result\n  return \"Implement JavaScript Strict Mode\";\n}",
+    "solution": "function basic_40() {\n  const concepts = [\"\"use strict\" directive\", \"Strict mode changes\", \"Eliminating this coercion\"];\n  return concepts.map(c => c.toUpperCase());\n}"
+  },
+  {
+    "id": "40-challenge-2",
+    "title": "Intermediate JavaScript Strict Mode",
+    "description": "Create a function that uses \"use strict\" directive and Strict mode changes together. Handle edge cases and validate inputs.",
+    "difficulty": "medium",
+    "starterCode": "function intermediate_40(input) {\n  // Process input using \"use strict\" directive\n  // and strict mode changes\n  // Handle edge cases\n  if (!input) return [];\n  return input;\n}",
+    "solution": "function intermediate_40(input) {\n  if (!Array.isArray(input)) return [];\n  return input\n    .filter(item => item != null)\n    .map(item => ({ original: item, processed: String(item).toUpperCase() }));\n}"
+  },
+  {
+    "id": "40-challenge-3",
+    "title": "Advanced JavaScript Strict Mode Project",
+    "description": "Build a small application that applies \"use strict\" directive, Strict mode changes, Eliminating this coercion in a real-world scenario. Include error handling and input validation.",
+    "difficulty": "hard",
+    "starterCode": "class JavaScriptStrictMode {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    // Add item with validation\n  }\n  \n  process() {\n    // Process stored data using \"use strict\" directive\n  }\n}",
+    "solution": "class JavaScriptStrictMode {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    if (item == null) throw new Error('Invalid item');\n    this.data.push(item);\n  }\n  \n  process() {\n    return this.data\n      .filter(d => d != null)\n      .map(d => ({ value: d, timestamp: Date.now() }));\n  }\n  \n  clear() {\n    this.data = [];\n  }\n}"
+  },
+  {
+    "id": "40-challenge-4",
+    "title": "Debugging JavaScript Strict Mode",
+    "description": "The following code has bugs related to \"use strict\" directive. Find and fix them.",
+    "difficulty": "medium",
+    "starterCode": "// Fix the bugs in this code\nfunction processData40(items) {\n  let result = [];\n  for (var i = 0; i < items.length; i++); {\n    result.push(items[i].toUpperCase());\n  }\n  return result;\n}\n\nconsole.log(processData40([\"a\", \"b\", \"c\"]));",
+    "solution": "function processData40(items) {\n  return items.map(item => item.toUpperCase());\n}\n\nconsole.log(processData40([\"a\", \"b\", \"c\"]));\n// Expected: [\"A\", \"B\", \"C\"]"
+  },
+  {
+    "id": "40-challenge-5",
+    "title": "Refactoring JavaScript Strict Mode",
+    "description": "Refactor the following code to use modern JavaScript patterns with \"use strict\" directive and Strict mode changes.",
+    "difficulty": "hard",
+    "starterCode": "// Refactor this code\nfunction oldWay40(arr) {\n  var temp = [];\n  for (var i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) {\n      temp.push(arr[i] * 2);\n    }\n  }\n  var sum = 0;\n  for (var j = 0; j < temp.length; j++) {\n    sum += temp[j];\n  }\n  return sum;\n}",
+    "solution": "function refactored40(arr) {\n  return arr\n    .filter(n => n % 2 === 0)\n    .map(n => n * 2)\n    .reduce((sum, n) => sum + n, 0);\n}"
+  }
+]

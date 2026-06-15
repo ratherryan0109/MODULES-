@@ -1,0 +1,38 @@
+[
+  {
+    "id": "prop-color-animation",
+    "title": "Smooth Color Cycle",
+    "difficulty": "beginner",
+    "description": "Create a color cycling animation using a registered --hue custom property with smooth interpolation.",
+    "hint": "Register --hue with syntax: '<number>' and animate it in @keyframes from 0 to 360.",
+    "criteria": ["@property rule registering --hue", "Keyframe animation cycling hue", "Smooth color transitions"],
+    "starter": "@property --hue {\n  syntax: '<number>';\n  inherits: true;\n  initial-value: 0;\n}\n\n.element {\n  background: hsl(var(--hue), 70%, 50%);\n  animation: cycleHue 4s linear infinite;\n}\n\n@keyframes cycleHue {\n  0% { --hue: 0; }\n  100% { --hue: 360; }\n}"
+  },
+  {
+    "id": "prop-morphing-shape",
+    "title": "Morphing Shape with @property",
+    "difficulty": "intermediate",
+    "description": "Build a shape that morphs between different border-radius values using registered length properties.",
+    "hint": "Register --radius-tl, --radius-tr, --radius-br, --radius-bl and animate them independently.",
+    "criteria": ["4 registered length properties", "Keyframe animation changing each radius", "Smooth morphing effect"],
+    "starter": "@property --radius-tl { syntax: '<length>'; inherits: false; initial-value: 0px; }\n/* Register 3 more corners */\n\n.element {\n  border-radius: var(--radius-tl) var(--radius-tr) var(--radius-br) var(--radius-bl);\n  animation: morphShape 5s ease-in-out infinite;\n}"
+  },
+  {
+    "id": "prop-gradient-rotate",
+    "title": "Animated Gradient Rotation",
+    "difficulty": "intermediate",
+    "description": "Create an animated gradient that rotates smoothly using a registered angle custom property.",
+    "hint": "Register --gradient-angle as '<angle>' and use it in the gradient's direction.",
+    "criteria": ["@property for angle", "Gradient direction uses the angle variable", "Smooth rotation animation"],
+    "starter": "@property --gradient-angle {\n  syntax: '<angle>';\n  inherits: false;\n  initial-value: 0deg;\n}\n\n.element {\n  background: linear-gradient(var(--gradient-angle), #e74c3c, #3498db, #2ecc71);\n  animation: rotateGradient 6s linear infinite;\n}\n\n@keyframes rotateGradient {\n  0% { --gradient-angle: 0deg; }\n  100% { --gradient-angle: 360deg; }\n}"
+  },
+  {
+    "id": "prop-theme-system",
+    "title": "Typed Theme System",
+    "difficulty": "advanced",
+    "description": "Build a theme system using registered custom properties for colors, spacing, and typography that can be animated during theme switches.",
+    "hint": "Register all theme tokens with appropriate syntax types to enable smooth transitions.",
+    "criteria": ["Multiple registered theme tokens", "Smooth theme switching animation", "Different syntax types used appropriately"],
+    "starter": "@property --color-primary { syntax: '<color>'; inherits: true; initial-value: #3498db; }\n@property --spacing-lg { syntax: '<length>'; inherits: true; initial-value: 2rem; }\n/* Register more tokens */\n\n:root { transition: --color-primary 0.5s, --spacing-lg 0.5s; }\n[data-theme=\"dark\"] { --color-primary: #8e44ad; }"
+  }
+]

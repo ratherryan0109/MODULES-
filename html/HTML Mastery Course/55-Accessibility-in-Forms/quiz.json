@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the most important HTML element for form accessibility?",
+    "options": ["<input>", "<label>", "<form>", "<button>"],
+    "answer": "b",
+    "explanation": "The <label> element is the foundation of form accessibility. It provides an accessible name for form controls, which screen readers announce to users."
+  },
+  {
+    "question": "Which ARIA attribute is used to associate help text or error messages with an input?",
+    "options": ["aria-label", "aria-labelledby", "aria-describedby", "aria-controls"],
+    "answer": "c",
+    "explanation": "aria-describedby points to the ID(s) of elements that contain additional description or error information for the input."
+  },
+  {
+    "question": "What element is required for grouping radio buttons accessibly?",
+    "options": ["<div>", "<fieldset>", "<section>", "<group>"],
+    "answer": "b",
+    "explanation": "Radio buttons must be wrapped in a <fieldset> with a <legend> to provide group context that screen readers announce before each option."
+  },
+  {
+    "question": "Which ARIA attribute indicates that a form field has a validation error?",
+    "options": ["aria-error", "aria-invalid", "aria-required", "aria-checked"],
+    "answer": "b",
+    "explanation": "aria-invalid='true' indicates that the input value is invalid. Screen readers announce this state, helping users identify which fields have errors."
+  },
+  {
+    "question": "What WCAG success criterion requires visible focus indicators?",
+    "options": ["1.1.1 Non-text Content", "2.4.7 Focus Visible", "3.3.2 Labels or Instructions", "4.1.1 Parsing"],
+    "answer": "b",
+    "explanation": "WCAG 2.4.7 Focus Visible (Level AA) requires that keyboard focus indicators are visible, typically a 3px outline or ring around the focused element."
+  },
+  {
+    "question": "Which pattern should be used to provide a label for an icon-only button?",
+    "options": ["alt attribute", "aria-label attribute", "title attribute", "placeholder attribute"],
+    "answer": "b",
+    "explanation": "Use aria-label on the button to provide a text label that screen readers will announce. Example: <button aria-label='Search'><svg>...</svg></button>"
+  },
+  {
+    "question": "What attribute helps users with cognitive disabilities by allowing browser autofill?",
+    "options": ["placeholder", "autofocus", "autocomplete", "spellcheck"],
+    "answer": "c",
+    "explanation": "The autocomplete attribute (WCAG 1.3.5 Identify Input Purpose) allows browsers to autofill fields based on user history, helping users with cognitive disabilities."
+  },
+  {
+    "question": "Which ARIA live region value announces updates without interrupting the user?",
+    "options": ["off", "polite", "assertive", "rude"],
+    "answer": "b",
+    "explanation": "aria-live='polite' tells screen readers to announce changes when the user is idle, without interrupting their current task."
+  },
+  {
+    "question": "What is the problem with using placeholder as the only label?",
+    "options": ["It cannot be styled", "It disappears when the user types and has poor contrast", "It is not semantic HTML", "It uses too much bandwidth"],
+    "answer": "b",
+    "explanation": "Placeholder text disappears when the user starts typing and typically has low contrast. WCAG requires visible labels that persist."
+  },
+  {
+    "question": "How should you hide a label visually while keeping it accessible to screen readers?",
+    "options": ["display: none", "visibility: hidden", "Use .sr-only CSS class", "aria-hidden='true'"],
+    "answer": "c",
+    "explanation": "Use a visually-hidden (sr-only) CSS class that positions the element off-screen while keeping it in the accessibility tree. display:none hides from all users."
+  },
+  {
+    "question": "What is the correct way to mark a field as required for both visual and screen reader users?",
+    "options": ["Just the required attribute", "required attribute plus aria-required='true'", "Just aria-required='true'", "A red asterisk alone"],
+    "answer": "b",
+    "explanation": "Use both the HTML required attribute and aria-required='true' for maximum compatibility. Visual asterisks should be hidden from screen readers with aria-hidden='true'."
+  },
+  {
+    "question": "Which element should receive focus after a form submission fails validation?",
+    "options": ["The first invalid field", "The submit button", "The error summary container", "The form element"],
+    "answer": "c",
+    "explanation": "Move focus to the error summary container (with tabindex='-1') after submission failure. This allows screen reader users to hear all errors at once without tabbing through each field."
+  },
+  {
+    "question": "What role should be used on a container that displays dynamic error messages?",
+    "options": ["role='status'", "role='alert'", "role='log'", "role='marquee'"],
+    "answer": "b",
+    "explanation": "role='alert' on an error container causes screen readers to announce its content immediately when it changes, without requiring the user to navigate to it."
+  },
+  {
+    "question": "Which WCAG criterion requires that error messages suggest corrections?",
+    "options": ["3.3.1 Error Identification", "3.3.3 Error Suggestion", "3.3.2 Labels or Instructions", "2.4.6 Headings and Labels"],
+    "answer": "b",
+    "explanation": "WCAG 3.3.3 Error Suggestion (Level AA) requires that if an input error is detected and suggestions are known, the suggestions are provided to the user."
+  },
+  {
+    "question": "What is the purpose of tabindex='0' on an element?",
+    "options": ["Removes it from tab order", "Makes it focusable in the natural tab order", "Makes it the first tab stop", "Disables keyboard focus"],
+    "answer": "b",
+    "explanation": "tabindex='0' makes an element focusable via keyboard and places it in the natural tab order based on its position in the DOM."
+  },
+  {
+    "question": "Which ARIA role does a <fieldset> have by default?",
+    "options": ["region", "group", "section", "form"],
+    "answer": "b",
+    "explanation": "The <fieldset> element has an implicit ARIA role of 'group'. This tells screen readers that the contained controls are related."
+  },
+  {
+    "question": "What should you avoid using to indicate required fields?",
+    "options": ["Asterisk (*)", "Color alone", "Text label", "aria-required"],
+    "answer": "b",
+    "explanation": "Color alone should never be used to convey information (WCAG 1.4.1 Use of Color). Required indicators must use text, symbols, or patterns in addition to color."
+  },
+  {
+    "question": "How do you make a custom checkbox accessible?",
+    "options": ["Use a <div> with a click handler", "Use role='checkbox', aria-checked, and keyboard handlers", "Use CSS to style a native checkbox", "Use a toggle switch image"],
+    "answer": "b",
+    "explanation": "Custom interactive controls must have the correct ARIA role, state (aria-checked), keyboard event handlers (Space to toggle), and visible focus indicator."
+  },
+  {
+    "question": "What does aria-atomic='true' do on a live region?",
+    "options": ["Makes the region one atomic unit", "Causes the entire region to be announced on any change", "Prevents atomic updates", "Splits the region into atomic parts"],
+    "answer": "b",
+    "explanation": "aria-atomic='true' tells screen readers to announce the entire live region content when any part changes, rather than just the changed part."
+  },
+  {
+    "question": "What is the correct way to structure an accessible date of birth field?",
+    "options": ["A single text input with placeholder", "Three separate inputs with labels", "A native date input with a label", "A select dropdown for each part"],
+    "answer": "c",
+    "explanation": "Use a native <input type='date'> with an associated <label>. Native date inputs are keyboard accessible and work with screen readers. Avoid custom date pickers unless fully accessible."
+  }
+]

@@ -1,0 +1,247 @@
+﻿{
+    "module":  "24-css-float",
+    "title":  "CSS Float",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "What was the original purpose of the CSS float property?",
+                          "options":  [
+                                          "Creating page layouts",
+                                          "Wrapping text around elements",
+                                          "Positioning elements absolutely",
+                                          "Creating grid systems"
+                                      ],
+                          "explanation":  "Float was originally designed to wrap text around images, like in newspaper layouts.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  2,
+                          "question":  "Which of the following is NOT a valid float value?",
+                          "options":  [
+                                          "left",
+                                          "right",
+                                          "center",
+                                          "none"
+                                      ],
+                          "explanation":  "Float only accepts: left, right, none, and inherit. There is no \u0027center\u0027 value for float.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What happens to a parent container when all its children are floated?",
+                          "options":  [
+                                          "It expands to fit children",
+                                          "It collapses (height becomes 0)",
+                                          "It scrolls",
+                                          "It becomes inline"
+                                      ],
+                          "explanation":  "When all children are floated, the parent container collapses because floated elements are removed from the normal flow.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "Which modern CSS features should replace float for page layout?",
+                          "options":  [
+                                          "display: table",
+                                          "Flexbox and Grid",
+                                          "position: absolute",
+                                          "margin: auto"
+                                      ],
+                          "explanation":  "Flexbox and CSS Grid are the modern, recommended methods for page layout. Float should be reserved for text wrapping.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  5,
+                          "question":  "What is required for a floated element to have predictable behavior?",
+                          "options":  [
+                                          "A border",
+                                          "An explicit width",
+                                          "A background color",
+                                          "position: relative"
+                                      ],
+                          "explanation":  "Floated elements almost always need an explicit width. Without one, they may take unexpected widths based on content.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  6,
+                          "question":  "How does text behave around a float: left element?",
+                          "options":  [
+                                          "Text stays on the left",
+                                          "Text wraps to the right and below",
+                                          "Text ignores the floated element",
+                                          "Text moves to the right only"
+                                      ],
+                          "explanation":  "With float: left, the element moves to the left edge, and text wraps around its right side and below.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  7,
+                          "question":  "What is a clearfix used for?",
+                          "options":  [
+                                          "Making elements clear (transparent)",
+                                          "Preventing parent collapse from floats",
+                                          "Clearing browser cache",
+                                          "Removing element borders"
+                                      ],
+                          "explanation":  "Clearfix is a technique to make a parent container properly contain its floated children, preventing the height collapse.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  8,
+                          "question":  "Which CSS property is related to float and controls the behavior after it?",
+                          "options":  [
+                                          "clear",
+                                          "display",
+                                          "position",
+                                          "overflow"
+                                      ],
+                          "explanation":  "The clear property specifies whether an element can be next to floated elements or must move below them.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  9,
+                          "question":  "What is a drop cap in typography?",
+                          "options":  [
+                                          "A lowercase letter",
+                                          "An enlarged first letter that drops into the text",
+                                          "A caption below an image",
+                                          "A font style option"
+                                      ],
+                          "explanation":  "A drop cap is a decorative effect where the first letter is enlarged and floats into the text. CSS achieves this with ::first-letter and float.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  10,
+                          "question":  "How do floated elements interact with block-level elements?",
+                          "options":  [
+                                          "Block elements ignore floats and overlap them",
+                                          "Block elements wrap around floats",
+                                          "Block elements push floats away",
+                                          "Block elements become floated too"
+                                      ],
+                          "explanation":  "Block-level elements ignore floated elements and render behind them. Only inline content wraps around floats.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  11,
+                          "question":  "What is the default value of the float property?",
+                          "options":  [
+                                          "left",
+                                          "right",
+                                          "none",
+                                          "inherit"
+                                      ],
+                          "explanation":  "The default value of float is \u0027none\u0027, meaning the element does not float and remains in the normal flow.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  12,
+                          "question":  "Can you float a flex item?",
+                          "options":  [
+                                          "Yes, always",
+                                          "No, float is ignored on flex items",
+                                          "Only if display: block is set",
+                                          "Only in older browsers"
+                                      ],
+                          "explanation":  "Float does not work on flex items. The float property is ignored when the element is a flex item.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  13,
+                          "question":  "Which pseudo-element is commonly used for the clearfix technique?",
+                          "options":  [
+                                          "::before",
+                                          "::after",
+                                          "::first-letter",
+                                          "::selection"
+                                      ],
+                          "explanation":  "The clearfix technique uses ::after with content: \u0027\u0027 and clear: both to clear floats within a parent container.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  14,
+                          "question":  "What happens to a float: right element in a left-to-right document?",
+                          "options":  [
+                                          "It moves to the left edge",
+                                          "It moves to the right edge, text wraps on left",
+                                          "It centers in the container",
+                                          "It stays in place"
+                                      ],
+                          "explanation":  "float: right moves the element to the right edge of its container, and text wraps around its left side.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  15,
+                          "question":  "What is a pull quote?",
+                          "options":  [
+                                          "A quote pulled from text and displayed prominently",
+                                          "A quote that pulls elements",
+                                          "A margin property",
+                                          "A type of CSS selector"
+                                      ],
+                          "explanation":  "A pull quote is a key excerpt from an article displayed more prominently, often floated to one side for visual appeal.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  16,
+                          "question":  "How does float affect an element\u0027s display property?",
+                          "options":  [
+                                          "It changes inline to block",
+                                          "It changes block to inline",
+                                          "It doesn\u0027t change display",
+                                          "It sets display to flex"
+                                      ],
+                          "explanation":  "When an element is floated, its computed display value becomes \u0027block\u0027 for elements that would normally be inline.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  17,
+                          "question":  "What is the main accessibility concern with floated layouts?",
+                          "options":  [
+                                          "Fonts are smaller",
+                                          "Visual order may differ from DOM order",
+                                          "Colors appear differently",
+                                          "Images load slower"
+                                      ],
+                          "explanation":  "Floats can create a visual order that differs from the DOM order, which can be confusing for screen reader users.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  18,
+                          "question":  "What is the best modern alternative to float for multi-column layouts?",
+                          "options":  [
+                                          "display: table",
+                                          "CSS Grid",
+                                          "position: absolute",
+                                          "white-space: nowrap"
+                                      ],
+                          "explanation":  "CSS Grid is the most powerful modern method for creating multi-column layouts, far more capable than float-based layouts.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "Which of these is a proper clearfix implementation?",
+                          "options":  [
+                                          ".cf { overflow: hidden; }",
+                                          ".cf::after { content: \u0027\u0027; display: table; clear: both; }",
+                                          ".cf { clear: both; }",
+                                          ".cf { float: none; }"
+                                      ],
+                          "explanation":  "The proper clearfix uses ::after pseudo-element with content, display: table (or block), and clear: both.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  20,
+                          "question":  "When should you use float instead of Flexbox?",
+                          "options":  [
+                                          "For creating navigation bars",
+                                          "For text wrapping around images",
+                                          "For centering content",
+                                          "For equal-height columns"
+                                      ],
+                          "explanation":  "Float should be used primarily for text wrapping around elements (images, pull quotes, drop caps). Flexbox and Grid are better for everything else.",
+                          "correctAnswer":  1
+                      }
+                  ]
+}

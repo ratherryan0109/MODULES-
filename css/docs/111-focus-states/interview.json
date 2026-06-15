@@ -1,0 +1,130 @@
+{
+  "module": "111-focus-states",
+  "title": "Focus States",
+  "beginner": [
+    {
+      "question": "What is the `:focus` pseudo-class in CSS?",
+      "answer": "The `:focus` pseudo-class matches an element when it receives focus, typically through keyboard navigation (Tab key) or programmatic focus via JavaScript. It's essential for keyboard accessibility."
+    },
+    {
+      "question": "Why is it bad practice to remove `outline: none` on focus without providing an alternative?",
+      "answer": "Removing the default focus outline without a replacement makes it impossible for keyboard users to see which element is currently focused, severely harming accessibility. Always provide a visible focus indicator if removing the default outline."
+    },
+    {
+      "question": "What is the difference between `:focus` and `:focus-visible`?",
+      "answer": "`:focus` triggers whenever an element receives focus (click or keyboard). `:focus-visible` only triggers when the browser determines focus should be visibly indicated — typically keyboard navigation, not mouse clicks. This allows mouse users to avoid persistent focus rings."
+    },
+    {
+      "question": "What does the `:focus-within` pseudo-class do?",
+      "answer": "`:focus-within` applies to a parent element when any of its children have focus. It's useful for highlighting entire form sections, cards, or navigation menus when a child input or link is focused."
+    },
+    {
+      "question": "What is the default browser focus indicator for most elements?",
+      "answer": "The default focus indicator is a 1-2px solid or dotted outline, typically blue or black, applied via the `outline` property. The exact appearance varies by browser — for example, Chrome uses a blue 2px solid outline."
+    },
+    {
+      "question": "What is a 'focus ring'?",
+      "answer": "A focus ring is a visible outline or highlight that appears around an element when it receives keyboard focus. It helps keyboard users track their position on the page. It's typically implemented using the `outline` or `box-shadow` property."
+    },
+    {
+      "question": "What elements are natively focusable?",
+      "answer": "Natively focusable elements include `<a>` (with href), `<button>`, `<input>`, `<select>`, `<textarea>`, and `<area>`. Elements like `<div>` and `<span>` are not focusable unless they have a `tabindex` attribute."
+    },
+    {
+      "question": "What does `tabindex` do and what values can it take?",
+      "answer": "`tabindex` makes an element focusable via Tab key. `tabindex=\"0\"` adds it to the natural tab order. `tabindex=\"-1\"` makes it programmatically focusable but removes it from tab order. Positive values (1+) set explicit order but are strongly discouraged."
+    },
+    {
+      "question": "Why is the `:focus` pseudo-class applied to a focused element that was clicked?",
+      "answer": "When a user clicks an element, the browser focuses it if it's focusable, triggering `:focus`. This is why `:focus-visible` was created — to distinguish between click-based and keyboard-based focus for better UX."
+    },
+    {
+      "question": "What is the relationship between `outline` and focus indicators?",
+      "answer": "The `outline` property is the browser's native method for drawing focus indicators. Unlike `border`, `outline` does not take up space in the layout and does not affect element dimensions, making it ideal for focus indicators without layout shifts."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you create a custom focus ring using `box-shadow` instead of `outline`?",
+      "answer": "Use `box-shadow: 0 0 0 2px #fff, 0 0 0 4px #4A90D9` to create a two-layer focus ring (white gap + colored ring). This allows rounded corners (since `outline` doesn't follow `border-radius` in most browsers) and more visual control."
+    },
+    {
+      "question": "What is the `:focus-visible` polyfill approach for browsers that don't support it?",
+      "answer": "For unsupported browsers (like legacy Safari), use JavaScript to detect keyboard events and apply a class (e.g., `.keyboard-focus`) to the body, then style `:focus` with that class: `body.keyboard-focus *:focus { outline: 2px solid blue; }`."
+    },
+    {
+      "question": "How do you implement a focus indicator that meets WCAG 2.2 Focus Appearance requirements?",
+      "answer": "WCAG 2.2 SC 2.4.11 requires: the focus indicator area ≥ 2px thick perimeter, and contrast ratio ≥ 3:1 between focused and unfocused states. Use `outline: 2px solid #1565C0; outline-offset: 2px;` as a simple compliant solution."
+    },
+    {
+      "question": "What is the difference between `outline-offset` and how does it help with focus indicators?",
+      "answer": "`outline-offset` creates space between the element's border and the outline. A positive value pushes the outline outward; a negative pulls it inward. This is useful for creating visual separation between the focus indicator and element backgrounds."
+    },
+    {
+      "question": "How do you handle focus indicators within a CSS reset?",
+      "answer": "A good reset sets `:focus-visible { outline: 2px solid var(--focus-color, #1565C0); outline-offset: 2px; }` while removing `:focus { outline: none }` (with a replacement). This preserves keyboard focus visibility while allowing mouse users clean interaction."
+    },
+    {
+      "question": "What is the 'double focus ring' issue and how do you avoid it?",
+      "answer": "A double focus ring occurs when both `outline` and `box-shadow` apply simultaneously. To avoid it, use `outline` alone, or set `outline: none` and use only `box-shadow`. Test across browsers since each renders the default outline differently."
+    },
+    {
+      "question": "How do you style focus states for custom interactive components (e.g., custom checkboxes)?",
+      "answer": "For custom components, hide the native input visually (using `opacity: 0` or positioning off-screen), apply a custom styled element, and use adjacent sibling selectors: `.custom-checkbox:focus-visible + .checkmark { outline: 2px solid blue; }`."
+    },
+    {
+      "question": "What is `tabindex=\"-1\"` useful for in focus management?",
+      "answer": "`tabindex=\"-1\"` allows programmatic focus via JavaScript (`.focus()`) without adding the element to the keyboard tab order. It's used for skip links, modals (trapping focus), error summaries, and anchor links where you want to set focus programmatically."
+    },
+    {
+      "question": "How do focus states interact with CSS `:hover` for mobile devices?",
+      "answer": "On mobile, tapping an element triggers both `:hover` and `:focus`. The hover state may persist until the user taps elsewhere. `:focus-visible` is typically not triggered on mobile taps, so consider custom tap highlight colors with `-webkit-tap-highlight-color`."
+    },
+    {
+      "question": "What is the difference between `focus` and `focusin` events in JavaScript?",
+      "answer": "`focus` does not bubble up the DOM, while `focusin` does. `focusin` is useful for event delegation (detecting focus on any child element from a parent). `focusout` is the bubbling counterpart of `blur`."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a custom focus ring that follows `border-radius` across all browsers?",
+      "answer": "Since `outline` doesn't follow `border-radius`, use `box-shadow` for inset curves: `box-shadow: 0 0 0 3px blue`. For a truly matching radius, some browsers (Firefox 88+) support `outline` with `border-radius` via `-moz-outline-radius`, but it's non-standard."
+    },
+    {
+      "question": "What is the `:focus-visible` algorithm browsers use to determine visible focus?",
+      "answer": "Browsers use heuristics including: (1) if the element was focused by keyboard (Tab), show focus; (2) if focused by mouse/pointer but the element has keyboard input (input, textarea, select), show focus; (3) if focused programmatically via `.focus()`, the UA decides."
+    },
+    {
+      "question": "How do you handle focus in a Shadow DOM for custom elements?",
+      "answer": "Inside Shadow DOM, focus styles must be defined within the shadow tree. Use `:host(:focus-visible)` for the host element's focus state. For internal elements, standard `:focus-visible` works. `:focus-within` on the host can delegate focus styling to the shadow root."
+    },
+    {
+      "question": "What is 'focus trapping' and how is it implemented for modals?",
+      "answer": "Focus trapping restricts Tab key navigation to within a component (modal, dialog). Implementation: on Tab, if the last focusable element is focused, move focus back to the first; on Shift+Tab, vice versa. This prevents focus from escaping behind the modal overlay."
+    },
+    {
+      "question": "How does `inert` attribute affect focus states?",
+      "answer": "The `inert` attribute makes an element and its descendants unfocusable and invisible to the accessibility tree. It prevents tab navigation to inert sections, which is useful for sidebars/modals. The browser automatically removes focus from inert elements."
+    },
+    {
+      "question": "What is the 'focus-visible' selector support in older browsers and how do you feature-detect it?",
+      "answer": "`:focus-visible` is supported in Chrome 86+, Firefox 85+, Safari 15.4+. For detection, use `@supports selector(:focus-visible) { ... }`. For polyfilling, the WICG focus-visible polyfill adds a `.focus-visible` class using keyboard event detection."
+    },
+    {
+      "question": "How do you implement a focus indicator that adapts to `prefers-color-scheme` and `prefers-contrast`?",
+      "answer": "Use CSS custom properties: `:root { --focus-ring: 2px solid #1565C0; }` and override inside media queries: `@media (prefers-color-scheme: dark) { :root { --focus-ring: 2px solid #64B5F6; } }` and `@media (prefers-contrast: high) { :root { --focus-ring: 3px solid Highlight; } }`."
+    },
+    {
+      "question": "What is the 'non-text contrast' requirement for focus indicators specifically?",
+      "answer": "WCAG 2.1 SC 1.4.11 (Non-text Contrast) requires focus indicator colors to have at least 3:1 contrast against adjacent colors. This means both: (1) the focus ring vs the element background, and (2) the focus ring vs the surrounding page background."
+    },
+    {
+      "question": "How do you debug focus-related issues with the browser DevTools?",
+      "answer": "Chrome DevTools: force element state with `:focus-visible` in the Styles panel. Use the Rendering tab → 'Enable accessibility inspection' to see focus order. The Elements panel shows tabindex values. The Accessibility panel shows the computed accessibility tree focus state."
+    },
+    {
+      "question": "How do you create a smooth CSS-only focus transition without breaking accessibility?",
+      "answer": "Use `transition: outline-width 0.15s ease` (note: `outline-color` transitions smoothly, but `outline` is animatable only in modern browsers). For `box-shadow` approaches: `transition: box-shadow 0.15s ease`. Ensure the unfocused state still provides some visible boundary."
+    }
+  ]
+}

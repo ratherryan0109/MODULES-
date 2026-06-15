@@ -1,0 +1,128 @@
+{
+  "beginner": [
+    {
+      "question": "What are meta tags in HTML?",
+      "answer": "Meta tags are HTML elements placed in the <head> section that provide structured metadata about a web page. They are not visible to users but communicate information to browsers, search engines, and other web services."
+    },
+    {
+      "question": "What is the purpose of the charset meta tag?",
+      "answer": "The charset meta tag (<meta charset='UTF-8'>) declares the character encoding of the document. UTF-8 supports all Unicode characters, ensuring proper rendering of text in multiple languages."
+    },
+    {
+      "question": "What does the viewport meta tag do?",
+      "answer": "The viewport meta tag (<meta name='viewport' content='width=device-width, initial-scale=1.0'>) controls the layout on mobile browsers, ensuring the page scales correctly to fit the device screen."
+    },
+    {
+      "question": "How do you add a description for search results?",
+      "answer": "Use <meta name='description' content='Your page description here'>. This appears as the snippet under the page title in search results."
+    },
+    {
+      "question": "What is the robots meta tag used for?",
+      "answer": "The robots meta tag (<meta name='robots' content='index, follow'>) tells search engine crawlers how to index the page and whether to follow its links."
+    },
+    {
+      "question": "Can meta tags be placed inside the <body> tag?",
+      "answer": "No, meta tags must be placed inside the <head> section. Putting them in the <body> is invalid HTML."
+    },
+    {
+      "question": "What is the difference between name and http-equiv attributes?",
+      "answer": "The 'name' attribute defines standard metadata (description, author, viewport). The 'http-equiv' attribute simulates HTTP response headers (refresh, content-type, X-UA-Compatible)."
+    },
+    {
+      "question": "How do you set the author of a web page?",
+      "answer": "Use <meta name='author' content='Author Name'> to specify the author of the web page."
+    },
+    {
+      "question": "What is the correct order for meta tags in the <head>?",
+      "answer": "The charset meta tag should come first, followed by the viewport tag, then the title, and finally other meta tags like description, robots, and Open Graph tags."
+    },
+    {
+      "question": "Is the keywords meta tag still useful for SEO?",
+      "answer": "No, the keywords meta tag (<meta name='keywords' content='...'>) is largely ignored by major search engines like Google due to historical abuse and spam."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How does the viewport meta tag affect responsive design?",
+      "answer": "The viewport tag sets the page width to match the device width, allowing CSS media queries to apply different styles based on screen size. Without it, mobile browsers render the page at a desktop width and zoom out, making content hard to read."
+    },
+    {
+      "question": "What are the different parameters of the viewport meta tag?",
+      "answer": "Parameters include: width (device-width or pixel value), initial-scale (initial zoom), minimum-scale (minimum zoom), maximum-scale (maximum zoom), and user-scalable (yes/no to allow zooming)."
+    },
+    {
+      "question": "How do you prevent search engines from indexing a page but still allow them to follow links?",
+      "answer": "Use <meta name='robots' content='noindex, follow'>. This prevents the page from appearing in search results while still allowing crawlers to discover and follow links on the page."
+    },
+    {
+      "question": "What is the difference between noarchive and nosnippet?",
+      "answer": "noarchive prevents search engines from storing a cached copy of the page. nosnippet prevents them from showing a text snippet or preview in search results."
+    },
+    {
+      "question": "How do you set a theme color for mobile browsers?",
+      "answer": "Use <meta name='theme-color' content='#hexcolor'>. This changes the browser toolbar color on Chrome for Android, Firefox, and Edge mobile."
+    },
+    {
+      "question": "What is the purpose of the X-UA-Compatible meta tag?",
+      "answer": "It tells Internet Explorer to use the latest rendering engine (<meta http-equiv='X-UA-Compatible' content='IE=edge'>) rather than compatibility mode, which renders pages as older IE versions."
+    },
+    {
+      "question": "How do you create a page redirect using meta tags?",
+      "answer": "Use <meta http-equiv='refresh' content='seconds; url=URL'>. For example, content='5; url=https://example.com' redirects after 5 seconds."
+    },
+    {
+      "question": "What are Apple-specific meta tags for web apps?",
+      "answer": "Apple-specific meta tags include: apple-mobile-web-app-capable (full-screen mode), apple-mobile-web-app-status-bar-style (status bar appearance), and apple-mobile-web-app-title (app name when saved to home screen)."
+    },
+    {
+      "question": "What is the difference between the name and property attributes for meta tags?",
+      "answer": "The 'name' attribute is used for standard metadata (description, viewport, robots). The 'property' attribute is used for RDFa metadata like Open Graph (og:title, og:image). Both are valid but serve different standards."
+    },
+    {
+      "question": "How do you set different robots directives for Google vs other search engines?",
+      "answer": "Use separate meta tags: <meta name='robots' content='...'> for all crawlers, and <meta name='googlebot' content='...'> specifically for Google. Google respects both but the googlebot tag overrides robots for Google specifically."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "Explain the Content-Security-Policy meta tag and its security implications.",
+      "answer": "The Content-Security-Policy (CSP) meta tag defines approved sources for content loading, preventing XSS and data injection attacks. It controls which domains scripts, styles, images, and fonts can load from. Example: <meta http-equiv='Content-Security-Policy' content=\"default-src 'self'; script-src 'self' https://analytics.com\">. CSP is more restrictive when set via HTTP header rather than meta tag."
+    },
+    {
+      "question": "How does Google's handling of meta tags differ from Bing's?",
+      "answer": "Google ignores keywords meta tags entirely, while Bing still considers them as a ranking signal (though weak). Google uses description meta tags for search snippets but may rewrite them based on content. Bing is more likely to use the exact meta description. Both respect robots directives but may interpret them slightly differently."
+    },
+    {
+      "question": "What is the interaction between meta tags and the HTTP headers? Which takes precedence?",
+      "answer": "HTTP headers take precedence over meta tags when both provide the same directive. For example, an X-Robots-Tag HTTP header overrides a robots meta tag. Similarly, a Content-Type HTTP header overrides a charset meta tag. However, meta tags can supplement headers or be used when headers cannot be modified."
+    },
+    {
+      "question": "How do meta tags affect the Critical Rendering Path and page performance?",
+      "answer": "The charset meta tag must appear within the first 1024 bytes of the document for the browser to immediately start parsing. The viewport meta tag affects layout calculations. Resource hints like preconnect and preload (which are <link> elements, not <meta>) improve performance. Meta tags themselves have minimal performance impact but their position in <head> can affect speculative parsing."
+    },
+    {
+      "question": "Explain the role of the 'referrer' meta tag in privacy and analytics.",
+      "answer": "The referrer meta tag (<meta name='referrer' content='no-referrer-when-downgrade'>) controls what referrer information is sent when users navigate away from the page. Options include: no-referrer (send nothing), origin (send only origin), unsafe-url (send full URL), and strict-origin-when-cross-origin (default in modern browsers). This affects analytics accuracy and user privacy."
+    },
+    {
+      "question": "What are the implications of using user-scalable=no in the viewport meta tag?",
+      "answer": "Disabling user scaling (user-scalable=no) violates WCAG 2.0 Success Criterion 1.4.4 (Resize Text), making it inaccessible to users with visual impairments who need to zoom. It is strongly discouraged for accessibility compliance unless essential for specific functionality like a drawing app."
+    },
+    {
+      "question": "How do meta tags interact with JavaScript frameworks like React, Next.js, and Vue?",
+      "answer": "Modern frameworks handle meta tags dynamically. Next.js has built-in <Head> component for per-page meta tags. React Helmet and Vue Meta allow setting meta tags programmatically. Server-side rendering (SSR) frameworks render meta tags on the server for SEO, while client-rendered apps may need additional handling for crawlers to see dynamic meta tags."
+    },
+    {
+      "question": "What is the difference between using a meta refresh redirect versus a 301 HTTP redirect?",
+      "answer": "Meta refresh redirects (<meta http-equiv='refresh' content='0; url=...'>) are slower, not recommended for SEO, and can cause a flash of content. 301 HTTP redirects are server-level, preserve SEO ranking, are instant, and are the preferred method. Search engines treat meta refresh differently — some may not pass full link equity."
+    },
+    {
+      "question": "How do you handle dynamic meta tags for social sharing in single-page applications?",
+      "answer": "SPAs require server-side rendering (SSR), prerendering, or dynamic meta tag injection for social sharing bots. Solutions include: Next.js/Vue/Nuxt SSR, prerender.io for pre-rendering, or using server-side middleware to inject OG meta tags based on the route. Social media bots typically do not execute JavaScript, so client-rendered meta tags are not detected."
+    },
+    {
+      "question": "Explain the 'format-detection' meta tag and its mobile use cases.",
+      "answer": "The format-detection meta tag (<meta name='format-detection' content='telephone=no, email=no, address=no, date=no, url=no'>) controls whether mobile browsers automatically detect and link certain content types. For example, disabling telephone detection prevents phone numbers from becoming clickable links. This is useful for content that includes numbers or dates that should not be auto-linked."
+    }
+  ]
+}

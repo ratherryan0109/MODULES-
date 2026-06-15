@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 70: Server-Sent Events - Examples</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f8f9fa; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #1abc9c; padding-bottom: 10px; }
+        h2 { color: #16a085; margin-top: 30px; }
+        .example { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .example h3 { margin-top: 0; color: #1abc9c; }
+        .controls { margin: 15px 0; }
+        button { padding: 8px 16px; margin: 5px; border-radius: 4px; border: none; cursor: pointer; }
+        button.primary { background: #1abc9c; color: white; }
+        button.danger { background: #e74c3c; color: white; }
+        button.info { background: #3498db; color: white; }
+        .output { background: #f1f1f1; padding: 10px; border-radius: 4px; font-family: monospace; min-height: 40px; margin: 10px 0; max-height: 250px; overflow-y: auto; white-space: pre-wrap; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.5; margin: 15px 0; }
+        .note { background: #d4edda; border-left: 4px solid #1abc9c; padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+        .status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .status-connected { background: #d4edda; color: #155724; }
+        .status-disconnected { background: #f8d7da; color: #721c24; }
+        .status-connecting { background: #fff3cd; color: #856404; }
+        .event-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin: 2px; }
+        .badge-message { background: #cce5ff; color: #004085; }
+        .badge-notification { background: #d4edda; color: #155724; }
+        .badge-update { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+
+<h1>Server-Sent Events - Interactive Examples</h1>
+<p>SSE enables servers to push data to clients over standard HTTP connections.</p>
+
+<div class="note">
+    <strong>Note:</strong> Real SSE requires a server that sends text/event-stream. These examples use a simulated EventSource that generates events client-side to demonstrate the API without a server.
+</div>
+
+<!-- EXAMPLE 1: Basic EventSource -->
+<div class="example" id="example1">
+    <h3>Example 1: Basic EventSource Connection</h3>
+    <p>Connect to a simulated event stream and receive messages.</p>
+    
+    <div class="controls">
+        <button class="primary" onclick="startBasicSSE()">▶️ Start Event Stream</button>
+        <button class="danger" onclick="stopBasicSSE()">⏹️ Stop Stream</button>
+    </div>
+    
+    <div>
+        Status: <span id="sseStatus" class="status status-disconnected">Disconnected</span>
+    </div>
+    <div class="output" id="basicSSEOutput">Connect to start receiving events...</div>
+    
+    <div class="code-block">
+const eventSource = new EventSource('/api/events');
+
+eventSource.onmessage = (e) => {
+    console.log('Event:', e.data);
+};
+
+eventSource.onopen = () => {
+    console.log('Connected');
+};
+
+eventSource.onerror = () => {
+    console.log('Error/Disconnected');
+};
+    </div>
+</div>
+
+<!-- EXAMPLE 2: Custom Event Types -->
+<div class="example" id="example2">
+    <h3>Example 2: Custom Event Types</h3>
+    <p>Receive different event types and handle them separately.</p>
+    
+    <div class="controls">
+        <button class="primary" onclick="startCustomEvents()">▶️ Start Custom Events</button>
+        <button class="danger" onclick="stopCustomEvents()">⏹️ Stop</button>
+    </div>
+    
+    <div id="eventCounters" style="margin:10px 0;">
+        <span class="event-badge badge-message">📧 Messages: <span id="msgCount">0</span></span>
+        <span class="event-badge badge-notification">🔔 Notifications: <span id="notifCount">0</span></span>
+        <span class="event-badge badge-update">🔄 Updates: <span id="updateCount">0</span></span>
+    </div>
+    
+    <div class="output" id="customEventOutput" style="max-height:200px;">
+        <div class="log-entry">Waiting for custom events...</div>
+    </div>
+    
+    <div class="code-block">
+// Listen for specific event types
+eventSource.addEventListener('notification', (e) => {
+    updateNotificationUI(JSON.parse(e.data));
+});
+
+eventSource.addEventListener('status', (e) => {
+    updateStatusUI(JSON.parse(e.data));
+});
+    </div>
+</div>
+
+<!-- EXAMPLE 3: Reconnection and Event IDs -->
+<div class="example" id="example3">
+    <h3>Example 3: Reconnection & Event IDs</h3>
+    <p>SSE automatically tracks event IDs for reliable reconnection.</p>
+    
+    <div class="controls">
+        <button class="primary" onclick="startIDStream()">▶️ Start with IDs</button>
+        <button onclick="simulateDisconnectSSE()">📡 Simulate Disconnect</button>
+    </div>
+    <div class="output" id="idStreamOutput">
+        Shows how Last-Event-ID is tracked across reconnections...
+    </div>
+    
+    <div class="code-block">
+// Server sends events with IDs:
+// id: 42
+// data: {"message": "Hello"}
+// 
+// On reconnect, browser sends:
+// Last-Event-ID: 42
+    </div>
+</div>
+
+<!-- EXAMPLE 4: Real-Time Clock via SSE -->
+<div class="example" id="example4">
+    <h3>Example 4: Real-Time Clock</h3>
+    <p>Server pushes current time updates every second.</p>
+    
+    <div class="controls">
+        <button class="primary" onclick="startClock()">▶️ Start Clock</button>
+        <button class="danger" onclick="stopClock()">⏹️ Stop</button>
+    </div>
+    
+    <div style="text-align:center;font-size:3em;font-weight:bold;font-family:monospace;padding:20px;background:#1a1a2e;color:#4da6ff;border-radius:10px;margin:10px 0;" id="clockDisplay">
+        --:--:--
+    </div>
+    <div class="output" id="clockOutput">Clock stopped.</div>
+    
+    <div class="code-block">
+// Server sends:
+// data: {"time": "14:23:45", "timestamp": 1700000000}
+
+// Client receives:
+eventSource.onmessage = (e) => {
+    const data = JSON.parse(e.data);
+    document.getElementById('clock').textContent = data.time;
+};
+    </div>
+</div>
+
+<!-- EXAMPLE 5: Notification Feed -->
+<div class="example" id="example5">
+    <h3>Example 5: Live Notification Feed</h3>
+    <p>Receive server-pushed notifications with different severity levels.</p>
+    
+    <div class="controls">
+        <button class="primary" onclick="startNotifications()">▶️ Start Notifications</button>
+        <button class="danger" onclick="stopNotifications()">⏹️ Stop</button>
+        <button onclick="clearNotifications()">🧹 Clear</button>
+    </div>
+    <div class="output" id="notificationFeed" style="max-height:300px;">
+        <div class="notification-item">Notifications will appear here...</div>
+    </div>
+    
+    <div class="code-block">
+// Notification event type
+eventSource.addEventListener('notification', (e) => {
+    const notif = JSON.parse(e.data);
+    showToast(notif.title, notif.message);
+});
+    </div>
+</div>
+
+<!-- EXAMPLE 6: Progress Updates -->
+<div class="example" id="example6">
+    <h3>Example 6: Task Progress Updates</h3>
+    <p>Server sends progress updates for a long-running task.</p>
+    
+    <div class="controls">
+        <button class="primary" onclick="startProgressTask()">▶️ Start Task</button>
+        <button class="danger" onclick="resetProgress()">🔄 Reset</button>
+    </div>
+    
+    <div style="margin:15px 0;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span id="taskStatus">Idle</span>
+            <span id="progressPercent">0%</span>
+        </div>
+        <div style="background:#e9ecef;border-radius:10px;overflow:hidden;height:25px;">
+            <div id="progressFill" style="width:0%;height:100%;background:linear-gradient(90deg,#1abc9c,#3498db);border-radius:10px;transition:width 0.3s;"></div>
+        </div>
+    </div>
+    <div class="output" id="progressOutput">Click "Start Task" to begin.</div>
+    
+    <div class="code-block">
+// Server sends:
+// event: progress
+// data: {"percent": 45, "status": "Processing..."}
+// 
+// event: complete
+// data: {"result": "Task finished!", "time": 12.5}
+    </div>
+</div>
+
+<script>
+// ==========================================
+// Simulated EventSource for client-side demos
+// ==========================================
+class SimulatedEventSource {
+    constructor(url, options) {
+        this.url = url;
+        this.readyState = 0; // CONNECTING
+        this.listeners = {};
+        this._shouldRun = true;
+        this._eventId = 0;
+        
+        setTimeout(() => {
+            if (this._shouldRun) {
+                this.readyState = 1; // OPEN
+                this._emit('open', { target: this });
+            }
+        }, 200);
+    }
+
+    addEventListener(event, handler) {
+        if (!this.listeners[event]) this.listeners[event] = [];
+        this.listeners[event].push(handler);
+    }
+
+    _emit(event, data) {
+        (this.listeners[event] || []).forEach(h => h(data));
+        const handlerName = 'on' + event;
+        if (typeof this[handlerName] === 'function') {
+            this[handlerName](data);
+        }
+    }
+
+    _sendEvent(event, data, id) {
+        if (this.readyState !== 1) return;
+        this._eventId++;
+        const eventData = {
+            type: event,
+            data: typeof data === 'string' ? data : JSON.stringify(data),
+            lastEventId: String(id || this._eventId),
+            origin: window.location.origin
+        };
+        this._emit(event, eventData);
+        if (event !== 'message') {
+            this._emit('message', eventData);
+        }
+    }
+
+    close() {
+        this._shouldRun = false;
+        this.readyState = 2; // CLOSED
+        this._emit('error', { target: this });
+    }
+
+    get onopen() { return null; }
+    set onopen(handler) { this.addEventListener('open', handler); }
+    get onmessage() { return null; }
+    set onmessage(handler) { this.addEventListener('message', handler); }
+    get onerror() { return null; }
+    set onerror(handler) { this.addEventListener('error', handler); }
+}
+
+// ==========================================
+// EXAMPLE 1: Basic EventSource
+// ==========================================
+let basicSSE = null;
+
+function startBasicSSE() {
+    if (basicSSE) basicSSE.close();
+    
+    basicSSE = new SimulatedEventSource('/api/events');
+    const output = document.getElementById('basicSSEOutput');
+    const status = document.getElementById('sseStatus');
+    
+    basicSSE.addEventListener('open', () => {
+        status.textContent = 'Connected';
+        status.className = 'status status-connected';
+    });
+    
+    basicSSE.addEventListener('message', (e) => {
+        const time = new Date().toLocaleTimeString();
+        output.textContent = `[${time}] Received: ${e.data}\n` + output.textContent;
+    });
+    
+    basicSSE.addEventListener('error', () => {
+        if (basicSSE?.readyState === 2) {
+            status.textContent = 'Disconnected';
+            status.className = 'status status-disconnected';
+        }
+    });
+    
+    // Generate simulated events
+    let counter = 0;
+    basicSSE._interval = setInterval(() => {
+        if (basicSSE.readyState === 1) {
+            counter++;
+            basicSSE._sendEvent('message', {
+                id: counter,
+                text: `Event #${counter}`,
+                timestamp: new Date().toISOString()
+            });
+            
+            if (counter >= 10) {
+                clearInterval(basicSSE._interval);
+                output.textContent = '✅ 10 events received. Stream complete.\n' + output.textContent;
+            }
+        }
+    }, 1000);
+    
+    status.textContent = 'Connecting...';
+    status.className = 'status status-connecting';
+    output.textContent = '⏳ Connecting to event stream...\n';
+}
+
+function stopBasicSSE() {
+    if (basicSSE) {
+        clearInterval(basicSSE._interval);
+        basicSSE.close();
+        basicSSE = null;
+    }
+    const status = document.getElementById('sseStatus');
+    status.textContent = 'Disconnected';
+    status.className = 'status status-disconnected';
+    document.getElementById('basicSSEOutput').textContent = '⏹️ Stream stopped.\n' + document.getElementById('basicSSEOutput').textContent;
+}
+
+// ==========================================
+// EXAMPLE 2: Custom Event Types
+// ==========================================
+let customSSE = null;
+let msgCount = 0, notifCount = 0, updCount = 0;
+
+function startCustomEvents() {
+    if (customSSE) customSSE.close();
+    
+    msgCount = 0; notifCount = 0; updCount = 0;
+    customSSE = new SimulatedEventSource('/api/custom');
+    const output = document.getElementById('customEventOutput');
+    
+    // Message events
+    customSSE.addEventListener('message', (e) => {
+        try {
+            const data = JSON.parse(e.data);
+            if (data.type === 'message') {
+                msgCount++;
+                document.getElementById('msgCount').textContent = msgCount;
+                const time = new Date().toLocaleTimeString();
+                output.innerHTML = `<div style="color:#004085;">📧 [${time}] ${data.content}</div>\n` + output.innerHTML;
+            } else if (data.type === 'notification') {
+                notifCount++;
+                document.getElementById('notifCount').textContent = notifCount;
+                const time = new Date().toLocaleTimeString();
+                output.innerHTML = `<div style="color:#155724;">🔔 [${time}] ${data.title}: ${data.content}</div>\n` + output.innerHTML;
+            } else if (data.type === 'update') {
+                updCount++;
+                document.getElementById('updateCount').textContent = updCount;
+                const time = new Date().toLocaleTimeString();
+                output.innerHTML = `<div style="color:#856404;">🔄 [${time}] ${data.component}: ${data.status}</div>\n` + output.innerHTML;
+            }
+        } catch(e) {}
+    });
+    
+    // Generate different event types
+    const eventTypes = [
+        { type: 'message', content: 'New comment on your post' },
+        { type: 'notification', title: 'Alert', content: 'Server load at 85%' },
+        { type: 'update', component: 'Database', status: 'Backup completed' },
+        { type: 'message', content: 'You have a new follower' },
+        { type: 'update', component: 'Cache', status: 'Cleared successfully' },
+        { type: 'notification', title: 'Warning', content: 'SSL certificate expires in 7 days' }
+    ];
+    
+    let idx = 0;
+    customSSE._interval = setInterval(() => {
+        if (customSSE.readyState === 1) {
+            const evt = eventTypes[idx % eventTypes.length];
+            customSSE._sendEvent('message', evt);
+            idx++;
+            if (idx >= 12) clearInterval(customSSE._interval);
+        }
+    }, 1200);
+    
+    output.innerHTML = '<div>📡 Receiving custom events...</div>\n' + output.innerHTML;
+}
+
+function stopCustomEvents() {
+    if (customSSE) {
+        clearInterval(customSSE._interval);
+        customSSE.close();
+        customSSE = null;
+    }
+}
+
+// ==========================================
+// EXAMPLE 3: Event IDs for Reconnection
+// ==========================================
+let idSSE = null;
+let eventIdCounter = 100;
+
+function startIDStream() {
+    if (idSSE) idSSE.close();
+    
+    idSSE = new SimulatedEventSource('/api/idstream');
+    const output = document.getElementById('idStreamOutput');
+    
+    idSSE.addEventListener('message', (e) => {
+        const time = new Date().toLocaleTimeString();
+        output.textContent = `[${time}] Event ID: ${e.lastEventId} | Data: ${e.data}\n` + output.textContent;
+    });
+    
+    idSSE.addEventListener('open', () => {
+        output.textContent = '✅ Connection opened.\n' + output.textContent;
+        output.textContent += `📋 Last-Event-ID: ${idSSE._eventId}\n`;
+    });
+    
+    let count = 0;
+    idSSE._interval = setInterval(() => {
+        if (idSSE.readyState === 1) {
+            count++;
+            eventIdCounter++;
+            const data = JSON.stringify({ seq: eventIdCounter, msg: `Event sequence #${eventIdCounter}` });
+            idSSE._sendEvent('message', data, String(eventIdCounter));
+            if (count >= 8) clearInterval(idSSE._interval);
+        }
+    }, 1000);
+    
+    output.textContent = '▶️ Starting event stream with ID tracking...\n';
+}
+
+function simulateDisconnectSSE() {
+    if (idSSE) {
+        const lastId = idSSE._eventId;
+        clearInterval(idSSE._interval);
+        idSSE.close();
+        const output = document.getElementById('idStreamOutput');
+        output.textContent = `📡 Connection closed. Last-Event-ID: ${lastId}\n` + output.textContent;
+        output.textContent += '🔄 Auto-reconnecting in 2 seconds...\n';
+        setTimeout(startIDStream, 2000);
+    }
+}
+
+// ==========================================
+// EXAMPLE 4: Real-Time Clock
+// ==========================================
+let clockSSE = null;
+
+function startClock() {
+    if (clockSSE) clockSSE.close();
+    
+    clockSSE = new SimulatedEventSource('/api/clock');
+    const display = document.getElementById('clockDisplay');
+    const output = document.getElementById('clockOutput');
+    
+    clockSSE.addEventListener('message', (e) => {
+        try {
+            const data = JSON.parse(e.data);
+            display.textContent = data.time;
+            output.textContent = `[${data.time}] Server time: ${data.time} (Unix: ${data.unix})\n` + output.textContent;
+        } catch(e) {}
+    });
+    
+    clockSSE._interval = setInterval(() => {
+        if (clockSSE.readyState === 1) {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour12: false });
+            clockSSE._sendEvent('message', {
+                time: time,
+                unix: Math.floor(now.getTime() / 1000),
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+            });
+        }
+    }, 1000);
+    
+    output.textContent = '⏰ Clock started. Receiving time updates every second.\n';
+}
+
+function stopClock() {
+    if (clockSSE) {
+        clearInterval(clockSSE._interval);
+        clockSSE.close();
+        clockSSE = null;
+    }
+    document.getElementById('clockDisplay').textContent = '--:--:--';
+    document.getElementById('clockOutput').textContent = '⏹️ Clock stopped.\n' + document.getElementById('clockOutput').textContent;
+}
+
+// ==========================================
+// EXAMPLE 5: Notification Feed
+// ==========================================
+let notifSSE = null;
+
+function startNotifications() {
+    if (notifSSE) notifSSE.close();
+    
+    notifSSE = new SimulatedEventSource('/api/notifications');
+    const feed = document.getElementById('notificationFeed');
+    
+    notifSSE.addEventListener('message', (e) => {
+        try {
+            const notif = JSON.parse(e.data);
+            const severity = notif.severity || 'info';
+            const colors = { info: '#3498db', warning: '#f39c12', error: '#e74c3c', success: '#2ecc71' };
+            const color = colors[severity] || colors.info;
+            
+            const item = document.createElement('div');
+            item.style.cssText = `
+                padding: 10px; margin: 5px 0; border-left: 4px solid ${color};
+                background: #f8f9fa; border-radius: 4px;
+                animation: slideIn 0.3s ease;
+            `;
+            item.innerHTML = `<strong>${notif.title}</strong><br><small>${notif.message}</small>`;
+            feed.prepend(item);
+            
+            // Remove excess items
+            while (feed.children.length > 20) feed.removeChild(feed.lastChild);
+        } catch(e) {}
+    });
+    
+    // Generate notifications
+    const notifications = [
+        { title: 'Server Update', message: 'Server v2.4.1 deployed successfully', severity: 'success' },
+        { title: 'CPU Warning', message: 'CPU usage exceeded 80% threshold', severity: 'warning' },
+        { title: 'New User', message: 'User johndoe@example.com registered', severity: 'info' },
+        { title: 'Database Error', message: 'Connection pool exhausted on DB-3', severity: 'error' },
+        { title: 'Backup Complete', message: 'Daily backup completed: 2.4 GB', severity: 'success' }
+    ];
+    
+    let idx = 0;
+    notifSSE._interval = setInterval(() => {
+        if (notifSSE.readyState === 1) {
+            const notif = notifications[idx % notifications.length];
+            notifSSE._sendEvent('message', notif);
+            idx++;
+            if (idx >= 15) clearInterval(notifSSE._interval);
+        }
+    }, 2000);
+}
+
+function stopNotifications() {
+    if (notifSSE) {
+        clearInterval(notifSSE._interval);
+        notifSSE.close();
+        notifSSE = null;
+    }
+}
+
+function clearNotifications() {
+    document.getElementById('notificationFeed').innerHTML = '<div class="notification-item">Notifications cleared.</div>';
+}
+
+// ==========================================
+// EXAMPLE 6: Progress Updates
+// ==========================================
+let progressSSE = null;
+
+function startProgressTask() {
+    if (progressSSE) progressSSE.close();
+    
+    progressSSE = new SimulatedEventSource('/api/progress');
+    const fill = document.getElementById('progressFill');
+    const percent = document.getElementById('progressPercent');
+    const status = document.getElementById('taskStatus');
+    const output = document.getElementById('progressOutput');
+    
+    progressSSE.addEventListener('message', (e) => {
+        try {
+            const data = JSON.parse(e.data);
+            
+            if (data.type === 'progress') {
+                fill.style.width = data.percent + '%';
+                percent.textContent = data.percent + '%';
+                status.textContent = data.status || 'Processing...';
+                output.textContent = `⏳ ${data.percent}% - ${data.status}\n` + output.textContent;
+            } else if (data.type === 'complete') {
+                fill.style.width = '100%';
+                percent.textContent = '100%';
+                status.textContent = '✅ Complete!';
+                output.textContent = `✅ ${data.message} (${data.duration}s)\n` + output.textContent;
+            }
+        } catch(e) {}
+    });
+    
+    // Simulate progress
+    let progress = 0;
+    progressSSE._interval = setInterval(() => {
+        if (progressSSE.readyState === 1) {
+            progress += Math.floor(Math.random() * 15) + 5;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(progressSSE._interval);
+                progressSSE._sendEvent('message', { 
+                    type: 'complete', 
+                    message: 'Task completed successfully!', 
+                    duration: '12.5s' 
+                });
+            } else {
+                progressSSE._sendEvent('message', {
+                    type: 'progress',
+                    percent: progress,
+                    status: `Processing step ${Math.ceil(progress / 10)} of 10...`
+                });
+            }
+        }
+    }, 800);
+    
+    output.textContent = '▶️ Task started. Receiving progress updates...\n';
+}
+
+function resetProgress() {
+    if (progressSSE) {
+        clearInterval(progressSSE._interval);
+        progressSSE.close();
+        progressSSE = null;
+    }
+    document.getElementById('progressFill').style.width = '0%';
+    document.getElementById('progressPercent').textContent = '0%';
+    document.getElementById('taskStatus').textContent = 'Idle';
+    document.getElementById('progressOutput').textContent = 'Progress reset.';
+}
+</script>
+
+</body>
+</html>

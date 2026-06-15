@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 18: HTML Lists Overview - Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: #333; line-height: 1.6; padding: 20px; }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    .example-box { background: white; border: 2px solid #ddd; border-radius: 10px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .example-box h2 { color: #2980b9; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .code-block { background: #2d2d2d; color: #f8f8f2; padding: 18px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; font-size: 14px; overflow-x: auto; margin: 15px 0; white-space: pre-wrap; }
+    .note { background: #fff3cd; border-left: 5px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; }
+    .output { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 6px; margin: 10px 0; }
+    .demo-list ul, .demo-list ol, .demo-list dl { margin: 10px 0 10px 25px; }
+    .demo-list li { margin: 4px 0; }
+    .demo-list dt { font-weight: bold; margin-top: 8px; }
+    .demo-list dd { margin-left: 20px; }
+
+    .styled-ul { list-style-type: square; color: #2c3e50; }
+    .styled-ul li::marker { color: #e74c3c; }
+    .custom-ul { list-style: none; }
+    .custom-ul li::before { content: '✓ '; color: #2ecc71; font-weight: bold; }
+    .inline-list { list-style: none; display: flex; gap: 20px; background: #2c3e50; padding: 12px 20px; border-radius: 8px; }
+    .inline-list li a { color: white; text-decoration: none; }
+    .inline-list li a:hover { color: #3498db; }
+  </style>
+</head>
+<body>
+  <h1>📋 HTML Lists Overview — Code Examples</h1>
+
+  <div class="example-box">
+    <h2>Example 1: Unordered List (Bullets)</h2>
+    <div class="output">
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+      </ul>
+    </div>
+    <div class="code-block">
+      &lt;ul&gt;
+        &lt;li&gt;HTML&lt;/li&gt;
+        &lt;li&gt;CSS&lt;/li&gt;
+        &lt;li&gt;JavaScript&lt;/li&gt;
+      &lt;/ul&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 2: Ordered List (Numbered)</h2>
+    <div class="output">
+      <p><strong>How to Make Tea:</strong></p>
+      <ol>
+        <li>Boil water</li>
+        <li>Add tea bag to cup</li>
+        <li>Pour hot water over tea bag</li>
+        <li>Steep for 3-5 minutes</li>
+        <li>Remove tea bag and enjoy</li>
+      </ol>
+    </div>
+    <div class="code-block">
+      &lt;ol&gt;
+        &lt;li&gt;Boil water&lt;/li&gt;
+        &lt;li&gt;Add tea bag to cup&lt;/li&gt;
+        &lt;li&gt;Pour hot water&lt;/li&gt;
+        &lt;li&gt;Steep for 3-5 minutes&lt;/li&gt;
+      &lt;/ol&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 3: Description List (Terms and Definitions)</h2>
+    <div class="output">
+      <dl>
+        <dt>HTML</dt>
+        <dd>HyperText Markup Language — the standard markup language for web pages</dd>
+        <dt>CSS</dt>
+        <dd>Cascading Style Sheets — used to style HTML elements</dd>
+        <dt>JavaScript</dt>
+        <dd>A programming language that adds interactivity to web pages</dd>
+      </dl>
+    </div>
+    <div class="code-block">
+      &lt;dl&gt;
+        &lt;dt&gt;HTML&lt;/dt&gt;
+        &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+        &lt;dt&gt;CSS&lt;/dt&gt;
+        &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;
+      &lt;/dl&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 4: Nested Lists</h2>
+    <div class="output">
+      <ul>
+        <li>Frontend
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </li>
+        <li>Backend
+          <ul>
+            <li>Node.js</li>
+            <li>Python</li>
+            <li>PHP</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="code-block">
+      &lt;ul&gt;
+        &lt;li&gt;Frontend
+          &lt;ul&gt;
+            &lt;li&gt;HTML&lt;/li&gt;
+            &lt;li&gt;CSS&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;Backend
+          &lt;ul&gt;
+            &lt;li&gt;Node.js&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    </div>
+    <div class="note">Nested lists must be inside &lt;li&gt; elements, not directly inside &lt;ul&gt;.</div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 5: Ordered List Attributes</h2>
+    <div class="output">
+      <p><strong>type="A" (uppercase letters):</strong></p>
+      <ol type="A">
+        <li>First</li><li>Second</li><li>Third</li>
+      </ol>
+      <p><strong>type="i" (lowercase Roman):</strong></p>
+      <ol type="i">
+        <li>First</li><li>Second</li><li>Third</li>
+      </ol>
+      <p><strong>start="5":</strong></p>
+      <ol start="5">
+        <li>Item 5</li><li>Item 6</li>
+      </ol>
+      <p><strong>reversed:</strong></p>
+      <ol reversed>
+        <li>Top item</li><li>Second item</li><li>Third item</li>
+      </ol>
+      <p><strong>value attribute on li:</strong></p>
+      <ol>
+        <li>Item 1</li>
+        <li value="10">Item 10 (jumped)</li>
+        <li>Item 11</li>
+      </ol>
+    </div>
+    <div class="code-block">
+      &lt;ol type="A"&gt;...&lt;/ol&gt;
+      &lt;ol type="i"&gt;...&lt;/ol&gt;
+      &lt;ol start="5"&gt;...&lt;/ol&gt;
+      &lt;ol reversed&gt;...&lt;/ol&gt;
+      &lt;li value="10"&gt;Item 10&lt;/li&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 6: CSS List Styling</h2>
+    <div class="output">
+      <p><strong>Square bullets with colored marker:</strong></p>
+      <ul class="styled-ul">
+        <li>Item with square marker</li>
+        <li>Marker is red via CSS</li>
+      </ul>
+
+      <p><strong>Custom markers with ::before:</strong></p>
+      <ul class="custom-ul">
+        <li>Checked item</li>
+        <li>Another checked item</li>
+      </ul>
+
+      <p><strong>Horizontal navigation (inline list):</strong></p>
+      <ul class="inline-list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="code-block">
+      ul { list-style-type: square; }
+      ul li::marker { color: red; }
+
+      .custom-ul { list-style: none; }
+      .custom-ul li::before { content: '✓ '; color: green; }
+
+      .inline-list { list-style: none; display: flex; gap: 20px; }
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 7: Mixed List Types</h2>
+    <div class="output">
+      <ol>
+        <li>Learn HTML
+          <ul>
+            <li>Tags</li>
+            <li>Attributes</li>
+            <li>Forms</li>
+          </ul>
+        </li>
+        <li>Learn CSS
+          <ul>
+            <li>Selectors</li>
+            <li>Box Model</li>
+            <li>Flexbox</li>
+          </ul>
+        </li>
+        <li>Learn JavaScript
+          <ul>
+            <li>Variables</li>
+            <li>Functions</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+</body>
+</html>

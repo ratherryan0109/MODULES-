@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What does the rel='canonical' attribute tell search engines?",
+    "options": ["To ignore the page entirely", "Which URL is the preferred version of the page", "To redirect users to another URL", "To cache the page for faster loading"],
+    "answer": "b",
+    "explanation": "The rel='canonical' attribute indicates the preferred or authoritative version of a web page when multiple URLs contain similar or duplicate content."
+  },
+  {
+    "question": "Where is the canonical tag placed in an HTML document?",
+    "options": ["In the <body> section", "In the <head> section", "At the end of the document", "Inside a <script> tag"],
+    "answer": "b",
+    "explanation": "The canonical tag is a <link> element placed within the <head> section of an HTML document, using rel='canonical' and href attributes."
+  },
+  {
+    "question": "What is the correct syntax for a canonical tag?",
+    "options": ["<meta rel='canonical' href='https://example.com/page' />", "<link rel='canonical' src='https://example.com/page' />", "<link rel='canonical' href='https://example.com/page' />", "<a rel='canonical' href='https://example.com/page'>"],
+    "answer": "c",
+    "explanation": "The correct syntax is <link rel='canonical' href='URL' />, using the href attribute (not src) to specify the canonical URL."
+  },
+  {
+    "question": "How many canonical tags should a single page have?",
+    "options": ["None", "Exactly one", "Up to two", "As many as needed"],
+    "answer": "b",
+    "explanation": "A page should have exactly one canonical tag. Multiple canonical tags with different URLs create ambiguity and search engines may ignore the canonical signal entirely."
+  },
+  {
+    "question": "What is a self-referencing canonical?",
+    "options": ["A canonical that points to the homepage", "A canonical that points to the same URL as the current page", "A canonical that points to an external domain", "A canonical that points to a PDF file"],
+    "answer": "b",
+    "explanation": "A self-referencing canonical points to the same URL as the current page. It's a best practice to include one on every page to prevent issues with URL parameters or tracking codes."
+  },
+  {
+    "question": "Which URL format should canonical tags use?",
+    "options": ["Relative URLs (e.g., /page)", "Absolute URLs (e.g., https://example.com/page)", "Protocol-relative URLs (e.g., //example.com/page)", "Any format is acceptable"],
+    "answer": "b",
+    "explanation": "Canonical tags should always use absolute URLs (with protocol and domain) to avoid ambiguity. Google explicitly recommends absolute URLs for canonical tags."
+  },
+  {
+    "question": "What happens if a canonical tag points to a URL that redirects (301)?",
+    "options": ["Search engines follow the redirect and use the final destination", "The canonical is ignored", "It creates a canonical chain which is problematic", "Search engines penalize the page"],
+    "answer": "c",
+    "explanation": "A canonical pointing to a redirecting URL creates a canonical chain (URL A canonicals to B, which redirects to C). Search engines may not follow through the entire chain, so canonicals should always point directly to the final destination."
+  },
+  {
+    "question": "What is cross-domain canonicalization?",
+    "options": ["Using canonicals between different subdomains", "Using canonicals to point to URLs on different domains", "Using canonicals for international versions of pages", "All of the above"],
+    "answer": "b",
+    "explanation": "Cross-domain canonicalization is when a page on one domain uses a canonical tag pointing to a URL on a different domain, commonly used for syndicated or republished content."
+  },
+  {
+    "question": "What happens when a page has both 'noindex' and a canonical tag?",
+    "options": ["The canonical is ignored", "The noindex takes precedence", "Both signals are considered equally", "Search engines get confused and may not index or canonicalize properly"],
+    "answer": "b",
+    "explanation": "The 'noindex' directive overrides the canonical tag. If a page is marked noindex, search engines will not index any version of it, making the canonical tag irrelevant."
+  },
+  {
+    "question": "Which of the following is NOT a valid use case for canonical URLs?",
+    "options": ["Standardizing www vs non-www versions", "Consolidating URL parameter variants", "Hiding pages from search results", "Specifying the original source of syndicated content"],
+    "answer": "c",
+    "explanation": "Hiding pages from search results is done with 'noindex' meta tags or robots.txt, not canonical tags. Canonical URLs are for specifying preferred URLs, not excluding pages from search."
+  },
+  {
+    "question": "How do search engines treat canonical tags?",
+    "options": ["As strict directives that must be followed", "As strong hints that are usually but not always followed", "As optional metadata that is rarely considered", "As ranking signals for the canonicalized page"],
+    "answer": "b",
+    "explanation": "Canonical tags are treated as strong hints rather than strict directives. Search engines may override the specified canonical if they find conflicting signals or a better candidate."
+  },
+  {
+    "question": "What is a canonical chain?",
+    "options": ["A series of canonical tags on the same page", "When page A canonicals to B, and B canonicals to C", "When multiple pages all canonical to the same URL", "Using canonical tags across multiple subdomains"],
+    "answer": "b",
+    "explanation": "A canonical chain occurs when one page's canonical points to a second page, whose canonical points to a third. This dilutes ranking signals and should be avoided by pointing all pages directly to the final canonical."
+  },
+  {
+    "question": "For non-HTML resources like PDFs, how can you specify a canonical URL?",
+    "options": ["You cannot specify canonicals for non-HTML resources", "Using HTML meta tags", "Using HTTP Link headers", "Using JavaScript redirects"],
+    "answer": "c",
+    "explanation": "For non-HTML resources such as PDFs, images, or downloadable files, the canonical URL is specified using the HTTP Link header in the server response."
+  },
+  {
+    "question": "What should a canonical tag on a printer-friendly version of a page point to?",
+    "options": ["Itself", "The standard (non-print) version of the page", "The homepage", "Nowhere - printer pages shouldn't have canonicals"],
+    "answer": "b",
+    "explanation": "Printer-friendly versions are duplicates of the standard page content. They should canonicalize back to the standard version to consolidate ranking signals and avoid duplicate content issues."
+  },
+  {
+    "question": "How do canonical tags interact with sitemaps?",
+    "options": ["Sitemaps should list all URLs including non-canonical versions", "Sitemaps should include only the canonical versions of URLs", "Canonical tags override sitemap entries", "Sitemaps and canonicals are unrelated"],
+    "answer": "b",
+    "explanation": "Sitemaps should include only the canonical versions of URLs. This provides search engines with consistent signals about which URLs are the preferred versions."
+  },
+  {
+    "question": "What is the result of having no canonical tag on a page accessible via multiple URLs?",
+    "options": ["Search engines might split ranking signals across all versions", "Only the first URL discovered gets indexed", "All versions get equal ranking", "The page gets penalized for duplicate content"],
+    "answer": "a",
+    "explanation": "Without a canonical tag, search engines may treat each URL variant as a separate page, splitting ranking signals (backlinks, authority) and potentially causing duplicate content issues."
+  },
+  {
+    "question": "What should an e-commerce product page with '?color=red' do for its canonical?",
+    "options": ["Canonical to the color-specific URL", "Canonical to the base product URL without parameters", "Not include a canonical tag", "Canonical to the homepage"],
+    "answer": "b",
+    "explanation": "Parameterized product pages should canonicalize to the base product URL to consolidate ranking signals. The color-specific page may still be indexed if it has unique content, but the base URL should be the canonical."
+  },
+  {
+    "question": "What's the difference between a 301 redirect and a canonical tag for consolidating duplicate content?",
+    "options": ["They are functionally identical", "301 redirect forces users to the canonical URL; canonical is a hint for search engines", "Canonical is stronger than 301 redirect", "301 redirect affects only users, while canonical affects only search engines"],
+    "answer": "b",
+    "explanation": "A 301 redirect automatically sends users and search engines to the target URL. A canonical tag only provides a hint to search engines about the preferred URL, while users can still access any version."
+  },
+  {
+    "question": "When should you use HTTP header canonical instead of HTML canonical tags?",
+    "options": ["Always - it's the preferred method", "For non-HTML documents like PDFs and images", "When you want to specify canonicals on external sites", "HTTP header canonicals are deprecated"],
+    "answer": "b",
+    "explanation": "HTTP header canonicals are used for non-HTML documents (PDFs, images, videos) where you cannot include an HTML <link> tag in the document itself."
+  },
+  {
+    "question": "What should you check if Google Search Console reports 'Alternate page with proper canonical tag'?",
+    "options": ["The canonical tag is working correctly", "Google chose a different canonical than specified", "The canonical tag is broken", "The page has duplicate content issues"],
+    "answer": "b",
+    "explanation": "This message in Search Console indicates that Google found a canonical tag pointing to a different URL, and Google has chosen to use the specified canonical (or possibly a different one) for indexing."
+  }
+]

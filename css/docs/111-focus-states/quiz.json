@@ -1,0 +1,147 @@
+{
+  "module": "111-focus-states",
+  "title": "Focus States",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS pseudo-class should be used for keyboard-only focus indicators?",
+      "options": [":focus", ":focus-visible", ":focus-within", ":active"],
+      "correctAnswer": 1,
+      "explanation": ":focus-visible applies focus styles only when the browser determines focus should be visible (typically keyboard navigation)."
+    },
+    {
+      "id": 2,
+      "question": "What is the minimum focus indicator width recommended by WCAG 2.2?",
+      "options": ["1px", "2px", "3px", "4px"],
+      "correctAnswer": 1,
+      "explanation": "WCAG 2.2 Success Criterion 2.4.11 (Focus Appearance) requires a minimum 2px thick focus indicator."
+    },
+    {
+      "id": 3,
+      "question": "Which CSS property is best for focus indicators because it doesn't affect layout?",
+      "options": ["border", "outline", "box-shadow", "background"],
+      "correctAnswer": 1,
+      "explanation": "outline doesn't affect layout (it's drawn outside the element's box) and respects forced colors mode."
+    },
+    {
+      "id": 4,
+      "question": "What does :focus-within do?",
+      "options": ["Styles the focused element", "Styles the parent when any child is focused", "Styles siblings of the focused element", "Styles the document body"],
+      "correctAnswer": 1,
+      "explanation": ":focus-within applies to an element when it or any of its descendants have focus."
+    },
+    {
+      "id": 5,
+      "question": "What is wrong with `*:focus { outline: none; }`?",
+      "options": ["It's slow", "It removes focus indicators for all users", "It doesn't work in all browsers", "Nothing"],
+      "correctAnswer": 1,
+      "explanation": "This removes visual focus indicators entirely, breaking keyboard navigation for all users."
+    },
+    {
+      "id": 6,
+      "question": "How can you remove focus rings for mouse users while keeping them for keyboard users?",
+      "options": ["Use :focus-visible styles", "Use JavaScript to detect mouse usage", "It's not possible", "Use @media (pointer: fine)"],
+      "correctAnswer": 0,
+      "explanation": ":focus-visible naturally only applies when the browser determines focus should be visible, typically during keyboard navigation."
+    },
+    {
+      "id": 7,
+      "question": "What contrast ratio must the focus indicator have against adjacent colors?",
+      "options": ["4.5:1", "3:1", "2:1", "7:1"],
+      "correctAnswer": 1,
+      "explanation": "WCAG 2.2 requires focus indicators to have at least 3:1 contrast ratio against adjacent non-focus colors."
+    },
+    {
+      "id": 8,
+      "question": "Which ARIA attribute should NOT have a visible focus indicator removed?",
+      "options": ["aria-hidden", "aria-label", "role", "tabindex"],
+      "correctAnswer": 3,
+      "explanation": "Elements with tabindex are keyboard-focusable and must have visible focus indicators."
+    },
+    {
+      "id": 9,
+      "question": "What is a 'focus trap'?",
+      "options": ["A CSS technique", "When focus is locked inside a modal until it closes", "A browser bug", "A type of animation"],
+      "correctAnswer": 1,
+      "explanation": "A focus trap keeps keyboard focus within a modal or dialog until it's dismissed, preventing users from tabbing to the background content."
+    },
+    {
+      "id": 10,
+      "question": "What is 'roving tabindex'?",
+      "options": ["A CSS property", "A pattern where only one element in a group is tabbable at a time", "A JavaScript framework", "A browser feature"],
+      "correctAnswer": 1,
+      "explanation": "Roving tabindex sets only the active/selected item in a group (like tabs or a toolbar) to tabindex='0' and others to '-1'."
+    },
+    {
+      "id": 11,
+      "question": "Which system color is used for focus indicators in forced colors mode?",
+      "options": ["ButtonText", "Highlight", "CanvasText", "LinkText"],
+      "correctAnswer": 1,
+      "explanation": "In forced colors mode, browsers use the system 'Highlight' color for focus indicators."
+    },
+    {
+      "id": 12,
+      "question": "What does WCAG 2.4.7 require?",
+      "options": ["Focus order", "Visible focus indicator", "Skip links", "Keyboard navigation"],
+      "correctAnswer": 1,
+      "explanation": "WCAG 2.4.7 'Focus Visible' requires any keyboard-operable interface to have a visible focus indicator."
+    },
+    {
+      "id": 13,
+      "question": "Which element should always be focusable for accessibility?",
+      "options": ["<div>", "<span>", "Skip-to-content link", "<p>"],
+      "correctAnswer": 2,
+      "explanation": "Skip-to-content links must be focusable (and visible on focus) so keyboard users can bypass repeated navigation."
+    },
+    {
+      "id": 14,
+      "question": "How should custom dropdown components handle focus?",
+      "options": ["Focus the first item when opened", "Focus the trigger button", "Don't allow focus", "Use tabindex='-1' on all items"],
+      "correctAnswer": 0,
+      "explanation": "When a dropdown opens, focus should move to the first menu item. Arrow keys navigate items, Escape closes and returns focus."
+    },
+    {
+      "id": 15,
+      "question": "What is the default browser focus indicator for most elements?",
+      "options": ["Dashed border", "Solid outline (usually blue)", "Box-shadow", "Background color change"],
+      "correctAnswer": 1,
+      "explanation": "Most browsers render a default blue outline (2-3px) as the focus indicator for interactive elements."
+    },
+    {
+      "id": 16,
+      "question": "Which of these is a valid reason to use `tabindex=\"-1\"`?",
+      "options": ["To remove an element from tab order", "To make an element programmatically focusable", "To prevent focus entirely", "To increase tab order priority"],
+      "correctAnswer": 1,
+      "explanation": "tabindex=\"-1\" makes an element programmatically focusable via JavaScript but removes it from the natural tab order."
+    },
+    {
+      "id": 17,
+      "question": "What happens when you use Tab on a page with no focusable elements?",
+      "options": ["The page scrolls", "The URL bar receives focus", "Nothing happens", "An error occurs"],
+      "correctAnswer": 2,
+      "explanation": "If no interactive elements exist, Tab won't move focus anywhere, which can trap keyboard users."
+    },
+    {
+      "id": 18,
+      "question": "Which pseudo-class would you use to highlight an entire card when focus is inside it?",
+      "options": [":focus", ":focus-visible", ":focus-within", ":has(:focus)"],
+      "correctAnswer": 2,
+      "explanation": ":focus-within on the card element will apply styles when any child (link, button, input) receives focus."
+    },
+    {
+      "id": 19,
+      "question": "Should form inputs have the same focus indicator as buttons?",
+      "options": ["Yes, always", "No, inputs should show focus inside the field", "It depends on the design", "Neither needs focus"],
+      "correctAnswer": 1,
+      "explanation": "Inputs typically use a combination of border color change and box-shadow inside the input area, while buttons use an outer ring."
+    },
+    {
+      "id": 20,
+      "question": "What keyboard key should close a modal and return focus to the triggering element?",
+      "options": ["Enter", "Space", "Escape", "Tab"],
+      "correctAnswer": 2,
+      "explanation": "Escape closes modals, and focus must return to the element that triggered the modal opening."
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "question": "What does the <figure> element represent?",
+    "options": [
+      "A decorative image",
+      "Self-contained content referenced as a single unit",
+      "A sidebar with related links",
+      "A container for navigation"
+    ],
+    "answer": "b",
+    "explanation": "<figure> represents self-contained content that can be moved away from the main content without affecting the document's meaning."
+  },
+  {
+    "question": "What is the purpose of <figcaption>?",
+    "options": [
+      "To style the figure element",
+      "To provide a caption or legend for the figure's content",
+      "To add alt text to images",
+      "To create a link to the figure"
+    ],
+    "answer": "b",
+    "explanation": "<figcaption> provides a caption or legend for the figure's content, describing or explaining it."
+  },
+  {
+    "question": "How many <figcaption> elements can a <figure> contain?",
+    "options": [
+      "Zero or one",
+      "Up to two",
+      "Unlimited",
+      "Exactly one"
+    ],
+    "answer": "a",
+    "explanation": "A <figure> can have zero or one <figcaption>. Having more than one is invalid HTML."
+  },
+  {
+    "question": "Where can <figcaption> be placed inside <figure>?",
+    "options": [
+      "Only as the first child",
+      "Only as the last child",
+      "As the first or last child",
+      "Anywhere inside the figure"
+    ],
+    "answer": "c",
+    "explanation": "<figcaption> can be the first or last child of <figure>. It cannot appear in the middle."
+  },
+  {
+    "question": "Which of the following should NOT be wrapped in <figure>?",
+    "options": [
+      "An image with a caption",
+      "A code listing with a description",
+      "A navigation menu",
+      "A chart with an explanatory note"
+    ],
+    "answer": "c",
+    "explanation": "<figure> is for self-contained content like images, code, charts, and tables. Navigation menus do not fit this purpose."
+  },
+  {
+    "question": "What implicit ARIA role does <figure> have?",
+    "options": [
+      "img",
+      "figure",
+      "group",
+      "region"
+    ],
+    "answer": "b",
+    "explanation": "The <figure> element has an implicit ARIA role of 'figure'."
+  },
+  {
+    "question": "When should you use <figure> instead of <aside>?",
+    "options": [
+      "When content is loosely related to the main topic",
+      "When content is directly referenced in the text",
+      "For all images regardless of context",
+      "For decorative elements only"
+    ],
+    "answer": "b",
+    "explanation": "Use <figure> when the content is directly referenced in the surrounding text (e.g., 'as shown in Figure 3')."
+  },
+  {
+    "question": "Can a <figure> contain multiple images?",
+    "options": [
+      "No, only one image per figure",
+      "Yes, multiple images with a single caption",
+      "Yes, but each must have its own figcaption",
+      "Only if they are the same size"
+    ],
+    "answer": "b",
+    "explanation": "A <figure> can contain multiple images, videos, or other content elements with a single shared <figcaption>."
+  },
+  {
+    "question": "What should you do for decorative images in a figure?",
+    "options": [
+      "Use empty alt attribute",
+      "Omit alt attribute entirely",
+      "Use alt='decorative image'",
+      "Wrap them in a separate figure"
+    ],
+    "answer": "a",
+    "explanation": "Decorative images should have alt='' (empty alt) so screen readers skip them, even inside a figure."
+  },
+  {
+    "question": "Is <figcaption> required inside <figure>?",
+    "options": [
+      "Yes, always required",
+      "No, it is optional",
+      "Required only for images",
+      "Required only for accessibility"
+    ],
+    "answer": "b",
+    "explanation": "<figcaption> is optional. A figure can exist without a caption, though adding one improves semantics."
+  },
+  {
+    "question": "Can a <figure> be nested inside another <figure>?",
+    "options": [
+      "Yes, for complex content",
+      "No, figures cannot be nested",
+      "Only if both have figcaptions",
+      "Yes, but only one level deep"
+    ],
+    "answer": "b",
+    "explanation": "Nesting <figure> inside <figure> is invalid HTML. Figures are self-contained and cannot contain other figures."
+  },
+  {
+    "question": "Which content type is most appropriate for <figure>?",
+    "options": [
+      "Website footer content",
+      "A pull quote with attribution",
+      "Primary navigation links",
+      "Search form"
+    ],
+    "answer": "b",
+    "explanation": "Pull quotes with source attribution are self-contained content appropriate for <figure>."
+  },
+  {
+    "question": "How do screen readers typically handle <figcaption>?",
+    "options": [
+      "They ignore it",
+      "They associate it with the figure content",
+      "They read it before the figure content only",
+      "They announce it as a separate region"
+    ],
+    "answer": "b",
+    "explanation": "Screen readers programmatically associate the <figcaption> with the <figure> content, announcing it as a description."
+  },
+  {
+    "question": "What is the correct HTML for a figure with a video?",
+    "options": [
+      "<figure><video src='vid.mp4'></video><figcaption>Caption</figcaption></figure>",
+      "<figcaption>Caption<figure><video src='vid.mp4'></video></figure></figcaption>",
+      "<figure><figcaption>Caption</figcaption></figure><video src='vid.mp4'></video>",
+      "<video src='vid.mp4'><figcaption>Caption</figcaption></video>"
+    ],
+    "answer": "a",
+    "explanation": "The correct structure is <figure> containing the <video> element and an optional <figcaption>."
+  },
+  {
+    "question": "What is the best way to reference a figure in text?",
+    "options": [
+      "Click here",
+      "As shown in Figure 3 below",
+      "See the image above",
+      "Look at this"
+    ],
+    "answer": "b",
+    "explanation": "Use explicit references like 'Figure 3' so users and assistive technology can identify which figure is being referenced."
+  },
+  {
+    "question": "Should images inside <figure> still have alt text?",
+    "options": [
+      "No, the figcaption replaces alt text",
+      "Yes, alt text is always required when meaningful",
+      "Only if the figcaption is missing",
+      "Alt text is optional inside figure"
+    ],
+    "answer": "b",
+    "explanation": "Images inside <figure> still require alt text for accessibility. The <figcaption> supplements but does not replace alt text."
+  },
+  {
+    "question": "What CSS property can help keep figures intact when printed?",
+    "options": [
+      "page-break-inside: avoid",
+      "overflow: hidden",
+      "display: none",
+      "position: fixed"
+    ],
+    "answer": "a",
+    "explanation": "page-break-inside: avoid (or break-inside: avoid) prevents the figure from being split across printed pages."
+  },
+  {
+    "question": "Which is a valid way to mark up a code snippet with a figure caption?",
+    "options": [
+      "<figure><pre><code>code</code></pre><figcaption>Listing 1</figcaption></figure>",
+      "<figure><figcaption>Listing 1<pre><code>code</code></pre></figcaption></figure>",
+      "<pre><code><figure><figcaption>Listing 1</figcaption>code</code></pre>",
+      "<figcaption>Listing 1<figure><pre><code>code</code></pre></figure></figcaption>"
+    ],
+    "answer": "a",
+    "explanation": "The code goes inside <pre><code> within <figure>, with <figcaption> as a sibling (first or last child)."
+  },
+  {
+    "question": "What is the primary benefit of using <figure> over a plain <div> for images?",
+    "options": [
+      "Better performance",
+      "Semantic meaning and accessibility improvements",
+      "Automatic image optimization",
+      "Built-in responsive behavior"
+    ],
+    "answer": "b",
+    "explanation": "<figure> provides semantic meaning, improves accessibility, and helps search engines understand content structure."
+  },
+  {
+    "question": "Can a <figure> contain a <blockquote>?",
+    "options": [
+      "No, blockquotes must be standalone",
+      "Yes, a blockquote with attribution is a valid figure",
+      "Only if the blockquote has a cite attribute",
+      "No, figures can only contain media elements"
+    ],
+    "answer": "b",
+    "explanation": "A blockquote with source attribution is a perfect use case for <figure>, as it is self-contained content."
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does display: flex do on a container?", "answer": "display: flex creates a block-level flex container, turning all direct children into flex items." },
+    { "question": "What does flex-direction control?", "answer": "flex-direction controls the direction of the main axis, determining whether items are placed in a row or column." },
+    { "question": "What does flex-wrap do?", "answer": "flex-wrap controls whether flex items wrap to a new line when they overflow the container." },
+    { "question": "What does flex-flow do?", "answer": "flex-flow is shorthand for flex-direction and flex-wrap combined, e.g., flex-flow: row wrap." },
+    { "question": "What is the default value of flex-direction?", "answer": "The default value is row." },
+    { "question": "What is the default value of flex-wrap?", "answer": "The default value is nowrap." },
+    { "question": "What is the default value of flex-flow?", "answer": "The default is row nowrap." },
+    { "question": "How does flex-direction: column affect items?", "answer": "Items are arranged vertically from top to bottom instead of horizontally." },
+    { "question": "How does flex-wrap: wrap affect items?", "answer": "Items that overflow the container width wrap to the next row instead of shrinking." },
+    { "question": "What does flex-flow: column wrap do?", "answer": "It arranges items vertically (column) and allows them to wrap into additional columns." }
+  ],
+  "intermediate": [
+    { "question": "How does flex-direction: row-reverse affect item order?", "answer": "Items are placed in reverse order, from right to left (or left to right in RTL)." },
+    { "question": "How does flex-direction: column-reverse affect item order?", "answer": "Items are placed from bottom to top in reverse order." },
+    { "question": "How does flex-wrap: wrap-reverse work?", "answer": "Items wrap in reverse order, creating new rows above instead of below the first row." },
+    { "question": "What happens when flex-wrap: nowrap and items overflow?", "answer": "Items either shrink (flex-shrink applies) or overflow the container horizontally." },
+    { "question": "How do you create a centered row with flex container properties?", "answer": "Use display: flex; justify-content: center; align-items: center on the container." },
+    { "question": "How do you make flex items wrap at specific breakpoints?", "answer": "Combine flex-wrap: wrap with flex-basis or width values that trigger wrapping when space runs out." },
+    { "question": "What is the interaction between flex-direction and justify-content?", "answer": "justify-content always aligns along the main axis, so it changes direction when flex-direction changes." },
+    { "question": "What is the interaction between flex-direction and align-items?", "answer": "align-items always aligns along the cross axis, perpendicular to flex-direction." },
+    { "question": "How does the gap property work in a flex container?", "answer": "gap adds spacing between flex items only, not before the first or after the last item." },
+    { "question": "Can you set different row-gap and column-gap on a flex container?", "answer": "Yes, use row-gap and column-gap separately, or gap shorthand (gap: row column)." }
+  ],
+  "advanced": [
+    { "question": "How does flex-direction: column affect percentage-based width on flex items?", "answer": "In column direction, percentage widths refer to the container width, not the column height; heights are content-based." },
+    { "question": "How does the flex container's min-height affect column-direction items?", "answer": "flex-direction: column with min-height on the container gives items a defined main axis size to reference." },
+    { "question": "How does flex-wrap interact with align-content?", "answer": "align-content distributes space between wrapped rows/columns; it only has an effect when flex-wrap is enabled." },
+    { "question": "How do you create a multi-column layout with flex-flow: column wrap?", "answer": "Set a fixed height on the container and use flex-flow: column wrap; items will fill columns top to bottom." },
+    { "question": "How does block-direction wrapping differ in RTL writing modes?", "answer": "In RTL, row-reverse and wrap direction are mirrored; items flow right-to-left and wrap accordingly." },
+    { "question": "How does the flex container manage its own sizing?", "answer": "A flex container sizes based on its content by default, but respects width, height, and explicit sizing." },
+    { "question": "How do you create a horizontal menu with flex container properties that wraps responsively?", "answer": "Use display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; on the nav container." },
+    { "question": "What happens to the flex container when all items have flex: 0?", "answer": "Items do not grow or shrink, so the container maintains its content-based size and items do not overflow." },
+    { "question": "How does the flex container handle overflow when flex-direction: column and no height is set?", "answer": "Without a defined height, the container expands to contain all items vertically; overflow does not occur." },
+    { "question": "How does `container-type: inline-size` interact with flex containers in container queries?", "answer": "A flex container can be a query container, allowing children to respond to the container's inline size rather than the viewport." }
+  ]
+}

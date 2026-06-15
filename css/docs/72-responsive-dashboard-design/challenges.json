@@ -1,0 +1,29 @@
+{
+  "module": "72 - Responsive Dashboard Design",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "KPI Dashboard Grid",
+      "description": "Build a responsive grid of 4 KPI cards that goes from 1 column on mobile to 4 columns on desktop.",
+      "instructions": "Create KPI cards with values, labels, and trend indicators. Use auto-fit grid for responsiveness.",
+      "hints": ["Use grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))", "Add trend arrows (↑↓) with color coding", "Use clamp() for value font sizes"],
+      "solution": ".kpi-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } .kpi { background: white; padding: 1.25rem; border-radius: 10px; } .kpi-value { font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 700; } .kpi-label { font-size: 0.85rem; color: #64748b; } .trend-up { color: #059669; } .trend-down { color: #dc2626; }"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Responsive Data Table to Cards",
+      "description": "Convert a data table into card-style rows on mobile using CSS only.",
+      "instructions": "Create a table with 5+ columns. On screens < 640px, transform rows into stacked card layout with visible labels.",
+      "hints": ["Use display: block on mobile for all table elements", "Use ::before with content: attr(data-label) for labels", "Add card styling (border, shadow, padding) to mobile rows"],
+      "solution": "@media (max-width: 639px) { table, thead, tbody, th, td, tr { display: block; } thead { display: none; } tr { border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.75rem; margin-bottom: 0.75rem; } td { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #f1f5f9; } td:last-child { border-bottom: none; } td::before { content: attr(data-label); font-weight: 600; color: #475569; } }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Full Analytics Dashboard",
+      "description": "Build a complete analytics dashboard with sidebar, KPIs, charts, activity feed, and data table. Use CSS Grid named areas and container queries.",
+      "instructions": "Create a dashboard that works at 4 breakpoints: mobile (< 640px), tablet (640-1024px), desktop (1024-1440px), and wide (> 1440px). Use container queries for widget-level responsiveness.",
+      "hints": ["Use grid-template-areas that change at each breakpoint", "Widgets use container-type for internal adaptation", "Stats grid uses auto-fit, sidebar uses off-canvas on mobile", "Charts simplify on mobile (change aspect-ratio, reduce detail)"],
+      "solution": ".dashboard { display: grid; gap: 1rem; grid-template-areas: 'header' 'stats' 'chart' 'feed' 'table'; } @media (min-width: 640px) { .dashboard { grid-template-areas: 'header header' 'stats stats' 'chart feed' 'table table'; grid-template-columns: 2fr 1fr; } } @media (min-width: 1024px) { .dashboard { grid-template-areas: 'sidebar header header' 'sidebar stats stats' 'sidebar chart feed' 'sidebar table table'; grid-template-columns: 220px 2fr 1fr; } } @media (min-width: 1440px) { .dashboard { max-width: 1600px; margin: 0 auto; grid-template-areas: 'sidebar header header header' 'sidebar stats stats stats' 'sidebar chart chart feed' 'sidebar chart chart feed' 'sidebar table table table'; grid-template-columns: 220px 1fr 1fr 1fr; } } .widget { container-type: inline-size; }"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Variables — Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #3498db;
+      --secondary: #2ecc71;
+      --bg: #1a1a2e;
+      --surface: #16213e;
+      --text: #eee;
+      --text-muted: #aaa;
+      --radius: 8px;
+      --padding: 1rem;
+      --font-size: 1rem;
+      --border-width: 2px;
+      --opacity: 1;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+    }
+
+    h1 { margin-bottom: 0.5rem; }
+    p.subtitle { color: var(--text-muted); margin-bottom: 2rem; }
+
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+
+    .controls {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .controls h2 { margin-bottom: 1rem; font-size: 1.1rem; color: #a8d8ea; }
+    .control-group { margin-bottom: 1.2rem; }
+    .control-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: var(--text-muted); }
+    .control-group input[type="range"] { width: 100%; }
+    .control-group input[type="color"] { width: 100%; height: 40px; border: none; border-radius: 6px; cursor: pointer; background: transparent; }
+    .control-group select { width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #333; background: #0f3460; color: var(--text); }
+    .control-group .value { float: right; font-size: 0.8rem; color: #a8d8ea; }
+
+    .preview-area {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+    .preview-card {
+      background: var(--primary);
+      color: white;
+      padding: var(--padding);
+      border-radius: var(--radius);
+      font-size: var(--font-size);
+      opacity: var(--opacity);
+      border: var(--border-width) solid var(--secondary);
+      text-align: center;
+      transition: all 0.2s;
+      min-width: 200px;
+    }
+    .preview-card p { margin-top: 0.5rem; font-size: 0.8em; opacity: 0.85; }
+
+    .code-output {
+      background: #0a0a1a;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #a8d8ea;
+      white-space: pre-wrap;
+      word-break: break-all;
+      width: 100%;
+    }
+
+    .declaration-block {
+      background: #0a0a1a;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #a8d8ea;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Variables Playground</h1>
+  <p class="subtitle">Modify CSS custom properties and see changes applied in real time</p>
+
+  <div class="container">
+    <div class="controls">
+      <h2>Variable Values</h2>
+
+      <div class="declaration-block" id="declarationBlock">
+        --primary: #3498db;<br>
+        --secondary: #2ecc71;<br>
+        --bg: #1a1a2e;<br>
+        --radius: 8px;<br>
+        --padding: 1rem;<br>
+        --font-size: 1rem;
+      </div>
+
+      <div class="control-group">
+        <label>--primary (card background)</label>
+        <input type="color" id="primary" value="#3498db" oninput="updateVars()">
+      </div>
+      <div class="control-group">
+        <label>--secondary (border color)</label>
+        <input type="color" id="secondary" value="#2ecc71" oninput="updateVars()">
+      </div>
+      <div class="control-group">
+        <label>--bg (page background)</label>
+        <input type="color" id="bg" value="#1a1a2e" oninput="updateVars()">
+      </div>
+      <div class="control-group">
+        <label>--radius <span class="value" id="valRadius">8</span></label>
+        <input type="range" id="radius" min="0" max="30" value="8" oninput="updateVars()">
+      </div>
+      <div class="control-group">
+        <label>--padding <span class="value" id="valPadding">16</span></label>
+        <input type="range" id="padding" min="4" max="64" value="16" oninput="updateVars()">
+      </div>
+      <div class="control-group">
+        <label>--font-size <span class="value" id="valFontSize">16</span></label>
+        <input type="range" id="fontSize" min="12" max="48" value="16" oninput="updateVars()">
+      </div>
+      <div class="control-group">
+        <label>--opacity <span class="value" id="valOpacity">1.0</span></label>
+        <input type="range" id="opacity" min="0" max="1" value="1" step="0.05" oninput="updateVars()">
+      </div>
+
+      <button onclick="resetVars()" style="padding:0.5rem 1rem;margin-top:0.5rem;border:none;border-radius:6px;background:#e94560;color:white;cursor:pointer">Reset to Defaults</button>
+    </div>
+
+    <div>
+      <div class="preview-area">
+        <div class="preview-card" id="previewCard">
+          CSS Variables Preview
+          <p>background, border, radius, padding, font-size, opacity</p>
+        </div>
+      </div>
+      <div class="code-output" id="codeOutput">
+        :root {<br>
+        &nbsp;&nbsp;--primary: #3498db;<br>
+        &nbsp;&nbsp;--secondary: #2ecc71;<br>
+        &nbsp;&nbsp;--radius: 8px;<br>
+        &nbsp;&nbsp;--padding: 16px;<br>
+        &nbsp;&nbsp;--font-size: 16px;<br>
+        &nbsp;&nbsp;--opacity: 1;<br>
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const defaults = {
+      primary: '#3498db',
+      secondary: '#2ecc71',
+      bg: '#1a1a2e',
+      radius: '8',
+      padding: '16',
+      fontSize: '16',
+      opacity: '1'
+    };
+
+    function updateVars() {
+      const root = document.documentElement;
+      const primary = document.getElementById('primary').value;
+      const secondary = document.getElementById('secondary').value;
+      const bg = document.getElementById('bg').value;
+      const radius = document.getElementById('radius').value;
+      const padding = document.getElementById('padding').value;
+      const fontSize = document.getElementById('fontSize').value;
+      const opacity = document.getElementById('opacity').value;
+
+      document.getElementById('valRadius').textContent = radius;
+      document.getElementById('valPadding').textContent = padding;
+      document.getElementById('valFontSize').textContent = fontSize;
+      document.getElementById('valOpacity').textContent = parseFloat(opacity).toFixed(1);
+
+      root.style.setProperty('--primary', primary);
+      root.style.setProperty('--secondary', secondary);
+      root.style.setProperty('--bg', bg);
+      root.style.setProperty('--radius', radius + 'px');
+      root.style.setProperty('--padding', padding + 'px');
+      root.style.setProperty('--font-size', fontSize + 'px');
+      root.style.setProperty('--opacity', opacity);
+
+      document.getElementById('declarationBlock').innerHTML =
+        `--primary: ${primary};<br>` +
+        `--secondary: ${secondary};<br>` +
+        `--bg: ${bg};<br>` +
+        `--radius: ${radius}px;<br>` +
+        `--padding: ${padding}px;<br>` +
+        `--font-size: ${fontSize}px;`;
+
+      document.getElementById('codeOutput').innerHTML =
+        `:root {<br>` +
+        `&nbsp;&nbsp;--primary: ${primary};<br>` +
+        `&nbsp;&nbsp;--secondary: ${secondary};<br>` +
+        `&nbsp;&nbsp;--bg: ${bg};<br>` +
+        `&nbsp;&nbsp;--radius: ${radius}px;<br>` +
+        `&nbsp;&nbsp;--padding: ${padding}px;<br>` +
+        `&nbsp;&nbsp;--font-size: ${fontSize}px;<br>` +
+        `&nbsp;&nbsp;--opacity: ${opacity};<br>` +
+        `}`;
+    }
+
+    function resetVars() {
+      document.getElementById('primary').value = defaults.primary;
+      document.getElementById('secondary').value = defaults.secondary;
+      document.getElementById('bg').value = defaults.bg;
+      document.getElementById('radius').value = defaults.radius;
+      document.getElementById('padding').value = defaults.padding;
+      document.getElementById('fontSize').value = defaults.fontSize;
+      document.getElementById('opacity').value = defaults.opacity;
+      updateVars();
+    }
+
+    updateVars();
+  </script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Types Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 30px 20px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 { color: #1a1a2e; margin-bottom: 30px; border-bottom: 3px solid #4a6cf7; padding-bottom: 12px; }
+    h2 { color: #4a6cf7; margin: 30px 0 16px; font-size: 22px; }
+    h3 { color: #2d3748; margin: 20px 0 10px; }
+    .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .card label { display: block; margin-bottom: 4px; font-weight: 600; color: #333; font-size: 14px; }
+    .card input, .card textarea, .card select { width: 100%; padding: 10px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; transition: all 0.3s; margin-bottom: 12px; }
+    .card input:focus, .card textarea:focus { border-color: #4a6cf7; outline: none; box-shadow: 0 0 0 3px rgba(74,108,247,0.12); }
+    .card form { background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #4a6cf7; }
+    .card button { background: #4a6cf7; color: white; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-size: 15px; }
+    .card button:hover { background: #3b5de7; }
+    .card .output { background: #1a1a2e; color: #2ecc71; padding: 10px 14px; border-radius: 6px; font-family: monospace; font-size: 14px; margin-top: 8px; }
+    pre { background: #2d3748; color: #e2e8f0; padding: 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; margin-bottom: 12px; }
+    .flex-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .flex-row label { margin-bottom: 0; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    th { background: #f7f8fc; color: #4a5568; font-weight: 600; }
+    .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .tag-text { background: #e2e8f0; color: #4a5568; }
+    .tag-date { background: #c6f6d5; color: #22543d; }
+    .tag-choice { background: #fefcbf; color: #744210; }
+    .tag-num { background: #bee3f8; color: #2a4365; }
+    .tag-btn { background: #fed7d7; color: #822727; }
+    .tag-special { background: #e9d8fd; color: #553c7b; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>HTML Input Types — Interactive Examples</h1>
+
+  <section>
+    <h2>1. Text-Based Types</h2>
+    <div class="card">
+      <form onsubmit="event.preventDefault(); document.getElementById('output-text').textContent = 'Username: ' + this.username.value + ', Email: ' + this.email.value + ', Phone: ' + this.phone.value + ', Website: ' + this.website.value + ', Search: ' + this.search.value">
+        <pre>&lt;input type="text"&gt;  &lt;input type="email"&gt;  &lt;input type="tel"&gt;  &lt;input type="url"&gt;  &lt;input type="search"&gt;</pre>
+        <label>Text (Username): <span class="tag tag-text">type="text"</span></label>
+        <input type="text" name="username" placeholder="e.g. john_doe" required>
+
+        <label>Email: <span class="tag tag-text">type="email"</span></label>
+        <input type="email" name="email" placeholder="you@example.com" required>
+
+        <label>Telephone: <span class="tag tag-text">type="tel"</span></label>
+        <input type="tel" name="phone" placeholder="555-123-4567" pattern="[0-9\-\(\)\s\+]+">
+
+        <label>Website: <span class="tag tag-text">type="url"</span></label>
+        <input type="url" name="website" placeholder="https://example.com">
+
+        <label>Search: <span class="tag tag-text">type="search"</span></label>
+        <input type="search" name="search" placeholder="Search...">
+
+        <button type="submit">Submit All</button>
+        <div class="output" id="output-text">Results appear here...</div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Numeric Types</h2>
+    <div class="card">
+      <h3>Number Input</h3>
+      <pre>&lt;input type="number" min="0" max="100" step="5" value="25"&gt;</pre>
+      <form onsubmit="event.preventDefault(); show('output-num', 'Age: ' + this.age.value + ', Score: ' + this.score.value)">
+        <label>Age: <span class="tag tag-num">type="number"</span></label>
+        <input type="number" name="age" min="0" max="150" value="25" step="1">
+        <label>Score (multiples of 5):</label>
+        <input type="number" name="score" min="0" max="100" value="50" step="5">
+        <button type="submit">Submit</button>
+        <div class="output" id="output-num">Results appear here...</div>
+      </form>
+    </div>
+    <div class="card">
+      <h3>Range Slider <span class="tag tag-num">type="range"</span></h3>
+      <pre>&lt;input type="range" min="0" max="100" value="50"&gt;</pre>
+      <form onsubmit="event.preventDefault();">
+        <label>Volume: <span id="volDisplay">50</span></label>
+        <input type="range" name="volume" min="0" max="100" value="50" oninput="document.getElementById('volDisplay').textContent = this.value">
+
+        <label>Brightness: <span id="brightDisplay">70</span>%</label>
+        <input type="range" name="brightness" min="0" max="100" value="70" oninput="document.getElementById('brightDisplay').textContent = this.value">
+
+        <label>Price Range: $<span id="minPrice">10</span> — $<span id="maxPrice">90</span></label>
+        <div class="flex-row">
+          <input type="range" name="minprice" min="0" max="100" value="10" oninput="document.getElementById('minPrice').textContent = this.value" style="flex:1;">
+          <input type="range" name="maxprice" min="0" max="100" value="90" oninput="document.getElementById('maxPrice').textContent = this.value" style="flex:1;">
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Date &amp; Time Types</h2>
+    <div class="card">
+      <form onsubmit="event.preventDefault(); show('output-date', 'DOB: ' + this.dob.value + '\nEvent: ' + this.eventdt.value + '\nMonth: ' + this.month.value + '\nWeek: ' + this.week.value + '\nTime: ' + this.time.value)">
+        <pre>&lt;input type="date"&gt;  &lt;input type="datetime-local"&gt;  &lt;input type="month"&gt;  &lt;input type="week"&gt;  &lt;input type="time"&gt;</pre>
+
+        <div class="flex-row">
+          <div style="flex:1;">
+            <label>Date of Birth <span class="tag tag-date">type="date"</span></label>
+            <input type="date" name="dob">
+          </div>
+          <div style="flex:1;">
+            <label>Event Start <span class="tag tag-date">type="datetime-local"</span></label>
+            <input type="datetime-local" name="eventdt">
+          </div>
+        </div>
+        <div class="flex-row">
+          <div style="flex:1;">
+            <label>Billing Month <span class="tag tag-date">type="month"</span></label>
+            <input type="month" name="month">
+          </div>
+          <div style="flex:1;">
+            <label>Target Week <span class="tag tag-date">type="week"</span></label>
+            <input type="week" name="week">
+          </div>
+          <div style="flex:1;">
+            <label>Meeting Time <span class="tag tag-date">type="time"</span></label>
+            <input type="time" name="time" step="900">
+          </div>
+        </div>
+        <button type="submit">Show Values</button>
+        <div class="output" id="output-date">Results appear here...</div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Choice Types</h2>
+    <div class="card">
+      <h3>Checkboxes <span class="tag tag-choice">type="checkbox"</span></h3>
+      <pre>&lt;input type="checkbox" name="toppings" value="cheese"&gt;</pre>
+      <form onsubmit="event.preventDefault(); handleCheckboxes(this)">
+        <label>Select your pizza toppings:</label>
+        <div class="flex-row" style="margin-bottom:12px;">
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="topping" value="Cheese" checked> Cheese</label>
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="topping" value="Pepperoni"> Pepperoni</label>
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="topping" value="Mushrooms"> Mushrooms</label>
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="topping" value="Olives"> Olives</label>
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="topping" value="Peppers"> Peppers</label>
+        </div>
+        <button type="submit">Show Selections</button>
+        <div class="output" id="output-check">Results appear here...</div>
+      </form>
+    </div>
+    <div class="card">
+      <h3>Radio Buttons <span class="tag tag-choice">type="radio"</span></h3>
+      <pre>&lt;input type="radio" name="size" value="medium"&gt;</pre>
+      <form onsubmit="event.preventDefault(); show('output-radio', 'Selected: ' + this.pizzaSize.value)">
+        <label>Choose pizza size:</label>
+        <div class="flex-row" style="margin-bottom:12px;">
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="radio" name="pizzaSize" value="Small"> Small ($8)</label>
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="radio" name="pizzaSize" value="Medium" checked> Medium ($12)</label>
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="radio" name="pizzaSize" value="Large"> Large ($16)</label>
+          <label style="font-weight:400; display:flex; align-items:center; gap:4px;"><input type="radio" name="pizzaSize" value="Extra Large"> Extra Large ($20)</label>
+        </div>
+        <button type="submit">Show Selection</button>
+        <div class="output" id="output-radio">Results appear here...</div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>5. Special Types</h2>
+    <div class="card">
+      <form onsubmit="event.preventDefault();">
+
+        <h3>Color Picker <span class="tag tag-special">type="color"</span></h3>
+        <pre>&lt;input type="color" value="#4a6cf7"&gt;</pre>
+        <div class="flex-row" style="margin-bottom:20px;">
+          <label>Choose theme color:</label>
+          <input type="color" name="color" value="#4a6cf7" oninput="document.getElementById('color-demo').style.background=this.value; document.getElementById('color-val').textContent=this.value" style="width:60px; height:40px; padding:2px;">
+          <div id="color-demo" style="width:60px; height:40px; border-radius:6px; background:#4a6cf7; border:1px solid #ccc;"></div>
+          <code id="color-val">#4a6cf7</code>
+        </div>
+
+        <h3>File Upload <span class="tag tag-special">type="file"</span></h3>
+        <pre>&lt;input type="file" accept="image/*" multiple&gt;</pre>
+        <div class="file-area" style="position:relative; margin-bottom:12px;">
+          <input type="file" id="demo-file" accept="image/*" multiple style="position:absolute; opacity:0; width:100%; height:100%; cursor:pointer;">
+          <div style="padding:16px; border:2px dashed #cbd5e0; border-radius:8px; text-align:center; color:#718096;">📁 Drop files here or click to browse</div>
+        </div>
+        <div id="file-info" style="margin-bottom:12px; font-size:14px; color:#555;"></div>
+
+        <h3>Hidden Input <span class="tag tag-special">type="hidden"</span></h3>
+        <pre>&lt;input type="hidden" name="token" value="sec-123abc"&gt;</pre>
+        <p style="color:#718096; font-size:14px;">Hidden input stores: <code id="hidden-val">sec-123abc</code> (invisible to user)</p>
+        <input type="hidden" name="token" value="sec-123abc">
+
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>6. Button Types</h2>
+    <div class="card">
+      <form onsubmit="event.preventDefault(); alert('Form submitted!')" onreset="alert('Form reset!')">
+        <pre>&lt;input type="submit"&gt;  &lt;input type="reset"&gt;  &lt;input type="button"&gt;  &lt;input type="image"&gt;</pre>
+        <label>Sample Input:</label>
+        <input type="text" name="sample" value="Test value" style="margin-bottom:12px;">
+
+        <div class="flex-row">
+          <input type="submit" value="Submit Form" style="background:#2ecc71; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">
+          <input type="reset" value="Reset Form" style="background:#e74c3c; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">
+          <input type="button" value="Say Hello" onclick="alert('Hello!')" style="background:#f39c12; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">
+          <input type="image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='%234a6cf7'%3E%3Cpath d='M2 21l21-9L2 3v7l15 2-15 2v7z'/%3E%3C/svg%3E" alt="Send" style="width:40px; height:40px; cursor:pointer;">
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Input Types Reference Table</h2>
+    <div class="card" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Description</th><th>Validation</th><th>Mobile KB</th><th>Use Case</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>text</code></td><td>Single-line text</td><td>None</td><td>Alpha</td><td>Names, cities</td></tr>
+          <tr><td><code>password</code></td><td>Masked text</td><td>None</td><td>Alpha</td><td>Passwords</td></tr>
+          <tr><td><code>email</code></td><td>Email format</td><td>@ and domain</td><td>@ key</td><td>Email addresses</td></tr>
+          <tr><td><code>tel</code></td><td>Telephone</td><td>None</td><td>Numeric</td><td>Phone numbers</td></tr>
+          <tr><td><code>url</code></td><td>URL format</td><td>Protocol check</td><td>/ .com</td><td>Website URLs</td></tr>
+          <tr><td><code>search</code></td><td>Search field</td><td>None</td><td>Search</td><td>Search bars</td></tr>
+          <tr><td><code>number</code></td><td>Numeric spinner</td><td>Number only</td><td>Numeric</td><td>Quantities, ages</td></tr>
+          <tr><td><code>range</code></td><td>Slider</td><td>Min/Max</td><td>Slider</td><td>Volume, brightness</td></tr>
+          <tr><td><code>date</code></td><td>Date picker</td><td>Date format</td><td>Calendar</td><td>Birthdays</td></tr>
+          <tr><td><code>datetime-local</code></td><td>Date + time</td><td>Format</td><td>Calendar</td><td>Events</td></tr>
+          <tr><td><code>month</code></td><td>Month picker</td><td>Format</td><td>Month</td><td>Billing periods</td></tr>
+          <tr><td><code>week</code></td><td>Week picker</td><td>Format</td><td>Week</td><td>Sprint planning</td></tr>
+          <tr><td><code>time</code></td><td>Time picker</td><td>Format</td><td>Clock</td><td>Appointments</td></tr>
+          <tr><td><code>checkbox</code></td><td>Boolean toggle</td><td>None</td><td>N/A</td><td>Multiple choice</td></tr>
+          <tr><td><code>radio</code></td><td>Single choice</td><td>Group required?</td><td>N/A</td><td>Mutually exclusive</td></tr>
+          <tr><td><code>file</code></td><td>File selection</td><td>Accept filter</td><td>N/A</td><td>Uploads</td></tr>
+          <tr><td><code>color</code></td><td>Color picker</td><td>Hex format</td><td>Palette</td><td>Theme colors</td></tr>
+          <tr><td><code>hidden</code></td><td>Invisible data</td><td>None</td><td>N/A</td><td>CSRF tokens</td></tr>
+          <tr><td><code>submit</code></td><td>Submit button</td><td>N/A</td><td>N/A</td><td>Form submission</td></tr>
+          <tr><td><code>reset</code></td><td>Reset button</td><td>N/A</td><td>N/A</td><td>Clear form</td></tr>
+          <tr><td><code>button</code></td><td>Generic button</td><td>N/A</td><td>N/A</td><td>Custom actions</td></tr>
+          <tr><td><code>image</code></td><td>Image submit</td><td>N/A</td><td>N/A</td><td>Graphical submit</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+<script>
+function show(id, msg) {
+  document.getElementById(id).textContent = '> ' + msg;
+}
+function handleCheckboxes(form) {
+  const selected = [...form.querySelectorAll('input[name=\"topping\"]:checked')].map(cb => cb.value);
+  document.getElementById('output-check').textContent = '> Selected toppings: ' + (selected.length ? selected.join(', ') : 'None');
+}
+document.getElementById('demo-file').addEventListener('change', function(e) {
+  const files = e.target.files;
+  if (files.length) {
+    document.getElementById('file-info').textContent = 'Selected: ' + files.length + ' file(s) — ' + [...files].map(f => f.name + ' (' + (f.size/1024).toFixed(1) + 'KB)').join(', ');
+  }
+});
+</script>
+</body>
+</html>

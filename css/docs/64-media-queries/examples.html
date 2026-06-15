@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Queries Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; line-height: 1.6; color: #333; padding: 2rem; background: #f8fafc; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { color: #2563eb; margin-bottom: 2rem; }
+    h2 { color: #1e40af; margin: 2rem 0 1rem; }
+
+    .demo-box { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; }
+    .demo-box .label { font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem; }
+
+    /* 1. Width-based */
+    .width-demo { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-radius: 6px; }
+    .width-demo::after { content: "Width: < 768px (Mobile)"; }
+    @media (min-width: 768px) { .width-demo { background: #8b5cf6; } .width-demo::after { content: "Width: 768px - 1024px (Tablet)"; } }
+    @media (min-width: 1024px) { .width-demo { background: #10b981; } .width-demo::after { content: "Width: >= 1024px (Desktop)"; } }
+
+    /* 2. Orientation */
+    .orientation-demo { background: #f59e0b; color: white; padding: 2rem; text-align: center; border-radius: 6px; }
+    .orientation-demo::after { content: "Orientation: Portrait "; }
+    @media (orientation: landscape) { .orientation-demo { background: #ef4444; } .orientation-demo::after { content: "Orientation: Landscape "; } }
+
+    /* 3. Color Scheme */
+    .scheme-demo { background: white; color: #333; padding: 2rem; text-align: center; border-radius: 6px; border: 2px solid #e2e8f0; }
+    @media (prefers-color-scheme: dark) { .scheme-demo { background: #1e293b; color: #e2e8f0; border-color: #334155; } .scheme-demo::after { content: "  (Dark mode detected)"; } }
+
+    /* 4. Motion */
+    .motion-demo { padding: 2rem; text-align: center; border-radius: 6px; background: #f1f5f9; }
+    .motion-box { width: 60px; height: 60px; background: #3b82f6; border-radius: 8px; margin: 1rem auto; animation: bounce 1s infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @media (prefers-reduced-motion: reduce) { .motion-box { animation: none; } }
+
+    /* 5. Hover capability */
+    .hover-demo { padding: 2rem; text-align: center; background: #f1f5f9; border-radius: 6px; }
+    .hover-btn { display: inline-block; padding: 0.75rem 1.5rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; transition: transform 0.2s; }
+    @media (hover: hover) { .hover-btn:hover { transform: scale(1.05); background: #2563eb; } }
+    @media (hover: none) { .hover-btn { padding: 1rem 2rem; min-height: 48px; } }
+
+    /* 6. Resolution */
+    .resolution-demo { padding: 2rem; text-align: center; background: #f1f5f9; border-radius: 6px; }
+    .resolution-icon { font-size: 3rem; }
+    @media (min-resolution: 2dppx) { .resolution-icon::after { content: " (Retina/HiDPI display detected)"; font-size: 0.4em; } }
+
+    /* 7. Print styles */
+    @media print {
+      body { background: white; font-size: 12pt; color: black; }
+      .no-print { display: none !important; }
+      .demo-box { break-inside: avoid; border: 1px solid #ccc; }
+    }
+    .no-print { background: #fee2e2; color: #dc2626; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; }
+
+    /* 8. Range syntax modern */
+    @media (400px <= width <= 800px) {
+      .range-demo { background: #dbeafe; border-left: 4px solid #3b82f6; }
+    }
+
+    /* 9. Aspect ratio */
+    @media (min-aspect-ratio: 16/9) {
+      .aspect-demo { background: #bbf7d0; }
+    }
+    @media (max-aspect-ratio: 4/3) {
+      .aspect-demo { background: #fecaca; }
+    }
+
+    /* 10. Display mode */
+    @media (display-mode: standalone) {
+      .pwa-demo { border: 2px solid #10b981; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Media Queries Examples</h1>
+    <p style="margin-bottom:2rem;color:#64748b;">Resize your browser or use DevTools to see each demo respond.</p>
+
+    <div class="demo-box">
+      <div class="label">1. Width-Based Breakpoints (resize browser)</div>
+      <div class="width-demo"></div>
+    </div>
+
+    <div class="demo-box">
+      <div class="label">2. Orientation (rotate device or use DevTools)</div>
+      <div class="orientation-demo"></div>
+    </div>
+
+    <div class="demo-box">
+      <div class="label">3. Color Scheme (toggle system dark mode)</div>
+      <div class="scheme-demo">This box adapts to light/dark mode</div>
+    </div>
+
+    <div class="demo-box">
+      <div class="label">4. Reduced Motion (enable in system/accessibility settings)</div>
+      <div class="motion-demo">
+        <div class="motion-box"></div>
+        <p>The box stops bouncing if reduced motion is enabled</p>
+      </div>
+    </div>
+
+    <div class="demo-box">
+      <div class="label">5. Hover Capability Detection</div>
+      <div class="hover-demo">
+        <button class="hover-btn">Hover me (if supported)</button>
+        <p style="margin-top:0.5rem;font-size:0.85rem;">Hover effects only on hover-capable devices; touch gets larger tap target</p>
+      </div>
+    </div>
+
+    <div class="demo-box">
+      <div class="label">6. Resolution Detection</div>
+      <div class="resolution-demo">
+        <span class="resolution-icon">🖥️</span>
+      </div>
+    </div>
+
+    <div class="demo-box">
+      <div class="label">7. Print Preview (Ctrl+P to test)</div>
+      <div class="no-print">This is hidden when printing</div>
+      <p>This content prints with 12pt font</p>
+    </div>
+
+    <div class="demo-box range-demo">
+      <div class="label">8. Range Syntax (400px - 800px wide)</div>
+      <p>Blue left border when viewport is between 400px and 800px wide.</p>
+    </div>
+
+    <div class="demo-box aspect-demo">
+      <div class="label">9. Aspect Ratio</div>
+      <p>Green background if aspect ratio >= 16:9, red if <= 4:3</p>
+    </div>
+
+    <div class="demo-box pwa-demo">
+      <div class="label">10. Display Mode (PWA)</div>
+      <p>Green border when running as PWA standalone.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+{
+  "module": "69-responsive-layout-systems",
+  "title": "Responsive Layout Systems",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which CSS layout system is best for 2D layouts (rows AND columns)?",
+      "options": ["Flexbox", "CSS Grid", "Multi-column", "Floats"],
+      "correctAnswer": 1,
+      "explanation": "CSS Grid is designed for 2D layouts controlling both rows and columns."
+    },
+    {
+      "id": 2,
+      "question": "What does the fr unit represent in CSS Grid?",
+      "options": ["Fixed ratio", "Fraction of available space", "Font relative", "Frame unit"],
+      "correctAnswer": 1,
+      "explanation": "fr represents a fraction of the available space in the grid container."
+    },
+    {
+      "id": 3,
+      "question": "Which CSS property is preferred over margins for spacing grid/flex items?",
+      "options": ["padding", "gap", "space-between", "margin"],
+      "correctAnswer": 1,
+      "explanation": "gap provides consistent spacing without margin collapsing issues."
+    },
+    {
+      "id": 4,
+      "question": "What does 'auto-fit' do in grid-template-columns?",
+      "options": ["Creates fixed number of columns", "Creates as many columns as will fit, collapsing empty ones", "Fits content to column width", "Auto-sizes columns"],
+      "correctAnswer": 1,
+      "explanation": "auto-fit creates as many tracks as fit, but collapses empty tracks."
+    },
+    {
+      "id": 5,
+      "question": "Which layout system should you use for a navigation bar?",
+      "options": ["CSS Grid", "Flexbox", "Multi-column", "Table"],
+      "correctAnswer": 1,
+      "explanation": "Flexbox is ideal for 1D layouts like navigation bars."
+    },
+    {
+      "id": 6,
+      "question": "What is the 'Holy Grail' layout pattern?",
+      "options": ["Header, 3 columns, footer", "Single column", "Center-aligned text", "Grid with sidebar"],
+      "correctAnswer": 0,
+      "explanation": "Holy Grail is header, footer, and 3 columns (nav, content, aside)."
+    },
+    {
+      "id": 7,
+      "question": "Which CSS function defines a size range for grid tracks?",
+      "options": ["calc()", "minmax()", "clamp()", "repeat()"],
+      "correctAnswer": 1,
+      "explanation": "minmax(MIN, MAX) defines a size range for grid tracks."
+    },
+    {
+      "id": 8,
+      "question": "What property names grid areas for assignment?",
+      "options": ["grid-template-areas", "grid-area", "grid-name", "area-name"],
+      "correctAnswer": 0,
+      "explanation": "grid-template-areas defines named grid areas in the container."
+    },
+    {
+      "id": 9,
+      "question": "Which CSS feature enables component-level responsiveness?",
+      "options": ["Media queries", "Container queries", "Flexbox", "CSS Grid"],
+      "correctAnswer": 1,
+      "explanation": "Container queries respond to container size, not viewport."
+    },
+    {
+      "id": 10,
+      "question": "What does 'auto-fill' vs 'auto-fit' differ in?",
+      "options": ["Nothing, they're identical", "auto-fill keeps empty tracks, auto-fit collapses them", "auto-fit keeps empty tracks, auto-fill collapses them", "Both collapse empty tracks"],
+      "correctAnswer": 1,
+      "explanation": "auto-fill keeps empty track space; auto-fit collapses empty tracks."
+    },
+    {
+      "id": 11,
+      "question": "Which layout system is best for a newspaper-style article?",
+      "options": ["CSS Grid", "Flexbox", "Multi-column", "Positioning"],
+      "correctAnswer": 2,
+      "explanation": "Multi-column layout creates flowing columns like a newspaper."
+    },
+    {
+      "id": 12,
+      "question": "What is the purpose of container-type?",
+      "options": ["Defines the type of container", "Activates container queries for an element", "Sets container display type", "Defines container width"],
+      "correctAnswer": 1,
+      "explanation": "container-type: inline-size activates container query support on an element."
+    },
+    {
+      "id": 13,
+      "question": "Which property prevents grid items from overflowing?",
+      "options": ["overflow: hidden", "min-width: 0", "max-width: 100%", "grid-auto-flow"],
+      "correctAnswer": 1,
+      "explanation": "min-width: 0 on grid items prevents text-based overflow."
+    },
+    {
+      "id": 14,
+      "question": "How do you create equal-height cards with Flexbox?",
+      "options": ["height: 100%", "display: flex on parent, flex: 1 on card body", "min-height", "align-items: stretch"],
+      "correctAnswer": 1,
+      "explanation": "display:flex on parent and flex:1 on the content area creates equal-height cards."
+    },
+    {
+      "id": 15,
+      "question": "What is the correct syntax for a responsive grid with auto-sized columns?",
+      "options": ["grid-template-columns: auto auto auto", "grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))", "grid-template-columns: 1fr 1fr 1fr", "grid-template-columns: fit-content(250px)"],
+      "correctAnswer": 1,
+      "explanation": "repeat(auto-fit, minmax(250px, 1fr)) creates responsive columns automatically."
+    },
+    {
+      "id": 16,
+      "question": "What CSS property defines the minimum height for a sticky footer?",
+      "options": ["height: 100%", "min-height: 100vh", "max-height: 100%", "height: auto"],
+      "correctAnswer": 1,
+      "explanation": "min-height: 100vh on the body ensures the footer stays at the bottom."
+    },
+    {
+      "id": 17,
+      "question": "What happens to subgrid in unsupported browsers?",
+      "options": ["Breaks the layout", "Falls back to regular grid", "Throws CSS error", "Uses Flexbox"],
+      "correctAnswer": 1,
+      "explanation": "Subgrid is ignored in unsupported browsers, falling back to regular grid behavior."
+    },
+    {
+      "id": 18,
+      "question": "Which layout system should you use for a dashboard with widgets?",
+      "options": ["Flexbox", "CSS Grid", "Multi-column", "Table"],
+      "correctAnswer": 1,
+      "explanation": "CSS Grid is best for 2D widget layouts on dashboards."
+    },
+    {
+      "id": 19,
+      "question": "How do you center an element both horizontally and vertically with CSS?",
+      "options": ["margin: auto", "Flexbox with justify-content: center + align-items: center", "text-align: center", "position: absolute"],
+      "correctAnswer": 1,
+      "explanation": "Flexbox with both centering properties is the cleanest centering method."
+    },
+    {
+      "id": 20,
+      "question": "What is a key accessibility concern with CSS Grid?",
+      "options": ["Grid doesn't work with screen readers", "Visual order may differ from DOM order", "Grid items can't be focused", "Grid is not keyboard accessible"],
+      "correctAnswer": 1,
+      "explanation": "CSS Grid can visually reorder items while DOM order stays the same, affecting screen reader order."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Responsive Design Examples</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f8f9fa; }
+  .example-box { background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; }
+  .example-box h2 { color: #2e7d32; border-bottom: 2px solid #e8f5e9; padding-bottom: 8px; }
+  .output { background: #f1f3f4; border-radius: 4px; padding: 15px; margin: 10px 0; }
+  pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; }
+  .fluid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+  .fluid-grid > div { background: #66bb6a; color: white; padding: 30px; text-align: center; border-radius: 4px; }
+  .resp-test { resize: horizontal; overflow: auto; border: 2px dashed #2e7d32; padding: 10px; border-radius: 4px; }
+  @media (max-width: 600px) { .fluid-grid > div { background: #ef5350; } }
+  @media (min-width: 601px) and (max-width: 900px) { .fluid-grid > div { background: #ffa726; } }
+  @media (min-width: 901px) { .fluid-grid > div { background: #66bb6a; } }
+</style></head>
+<body>
+<h1>Responsive Design Examples</h1>
+
+<div class="example-box">
+  <h2>1. Responsive Auto-Grid</h2>
+  <p>Resize the box below. Columns automatically adjust from 1 column (mobile) to 3+ (desktop).</p>
+  <div class="output"><div class="resp-test"><div class="fluid-grid"><div>Item 1</div><div>Item 2</div><div>Item 3</div><div>Item 4</div><div>Item 5</div><div>Item 6</div></div></div></div>
+  <pre><code>.grid { display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px; }</code></pre>
+  <p><strong>Color changes:</strong> Red (mobile) → Orange (tablet) → Green (desktop)</p>
+</div>
+
+<div class="example-box">
+  <h2>2. Responsive Images with srcset</h2>
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect fill='%232e7d32' width='800' height='400'/%3E%3Ctext x='400' y='210' text-anchor='middle' fill='white' font-size='20'%3EResponsive Image (max-width: 100%25)%3C/text%3E%3C/svg%3E" alt="Responsive image example" style="max-width:100%; height:auto; border-radius:4px;">
+  <pre><code>&lt;img src="small.jpg"
+     srcset="medium.jpg 768w, large.jpg 1200w"
+     sizes="(max-width: 768px) 100vw, 50vw"
+     alt="Responsive"&gt;</code></pre>
+</div>
+
+<div class="example-box">
+  <h2>3. Flexbox Responsive Cards</h2>
+  <div class="output"><div style="display:flex; flex-wrap:wrap; gap:15px;"><div style="flex:1 1 250px; background:#e8f5e9; padding:20px; border-radius:4px;"><h3>Card 1</h3><p>Responsive card with min-width.</p></div><div style="flex:1 1 250px; background:#e8f5e9; padding:20px; border-radius:4px;"><h3>Card 2</h3><p>Flex-wrap ensures wrapping.</p></div><div style="flex:1 1 250px; background:#e8f5e9; padding:20px; border-radius:4px;"><h3>Card 3</h3><p>No media queries needed.</p></div></div></div>
+</div>
+
+<div class="example-box">
+  <h2>4. Media Query Breakpoints</h2>
+  <pre><code>/* Mobile-first: base mobile styles */
+body { font-size: 16px; }
+
+/* Tablet >= 768px */
+@media (min-width: 768px) {
+  body { font-size: 18px; }
+}
+
+/* Desktop >= 1024px */
+@media (min-width: 1024px) {
+  body { font-size: 20px; }
+}
+
+/* Orientation */
+@media (orientation: landscape) { }
+@media (prefers-color-scheme: dark) { }
+@media (prefers-reduced-motion: reduce) { }</code></pre>
+</div>
+</body></html>

@@ -1,0 +1,147 @@
+{
+  "module": "109-color-accessibility",
+  "title": "Color Accessibility",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the minimum WCAG AA contrast ratio for normal-sized text?",
+      "options": ["3:1", "4.5:1", "7:1", "2:1"],
+      "correctAnswer": 1,
+      "explanation": "WCAG 2.1 AA requires a minimum contrast ratio of 4.5:1 for normal text (under 18px or 14px bold)."
+    },
+    {
+      "id": 2,
+      "question": "What is the minimum WCAG AA contrast ratio for large text?",
+      "options": ["3:1", "4.5:1", "7:1", "2.5:1"],
+      "correctAnswer": 0,
+      "explanation": "Large text (18px bold or 24px regular) requires a minimum 3:1 contrast ratio under WCAG AA."
+    },
+    {
+      "id": 3,
+      "question": "Which CSS media query detects Windows High Contrast Mode?",
+      "options": ["@media (prefers-contrast: high)", "@media (forced-colors: active)", "@media (high-contrast: active)", "@media (windows-contrast: high)"],
+      "correctAnswer": 1,
+      "explanation": "The @media (forced-colors: active) media query detects Windows High Contrast Mode (forced colors mode)."
+    },
+    {
+      "id": 4,
+      "question": "What is the most common form of color vision deficiency?",
+      "options": ["Protanopia", "Deuteranopia", "Tritanopia", "Achromatopsia"],
+      "correctAnswer": 1,
+      "explanation": "Deuteranopia (green-blindness) is the most common form, affecting approximately 6% of males."
+    },
+    {
+      "id": 5,
+      "question": "Which CSS color function provides the best perceptual uniformity for accessibility?",
+      "options": ["rgb()", "hsl()", "oklch()", "hex()"],
+      "correctAnswer": 2,
+      "explanation": "OKLCH is a perceptual color space that provides even brightness perception, making it ideal for accessible color systems."
+    },
+    {
+      "id": 6,
+      "question": "What should you use in addition to color to convey information?",
+      "options": ["Nothing", "Text labels, icons, or patterns", "More colors", "Animations"],
+      "correctAnswer": 1,
+      "explanation": "Information should never be conveyed by color alone. Always include text labels, icons, or patterns."
+    },
+    {
+      "id": 7,
+      "question": "Which CSS property prevents elements from being affected by forced colors mode?",
+      "options": ["color-adjust", "forced-color-adjust", "color-scheme", "accent-color"],
+      "correctAnswer": 1,
+      "explanation": "forced-color-adjust: none prevents forced colors mode from overriding an element's colors."
+    },
+    {
+      "id": 8,
+      "question": "What is the WCAG AAA requirement for normal text contrast ratio?",
+      "options": ["4.5:1", "5:1", "7:1", "9:1"],
+      "correctAnswer": 2,
+      "explanation": "WCAG AAA requires a 7:1 contrast ratio for normal text."
+    },
+    {
+      "id": 9,
+      "question": "Which HTML attribute should be used with form inputs that use color-based validation?",
+      "options": ["role", "aria-describedby", "aria-label", "data-color"],
+      "correctAnswer": 1,
+      "explanation": "aria-describedby associates error text with an input, ensuring screen readers announce the error message."
+    },
+    {
+      "id": 10,
+      "question": "What percentage of males are affected by some form of color blindness?",
+      "options": ["1 in 100", "1 in 50", "1 in 12", "1 in 20"],
+      "correctAnswer": 2,
+      "explanation": "Approximately 1 in 12 men (8%) and 1 in 200 women (0.5%) have some form of color vision deficiency."
+    },
+    {
+      "id": 11,
+      "question": "Which tool can simulate color vision deficiencies in the browser?",
+      "options": ["Chrome DevTools Rendering tab", "VS Code", "Figma", "Photoshop"],
+      "correctAnswer": 0,
+      "explanation": "Chrome DevTools has a Rendering tab that can simulate deuteranopia, protanopia, and tritanopia."
+    },
+    {
+      "id": 12,
+      "question": "What is the purpose of the prefers-contrast media query?",
+      "options": ["Detect color blindness", "Detect user contrast preferences", "Detect screen resolution", "Detect browser type"],
+      "correctAnswer": 1,
+      "explanation": "prefers-contrast detects whether the user has requested more or less contrast in their system settings."
+    },
+    {
+      "id": 13,
+      "question": "Why should links be underlined?",
+      "options": ["It looks better", "Color alone is insufficient to indicate links", "It improves loading speed", "It's required by law"],
+      "correctAnswer": 1,
+      "explanation": "Links should be underlined (or have another non-color indicator) because color-blind users may not perceive color-based link differentiation."
+    },
+    {
+      "id": 14,
+      "question": "Which of these is NOT an acceptable way to indicate form field errors?",
+      "options": ["Red border", "Red border + error text", "Red border + icon + error text", "Red border + aria-describedby pointing to error text"],
+      "correctAnswer": 0,
+      "explanation": "Using a red border alone is insufficient. You must combine it with text, icons, and/or ARIA attributes."
+    },
+    {
+      "id": 15,
+      "question": "What does 'perceptually uniform' mean in color space design?",
+      "options": ["All colors look the same", "Equal numerical changes produce equal perceived brightness changes", "Colors are sorted alphabetically", "Only primary colors are used"],
+      "correctAnswer": 1,
+      "explanation": "Perceptually uniform means that a change in numerical value corresponds to an equal change in perceived brightness."
+    },
+    {
+      "id": 16,
+      "question": "Which CSS custom property approach is best for accessible theming?",
+      "options": ["Using hardcoded hex values everywhere", "Using CSS custom properties with semantic names", "Using inline styles", "Using !important"],
+      "correctAnswer": 1,
+      "explanation": "CSS custom properties with semantic names (like --text-primary, --bg-error) make theme-wide accessibility updates manageable."
+    },
+    {
+      "id": 17,
+      "question": "What is the difference between AA and AAA contrast requirements?",
+      "options": ["AA is for text, AAA is for images", "AAA is stricter (higher contrast ratios required)", "AA is mandatory, AAA is recommended", "There is no difference"],
+      "correctAnswer": 1,
+      "explanation": "AAA has stricter requirements: 7:1 for normal text and 4.5:1 for large text, compared to AA's 4.5:1 and 3:1."
+    },
+    {
+      "id": 18,
+      "question": "How should charts and graphs be made accessible?",
+      "options": ["Use bright colors", "Use color + patterns + direct labels", "Use only grayscale", "Make them interactive"],
+      "correctAnswer": 1,
+      "explanation": "Charts should use color combined with patterns, textures, and direct data labels to be accessible to all users."
+    },
+    {
+      "id": 19,
+      "question": "What is the purpose of the 'accent-color' CSS property?",
+      "options": ["Set text color", "Set the accent color for form controls", "Set background color", "Set border color"],
+      "correctAnswer": 1,
+      "explanation": "accent-color lets you set the accent color for form controls like checkboxes and radio buttons, and respects forced colors mode."
+    },
+    {
+      "id": 20,
+      "question": "Which of the following is the best practice for color accessibility?",
+      "options": ["Use as many colors as possible", "Design in grayscale first, then add color", "Use only primary colors", "Avoid using any colors"],
+      "correctAnswer": 1,
+      "explanation": "Designing in grayscale first ensures the layout works without color. Adding color afterward is purely for enhancement."
+    }
+  ]
+}

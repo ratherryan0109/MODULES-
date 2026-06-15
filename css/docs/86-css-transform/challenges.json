@@ -1,0 +1,50 @@
+{
+  "module": "CSS Transform",
+  "challenges": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "title": "Hover Scale Button",
+      "description": "Create a button that scales up to 1.1x its size on hover.",
+      "hint": "Use :hover with transform: scale(1.1).",
+      "expected_outcome": "Button enlarges on hover.",
+      "solution": { "css": ".btn:hover { transform: scale(1.1); }" }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "title": "Simple Rotation",
+      "description": "Create a div that rotates 45 degrees when clicked (using :active).",
+      "hint": "Use :active pseudo-class with transform: rotate(45deg).",
+      "expected_outcome": "Element rotates on click.",
+      "solution": { "css": ".box:active { transform: rotate(45deg); }" }
+    },
+    {
+      "id": 3,
+      "difficulty": "medium",
+      "title": "Card Flip Animation",
+      "description": "Create a card that flips horizontally on hover using rotateY.",
+      "hint": "Use rotateY(180deg) with perspective on the parent.",
+      "expected_outcome": "Card flips to reveal back side.",
+      "solution": { "css": ".scene { perspective: 800px; } .card { transition: transform 0.6s; transform-style: preserve-3d; } .card:hover { transform: rotateY(180deg); }" }
+    },
+    {
+      "id": 4,
+      "difficulty": "medium",
+      "title": "Transform Origin Pendulum",
+      "description": "Create a pendulum that swings using rotate with transform-origin: top center.",
+      "hint": "Set transform-origin to top center, then animate rotate.",
+      "expected_outcome": "Element swings like a pendulum from the top.",
+      "solution": { "css": ".pendulum { transform-origin: top center; transition: transform 0.5s ease-in-out; } .pendulum:hover { transform: rotate(30deg); }" }
+    },
+    {
+      "id": 5,
+      "difficulty": "hard",
+      "title": "Complex Transform Chain",
+      "description": "Create an element that moves in a square path using only transform translate with JavaScript toggling classes.",
+      "hint": "Use four classes with different translate values and transition.",
+      "expected_outcome": "Element moves through four corners of a square.",
+      "solution": { "css": ".mover { transition: transform 0.3s; } .pos1 { transform: translate(0, 0); } .pos2 { transform: translate(200px, 0); } .pos3 { transform: translate(200px, 200px); } .pos4 { transform: translate(0, 200px); }" }
+    }
+  ]
+}

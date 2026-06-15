@@ -1,0 +1,29 @@
+{
+  "module": "70 - Responsive Navigation",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "CSS-Only Responsive Nav",
+      "description": "Build a navigation bar that shows horizontal links on desktop and a hamburger menu on mobile using only CSS.",
+      "instructions": "Use the checkbox hack. No JavaScript allowed. Include at least 5 nav links.",
+      "hints": ["Use input[type=checkbox] with :checked", "Hide checkbox with display:none", "Use label with for attribute as toggle button"],
+      "solution": "<input type='checkbox' id='toggle' class='toggle'><label for='toggle' class='hamburger'>☰</label><ul class='nav'>...</ul>\n<style>\n.toggle { display: none; }\n.hamburger { display: block; }\n.nav { display: none; }\n.toggle:checked ~ .nav { display: flex; flex-direction: column; }\n@media (min-width: 768px) {\n  .hamburger { display: none; }\n  .nav { display: flex !important; flex-direction: row; }\n}\n</style>"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Bottom Tab Navigation with Active Indicator",
+      "description": "Create a mobile bottom tab navigation with icons and an animated active indicator.",
+      "instructions": "Build a 5-tab bottom navigation with SVG/emoji icons. The active tab should have a colored indicator and smooth transition.",
+      "hints": ["Use flexbox for equal-width tabs", "Use CSS transition on the active indicator", "Use aria-current for accessibility"],
+      "solution": ".bottom-nav { display: flex; position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #e2e8f0; } .tab { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 0.5rem; min-height: 56px; justify-content: center; color: #94a3b8; text-decoration: none; transition: color 0.2s; } .tab.active { color: #3b82f6; } .tab .icon { font-size: 1.25rem; } .tab .label { font-size: 0.65rem; margin-top: 2px; }"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Full Responsive Header with Search, Dropdowns, and User Menu",
+      "description": "Build a complex website header with logo, multi-level dropdown, search bar, user menu, and mobile off-canvas.",
+      "instructions": "Create a full e-commerce header with: logo, category dropdown with subcategories, search bar (expandable on mobile), user account menu, cart icon with count, and a mobile off-canvas that slides from left.",
+      "hints": ["Use CSS Grid for the overall header layout", "Off-canvas should use transform: translateX(-100%) with transition", "Search expands on focus on mobile", "Dropdowns use :focus-within for keyboard accessibility"],
+      "solution": ".header { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 1rem; padding: 0.5rem 1rem; background: white; } .off-canvas { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; background: white; transform: translateX(-100%); transition: transform 0.3s; z-index: 200; } .off-canvas.open { transform: translateX(0); } @media (min-width: 768px) { .off-canvas { position: static; transform: none; width: auto; } .hamburger { display: none; } }"
+    }
+  ]
+}

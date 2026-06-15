@@ -1,0 +1,247 @@
+﻿{
+    "module":  "26-css-inline-block",
+    "title":  "CSS display: inline-block",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "What does display: inline-block do?",
+                          "options":  [
+                                          "Creates a block element that ignores width",
+                                          "Creates an element that flows inline but accepts block properties",
+                                          "Creates an inline element with block margins",
+                                          "Hides the element visually"
+                                      ],
+                          "explanation":  "Inline-block flows horizontally like inline elements but accepts width, height, margin, and padding like block elements.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  2,
+                          "question":  "Which of the following is true about inline-block elements?",
+                          "options":  [
+                                          "They always start on a new line",
+                                          "They respect width and height properties",
+                                          "They cannot have margins",
+                                          "They ignore padding"
+                                      ],
+                          "explanation":  "Unlike inline elements, inline-block elements respect width, height, margin, and padding properties.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  3,
+                          "question":  "What is a common issue with inline-block elements?",
+                          "options":  [
+                                          "They overflow the container",
+                                          "They create whitespace gaps between elements",
+                                          "They cannot be centered",
+                                          "They ignore background colors"
+                                      ],
+                          "explanation":  "HTML whitespace (spaces, newlines) between inline-block elements creates visible gaps in the layout.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  4,
+                          "question":  "How can you remove whitespace gaps between inline-block elements?",
+                          "options":  [
+                                          "Use float: left instead",
+                                          "Set font-size: 0 on the parent",
+                                          "Use display: block",
+                                          "Set margin: 0"
+                                      ],
+                          "explanation":  "Setting font-size: 0 on the parent and restoring it on children removes whitespace gaps because spaces have 0 width.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  5,
+                          "question":  "Which property controls the alignment of inline-block elements at different heights?",
+                          "options":  [
+                                          "text-align",
+                                          "vertical-align",
+                                          "align-items",
+                                          "justify-content"
+                                      ],
+                          "explanation":  "vertical-align controls how inline-block elements of different heights align with each other (top, middle, bottom, baseline).",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  6,
+                          "question":  "Which of these is NOT a valid method to remove inline-block whitespace gaps?",
+                          "options":  [
+                                          "HTML comments between elements",
+                                          "font-size: 0 on parent",
+                                          "margin-right: -4px",
+                                          "display: flex on parent"
+                                      ],
+                          "explanation":  "While flex can be used instead of inline-block, it doesn\u0027t \u0027fix\u0027 the whitespace gap - it changes the layout model entirely.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  7,
+                          "question":  "What is the default vertical-align value for inline-block elements?",
+                          "options":  [
+                                          "top",
+                                          "middle",
+                                          "baseline",
+                                          "bottom"
+                                      ],
+                          "explanation":  "The default vertical-align for inline-block elements is \u0027baseline\u0027, which aligns the element with the baseline of its parent.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  8,
+                          "question":  "Compared to Flexbox, when is inline-block a better choice?",
+                          "options":  [
+                                          "For complex responsive layouts",
+                                          "For simple horizontal layouts where Flexbox would be overkill",
+                                          "For vertical centering",
+                                          "For equal-height columns"
+                                      ],
+                          "explanation":  "Inline-block is simpler for basic horizontal layouts, but Flexbox is better for complex or responsive layouts.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  9,
+                          "question":  "How do inline-block elements behave when the container is too narrow?",
+                          "options":  [
+                                          "They overflow",
+                                          "They wrap to the next line",
+                                          "They shrink to fit",
+                                          "They become hidden"
+                                      ],
+                          "explanation":  "Inline-block elements naturally wrap to the next line when there isn\u0027t enough horizontal space, similar to text.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  10,
+                          "question":  "Which browsers support display: inline-block?",
+                          "options":  [
+                                          "Only modern browsers",
+                                          "All major browsers including IE8+",
+                                          "Chrome and Firefox only",
+                                          "Only mobile browsers"
+                                      ],
+                          "explanation":  "display: inline-block is supported in all major browsers, including Internet Explorer 8 and above.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  11,
+                          "question":  "What happens when you set width and height on an element with display: inline?",
+                          "options":  [
+                                          "Width and height are applied",
+                                          "Width and height are ignored",
+                                          "Only width is applied",
+                                          "The element becomes block"
+                                      ],
+                          "explanation":  "Inline elements ignore explicit width and height properties. This is why inline-block is useful when you need both inline flow and block sizing.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  12,
+                          "question":  "How can you center a group of inline-block elements?",
+                          "options":  [
+                                          "Set margin: auto on each",
+                                          "Set text-align: center on the parent",
+                                          "Set display: center on each",
+                                          "Use position: relative"
+                                      ],
+                          "explanation":  "Since inline-block elements behave like inline content, text-align: center on the parent centers them horizontally.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  13,
+                          "question":  "What is an alternative to using font-size: 0 for removing gap between inline-block elements?",
+                          "options":  [
+                                          "Using HTML comments between elements",
+                                          "Setting space: 0 on the parent",
+                                          "Using display: no-space",
+                                          "Setting letter-spacing: 0"
+                                      ],
+                          "explanation":  "HTML comments (\u003c!-- --\u003e) placed between inline-block elements remove the whitespace without affecting font size.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  14,
+                          "question":  "What is a common use case for inline-block?",
+                          "options":  [
+                                          "Full-page layouts",
+                                          "Horizontal navigation bars",
+                                          "Footer content",
+                                          "Header background"
+                                      ],
+                          "explanation":  "Inline-block is commonly used for horizontal navigation bars because it allows list items to sit horizontally with full padding/click area.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  15,
+                          "question":  "How does inline-block affect the box model?",
+                          "options":  [
+                                          "Content-box only",
+                                          "Follows standard box model (respects padding, border, margin)",
+                                          "Border-box only",
+                                          "Margin collapses vertically"
+                                      ],
+                          "explanation":  "Inline-block elements follow the standard CSS box model: padding, border, and margin are all applied and respected.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  16,
+                          "question":  "What happens to top and bottom margins on inline elements?",
+                          "options":  [
+                                          "They work normally",
+                                          "They are ignored",
+                                          "They only work on inline-block",
+                                          "They collapse"
+                                      ],
+                          "explanation":  "Inline elements ignore top and bottom margins. Only left and right margins are respected.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  17,
+                          "question":  "Which vertical-align value aligns the element with the top of the tallest element on the line?",
+                          "options":  [
+                                          "text-top",
+                                          "top",
+                                          "super",
+                                          "upper"
+                                      ],
+                          "explanation":  "vertical-align: top aligns the element with the top of the tallest element on the current line.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  18,
+                          "question":  "Can inline-block elements have a background image?",
+                          "options":  [
+                                          "No, only block elements can",
+                                          "Yes, inline-block supports background images",
+                                          "Only if they have a fixed height",
+                                          "Only if display is also set to block"
+                                      ],
+                          "explanation":  "Inline-block elements support all visual CSS properties, including background images, shadows, gradients, etc.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "What happens when you apply float to an inline-block element?",
+                          "options":  [
+                                          "Float is ignored",
+                                          "It becomes a block-level element",
+                                          "It stays inline-block but floats",
+                                          "Both float and inline-block are applied"
+                                      ],
+                          "explanation":  "When float is applied, the element\u0027s computed display value becomes \u0027block\u0027 regardless of the specified display value.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  20,
+                          "question":  "What is the main advantage of inline-block over float for horizontal layouts?",
+                          "options":  [
+                                          "Better performance",
+                                          "No need for clearfix",
+                                          "More browser support",
+                                          "Better responsive support"
+                                      ],
+                          "explanation":  "Unlike floated elements, inline-block elements don\u0027t cause parent collapse, so no clearfix is needed.",
+                          "correctAnswer":  1
+                      }
+                  ]
+}

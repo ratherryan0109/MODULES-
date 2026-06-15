@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "title": "Add a Dark Mode Toggle",
+    "difficulty": "Easy",
+    "description": "Implement a dark mode toggle that switches the page's color scheme using CSS custom properties and a class on the body element.",
+    "requirements": [
+      "Add a toggle button in the header",
+      "Define a [data-theme='dark'] set of custom properties",
+      "Toggle the data-theme attribute via JavaScript",
+      "Smooth transition between themes",
+      "Persist the preference in localStorage"
+    ],
+    "hints": [
+      "Use CSS custom properties in :root and [data-theme='dark']",
+      "Add transition: background-color 0.3s, color 0.3s to the body",
+      "Store the theme in localStorage.setItem/getItem"
+    ],
+    "solution": "Create a toggle button. On click, toggle document.documentElement.getAttribute('data-theme'). Define dark custom properties. Add smooth transitions."
+  },
+  {
+    "id": 2,
+    "title": "Implement Scroll-Triggered Animations",
+    "difficulty": "Medium",
+    "description": "Add fade-in animations to sections as they scroll into view using the Intersection Observer API.",
+    "requirements": [
+      "Sections start with opacity: 0 and transform: translateY(30px)",
+      "Use IntersectionObserver to add a 'visible' class",
+      "Stagger animation delays for child elements",
+      "Respect prefers-reduced-motion",
+      "Ensure elements are still accessible when hidden"
+    ],
+    "hints": [
+      "IntersectionObserver callback toggles a class",
+      "Use CSS transition or animation on the class change",
+      "Set observer rootMargin to trigger earlier"
+    ],
+    "solution": "Observe each section with IntersectionObserver. On intersection, add 'visible' class. CSS: .visible { opacity: 1; transform: translateY(0); transition: 0.6s ease; }"
+  },
+  {
+    "id": 3,
+    "title": "Build a Multi-Step Signup Form in the CTA Section",
+    "difficulty": "Hard",
+    "description": "Replace the CTA section with a multi-step signup form that validates fields and shows progress indicators.",
+    "requirements": [
+      "3-step form (Email → Details → Confirmation)",
+      "Progress bar showing current step",
+      "Client-side validation with error messages",
+      "Back/Next navigation with keyboard support",
+      "ARIA live regions for dynamic content changes",
+      "Responsive layout matching the landing page theme"
+    ],
+    "hints": [
+      "Use display: none/block to show/hide steps",
+      "Track current step in JavaScript variable",
+      "Use aria-current='step' for progress indicators",
+      "Validate with Constraint Validation API"
+    ],
+    "solution": "Structure each step as a div. Track step index. Validate each step before advancing. Show progress via width percentage on a progress bar. Use CSS transitions for step changes."
+  }
+]

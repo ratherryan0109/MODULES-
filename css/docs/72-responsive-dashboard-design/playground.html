@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Design Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #0f172a; color: #e2e8f0; padding: 1rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #38bdf8; margin-bottom: 1rem; }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+    .panel { background: #1e293b; border: 1px solid #334155; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+    .panel h2 { background: #334155; padding: 0.5rem 1rem; font-size: 0.8rem; color: #94a3b8; margin: 0; }
+    textarea { width: 100%; min-height: 200px; background: #1e293b; color: #e2e8f0; border: none; padding: 1rem; font-family: 'Courier New', monospace; font-size: 0.85rem; resize: vertical; }
+    textarea:focus { outline: none; }
+    .preview-area { background: #f1f5f9; flex: 1; padding: 1rem; overflow: auto; min-height: 400px; }
+    .controls { display: flex; gap: 0.5rem; padding: 0.5rem 1rem; background: #1e293b; border-top: 1px solid #334155; flex-wrap: wrap; align-items: center; }
+    .controls button { background: #334155; color: #e2e8f0; border: 1px solid #475569; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .presets { display: flex; gap: 0.25rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Dashboard Design Playground</h1>
+    <div class="layout">
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="panel">
+          <h2>HTML</h2>
+          <textarea id="htmlInput">&lt;div class="dashboard"&gt;
+  &lt;header class="dash-header"&gt;
+    &lt;h2&gt;My Dashboard&lt;/h2&gt;
+    &lt;input type="text" placeholder="Search..."&gt;
+  &lt;/header&gt;
+  &lt;aside class="dash-sidebar"&gt;
+    &lt;a href="#" class="active"&gt;Dashboard&lt;/a&gt;
+    &lt;a href="#"&gt;Analytics&lt;/a&gt;
+    &lt;a href="#"&gt;Users&lt;/a&gt;
+    &lt;a href="#"&gt;Settings&lt;/a&gt;
+  &lt;/aside&gt;
+  &lt;section class="dash-stats"&gt;
+    &lt;div class="kpi"&gt;&lt;span class="val"&gt;$12k&lt;/span&gt;&lt;span class="lbl"&gt;Revenue&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="kpi"&gt;&lt;span class="val"&gt;1.2k&lt;/span&gt;&lt;span class="lbl"&gt;Users&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="kpi"&gt;&lt;span class="val"&gt;89%&lt;/span&gt;&lt;span class="lbl"&gt;Rate&lt;/span&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class="dash-chart"&gt;Chart Area&lt;/section&gt;
+  &lt;section class="dash-table"&gt;Table Content&lt;/section&gt;
+&lt;/div&gt;</textarea>
+        </div>
+        <div class="panel">
+          <h2>CSS</h2>
+          <textarea id="cssInput">* { box-sizing: border-box; }
+body { font-family: system-ui; background: #f1f5f9; }
+
+.dashboard {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "header"
+    "sidebar"
+    "stats"
+    "chart"
+    "table";
+}
+
+.dash-header { grid-area: header; background: white; padding: 1rem; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+.dash-header input { padding: 0.4rem 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; }
+.dash-sidebar { grid-area: sidebar; background: #1e293b; padding: 1rem; border-radius: 10px; }
+.dash-sidebar a { display: block; color: #94a3b8; padding: 0.5rem; text-decoration: none; }
+.dash-sidebar a.active { color: white; background: #334155; border-radius: 6px; }
+.dash-stats { grid-area: stats; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.kpi { background: white; padding: 1rem; border-radius: 8px; }
+.kpi .val { display: block; font-size: 1.5rem; font-weight: 700; }
+.kpi .lbl { font-size: 0.8rem; color: #64748b; }
+.dash-chart { grid-area: chart; background: white; padding: 1.5rem; border-radius: 10px; text-align: center; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
+.dash-table { grid-area: table; background: white; padding: 1.5rem; border-radius: 10px; }
+
+@media (min-width: 768px) {
+  .dashboard { grid-template-areas: "sidebar header" "sidebar stats" "sidebar chart" "sidebar table"; grid-template-columns: 180px 1fr; }
+  .dash-sidebar { grid-row: 1 / -1; }
+}
+
+@media (min-width: 1024px) {
+  .dashboard { grid-template-areas: "sidebar header header" "sidebar stats chart" "sidebar table table"; grid-template-columns: 180px 1fr 1fr; }
+}</textarea>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Preview</h2>
+        <div class="controls">
+          <div class="presets">
+            <button onclick="setDashWidth('100%')"> Fluid</button>
+            <button onclick="setDashWidth('375px')">  Mobile</button>
+            <button onclick="setDashWidth('768px')">  Tablet</button>
+            <button onclick="setDashWidth('1024px')">  Desktop</button>
+          </div>
+          <span style="font-size:0.75rem;color:#64748b;margin-left:auto;" id="dashMode">Fluid</span>
+        </div>
+        <div class="preview-area" id="previewArea"></div>
+        <div class="controls">
+          <button onclick="render()"> Render</button>
+          <label style="font-size:0.75rem;color:#94a3b8;"><input type="checkbox" id="liveCheck" checked> Live</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const htmlInput = document.getElementById('htmlInput');
+    const cssInput = document.getElementById('cssInput');
+    const preview = document.getElementById('previewArea');
+
+    function render() {
+      preview.innerHTML = `<style>${cssInput.value}</style>${htmlInput.value}`;
+    }
+
+    function setDashWidth(w) {
+      document.querySelectorAll('.presets button').forEach(b => b.classList.remove('active'));
+      preview.style.width = w;
+      if (w === '100%') preview.style.margin = '0';
+      else preview.style.margin = '0 auto';
+      document.querySelector(`button[onclick*="${w}"]`).classList.add('active');
+      document.getElementById('dashMode').textContent = w === '100%' ? 'Fluid' : w;
+      render();
+    }
+
+    let debounce;
+    function debouncedRender() {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        if (document.getElementById('liveCheck').checked) render();
+      }, 300);
+    }
+    htmlInput.addEventListener('input', debouncedRender);
+    cssInput.addEventListener('input', debouncedRender);
+
+    setDashWidth('100%');
+  </script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 14: HTML Images - Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    .example-box {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .example-box h2 { color: #2980b9; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .example-box h3 { color: #34495e; margin: 15px 0 8px; }
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 18px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin: 15px 0;
+      white-space: pre-wrap;
+    }
+    .note {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+      padding: 12px 18px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+    .output {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 10px 0;
+    }
+    img.demo-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+    .img-grid {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .img-grid figure {
+      flex: 1;
+      min-width: 200px;
+    }
+    .img-grid img {
+      width: 100%;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🖼️ HTML Images — Code Examples</h1>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 1: BASIC IMAGE -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 1: Basic Image Element</h2>
+    <p>The simplest use of <code>&lt;img&gt;</code> requires <code>src</code> and <code>alt</code> attributes.</p>
+
+    <div class="output">
+      <img
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80"
+        alt="A scenic mountain landscape at sunset"
+        width="600"
+        height="400"
+        class="demo-img"
+      >
+    </div>
+
+    <div class="code-block">
+      &lt;img
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&amp;q=80"
+        alt="A scenic mountain landscape at sunset"
+        width="600"
+        height="400"
+      &gt;
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> The <code>alt</code> text describes the image for accessibility. Screen readers will read this text aloud.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 2: ALT TEXT VARIANTS -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 2: Alt Text — Informative, Decorative, and Linked</h2>
+
+    <div class="output">
+      <h3>Informative image (descriptive alt)</h3>
+      <img src="https://via.placeholder.com/400x200/3498db/ffffff?text=Sales+Chart" alt="Bar chart showing 25% sales growth in Q2 2026" class="demo-img">
+
+      <h3 style="margin-top:20px;">Decorative image (empty alt)</h3>
+      <img src="https://via.placeholder.com/50x50/eee/333?text=+" alt="" style="vertical-align:middle;">
+      <span>A decorative bullet icon — screen readers skip it.</span>
+
+      <h3 style="margin-top:20px;">Linked image (describe destination)</h3>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img">
+        <img src="https://via.placeholder.com/200x60/e74c3c/ffffff?text=MDN+Docs" alt="MDN HTML Image Documentation" style="border-radius:6px;">
+      </a>
+    </div>
+
+    <div class="code-block">
+      &lt;!-- Informative — describe the content --&gt;
+      &lt;img src="chart.png" alt="Bar chart showing 25% sales growth"&gt;
+
+      &lt;!-- Decorative — empty alt --&gt;
+      &lt;img src="bullet.png" alt=""&gt;
+
+      &lt;!-- Linked — describe destination --&gt;
+      &lt;a href="https://developer.mozilla.org/"&gt;
+        &lt;img src="mdn-logo.png" alt="MDN Web Docs"&gt;
+      &lt;/a&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 3: IMAGE FORMATS -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 3: Common Image Formats</h2>
+
+    <div class="output">
+      <div class="img-grid">
+        <figure>
+          <img src="https://via.placeholder.com/200x200/e74c3c/ffffff?text=JPEG" alt="JPEG format example" style="border-radius:6px;">
+          <figcaption><strong>JPEG</strong> — Good for photos</figcaption>
+        </figure>
+        <figure>
+          <img src="https://via.placeholder.com/200x200/3498db/ffffff?text=PNG" alt="PNG format example" style="border-radius:6px;">
+          <figcaption><strong>PNG</strong> — Good for graphics with transparency</figcaption>
+        </figure>
+        <figure>
+          <svg width="200" height="200" viewBox="0 0 200 200" style="border-radius:6px;">
+            <rect width="200" height="200" fill="#2ecc71" rx="10"/>
+            <circle cx="100" cy="100" r="60" fill="white" opacity="0.9"/>
+            <text x="100" y="110" font-family="Arial" font-size="40" fill="#2ecc71" text-anchor="middle" font-weight="bold">SVG</text>
+          </svg>
+          <figcaption><strong>SVG</strong> — Scalable vector graphics</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="code-block">
+      &lt;!-- JPEG / PNG — raster formats --&gt;
+      &lt;img src="photo.jpg" alt="Photo"&gt;
+      &lt;img src="graphic.png" alt="Graphic"&gt;
+
+      &lt;!-- SVG — inline or as file --&gt;
+      &lt;img src="icon.svg" alt="Icon"&gt;
+
+      &lt;!-- Or inline SVG directly in HTML --&gt;
+      &lt;svg&gt;...&lt;/svg&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 4: WIDTH AND HEIGHT -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 4: Width and Height Attributes</h2>
+
+    <div class="output">
+      <p><strong>Set width and height:</strong> The browser reserves space for the image, preventing layout shifts.</p>
+      <img
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80"
+        alt="Mountain landscape"
+        width="300"
+        height="200"
+        style="max-width:100%;height:auto;"
+      >
+      <p style="margin-top:10px;font-size:14px;color:#666;">The image has <code>width="300" height="200"</code> attributes set. CSS <code>max-width:100%</code> keeps it responsive.</p>
+    </div>
+
+    <div class="code-block">
+      &lt;img
+        src="photo.jpg"
+        alt="Mountain landscape"
+        width="300"
+        height="200"
+        style="max-width: 100%; height: auto;"
+      &gt;
+    </div>
+
+    <div class="note">
+      <strong>Tip:</strong> Always set width and height attributes to prevent Cumulative Layout Shift (CLS). Use CSS for responsive scaling.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 5: LAZY LOADING -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 5: Lazy Loading</h2>
+
+    <div class="output">
+      <p>Scroll down to see the lazy-loaded image load in.</p>
+      <div style="height:300px; background:#ecf0f1; display:flex; align-items:center; justify-content:center; border-radius:6px; margin:15px 0;">
+        ⬇ Scroll below to see lazy loading in action
+      </div>
+      <img
+        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+        alt="A person looking at a view"
+        loading="lazy"
+        width="400"
+        height="267"
+        class="demo-img"
+        style="display:block;"
+      >
+      <p style="margin-top:10px;font-size:14px;color:#666;">This image uses <code>loading="lazy"</code>. It only loaded when it came near the viewport.</p>
+    </div>
+
+    <div class="code-block">
+      &lt;img
+        src="below-fold-photo.jpg"
+        alt="Description"
+        loading="lazy"
+        width="400"
+        height="267"
+      &gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 6: RESPONSIVE IMAGES WITH SRCSET -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 6: Responsive Images with srcset and sizes</h2>
+
+    <p>The browser automatically selects the best image size based on the viewport. Resize your browser to see it in action.</p>
+
+    <div class="output">
+      <img
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80"
+        srcset="
+          https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80 400w,
+          https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80 800w,
+          https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80 1200w
+        "
+        sizes="
+          (max-width: 600px) 100vw,
+          (max-width: 1200px) 50vw,
+          800px
+        "
+        alt="Mountain landscape with responsive srcset"
+        class="demo-img"
+      >
+    </div>
+
+    <div class="code-block">
+      &lt;img
+        src="photo-400.jpg"
+        srcset="
+          photo-400.jpg 400w,
+          photo-800.jpg 800w,
+          photo-1200.jpg 1200w
+        "
+        sizes="
+          (max-width: 600px) 100vw,
+          (max-width: 1200px) 50vw,
+          800px
+        "
+        alt="Mountain landscape"
+      &gt;
+    </div>
+
+    <div class="note">
+      <strong>How it works:</strong> The <code>sizes</code> attribute tells the browser the image display width at different viewport sizes. The browser then picks the best source from <code>srcset</code>.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 7: PICTURE ELEMENT -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 7: The &lt;picture&gt; Element (Art Direction)</h2>
+
+    <div class="output">
+      <picture>
+        <source media="(min-width: 800px)" srcset="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&fit=crop&crop=center">
+        <source media="(min-width: 400px)" srcset="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&fit=crop&crop=center">
+        <img
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80&fit=crop&crop=center"
+          alt="Mountain landscape — art directed"
+          class="demo-img"
+          style="aspect-ratio:16/9; object-fit:cover;"
+        >
+      </picture>
+      <p style="margin-top:10px;font-size:14px;color:#666;">Resize the browser to see different crops appear at different widths.</p>
+    </div>
+
+    <div class="code-block">
+      &lt;picture&gt;
+        &lt;source media="(min-width: 800px)" srcset="hero-wide.jpg"&gt;
+        &lt;source media="(min-width: 400px)" srcset="hero-tablet.jpg"&gt;
+        &lt;img src="hero-mobile.jpg" alt="Hero banner"&gt;
+      &lt;/picture&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 8: PICTURE WITH FORMAT FALLBACK -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 8: &lt;picture&gt; with Format Fallbacks</h2>
+
+    <div class="output">
+      <picture>
+        <source type="image/avif" srcset="https://via.placeholder.com/600x300/e74c3c/ffffff?text=AVIF">
+        <source type="image/webp" srcset="https://via.placeholder.com/600x300/3498db/ffffff?text=WebP">
+        <img src="https://via.placeholder.com/600x300/2ecc71/ffffff?text=Fallback+JPG" alt="Format fallback example" class="demo-img">
+      </picture>
+      <p style="margin-top:10px;font-size:14px;color:#666;">The browser picks AVIF → WebP → Fallback (JPEG/PNG) based on support.</p>
+    </div>
+
+    <div class="code-block">
+      &lt;picture&gt;
+        &lt;source type="image/avif" srcset="photo.avif"&gt;
+        &lt;source type="image/webp" srcset="photo.webp"&gt;
+        &lt;img src="photo.jpg" alt="Photo"&gt;
+      &lt;/picture&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 9: FIGURE AND FIGCAPTION -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 9: &lt;figure&gt; and &lt;figcaption&gt;</h2>
+
+    <div class="output">
+      <figure style="margin:0; text-align:center;">
+        <img
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80"
+          alt="A mountain range at sunrise"
+          class="demo-img"
+          style="max-width:500px;"
+        >
+        <figcaption style="margin-top:10px; font-style:italic; color:#666;">
+          Figure 1: Mountain range at sunrise — captured during a hiking expedition in the Alps.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="code-block">
+      &lt;figure&gt;
+        &lt;img src="mountain.jpg" alt="Mountain range at sunrise"&gt;
+        &lt;figcaption&gt;Figure 1: Mountain range at sunrise&lt;/figcaption&gt;
+      &lt;/figure&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 10: IMAGE MAP -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 10: Image Map (Clickable Regions)</h2>
+
+    <div class="output">
+      <img
+        src="https://via.placeholder.com/500x250/eee/333?text=Click+a+region"
+        alt="Sample image map"
+        usemap="#samplemap"
+        style="border-radius:6px; max-width:100%;"
+      >
+      <map name="samplemap">
+        <area shape="rect" coords="0,0,165,250" href="#region1" alt="Region 1" title="Region 1 - Left side">
+        <area shape="rect" coords="166,0,332,250" href="#region2" alt="Region 2" title="Region 2 - Center">
+        <area shape="rect" coords="333,0,500,250" href="#region3" alt="Region 3" title="Region 3 - Right side">
+      </map>
+      <p style="margin-top:10px;font-size:14px;color:#666;display:none;" id="map-message">Click on a region to see a message.</p>
+    </div>
+
+    <div class="code-block">
+      &lt;img src="map.png" alt="Image map" usemap="#myMap"&gt;
+      &lt;map name="myMap"&gt;
+        &lt;area shape="rect" coords="0,0,100,100" href="page.html" alt="Region"&gt;
+        &lt;area shape="circle" coords="150,150,50" href="other.html" alt="Circle"&gt;
+      &lt;/map&gt;
+    </div>
+
+    <script>
+      document.querySelectorAll('area').forEach(area => {
+        area.addEventListener('click', (e) => {
+          e.preventDefault();
+          const msg = document.getElementById('map-message');
+          msg.style.display = 'block';
+          msg.textContent = `Clicked: ${area.getAttribute('title')}`;
+        });
+      });
+    </script>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 11: CSS STYLING FOR IMAGES -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 11: CSS Image Styling</h2>
+
+    <style>
+      .styled-gallery {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .styled-gallery .img-card {
+        flex: 1;
+        min-width: 180px;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+        padding-bottom: 15px;
+      }
+      .styled-gallery .img-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s;
+      }
+      .styled-gallery .img-card:hover img {
+        transform: scale(1.05);
+      }
+      .styled-gallery .img-card .label {
+        padding: 10px;
+        font-size: 13px;
+        color: #666;
+      }
+      .circle-crop {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #3498db;
+        margin: 15px auto;
+        display: block;
+      }
+    </style>
+
+    <div class="output">
+      <h3>Object-fit: cover — Cropped Gallery</h3>
+      <div class="styled-gallery">
+        <div class="img-card">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80" alt="Mountain">
+          <div class="label">object-fit: cover</div>
+        </div>
+        <div class="img-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" alt="Portrait">
+          <div class="label">object-fit: cover</div>
+        </div>
+        <div class="img-card">
+          <img src="https://images.unsplash.com/photo-1470071459604-7e39b0a1c0b5?w=300&q=80" alt="Forest">
+          <div class="label">object-fit: cover</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:25px;">Circle Crop with border-radius: 50%</h3>
+      <img
+        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80"
+        alt="Profile photo"
+        class="circle-crop"
+      >
+    </div>
+
+    <div class="code-block">
+      /* Responsive base */
+      img { max-width: 100%; height: auto; display: block; }
+
+      /* Cropped gallery */
+      .gallery img { width: 100%; height: 180px; object-fit: cover; }
+
+      /* Circle crop */
+      .avatar { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 12: DECORATIVE SVG -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 12: Inline SVG (Scalable Vector Graphics)</h2>
+
+    <div class="output">
+      <svg width="100%" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="border-radius:8px;">
+        <rect width="400" height="120" fill="#1a1a2e" rx="8"/>
+        <text x="200" y="65" font-family="Arial, sans-serif" font-size="28" fill="white" text-anchor="middle" dominant-baseline="middle">
+          Inline SVG — Always Crisp
+        </text>
+        <circle cx="30" cy="30" r="10" fill="#e94560"/>
+        <circle cx="370" cy="90" r="10" fill="#3498db"/>
+      </svg>
+      <p style="margin-top:10px;font-size:14px;color:#666;">SVG scales perfectly at any resolution — no pixelation.</p>
+    </div>
+
+    <div class="code-block">
+      &lt;svg width="400" height="120" viewBox="0 0 400 120"&gt;
+        &lt;rect width="400" height="120" fill="#1a1a2e" rx="8"/&gt;
+        &lt;text x="200" y="65" fill="white" text-anchor="middle"&gt;
+          Inline SVG
+        &lt;/text&gt;
+      &lt;/svg&gt;
+    </div>
+  </div>
+
+</body>
+</html>

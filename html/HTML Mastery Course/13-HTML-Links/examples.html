@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 13: HTML Links - Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 8px; }
+    .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 30px; }
+
+    a { color: #2563eb; }
+    a:visited { color: #7c3aed; }
+    a:hover { color: #1d4ed8; }
+    a:active { color: #dc2626; }
+
+    .example-box {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .example-box h2 { color: #2980b9; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .example-box h3 { color: #34495e; margin: 15px 0 8px; }
+
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 18px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin: 15px 0;
+      white-space: pre-wrap;
+    }
+    .note {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+      padding: 12px 18px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+    .output {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 10px 0;
+    }
+    hr { margin: 20px 0; border: 0; border-top: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+
+  <h1>🔗 HTML Links — Code Examples</h1>
+  <p class="subtitle">Click the links to see how they work. Check the code panel for implementation details.</p>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 1: BASIC LINK STRUCTURE -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 1: Basic Link Structure</h2>
+    <p>The simplest link uses an <code>&lt;a&gt;</code> tag with an <code>href</code> attribute.</p>
+
+    <div class="output">
+      <a href="https://www.google.com">Visit Google</a>
+    </div>
+
+    <div class="code-block">
+      &lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;
+    </div>
+
+    <p>The text inside the <code>&lt;a&gt;</code> tags is the visible, clickable part of the link.</p>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 2: ABSOLUTE vs RELATIVE URLS -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 2: Absolute vs Relative URLs</h2>
+
+    <div class="output">
+      <p><strong>Absolute URL:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener">MDN HTML Docs (opens in new tab)</a></p>
+      <p><strong>Relative URL (same directory):</strong> <a href="examples.html">This same page</a></p>
+      <p><strong>Relative URL (root):</strong> <a href="/">Site Root</a></p>
+    </div>
+
+    <div class="code-block">
+      &lt;a href="https://developer.mozilla.org/"&gt;Absolute URL&lt;/a&gt;
+      &lt;a href="examples.html"&gt;Relative URL (same dir)&lt;/a&gt;
+      &lt;a href="/"&gt;Relative URL (root)&lt;/a&gt;
+    </div>
+
+    <div class="note">
+      <strong>Tip:</strong> Use absolute URLs for external sites and relative URLs for pages within your own site.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 3: TARGET ATTRIBUTE -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 3: The target Attribute</h2>
+
+    <div class="output">
+      <p><a href="https://example.com" target="_self">_self: Opens in same tab (default)</a></p>
+      <p><a href="https://example.com" target="_blank" rel="noopener noreferrer">_blank: Opens in new tab</a></p>
+    </div>
+
+    <div class="code-block">
+      &lt;a href="https://example.com" target="_self"&gt;_self: Same tab&lt;/a&gt;
+      &lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;_blank: New tab&lt;/a&gt;
+    </div>
+
+    <div class="note">
+      <strong>⚠ Security:</strong> Always add <code>rel="noopener noreferrer"</code> when using <code>target="_blank"</code>.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 4: ANCHOR LINKS (Page Sections) -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 4: Anchor Links — Navigation Within a Page</h2>
+
+    <div class="output">
+      <p><a href="#section1">Go to Section 1</a></p>
+      <p><a href="#section2">Go to Section 2</a></p>
+      <p><a href="#section3">Go to Section 3</a></p>
+    </div>
+
+    <div class="code-block">
+      &lt;a href="#section1"&gt;Go to Section 1&lt;/a&gt;
+      &lt;h3 id="section1"&gt;Section 1&lt;/h3&gt;
+    </div>
+
+    <hr>
+    <h3 id="section1">Section 1 — Welcome!</h3>
+    <p>You arrived here via the anchor link. The page scrolled to this section because the <code>href="#section1"</code> matches the <code>id="section1"</code> on this heading.</p>
+
+    <hr>
+    <h3 id="section2">Section 2 — More Content</h3>
+    <p>This is another section you can jump to. Anchor links are great for long pages like FAQs, documentation, and table of contents.</p>
+
+    <hr>
+    <h3 id="section3">Section 3 — End of Examples</h3>
+    <p>You can also link to sections on other pages: <code>&lt;a href="other-page.html#section"&gt;</code>.</p>
+
+    <div class="code-block">
+      &lt;!-- Link to another page's section --&gt;
+      &lt;a href="about.html#team"&gt;View Team Section&lt;/a&gt;
+
+      &lt;!-- Back to top --&gt;
+      &lt;a href="#"&gt;Back to Top&lt;/a&gt;
+    </div>
+
+    <p><a href="#">⬆ Back to Top</a></p>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 5: EMAIL AND TELEPHONE LINKS -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 5: Email and Telephone Links</h2>
+
+    <div class="output">
+      <p>📧 <a href="mailto:info@example.com">Send us an email (info@example.com)</a></p>
+      <p>📞 <a href="tel:+1234567890">Call us: (123) 456-7890</a></p>
+      <p>📧 <a href="mailto:support@example.com?subject=Help%20Request&body=Hi%2C%20I%20need%20help%20with...">Email with pre-filled subject and body</a></p>
+    </div>
+
+    <div class="code-block">
+      &lt;a href="mailto:info@example.com"&gt;Send Email&lt;/a&gt;
+
+      &lt;a href="tel:+1234567890"&gt;Call Us&lt;/a&gt;
+
+      &lt;a href="mailto:support@example.com?subject=Help%20Request&amp;body=Hi%2C%20I%20need%20help%20with..."&gt;
+        Email with pre-filled fields
+      &lt;/a&gt;
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> <code>mailto:</code> will open the user's default email client.
+      <code>tel:</code> works best on mobile devices and some desktop VoIP apps.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 6: DOWNLOAD LINKS -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 6: Download Links</h2>
+
+    <div class="output">
+      <p><a href="sample.txt" download>📄 Download sample.txt file</a></p>
+      <p><a href="sample.txt" download="my-custom-name.txt">📄 Download with custom filename</a></p>
+    </div>
+
+    <div class="code-block">
+      &lt;a href="sample.txt" download&gt;Download&lt;/a&gt;
+      &lt;a href="sample.txt" download="custom-name.txt"&gt;Download with custom name&lt;/a&gt;
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> The <code>download</code> attribute only works for same-origin URLs.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 7: IMAGE AS A LINK -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 7: Image as a Link</h2>
+
+    <div class="output">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener">
+        <img src="https://via.placeholder.com/200x100/3498db/ffffff?text=MDN+HTML" alt="MDN HTML Documentation" style="border-radius:6px;">
+      </a>
+      <p style="margin-top:8px;">Click the image to open the MDN HTML docs.</p>
+    </div>
+
+    <div class="code-block">
+      &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener"&gt;
+        &lt;img src="mdn-banner.png" alt="MDN HTML Documentation"&gt;
+      &lt;/a&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 8: LINK STYLING WITH CSS -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 8: CSS Link Styling</h2>
+
+    <style>
+      .styled-links a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        background: #ecf0f1;
+        color: #2c3e50;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+      .styled-links a:link { background: #3498db; color: white; }
+      .styled-links a:visited { background: #9b59b6; }
+      .styled-links a:hover { background: #2980b9; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+      .styled-links a:active { background: #e74c3c; transform: translateY(0); }
+
+      .styled-links .btn-outline {
+        background: transparent;
+        border: 2px solid #3498db;
+        color: #3498db;
+      }
+      .styled-links .btn-outline:link { background: transparent; color: #3498db; }
+      .styled-links .btn-outline:visited { border-color: #9b59b6; color: #9b59b6; }
+      .styled-links .btn-outline:hover { background: #3498db; color: white; }
+      .styled-links .btn-outline:active { background: #e74c3c; border-color: #e74c3c; color: white; }
+    </style>
+
+    <div class="styled-links output">
+      <a href="#">Default Styled Link</a>
+      <a href="#">Visited Style</a>
+      <a href="#" class="btn-outline">Outline Style</a>
+    </div>
+
+    <div class="code-block">
+      /* LVHA Order: Link, Visited, Hover, Active */
+      a:link { background: #3498db; color: white; }
+      a:visited { background: #9b59b6; }
+      a:hover { background: #2980b9; transform: translateY(-2px); }
+      a:active { background: #e74c3c; }
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 9: REL ATTRIBUTE VALUES -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 9: rel Attribute Values</h2>
+
+    <div class="output">
+      <p><a href="https://external-site.com" target="_blank" rel="noopener noreferrer">External link with noopener + noreferrer</a></p>
+      <p><a href="https://spammy-site.com" rel="nofollow noopener" target="_blank">Link with nofollow (for SEO)</a></p>
+      <p><a href="https://example.com" rel="external">Link marked as external</a></p>
+    </div>
+
+    <div class="code-block">
+      &lt;a href="https://external-site.com" rel="noopener noreferrer" target="_blank"&gt;Safe external link&lt;/a&gt;
+      &lt;a href="https://spammy-site.com" rel="nofollow"&gt;No SEO credit passed&lt;/a&gt;
+      &lt;a href="https://example.com" rel="external"&gt;Marked as external&lt;/a&gt;
+    </div>
+
+    <div class="note">
+      <strong>Always use <code>rel="noopener noreferrer"</code></strong> when opening links in new tabs with <code>target="_blank"</code>.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 10: LINKS vs BUTTONS -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 10: Links vs Buttons (When to Use Which)</h2>
+
+    <div class="output">
+      <p><strong>Use a link (anchor tag) for navigation:</strong></p>
+      <p><a href="https://example.com">Go to Example</a></p>
+
+      <p><strong>Use a button for actions:</strong></p>
+      <p><button onclick="alert('Button clicked!')" style="padding:10px 20px;cursor:pointer;">Click Me (Action)</button></p>
+    </div>
+
+    <div class="code-block">
+      &lt;!-- Link — navigates somewhere --&gt;
+      &lt;a href="https://example.com"&gt;Go to Example&lt;/a&gt;
+
+      &lt;!-- Button — performs an action --&gt;
+      &lt;button onclick="alert('Clicked!')"&gt;Click Me&lt;/button&gt;
+    </div>
+
+    <div class="note">
+      <strong>Rule of thumb:</strong> Links <em>navigate</em> (they take you somewhere). Buttons <em>perform actions</em> (submit forms, open modals, trigger JavaScript). Using them correctly improves accessibility.
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 11: LINK ACCESSIBILITY -->
+  <!-- ==================================================== -->
+  <div class="example-box">
+    <h2>Example 11: Link Accessibility — Good vs Bad</h2>
+
+    <div class="output">
+      <p><strong>❌ Bad:</strong> <a href="https://example.com">Click here</a> to read our documentation.</p>
+      <p><strong>✅ Good:</strong> Read our <a href="https://example.com">documentation about web standards</a>.</p>
+      <p><strong>✅ Good (new tab):</strong> <a href="https://example.com" target="_blank" rel="noopener">Documentation (opens in new tab)</a></p>
+    </div>
+
+    <div class="code-block">
+      &lt;!-- BAD: "Click here" has no context --&gt;
+      &lt;a href="..."&gt;Click here&lt;/a&gt;
+
+      &lt;!-- GOOD: Link text describes the destination --&gt;
+      &lt;a href="..."&gt;documentation about web standards&lt;/a&gt;
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- EXAMPLE 12: SAMPLE.TXT FOR DOWNLOAD DEMO -->
+  <!-- ==================================================== -->
+  <!-- Hidden script to create sample.txt for download example -->
+  <script>
+    // Create a sample text file for the download example dynamically
+    const blob = new Blob(['This is a sample text file for the download link example.\nYou downloaded this file using the HTML download attribute.'], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    document.querySelectorAll('[download]').forEach(el => {
+      if (!el.href || el.href.startsWith('blob:')) return;
+      el.href = url;
+    });
+  </script>
+
+</body>
+</html>

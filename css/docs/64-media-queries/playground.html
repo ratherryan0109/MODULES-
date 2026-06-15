@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Queries Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #0f172a; color: #e2e8f0; padding: 1rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #38bdf8; margin-bottom: 1rem; }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+
+    .panel { background: #1e293b; border: 1px solid #334155; border-radius: 8px; overflow: hidden; }
+    .panel-header { background: #334155; padding: 0.5rem 1rem; font-size: 0.85rem; color: #94a3b8; display: flex; justify-content: space-between; align-items: center; }
+    .mockup-bar { display: flex; gap: 4px; }
+    .mockup-bar span { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .mockup-bar .r { background: #ef4444; }
+    .mockup-bar .y { background: #eab308; }
+    .mockup-bar .g { background: #22c55e; }
+
+    textarea { width: 100%; min-height: 350px; background: #1e293b; color: #e2e8f0; border: none; padding: 1rem; font-family: 'Courier New', monospace; font-size: 0.85rem; resize: vertical; }
+    textarea:focus { outline: none; }
+
+    #preview-frame { width: 100%; min-height: 400px; background: white; border-radius: 0 0 8px 8px; }
+
+    .controls { display: flex; gap: 0.5rem; padding: 0.5rem 1rem; background: #1e293b; border-top: 1px solid #334155; flex-wrap: wrap; align-items: center; }
+    .controls button, .controls label { background: #334155; color: #e2e8f0; border: 1px solid #475569; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+    .controls button:hover { background: #475569; }
+    .emulator-bar { display: flex; gap: 0.25rem; }
+
+    .info-panel { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 1rem; }
+    .info-row { display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.8rem; border-bottom: 1px solid #1e293b; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Media Queries Interactive Playground</h1>
+    <div class="layout">
+      <div>
+        <div class="panel" style="margin-bottom:1rem;">
+          <div class="panel-header">
+            HTML
+            <div class="mockup-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+          </div>
+          <textarea id="htmlInput">&lt;div class="container"&gt;
+  &lt;header&gt;Responsive Page&lt;/header&gt;
+  &lt;nav&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+    &lt;a href="#"&gt;Services&lt;/a&gt;
+    &lt;a href="#"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;main&gt;
+    &lt;div class="card"&gt;Card One&lt;/div&gt;
+    &lt;div class="card"&gt;Card Two&lt;/div&gt;
+    &lt;div class="card"&gt;Card Three&lt;/div&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</textarea>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            CSS (with Media Queries)
+            <div class="mockup-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+          </div>
+          <textarea id="cssInput">* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; }
+.container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+header { background: #3b82f6; color: white; padding: 1.5rem; text-align: center; border-radius: 8px; margin-bottom: 1rem; font-weight: bold; }
+nav { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+nav a { background: #f1f5f9; padding: 0.75rem; text-align: center; text-decoration: none; color: #334155; border-radius: 4px; }
+main { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
+.card { background: #f1f5f9; padding: 2rem; border-radius: 8px; text-align: center; }
+footer { background: #1e293b; color: white; padding: 1rem; text-align: center; border-radius: 8px; }
+
+@media (min-width: 600px) {
+  nav { flex-direction: row; justify-content: center; }
+  main { flex-direction: row; flex-wrap: wrap; }
+  .card { flex: 1 1 calc(50% - 1rem); }
+}
+
+@media (min-width: 900px) {
+  .container { padding: 2rem; }
+  .card { flex: 1 1 calc(33.33% - 1rem); background: #dbeafe; }
+}
+
+@media (prefers-color-scheme: dark) {
+  body { background: #0f172a; color: #e2e8f0; }
+  .card { background: #1e293b; color: #e2e8f0; }
+  nav a { background: #334155; color: #e2e8f0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; }
+}</textarea>
+        </div>
+      </div>
+      <div>
+        <div class="panel">
+          <div class="panel-header">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              Preview
+              <span id="vwDisplay" style="font-size:0.75rem;color:#64748b;"></span>
+              <span id="mqDisplay" style="font-size:0.75rem;color:#f59e0b;"></span>
+            </div>
+            <div class="emulator-bar">
+              <button onclick="setWidth('375px')"> 375</button>
+              <button onclick="setWidth('768px')"> 768</button>
+              <button onclick="setWidth('1024px')"> 1024</button>
+              <button onclick="setWidth('100%')">Fluid</button>
+            </div>
+          </div>
+          <div id="preview-frame"></div>
+        </div>
+        <div class="controls">
+          <button onclick="render()"> Render</button>
+          <label><input type="checkbox" id="liveCheck" checked> Live</label>
+        </div>
+        <div class="info-panel">
+          <div class="info-row"><span>Current Width</span><span id="currentWidth">-</span></div>
+          <div class="info-row"><span>Active MQs</span><span id="activeMqs">-</span></div>
+          <div class="info-row"><span>Orientation</span><span id="currentOrientation">-</span></div>
+          <div class="info-row"><span>Color Scheme</span><span id="currentScheme">-</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const htmlInput = document.getElementById('htmlInput');
+    const cssInput = document.getElementById('cssInput');
+    const preview = document.getElementById('preview-frame');
+
+    function render() {
+      const html = htmlInput.value;
+      const css = cssInput.value;
+      preview.innerHTML = `<style>${css}</style>${html}`;
+      updateInfo();
+    }
+
+    function setWidth(w) {
+      if (w === '100%') { preview.style.width = '100%'; }
+      else { preview.style.width = w; }
+      render();
+    }
+
+    function updateInfo() {
+      const w = preview.clientWidth;
+      const h = preview.clientHeight;
+      document.getElementById('currentWidth').textContent = w + 'px';
+      document.getElementById('currentOrientation').textContent = w > h ? 'Landscape' : 'Portrait';
+      document.getElementById('currentScheme').textContent = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'Dark' : 'Light';
+
+      let active = [];
+      if (window.matchMedia('(min-width: 600px)').matches) active.push('≥600px');
+      if (window.matchMedia('(min-width: 900px)').matches) active.push('≥900px');
+      document.getElementById('activeMqs').textContent = active.length ? active.join(', ') : '(base styles)';
+
+      document.getElementById('vwDisplay').textContent = `Viewport: ${w}×${h}`;
+    }
+
+    let debounce;
+    function debouncedRender() {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        if (document.getElementById('liveCheck').checked) render();
+      }, 300);
+    }
+    htmlInput.addEventListener('input', debouncedRender);
+    cssInput.addEventListener('input', debouncedRender);
+
+    window.addEventListener('resize', debouncedRender);
+    render();
+  </script>
+</body>
+</html>

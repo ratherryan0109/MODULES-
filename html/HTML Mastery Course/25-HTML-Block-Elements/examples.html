@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Elements Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; background: #f5f7fa; color: #333; }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    h2 { color: #2980b9; border-bottom: 2px solid #2980b9; padding-bottom: 6px; margin: 40px 0 20px; }
+    .example-box { background: white; border-radius: 10px; padding: 25px; margin: 25px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .example-box h3 { margin: 0 0 15px; color: #e67e22; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; font-size: 14px; }
+    .code { background: #2d2d2d; color: #f8f8f2; padding: 14px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 13px; overflow-x: auto; margin: 10px 0; white-space: pre; }
+
+    /* Visual block markers */
+    .b-demo { background: #e8f4fd; border: 2px dashed #2980b9; padding: 10px; margin: 8px 0; }
+    .b-demo strong { color: #2980b9; }
+
+    /* Example 1: Basic block behavior */
+    .ex1-block { background: #3498db; color: white; padding: 16px; margin: 8px 0; border-radius: 6px; text-align: center; }
+
+    /* Example 2: Width control */
+    .ex2-fixed { width: 300px; background: #e74c3c; color: white; padding: 12px; margin: 8px 0; }
+    .ex2-percent { width: 60%; background: #27ae60; color: white; padding: 12px; margin: 8px 0; }
+    .ex2-max { max-width: 600px; background: #f39c12; color: white; padding: 12px; margin: 8px auto; }
+
+    /* Example 3: Margin collapsing demo */
+    .margin-collapse-demo { background: #ecf0f1; padding: 20px; border-radius: 8px; }
+    .mc-box { background: #9b59b6; color: white; padding: 16px; text-align: center; }
+    .mc-box:first-child { margin-bottom: 30px; }
+    .mc-box:last-child { margin-top: 20px; }
+
+    /* Example 4: Semantic layout */
+    .demo-header { background: #2c3e50; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+    .demo-nav { background: #34495e; color: white; padding: 12px 20px; }
+    .demo-nav a { color: #1abc9c; margin-right: 16px; text-decoration: none; }
+    .demo-main { background: white; padding: 20px; border: 1px solid #ddd; min-height: 200px; }
+    .demo-section { background: #f8f9fa; padding: 16px; margin: 16px 0; border-left: 4px solid #2980b9; }
+    .demo-article { background: #e8f4fd; padding: 16px; margin: 16px 0; border-radius: 6px; }
+    .demo-aside { background: #fef9e7; padding: 16px; margin: 16px 0; border: 1px solid #f9e79f; border-radius: 6px; }
+    .demo-footer { background: #2c3e50; color: white; padding: 16px; border-radius: 0 0 8px 8px; text-align: center; }
+
+    /* Example 5: Box model visualization */
+    .box-model-demo { background: #f0f0f0; padding: 30px; margin: 20px; border: 3px solid #e74c3c; width: 400px; }
+    .box-model-demo .content { background: #3498db; color: white; padding: 16px; text-align: center; }
+    .box-model-demo .label { position: relative; top: -20px; left: 0; font-size: 12px; color: #666; }
+
+    /* Example 6: Centering */
+    .centered-container { background: #ecf0f1; padding: 20px; text-align: center; }
+    .centered-block { width: 70%; max-width: 500px; background: #8e44ad; color: white; padding: 20px; margin: 0 auto; border-radius: 8px; }
+
+    /* Example 7: Display property changes */
+    .display-demo { background: #e8e8e8; padding: 16px; }
+    .inline-block-item { display: inline-block; width: 120px; background: #1abc9c; color: white; padding: 12px; margin: 4px; text-align: center; border-radius: 6px; }
+
+    /* Blockquote styling */
+    blockquote { background: #f9f9f9; border-left: 5px solid #2980b9; padding: 15px 20px; margin: 15px 0; font-style: italic; }
+    blockquote footer { background: none; color: #666; font-size: 14px; padding: 0; margin-top: 10px; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>HTML Block Elements Examples</h1>
+
+  <!-- EXAMPLE 1 -->
+  <div class="example-box">
+    <h3>Example 1: Basic Block Element Behavior</h3>
+    <p>Each block element starts on a new line and takes full width:</p>
+    <div class="ex1-block">Block 1: Full width, stacks vertically</div>
+    <div class="ex1-block" style="background:#e67e22;">Block 2: Also full width</div>
+    <div class="ex1-block" style="background:#2ecc71;">Block 3: Notice how they stack</div>
+    <div class="note">All three divs are block elements. Each occupies 100% width and appears on its own line.</div>
+  </div>
+
+  <!-- EXAMPLE 2 -->
+  <div class="example-box">
+    <h3>Example 2: Width Control on Block Elements</h3>
+    <div class="ex2-fixed">Fixed width: 300px</div>
+    <div class="ex2-percent">Percentage width: 60%</div>
+    <div class="ex2-max">Max-width: 600px (centered with margin: auto)</div>
+    <div class="note">Block elements respect explicit width, percentage width, and max-width. Use <code>margin: auto</code> to center.</div>
+  </div>
+
+  <!-- EXAMPLE 3 -->
+  <div class="example-box">
+    <h3>Example 3: Margin Collapsing</h3>
+    <p>Vertical margins collapse to the larger of the two:</p>
+    <div class="margin-collapse-demo">
+      <div class="mc-box">Box A (margin-bottom: 30px)</div>
+      <div class="mc-box" style="background:#8e44ad;">Box B (margin-top: 20px)</div>
+    </div>
+    <div class="note">The gap is 30px (the larger margin), not 50px. This is margin collapsing.</div>
+    <div class="code">.box-a { margin-bottom: 30px; }\n.box-b { margin-top: 20px; }\n/* Space between = 30px, not 50px */</div>
+  </div>
+
+  <!-- EXAMPLE 4 -->
+  <div class="example-box">
+    <h3>Example 4: Semantic Block Elements (Page Layout)</h3>
+    <p>Using HTML5 semantic block elements to structure a page:</p>
+    <div style="border:1px solid #ddd; border-radius:8px; overflow:hidden;">
+      <header class="demo-header">
+        <h2 style="color:white;border:none;padding:0;margin:0;">Website Header</h2>
+        <p style="margin:5px 0 0;opacity:0.8;">Tagline goes here</p>
+      </header>
+      <nav class="demo-nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </nav>
+      <main class="demo-main">
+        <section class="demo-section">
+          <h3>Section: About Us</h3>
+          <p>This is a <code>&lt;section&gt;</code> element. It groups related content together.</p>
+        </section>
+        <article class="demo-article">
+          <h3>Article: Latest News</h3>
+          <p>This is an <code>&lt;article&gt;</code> element. It represents a self-contained piece of content.</p>
+        </article>
+        <aside class="demo-aside">
+          <h3>Aside: Related Links</h3>
+          <p>This is an <code>&lt;aside&gt;</code> element for supplementary content.</p>
+        </aside>
+      </main>
+      <footer class="demo-footer">
+        <p>Footer &copy; 2025. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 5 -->
+  <div class="example-box">
+    <h3>Example 5: Box Model Visualization</h3>
+    <p>Inspecting the CSS box model on a block element:</p>
+    <div class="box-model-demo">
+      <div class="content">Content area (blue)</div>
+    </div>
+    <ul style="margin:10px 0 0 20px;">
+      <li><strong>Content</strong>: Blue area with padding</li>
+      <li><strong>Padding</strong>: 30px (space between content and border)</li>
+      <li><strong>Border</strong>: 3px solid red border</li>
+      <li><strong>Margin</strong>: 20px (outside the border, not visible)</li>
+    </ul>
+    <div class="note">With <code>box-sizing: border-box</code>, width includes content + padding + border.</div>
+  </div>
+
+  <!-- EXAMPLE 6 -->
+  <div class="example-box">
+    <h3>Example 6: Centering Block Elements</h3>
+    <p>Using <code>margin: 0 auto</code> to center a block element:</p>
+    <div class="centered-container">
+      <div class="centered-block">
+        This block is centered using <code>margin: 0 auto</code> with <code>width: 70%</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 7 -->
+  <div class="example-box">
+    <h3>Example 7: Inline-Block vs Block</h3>
+    <p>Block elements normally stack. Using <code>display: inline-block</code> makes them flow horizontally:</p>
+    <div class="display-demo">
+      <div class="inline-block-item">Item 1</div>
+      <div class="inline-block-item">Item 2</div>
+      <div class="inline-block-item">Item 3</div>
+      <div class="inline-block-item">Item 4</div>
+    </div>
+    <div class="note">Inline-block elements flow like inline text but respect width, height, margin, and padding like block elements.</div>
+  </div>
+
+  <!-- EXAMPLE 8 -->
+  <div class="example-box">
+    <h3>Example 8: Blockquote and Other Block Elements</h3>
+    <blockquote cite="https://example.com">
+      "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."
+      <footer>— Steve Jobs</footer>
+    </blockquote>
+    <address style="background:#f0f0f0;padding:12px;border-radius:6px;font-style:normal;">
+      <strong>Contact Us:</strong><br>
+      123 Web Dev Street<br>
+      San Francisco, CA 94102<br>
+      Email: info@example.com
+    </address>
+    <pre style="background:#2d2d2d;color:#f8f8f2;padding:14px;border-radius:6px;margin:15px 0;"><code>// Preformatted block
+function hello() {
+    console.log("Hello, World!");
+}</code></pre>
+    <hr style="margin:20px 0;">
+    <p>The <code>&lt;hr&gt;</code> above is a block-level thematic break.</p>
+  </div>
+</body>
+</html>

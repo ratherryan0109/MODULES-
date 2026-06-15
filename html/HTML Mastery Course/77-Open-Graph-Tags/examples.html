@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Graph Tags - Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #1877f2; border-bottom: 3px solid #1877f2; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .example { background: #fff; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .example pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .output { background: #f9f9f9; border: 2px dashed #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .output-label { font-weight: bold; color: #666; margin-top: 10px; }
+        code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        .note { background: #e7f3ff; border-left: 4px solid #1877f2; padding: 10px 15px; margin: 10px 0; border-radius: 0 5px 5px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #1877f2; color: white; }
+        .fb-card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; max-width: 500px; font-family: Arial, sans-serif; background: white; }
+        .fb-card-img { background: #e9eaed; height: 200px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px; }
+        .fb-card-body { padding: 12px; }
+        .fb-card-site { color: #606770; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .fb-card-title { font-size: 16px; font-weight: 600; margin: 5px 0; color: #1d2129; }
+        .fb-card-desc { color: #606770; font-size: 14px; line-height: 1.4; }
+        .card-tweet { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; max-width: 500px; background: white; }
+        .card-tweet-img { background: #e9eaed; height: 200px; display: flex; align-items: center; justify-content: center; color: #999; }
+        .card-tweet-body { padding: 12px; }
+        .card-tweet-site { color: #536471; font-size: 14px; }
+        .card-tweet-title { font-size: 15px; font-weight: bold; margin: 5px 0; color: #0f1419; }
+        .card-tweet-desc { color: #536471; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h1>Module 77: Open Graph Tags — Examples</h1>
+
+    <!-- Note -->
+    <div class="note">
+        <strong>Note:</strong> Open Graph tags are placed in the <code>&lt;head&gt;</code> section. View the source of this page to see included OG tags. Social previews below are simulated.
+    </div>
+
+    <!-- Example 1: Basic OG Tags -->
+    <div class="example">
+        <h2>Example 1: Basic Open Graph Tags</h2>
+        <p>The minimum set of OG tags needed for social sharing.</p>
+        <pre>
+&lt;meta property="og:title"
+      content="Open Graph Tags Complete Guide"&gt;
+&lt;meta property="og:description"
+      content="Learn how to implement Open Graph tags for rich social media sharing previews on Facebook, LinkedIn, and Twitter."&gt;
+&lt;meta property="og:image"
+      content="https://example.com/images/og-default.jpg"&gt;
+&lt;meta property="og:url"
+      content="https://example.com/guides/open-graph"&gt;
+&lt;meta property="og:type"
+      content="article"&gt;
+&lt;meta property="og:site_name"
+      content="HTML Mastery Course"&gt;</pre>
+        <div class="output-label">Simulated Facebook Preview:</div>
+        <div class="output">
+            <div class="fb-card">
+                <div class="fb-card-img">og:image (1200×630 recommended)</div>
+                <div class="fb-card-body">
+                    <div class="fb-card-site">HTMLMASTERYCOURSE.COM</div>
+                    <div class="fb-card-title">Open Graph Tags Complete Guide</div>
+                    <div class="fb-card-desc">Learn how to implement Open Graph tags for rich social media sharing previews on Facebook, LinkedIn, and Twitter.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 2: Article-Specific OG Tags -->
+    <div class="example">
+        <h2>Example 2: Article-Specific Open Graph Tags</h2>
+        <p>For blog posts and news articles, add article-specific properties.</p>
+        <pre>
+&lt;meta property="og:type" content="article"&gt;
+&lt;meta property="article:published_time"
+      content="2026-06-12T08:00:00+00:00"&gt;
+&lt;meta property="article:modified_time"
+      content="2026-06-12T12:30:00+00:00"&gt;
+&lt;meta property="article:author"
+      content="https://facebook.com/htmlmastery"&gt;
+&lt;meta property="article:section"
+      content="Web Development"&gt;
+&lt;meta property="article:tag" content="HTML"&gt;
+&lt;meta property="article:tag" content="SEO"&gt;
+&lt;meta property="article:tag" content="Social Media"&gt;</pre>
+        <div class="output-label">Article Properties Reference:</div>
+        <div class="output">
+            <table>
+                <tr><th>Property</th><th>Example</th><th>Purpose</th></tr>
+                <tr><td>article:published_time</td><td>2026-06-12T08:00:00+00:00</td><td>When the article was published</td></tr>
+                <tr><td>article:modified_time</td><td>2026-06-12T12:30:00+00:00</td><td>When the article was last modified</td></tr>
+                <tr><td>article:author</td><td>https://facebook.com/...</td><td>Author's Facebook profile</td></tr>
+                <tr><td>article:section</td><td>Web Development</td><td>Article section/category</td></tr>
+                <tr><td>article:tag</td><td>HTML</td><td>Tags (can repeat)</td></tr>
+                <tr><td>article:expiration_time</td><td>2027-06-12T00:00:00+00:00</td><td>When content expires</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Example 3: Image with Dimensions -->
+    <div class="example">
+        <h2>Example 3: OG Image with Dimensions and Alt Text</h2>
+        <p>Always specify image dimensions for optimal rendering.</p>
+        <pre>
+&lt;meta property="og:image"
+      content="https://example.com/images/og-image.jpg"&gt;
+&lt;meta property="og:image:width" content="1200"&gt;
+&lt;meta property="og:image:height" content="630"&gt;
+&lt;meta property="og:image:type" content="image/jpeg"&gt;
+&lt;meta property="og:image:alt"
+      content="A laptop displaying code with social media icons around it"&gt;
+
+&lt;!-- Multiple images (platform chooses best match) --&gt;
+&lt;meta property="og:image"
+      content="https://example.com/images/og-square.jpg"&gt;
+&lt;meta property="og:image:width" content="800"&gt;
+&lt;meta property="og:image:height" content="800"&gt;</pre>
+        <div class="output-label">OG Image Best Practices:</div>
+        <div class="output">
+            <table>
+                <tr><th>Attribute</th><th>Recommended Value</th></tr>
+                <tr><td>Size</td><td>1200×630 pixels (1.91:1 ratio)</td></tr>
+                <tr><td>Format</td><td>JPG or PNG</td></tr>
+                <tr><td>File Size</td><td>Under 1MB</td></tr>
+                <tr><td>Minimum</td><td>600×315 pixels</td></tr>
+                <tr><td>og:image:width</td><td>1200</td></tr>
+                <tr><td>og:image:height</td><td>630</td></tr>
+                <tr><td>og:image:alt</td><td>Descriptive text for accessibility</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Example 4: Locale and Alternate Locales -->
+    <div class="example">
+        <h2>Example 4: Locale Configuration</h2>
+        <p>Specify language and region for international content.</p>
+        <pre>
+&lt;!-- Primary locale --&gt;
+&lt;meta property="og:locale" content="en_US"&gt;
+
+&lt;!-- Alternate locales for translated content --&gt;
+&lt;meta property="og:locale:alternate" content="fr_FR"&gt;
+&lt;meta property="og:locale:alternate" content="es_ES"&gt;
+&lt;meta property="og:locale:alternate" content="de_DE"&gt;
+&lt;meta property="og:locale:alternate" content="ja_JP"&gt;</pre>
+        <div class="output-label">Common Locale Codes:</div>
+        <div class="output">
+            <table>
+                <tr><th>Code</th><th>Language</th><th>Region</th></tr>
+                <tr><td>en_US</td><td>English</td><td>United States</td></tr>
+                <tr><td>en_GB</td><td>English</td><td>United Kingdom</td></tr>
+                <tr><td>fr_FR</td><td>French</td><td>France</td></tr>
+                <tr><td>es_ES</td><td>Spanish</td><td>Spain</td></tr>
+                <tr><td>de_DE</td><td>German</td><td>Germany</td></tr>
+                <tr><td>ja_JP</td><td>Japanese</td><td>Japan</td></tr>
+                <tr><td>pt_BR</td><td>Portuguese</td><td>Brazil</td></tr>
+                <tr><td>zh_CN</td><td>Chinese</td><td>China</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Example 5: Video OG Tags -->
+    <div class="example">
+        <h2>Example 5: Video and Audio OG Tags</h2>
+        <p>For pages featuring video or audio content.</p>
+        <pre>
+&lt;!-- Video --&gt;
+&lt;meta property="og:video"
+      content="https://example.com/videos/tutorial.mp4"&gt;
+&lt;meta property="og:video:width" content="1920"&gt;
+&lt;meta property="og:video:height" content="1080"&gt;
+&lt;meta property="og:video:type" content="video/mp4"&gt;
+&lt;meta property="og:video:secure_url"
+      content="https://example.com/videos/tutorial.mp4"&gt;
+
+&lt;!-- Audio --&gt;
+&lt;meta property="og:audio"
+      content="https://example.com/audio/podcast.mp3"&gt;
+&lt;meta property="og:audio:type" content="audio/mpeg"&gt;
+&lt;meta property="og:audio:secure_url"
+      content="https://example.com/audio/podcast.mp3"&gt;</pre>
+        <div class="output-label">Video/Audio Properties:</div>
+        <div class="output">
+            <p>Use og:video and og:audio to link to media files. Always include width/height for video and use secure_url for HTTPS versions.</p>
+        </div>
+    </div>
+
+    <!-- Example 6: Combined Facebook + Twitter -->
+    <div class="example">
+        <h2>Example 6: Open Graph + Twitter Cards Combined</h2>
+        <p>Complete social sharing setup for any platform.</p>
+        <pre>
+&lt;!-- Open Graph (all platforms except Twitter) --&gt;
+&lt;meta property="og:title" content="HTML Mastery Course: Open Graph Guide"&gt;
+&lt;meta property="og:description"
+      content="Complete guide to Open Graph tags for social media sharing."&gt;
+&lt;meta property="og:image"
+      content="https://example.com/images/og-image.jpg"&gt;
+&lt;meta property="og:image:width" content="1200"&gt;
+&lt;meta property="og:image:height" content="630"&gt;
+&lt;meta property="og:url"
+      content="https://example.com/guides/opengraph"&gt;
+&lt;meta property="og:type" content="article"&gt;
+&lt;meta property="og:site_name" content="HTML Mastery Course"&gt;
+&lt;meta property="og:locale" content="en_US"&gt;
+
+&lt;!-- Twitter Cards (overrides OG for Twitter) --&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:site" content="@htmlmastery"&gt;
+&lt;meta name="twitter:creator" content="@authorhandle"&gt;
+&lt;meta name="twitter:title" content="HTML Mastery Course: Open Graph Guide"&gt;
+&lt;meta name="twitter:description"
+      content="Complete guide to Open Graph tags for social media sharing."&gt;
+&lt;meta name="twitter:image"
+      content="https://example.com/images/twitter-card.jpg"&gt;</pre>
+        <div class="output-label">Twitter Card Preview:</div>
+        <div class="output">
+            <div class="card-tweet">
+                <div class="card-tweet-img">twitter:image (1200×675 recommended)</div>
+                <div class="card-tweet-body">
+                    <div class="card-tweet-site">htmlmasterycourse.com</div>
+                    <div class="card-tweet-title">HTML Mastery Course: Open Graph Guide</div>
+                    <div class="card-tweet-desc">Complete guide to Open Graph tags for social media sharing.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example 7: Website Profile -->
+    <div class="example">
+        <h2>Example 7: Profile and Website OG Tags</h2>
+        <p>For personal profiles or brand pages.</p>
+        <pre>
+&lt;!-- Website homepage --&gt;
+&lt;meta property="og:title" content="HTML Mastery Course"&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta property="og:description"
+      content="Master HTML from beginner to advanced with our comprehensive course."&gt;
+
+&lt;!-- Profile page --&gt;
+&lt;meta property="og:type" content="profile"&gt;
+&lt;meta property="profile:first_name" content="John"&gt;
+&lt;meta property="profile:last_name" content="Doe"&gt;
+&lt;meta property="profile:username" content="johndoe"&gt;
+&lt;meta property="profile:gender" content="male"&gt;</pre>
+        <div class="output-label">Type Comparison:</div>
+        <div class="output">
+            <table>
+                <tr><th>og:type</th><th>Best For</th><th>Extra Properties</th></tr>
+                <tr><td>website</td><td>Homepage, landing pages</td><td>None</td></tr>
+                <tr><td>article</td><td>Blog posts, news</td><td>article:published_time, article:author, article:tag</td></tr>
+                <tr><td>profile</td><td>User profiles</td><td>profile:first_name, profile:last_name</td></tr>
+                <tr><td>video.movie</td><td>Movies</td><td>video:release_date, video:director</td></tr>
+                <tr><td>music.song</td><td>Songs</td><td>music:duration, music:album</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Example 8: Complete Production Head -->
+    <div class="example">
+        <h2>Example 8: Complete OG-Ready Head Section</h2>
+        <p>A production-ready head section with full social sharing support.</p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Open Graph Guide | HTML Mastery&lt;/title&gt;
+    &lt;meta name="description"
+          content="Complete guide to implementing Open Graph tags."&gt;
+
+    &lt;!-- Open Graph --&gt;
+    &lt;meta property="og:title"
+          content="Open Graph Guide | HTML Mastery"&gt;
+    &lt;meta property="og:description"
+          content="Complete guide to implementing Open Graph tags for rich social sharing previews."&gt;
+    &lt;meta property="og:image"
+          content="https://example.com/images/og-guide.jpg"&gt;
+    &lt;meta property="og:image:width" content="1200"&gt;
+    &lt;meta property="og:image:height" content="630"&gt;
+    &lt;meta property="og:url"
+          content="https://example.com/guides/opengraph"&gt;
+    &lt;meta property="og:type" content="article"&gt;
+    &lt;meta property="og:site_name" content="HTML Mastery"&gt;
+    &lt;meta property="og:locale" content="en_US"&gt;
+
+    &lt;!-- Article specifics --&gt;
+    &lt;meta property="article:published_time"
+          content="2026-06-12T08:00:00+00:00"&gt;
+    &lt;meta property="article:author"
+          content="https://facebook.com/htmlmastery"&gt;
+    &lt;meta property="article:tag" content="HTML"&gt;
+    &lt;meta property="article:tag" content="Open Graph"&gt;
+
+    &lt;!-- Twitter --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:site" content="@htmlmastery"&gt;
+    &lt;meta name="twitter:title"
+          content="Open Graph Guide | HTML Mastery"&gt;
+    &lt;meta name="twitter:description"
+          content="Complete guide to implementing Open Graph tags."&gt;
+    &lt;meta name="twitter:image"
+          content="https://example.com/images/twitter-guide.jpg"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Page content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <div class="note">
+        <strong>Pro Tip:</strong> After adding OG tags, test them using the Facebook Sharing Debugger (developers.facebook.com/tools/debug), LinkedIn Post Inspector, and Twitter Card Validator (cards-dev.twitter.com/validator).
+    </div>
+</body>
+</html>

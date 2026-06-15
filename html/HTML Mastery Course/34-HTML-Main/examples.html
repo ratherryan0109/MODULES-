@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 34: HTML Main Element - Examples</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f8f9fa; color: #333; }
+    .example-box { background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .example-box h2 { margin-top: 0; color: #1a73e8; border-bottom: 2px solid #e8f0fe; padding-bottom: 8px; }
+    .output { background: #f1f3f4; border-radius: 4px; padding: 15px; margin: 10px 0; border-left: 4px solid #1a73e8; }
+    code { background: #e8f0fe; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; }
+    pre code { background: none; padding: 0; color: inherit; }
+    .tag { color: #66d9ef; }
+    .attr { color: #a6e22e; }
+    .str { color: #e6db74; }
+    .note { background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 10px; margin: 10px 0; }
+    .warning { background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; padding: 10px; margin: 10px 0; }
+    .skip-link { position: absolute; top: -40px; left: 0; background: #000; color: #fff; padding: 8px; z-index: 100; }
+    .skip-link:focus { top: 0; }
+    header, footer { background: #e9ecef; padding: 15px; border-radius: 4px; }
+    nav a { margin-right: 10px; color: #1a73e8; }
+    aside { background: #f1f3f4; padding: 15px; border-radius: 4px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>HTML <code>&lt;main&gt;</code> Element Examples</h1>
+  <p>Run these examples to see how the <code>&lt;main&gt;</code> element structures content.</p>
+
+  <!-- Example 1: Basic Document Structure -->
+  <div class="example-box">
+    <h2>Example 1: Basic Document Structure with <code>&lt;main&gt;</code></h2>
+    <p>This demonstrates the proper placement of <code>&lt;main&gt;</code> between <code>&lt;header&gt;</code> and <code>&lt;footer&gt;</code>.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <header>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </nav>
+      </header>
+      
+      <main>
+        <h1>Welcome to Our Website</h1>
+        <p>This is the main content area. Screen readers will announce "main landmark" when entering this section.</p>
+        <p>The <code>&lt;main&gt;</code> element gives semantic meaning to the primary content of the page.</p>
+      </main>
+      
+      <footer>
+        <p>&copy; 2026 HTML Mastery Course</p>
+      </footer>
+    </div>
+    
+    <h3>HTML Code:</h3>
+    <pre><code><span class="tag">&lt;header&gt;</span>
+  <span class="tag">&lt;nav&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Welcome to Our Website<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>This is the main content area.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>
+  <span class="tag">&lt;p&gt;</span>&amp;copy; 2026 HTML Mastery Course<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/footer&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 2: Blog Post Layout -->
+  <div class="example-box">
+    <h2>Example 2: Blog Post with <code>&lt;main&gt;</code> and <code>&lt;article&gt;</code></h2>
+    <p>The <code>&lt;main&gt;</code> element wraps the entire blog listing, while each post uses <code>&lt;article&gt;</code>.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <main>
+        <h1>Latest Blog Posts</h1>
+        <article style="border-bottom:1px solid #ddd; padding:10px 0;">
+          <h2>Understanding HTML Semantics</h2>
+          <p><small>Posted on January 15, 2026</small></p>
+          <p>HTML5 introduced semantic elements like <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;section&gt;</code> to give meaning to web content...</p>
+          <a href="#">Read more</a>
+        </article>
+        <article style="padding:10px 0;">
+          <h2>CSS Grid Layout</h2>
+          <p><small>Posted on January 10, 2026</small></p>
+          <p>CSS Grid is a powerful two-dimensional layout system that revolutionizes web design...</p>
+          <a href="#">Read more</a>
+        </article>
+      </main>
+    </div>
+    
+    <h3>HTML Code:</h3>
+    <pre><code><span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Latest Blog Posts<span class="tag">&lt;/h1&gt;</span>
+  
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Understanding HTML Semantics<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Posted on January 15, 2026<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Content here...<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Read more<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+  
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>CSS Grid Layout<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Posted on January 10, 2026<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Content here...<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Read more<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+<span class="tag">&lt;/main&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 3: Skip Navigation Link -->
+  <div class="example-box">
+    <h2>Example 3: Skip Navigation Link Targeting <code>&lt;main&gt;</code></h2>
+    <p>Click or tab to the skip link below to see how it works. Press Tab immediately after the page loads.</p>
+    
+    <div class="note">
+      <strong>Try it:</strong> Click the "Skip to main content" link above or press Tab on your keyboard to focus it, then press Enter.
+    </div>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <a href="#main-content" class="skip-link">Skip to main content</a>
+      
+      <header>
+        <nav>
+          <strong>Navigation:</strong>
+          <a href="#">Home</a>
+          <a href="#">Products</a>
+          <a href="#">Services</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </nav>
+      </header>
+      
+      <main id="main-content" tabindex="-1">
+        <h1>Main Content Area</h1>
+        <p>You have reached the main content. The skip link allowed you to bypass the navigation links above.</p>
+        <p>This is especially useful for screen reader users and keyboard-only users who don't want to tab through every navigation link.</p>
+      </main>
+      
+      <footer>
+        <p>&copy; 2026 Accessibility Demo</p>
+      </footer>
+    </div>
+    
+    <h3>HTML Code:</h3>
+    <pre><code><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#main-content"</span> <span class="attr">class</span>=<span class="str">"skip-link"</span><span class="tag">&gt;</span>
+  Skip to main content
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="tag">&lt;header&gt;</span>
+  <span class="tag">&lt;nav&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Products<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Services<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Blog<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"#"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;main</span> <span class="attr">id</span>=<span class="str">"main-content"</span> <span class="attr">tabindex</span>=<span class="str">"-1"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Main Content Area<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>You have reached the main content.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>
+  <span class="tag">&lt;p&gt;</span>&amp;copy; 2026 Accessibility Demo<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/footer&gt;</span></code></pre>
+  </div>
+
+  <!-- Example 4: Incorrect Usage Demonstration -->
+  <div class="example-box">
+    <h2>Example 4: Common Mistakes (What NOT to Do)</h2>
+    
+    <div class="warning">
+      <strong>Warning:</strong> The following demonstrates incorrect usage patterns. Do not use these in production.
+    </div>
+    
+    <h3>Mistake 1: Multiple Visible <code>&lt;main&gt;</code> Elements</h3>
+    <pre><code><span class="comment">&lt;!-- INVALID: Multiple visible &lt;main&gt; elements --&gt;</span>
+<span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>First Main<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;main&gt;</span>  <span class="comment">&lt;!-- This is invalid --&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Second Main<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/main&gt;</span></code></pre>
+    
+    <h3>Mistake 2: Nesting <code>&lt;main&gt;</code> Inside <code>&lt;article&gt;</code></h3>
+    <pre><code><span class="comment">&lt;!-- INVALID: &lt;main&gt; inside &lt;article&gt; --&gt;</span>
+<span class="tag">&lt;article&gt;</span>
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Content<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;/article&gt;</span></code></pre>
+    
+    <h3>Mistake 3: Wrapping Everything in <code>&lt;main&gt;</code></h3>
+    <pre><code><span class="comment">&lt;!-- INVALID: &lt;main&gt; should not wrap header/footer --&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;header&gt;</span>...<span class="tag">&lt;/header&gt;</span>
+    <span class="tag">&lt;section&gt;</span>...<span class="tag">&lt;/section&gt;</span>
+    <span class="tag">&lt;footer&gt;</span>...<span class="tag">&lt;/footer&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;/body&gt;</span></code></pre>
+    
+    <div class="note">
+      <strong>Correction:</strong> Use <code>&lt;main&gt;</code> only for content between <code>&lt;header&gt;</code> and <code>&lt;footer&gt;</code>, not wrapping them.
+    </div>
+  </div>
+
+  <!-- Example 5: Application Dashboard -->
+  <div class="example-box">
+    <h2>Example 5: Dashboard Layout with <code>&lt;main&gt;</code></h2>
+    <p>A typical dashboard layout using <code>&lt;main&gt;</code> for the primary content area.</p>
+    
+    <h3>Rendered Output:</h3>
+    <div class="output">
+      <header style="display:flex; justify-content:space-between; align-items:center;">
+        <h2 style="margin:0;">📊 Analytics Dashboard</h2>
+        <nav>
+          <a href="#">Overview</a>
+          <a href="#">Reports</a>
+          <a href="#">Settings</a>
+        </nav>
+      </header>
+      
+      <main>
+        <section>
+          <h3>Overview</h3>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+            <div style="background:#e3f2fd; padding:15px; border-radius:4px; text-align:center;">
+              <strong>Users</strong><br>
+              <span style="font-size:1.5em;">1,234</span>
+            </div>
+            <div style="background:#e8f5e9; padding:15px; border-radius:4px; text-align:center;">
+              <strong>Revenue</strong><br>
+              <span style="font-size:1.5em;">$12,345</span>
+            </div>
+            <div style="background:#fff3e0; padding:15px; border-radius:4px; text-align:center;">
+              <strong>Orders</strong><br>
+              <span style="font-size:1.5em;">567</span>
+            </div>
+          </div>
+        </section>
+        
+        <section style="margin-top:20px;">
+          <h3>Recent Activity</h3>
+          <ul>
+            <li>User JohnDoe created a new account</li>
+            <li>Order #1234 was completed</li>
+            <li>Revenue target for Q2 exceeded by 15%</li>
+          </ul>
+        </section>
+      </main>
+      
+      <footer style="margin-top:20px;">
+        <p><small>Last updated: Today at 10:00 AM</small></p>
+      </footer>
+    </div>
+  </div>
+
+</body>
+</html>

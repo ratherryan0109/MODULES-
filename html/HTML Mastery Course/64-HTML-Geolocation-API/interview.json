@@ -1,0 +1,187 @@
+{
+  "module": "HTML Geolocation API",
+  "title": "Geolocation Interview Questions",
+  "instructions": "Prepare for technical interviews with these 30 questions covering the Geolocation API, position handling, error management, privacy, and real-world applications.",
+  "questions": [
+    {
+      "id": 1,
+      "difficulty": "basic",
+      "question": "What is the Geolocation API and how is it accessed?",
+      "answer": "The Geolocation API provides scripted access to the device's geographic location. It is accessed via navigator.geolocation. Before using it, you should check if ('geolocation' in navigator) to verify browser support."
+    },
+    {
+      "id": 2,
+      "difficulty": "basic",
+      "question": "How do you get the user's current position?",
+      "answer": "Call navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options). The success callback receives a Position object with coords (latitude, longitude, accuracy, etc.) and timestamp."
+    },
+    {
+      "id": 3,
+      "difficulty": "basic",
+      "question": "What information does the Position.coords object contain?",
+      "answer": "It contains: latitude, longitude, accuracy (meters), altitude, altitudeAccuracy, heading (degrees from true north), and speed (m/s). Altitude, heading, and speed may be null if unavailable."
+    },
+    {
+      "id": 4,
+      "difficulty": "basic",
+      "question": "What are the possible geolocation error codes?",
+      "answer": "Three error codes: PERMISSION_DENIED (1) — user denied the request; POSITION_UNAVAILABLE (2) — location could not be determined; TIMEOUT (3) — the request timed out."
+    },
+    {
+      "id": 5,
+      "difficulty": "basic",
+      "question": "What options can be passed to getCurrentPosition()?",
+      "answer": "Three options: enableHighAccuracy (boolean, uses GPS if true), timeout (max wait time in milliseconds), maximumAge (acceptable cached position age in milliseconds)."
+    },
+    {
+      "id": 6,
+      "difficulty": "intermediate",
+      "question": "What is the difference between getCurrentPosition() and watchPosition()?",
+      "answer": "getCurrentPosition() makes a single position request. watchPosition() continuously monitors position changes, calling the success callback each time the position changes. watchPosition() returns a watch ID used to stop monitoring with clearWatch()."
+    },
+    {
+      "id": 7,
+      "difficulty": "intermediate",
+      "question": "How do you implement a timeout retry strategy for geolocation?",
+      "answer": "Track retry count in a closure. On TIMEOUT error, if retries remain, call getCurrentPosition again with increased timeout. Cap retries to avoid infinite loops. Provide user feedback on each attempt."
+    },
+    {
+      "id": 8,
+      "difficulty": "intermediate",
+      "question": "How does the maximumAge option affect battery life and accuracy?",
+      "answer": "Higher maximumAge reuses cached positions, reducing GPS usage and saving battery. Lower maximumAge (or 0) forces fresh position fixes, improving accuracy but consuming more power."
+    },
+    {
+      "id": 9,
+      "difficulty": "intermediate",
+      "question": "What security requirements does the Geolocation API have?",
+      "answer": "The API requires a secure context: HTTPS, localhost, or file:// protocol. On insecure HTTP (except localhost), the API is unavailable. This prevents man-in-the-middle tracking."
+    },
+    {
+      "id": 10,
+      "difficulty": "intermediate",
+      "question": "How do you check geolocation permission state without triggering a prompt?",
+      "answer": "Use the Permissions API: navigator.permissions.query({name: 'geolocation'}).then(result => { ... }). Result.state can be 'granted', 'denied', or 'prompt'. Listen for onChange events."
+    },
+    {
+      "id": 11,
+      "difficulty": "intermediate",
+      "question": "What is the Haversine formula and how is it used with geolocation?",
+      "answer": "The Haversine formula calculates the great-circle distance between two points on a sphere (Earth). It uses latitude/longitude and returns distance. Use: a = sin²(Δlat/2) + cos(lat1)·cos(lat2)·sin²(Δlon/2); c = 2·atan2(√a, √(1-a)); d = R·c."
+    },
+    {
+      "id": 12,
+      "difficulty": "intermediate",
+      "question": "How would you implement reverse geocoding?",
+      "answer": "Use a third-party geocoding API like Nominatim (OpenStreetMap) or Google Geocoding API. Send the latitude/longitude to the API endpoint: GET https://nominatim.openstreetmap.org/reverse?format=json&lat=...&lon=.... Parse the response to extract the formatted address."
+    },
+    {
+      "id": 13,
+      "difficulty": "intermediate",
+      "question": "What are common fallback strategies when geolocation is unavailable or denied?",
+      "answer": "(1) IP geolocation via services like ipapi.co or ipinfo.io (city-level accuracy). (2) Manual location entry via a text field or map picker. (3) Cell tower triangulation (limited to native apps). (4) Browser stored location preferences."
+    },
+    {
+      "id": 14,
+      "difficulty": "intermediate",
+      "question": "How do you test geolocation functionality during development?",
+      "answer": "Use Chrome DevTools: Menu → More tools → Sensors. Override location with presets or custom coordinates. Also use browser location mocking in unit tests or feature flags to simulate different locations."
+    },
+    {
+      "id": 15,
+      "difficulty": "intermediate",
+      "question": "What does the heading property return and when is it accurate?",
+      "answer": "Heading returns the direction of travel in degrees clockwise from true north. It is only accurate when the device is moving at speed (e.g., in a vehicle). Stationary devices return null. It requires GPS to calculate bearing from position changes."
+    },
+    {
+      "id": 16,
+      "difficulty": "advanced",
+      "question": "How do you throttle position updates from watchPosition for performance?",
+      "answer": "Track the last update timestamp. In the success callback, compare current time to last update. If the interval is less than your threshold (e.g., 5 seconds), ignore the update. This prevents excessive re-renders and reduces UI jank."
+    },
+    {
+      "id": 17,
+      "difficulty": "advanced",
+      "question": "How would you implement a geofencing system using the Geolocation API?",
+      "answer": "Use watchPosition and check distance from known geofence centers using Haversine. When distance crosses a threshold (enter/exit), trigger events. Store geofences as {id, lat, lng, radius}. Check against each fence on every position update."
+    },
+    {
+      "id": 18,
+      "difficulty": "advanced",
+      "question": "What are the privacy implications of the watchPosition API?",
+      "answer": "Continuous tracking can expose detailed user movement patterns. Best practices: always explain why tracking is needed, provide start/stop controls, never store location data longer than necessary, transmit data over HTTPS, and offer data deletion options."
+    },
+    {
+      "id": 19,
+      "difficulty": "advanced",
+      "question": "How do you handle the case where the user revokes geolocation permission during a watchPosition session?",
+      "answer": "The error callback fires with PERMISSION_DENIED. In the handler, clear the watch, notify the user, and gracefully degrade. Listen for permission changes via navigator.permissions.query and the onChange event to react proactively."
+    },
+    {
+      "id": 20,
+      "difficulty": "advanced",
+      "question": "How would you calculate the bearing between two coordinates?",
+      "answer": "bearing = atan2(sin(Δlon)·cos(lat2), cos(lat1)·sin(lat2) − sin(lat1)·cos(lat2)·cos(Δlon)). Convert to degrees and normalize to 0-360. This gives the initial bearing for great-circle navigation."
+    },
+    {
+      "id": 21,
+      "difficulty": "advanced",
+      "question": "What is the difference between GPS coordinates and the coordinates returned by the Geolocation API?",
+      "answer": "The Geolocation API may use multiple sources: GPS (most accurate, ~5m), Wi-Fi positioning (~20-50m), cell tower triangulation (~100-1000m), and IP geolocation (~10-50km). The API returns the best available estimate, not necessarily pure GPS coordinates."
+    },
+    {
+      "id": 22,
+      "difficulty": "advanced",
+      "question": "How do you mock the Geolocation API for unit testing?",
+      "answer": "Override navigator.geolocation in your test setup: navigator.geolocation = { getCurrentPosition: (success) => success(mockPosition), watchPosition: (success) => { success(mockPosition); return 123; }, clearWatch: () => {} }. Reset after tests."
+    },
+    {
+      "id": 23,
+      "difficulty": "advanced",
+      "question": "How would you detect if a user is moving away from or toward a point?",
+      "answer": "Track previous position. Compute distance from target using Haversine for both current and previous positions. If current distance < previous, user is moving toward. If current > previous, moving away. Calculate speed from position change and time delta."
+    },
+    {
+      "id": 24,
+      "difficulty": "advanced",
+      "question": "What impact does enableHighAccuracy have on different devices?",
+      "answer": "On devices with GPS (most smartphones), it activates the GPS radio which provides ~5m accuracy but drains battery significantly. On desktops without GPS, it may have no effect or may take longer to return a position. Always set to false if high precision isn't needed."
+    },
+    {
+      "id": 25,
+      "difficulty": "advanced",
+      "question": "How do you handle geolocation in a service worker for offline support?",
+      "answer": "Service workers cannot directly access the Geolocation API (no navigator.geolocation in worker context). Instead, fetch position from the main thread and postMessage it to the service worker. Cache positions in IndexedDB for offline access."
+    },
+    {
+      "id": 26,
+      "difficulty": "advanced",
+      "question": "How do you implement location-based sorting (nearest first) for a list of places?",
+      "answer": "Get user location via getCurrentPosition. For each place (with known lat/lng), calculate Haversine distance. Sort the array by distance ascending. Render the sorted list. Optionally display distance for each entry."
+    },
+    {
+      "id": 27,
+      "difficulty": "advanced",
+      "question": "What is the WGS84 datum and why is it relevant to geolocation?",
+      "answer": "WGS84 (World Geodetic System 1984) is the standard coordinate reference system used by GPS and the Geolocation API. Latitude and longitude values returned by the API are referenced to WGS84, ensuring consistency across different positioning systems."
+    },
+    {
+      "id": 28,
+      "difficulty": "advanced",
+      "question": "How would you implement a 'speed limit warning' using watchPosition?",
+      "answer": "In the watchPosition callback, read coords.speed (m/s). Convert to km/h (×3.6). Compare against the speed limit. If exceeded, trigger visual/audio alert. Include hysteresis (allow a small buffer before toggling off) to prevent rapid state flipping."
+    },
+    {
+      "id": 29,
+      "difficulty": "advanced",
+      "question": "How do you calculate total distance traveled over a tracking session?",
+      "answer": "Accumulate Haversine distances between consecutive position updates. Store previous position. On each update, compute distance from previous to current, add to total. Handle GPS noise by filtering out positions with low accuracy or by applying a smoothing algorithm."
+    },
+    {
+      "id": 30,
+      "difficulty": "advanced",
+      "question": "What are the differences between the Geolocation API and the Web Bluetooth / Web NFC APIs for proximity detection?",
+      "answer": "Geolocation uses GPS/Wi-Fi/cellular for wide-area positioning (outdoor, meters to kilometers). Web Bluetooth detects nearby BLE devices (meters range). Web NFC requires physical touch (centimeters). For proximity-based interactions, combine geolocation (region) with Bluetooth (room-level precision)."
+    }
+  ]
+}

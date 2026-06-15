@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS calc() — Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; padding: 2rem; color: #333; }
+    h1 { margin-bottom: 0.5rem; }
+    .subtitle { color: #666; margin-bottom: 2rem; }
+
+    .section { margin-bottom: 2rem; }
+    .section h2 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #3498db; }
+
+    .demo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #3498db; }
+    .card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+    .card code { font-size: 0.75rem; background: #f0f0f0; padding: 0.2rem 0.4rem; border-radius: 4px; display: block; margin-top: 0.5rem; }
+
+    .calc-box { background: linear-gradient(135deg, #3498db, #2ecc71); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: bold; text-align: center; padding: 0.5rem; margin-bottom: 0.5rem; min-height: 50px; }
+    .cb-fixed { width: calc(100% - 40px); }
+    .cb-half { width: calc(50% - 10px); }
+    .cb-fluid { font-size: calc(1rem + 0.5vw); padding: calc(0.5rem + 1vw); }
+    .cb-header-comp { min-height: calc(100vh - 60px); background: linear-gradient(135deg, #e74c3c, #3498db); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; padding: 1rem; }
+    .cb-column { width: calc(100% / 3 - 1rem); display: inline-block; margin: 0.5rem; background: #3498db; border-radius: 6px; text-align: center; padding: 1rem; color: white; }
+    .cb-column-2 { width: calc(100% / 3 * 2 - 0.5rem); display: inline-block; margin: 0.5rem; background: #2ecc71; border-radius: 6px; text-align: center; padding: 1rem; color: white; }
+
+    .fluid-text { font-size: calc(1rem + 1vw); line-height: 1.4; margin-bottom: 1rem; }
+    .fluid-text small { font-size: calc(0.8rem + 0.3vw); color: #888; }
+
+    .sidebar-layout { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .sidebar { width: 250px; background: #e74c3c; color: white; padding: 1rem; border-radius: 8px; flex-shrink: 0; }
+    .main { width: calc(100% - 250px - 1rem); background: #3498db; color: white; padding: 1rem; border-radius: 8px; }
+
+    .spacing-demo > * + * { margin-top: calc(1rem + 0.5vw); }
+    .spacing-demo .item { background: #f39c12; color: white; padding: 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>CSS calc() Function</h1>
+  <p class="subtitle">Combine units, create fluid layouts, and solve layout problems with arithmetic</p>
+
+  <div class="section">
+    <h2>Basic Unit Mixing</h2>
+    <div class="demo-grid">
+      <div class="card">
+        <h3>Percentage - Pixels</h3>
+        <div class="calc-box cb-fixed">calc(100% - 40px)</div>
+        <p>The box fills its container minus 40px on each side.</p>
+        <code>width: calc(100% - 40px);</code>
+      </div>
+      <div class="card">
+        <h3>Half with Gap</h3>
+        <div class="calc-box cb-half">calc(50% - 10px)</div>
+        <p>Two items can sit side by side with a 20px gap.</p>
+        <code>width: calc(50% - 10px);</code>
+      </div>
+      <div class="card">
+        <h3>Fluid Typography</h3>
+        <div class="calc-box cb-fluid">calc(1rem + 0.5vw)</div>
+        <p>Font size scales with viewport but never below 1rem.</p>
+        <code>font-size: calc(1rem + 0.5vw);</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Fluid Typography Example</h2>
+    <p class="fluid-text">This heading scales fluidly with the viewport width. Resize the browser to see it change.</p>
+    <p class="fluid-text"><small>Subtext also scales: calc(0.8rem + 0.3vw)</small></p>
+    <code>font-size: calc(1rem + 1vw);</code>
+  </div>
+
+  <div class="section">
+    <h2>Sidebar Layout</h2>
+    <div class="sidebar-layout">
+      <div class="sidebar">Fixed sidebar: 250px</div>
+      <div class="main">Main content: calc(100% - 250px - 1rem)</div>
+    </div>
+    <code>.main { width: calc(100% - 250px - 1rem); }</code>
+  </div>
+
+  <div class="section">
+    <h2>Column Calculations</h2>
+    <p style="margin-bottom:0.5rem;color:#666">Three equal columns with gaps:</p>
+    <div>
+      <div class="cb-column">calc(100% / 3 - 1rem)</div>
+      <div class="cb-column">calc(100% / 3 - 1rem)</div>
+      <div class="cb-column">calc(100% / 3 - 1rem)</div>
+    </div>
+    <p style="margin-top:1rem;margin-bottom:0.5rem;color:#666">Two-thirds + one-third:</p>
+    <div>
+      <div class="cb-column-2">calc(100% / 3 * 2 - 0.5rem)</div>
+      <div class="cb-column">calc(100% / 3 - 1rem)</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Header Height Compensation</h2>
+    <div class="cb-header-comp">calc(100vh - 60px)&nbsp;&nbsp;— Content area fills remaining viewport after a 60px header</div>
+  </div>
+
+  <div class="section">
+    <h2>Spacing with calc()</h2>
+    <div class="spacing-demo">
+      <div class="item">Item 1</div>
+      <div class="item">Item 2 (spacing: calc(1rem + 0.5vw))</div>
+      <div class="item">Item 3</div>
+    </div>
+    <code>.spacing-demo > * + * { margin-top: calc(1rem + 0.5vw); }</code>
+  </div>
+
+  <div class="section">
+    <h2>calc() with CSS Variables</h2>
+    <div style="--spacing: 1rem; --columns: 3; width: 100%;">
+      <div style="width: calc(100% / var(--columns) - var(--spacing)); display: inline-block; background: #9b59b6; color: white; padding: 1rem; border-radius: 8px; text-align: center; margin: 0.5rem;">
+        calc(100% / var(--columns) - var(--spacing))
+      </div>
+      <div style="width: calc(100% / var(--columns) - var(--spacing)); display: inline-block; background: #9b59b6; color: white; padding: 1rem; border-radius: 8px; text-align: center; margin: 0.5rem;">
+        calc(100% / var(--columns) - var(--spacing))
+      </div>
+      <div style="width: calc(100% / var(--columns) - var(--spacing)); display: inline-block; background: #9b59b6; color: white; padding: 1rem; border-radius: 8px; text-align: center; margin: 0.5rem;">
+        calc(100% / var(--columns) - var(--spacing))
+      </div>
+    </div>
+  </div>
+</body>
+</html>

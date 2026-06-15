@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the primary purpose of the HTML <article> element?",
+    "options": ["To represent a self-contained, independently distributable composition", "To define a navigation menu", "To group thematically related content", "To create a sidebar"],
+    "answer": "a",
+    "explanation": "The <article> element represents a self-contained composition that is intended to be independently distributable or reusable."
+  },
+  {
+    "question": "Which of the following is the best use case for an <article> element?",
+    "options": ["A blog post", "A site-wide footer", "A navigation bar", "A copyright notice"],
+    "answer": "a",
+    "explanation": "A blog post is a classic example of self-contained content that could be syndicated in an RSS feed."
+  },
+  {
+    "question": "Can you nest <article> elements inside other <article> elements?",
+    "options": ["No, never", "Yes, for related but independent items like comments", "Only in HTML5.1", "Only if they have different classes"],
+    "answer": "b",
+    "explanation": "<article> elements can be nested. For example, a blog post (outer article) can contain comments (inner articles)."
+  },
+  {
+    "question": "What is the implicit ARIA role of the <article> element?",
+    "options": ["main", "article", "region", "document"],
+    "answer": "b",
+    "explanation": "The <article> element has an implicit ARIA role of 'article'."
+  },
+  {
+    "question": "When should you use <article> instead of <section>?",
+    "options": ["When the content is a thematic grouping", "When the content can stand alone independently", "When you need a generic container", "When the content has no heading"],
+    "answer": "b",
+    "explanation": "Use <article> when content is self-contained and independently distributable. Use <section> for thematic groupings within a larger context."
+  },
+  {
+    "question": "What element should typically be included inside an <article> for metadata?",
+    "options": ["<meta>", "<header> and <footer>", "<nav>", "<aside>"],
+    "answer": "b",
+    "explanation": "An <article> can (and often should) include <header> for titles and authorship and <footer> for tags and sharing links."
+  },
+  {
+    "question": "Which of these is NOT a valid example of an <article>?",
+    "options": ["A forum post", "A product card", "A site-wide navigation menu", "A news story"],
+    "answer": "c",
+    "explanation": "A navigation menu is not self-contained content. It's part of the site's infrastructure and belongs in <nav>."
+  },
+  {
+    "question": "What is the difference between <article> and <div>?",
+    "options": ["They are identical", "<article> has semantic meaning; <div> is generic", "<div> has semantic meaning; <article> is generic", "<article> is inline; <div> is block"],
+    "answer": "b",
+    "explanation": "<article> carries semantic meaning of a self-contained composition. <div> is a generic container with no semantic meaning."
+  },
+  {
+    "question": "Should an <article> have a heading?",
+    "options": ["No, it's optional", "Yes, it's recommended but not required", "Only for blog posts", "No, headings belong in <header>"],
+    "answer": "b",
+    "explanation": "While not strictly required by the spec, it's a best practice to include a heading in each <article> for structure and accessibility."
+  },
+  {
+    "question": "What makes an <article> suitable for syndication?",
+    "options": ["Its id attribute", "Its self-contained nature", "Its CSS class", "Its nesting depth"],
+    "answer": "b",
+    "explanation": "An <article> is suitable for syndication because its content is self-contained and meaningful on its own, even when extracted from the page."
+  },
+  {
+    "question": "Can an <article> contain a <section> inside it?",
+    "options": ["No", "Yes, for organizing content within the article", "Only if the section has a heading", "Only if the article is inside <main>"],
+    "answer": "b",
+    "explanation": "An <article> can contain <section> elements to organize its internal content into thematic groups."
+  },
+  {
+    "question": "What is the default display value of the <article> element?",
+    "options": ["inline", "block", "inline-block", "flex"],
+    "answer": "b",
+    "explanation": "Like most semantic HTML5 elements, <article> is a block-level element by default."
+  },
+  {
+    "question": "Which of the following would be an appropriate use of nested <article> elements?",
+    "options": ["A product catalog with sub-categories", "A blog post with user comments", "A navigation menu with sub-menus", "A footer with links"],
+    "answer": "b",
+    "explanation": "A blog post (outer article) with user comments (inner articles) is the classic example of proper nested article usage."
+  },
+  {
+    "question": "How do screen readers treat the <article> element?",
+    "options": ["They ignore it", "They announce it as an article landmark", "They treat it as a heading", "They read it as a generic div"],
+    "answer": "b",
+    "explanation": "Screen readers recognize <article> as an article landmark, allowing users to navigate between articles."
+  },
+  {
+    "question": "What is the relationship between <article> and RSS feeds?",
+    "options": ["<article> elements are automatically included in RSS", "<article> elements are commonly used for content that feeds into RSS", "RSS cannot use <article> elements", "They are unrelated"],
+    "answer": "b",
+    "explanation": "<article> elements contain the type of self-contained content that is commonly syndicated through RSS feeds."
+  },
+  {
+    "question": "Can an <article> contain an <address> element?",
+    "options": ["Yes, for author contact information", "No, never", "Only in the footer", "Only with aria-label"],
+    "answer": "a",
+    "explanation": "An <article> can contain an <address> element to provide contact information for the article's author."
+  },
+  {
+    "question": "What is the correct way to mark up a comment on a blog post?",
+    "options": ["<div class='comment'>", "<section>", "<article> nested inside the main article", "<aside>"],
+    "answer": "c",
+    "explanation": "Comments are self-contained items related to a blog post. They are best marked up as nested <article> elements inside the main post article."
+  },
+  {
+    "question": "Which element should NOT be a direct child of <article>?",
+    "options": ["<header>", "<section>", "<main>", "<p>"],
+    "answer": "c",
+    "explanation": "The <main> element must not be a descendant of <article>. This violates the content model restrictions."
+  },
+  {
+    "question": "What attribute can enhance an <article>'s accessibility naming?",
+    "options": ["aria-label or aria-labelledby", "hidden", "role", "tabindex"],
+    "answer": "a",
+    "explanation": "aria-label or aria-labelledby can provide an accessible name for the article, though it already has an implicit article role."
+  },
+  {
+    "question": "Is it valid to use <article> for a single tweet or social media post?",
+    "options": ["Yes, tweets are self-contained content", "No, tweets are too short", "Only if they have images", "Only if they are in a timeline"],
+    "answer": "a",
+    "explanation": "A tweet or social media post is self-contained content that makes sense on its own, making it a valid use of <article>."
+  }
+]

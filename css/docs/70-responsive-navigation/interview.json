@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a responsive navigation menu?", "answer": "A navigation menu that adapts to different screen sizes, collapsing into compact formats like hamburger menus on mobile." },
+    { "question": "What is a hamburger menu?", "answer": "A hamburger menu is a three-line icon that toggles the navigation visibility on small screens, conserving space." },
+    { "question": "What is an off-canvas navigation?", "answer": "An off-canvas navigation slides in from the side of the screen on mobile, overlaying or pushing the main content." },
+    { "question": "What is priority+ navigation?", "answer": "Priority+ shows as many nav items as fit in one row and hides the rest under a 'More' or overflow menu on smaller screens." },
+    { "question": "What is a footer navigation?", "answer": "A footer navigation places navigation links in the page footer, often used as a secondary or mobile-friendly nav pattern." },
+    { "question": "How do you hide the hamburger icon on desktop?", "answer": "Use display: none on the hamburger button at larger breakpoints and display: flex for the nav links." },
+    { "question": "What is a sticky navigation?", "answer": "A navigation bar that remains fixed at the top (or bottom) of the viewport when scrolling, using position: sticky or position: fixed." },
+    { "question": "What is the role of aria-label in responsive navigation?", "answer": "aria-label provides accessible names for navigation elements like hamburger buttons, helping screen reader users identify the control." },
+    { "question": "What is a breadcrumb navigation?", "answer": "A breadcrumb shows the user's current location in the site hierarchy and is typically displayed horizontally, often simplified on mobile." },
+    { "question": "How do you test responsive navigation accessibility?", "answer": "Test with keyboard navigation (Tab, Enter, Escape), screen readers, and ensure touch targets are at least 44x44px." }
+  ],
+  "intermediate": [
+    { "question": "How do you implement a hamburger menu with CSS only?", "answer": "Use a checkbox input (hidden) with a label as the hamburger icon, and use :checked to toggle the nav menu display, avoiding JavaScript." },
+    { "question": "How do you create a responsive horizontal-to-stacked navigation?", "answer": "Use Flexbox with flex-wrap on the nav container, or switch from flex-direction: row to column at a breakpoint." },
+    { "question": "What is the difference between off-canvas and overlay navigation?", "answer": "Off-canvas pushes content aside; overlay covers the content. Off-canvas preserves layout width, overlay uses the full viewport." },
+    { "question": "How do you implement priority+ navigation?", "answer": "Measure available width, show items that fit, and move excess items into a dropdown. This requires JavaScript to calculate widths." },
+    { "question": "What is a fat footer navigation?", "answer": "A comprehensive footer with multiple columns of links, often used as a sitemap-style navigation on desktop, collapsing to single column on mobile." },
+    { "question": "How do you handle dropdown menus in responsive navigation?", "answer": "On desktop, dropdowns appear on hover. On mobile, they toggle on tap with JavaScript, using aria-expanded for accessibility." },
+    { "question": "What CSS properties make a navigation touch-friendly?", "answer": "Large touch targets (min 44x44px), adequate spacing between items, and padding around links improve mobile usability." },
+    { "question": "How do you animate a hamburger menu into a close icon?", "answer": "Use CSS transforms on the hamburger bars: rotate the top and bottom bars to form an X and fade out the middle bar." },
+    { "question": "How do you handle multiple levels of navigation on mobile?", "answer": "Use accordion-style expandable sub-menus or slide-in panels for nested levels, each with back buttons for navigation." },
+    { "question": "How do you ensure keyboard accessibility in responsive nav?", "answer": "Manage focus trapping in off-canvas menus, use correct tab order, provide escape key handlers, and use aria attributes correctly." }
+  ],
+  "advanced": [
+    { "question": "How do you implement responsive navigation that is progressively enhanced?", "answer": "Start with a functional HTML nav list (no CSS), then enhance with horizontal layout on larger screens and hamburger toggle on smaller ones." },
+    { "question": "How do you use the <dialog> element for off-canvas navigation?", "answer": "The native <dialog> element provides modal behavior, focus trapping, and escape-key handling for off-canvas navigation with less JavaScript." },
+    { "question": "How do you handle responsive navigation in a design system or component library?", "answer": "Create a flexible nav component that accepts breakpoint configuration and renders different DOM structures for mobile vs desktop." },
+    { "question": "How do you implement a sticky mobile navigation that hides on scroll down and shows on scroll up?", "answer": "Use JavaScript to track scroll direction and toggle a class that transforms the nav bar up/down with CSS transitions." },
+    { "question": "How does responsive navigation interact with client-side routing frameworks?", "answer": "In SPAs, navigation must handle route changes, close mobile menus on navigation, and update active states without page reloads." },
+    { "question": "What is the multi-level off-canvas pattern and how do you implement it?", "answer": "Multiple sliding panels for deep hierarchies: each level slides in from the right with a back button, creating a drill-down navigation." },
+    { "question": "How do you implement a responsive mega-menu?", "answer": "A mega-menu shows multiple columns of links on desktop; on mobile, collapse to an accordion or stacked list." },
+    { "question": "How do you handle navigation reflow when the viewport changes orientation?", "answer": "Use resize observers and matchMedia listeners to detect orientation changes and recalculate visible nav items." },
+    { "question": "What are the accessibility implications of CSS-only vs JavaScript-based responsive navigation?", "answer": "CSS-only nav is simpler but limited in functionality. JavaScript nav offers better accessibility control (focus management, ARIA) when implemented correctly." },
+    { "question": "How do you optimize responsive navigation for performance?", "answer": "Lazy-load off-canvas content, animate with transform/opacity (GPU-composited), and minimize DOM manipulation during navigation state changes." }
+  ]
+}

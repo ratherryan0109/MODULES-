@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 17: HTML File Paths - Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: #333; line-height: 1.6; padding: 20px; }
+    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+    .example-box { background: white; border: 2px solid #ddd; border-radius: 10px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .example-box h2 { color: #2980b9; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .code-block { background: #2d2d2d; color: #f8f8f2; padding: 18px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; font-size: 14px; overflow-x: auto; margin: 15px 0; white-space: pre-wrap; }
+    .note { background: #fff3cd; border-left: 5px solid #ffc107; padding: 12px 18px; margin: 15px 0; border-radius: 4px; }
+    .output { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 6px; margin: 10px 0; }
+    .tree { font-family: 'Courier New', Courier, monospace; background: #1e1e2e; color: #a6e3a1; padding: 20px; border-radius: 8px; line-height: 1.8; font-size: 14px; white-space: pre; }
+    .tree .folder { color: #89b4fa; }
+    .tree .file { color: #cdd6f4; }
+    .tree .highlight { background: rgba(255,255,0,0.2); }
+    table.path-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    table.path-table th, table.path-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    table.path-table th { background: #f0f2f5; }
+  </style>
+</head>
+<body>
+  <h1>📁 HTML File Paths — Code Examples</h1>
+
+  <div class="example-box">
+    <h2>Example 1: Project Directory Structure</h2>
+    <p>Understanding the file structure helps with paths. Here's a typical project:</p>
+    <div class="tree">
+<span class="folder">website/</span>
+├── <span class="file">index.html</span>   ← You are here
+├── <span class="folder">css/</span>
+│   └── <span class="file">style.css</span>
+├── <span class="folder">js/</span>
+│   └── <span class="file">script.js</span>
+├── <span class="folder">images/</span>
+│   ├── <span class="file">logo.png</span>
+│   └── <span class="folder">gallery/</span>
+│       └── <span class="file">photo.jpg</span>
+└── <span class="folder">pages/</span>
+    ├── <span class="file">about.html</span>
+    └── <span class="folder">blog/</span>
+        └── <span class="file">post.html</span>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 2: Path Types Comparison</h2>
+    <table class="path-table">
+      <tr><th>Type</th><th>Example</th><th>From index.html resolves to</th></tr>
+      <tr><td>Same directory</td><td><code>css/style.css</code></td><td>/website/css/style.css</td></tr>
+      <tr><td>Subdirectory</td><td><code>images/logo.png</code></td><td>/website/images/logo.png</td></tr>
+      <tr><td>Parent directory</td><td><code>../index.html</code></td><td>/index.html</td></tr>
+      <tr><td>Root-relative</td><td><code>/css/style.css</code></td><td>/css/style.css</td></tr>
+      <tr><td>Absolute</td><td><code>https://cdn.example.com/lib.js</code></td><td>External URL</td></tr>
+    </table>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 3: Same Directory</h2>
+    <div class="code-block">
+      &lt;!-- Both files are in the same folder --&gt;
+      &lt;a href="about.html"&gt;About Us&lt;/a&gt;
+      &lt;img src="logo.png" alt="Logo"&gt;
+    </div>
+    <div class="output">
+      <p>Just use the filename directly.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 4: Subdirectory Navigation</h2>
+    <div class="code-block">
+      &lt;!-- Going into a subfolder --&gt;
+      &lt;img src="images/gallery/photo.jpg" alt="Gallery photo"&gt;
+      &lt;a href="pages/blog/post.html"&gt;Blog Post&lt;/a&gt;
+      &lt;link rel="stylesheet" href="css/style.css"&gt;
+    </div>
+    <div class="output">
+      <p>Folder names first, then the filename: <code>folder/subfolder/file</code>.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 5: Parent Directory Navigation</h2>
+    <div class="code-block">
+      &lt;!-- From pages/blog/post.html --&gt;
+      &lt;!-- Go up twice to reach root, then into images --&gt;
+      &lt;img src="../../images/logo.png" alt="Logo"&gt;
+      &lt;a href="../../about.html"&gt;About&lt;/a&gt;
+      &lt;a href="../../index.html"&gt;Home&lt;/a&gt;
+    </div>
+    <div class="output">
+      <p><code>../</code> = up one level. <code>../../</code> = up two levels.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 6: Root-Relative Paths</h2>
+    <div class="code-block">
+      &lt;!-- Root-relative starts from domain root --&gt;
+      &lt;!-- Same from ANY page on the site --&gt;
+      &lt;img src="/images/logo.png" alt="Logo"&gt;
+      &lt;a href="/pages/about.html"&gt;About&lt;/a&gt;
+      &lt;link rel="stylesheet" href="/css/style.css"&gt;
+    </div>
+    <div class="note">
+      <strong>Tip:</strong> Root-relative paths (starting with <code>/</code>) are great for navigation menus and shared resources because they work from any page depth.
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 7: Absolute (External) Paths</h2>
+    <div class="code-block">
+      &lt;!-- Full URL including protocol --&gt;
+      &lt;img src="https://cdn.example.com/images/banner.jpg" alt="Banner"&gt;
+      &lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;
+      &lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto"&gt;
+    </div>
+    <div class="output">
+      <p>Use absolute paths for external resources. Always include the <code>https://</code> protocol.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 8: Common Pitfalls</h2>
+    <div class="code-block">
+      &lt;!-- WRONG: backslash (Windows style) --&gt;
+      &lt;img src="images\photo.jpg"&gt;  &lt;!-- ✗ --&gt;
+
+      &lt;!-- CORRECT: forward slash --&gt;
+      &lt;img src="images/photo.jpg"&gt;  &lt;!-- ✓ --&gt;
+
+      &lt;!-- WRONG: missing extension --&gt;
+      &lt;img src="images/photo"&gt;  &lt;!-- ✗ --&gt;
+
+      &lt;!-- WRONG: spaces in filenames --&gt;
+      &lt;img src="images/my photo.jpg"&gt;  &lt;!-- ✗ --&gt;
+
+      &lt;!-- CORRECT: hyphens instead of spaces --&gt;
+      &lt;img src="images/my-photo.jpg"&gt;  &lt;!-- ✓ --&gt;
+
+      &lt;!-- WRONG: wrong number of ../ --&gt;
+      &lt;img src="../../../images/logo.png"&gt;  &lt;!-- goes too far up --&gt;
+    </div>
+  </div>
+
+  <div class="example-box">
+    <h2>Example 9: Interactive Path Quiz</h2>
+    <div class="output">
+      <p><strong>Scenario:</strong> You are editing <code>pages/blog/post.html</code>.</p>
+      <p>How do you reference <code>css/style.css</code>?</p>
+      <button onclick="this.nextElementSibling.textContent = '../../css/style.css'">Show Answer</button>
+      <span style="margin-left:10px;font-weight:bold;color:#2563eb;"></span>
+
+      <p style="margin-top:15px;">How do you link back to <code>index.html</code>?</p>
+      <button onclick="this.nextElementSibling.textContent = '../../index.html'">Show Answer</button>
+      <span style="margin-left:10px;font-weight:bold;color:#2563eb;"></span>
+    </div>
+  </div>
+
+</body>
+</html>

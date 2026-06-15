@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Pseudo-classes - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; background: #1a1a2e; color: #eee; }
+    .top-bar { background: #16213e; padding: 15px 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .top-bar h1 { font-size: 20px; }
+    .top-bar label { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+    .top-bar select { padding: 6px 12px; border-radius: 4px; border: none; font-size: 14px; }
+    .main { display: flex; flex: 1; }
+    .editor-panel { flex: 1; display: flex; flex-direction: column; }
+    .preview-panel { flex: 1; background: white; position: relative; overflow: hidden; }
+    .controls { background: #0f3460; padding: 10px 20px; display: flex; gap: 10px; }
+    .controls button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #e94560; color: white; font-weight: bold; }
+    .controls button:hover { background: #c73650; }
+    #code { flex: 1; background: #1e1e1e; color: #d4d4d4; border: none; padding: 20px; font-family: 'Consolas', monospace; font-size: 14px; resize: none; outline: none; tab-size: 2; }
+    #preview { width: 100%; height: 100%; border: none; }
+    .label { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>🎭 CSS Pseudo-classes Playground</h1>
+    <label>Pseudo-class: <select id="pcSelect">
+      <option value="hover">:hover</option>
+      <option value="focus">:focus</option>
+      <option value="nth">:nth-child</option>
+      <option value="not">:not()</option>
+      <option value="valid">:valid/:invalid</option>
+    </select></label>
+  </div>
+  <div class="main">
+    <div class="editor-panel">
+      <div class="controls">
+        <button onclick="applyCode()">▶ Run</button>
+        <button onclick="resetCode()">↺ Reset</button>
+        <label><input type="checkbox" id="autoUpdate" checked> Auto-run</label>
+      </div>
+      <textarea id="code">
+<style>
+  .box {
+    width: 200px;
+    height: 100px;
+    background: #4a90d9;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 40px auto;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .box:hover {
+    background: #e94560;
+    transform: scale(1.1);
+  }
+</style>
+<div class="box">Hover over me!</div></textarea>
+    </div>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
+      <div class="label">Pseudo-classes Demo</div>
+    </div>
+  </div>
+
+  <script>
+    const codeEl = document.getElementById('code');
+    const preview = document.getElementById('preview');
+    const pcSelect = document.getElementById('pcSelect');
+
+    const templates = {
+      hover: `<style>\n  .box {\n    width: 200px;\n    height: 100px;\n    background: #4a90d9;\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 8px;\n    margin: 40px auto;\n    cursor: pointer;\n    font-size: 16px;\n  }\n  .box:hover {\n    background: #e94560;\n    transform: scale(1.1);\n  }\n</style>\n<div class="box">Hover over me!</div>`,
+      focus: `<style>\n  input {\n    display: block;\n    width: 250px;\n    padding: 12px;\n    margin: 40px auto;\n    border: 2px solid #ddd;\n    border-radius: 6px;\n    font-size: 16px;\n  }\n  input:focus {\n    border-color: #4a90d9;\n    outline: none;\n    box-shadow: 0 0 8px rgba(74,144,217,0.4);\n  }\n</style>\n<input type="text" placeholder="Click here and type...">`,
+      nth: `<style>\n  li {\n    padding: 8px;\n    margin: 3px 0;\n    background: #f0f0f0;\n    border-radius: 4px;\n    list-style: none;\n  }\n  li:nth-child(even) {\n    background: #4a90d9;\n    color: white;\n  }\n  li:first-child {\n    font-weight: bold;\n  }\n  li:last-child {\n    font-style: italic;\n  }\n</style>\n<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n  <li>Item 3</li>\n  <li>Item 4</li>\n  <li>Item 5</li>\n</ul>`,
+      not: `<style>\n  .box {\n    display: inline-block;\n    padding: 12px 20px;\n    margin: 10px;\n    background: #e3f2fd;\n    border-radius: 6px;\n  }\n  .box:not(.highlight) {\n    background: #f0f0f0;\n    color: #999;\n  }\n  .highlight {\n    background: #4a90d9;\n    color: white;\n    font-weight: bold;\n  }\n</style>\n<div>\n  <div class="box">Normal</div>\n  <div class="box highlight">Highlighted</div>\n  <div class="box">Normal</div>\n</div>`,
+      valid: `<style>\n  .form { max-width: 300px; margin: 30px auto; }\n  input {\n    display: block;\n    width: 100%;\n    padding: 10px;\n    margin: 10px 0 20px;\n    border: 2px solid #ddd;\n    border-radius: 4px;\n    font-size: 14px;\n  }\n  input:valid { border-color: #2ecc71; }\n  input:invalid:not(:placeholder-shown) { border-color: #e94560; }\n  input:focus { outline: none; box-shadow: 0 0 5px rgba(0,0,0,0.1); }\n  label { font-weight: bold; }\n</style>\n<div class="form">\n  <label>Email:</label>\n  <input type="email" required placeholder="Enter email">\n  <label>Number (1-100):</label>\n  <input type="number" min="1" max="100" placeholder="Enter number">\n</div>`
+    };
+
+    function applyCode() {
+      const val = pcSelect.value;
+      const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>' + templates[val] + '</body></html>';
+      preview.srcdoc = html;
+    }
+
+    function resetCode() {
+      pcSelect.value = 'hover';
+      applyCode();
+    }
+
+    pcSelect.addEventListener('change', applyCode);
+    codeEl.addEventListener('input', () => {
+      if (document.getElementById('autoUpdate').checked) {
+        clearTimeout(window._runTimer);
+        window._runTimer = setTimeout(applyCode, 300);
+      }
+    });
+    applyCode();
+  </script>
+</body>
+</html>

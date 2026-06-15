@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile-First Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #0f172a; color: #e2e8f0; padding: 1rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #38bdf8; margin-bottom: 1rem; font-size: 1.3rem; }
+    .tagline { color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+    .panel { background: #1e293b; border: 1px solid #334155; border-radius: 8px; overflow: hidden; }
+    .panel h2 { background: #334155; padding: 0.5rem 1rem; font-size: 0.8rem; color: #94a3b8; margin: 0; }
+    textarea { width: 100%; min-height: 300px; background: #1e293b; color: #e2e8f0; border: none; padding: 1rem; font-family: 'Courier New', monospace; font-size: 0.85rem; resize: vertical; }
+    textarea:focus { outline: none; }
+    .preview-area { background: white; min-height: 350px; border-radius: 0 0 8px 8px; overflow: auto; }
+    .preview-area.mobile-preview { max-width: 375px; margin: 0 auto; }
+    .toolbar { display: flex; gap: 0.25rem; padding: 0.5rem 1rem; background: #1e293b; border-top: 1px solid #334155; flex-wrap: wrap; align-items: center; }
+    .toolbar button, .toolbar label { background: #334155; color: #e2e8f0; border: 1px solid #475569; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .toolbar button:hover { background: #475569; }
+    .toolbar .active { background: #3b82f6; border-color: #3b82f6; }
+    .status { color: #94a3b8; font-size: 0.75rem; margin-left: auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Mobile-First Playground</h1>
+    <p class="tagline">Start with base (mobile) styles. Add complexity with min-width media queries.</p>
+    <div class="layout">
+      <div>
+        <div class="panel" style="margin-bottom:1rem;">
+          <h2>HTML</h2>
+          <textarea id="htmlInput">&lt;div class="page"&gt;
+  &lt;header class="header"&gt;
+    &lt;h1&gt;My Mobile-First Page&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;nav class="nav"&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+    &lt;a href="#"&gt;Services&lt;/a&gt;
+    &lt;a href="#"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;main class="content"&gt;
+    &lt;section class="card"&gt;Card 1&lt;/section&gt;
+    &lt;section class="card"&gt;Card 2&lt;/section&gt;
+    &lt;section class="card"&gt;Card 3&lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer class="footer"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</textarea>
+        </div>
+        <div class="panel">
+          <h2>CSS (Mobile-First)</h2>
+          <textarea id="cssInput">* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; }
+
+/* MOBILE BASE */
+.page { padding: 0.5rem; }
+.header { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-radius: 6px; margin-bottom: 0.5rem; }
+.header h1 { font-size: 1.25rem; }
+.nav { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.5rem; }
+.nav a { background: #f1f5f9; padding: 0.75rem; text-align: center; text-decoration: none; color: #334155; border-radius: 4px; }
+.content { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.5rem; }
+.card { background: #f1f5f9; padding: 1.5rem; border-radius: 6px; text-align: center; font-size: 1rem; }
+.footer { background: #1e293b; color: white; padding: 0.75rem; text-align: center; border-radius: 6px; font-size: 0.85rem; }
+
+/* TABLET + */
+@media (min-width: 600px) {
+  .page { padding: 1rem; }
+  .nav { flex-direction: row; justify-content: center; }
+  .content { flex-direction: row; flex-wrap: wrap; }
+  .card { flex: 1 1 calc(50% - 0.5rem); }
+}
+
+/* DESKTOP + */
+@media (min-width: 900px) {
+  .page { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+  .header { padding: 2rem; }
+  .header h1 { font-size: 2rem; }
+  .card { flex: 1 1 calc(33.33% - 0.5rem); background: #dbeafe; }
+}</textarea>
+        </div>
+      </div>
+      <div>
+        <div class="panel">
+          <div class="toolbar">
+            <button class="active" id="fluidBtn" onclick="setPreviewMode('fluid')"> Fluid</button>
+            <button id="mobileBtn" onclick="setPreviewMode('mobile')">  Mobile</button>
+            <button id="tabletBtn" onclick="setPreviewMode('tablet')"> Tablet</button>
+            <button id="desktopBtn" onclick="setPreviewMode('desktop')"> Desktop</button>
+            <span class="status" id="modeStatus">Fluid</span>
+          </div>
+          <div class="preview-area" id="previewArea"></div>
+        </div>
+        <div class="toolbar" style="border-top:1px solid #334155;background:#0f172a;">
+          <button onclick="render()"> Render</button>
+          <label><input type="checkbox" id="liveCheck" checked> Live</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const htmlInput = document.getElementById('htmlInput');
+    const cssInput = document.getElementById('cssInput');
+    const preview = document.getElementById('previewArea');
+
+    function render() {
+      preview.innerHTML = `<style>${cssInput.value}</style>${htmlInput.value}`;
+    }
+
+    function setPreviewMode(mode) {
+      document.querySelectorAll('.toolbar button[id$="Btn"]').forEach(b => b.classList.remove('active'));
+      if (mode === 'fluid') {
+        preview.classList.remove('mobile-preview');
+        preview.style.maxWidth = '100%';
+        document.getElementById('fluidBtn').classList.add('active');
+        document.getElementById('modeStatus').textContent = 'Fluid';
+      } else if (mode === 'mobile') {
+        preview.classList.add('mobile-preview');
+        preview.style.maxWidth = '375px';
+        document.getElementById('mobileBtn').classList.add('active');
+        document.getElementById('modeStatus').textContent = '375px (Mobile)';
+      } else if (mode === 'tablet') {
+        preview.classList.remove('mobile-preview');
+        preview.style.maxWidth = '768px';
+        document.getElementById('tabletBtn').classList.add('active');
+        document.getElementById('modeStatus').textContent = '768px (Tablet)';
+      } else if (mode === 'desktop') {
+        preview.classList.remove('mobile-preview');
+        preview.style.maxWidth = '1024px';
+        document.getElementById('desktopBtn').classList.add('active');
+        document.getElementById('modeStatus').textContent = '1024px (Desktop)';
+      }
+      render();
+    }
+
+    let debounce;
+    function debouncedRender() {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        if (document.getElementById('liveCheck').checked) render();
+      }, 300);
+    }
+    htmlInput.addEventListener('input', debouncedRender);
+    cssInput.addEventListener('input', debouncedRender);
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "title": "Reduced Motion Challenges",
+  "module": "112",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Add Reduced Motion Support to a Banner",
+      "description": "A promotional banner has a sliding animation. Add reduced motion support so it fades in instead of sliding.",
+      "starterCode": "<div class=\"banner\">\n  <h2>Big Sale!</h2>\n  <p>50% off everything</p>\n</div>\n\n<style>\n.banner {\n  animation: slideDown 0.5s ease-out;\n}\n@keyframes slideDown {\n  from { transform: translateY(-100%); }\n  to { transform: translateY(0); }\n}\n</style>",
+      "hint": "Add a @media (prefers-reduced-motion: reduce) block that changes the animation to a fade.",
+      "solution": "@media (prefers-reduced-motion: reduce) {\n  .banner {\n    animation: fadeIn 0.3s ease-out;\n  }\n}\n\n@keyframes fadeIn {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Build a Motion-Safe Loading Skeleton",
+      "description": "Create a skeleton loading component with a shimmer effect that stops when reduced motion is active, leaving a static placeholder.",
+      "starterCode": "<div class=\"skeleton-line\"></div>\n<div class=\"skeleton-line\"></div>\n<div class=\"skeleton-line short\"></div>",
+      "hint": "Use ::after pseudo-element for the shimmer with background-position animation. Disable it in the media query.",
+      "solution": ".skeleton-line {\n  height: 1rem;\n  margin-bottom: 0.75rem;\n  background: #eee;\n  border-radius: 4px;\n  position: relative;\n  overflow: hidden;\n}\n.skeleton-line::after {\n  content: '';\n  position: absolute;\n  inset: 0;\n  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);\n  background-size: 200px 100%;\n  animation: shimmer 1.5s infinite;\n}\n.skeleton-line.short { width: 60%; }\n\n@keyframes shimmer {\n  0% { background-position: -200px 0; }\n  100% { background-position: calc(200px + 100%) 0; }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .skeleton-line::after { animation: none; }\n}"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Accessible Parallax Section with Multiple Fallbacks",
+      "description": "Build a hero section with parallax background, floating elements, scroll-triggered text reveals, and a CTA button with hover animation. Provide appropriate reduced-motion alternatives for each.",
+      "starterCode": "<section class=\"hero\">\n  <div class=\"hero-bg\"></div>\n  <div class=\"floating-icon\">✦</div>\n  <div class=\"hero-content\" data-reveal>\n    <h1>Welcome</h1>\n    <p>Discover our story</p>\n    <button class=\"cta\">Learn More →</button>\n  </div>\n</section>",
+      "hint": "Use separate @media blocks for each animation type. For parallax: switch from fixed to scroll. For floating: stop animation. For reveals: show immediately. For CTAs: remove scale, keep color change.",
+      "solution": ".hero { position: relative; overflow: hidden; min-height: 80vh; }\n.hero-bg {\n  position: absolute; inset: 0;\n  background: url('bg.jpg') center/cover fixed;\n}\n.floating-icon {\n  animation: float 3s ease-in-out infinite;\n}\n[data-reveal] {\n  animation: revealUp 0.8s ease-out forwards;\n}\n.cta {\n  transition: transform 0.3s, background-color 0.3s;\n}\n.cta:hover { transform: scale(1.05); }\n\n@keyframes float {\n  0%, 100% { transform: translateY(0); }\n  50% { transform: translateY(-20px); }\n}\n@keyframes revealUp {\n  from { opacity: 0; transform: translateY(40px); }\n  to { opacity: 1; transform: translateY(0); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .hero-bg { background-attachment: scroll; }\n  .floating-icon { animation: none; }\n  [data-reveal] { animation: none; opacity: 1; transform: none; }\n  .cta:hover { transform: none; }\n}"
+    }
+  ]
+}

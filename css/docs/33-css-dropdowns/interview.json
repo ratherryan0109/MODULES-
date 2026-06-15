@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is a CSS dropdown menu?", "answer": "A CSS dropdown menu is a sub-menu that appears when a user hovers over or clicks on a parent menu item." },
+    { "question": "How does a hover-based dropdown work in CSS?", "answer": "The dropdown content is hidden by default (display: none) and shown on hover (parent:hover .dropdown { display: block })." },
+    { "question": "What HTML structure is needed for a basic dropdown?", "answer": "A parent container with a trigger element (button/link) and a nested child container for the dropdown content." },
+    { "question": "How do you position a dropdown below its trigger?", "answer": "Use position: relative on the parent and position: absolute; top: 100% on the dropdown container." },
+    { "question": "How do you hide a dropdown by default?", "answer": "Set display: none or opacity: 0 with pointer-events: none on the dropdown element." },
+    { "question": "What is the difference between hover and click dropdowns?", "answer": "Hover dropdowns open on mouse hover; click dropdowns require a click (using :focus or the checkbox hack)." },
+    { "question": "How do you prevent dropdowns from overflowing the viewport?", "answer": "Use right: 0 for right-aligned dropdowns or set max-width and overflow properties to handle overflow." },
+    { "question": "What does z-index do in a dropdown?", "answer": "z-index controls the stacking order; dropdowns need a higher z-index to appear above other page content." },
+    { "question": "How do you style dropdown links?", "answer": "Apply display: block, padding, color, and background to the anchor tags inside the dropdown container." },
+    { "question": "Can you create a dropdown without JavaScript?", "answer": "Yes, using the :hover pseudo-class or the checkbox hack with :checked, CSS-only dropdowns are possible." }
+  ],
+  "intermediate": [
+    { "question": "How do you use the checkbox hack for click-based dropdowns?", "answer": "Use a hidden <input type='checkbox'> with a <label> as trigger, then .checkbox:checked ~ .dropdown { display: block }." },
+    { "question": "How do you add transitions to dropdown menus?", "answer": "Use opacity and transform with transition on the dropdown, but note display cannot be transitioned; use max-height instead." },
+    { "question": "How do you create a multi-level dropdown (nested menus)?", "answer": "Nest dropdown containers inside dropdown items, and show the nested dropdown on hover of its parent item." },
+    { "question": "How do you prevent dropdown from closing when clicking inside it?", "answer": "Use the :focus-within pseudo-class or JavaScript event.stopPropagation() to keep the dropdown open." },
+    { "question": "What is the top: 100% technique for dropdown positioning?", "answer": "top: 100% positions the dropdown directly below the parent element; add margin-top for spacing." },
+    { "question": "How do you create a dropdown on hover with a delay?", "answer": "Use transition-delay or animation-delay on the dropdown visibility to prevent accidental triggers." },
+    { "question": "How do you handle dropdowns on touch devices?", "answer": "On touch devices, hover doesn't persist; use :focus or click-based mechanisms with JavaScript for reliable behavior." },
+    { "question": "How do you animate a dropdown appearing?", "answer": "Use @keyframes with opacity and transform (translateY) for a smooth fade-down entrance animation." },
+    { "question": "How do you align a dropdown to the right side?", "answer": "Set right: 0; left: auto; on the absolutely positioned dropdown container." },
+    { "question": "How do you add a small arrow or caret to dropdown triggers?", "answer": "Use ::after pseudo-element with border-based triangles or a Unicode character like ▼ next to the trigger text." }
+  ],
+  "advanced": [
+    { "question": "How do you make dropdown menus keyboard-accessible?", "answer": "Use :focus-within to show the dropdown when a child link is focused, and ensure tab order follows the dropdown content." },
+    { "question": "How do you implement dropdowns with proper ARIA attributes?", "answer": "Use role='menu', aria-haspopup='true', aria-expanded, role='menuitem', and aria-labelledby for accessible menus." },
+    { "question": "How does the focus-within hack work for CSS-only accessible dropdowns?", "answer": "The parent stays open as long as any child has focus, allowing keyboard users to tab through dropdown links without it closing." },
+    { "question": "How do you handle dropdown positioning near the viewport edges?", "answer": "Use JavaScript to detect viewport boundaries and apply classes for left/right/up positioning, or use the CSS overscroll-behavior property." },
+    { "question": "How do you create a mega-dropdown with grid layout?", "answer": "Use display: grid with grid-template-columns to create multi-column dropdown content areas within the absolute container." },
+    { "question": "How do you create an accordion-style dropdown using only CSS?", "answer": "Use the checkbox hack or :target pseudo-class to toggle max-height between 0 and a large value for a sliding effect." },
+    { "question": "How does the :has() pseudo-class enable parent-aware dropdown styling?", "answer": ".parent:has(.dropdown:hover) can style the parent trigger when the dropdown is hovered, enabling persistent visual states." },
+    { "question": "How do you handle multiple open dropdowns on the same page?", "answer": "By default, only one dropdown should be open; CSS-only methods typically open only the hovered/focused one, while JS methods manage state." },
+    { "question": "What is the NavList pattern for accessible dropdowns in modern CSS?", "answer": "NavList uses a list structure with aria-current, aria-expanded, and sub-lists that are revealed via focus-within." },
+    { "question": "How do you optimize dropdown rendering performance with contain?", "answer": "Use contain: layout style on dropdown containers to isolate their layout from the rest of the page and reduce reflow cost." }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "difficulty": "easy",
+    "title": "Create a Wrapping Row",
+    "description": "Create a flex container with 10 items that wrap to multiple lines.",
+    "instructions": "1. Create a container with display: flex\n2. Add 10 items with width: 150px\n3. Use flex-wrap: wrap\n4. Add gap: 1rem",
+    "starterCode": ".container {\n  /* Your code */\n}\n.item {\n  /* Your code */\n}",
+    "solution": ".container {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1rem;\n  background: #f0f0f0;\n  padding: 1rem;\n}\n.item {\n  width: 150px;\n  background: #42a5f5;\n  color: white;\n  padding: 1rem;\n  text-align: center;\n  border-radius: 4px;\n}",
+    "hints": ["Use flex-wrap: wrap with fixed-width items"],
+    "validation": "Items should wrap into multiple rows when container is narrow."
+  },
+  {
+    "difficulty": "medium",
+    "title": "Responsive Card Grid with Flex Wrap",
+    "description": "Create a responsive card grid that displays 3 cards per row on desktop, 2 on tablet, 1 on mobile using only flex-wrap and flex-basis.",
+    "instructions": "1. Create a flex container with wrap\n2. Use flex: 1 1 300px on items to control sizing\n3. Cards should have min-width of 300px\n4. When container is 900px+: 3 per row, 600px+: 2 per row, <600px: 1 per row",
+    "starterCode": ".grid {\n  /* Your code */\n}\n.card {\n  /* Your code */\n}",
+    "solution": ".grid {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1rem;\n}\n.card {\n  flex: 1 1 300px;\n  background: white;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 1rem;\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n}",
+    "hints": ["Use flex: 1 1 300px for auto-sizing cards", "No media queries needed for the grid itself"],
+    "validation": "Cards should change from 3 to 2 to 1 per row as viewport shrinks."
+  },
+  {
+    "difficulty": "hard",
+    "title": "Masonry-Like Layout with Flex Wrap",
+    "description": "Create a masonry-like layout where items have different widths but wrap naturally.",
+    "instructions": "1. Create a container with flex-wrap: wrap\n2. Create items of varying widths (1x, 2x, 1.5x)\n3. Use flex-grow and flex-basis to control sizing\n4. Ensure items fill the row without gaps\n5. Different items should be different colors",
+    "starterCode": ".container {\n  /* Your code */\n}\n.item {\n  /* Your code */\n}\n.item.wide { /* 2x width */ }\n.item.medium { /* 1.5x width */ }",
+    "solution": ".container {\n  display: flex;\n  flex-wrap: wrap;\n  background: #f0f0f0;\n}\n.item {\n  flex: 1 1 150px;\n  height: 100px;\n  background: #42a5f5;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 2px solid #fff;\n  box-sizing: border-box;\n}\n.item.wide { flex: 2 1 300px; background: #ff9800; }\n.item.medium { flex: 1.5 1 225px; background: #4caf50; }",
+    "hints": ["Use different flex values for different item sizes", "box-sizing: border-box prevents width calculation issues"],
+    "validation": "Items should fill rows without gaps, with varying widths."
+  }
+]

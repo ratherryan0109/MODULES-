@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is CSS scroll snap?", "answer": "CSS scroll snap controls the scrolling behavior of a scroll container, forcing it to snap to specific positions, making scrolling more precise." },
+    { "question": "What does scroll-snap-type do?", "answer": "scroll-snap-type defines the direction and strictness of snap points on a scroll container, like x mandatory or y proximity." },
+    { "question": "What does scroll-snap-align control?", "answer": "scroll-snap-align sets where an element snaps to within the scroll container, using values like start, center, or end." },
+    { "question": "What is scroll-snap-stop?", "answer": "scroll-snap-stop controls whether the scroll container can pass over snap positions; normal allows passing, always forces stopping at each snap point." },
+    { "question": "How do you enable horizontal scroll snapping?", "answer": "Set scroll-snap-type: x mandatory; on the container, and scroll-snap-align: start; on each horizontal child item." },
+    { "question": "What does scroll-margin do in scroll snap?", "answer": "scroll-margin adds spacing around a snap target, offsetting the snap position from the edge of the scroll container." },
+    { "question": "How do you create a vertical scroll snap gallery?", "answer": "Set scroll-snap-type: y mandatory; on the vertical scroll container, and scroll-snap-align: start; on each child section." },
+    { "question": "What is the difference between mandatory and proximity?", "answer": "mandatory always snaps to the nearest snap point; proximity snaps only when the scroll position is close enough to a snap point." },
+    { "question": "Can scroll-snap work with both axes simultaneously?", "answer": "Yes, use scroll-snap-type: both mandatory; to snap on both horizontal and vertical axes." },
+    { "question": "Does scroll snap work on touch devices?", "answer": "Yes, scroll snap works on touch, trackpad, and mouse wheel scrolling across modern browsers." }
+  ],
+  "intermediate": [
+    { "question": "How do scroll-snap-align values (start, center, end) affect snapping?", "answer": "start aligns the child's start edge with the container's snap position; center centers the child; end aligns the end edge." },
+    { "question": "How do you use scroll-snap-type: inline for writing-mode-aware snapping?", "answer": "scroll-snap-type: inline respects the writing direction, snapping on the logical inline axis (horizontal in LTR, vertical in vertical writing)." },
+    { "question": "How does scroll-margin differ from scroll-padding?", "answer": "scroll-margin is set on snap children and offsets the snap position outward; scroll-padding is set on the container and offsets inward." },
+    { "question": "How do you create a carousel with CSS scroll snap?", "answer": "Use overflow-x: auto; scroll-snap-type: x mandatory; on the carousel container with children having scroll-snap-align: start;." },
+    { "question": "How do you prevent scroll snap from skipping items on fast scroll?", "answer": "Set scroll-snap-stop: always; on snap children to force the browser to stop at each snap point even during fast scrolling." },
+    { "question": "How does scroll snap interact with overflow: hidden?", "answer": "overflow: hidden disables scrolling entirely, preventing scroll snap from functioning; use overflow: auto or overflow: scroll instead." },
+    { "question": "Can scroll snap work with scroll-driven animations?", "answer": "Yes, scroll snap positions can trigger scroll-driven animations, but the snap behavior may interrupt smooth animation timelines." },
+    { "question": "How do you create a full-screen page scroll snap effect?", "answer": "Set scroll-snap-type: y mandatory; on html or body, and scroll-snap-align: start; on each full-viewport-height section." },
+    { "question": "How does scroll snap behave with dynamic content added via JavaScript?", "answer": "New items within a snap container are immediately interactive; the browser recalculates snap positions after layout." },
+    { "question": "How do you style scroll snap indicators (dots or progress)?", "answer": "Use IntersectionObserver with JavaScript to detect active snap children and update indicator states accordingly." }
+  ],
+  "advanced": [
+    { "question": "How does scroll snap interact with CSS scroll-behavior: smooth?", "answer": "scroll-snap overrides smooth scroll behavior to enforce snap points; smooth scrolling applies between snap positions within the same snap region." },
+    { "question": "How do you handle scroll snap in nested scroll containers?", "answer": "Each scroll container manages its own snap points; nested snap containers can conflict, so avoid nesting snap containers on the same axis." },
+    { "question": "How does scroll snap affect accessibility (keyboard scrolling)?", "answer": "Scroll snap works with keyboard scroll (arrow keys, space, page up/down); ensure all content is reachable despite snap constraints." },
+    { "question": "How do you debug scroll snap issues in DevTools?", "answer": "Chrome DevTools highlights snap containers and snap child positions in the Elements panel when scroll snap is detected." },
+    { "question": "How does scroll snap interact with virtual scrolling libraries?", "answer": "Virtual scrolling replaces DOM elements dynamically, which can break snap positions; scroll snap works best with static or stable DOM content." },
+    { "question": "How do you combine scroll snap with CSS animations for micro-interactions?", "answer": "Use the ScrollTimeline API or IntersectionObserver to trigger animations when an element becomes the active snap target." },
+    { "question": "How do you create a horizontal scroll snap with vertical overflow for multi-line items?", "answer": "Use scroll-snap-type: both mandatory; with flex-wrap for items that fill multiple rows within horizontal scrolling." },
+    { "question": "How does scroll snap behave with transform: scale on children?", "answer": "Scroll snap uses the element's layout box, not its transformed box; scaled children snap based on original dimensions, potentially misaligning." },
+    { "question": "How do you implement scroll snap on an element with dynamic height?", "answer": "Scroll snap calculates snap positions after layout; dynamic height changes re-trigger snap recalculation, which may cause unexpected jumps." },
+    { "question": "How does scroll-snap-type: both mandatory work with diagonal scrolling?", "answer": "both mandatory snaps to the nearest 2D grid point; the scroll container must have content arranged in both axes for effective diagonal snapping." }
+  ]
+}

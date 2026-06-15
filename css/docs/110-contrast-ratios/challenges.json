@@ -1,0 +1,30 @@
+{
+  "title": "Contrast Ratios Challenges",
+  "module": "110",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "title": "Fix Low Contrast Text",
+      "description": "Given a webpage with light gray text (#bbb) on white background, identify and fix the contrast issue to meet WCAG AA.",
+      "starterCode": "<body style=\"background: #fff;\">\n  <p style=\"color: #bbb;\">This text is hard to read because of poor contrast. It fails WCAG AA requirements.</p>\n  <p style=\"color: #bbb;\">Please fix the color to make it readable.</p>\n</body>",
+      "hint": "Use the contrast ratio formula or an online checker. You need at least 4.5:1.",
+      "solution": "<p style=\"color: #767676;\">This text now meets WCAG AA requirements with a 4.5:1 contrast ratio.</p>\n<p style=\"color: #595959;\">This text meets WCAG AAA requirements with a 7:1 contrast ratio.</p>"
+    },
+    {
+      "difficulty": "medium",
+      "title": "Accessible Button with Hover States",
+      "description": "Create a button component that maintains WCAG AA contrast in all states: default, hover, focus, and disabled.",
+      "starterCode": "<button class=\"btn\">Click Me</button>\n<button class=\"btn\" disabled>Disabled</button>",
+      "hint": "Use CSS custom properties for the color palette. Check each state's contrast ratio.",
+      "solution": ":root {\n  --btn-bg: #0066cc;\n  --btn-text: #ffffff;\n  --btn-hover: #0052a3;\n  --btn-disabled-bg: #ccc;\n  --btn-disabled-text: #666;\n}\n.btn {\n  background: var(--btn-bg);\n  color: var(--btn-text);\n  padding: 0.75rem 1.5rem;\n  border: none;\n  border-radius: 6px;\n  cursor: pointer;\n}\n.btn:hover {\n  background: var(--btn-hover);\n}\n.btn:focus-visible {\n  outline: 3px solid var(--btn-bg);\n  outline-offset: 2px;\n}\n.btn:disabled {\n  background: var(--btn-disabled-bg);\n  color: var(--btn-disabled-text);\n  cursor: not-allowed;\n}"
+    },
+    {
+      "difficulty": "hard",
+      "title": "Build a JavaScript Contrast Validator",
+      "description": "Create a browser-based tool that accepts two hex colors, calculates their contrast ratio, and displays WCAG compliance (AA/AAA pass/fail for normal and large text).",
+      "starterCode": "function checkContrast(hex1, hex2) {\n  // Implement the WCAG contrast ratio calculation\n  // Return pass/fail status for AA and AAA\n}",
+      "hint": "Implement the full luminance formula with gamma correction. Use Math.pow for the sRGB linearization.",
+      "solution": "function hexToRgb(hex) {\n  const r = parseInt(hex.slice(1,3), 16);\n  const g = parseInt(hex.slice(3,5), 16);\n  const b = parseInt(hex.slice(5,7), 16);\n  return { r, g, b };\n}\n\nfunction sRGBtoLinear(v) {\n  v /= 255;\n  return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);\n}\n\nfunction luminance(r, g, b) {\n  return 0.2126 * sRGBtoLinear(r) + 0.7152 * sRGBtoLinear(g) + 0.0722 * sRGBtoLinear(b);\n}\n\nfunction checkContrast(hex1, hex2) {\n  const c1 = hexToRgb(hex1);\n  const c2 = hexToRgb(hex2);\n  const l1 = luminance(c1.r, c1.g, c1.b);\n  const l2 = luminance(c2.r, c2.g, c2.b);\n  const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);\n  \n  return {\n    ratio: ratio.toFixed(2),\n    AA_normal: ratio >= 4.5,\n    AAA_normal: ratio >= 7,\n    AA_large: ratio >= 3,\n    AAA_large: ratio >= 4.5\n  };\n}"
+    }
+  ]
+}

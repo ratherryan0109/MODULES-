@@ -1,0 +1,147 @@
+{
+  "module": "79-css-object-fit",
+  "title": "CSS Object-Fit and Object-Position",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the default value of object-fit?",
+      "options": ["cover", "contain", "fill", "none"],
+      "correctAnswer": 2,
+      "explanation": "fill is the default value, stretching the content to fill the container (may distort)."
+    },
+    {
+      "id": 2,
+      "question": "Which object-fit value ensures the entire image is visible within the container?",
+      "options": ["cover", "fill", "contain", "none"],
+      "correctAnswer": 2,
+      "explanation": "contain scales the image to fit entirely within the container while maintaining aspect ratio."
+    },
+    {
+      "id": 3,
+      "question": "Which object-fit value may crop parts of the image?",
+      "options": ["contain", "fill", "cover", "scale-down"],
+      "correctAnswer": 2,
+      "explanation": "cover scales to fill the container while maintaining aspect ratio, which may crop parts of the image."
+    },
+    {
+      "id": 4,
+      "question": "On which HTML elements does object-fit work?",
+      "options": ["All elements", "Replaced elements (img, video)", "Block elements only", "Inline elements only"],
+      "correctAnswer": 1,
+      "explanation": "object-fit only works on replaced elements like <img> and <video>."
+    },
+    {
+      "id": 5,
+      "question": "What does object-position do?",
+      "options": ["Sets the container position", "Positions the content within its box", "Sets the image border", "Controls fit behavior"],
+      "correctAnswer": 1,
+      "explanation": "object-position positions the media content within its box, similar to background-position."
+    },
+    {
+      "id": 6,
+      "question": "Which object-fit value is equivalent to not applying object-fit at all?",
+      "options": ["fill", "contain", "none", "scale-down"],
+      "correctAnswer": 2,
+      "explanation": "none displays the content at its original intrinsic size without any resizing."
+    },
+    {
+      "id": 7,
+      "question": "What does scale-down do?",
+      "options": ["Always scales down", "Acts as none or contain, whichever is smaller", "Scales to 50%", "Removes the image"],
+      "correctAnswer": 1,
+      "explanation": "scale-down compares none and contain and uses the smaller result."
+    },
+    {
+      "id": 8,
+      "question": "Why combine aspect-ratio with object-fit: cover?",
+      "options": ["Improves image quality", "Ensures consistent container sizing before images load", "Adds animation", "Reduces file size"],
+      "correctAnswer": 1,
+      "explanation": "aspect-ratio gives the container a predictable size before images load, preventing layout shifts."
+    },
+    {
+      "id": 9,
+      "question": "What does object-fit: contain do when the container has a different aspect ratio?",
+      "options": ["Crops the image", "Creates letterboxing/pillarboxing (empty space)", "Stretches the image", "Hides the image"],
+      "correctAnswer": 1,
+      "explanation": "contain preserves aspect ratio and shows empty space (letterboxing) if the container shape doesn't match."
+    },
+    {
+      "id": 10,
+      "question": "How do you focus on the top portion of an image using object-position?",
+      "options": ["object-position: top", "object-position: 50% 20%", "object-position: 0 0", "object-position: center"],
+      "correctAnswer": 1,
+      "explanation": "object-position: 50% 20% centers horizontally and focuses near the top, ideal for portrait headshots."
+    },
+    {
+      "id": 11,
+      "question": "Which value of object-position is the default?",
+      "options": ["top left", "50% 50% (center)", "0 0", "100% 100%"],
+      "correctAnswer": 1,
+      "explanation": "The default object-position is 50% 50% (center), which centers the content within its box."
+    },
+    {
+      "id": 12,
+      "question": "Can object-fit be applied to video elements?",
+      "options": ["No", "Yes, object-fit works on all replaced elements including <video>", "Only with JavaScript", "Only in Chrome"],
+      "correctAnswer": 1,
+      "explanation": "object-fit applies to all replaced elements, including <video> and <iframe>."
+    },
+    {
+      "id": 13,
+      "question": "What is the effect of object-fit: fill on an image with a different aspect ratio than its container?",
+      "options": ["Preserves aspect ratio with letterboxing", "Stretches/distorts the image to fill exactly", "Crops the image", "Shows the image at original size"],
+      "correctAnswer": 1,
+      "explanation": "fill stretches the image to exactly match the container dimensions, which may distort the aspect ratio."
+    },
+    {
+      "id": 14,
+      "question": "Which scenario is object-fit: cover best suited for?",
+      "options": ["Product images needing full visibility", "Hero banners and thumbnails where cropping is acceptable", "Technical diagrams", "Logo displays"],
+      "correctAnswer": 1,
+      "explanation": "cover is ideal for hero banners, thumbnails, and avatars where full coverage matters more than showing the entire image."
+    },
+    {
+      "id": 15,
+      "question": "What is the difference between object-fit and background-size?",
+      "options": ["They are identical", "object-fit applies to replaced element content; background-size applies to background images", "object-fit is for layout; background-size is for styling", "No difference"],
+      "correctAnswer": 1,
+      "explanation": "object-fit controls replaced element content sizing; background-size controls background image sizing."
+    },
+    {
+      "id": 16,
+      "question": "How does object-fit behave on inline images without explicit dimensions?",
+      "options": ["It doesn't work", "It works but the image uses its natural dimensions as the container", "It stretches to parent", "It defaults to contain"],
+      "correctAnswer": 1,
+      "explanation": "Without explicit dimensions, the container sizes to the image's natural size, limiting object-fit's visible effect."
+    },
+    {
+      "id": 17,
+      "question": "Which browsers fully support object-fit?",
+      "options": ["Only Chrome", "All modern browsers (IE11+ with polyfill)", "Only Safari", "Only Firefox"],
+      "correctAnswer": 1,
+      "explanation": "object-fit is supported in all modern browsers. IE11 needs a polyfill for support."
+    },
+    {
+      "id": 18,
+      "question": "What is the purpose of object-fit in a responsive image grid?",
+      "options": ["Makes images responsive", "Ensures all images have consistent sizing despite different aspect ratios", "Optimizes image loading", "Reduces file size"],
+      "correctAnswer": 1,
+      "explanation": "object-fit makes images with different aspect ratios display uniformly within equal-sized grid cells."
+    },
+    {
+      "id": 19,
+      "question": "Can object-position use percentage values?",
+      "options": ["No, only keywords", "Yes, percentages position relative to the container", "Only in combination with object-fit", "Only pixel values"],
+      "correctAnswer": 1,
+      "explanation": "object-position accepts percentages, keywords (center, top, etc.), and length values."
+    },
+    {
+      "id": 20,
+      "question": "What happens when object-fit: none is used on a very large image?",
+      "options": ["The image scales down", "The image is displayed at original size and may overflow the container", "The image is cropped", "The image becomes hidden"],
+      "correctAnswer": 1,
+      "explanation": "object-fit: none displays the image at its natural intrinsic size, which may overflow the container."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What does flex-grow do in Flexbox?", "answer": "flex-grow determines how much a flex item can grow relative to other items when there is extra space in the container." },
+    { "question": "What is the default value of flex-grow?", "answer": "The default value of flex-grow is 0, meaning items do not grow by default." },
+    { "question": "What does flex-grow: 1 do?", "answer": "flex-grow: 1 allows an item to grow to fill available space, sharing it equally with other items that also have flex-grow: 1." },
+    { "question": "What happens when all items have flex-grow: 1?", "answer": "All items grow equally to fill the container, each receiving an equal share of the available space." },
+    { "question": "What happens when one item has flex-grow: 2 and others have flex-grow: 1?", "answer": "The item with flex-grow: 2 receives twice as much of the extra space as each item with flex-grow: 1." },
+    { "question": "Does flex-grow affect the item's size beyond the available free space?", "answer": "No, flex-grow only distributes the available free space; items do not shrink to accommodate growing items." },
+    { "question": "Can flex-grow be a decimal value?", "answer": "Yes, flex-grow accepts positive numbers including decimals like 0.5." },
+    { "question": "What is the difference between flex-grow: 0 and flex-grow: 1?", "answer": "flex-grow: 0 prevents growth; flex-grow: 1 allows the item to expand to fill available space." },
+    { "question": "Does flex-grow work on the cross axis?", "answer": "No, flex-grow only affects the main axis size of flex items." },
+    { "question": "How is flex-grow used to create equal-width columns?", "answer": "Set flex-grow: 1 on all columns so each receives an equal share of the available space." }
+  ],
+  "intermediate": [
+    { "question": "How does flex-grow interact with flex-basis?", "answer": "flex-grow distributes available space after subtracting the flex-basis values; items grow from their flex-basis size." },
+    { "question": "How is the available space calculated for flex-grow distribution?", "answer": "Available space = container size - sum of flex-basis values - gaps. This remaining space is distributed proportionally by flex-grow." },
+    { "question": "What happens when flex-grow is applied with flex-basis: 0?", "answer": "With flex-basis: 0, all space is distributed proportionally; items effectively share the container space based on grow factors." },
+    { "question": "How do you make one flex item fill remaining space while others stay at their natural size?", "answer": "Set flex-grow: 1 on the item you want to grow and flex-grow: 0 on the others." },
+    { "question": "How does flex-grow work with max-width constraints?", "answer": "An item cannot grow beyond its max-width, even if the grow factor would allow more space; leftover space goes to other items." },
+    { "question": "How does flex-grow interact with margins like margin-left: auto?", "answer": "margin: auto absorbs free space and takes priority over flex-grow, preventing growth." },
+    { "question": "How does flex-grow behave in a column direction?", "answer": "In column direction, flex-grow distributes vertical space instead of horizontal." },
+    { "question": "What happens when all items have different flex-grow values in a single line?", "answer": "Each item grows proportionally to its flex-grow value relative to the sum of all grow values." },
+    { "question": "How does flex-grow interact with the wrap behavior?", "answer": "flex-grow only distributes space within each flex line; items on different lines do not share space." },
+    { "question": "How do you prevent a flex item from growing?", "answer": "Set flex-grow: 0 on that item to prevent it from growing beyond its flex-basis." }
+  ],
+  "advanced": [
+    { "question": "How does the flex-grow algorithm work mathematically?", "answer": "Each item's growth = (grow factor / sum of all grow factors) * available free space, added to its flex-basis." },
+    { "question": "How does flex-grow interact with min-content and max-content sizing?", "answer": "min-content sets a floor and max-content a ceiling for the item; flex-grow cannot shrink below min-content or expand beyond max-content." },
+    { "question": "How does flex-grow behave with absolutely positioned items?", "answer": "Absolutely positioned children are not flex items and are completely ignored by flex-grow calculations." },
+    { "question": "How does flex-grow interact with the gap property when distributing space?", "answer": "Gaps are subtracted from the container space before flex-grow calculations, so they do not affect proportional distribution." },
+    { "question": "How does flex-grow work in a multi-line container when lines have different numbers of items?", "answer": "Each line independently distributes its available space; a line with fewer items allocates more space per item." },
+    { "question": "What happens when flex-grow is set on items inside an inline-flex container?", "answer": "flex-grow works the same way in inline-flex; items grow based on available space within the inline-level container." },
+    { "question": "How does flex-grow handle negative available space (overflow scenario)?", "answer": "flex-grow only adds space; it does not handle negative space. flex-shrink handles cases where items overflow." },
+    { "question": "How does the flex shorthand relate to flex-grow?", "answer": "The first value in the flex shorthand is flex-grow. flex: 1 sets flex-grow: 1, flex-shrink: 1, flex-basis: 0." },
+    { "question": "How does flex-grow affect the accessibility of content order?", "answer": "flex-grow does not change DOM order, only visual size, so it does not affect accessibility tree order." },
+    { "question": "How does flex-grow interact with aspect-ratio on flex items?", "answer": "When both flex-grow and aspect-ratio are set, the item grows on the main axis and the cross axis adjusts to maintain the ratio." }
+  ]
+}

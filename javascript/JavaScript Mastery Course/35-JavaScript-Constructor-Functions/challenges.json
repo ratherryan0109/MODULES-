@@ -1,0 +1,42 @@
+[
+  {
+    "id": "35-challenge-1",
+    "title": "Basic JavaScript Constructor Functions",
+    "description": "Write a function that demonstrates the core concepts of JavaScript Constructor Functions. Focus on implementing Constructor function pattern correctly.",
+    "difficulty": "easy",
+    "starterCode": "function basic_35() {\n  // Implement constructor function pattern\n  // Return a meaningful result\n  return \"Implement JavaScript Constructor Functions\";\n}",
+    "solution": "function basic_35() {\n  const concepts = [\"Constructor function pattern\", \"new keyword operation\", \"Instance properties vs prototype methods\"];\n  return concepts.map(c => c.toUpperCase());\n}"
+  },
+  {
+    "id": "35-challenge-2",
+    "title": "Intermediate JavaScript Constructor Functions",
+    "description": "Create a function that uses Constructor function pattern and new keyword operation together. Handle edge cases and validate inputs.",
+    "difficulty": "medium",
+    "starterCode": "function intermediate_35(input) {\n  // Process input using constructor function pattern\n  // and new keyword operation\n  // Handle edge cases\n  if (!input) return [];\n  return input;\n}",
+    "solution": "function intermediate_35(input) {\n  if (!Array.isArray(input)) return [];\n  return input\n    .filter(item => item != null)\n    .map(item => ({ original: item, processed: String(item).toUpperCase() }));\n}"
+  },
+  {
+    "id": "35-challenge-3",
+    "title": "Advanced JavaScript Constructor Functions Project",
+    "description": "Build a small application that applies Constructor function pattern, new keyword operation, Instance properties vs prototype methods in a real-world scenario. Include error handling and input validation.",
+    "difficulty": "hard",
+    "starterCode": "class JavaScriptConstructorFunctions {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    // Add item with validation\n  }\n  \n  process() {\n    // Process stored data using constructor function pattern\n  }\n}",
+    "solution": "class JavaScriptConstructorFunctions {\n  constructor(config) {\n    this.config = config || {};\n    this.data = [];\n  }\n  \n  add(item) {\n    if (item == null) throw new Error('Invalid item');\n    this.data.push(item);\n  }\n  \n  process() {\n    return this.data\n      .filter(d => d != null)\n      .map(d => ({ value: d, timestamp: Date.now() }));\n  }\n  \n  clear() {\n    this.data = [];\n  }\n}"
+  },
+  {
+    "id": "35-challenge-4",
+    "title": "Debugging JavaScript Constructor Functions",
+    "description": "The following code has bugs related to Constructor function pattern. Find and fix them.",
+    "difficulty": "medium",
+    "starterCode": "// Fix the bugs in this code\nfunction processData35(items) {\n  let result = [];\n  for (var i = 0; i < items.length; i++); {\n    result.push(items[i].toUpperCase());\n  }\n  return result;\n}\n\nconsole.log(processData35([\"a\", \"b\", \"c\"]));",
+    "solution": "function processData35(items) {\n  return items.map(item => item.toUpperCase());\n}\n\nconsole.log(processData35([\"a\", \"b\", \"c\"]));\n// Expected: [\"A\", \"B\", \"C\"]"
+  },
+  {
+    "id": "35-challenge-5",
+    "title": "Refactoring JavaScript Constructor Functions",
+    "description": "Refactor the following code to use modern JavaScript patterns with Constructor function pattern and new keyword operation.",
+    "difficulty": "hard",
+    "starterCode": "// Refactor this code\nfunction oldWay35(arr) {\n  var temp = [];\n  for (var i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) {\n      temp.push(arr[i] * 2);\n    }\n  }\n  var sum = 0;\n  for (var j = 0; j < temp.length; j++) {\n    sum += temp[j];\n  }\n  return sum;\n}",
+    "solution": "function refactored35(arr) {\n  return arr\n    .filter(n => n % 2 === 0)\n    .map(n => n * 2)\n    .reduce((sum, n) => sum + n, 0);\n}"
+  }
+]

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Flex Basis Playground</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#ff6b6b}.subtitle{color:#aaa;margin-bottom:20px}
+.layout{display:flex;gap:20px}
+.controls{flex:0 0 250px;background:#16213e;padding:20px;border-radius:10px}
+.preview{flex:1;background:#16213e;padding:20px;border-radius:10px}
+.group{margin-bottom:15px}
+.group label{display:block;color:#aaa;font-size:13px;margin-bottom:4px}
+.group input{width:100%}
+#container{display:flex;min-height:80px;width:600px;background:#2d2d44;border-radius:8px;padding:10px;transition:all .3s}
+.item{background:#ff6b6b;padding:15px;border-radius:4px;text-align:center;transition:all .3s}
+.item:nth-child(2){background:#4ecdc4}.item:nth-child(3){background:#45b7d1}
+#code{margin-top:15px;background:#1a1a2e;padding:15px;border-radius:8px;font-family:monospace;font-size:13px;color:#a8e6cf}
+</style>
+</head>
+<body>
+<h1>📏 Flex Basis Playground</h1>
+<p class="subtitle">Change basis and grow values to see different sizing</p>
+<div class="layout">
+<div class="controls">
+<div class="group"><label>Item 1 basis</label><input type="range" id="b1" min="0" max="300" value="100"></div>
+<div class="group"><label>Item 2 basis</label><input type="range" id="b2" min="0" max="300" value="100"></div>
+<div class="group"><label>Item 3 basis</label><input type="range" id="b3" min="0" max="300" value="100"></div>
+<div class="group"><label>flex-grow (all)</label><input type="range" id="grow" min="0" max="5" value="1"></div>
+<div class="group"><label>Container Width</label><input type="range" id="width" min="300" max="900" value="600"></div>
+</div>
+<div class="preview">
+<div id="container"><div class="item" id="i1">1</div><div class="item" id="i2">2</div><div class="item" id="i3">3</div></div>
+<div id="code">basis: 100, 100, 100 | grow: 1</div>
+</div>
+</div>
+<script>
+const items=[document.getElementById('i1'),document.getElementById('i2'),document.getElementById('i3')];
+document.querySelectorAll('input').forEach(el=>el.addEventListener('input',update));
+function update(){
+const b=[document.getElementById('b1').value,document.getElementById('b2').value,document.getElementById('b3').value];
+const g=document.getElementById('grow').value;
+const w=document.getElementById('width').value;
+document.getElementById('container').style.width=w+'px';
+items.forEach((item,i)=>{item.style.flex=`${g} 1 ${b[i]}px`;});
+document.getElementById('code').textContent=`flex: ${g} 1 ${b[0]}px, ${g} 1 ${b[1]}px, ${g} 1 ${b[2]}px | Width: ${w}px`;
+}
+update();
+</script>
+</body>
+</html>

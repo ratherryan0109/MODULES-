@@ -1,0 +1,130 @@
+{
+  "module": "133-modern-agency-website",
+  "title": "Modern Agency Website",
+  "beginner": [
+    {
+      "question": "What is a 'modern agency website'?",
+      "answer": "A portfolio site for a creative/digital agency showcasing services, case studies, team, and client work. It emphasizes visual design, animations, and storytelling. Sections: Hero, Services, Work/Portfolio, Team, Testimonials, Contact."
+    },
+    {
+      "question": "What is a 'services grid' on an agency site?",
+      "answer": "A grid showcasing the agency's offerings (Web Design, Branding, Development, Marketing). Each service card has an icon, title, and short description. Use CSS Grid: `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))`."
+    },
+    {
+      "question": "What is a 'team section' on an agency website?",
+      "answer": "A grid of team member cards. Each card has a photo, name, role, and social links. Desktop: 3-4 columns. Tablet: 2 columns. Mobile: 1 column. Use `object-fit: cover` for consistent headshot sizes."
+    },
+    {
+      "question": "What is the 'hero section' for a creative agency?",
+      "answer": "A visually striking hero with a large headline, animated background (video, particles, or bold typography), and a clear CTA. It should immediately communicate the agency's unique value and creative identity."
+    },
+    {
+      "question": "How do you design a responsive 'case study' card?",
+      "answer": "A card with a large project image, client name, project type, and 'View Project' link. Desktop: 2-column grid or overlapping image/text layouts. Mobile: stacked with image on top. Use `aspect-ratio` for consistent image frames."
+    },
+    {
+      "question": "What is a 'testimonial carousel' on an agency site?",
+      "answer": "A rotating set of client testimonials. Desktop: single testimonial with large quote styling or side-by-side. Mobile: single card with swipe/dot navigation. Use CSS scroll-snap or JavaScript for the carousel logic."
+    },
+    {
+      "question": "What is the typical color scheme for a modern agency website?",
+      "answer": "Bold, brand-driven colors: often a dark background (charcoal, deep navy) with bright accent colors (vibrant purple, cyan, gradient). Generous whitespace, large typography, and high-contrast CTAs."
+    },
+    {
+      "question": "How do you design a responsive 'contact' section?",
+      "answer": "Desktop: two columns (contact info + form, or map + form). Mobile: single column, form fields full-width. Include email, phone, address, and social links. The CTA is a prominent 'Send Message' button."
+    },
+    {
+      "question": "What is a 'client logo bar'?",
+      "answer": "A horizontal row of client logos (trust signals). Use grayscale with color-on-hover effect. Flexbox with `flex-wrap: wrap; justify-content: center; gap: 2rem;`. Responsive: fewer visible logos on mobile with scroll."
+    },
+    {
+      "question": "How do you create a responsive 'navigation' for an agency site?",
+      "answer": "Desktop: horizontal nav with logo, links, and CTA button. Mobile: hamburger menu with animated open/close (menu transforms into an X). Consider full-screen overlay menus for a bold agency look."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you create a 'masonry portfolio' grid for agency work?",
+      "answer": "Use CSS Grid with `grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));` and `grid-row: span N` for taller items. Or use `grid-template-rows: masonry` (Firefox) or a JavaScript masonry library for full browser support."
+    },
+    {
+      "question": "How do you implement a 'full-screen overlay navigation'?",
+      "answer": "A fixed overlay: `position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 999; display: flex; align-items: center; justify-content: center;`. Animate: `opacity: 0; pointer-events: none;` toggled to `opacity: 1; pointer-events: all;`."
+    },
+    {
+      "question": "How do you create a 'split-screen hero' for an agency?",
+      "answer": "50/50 split: left side has text and CTA, right side has an image, video, or bold graphic. Use `display: grid; grid-template-columns: 1fr 1fr;`. On mobile: single column, image on top or bottom with `order`."
+    },
+    {
+      "question": "How do you implement a 'hover reveal' effect on case study images?",
+      "answer": "On hover, reveal additional info (project title, client) over the image. Use `position: relative;` on the container. Overlay: `position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s;`. On hover: `opacity: 1;` with background gradient."
+    },
+    {
+      "question": "How do you design responsive 'process steps' (how we work)?",
+      "answer": "A horizontal row of connected steps (1. Discover → 2. Design → 3. Develop → 4. Launch). Desktop: horizontal line connecting numbered circles. Mobile: vertical timeline with steps going down. Use `::before` for connecting lines."
+    },
+    {
+      "question": "How do you implement a 'parallax scrolling' effect for agency backgrounds?",
+      "answer": "Use `background-attachment: fixed;` for simplicity (works on desktop). For better mobile support, use CSS transforms: `transform: translateY(calc(var(--scroll-offset) * 0.5))`. Respect `prefers-reduced-motion: reduce`."
+    },
+    {
+      "question": "How do you create a 'stats/counter' section with animated numbers?",
+      "answer": "A row of stat cards: 120+ Projects, 8 Years, 25+ Clients, 15 Awards. Desktop: 4 columns. Mobile: 2 columns. Use IntersectionObserver to trigger counting animation. Large bold numbers with descriptive labels below."
+    },
+    {
+      "question": "How do you design a responsive 'blog/article preview' section for an agency?",
+      "answer": "A grid of article cards: featured image, category tag, title, excerpt, author, and date. Desktop: 3-column grid. Tablet: 2 columns. Mobile: 1 column. Category tags use color coding."
+    },
+    {
+      "question": "How do you implement a 'smooth scroll' navigation for a one-page agency site?",
+      "answer": "Set `scroll-behavior: smooth;` on `<html>`. Use `<a href=\"#services\">` links. Add `scroll-margin-top: 80px;` on sections to account for fixed header offset. For nav-link active state, use IntersectionObserver to highlight current section."
+    },
+    {
+      "question": "How do you create a 'gradient border' effect on agency cards?",
+      "answer": "Use `border` with a gradient: `border: 2px solid transparent; background-clip: padding-box;` and a `::before` pseudo-element with `background: linear-gradient(...)` as the actual border. Or use `background-image: linear-gradient(...)` on the wrapper."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement 'webgl/three.js' backgrounds that degrade gracefully on mobile?",
+      "answer": "Load Three.js conditionally: `if (window.innerWidth > 768 && !matchMedia('(prefers-reduced-motion: reduce)').matches) { /* init Three.js */ }`. Fallback: CSS gradient or static image background. Provide a pause button."
+    },
+    {
+      "question": "How do you create a 'magnetic button' hover effect with CSS?",
+      "answer": "A magnetic button follows the cursor within its bounds. Pure CSS can approximate with `transform: scale(1.05)` and `transition`. Full magnetic effect requires JavaScript tracking mouse position relative to button center."
+    },
+    {
+      "question": "How do you implement a 'horizontal scrolling' portfolio section?",
+      "answer": "Use `overflow-x: hidden;` on the body while the section is active. Use JavaScript to translate the section horizontally based on scroll position: `transform: translateX(calc(-100vw * (scrollProgress - sectionOffset)))`. Requires careful calculation."
+    },
+    {
+      "question": "How do you create an 'awards/certifications' badge grid?",
+      "answer": "A grid of award badges and logos with hover tooltips. Desktop: 3-4 columns. Mobile: 2 columns. Each badge uses `aspect-ratio: 1;` for consistency. Use CSS `filter: grayscale(1);` with color reveal on hover."
+    },
+    {
+      "question": "How do you implement 'lazy loading' with progressive image resolution?",
+      "answer": "Load a tiny blurred thumbnail (30px wide, base64-encoded) as placeholder. Use `filter: blur(20px);` on the placeholder. On full image load, transition to sharp image. The `<img>` tag transitions from blurry to clear."
+    },
+    {
+      "question": "How do you create a 'page transition' animation between agency portfolio pages?",
+      "answer": "Use `<link rel=\"prerender\">` for the next page. Use CSS `view-transition-name` for shared element transitions. On link click, animate current page out (opacity/transform), change content, animate new page in."
+    },
+    {
+      "question": "How do you implement a custom 'cursor reveal' effect on hover?",
+      "answer": "Replace the default cursor with a custom div: `cursor: none;` on body. On hover over interactive elements, change the custom cursor's size, color, or text. Use `transform: scale()` for size changes. Respect `(hover: hover)` media query."
+    },
+    {
+      "question": "How do you design a responsive 'careers/jobs' section?",
+      "answer": "List open positions with title, department, location, and 'Apply' link. Desktop: table-like layout or list with columns. Mobile: stacked cards. Use `display: grid; grid-template-columns: 2fr 1fr 1fr 100px;` desktop, `1fr` mobile."
+    },
+    {
+      "question": "How do you implement 'infinite horizontal scroll' for client/partner logos?",
+      "answer": "Duplicate the logo list. Use `@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }`. Apply to the container: `animation: scroll 20s linear infinite;`. Pause on hover: `animation-play-state: paused;`."
+    },
+    {
+      "question": "How do you create a responsive 'interactive timeline' for agency history?",
+      "answer": "Desktop: horizontal timeline with alternating top/bottom entries connected by a line. Mobile: vertical timeline with all entries on one side. Use `::before` for the line and `::after` for dots. Use CSS `scroll-snap` for snap-to-entry navigation."
+    }
+  ]
+}

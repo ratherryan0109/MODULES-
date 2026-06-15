@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Skew - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 2rem; color: #89b4fa; }
+    h2 { margin: 1.5rem 0 0.5rem; color: #a6e3a1; }
+    .card { background: #313244; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #45475a; }
+    .demo-area { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; min-height: 150px; }
+    .box {
+      width: 120px; height: 120px; background: #89b4fa; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; color: #1e1e2e;
+      font-weight: 700; transition: transform 0.4s ease;
+    }
+    .pre { font-family: monospace; background: #181825; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Skew — Practical Examples</h1>
+
+  <div class="card">
+    <h2>1. SkewX</h2>
+    <p>Skews along the X-axis — top/bottom edges shift horizontally.</p>
+    <div class="demo-area">
+      <div class="box" onmouseover="this.style.transform='skewX(15deg)'" onmouseout="this.style.transform='skewX(0)'">skewX(15deg)</div>
+      <div class="box" style="background:#f38ba8;" onmouseover="this.style.transform='skewX(-15deg)'" onmouseout="this.style.transform='skewX(0)'">skewX(-15deg)</div>
+    </div>
+    <div class="pre">transform: skewX(15deg);<br>transform: skewX(-15deg);</div>
+  </div>
+
+  <div class="card">
+    <h2>2. SkewY</h2>
+    <p>Skews along the Y-axis — left/right edges shift vertically.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#a6e3a1;" onmouseover="this.style.transform='skewY(15deg)'" onmouseout="this.style.transform='skewY(0)'">skewY(15deg)</div>
+      <div class="box" style="background:#fab387;" onmouseover="this.style.transform='skewY(-15deg)'" onmouseout="this.style.transform='skewY(0)'">skewY(-15deg)</div>
+    </div>
+    <div class="pre">transform: skewY(15deg);</div>
+  </div>
+
+  <div class="card">
+    <h2>3. Skew Both Axes</h2>
+    <p>Skews simultaneously on X and Y.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#cba6f7;" onmouseover="this.style.transform='skew(10deg, 10deg)'" onmouseout="this.style.transform='skew(0, 0)'">skew(10, 10)</div>
+    </div>
+    <div class="pre">transform: skew(10deg, 10deg);</div>
+  </div>
+
+  <div class="card">
+    <h2>4. Ribbon Effect (Counter-Skew)</h2>
+    <p>Parent skewed, child counter-skewed to keep text readable.</p>
+    <div class="demo-area">
+      <div style="background:#f38ba8; padding:0.5rem 2rem; transform:skewX(-20deg);">
+        <span style="display:inline-block; transform:skewX(20deg); font-weight:700;">Readable Text</span>
+      </div>
+    </div>
+    <div class="pre">.ribbon { transform: skewX(-20deg); }<br>.ribbon span { transform: skewX(20deg); } /* counter-skew */</div>
+  </div>
+
+  <div class="card">
+    <h2>5. Combining Skew with Other Transforms</h2>
+    <p>Skew combined with rotate and scale.</p>
+    <div class="demo-area">
+      <div class="box" style="background:#89dceb;" onmouseover="this.style.transform='skewX(10deg) rotate(10deg) scale(1.1)'" onmouseout="this.style.transform='skewX(0) rotate(0) scale(1)'">Combined</div>
+    </div>
+    <div class="pre">transform: skewX(10deg) rotate(10deg) scale(1.1);</div>
+  </div>
+
+  <div class="card">
+    <h2>6. Skew with Different Origins</h2>
+    <p>Same skew angle but different transform origins.</p>
+    <div class="demo-area">
+      <div><div class="box" style="background:#f38ba8; transform-origin:top left;" onmouseover="this.style.transform='skewX(15deg)'" onmouseout="this.style.transform='skewX(0)'">top left</div></div>
+      <div><div class="box" style="background:#a6e3a1; transform-origin:bottom right;" onmouseover="this.style.transform='skewX(15deg)'" onmouseout="this.style.transform='skewX(0)'">bottom right</div></div>
+    </div>
+    <div class="pre">transform-origin: top left / bottom right;</div>
+  </div>
+</body>
+</html>

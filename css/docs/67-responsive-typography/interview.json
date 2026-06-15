@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is responsive typography?", "answer": "Responsive typography adjusts font sizes, line heights, and spacing based on the viewport or container size for optimal readability on any device." },
+    { "question": "What is fluid typography?", "answer": "Fluid typography scales text size continuously between a minimum and maximum value based on the viewport width, without media queries." },
+    { "question": "What is the CSS clamp() function for typography?", "answer": "clamp(MIN, PREFERRED, MAX) sets a font size that scales fluidly between a minimum and maximum value based on the viewport." },
+    { "question": "What are viewport units for typography?", "answer": "vw (viewport width), vh (viewport height), and similar units allow text to scale relative to the viewport size." },
+    { "question": "What is a modular scale in typography?", "answer": "A modular scale uses a ratio (like 1.25 or 1.333) to create a consistent sizing hierarchy from a base font size." },
+    { "question": "What is the problem with using only vw units for typography?", "answer": "Pure vw units can make text too small on narrow screens and too large on wide screens, with no minimum or maximum constraint." },
+    { "question": "How does clamp() solve the vw unit problem?", "answer": "clamp() caps the font size between a minimum and maximum, so it never goes below or above readable bounds." },
+    { "question": "What is the formula for fluid typography with clamp()?", "answer": "clamp(minFontSize, fontSizeAtSmallVP + slope * (100vw - smallVP), maxFontSize) often simplified to clamp(minSize, preferredSize, maxSize)." },
+    { "question": "What is line-height in responsive typography?", "answer": "Line-height controls vertical spacing between lines. For readability, it is usually 1.4-1.6 for body text and should be unitless for responsiveness." },
+    { "question": "What is the role of letter-spacing in responsive typography?", "answer": "Letter-spacing adjusts the space between characters and may need slight reduction on small screens to improve fit." }
+  ],
+  "intermediate": [
+    { "question": "How do you calculate fluid typography values using clamp()?", "answer": "Use a formula like clamp(1rem, 0.5rem + 2vw, 2rem) where the middle value scales linearly between the min and max across the viewport range." },
+    { "question": "What is the difference between fluid typography and responsive typography with media queries?", "answer": "Fluid typography scales continuously; media queries apply discrete font sizes at specific breakpoints. Fluid is smoother but requires more careful calculation." },
+    { "question": "How do you create a typography scale for responsive design?", "answer": "Define a base font size and a modular scale ratio, then compute heading sizes using the ratio. Use clamp() to make the scale fluid." },
+    { "question": "What is the optimal line length for readability?", "answer": "Optimal line length is 45-75 characters per line. Use measure (max-width) on text containers to maintain this range on wide screens." },
+    { "question": "How do you handle heading sizes responsively?", "answer": "Use a larger modular scale ratio on wide screens and a smaller ratio on narrow screens, applying fluid sizing with clamp() or media queries." },
+    { "question": "What is the relationship between container queries and responsive typography?", "answer": "Container queries (@container) allow typography to respond to the container's width rather than the viewport, enabling context-aware text sizing." },
+    { "question": "How do you combine vw with rem for accessible fluid typography?", "answer": "Use calc() with rem and vw, e.g., calc(1rem + 0.5vw), which respects user font-size preferences while adding a viewport-relative component." },
+    { "question": "What is the 62.5% font-size trick for rem-based typography?", "answer": "Setting html { font-size: 62.5% } makes 1rem = 10px (assuming browser default 16px), simplifying rem calculations for fluid typography." },
+    { "question": "How do you ensure responsive typography is accessible?", "answer": "Allow text to resize up to 200% without losing content, use relative units (rem, em), and test with browser zoom at various levels." },
+    { "question": "What is the role of max-width on text containers?", "answer": "Setting max-width: 65ch on paragraphs limits line length for readability, ensuring text does not become too wide on large screens." }
+  ],
+  "advanced": [
+    { "question": "How do you create a complete fluid typography system with CSS custom properties?", "answer": "Define font-size steps as custom properties using clamp(), then reference them in component styles. The custom properties automatically adapt across viewports." },
+    { "question": "What is the interaction between fluid typography and CSS container queries in a component-based architecture?", "answer": "Components can define their own fluid typography using cqi (container inline-size) units instead of vw, making them truly reusable across different contexts." },
+    { "question": "How do you handle fluid typography for CJK (Chinese, Japanese, Korean) characters?", "answer": "CJK characters require larger font sizes (1.5-2x) for readability at the same physical size, so fluid scales should be adjusted accordingly." },
+    { "question": "What are the performance implications of using viewport units in typography?", "answer": "Viewport units trigger recalculations on resize, but modern browsers handle this efficiently. The performance impact is negligible for most pages." },
+    { "question": "How do you create a fluid type ramp that aligns with CSS Grid column widths?", "answer": "Use cqi units (container inline size) for typography to align text scaling with grid column widths, ensuring proportional harmony between text and layout." },
+    { "question": "How does font-loading (FOUT/FOIT) interact with responsive typography?", "answer": "Fluid typography values calculated before web fonts load may shift when fallback fonts are swapped. Use font-display and size-adjust to mitigate layout shifts." },
+    { "question": "What is the relationship between responsive typography and CSS size-adjust property?", "answer": "size-adjust on @font-face normalizes font metrics so fallback fonts occupy the same space, reducing layout shift when fluid typography values are applied." },
+    { "question": "How do you create a fluid font size that accounts for both viewport and container size?", "answer": "Combine vw and cqi with min() to take the smaller of two approaches, or use a single clamp() with vw for viewport-based fluidity." },
+    { "question": "How do you implement vertical rhythm in responsive typography?", "answer": "Use a base line-height unit and scale margins/padding proportionally with the font size using em or rem, maintaining consistent spacing as text scales." },
+    { "question": "What are the accessibility guidelines for minimum and maximum font sizes in responsive typography?", "answer": "Minimum should not go below 1rem (16px equivalent) for body text; maximum should not exceed reasonable bounds (typically 3-4rem for headings at wide screens)." }
+  ]
+}

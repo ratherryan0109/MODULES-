@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "title": "Style Your First HTML Page",
+    "description": "Create an HTML page about your favorite hobby. Use an external CSS file to style it with a custom background color, heading color, and font family.",
+    "starterCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>My Hobby</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>My Hobby</h1>\n  <p>I enjoy doing this in my free time.</p>\n</body>\n</html>",
+    "solution": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>My Hobby: Photography</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>My Photography Journey</h1>\n  <p>I love capturing moments with my camera. Photography allows me to express creativity and freeze time.</p>\n</body>\n</html>\n\n/* style.css */\nbody {\n  background-color: #f0f8ff;\n  font-family: 'Georgia', serif;\n  margin: 40px;\n}\nh1 {\n  color: #2c3e50;\n  text-align: center;\n  border-bottom: 3px solid #3498db;\n  padding-bottom: 10px;\n}\np {\n  font-family: 'Arial', sans-serif;\n  line-height: 1.8;\n  color: #34495e;\n}"
+  },
+  "medium": {
+    "title": "Fix the Specificity Conflict",
+    "description": "Given the HTML and CSS below, the paragraph should be blue. Fix the CSS specificity issue so the paragraph appears blue without changing the HTML.",
+    "starterCode": "<div id=\"content\">\n  <p class=\"text\">This text should be blue</p>\n</div>\n\n<style>\n  #content p { color: red; }\n  .text { color: green; }\n  p { color: purple; }\n</style>",
+    "solution": "<div id=\"content\">\n  <p class=\"text\">This text should be blue</p>\n</div>\n\n<style>\n  #content p { color: red; }\n  #content .text { color: blue; }\n  p { color: purple; }\n</style>"
+  },
+  "hard": {
+    "title": "Build a Multi-Page Style System",
+    "description": "Create a mini-website with 3 HTML pages (index.html, about.html, contact.html) that all share one common external stylesheet. Each page should have consistent branding but a unique accent color per page using body classes.",
+    "starterCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Home</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n</head>\n<body>\n  <nav>\n    <a href=\"index.html\">Home</a>\n    <a href=\"about.html\">About</a>\n    <a href=\"contact.html\">Contact</a>\n  </nav>\n  <main>\n    <h1>Welcome</h1>\n    <p>Home page content.</p>\n  </main>\n</body>\n</html>",
+    "solution": "/* styles.css */\nbody {\n  font-family: 'Segoe UI', sans-serif;\n  margin: 0;\n  padding: 0;\n  background: #f8f9fa;\n  color: #333;\n}\nnav {\n  background: #2d3748;\n  padding: 15px 30px;\n  text-align: center;\n}\nnav a {\n  color: white;\n  text-decoration: none;\n  padding: 8px 20px;\n  margin: 0 5px;\n  border-radius: 4px;\n}\nnav a:hover { background: #4a5568; }\nmain {\n  max-width: 800px;\n  margin: 40px auto;\n  padding: 0 20px;\n}\nh1 {\n  border-bottom: 3px solid var(--accent);\n  padding-bottom: 10px;\n  color: var(--accent);\n}\n.page-home { --accent: #4299e1; }\n.page-about { --accent: #48bb78; }\n.page-contact { --accent: #ed8936; }"
+  }
+}

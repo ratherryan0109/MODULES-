@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Align Content - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    h1 { color: #0f172a; border-bottom: 3px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #06b6d4; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+    .demo-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; min-height: 200px; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; width: 100%; }
+    .demo-wrap div { background: #06b6d4; color: white; padding: 1rem; border-radius: 4px; text-align: center; flex: 0 0 100px; }
+    .demo-wrap div:nth-child(2n) { background: #f59e0b; }
+    .demo-wrap div:nth-child(3n) { background: #10b981; }
+    .label { font-size: 0.8rem; color: #64748b; font-weight: 600; margin-bottom: 0.25rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .important-note { background: #fef9c3; border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; border-radius: 4px; margin-top: 0.75rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>CSS Align Content - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: flex-start</h2>
+    <p>Lines packed at the start of the cross axis (top).</p>
+    <div class="demo-output">
+      <div class="label">align-content: flex-start</div>
+      <div class="demo-wrap" style="align-content:flex-start;">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+    <pre><code>.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: flex-end</h2>
+    <p>Lines packed at the end of the cross axis (bottom).</p>
+    <div class="demo-output">
+      <div class="label">align-content: flex-end</div>
+      <div class="demo-wrap" style="align-content:flex-end;">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+    <pre><code>align-content: flex-end;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: center</h2>
+    <p>Lines centered along the cross axis.</p>
+    <div class="demo-output">
+      <div class="label">align-content: center</div>
+      <div class="demo-wrap" style="align-content:center;">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+    <pre><code>align-content: center;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: space-between</h2>
+    <p>First line at start, last line at end, equal space between.</p>
+    <div class="demo-output">
+      <div class="label">align-content: space-between</div>
+      <div class="demo-wrap" style="align-content:space-between;">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+    <pre><code>align-content: space-between;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: space-around</h2>
+    <p>Equal space around each line.</p>
+    <div class="demo-output">
+      <div class="label">align-content: space-around</div>
+      <div class="demo-wrap" style="align-content:space-around;">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+    <pre><code>align-content: space-around;</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: stretch (default)</h2>
+    <p>Lines stretch to fill the remaining space (each line expands evenly).</p>
+    <div class="demo-output">
+      <div class="label">align-content: stretch</div>
+      <div class="demo-wrap" style="align-content:stretch;">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+      </div>
+    </div>
+    <pre><code>align-content: stretch; /* default */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Align-Content vs Align-Items</h2>
+    <p><code>align-content</code> distributes entire lines of wrapped items. <code>align-items</code> aligns individual items within a single line.</p>
+    <div class="demo-output">
+      <div class="grid-2">
+        <div>
+          <div class="label">align-items: center (one line)</div>
+          <div style="display:flex; align-items:center; height:120px; background:#f1f5f9; padding:0.75rem; border-radius:6px; gap:0.5rem;">
+            <div style="background:#06b6d4; color:white; padding:0.5rem 1rem; border-radius:4px;">Short</div>
+            <div style="background:#f59e0b; color:white; padding:1.5rem; border-radius:4px;">Tall</div>
+            <div style="background:#10b981; color:white; padding:0.3rem 0.5rem; border-radius:4px;">Short</div>
+          </div>
+        </div>
+        <div>
+          <div class="label">align-content: center (wrapped lines)</div>
+          <div style="display:flex; flex-wrap:wrap; align-content:center; height:180px; background:#f1f5f9; padding:0.75rem; border-radius:6px; gap:0.5rem;">
+            <div style="background:#06b6d4; color:white; padding:0.75rem; border-radius:4px; flex:0 0 80px;">Row 1</div>
+            <div style="background:#f59e0b; color:white; padding:0.75rem; border-radius:4px; flex:0 0 80px;">Row 1</div>
+            <div style="background:#10b981; color:white; padding:0.75rem; border-radius:4px; flex:0 0 80px;">Row 2</div>
+            <div style="background:#ef4444; color:white; padding:0.75rem; border-radius:4px; flex:0 0 80px;">Row 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>/* Aligns items within a line */
+align-items: center;
+
+/* Distributes entire lines of content */
+align-content: center;  /* requires flex-wrap: wrap */</code></pre>
+    <div class="important-note"><strong>Important:</strong> <code>align-content</code> only works when <code>flex-wrap: wrap</code> is set and there is extra space on the cross axis. It distributes <em>lines</em> of items, not individual items.</div>
+  </div>
+</body>
+</html>

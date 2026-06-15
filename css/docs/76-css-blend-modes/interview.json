@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is mix-blend-mode in CSS?", "answer": "mix-blend-mode determines how an element's content blends with its parent's background and content behind it." },
+    { "question": "What is background-blend-mode in CSS?", "answer": "background-blend-mode determines how an element's background layers (images and colors) blend with each other." },
+    { "question": "What is the difference between mix-blend-mode and background-blend-mode?", "answer": "mix-blend-mode blends an element with what is behind it; background-blend-mode blends multiple background layers on the same element." },
+    { "question": "What is the multiply blend mode?", "answer": "multiply multiplies the colors, resulting in a darker image. White areas become transparent; black areas stay black." },
+    { "question": "What is the screen blend mode?", "answer": "screen inverts, multiplies, and inverts again. It lightens the image, with black becoming transparent and white staying white." },
+    { "question": "What is the overlay blend mode?", "answer": "overlay combines multiply and screen: dark areas get darker, light areas get lighter, increasing contrast." },
+    { "question": "What is the difference between opacity and blend modes?", "answer": "opacity makes the entire element transparent; blend modes change how colors interact with underlying content." },
+    { "question": "What is the normal blend mode?", "answer": "normal is the default blend mode with no blending applied. The top element simply covers what is behind it." },
+    { "question": "What is the isolation property in CSS?", "answer": "isolation: isolate creates a new stacking context, preventing an element's blend modes from affecting elements outside it." },
+    { "question": "Can you apply blend modes to text?", "answer": "Yes, mix-blend-mode on text elements blends the text with the background behind it." }
+  ],
+  "intermediate": [
+    { "question": "What are the common use cases for mix-blend-mode?", "answer": "Common uses include duotone effects, text overlays on images, creative image composites, and hover effects." },
+    { "question": "How do you create a duotone effect with blend modes?", "answer": "Place a colored overlay div with mix-blend-mode: multiply or overlay over a grayscale image." },
+    { "question": "How does isolation: isolate affect blend modes?", "answer": "isolation: isolate limits the blend mode's effect to the element's own subtree, preventing blending with elements further behind." },
+    { "question": "Can you animate blend modes?", "answer": "Yes, CSS transitions and animations work with blend modes, smoothly transitioning between different blend modes." },
+    { "question": "What happens when mix-blend-mode is applied to a fixed position element?", "answer": "Fixed elements with blend modes blend with the entire page behind them, which can cause unexpected visual results." },
+    { "question": "How do you create a text readable on any background using blend modes?", "answer": "Use mix-blend-mode: difference or exclusion with a white/black text color to create an inverted effect that works on any background." },
+    { "question": "What is the difference between color-burn and color-dodge blend modes?", "answer": "color-burn darkens the bottom layer based on the top layer; color-dodge lightens the bottom layer based on the top layer." },
+    { "question": "How do blend modes work with CSS gradients?", "answer": "Apply background-blend-mode to a gradient background to blend gradient layers together for complex color effects." },
+    { "question": "What is the hard-light blend mode?", "answer": "hard-light is similar to overlay but uses the top layer's luminosity to determine whether to multiply or screen." },
+    { "question": "How do you use background-blend-mode with multiple backgrounds?", "answer": "Define multiple background images/colors separated by commas and apply background-blend-mode to control how they blend." }
+  ],
+  "advanced": [
+    { "question": "How do CSS blend modes compare to Photoshop blend modes?", "answer": "CSS blend modes are based on the same Porter-Duff compositing and SVG blend mode standards, closely matching Photoshop's behavior." },
+    { "question": "How do blend modes interact with CSS filters and transforms?", "answer": "Filters are applied before blend modes in the rendering pipeline. Transforms may create new stacking contexts that affect blend mode scope." },
+    { "question": "What are the performance implications of blend modes?", "answer": "Blend modes require GPU compositing and can be expensive, especially on mobile devices. Use them sparingly and test on target devices." },
+    { "question": "How does the browser rendering pipeline handle mix-blend-mode for stacked elements?", "answer": "The browser must composite elements in order, blending each layer with what is behind. Complex stacks increase rendering cost." },
+    { "question": "How do you implement a color-overlay hover effect with blend modes?", "answer": "Use mix-blend-mode on a pseudo-element overlay with a background color, transitioning opacity on hover." },
+    { "question": "How do blend modes work with SVG elements?", "answer": "CSS blend modes work on SVG elements in HTML context. SVG also has its own feBlend filter primitive for more control." },
+    { "question": "How does will-change: transform affect blend mode performance?", "answer": "Promoting an element to its own compositor layer via will-change: transform can improve blend mode performance by isolating compositing." },
+    { "question": "What is the interaction between backdrop-filter and mix-blend-mode?", "answer": "backdrop-filter processes the background first, then the element's mix-blend-mode blends with the filtered result." },
+    { "question": "How do you create a glass morphism effect using blend modes and backdrop-filter?", "answer": "Combine backdrop-filter: blur() with a semi-transparent background and mix-blend-mode on content for the glass morphism aesthetic." },
+    { "question": "How do you debug blend modes that are not rendering as expected?", "answer": "Check stacking contexts, ensure no parent has isolation or opacity < 1 (creates new stacking context), and verify element ordering." }
+  ]
+}

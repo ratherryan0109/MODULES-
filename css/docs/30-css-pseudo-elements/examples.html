@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Pseudo-elements - Examples</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; padding: 30px; background: #f5f5f5; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { margin-bottom: 30px; color: #333; }
+    h2 { margin: 30px 0 15px; color: #555; }
+    .example { background: white; border-radius: 8px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .code { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; font-family: 'Consolas', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+
+    /* ::before and ::after */
+    .icon-link::before {
+      content: "→ ";
+      color: #4a90d9;
+    }
+    .icon-link::after {
+      content: " ←";
+      color: #999;
+    }
+    .decorative-box {
+      position: relative;
+      padding: 20px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .decorative-box::before,
+    .decorative-box::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #e94560;
+      border-radius: 50%;
+    }
+    .decorative-box::before { top: -10px; left: -10px; }
+    .decorative-box::after { bottom: -10px; right: -10px; }
+
+    /* ::first-letter (Drop Cap) */
+    .drop-cap::first-letter {
+      font-size: 3.5em;
+      float: left;
+      line-height: 0.8;
+      margin-right: 8px;
+      color: #e94560;
+      font-weight: bold;
+    }
+
+    /* ::first-line */
+    .first-line-style::first-line {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #4a90d9;
+    }
+
+    /* ::selection */
+    .custom-selection::selection {
+      background: #4a90d9;
+      color: white;
+    }
+    body::selection { background: #4a90d9; color: white; }
+
+    /* ::placeholder */
+    .styled-input::placeholder {
+      color: #999;
+      font-style: italic;
+      font-size: 14px;
+    }
+    .styled-input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; }
+
+    /* ::marker */
+    .styled-list li::marker {
+      color: #e94560;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    /* Quote with ::before/::after */
+    blockquote.custom-quote {
+      margin: 20px 0;
+      padding: 20px 40px;
+      background: #f9f9f9;
+      border-left: 4px solid #4a90d9;
+      font-style: italic;
+      position: relative;
+    }
+    blockquote.custom-quote::before {
+      content: "\201C";
+      position: absolute;
+      top: 0;
+      left: 10px;
+      font-size: 3em;
+      color: #4a90d9;
+    }
+    blockquote.custom-quote::after {
+      content: "\201D";
+      position: absolute;
+      bottom: -10px;
+      right: 10px;
+      font-size: 3em;
+      color: #4a90d9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Pseudo-elements - Examples</h1>
+
+    <div class="example">
+      <h2>1. ::before and ::after (Content Insertion)</h2>
+      <div class="code">.link::before { content: "→ "; }<br>.link::after { content: " ←"; }</div>
+      <a href="#" class="icon-link">Clickable Link</a>
+    </div>
+
+    <div class="example">
+      <h2>2. ::before and ::after (Decorative Elements)</h2>
+      <div class="code">.box::before, .box::after { content: ''; position: absolute; ... }</div>
+      <div class="decorative-box">I have decorative circles in corners!</div>
+    </div>
+
+    <div class="example">
+      <h2>3. ::first-letter (Drop Cap)</h2>
+      <div class="code">p::first-letter { font-size: 3.5em; float: left; }</div>
+      <p class="drop-cap">This is a paragraph with a decorative drop cap. The first letter is enlarged and floats to the left, creating a classic typographic effect often seen in books and magazines.</p>
+    </div>
+
+    <div class="example">
+      <h2>4. ::first-line</h2>
+      <div class="code">p::first-line { font-size: 1.3em; font-weight: bold; }</div>
+      <p class="first-line-style">This is the first line of a paragraph. It is styled differently using the ::first-line pseudo-element, which applies styles only to the first line based on the current viewport width. When the text wraps, only the first line is affected.</p>
+    </div>
+
+    <div class="example custom-selection">
+      <h2>5. ::selection (Custom Highlight)</h2>
+      <div class="code">::selection { background: #4a90d9; color: white; }</div>
+      <p>Select (highlight) this text to see custom selection colors! The background becomes blue and text becomes white.</p>
+    </div>
+
+    <div class="example">
+      <h2>6. ::placeholder</h2>
+      <div class="code">input::placeholder { color: #999; font-style: italic; }</div>
+      <input type="text" class="styled-input" placeholder="Enter your email address...">
+    </div>
+
+    <div class="example">
+      <h2>7. ::marker (List Style)</h2>
+      <div class="code">li::marker { color: #e94560; font-size: 1.2em; }</div>
+      <ul class="styled-list">
+        <li>Custom bullet color and size</li>
+        <li>Each marker is styled individually</li>
+        <li>No extra HTML elements needed!</li>
+      </ul>
+    </div>
+
+    <div class="example">
+      <h2>8. Blockquote with Decorative Quotes</h2>
+      <div class="code">blockquote::before { content: '"'; }<br>blockquote::after { content: '"'; }</div>
+      <blockquote class="custom-quote">
+        <p>Pseudo-elements are one of the most powerful features in CSS, allowing you to add decorative content without modifying your HTML.</p>
+        <cite>- CSS Enthusiast</cite>
+      </blockquote>
+    </div>
+  </div>
+</body>
+</html>

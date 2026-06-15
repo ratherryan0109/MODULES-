@@ -1,0 +1,147 @@
+{
+  "module": "112-reduced-motion",
+  "title": "Reduced Motion",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which media query detects a user's preference for reduced motion?",
+      "options": ["@media (prefers-reduced-motion: reduce)", "@media (motion: reduced)", "@media (prefers-less-animation)", "@media (accessibility: reduce-motion)"],
+      "correctAnswer": 0,
+      "explanation": "The correct media query is @media (prefers-reduced-motion: reduce)."
+    },
+    {
+      "id": 2,
+      "question": "What is the recommended way to disable animations for reduced motion?",
+      "options": ["Set animation-duration: 0.01ms", "Set display: none on animated elements", "Remove the elements entirely", "Use JavaScript to stop all animations"],
+      "correctAnswer": 0,
+      "explanation": "Setting animation-duration and transition-duration to 0.01ms effectively disables animations while preserving the final state."
+    },
+    {
+      "id": 3,
+      "question": "Which type of animation should still play when a user prefers reduced motion?",
+      "options": ["Decorative bounce effects", "Loading spinners", "Confetti animations", "Parallax backgrounds"],
+      "correctAnswer": 1,
+      "explanation": "Functional animations like loading spinners and progress bars serve a purpose and should be kept, though possibly with reduced intensity."
+    },
+    {
+      "id": 4,
+      "question": "What is a good alternative to a sliding notification for users who prefer reduced motion?",
+      "options": ["Fade in", "No notification at all", "Larger text", "Sound effect"],
+      "correctAnswer": 0,
+      "explanation": "Fading in is a less intense animation that still conveys the appearance of a notification without excessive motion."
+    },
+    {
+      "id": 5,
+      "question": "Which CSS properties are most performant to animate?",
+      "options": ["width and height", "transform and opacity", "margin and padding", "font-size and color"],
+      "correctAnswer": 1,
+      "explanation": "transform and opacity are composited by the GPU and don't trigger layout or paint, making them the most performant."
+    },
+    {
+      "id": 6,
+      "question": "What vestibular condition is most commonly associated with motion sensitivity?",
+      "options": ["Migraine", "Vestibular disorder", "Color blindness", "Photosensitivity"],
+      "correctAnswer": 1,
+      "explanation": "Vestibular disorders affect the inner ear balance system and can cause dizziness, nausea, and disorientation from motion."
+    },
+    {
+      "id": 7,
+      "question": "What should you do with the animation's final state when disabling it for reduced motion?",
+      "options": ["Hide the element", "Apply the final state via CSS", "Use JavaScript to set styles", "Remove the element from DOM"],
+      "correctAnswer": 1,
+      "explanation": "Preserve the animation's end state (e.g., opacity: 1, transform: none) so the element appears as it would after animation completes."
+    },
+    {
+      "id": 8,
+      "question": "WCAG 2.3.3 requires that animations triggered by interaction can be...",
+      "options": ["Made faster", "Disabled", "Made colorful", "Shared"],
+      "correctAnswer": 1,
+      "explanation": "WCAG 2.3.3 'Animation from Interactions' requires that motion animation triggered by user interaction can be disabled."
+    },
+    {
+      "id": 9,
+      "question": "How can you provide a manual motion toggle in addition to the media query?",
+      "options": ["It's not necessary", "Use a class toggle on the body element", "Use a JavaScript alert", "Add a meta tag"],
+      "correctAnswer": 1,
+      "explanation": "Add a class like .reduce-motion to the body that disables animations, allowing users without OS access to control motion."
+    },
+    {
+      "id": 10,
+      "question": "What is the default value for prefers-reduced-motion?",
+      "options": ["reduce", "no-preference", "auto", "none"],
+      "correctAnswer": 1,
+      "explanation": "The default value when no preference is set is 'no-preference'."
+    },
+    {
+      "id": 11,
+      "question": "Which animation should NOT be removed even when motion is reduced?",
+      "options": ["Progress bar animation", "Hover scale effect", "Page loader animation", "Background parallax"],
+      "correctAnswer": 0,
+      "explanation": "Progress bars provide functional feedback about an ongoing process and should be preserved."
+    },
+    {
+      "id": 12,
+      "question": "What does setting scroll-behavior: auto do?",
+      "options": ["Enables smooth scrolling", "Disables smooth scrolling", "Makes scrolling faster", "Prevents scrolling"],
+      "correctAnswer": 1,
+      "explanation": "scroll-behavior: auto disables smooth scrolling, which is the appropriate setting for users who prefer reduced motion."
+    },
+    {
+      "id": 13,
+      "question": "Why should you avoid using !important in reduced motion queries?",
+      "options": ["It doesn't work", "It can prevent users from re-enabling essential animations", "It's slow", "It's deprecated"],
+      "correctAnswer": 1,
+      "explanation": "Using !important can override any attempt to selectively enable functional animations that should persist."
+    },
+    {
+      "id": 14,
+      "question": "What percentage of people experience some form of motion sensitivity?",
+      "options": ["5%", "10%", "~30%", "50%"],
+      "correctAnswer": 2,
+      "explanation": "Studies suggest approximately 30% of people experience some degree of motion sensitivity or motion sickness."
+    },
+    {
+      "id": 15,
+      "question": "Which of these is the best reduced-motion fallback for a parallax effect?",
+      "options": ["Remove the background image", "Use a static background", "Speed up the parallax", "Add more parallax layers"],
+      "correctAnswer": 1,
+      "explanation": "A static background (using background-attachment: scroll instead of fixed) is the best fallback for parallax."
+    },
+    {
+      "id": 16,
+      "question": "What should you do with infinite animations when reduced motion is preferred?",
+      "options": ["Keep them", "Stop them (set iteration-count: 1)", "Make them faster", "Double the duration"],
+      "correctAnswer": 1,
+      "explanation": "Infinite animations should be stopped by setting animation-iteration-count to 1 or using animation: none."
+    },
+    {
+      "id": 17,
+      "question": "How can you detect reduced motion preference in JavaScript?",
+      "options": ["window.prefersReducedMotion", "window.matchMedia('(prefers-reduced-motion: reduce)')", "navigator.reducedMotion", "document.reducedMotion"],
+      "correctAnswer": 1,
+      "explanation": "Use window.matchMedia('(prefers-reduced-motion: reduce)') to detect the preference in JavaScript."
+    },
+    {
+      "id": 18,
+      "question": "What is a 'triggered' animation in WCAG terms?",
+      "options": ["CSS :hover animation", "Animation that starts on user interaction", "Page load animation", "Background video"],
+      "correctAnswer": 1,
+      "explanation": "A triggered animation is one that begins as a result of user interaction (click, hover, focus, etc.)."
+    },
+    {
+      "id": 19,
+      "question": "Which CSS property should be used to replace a sliding navigation drawer for reduced motion?",
+      "options": ["transform: scale()", "opacity: 1/0", "visibility: visible/hidden", "display: block/none"],
+      "correctAnswer": 1,
+      "explanation": "Replace slide transitions (transform: translateX) with opacity fades which involve less perceived motion."
+    },
+    {
+      "id": 20,
+      "question": "What is the main goal of the prefers-reduced-motion media query?",
+      "options": ["Improve page load speed", "Respect user's accessibility needs regarding motion", "Reduce battery consumption", "Comply with SEO requirements"],
+      "correctAnswer": 1,
+      "explanation": "The primary goal is to respect user accessibility needs, particularly for those with vestibular disorders or motion sensitivity."
+    }
+  ]
+}

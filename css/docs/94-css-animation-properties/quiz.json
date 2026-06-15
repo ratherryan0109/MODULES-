@@ -1,0 +1,147 @@
+{
+  "module": "94-css-animation-properties",
+  "title": "CSS Animation Properties",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does animation-fill-mode: forwards do?",
+      "options": ["Applies start styles before animation", "Applies end styles after animation", "Pauses animation", "Reverses animation"],
+      "correctAnswer": 1,
+      "explanation": "forwards retains the last keyframe styles after the animation ends."
+    },
+    {
+      "id": 2,
+      "question": "Which value makes animation repeat indefinitely?",
+      "options": ["forever", "infinite", "loop", "always"],
+      "correctAnswer": 1,
+      "explanation": "infinite makes the animation repeat forever."
+    },
+    {
+      "id": 3,
+      "question": "What does animation-direction: alternate do?",
+      "options": ["Plays in reverse only", "Plays normal then reverse", "Alternates between two keyframes", "Randomizes direction"],
+      "correctAnswer": 1,
+      "explanation": "alternate plays the animation normally, then in reverse, alternating each cycle."
+    },
+    {
+      "id": 4,
+      "question": "How do you pause an animation on hover?",
+      "options": ["animation-pause: true", "animation-play-state: paused", "animation-stop: hover", "animation-run: false"],
+      "correctAnswer": 1,
+      "explanation": "animation-play-state: paused pauses the animation; set on :hover."
+    },
+    {
+      "id": 5,
+      "question": "What is the default animation-duration?",
+      "options": ["1s", "0s", "0.3s", "100ms"],
+      "correctAnswer": 1,
+      "explanation": "Default animation-duration is 0s, meaning the animation won't run."
+    },
+    {
+      "id": 6,
+      "question": "Which shorthand property combines all animation properties?",
+      "options": ["animation", "anim", "keyframe", "animate"],
+      "correctAnswer": 0,
+      "explanation": "The 'animation' shorthand combines all animation sub-properties."
+    },
+    {
+      "id": 7,
+      "question": "What does animation-delay do with a negative value?",
+      "options": ["Starts animation immediately, mid-way", "Delays even more", "Errors out", "Delays by absolute value"],
+      "correctAnswer": 0,
+      "explanation": "A negative delay starts the animation as if it had already been playing for that time."
+    },
+    {
+      "id": 8,
+      "question": "Can you specify multiple animations on one element?",
+      "options": ["No", "Yes, comma-separated", "Only with JS", "Max 2"],
+      "correctAnswer": 1,
+      "explanation": "Multiple animations are comma-separated: animation: bounce 1s, fadeIn 0.5s;"
+    },
+    {
+      "id": 9,
+      "question": "What does animation-play-state: running do?",
+      "options": ["Stops the animation", "Starts/resumes the animation", "Speeds up animation", "Reverses animation"],
+      "correctAnswer": 1,
+      "explanation": "running starts or resumes a paused animation."
+    },
+    {
+      "id": 10,
+      "question": "Which property controls the number of times an animation plays?",
+      "options": ["animation-count", "animation-iteration-count", "animation-repeat", "animation-loop"],
+      "correctAnswer": 1,
+      "explanation": "animation-iteration-count specifies how many times the animation cycles."
+    },
+    {
+      "id": 11,
+      "question": "What does animation-direction: reverse do?",
+      "options": ["Plays from 100% to 0%", "Plays from 0% to 100%", "Alternates direction", "Randomizes playback"],
+      "correctAnswer": 0,
+      "explanation": "reverse plays the animation backwards, starting at the 100% keyframe and ending at 0%."
+    },
+    {
+      "id": 12,
+      "question": "Which animation sub-property defines the easing curve?",
+      "options": ["animation-timing-function", "animation-easing", "animation-curve", "animation-velocity"],
+      "correctAnswer": 0,
+      "explanation": "animation-timing-function defines the easing curve for keyframe segments."
+    },
+    {
+      "id": 13,
+      "question": "What does animation-fill-mode: both do?",
+      "options": ["Applies both forwards and backwards fill behavior", "Applies the animation to two elements", "Runs the animation both ways", "Creates two animation states"],
+      "correctAnswer": 0,
+      "explanation": "both combines forwards and backwards: applies 0% styles during delay and retains 100% styles after."
+    },
+    {
+      "id": 14,
+      "question": "Which timing function is best for a constant-speed spinner?",
+      "options": ["linear", "ease", "ease-in", "ease-out"],
+      "correctAnswer": 0,
+      "explanation": "linear provides constant speed, ideal for continuous rotation animations."
+    },
+    {
+      "id": 15,
+      "question": "What happens when you set animation-iteration-count to 0.5?",
+      "options": ["Plays only half the animation cycle", "Plays the animation 5 times", "No animation occurs", "Plays half as fast"],
+      "correctAnswer": 0,
+      "explanation": "A fractional iteration count plays only part of one animation cycle."
+    },
+    {
+      "id": 16,
+      "question": "Which is the correct shorthand order for animation?",
+      "options": ["name duration timing-function delay iteration-count direction fill-mode play-state", "duration name delay timing-function iteration-count direction fill-mode play-state", "name timing-function duration delay iteration-count direction fill-mode play-state", "duration timing-function name delay iteration-count direction fill-mode play-state"],
+      "correctAnswer": 0,
+      "explanation": "The correct shorthand order is: name, duration, timing-function, delay, iteration-count, direction, fill-mode, play-state."
+    },
+    {
+      "id": 17,
+      "question": "What is a key advantage of CSS animation over JavaScript animation?",
+      "options": ["Runs on compositor thread separately from main thread", "Supports more properties", "Easier debugging", "Smaller file size"],
+      "correctAnswer": 0,
+      "explanation": "CSS animations run on the compositor thread, so they continue smoothly even when JavaScript is blocked."
+    },
+    {
+      "id": 18,
+      "question": "Which property should you avoid animating for performance?",
+      "options": ["width", "transform", "opacity", "filter"],
+      "correctAnswer": 0,
+      "explanation": "Animating width triggers layout recalculation on the main thread, causing potential jank."
+    },
+    {
+      "id": 19,
+      "question": "What does the steps() timing function create?",
+      "options": ["Frame-by-frame animation without interpolation", "Smooth constant-speed animation", "Bounce easing effect", "Gradual acceleration"],
+      "correctAnswer": 0,
+      "explanation": "steps() divides the animation into discrete segments with no interpolation between them."
+    },
+    {
+      "id": 20,
+      "question": "How do you respect prefers-reduced-motion for animations?",
+      "options": ["Set animation-duration: 0.01ms or animation: none", "Remove all animation properties", "Use JavaScript to detect motion", "Add a !important flag"],
+      "correctAnswer": 0,
+      "explanation": "Set extremely small durations (0.01ms) or animation: none inside @media (prefers-reduced-motion: reduce)."
+    }
+  ]
+}

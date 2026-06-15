@@ -1,0 +1,38 @@
+{
+  "beginner": [
+    { "question": "What is backdrop-filter in CSS?", "answer": "backdrop-filter applies graphical effects like blur or color shifting to the area behind an element, affecting the background behind it." },
+    { "question": "What is the difference between backdrop-filter and filter?", "answer": "filter affects the element itself; backdrop-filter affects the area behind the element, creating effects like frosted glass." },
+    { "question": "How do you create a frosted glass effect?", "answer": "Use backdrop-filter: blur(10px); on a semi-transparent element to blur the content behind it, creating a glass-like appearance." },
+    { "question": "What filter functions does backdrop-filter support?", "answer": "blur(), brightness(), contrast(), grayscale(), hue-rotate(), invert(), opacity(), saturate(), sepia(), drop-shadow(), and url() for SVG filters." },
+    { "question": "How do you apply a blur to the background of a navbar?", "answer": "Set background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); on the navbar for a blurred translucent effect." },
+    { "question": "Is backdrop-filter supported in all browsers?", "answer": "All modern browsers support backdrop-filter, but older browsers may require the -webkit-backdrop-filter prefix for Safari compatibility." },
+    { "question": "What is the default value of backdrop-filter?", "answer": "The default value is none, meaning no filter is applied to the background area." },
+    { "question": "Can backdrop-filter be combined with CSS animations?", "answer": "Yes, backdrop-filter can be animated with CSS transitions or keyframe animations, though performance may vary." },
+    { "question": "Does backdrop-filter affect the element's content?", "answer": "No, backdrop-filter only affects the area behind the element; the element's own content and background remain unaffected." },
+    { "question": "What is a common use case for backdrop-filter?", "answer": "Frosted glass navigation bars, modal overlays, image captions with readable text over busy backgrounds, and iOS-style interface elements." }
+  ],
+  "intermediate": [
+    { "question": "How does backdrop-filter differ from using a semi-transparent overlay?", "answer": "backdrop-filter dynamically filters whatever is behind the element; an overlay is static and does not adapt to content changes behind it." },
+    { "question": "How do you combine backdrop-filter with a gradient background?", "answer": "Set a gradient background on the element and apply backdrop-filter; the background gradient blends with the filtered backdrop behind it." },
+    { "question": "What is the performance impact of backdrop-filter?", "answer": "backdrop-filter can be performance-intensive, especially with large blurred areas or complex filters, as it requires real-time compositing." },
+    { "question": "How do you handle backdrop-filter on modal overlays?", "answer": "Apply backdrop-filter to the modal background overlay to blur the content behind, keeping the modal content crisp and readable." },
+    { "question": "Can backdrop-filter be used inside a transform context?", "answer": "Yes, backdrop-filter works within transformed elements, but may create additional compositing layers that affect performance." },
+    { "question": "How does backdrop-filter interact with z-index and stacking contexts?", "answer": "backdrop-filter forces the element to create its own stacking context and compositing layer, which can affect z-index behavior." },
+    { "question": "How do you create a text that is readable over a dynamic background using backdrop-filter?", "answer": "Place text inside a container with backdrop-filter: blur(8px); and a semi-transparent background to improve contrast over varying backdrops." },
+    { "question": "How does backdrop-filter work with video elements behind it?", "answer": "backdrop-filter works well with video backgrounds, creating smooth overlays that dynamically filter the video content in real-time." },
+    { "question": "What is the -webkit-backdrop-filter prefix for?", "answer": "Older Safari versions (pre-15) require -webkit-backdrop-filter; always include both for maximum browser compatibility." },
+    { "question": "How do you debug backdrop-filter rendering issues?", "answer": "Check for stacking context conflicts, verify the element has a semi-transparent background, and use DevTools layers panel to inspect compositing." }
+  ],
+  "advanced": [
+    { "question": "How does backdrop-filter interact with CSS containment?", "answer": "contain: paint or contain: layout can clip the backdrop-filter effect or prevent it from rendering correctly due to isolation." },
+    { "question": "How does the browser render backdrop-filter on the compositor thread?", "answer": "backdrop-filter requires the browser to composite the background content, blur it, and render the result — all on the compositor thread when possible." },
+    { "question": "How do you use backdrop-filter with SVG background images?", "answer": "SVG backgrounds behind a backdrop-filter element are filtered in real-time; the filter samples the rendered SVG output behind the element." },
+    { "question": "How does backdrop-filter behave with backdrop-filter stacking (filter on filters)?", "answer": "Multiple stacked backdrop-filter elements each filter the current composited background; nested filters compound the effect." },
+    { "question": "How do you create a dynamic glass effect with animated backdrop-filter?", "answer": "Animate backdrop-filter values in keyframes: @keyframes glass { 0% { backdrop-filter: blur(0px); } 100% { backdrop-filter: blur(20px); } }" },
+    { "question": "How does backdrop-filter interact with scroll and fixed positioning?", "answer": "Fixed elements with backdrop-filter blur the content behind them effectively; scrolling updates the filtered background in real-time." },
+    { "question": "How do you optimize backdrop-filter for 60fps performance?", "answer": "Minimize the filtered area, use lower blur values (5-15px), avoid overlapping filtered elements, and use will-change to promote layers." },
+    { "question": "How does backdrop-filter work with the filter() function in CSS?", "answer": "The filter() function (as a CSS image function) applies filters to images; backdrop-filter applies to the entire area behind an element." },
+    { "question": "How does backdrop-filter behave in print or print preview?", "answer": "backdrop-filter is typically ignored in print as it is a visual effect that does not translate to printed media." },
+    { "question": "How do you create a backdrop-filter only when supported (progressive enhancement)?", "answer": "Use @supports (backdrop-filter: blur(1px)) { .glass { backdrop-filter: blur(10px); } } with a solid-color background fallback." }
+  ]
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What does SVG stand for?",
+    "options": ["Scalable Vector Graphics", "Standard Visual Graphics", "Simple Vector Grid", "Scalable Visual Graphic"],
+    "answer": "a",
+    "explanation": "SVG stands for Scalable Vector Graphics. It is an XML-based vector image format for two-dimensional graphics."
+  },
+  {
+    "question": "Which SVG attribute defines the coordinate system for scaling?",
+    "options": ["coords", "viewBox", "scale", "dimensions"],
+    "answer": "b",
+    "explanation": "The viewBox attribute defines the coordinate system (minX, minY, width, height). It scales the content to fit the SVG's width/height dimensions."
+  },
+  {
+    "question": "What SVG element draws a circle?",
+    "options": ["<circle>", "<ellipse>", "<round>", "<ring>"],
+    "answer": "a",
+    "explanation": "The <circle> element draws a circle using cx (center x), cy (center y), and r (radius) attributes."
+  },
+  {
+    "question": "Which path command moves the pen without drawing?",
+    "options": ["L", "H", "M", "Z"],
+    "answer": "c",
+    "explanation": "M (Move To) moves the pen to a new coordinate without drawing. It's used to start a new subpath or move to a different position."
+  },
+  {
+    "question": "Which SVG element groups related shapes together?",
+    "options": ["<group>", "<g>", "<section>", "<svg>"],
+    "answer": "b",
+    "explanation": "The <g> element groups related SVG elements together. Styles, transforms, and attributes applied to <g> are inherited by its children."
+  },
+  {
+    "question": "How do you create a linear gradient in SVG?",
+    "options": ["<linearGradient>", "<gradient>", "<colorGradient>", "<lineGrad>"],
+    "answer": "a",
+    "explanation": "Use <linearGradient> inside <defs> with <stop> child elements. It defines color stops along a line specified by x1, y1, x2, y2 attributes."
+  },
+  {
+    "question": "What is the purpose of the <use> element in SVG?",
+    "options": ["To apply a filter", "To reuse a defined element", "To create a hyperlink", "To embed an image"],
+    "answer": "b",
+    "explanation": "The <use> element reuses a previously defined SVG element (like a symbol or group) at a different location. It takes an href attribute pointing to the element's ID."
+  },
+  {
+    "question": "Which attribute controls the corner radius of a rectangle?",
+    "options": ["radius", "rx and ry", "corner", "rounded"],
+    "answer": "b",
+    "explanation": "The rx and ry attributes on <rect> control the horizontal and vertical corner radii. Setting both creates uniformly rounded corners."
+  },
+  {
+    "question": "What does the Z command do in a path?",
+    "options": ["Zooms in", "Zeros the position", "Closes the path", "Zags the line"],
+    "answer": "c",
+    "explanation": "Z (Close Path) draws a straight line from the current position back to the starting point of the current subpath, closing the shape."
+  },
+  {
+    "question": "Which SMIL element animates an attribute over time?",
+    "options": ["<animate>", "<move>", "<change>", "<transition>"],
+    "answer": "a",
+    "explanation": "The <animate> element animates a single attribute over time. For transforms, use <animateTransform>. For motion along a path, use <animateMotion>."
+  },
+  {
+    "question": "How do you reference a filter defined in <defs>?",
+    "options": ["filter='#id'", "filter='url(#id)'", "filter='ref(#id)'", "style='filter: #id'"],
+    "answer": "b",
+    "explanation": "Use filter='url(#id)' to reference a filter defined in <defs>. The url() function is the standard way to reference SVG fragments."
+  },
+  {
+    "question": "What SVG element provides a drop shadow effect?",
+    "options": ["<feShadow>", "<feDropShadow>", "<feBlur>", "<feOffset>"],
+    "answer": "b",
+    "explanation": "<feDropShadow> creates a drop shadow effect with attributes dx, dy, stdDeviation, and flood-color. It's part of SVG filter effects."
+  },
+  {
+    "question": "What does preserveAspectRatio='xMidYMid meet' do?",
+    "options": ["Stretches the SVG to fill", "Centers and scales uniformly", "Crops the SVG", "Repeats the SVG"],
+    "answer": "b",
+    "explanation": "xMidYMid meet centers the content horizontally and vertically and scales uniformly to fit within the viewport (like object-fit: contain)."
+  },
+  {
+    "question": "Which SVG element is used for reusable icon definitions?",
+    "options": ["<icon>", "<symbol>", "<template>", "<def>"],
+    "answer": "b",
+    "explanation": "The <symbol> element defines reusable graphics (like icons) that can be instantiated with <use>. Unlike <g>, <symbol> has its own viewBox."
+  },
+  {
+    "question": "How does SVG differ from Canvas in the DOM?",
+    "options": ["SVG is pixel-based", "Canvas elements are in the DOM", "SVG elements are in the DOM", "They are the same"],
+    "answer": "c",
+    "explanation": "In SVG, every element (circle, rect, path) is a DOM node and supports events and CSS. Canvas has a single DOM element; drawing is done via JavaScript."
+  },
+  {
+    "question": "What is the correct namespace for SVG elements created with JavaScript?",
+    "options": ["http://www.w3.org/1999/xhtml", "http://www.w3.org/2000/svg", "http://www.w3.org/XML/", "http://svg.org/"],
+    "answer": "b",
+    "explanation": "SVG elements use the namespace 'http://www.w3.org/2000/svg'. When creating SVG elements with JS, use document.createElementNS() with this namespace."
+  },
+  {
+    "question": "What does stroke-dasharray do?",
+    "options": ["Sets stroke opacity", "Creates dashed lines", "Sets stroke width", "Creates dotted shadows"],
+    "answer": "b",
+    "explanation": "stroke-dasharray creates dashed/dotted strokes by specifying alternating dash and gap lengths. Multiple values create complex dash patterns."
+  },
+  {
+    "question": "Which attribute specifies the color inside a shape?",
+    "options": ["color", "fill", "stroke", "background"],
+    "answer": "b",
+    "explanation": "The fill attribute specifies the interior color of an SVG shape. Stroke specifies the outline color."
+  },
+  {
+    "question": "How do you create text along a path in SVG?",
+    "options": ["<textPath>", "<pathText>", "<text><path>", "<tspan>"],
+    "answer": "a",
+    "explanation": "The <textPath> element renders text along the shape of a <path>. It references the path via an href attribute."
+  },
+  {
+    "question": "What tool optimizes SVG files for production?",
+    "options": ["SVGO", "Webpack", "Babel", "Sass"],
+    "answer": "a",
+    "explanation": "SVGO (SVG Optimizer) is a Node.js tool that optimizes SVG files by removing unnecessary metadata, editor data, and redundant attributes."
+  }
+]

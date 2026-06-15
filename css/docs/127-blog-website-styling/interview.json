@@ -1,0 +1,130 @@
+{
+  "module": "127-blog-website-styling",
+  "title": "Blog Website Styling",
+  "beginner": [
+    {
+      "question": "What is the typical layout of a blog website?",
+      "answer": "A blog typically has: Header (logo, navigation, search), Main content area (blog posts list or single article), Sidebar (categories, tags, recent posts), and Footer. On mobile, the sidebar moves below the main content."
+    },
+    {
+      "question": "What is a 'blog card' layout?",
+      "answer": "A blog card displays a post excerpt in a contained card: thumbnail image, category label, title, publish date, author, and excerpt text. Cards are arranged in a responsive grid using CSS Grid or Flexbox."
+    },
+    {
+      "question": "How do you style blog article typography for readability?",
+      "answer": "Use a comfortable line-height (1.6-1.8), max-width (65-75 characters per line, typically 700-800px), generous paragraph margins, responsive font sizes (1rem-1.25rem body text), and good contrast (at least 4.5:1)."
+    },
+    {
+      "question": "What is a 'tag system' in a blog?",
+      "answer": "Tags are keywords that categorize posts by topic. Styled as inline pill/badge elements with `background`, `border-radius`, and `padding`. Tags link to filtered archive pages. On mobile, tags may wrap to multiple lines."
+    },
+    {
+      "question": "How do you style blog post dates and author info?",
+      "answer": "Post metadata (date, author, read time) is typically styled smaller and lighter than the title: `font-size: 0.875rem; color: var(--text-muted);`. Display inline with separators or icons. On mobile, stack metadata vertically."
+    },
+    {
+      "question": "What is the 'featured image' in a blog article?",
+      "answer": "The featured image is the primary image for a blog post, displayed at the top of the article and in post cards. Use `max-width: 100%; height: auto; border-radius;` and consider `object-fit: cover` for consistent card thumbnail sizes."
+    },
+    {
+      "question": "How do you build a responsive blog post list?",
+      "answer": "Use CSS Grid: `grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))` for a multi-column layout on desktop. On mobile, single column full-width cards. Each card has consistent height with flex column layout to align bottom elements."
+    },
+    {
+      "question": "What is the 'sidebar' in a blog layout?",
+      "answer": "A sidebar is a secondary column (typically 300-350px) containing widgets: search, categories, recent posts, tags, and newsletter signup. On mobile, the sidebar drops below the main content or is hidden behind a toggle."
+    },
+    {
+      "question": "How do you style headings in a blog article?",
+      "answer": "Use a hierarchical heading structure with clear visual distinction: `h1` for article title, `h2` for main sections, `h3` for subsections. Add `scroll-margin-top` for smooth scroll anchor offsets. Maintain consistent spacing above and below."
+    },
+    {
+      "question": "How do you make blog images responsive?",
+      "answer": "Use `max-width: 100%; height: auto; display: block;` on all images. Serve multiple sizes with `srcset` and `sizes`. Add `border-radius` and `box-shadow` for visual polish. Use `figure` and `figcaption` for captioned images."
+    }
+  ],
+  "intermediate": [
+    {
+      "question": "How do you implement a 'reading progress' indicator for blog articles?",
+      "answer": "A fixed-position bar at the top of the page that fills as the user scrolls. Use JavaScript to calculate scroll percentage: `(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100`. Update `width` with CSS transition."
+    },
+    {
+      "question": "How do you create a responsive 'table of contents' for long articles?",
+      "answer": "Generate ToC from heading elements with JavaScript. On desktop: fixed sidebar ToC (sticky) next to the article. On mobile: collapsible accordion ToC at the top of the article. Use `scroll-behavior: smooth` and `scroll-margin-top` for anchor navigation."
+    },
+    {
+      "question": "How do you style code blocks in blog articles for readability?",
+      "answer": "Use a monospace font (Consolas, 'Fira Code', 'JetBrains Mono'), consistent background (`#1e1e1e` or `#f5f5f5`), `border-radius`, horizontal scroll for long lines, and syntax highlighting via Prism.js or Highlight.js. Respect dark/light mode."
+    },
+    {
+      "question": "How do you implement a 'related posts' section?",
+      "answer": "At the bottom of an article, show 2-3 related posts as mini cards (thumbnail, title, date). Same responsive pattern as the main post grid. Use `same category` or `shared tags` as the selection criteria (server-side or client-side filtering)."
+    },
+    {
+      "question": "How do you handle responsive typography for blog content?",
+      "answer": "Use fluid typography: `font-size: clamp(1rem, 2.5vw, 1.25rem)` for body, `clamp(1.5rem, 4vw, 2.5rem)` for h2. Set `line-height: 1.7` for readability. Use `max-width: 65ch` to control line length. Maintain good vertical rhythm."
+    },
+    {
+      "question": "How do you design a responsive 'author bio' box?",
+      "answer": "Shown at the bottom of articles. Desktop: avatar left, bio text right (flexbox row). Mobile: avatar centered above bio (flexbox column). Include author name, description, and social links. Use `gap` for spacing."
+    },
+    {
+      "question": "How do you create a responsive 'newsletter signup' form?",
+      "answer": "A simple form with email input and submit button. Desktop: inline (input + button side by side). Mobile: stacked (input full width, button full width below). Use `flex-wrap: wrap` or grid. Ensure accessible labels."
+    },
+    {
+      "question": "How do you style blockquotes in blog articles?",
+      "answer": "Use `border-left: 4px solid var(--color-primary); padding-left: 1rem;` with italic styling. Add a citation with `<cite>` tag. On mobile, reduce padding. Consider a quote icon (`::before`) as a decorative element."
+    },
+    {
+      "question": "How do you implement a 'category filter' for a blog archive page?",
+      "answer": "Use a horizontal list of category links/pills at the top of the archive. On desktop: horizontal scrolling or wrap. On mobile: horizontal scroll or a select dropdown. Active category highlighted. Filter posts via JavaScript or server-side links."
+    },
+    {
+      "question": "How do you create a responsive 'pagination' for blog archives?",
+      "answer": "Desktop: numbered pagination with previous/next arrows. Mobile: 'Previous' and 'Next' links only (no page numbers to avoid crowding). Use `display: flex; gap: 0.5rem; flex-wrap: wrap;` with `aria-current=\"page\"` on current page."
+    }
+  ],
+  "advanced": [
+    {
+      "question": "How do you implement a responsive 'infinite scroll' for blog archive pages?",
+      "answer": "Use IntersectionObserver to detect when the sentinel element enters the viewport. Fetch next page JSON via AJAX, append posts to DOM. Provide a 'Load More' button as fallback (for accessibility, no JS). Announce new content with `aria-live`."
+    },
+    {
+      "question": "How do you implement a 'dark mode toggle' specifically optimized for blog reading?",
+      "answer": "Use CSS custom properties for all colors. Toggle via `data-theme` attribute. For blog reading, consider 'sepia' mode (warm background) as a third option. Persist preference in localStorage. Apply `color-scheme: light/dark` for form controls."
+    },
+    {
+      "question": "How do you create a responsive 'multi-author' blog layout with author cards?",
+      "answer": "Author archive page: CSS Grid with `auto-fit`/`minmax(250px, 1fr)`. Each card has avatar, name, bio, post count, social links. Single-author article view: author box at top/bottom with byline. Consistent author imagery across all breakpoints."
+    },
+    {
+      "question": "How do you optimize blog CSS for Core Web Vitals?",
+      "answer": "Inline critical blog CSS (typography, layout, colors). Defer non-critical CSS (comments, related posts, sidebar widgets). Use `content-visibility: auto` on below-fold sections. Lazy-load images with `loading=\"lazy\"`. Preload hero/first image."
+    },
+    {
+      "question": "How do you implement a 'series' or 'multi-part article' navigation in a blog?",
+      "answer": "Add a series navigation component at the top of articles in a series: 'Part 1, Part 2, Part 3...' with current part highlighted. Desktop: horizontal list. Mobile: select dropdown. Use `aria-label=\"Article series\"` for screen readers."
+    },
+    {
+      "question": "How do you create responsive 'code sandbox' embeds in blog articles?",
+      "answer": "Use iframe with `max-width: 100%; overflow: auto;`. For CodePen/CodeSandbox embeds, set `width: 100%` and appropriate `aspect-ratio`. On mobile, the sandbox scrolls horizontally if too wide. Provide a direct link fallback."
+    },
+    {
+      "question": "How do you implement a 'share buttons' component for blog articles?",
+      "answer": "Desktop: floating sidebar or inline at top/bottom. Mobile: bottom-fixed bar or inline below article. Use SVG icons linked to share URLs (`https://twitter.com/intent/tweet?url=...`). Consider using `navigator.share()` for native sharing on mobile."
+    },
+    {
+      "question": "How do you style a blog's 'comment section' responsively?",
+      "answer": "Threaded comments: indent each level with `margin-left`. Desktop: deeper nesting visible. Mobile: limit indentation to 2-3 levels, then use visual cues (line, background). Avatar sizes scale down on mobile. Comment form full-width on mobile."
+    },
+    {
+      "question": "How do you implement 'estimated reading time' display in CSS?",
+      "answer": "While the calculation is JS (`Math.ceil(text.split(' ').length / 200) + ' min read'`), style it with metadata labels. Use `::before` content for icon. On mobile, reading time may be displayed differently or combined with date."
+    },
+    {
+      "question": "How do you create a responsive 'hero article' layout for featured posts?",
+      "answer": "Featured post hero: large background image with overlay, title overlay. Desktop: full-width image, title bottom-left. Mobile: shorter hero, title at bottom or below image. Use `min-height: 60vh` desktop, `min-height: 40vh` mobile."
+    }
+  ]
+}

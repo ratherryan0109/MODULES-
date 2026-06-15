@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Margins - Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .demo-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .demo-section h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; border-bottom: 2px solid #06b6d4; padding-bottom: 0.5rem; }
+    .demo-output { padding: 1rem; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+  <style>
+    .margin-demo-box { background: #06b6d4; color: white; padding: 0.75rem 1rem; font-weight: 600; text-align: center; }
+    .collapse-container { background: #f1f5f9; border: 1px dashed #94a3b8; padding: 0.25rem; }
+    .collapse-item { background: #ef4444; color: white; padding: 0.5rem; text-align: center; font-weight: 600; }
+    .parent-border { border: 2px dashed #94a3b8; padding: 0.5rem; }
+    .auto-center { background: #22c55e; color: white; padding: 1rem; text-align: center; font-weight: 600; }
+    .negative-wrap { background: #f1f5f9; border: 2px dashed #94a3b8; padding: 0.5rem; overflow: hidden; }
+    .negative-demo { background: #8b5cf6; color: white; padding: 1rem; text-align: center; font-weight: 600; }
+    .shorthand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .shorthand-grid { grid-template-columns: 1fr; } }
+    .shorthand-card { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 1rem; text-align: center; }
+    .track { background: repeating-linear-gradient(90deg, #e2e8f0 0px, #e2e8f0 2px, transparent 2px, transparent 20px); height: 2px; margin: 0.5rem 0; }
+  </style>
+</head>
+<body>
+  <h1>CSS Margins - Examples</h1>
+
+  <div class="demo-section">
+    <h2>Example 1: Margin on All Sides</h2>
+    <p>A single value applies equal margin to all four sides.</p>
+    <div class="demo-output">
+      <div class="parent-border">
+        <div class="margin-demo-box" style="margin:30px">margin: 30px (on all sides)</div>
+      </div>
+    </div>
+    <pre><code>.box { margin: 30px; }  /* All sides */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 2: Margin Shorthand (1–4 Values)</h2>
+    <p>Margin shorthand follows the TRBL pattern: top, right, bottom, left.</p>
+    <div class="demo-output">
+      <div class="shorthand-grid">
+        <div class="shorthand-card"><strong>margin: 20px</strong><br>All sides: 20px</div>
+        <div class="shorthand-card"><strong>margin: 10px 30px</strong><br>Vertical: 10px, Horizontal: 30px</div>
+        <div class="shorthand-card"><strong>margin: 10px 20px 30px</strong><br>Top: 10px, Sides: 20px, Bottom: 30px</div>
+        <div class="shorthand-card"><strong>margin: 10px 20px 30px 40px</strong><br>Top Right Bottom Left</div>
+      </div>
+    </div>
+    <pre><code>/* 1 value */  margin: 20px;          /* all sides */
+/* 2 values */ margin: 10px 30px;      /* vert / horiz */
+/* 3 values */ margin: 10px 20px 30px; /* top / sides / bottom */
+/* 4 values */ margin: 10px 20px 30px 40px; /* TRBL */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 3: Margin Collapsing</h2>
+    <p>Adjacent vertical margins collapse — the larger margin wins. Horizontal margins do not collapse.</p>
+    <div class="demo-output">
+      <div class="collapse-container">
+        <div class="collapse-item" style="margin-bottom:30px">Bottom margin: 30px</div>
+        <div class="collapse-item" style="margin-top:20px">Top margin: 20px — collapsed to 30px</div>
+      </div>
+      <p style="color:#64748b;font-size:0.875rem">The 30px and 20px margins collapse to 30px (the larger value).</p>
+    </div>
+    <pre><code>.first { margin-bottom: 30px; }
+.second { margin-top: 20px; }
+/* Actual gap between them: 30px (not 50px) */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 4: Auto Margins (Centering)</h2>
+    <p><code>margin: 0 auto</code> horizontally centers a block element within its container.</p>
+    <div class="demo-output">
+      <div class="parent-border">
+        <div class="auto-center" style="max-width:400px;margin:0 auto">margin: 0 auto — centered horizontally</div>
+      </div>
+    </div>
+    <pre><code>.center {
+  max-width: 400px;
+  margin: 0 auto;   /* Left/right auto = centering */
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 5: Negative Margins</h2>
+    <p>Negative margins pull an element in the opposite direction, overlapping adjacent elements or extending beyond the parent.</p>
+    <div class="demo-output">
+      <div class="negative-wrap">
+        <div class="negative-demo" style="margin:0 -1rem">margin: 0 -1rem (wider than parent)</div>
+      </div>
+      <div class="parent-border" style="margin-top:1rem">
+        <div style="background:#f59e0b;color:white;padding:1rem;text-align:center;font-weight:600;margin-top:-10px">margin-top: -10px (overlaps parent)</div>
+      </div>
+    </div>
+    <pre><code>.pull-out { margin: 0 -1rem; }     /* Extends beyond parent */
+.overlap { margin-top: -10px; }    /* Pulls element upward */</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 6: Individual Side Margins</h2>
+    <p>Target specific sides with <code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code>, <code>margin-left</code>.</p>
+    <div class="demo-output">
+      <div class="parent-border">
+        <div class="margin-demo-box" style="margin-top:20px;margin-left:40px">margin-top: 20px, margin-left: 40px</div>
+        <div class="margin-demo-box" style="margin-right:30px;text-align:right">margin-right: 30px</div>
+        <div class="margin-demo-box" style="margin-bottom:25px">margin-bottom: 25px</div>
+      </div>
+    </div>
+    <pre><code>.specific {
+  margin-top: 20px;
+  margin-right: 30px;
+  margin-bottom: 25px;
+  margin-left: 40px;
+}</code></pre>
+  </div>
+
+  <div class="demo-section">
+    <h2>Example 7: Margin Between Elements</h2>
+    <p>Use margins to create consistent spacing between sibling elements in a list or grid.</p>
+    <div class="demo-output">
+      <div>
+        <div class="margin-demo-box" style="margin-bottom:10px">Item 1</div>
+        <div class="margin-demo-box" style="margin-bottom:10px">Item 2</div>
+        <div class="margin-demo-box" style="margin-bottom:10px">Item 3</div>
+        <div class="margin-demo-box">Item 4</div>
+      </div>
+    </div>
+    <pre><code>.list-item { margin-bottom: 10px; }
+.list-item:last-child { margin-bottom: 0; }
+/* Lobotomized owl alternative: */
+.item + .item { margin-top: 10px; }</code></pre>
+  </div>
+
+</body>
+</html>

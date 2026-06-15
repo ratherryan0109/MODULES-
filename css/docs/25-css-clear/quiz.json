@@ -1,0 +1,247 @@
+﻿{
+    "module":  "25-css-clear",
+    "title":  "CSS Clear",
+    "difficulty":  "intermediate",
+    "questions":  [
+                      {
+                          "id":  1,
+                          "question":  "What does the CSS clear property do?",
+                          "options":  [
+                                          "Removes element styling",
+                                          "Clears the element\u0027s content",
+                                          "Specifies whether an element can be next to floated elements",
+                                          "Clears the browser cache"
+                                      ],
+                          "explanation":  "The clear property determines if an element can be positioned next to floated elements or must be moved below them.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  2,
+                          "question":  "What is the default value of the clear property?",
+                          "options":  [
+                                          "left",
+                                          "right",
+                                          "both",
+                                          "none"
+                                      ],
+                          "explanation":  "The default value of clear is \u0027none\u0027, meaning the element can be positioned next to floated elements.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  3,
+                          "question":  "Which clear value moves an element below both left and right floats?",
+                          "options":  [
+                                          "clear: left",
+                                          "clear: right",
+                                          "clear: both",
+                                          "clear: all"
+                                      ],
+                          "explanation":  "clear: both moves the element below all preceding left and right floated elements.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  4,
+                          "question":  "What is the difference between clear and clearfix?",
+                          "options":  [
+                                          "They are the same thing",
+                                          "Clear is for individual elements; clearfix is for parent containers",
+                                          "Clearfix is for inline elements; clear is for blocks",
+                                          "Clear works vertically; clearfix works horizontally"
+                                      ],
+                          "explanation":  "Clear is applied to individual elements to move them below floats. Clearfix is a technique applied to parent containers to properly contain floated children.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  5,
+                          "question":  "What does clear: left do?",
+                          "options":  [
+                                          "Moves element below all left-floated elements",
+                                          "Moves element to the left",
+                                          "Clears the left side of the element",
+                                          "Removes left floats"
+                                      ],
+                          "explanation":  "clear: left pushes the element below any preceding left-floated elements.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  6,
+                          "question":  "Can the clear property work on inline elements?",
+                          "options":  [
+                                          "Yes, always",
+                                          "No, only block-level elements",
+                                          "Only if they have display: block",
+                                          "Only on inline-block elements"
+                                      ],
+                          "explanation":  "The clear property only affects block-level elements. It does not work on inline elements.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  7,
+                          "question":  "What CSS pseudo-element is commonly used in the clearfix technique?",
+                          "options":  [
+                                          "::before",
+                                          "::after",
+                                          "::first-line",
+                                          "::selection"
+                                      ],
+                          "explanation":  "The standard clearfix uses the ::after pseudo-element with content: \u0027\u0027, display: table (or block), and clear: both.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  8,
+                          "question":  "How does clear affect an element\u0027s margin?",
+                          "options":  [
+                                          "It removes margins",
+                                          "It increases the top margin to push the element below floats",
+                                          "It doubles the margin",
+                                          "It doesn\u0027t affect margins"
+                                      ],
+                          "explanation":  "Clear adjusts the element\u0027s top margin to push it below preceding floated elements. The margin is calculated based on the height of the tallest preceding float.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  9,
+                          "question":  "What happens when an element has clear: both but there are no preceding floats?",
+                          "options":  [
+                                          "The element moves to the top",
+                                          "The element stays in normal position",
+                                          "The element disappears",
+                                          "The element\u0027s margin is removed"
+                                      ],
+                          "explanation":  "If there are no preceding floated elements, clear: both has no effect and the element stays in its normal position.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  10,
+                          "question":  "What is a common use of clear in multi-row float layouts?",
+                          "options":  [
+                                          "Creating equal heights",
+                                          "Creating row breaks after a certain number of items",
+                                          "Adding background colors",
+                                          "Making elements clickable"
+                                      ],
+                          "explanation":  "In float-based grids, clear: both is often used to create row breaks, ensuring that subsequent items start on a new line.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  11,
+                          "question":  "Which is the most commonly used clear value?",
+                          "options":  [
+                                          "clear: left",
+                                          "clear: right",
+                                          "clear: both",
+                                          "clear: none"
+                                      ],
+                          "explanation":  "clear: both is the most commonly used value because it clears all floats regardless of direction.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  12,
+                          "question":  "What happens when you use clear: right but only left floats exist?",
+                          "options":  [
+                                          "The element clears both directions",
+                                          "The element stays next to left floats",
+                                          "The element moves below left floats too",
+                                          "It causes an error"
+                                      ],
+                          "explanation":  "clear: right only clears right floats. If only left floats exist, the element can still sit next to them.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  13,
+                          "question":  "What display value does the clearfix pseudo-element typically use?",
+                          "options":  [
+                                          "block",
+                                          "inline",
+                                          "table",
+                                          "flex"
+                                      ],
+                          "explanation":  "display: table is commonly used in clearfix because it creates a block formatting context without collapsing margins.",
+                          "correctAnswer":  2
+                      },
+                      {
+                          "id":  14,
+                          "question":  "Can you use clear with Flexbox or Grid layouts?",
+                          "options":  [
+                                          "Yes, always",
+                                          "No, float is ignored in flex/grid contexts so clear has no effect",
+                                          "Only with Grid",
+                                          "Only with Flexbox"
+                                      ],
+                          "explanation":  "Since float is ignored in Flexbox and Grid contexts, clear also has no effect in these layouts.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  15,
+                          "question":  "What is an alternative to using clear: both for containing floats?",
+                          "options":  [
+                                          "overflow: hidden on parent",
+                                          "display: inline on parent",
+                                          "position: absolute on parent",
+                                          "visibility: hidden on parent"
+                                      ],
+                          "explanation":  "overflow: hidden (or auto) on the parent container also creates a block formatting context that contains floats, as an alternative to clearfix.",
+                          "correctAnswer":  0
+                      },
+                      {
+                          "id":  16,
+                          "question":  "When should you use an empty div with clear: both?",
+                          "options":  [
+                                          "Never, use clearfix instead",
+                                          "For creating row breaks in float layouts",
+                                          "For clearing browser cache",
+                                          "For styling purposes"
+                                      ],
+                          "explanation":  "An empty div with clear: both can be used to force a new row in float-based layouts, though modern approaches prefer clearfix or Grid/Flexbox.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  17,
+                          "question":  "What is the initial value of the clear property?",
+                          "options":  [
+                                          "left",
+                                          "right",
+                                          "both",
+                                          "none"
+                                      ],
+                          "explanation":  "The initial (default) value of clear is \u0027none\u0027, meaning no clearing is applied.",
+                          "correctAnswer":  3
+                      },
+                      {
+                          "id":  18,
+                          "question":  "Does clear affect floats that come after the cleared element?",
+                          "options":  [
+                                          "Yes",
+                                          "No, only preceding floats",
+                                          "Only on the same side",
+                                          "Depends on the clear value"
+                                      ],
+                          "explanation":  "Clear only affects the positioning relative to preceding (earlier in DOM) floated elements. It doesn\u0027t affect floats that come later.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  19,
+                          "question":  "What is a modern best practice for clear usage?",
+                          "options":  [
+                                          "Use clear: both on every element",
+                                          "Use clear only for text-wrapping scenarios, use Flexbox/Grid for layout",
+                                          "Never use clear at all",
+                                          "Always use clear: left"
+                                      ],
+                          "explanation":  "Modern best practice is to use Flexbox or Grid for layout and reserve clear for managing text wrapping around floated elements.",
+                          "correctAnswer":  1
+                      },
+                      {
+                          "id":  20,
+                          "question":  "What is the relationship between clear and block formatting context?",
+                          "options":  [
+                                          "Clear creates a block formatting context",
+                                          "A block formatting context contains floats, similar to clearfix",
+                                          "Clear destroys formatting contexts",
+                                          "They are unrelated"
+                                      ],
+                          "explanation":  "Creating a block formatting context (via overflow: hidden, display: flow-root, etc.) contains floats similarly to clearfix, but by different means.",
+                          "correctAnswer":  1
+                      }
+                  ]
+}
